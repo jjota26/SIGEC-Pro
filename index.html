@@ -2770,7 +2770,12 @@
                 </div>
                 <div>
                   <label style="font-size: 0.82rem; font-weight: 600; color: #334155; display: block; margin-bottom: 0.35rem;">Palavra-Passe / App Password:</label>
-                  <input type="password" id="cfgSmtpPass" class="form-control" placeholder="Palavra-passe de aplicação..." style="padding: 0.6rem 0.75rem; border-radius: 6px; font-size: 0.88rem;">
+                  <div style="position: relative; display: flex; align-items: center;">
+                    <input type="password" id="cfgSmtpPass" class="form-control" placeholder="Palavra-passe de aplicação..." style="padding: 0.6rem 2.2rem 0.6rem 0.75rem; border-radius: 6px; font-size: 0.88rem; width: 100%;">
+                    <button type="button" onclick="toggleSmtpPassVisibility()" title="Mostrar / Ocultar Palavra-Passe" style="position: absolute; right: 8px; background: none; border: none; cursor: pointer; color: #64748b; padding: 4px; display: flex; align-items: center; justify-content: center;">
+                      <i id="toggleSmtpPassIcon" class="fa-solid fa-eye"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
 

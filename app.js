@@ -23352,11 +23352,11 @@ function getEmailNotifySettings() {
       email = (adminUser && adminUser.email) ? adminUser.email : 'jmcenturio@alegria-activity.com';
     }
   }
-  const smtpHost = localStorage.getItem('sigec_pro_smtp_host') || 'smtp.gmail.com';
-  const smtpPort = localStorage.getItem('sigec_pro_smtp_port') || '587';
-  let smtpUser = localStorage.getItem('sigec_pro_smtp_user') || 'jmcenturio@alegria-activity.com';
+  const smtpHost = localStorage.getItem('sigec_pro_smtp_host') || (typeof db !== 'undefined' && db.config && db.config.smtpHost) || 'smtp.gmail.com';
+  const smtpPort = localStorage.getItem('sigec_pro_smtp_port') || (typeof db !== 'undefined' && db.config && db.config.smtpPort) || '587';
+  let smtpUser = localStorage.getItem('sigec_pro_smtp_user') || (typeof db !== 'undefined' && db.config && db.config.smtpUser) || 'jmcenturio@alegria-activity.com';
   if (smtpUser.includes('José Centúrio')) smtpUser = 'jmcenturio@alegria-activity.com';
-  const smtpPass = localStorage.getItem('sigec_pro_smtp_pass') || '';
+  const smtpPass = localStorage.getItem('sigec_pro_smtp_pass') || (typeof db !== 'undefined' && db.config && db.config.smtpPass) || '';
 
   return {
     enabled,
@@ -23418,8 +23418,12 @@ function handleSaveEmailNotifySettings(showToastMsg = false) {
     db.config.smtpHost = smtpHost;
     db.config.smtpPort = smtpPort;
     db.config.smtpUser = smtpUser;
+    db.config.smtpPass = smtpPass;
     if (typeof saveDatabase === 'function') {
       saveDatabase();
+    }
+    if (typeof syncDatabaseToHuggingFace === 'function') {
+      syncDatabaseToHuggingFace(true, true).catch(() => {});
     }
   }
 
@@ -23576,99 +23580,8 @@ async function dispatchDirectEmail(targetEmail, subject, fields = {}) {
   let statusMessage = '';
 
   // ------------------------------------------------------------------------
-  // CANAL 1: FormSubmit Universal Gateway (Direct AJAX + Iframe Relay)
-  // ------------------------------------------------------------------------
-  try {
-    const fsPayload = {
-      _subject: subject,
-      _template: 'table',
-      _captcha: 'false',
-      email: cleanEmail,
-      ...fields
-    };
-
-    // 1A. Envio AJAX assíncrono
-    if (typeof fetch === 'function') {
-      fetch(`https://formsubmit.co/ajax/${encodeURIComponent(cleanEmail)}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(fsPayload)
-      }).then(r => r.json()).then(resData => {
-        if (resData && (resData.success === 'true' || resData.success === true)) {
-          sentOk = true;
-        }
-      }).catch(() => {});
-    }
-
-    // 1B. Envio redundante via formulário oculto em iframe (100% imune a CORS)
-    if (typeof document !== 'undefined' && document.body) {
-      const iframeName = `_sigec_mail_relay_${Date.now()}_${Math.floor(Math.random() * 10000)}`;
-      const iframe = document.createElement('iframe');
-      iframe.name = iframeName;
-      iframe.style.cssText = 'display:none;width:1px;height:1px;opacity:0;position:absolute;left:-9999px;';
-      document.body.appendChild(iframe);
-
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = `https://formsubmit.co/${encodeURIComponent(cleanEmail)}`;
-      form.target = iframeName;
-      form.style.display = 'none';
-
-      Object.entries(fsPayload).forEach(([k, v]) => {
-        if (v !== undefined && v !== null && typeof v !== 'object') {
-          const inp = document.createElement('input');
-          inp.type = 'hidden';
-          inp.name = k;
-          inp.value = String(v);
-          form.appendChild(inp);
-        }
-      });
-
-      document.body.appendChild(form);
-      setTimeout(() => {
-        try { form.submit(); } catch(eForm) {}
-        setTimeout(() => {
-          try { if (form.parentNode) form.parentNode.removeChild(form); } catch(e) {}
-          try { if (iframe.parentNode) iframe.parentNode.removeChild(iframe); } catch(e) {}
-        }, 6000);
-      }, 50);
-
-      sentOk = true;
-      statusMessage = 'Email submetido com sucesso via gateway direto';
-    }
-  } catch(errFs) {
-    console.warn('[SIGEC-Pro] Aviso no gateway FormSubmit:', errFs);
-  }
-
-  // ------------------------------------------------------------------------
-  // CANAL 2: Web3Forms Direct API
-  // ------------------------------------------------------------------------
-  try {
-    const w3fKey = (settings.apiKey || '2c45e82b-65c3-4d2a-89ee-03f421e4cb80').trim();
-    if (w3fKey && typeof fetch === 'function') {
-      fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          access_key: w3fKey,
-          subject: subject,
-          from_name: 'SIGEC-Pro | José Centúrio',
-          to_email: cleanEmail,
-          email: cleanEmail,
-          message: textSummary,
-          ...fields
-        })
-      }).then(r => r.json()).then(w3Res => {
-        if (w3Res && (w3Res.success === true || w3Res.success === 'true')) {
-          sentOk = true;
-          statusMessage = 'Email entregue com sucesso via Web3Forms';
-        }
-      }).catch(() => {});
-    }
-  } catch(errW3) {}
-
-  // ------------------------------------------------------------------------
-  // CANAL 3: Servidor Desktop Local Bridge C# (Porta 59124)
+  // CANAL 1: Servidor Desktop Local Bridge C# (Porta 59124 - SMTP Nativo)
+  // Envia diretamente via SMTP Corporativo com HTML completo (sem qualquer ativação de terceiros)
   // ------------------------------------------------------------------------
   try {
     const bridgePayload = {
@@ -23682,7 +23595,7 @@ async function dispatchDirectEmail(targetEmail, subject, fields = {}) {
       pass: settings.smtpPass || '',
       to: cleanEmail,
       subject: subject || '[SIGEC-Pro] Notificação do Sistema',
-      body: emailBody,
+      body: emailHtml,
       html: emailHtml
     };
 
@@ -23703,8 +23616,10 @@ async function dispatchDirectEmail(targetEmail, subject, fields = {}) {
           const data = await resp.json();
           if (data && (data.success === true || data.status === 'success')) {
             sentOk = true;
-            statusMessage = 'Email enviado com sucesso via servidor desktop local!';
+            statusMessage = 'Email enviado com sucesso via SMTP corporativo!';
             break;
+          } else if (data && data.message) {
+            statusMessage = data.message;
           }
         }
       } catch(eEp) {}
@@ -23712,7 +23627,7 @@ async function dispatchDirectEmail(targetEmail, subject, fields = {}) {
   } catch(errBridge) {}
 
   // ------------------------------------------------------------------------
-  // CANAL 4: Registo Central de Auditoria e Logs
+  // CANAL 2: Registo Central de Auditoria e Logs do Sistema
   // ------------------------------------------------------------------------
   try {
     if (typeof db !== 'undefined') {
@@ -23723,12 +23638,12 @@ async function dispatchDirectEmail(targetEmail, subject, fields = {}) {
         categoria: 'Email / Notificação',
         acao: 'Notificação por Email',
         tipoAcao: 'Notificação por Email',
-        descricao: 'Notificação para ' + cleanEmail + ' ("' + subject + '"). Estado: Enviado',
+        descricao: 'Notificação para ' + cleanEmail + ' ("' + subject + '"). Estado: ' + (sentOk ? 'Enviado' : 'Registado no Sistema'),
         detalhes: {
           destinatario: cleanEmail,
           assunto: subject,
-          estado: 'Enviado com Sucesso',
-          mensagem: statusMessage || 'Disparo concluído',
+          estado: sentOk ? 'Enviado com Sucesso via SMTP' : 'Registado no Sistema',
+          mensagem: statusMessage || (sentOk ? 'Disparo concluído com sucesso' : 'Notificação registada internamente'),
           resumo: textSummary
         }
       });
@@ -23739,9 +23654,29 @@ async function dispatchDirectEmail(targetEmail, subject, fields = {}) {
     }
   } catch(eLog) {}
 
-  return { success: true, message: statusMessage || 'Notificação processada com sucesso' };
+  return { success: sentOk, message: statusMessage || (sentOk ? 'Notificação enviada com sucesso' : 'Serviço SMTP desktop indisponível ou palavra-passe em falta') };
 }
 window.dispatchDirectEmail = dispatchDirectEmail;
+
+function toggleSmtpPassVisibility() {
+  const passEl = document.getElementById('cfgSmtpPass');
+  const iconEl = document.getElementById('toggleSmtpPassIcon');
+  if (!passEl) return;
+  if (passEl.type === 'password') {
+    passEl.type = 'text';
+    if (iconEl) {
+      iconEl.classList.remove('fa-eye');
+      iconEl.classList.add('fa-eye-slash');
+    }
+  } else {
+    passEl.type = 'password';
+    if (iconEl) {
+      iconEl.classList.remove('fa-eye-slash');
+      iconEl.classList.add('fa-eye');
+    }
+  }
+}
+window.toggleSmtpPassVisibility = toggleSmtpPassVisibility;
 
 async function sendNewUserRegistrationEmailNotification(userData, isTest = false) {
   const settings = getEmailNotifySettings();
@@ -23775,17 +23710,11 @@ async function sendNewUserRegistrationEmailNotification(userData, isTest = false
     'Data e Hora do Registo': nowStr,
     'Dispositivo': deviceInfo,
     'Instruções para o Administrador': isTest 
-      ? 'Este é um email de teste para validar o canal de correio e a receção de alertas no sistema SIGEC-Pro.' 
+      ? 'Este é um email de teste para validar o canal SMTP e a receção de alertas no sistema SIGEC-Pro.' 
       : 'Aceda ao separador Configuração > Gestão de Utilizadores no programa SIGEC-Pro para aprovar e ativar o acesso deste utilizador.',
     'Sistema': 'SIGEC-Pro | José Centúrio',
     empresa: 'SIGEC-Pro • Sistema Integrado de Gestão Empresarial e Contactos • Propriedade de José Centúrio'
   };
-
-  // Se for registo real, instruir o gateway a enviar resposta automática imediata ao novo utilizador!
-  if (!isTest && userEmail && userEmail.includes('@')) {
-    emailFields._replyto = userEmail;
-    emailFields._autoresponse = `Estimado(a) ${userName},\n\nO seu registo no sistema SIGEC-Pro foi submetido com sucesso.\n\nDados da sua conta:\n- Nome Completo: ${userName}\n- Email de Acesso: ${userEmail}\n- Cargo / Função: ${userCargo}\n- Palavra-Passe / PIN de Acesso: ${userPin}\n- Estado da Conta: Pendente de Ativação pelo Administrador\n- Data de Registo: ${nowStr}\n\nInstruções Importantes:\nO seu acesso está condicionado à aceitação e validação pelo Administrador do programa. Assim que a sua conta for ativada, poderá iniciar sessão normalmente no SIGEC-Pro com o seu Email e Palavra-Passe.\n\nSIGEC-Pro - José Centúrio`;
-  }
 
   const res = await dispatchDirectEmail(targetEmail, issueTitle, emailFields);
 
@@ -23807,7 +23736,11 @@ async function sendTestEmailNotification() {
     return;
   }
 
-  showToast('A enviar email de teste em segundo plano para ' + targetEmail + '...', 'info');
+  if (!settings.smtpPass) {
+    showToast('⚠️ O campo "Palavra-Passe / App Password" está vazio. Introduza a palavra-passe de aplicação para autenticação SMTP.', 'warning', 7000);
+  }
+
+  showToast('A enviar email de teste via SMTP para ' + targetEmail + '...', 'info');
 
   const res = await sendNewUserRegistrationEmailNotification({
     nome: 'José Centúrio (Teste de Notificação)',
@@ -23820,10 +23753,11 @@ async function sendTestEmailNotification() {
 
   if (res && res.success) {
     showToast('✅ Email de teste enviado com sucesso para ' + targetEmail + '!', 'success', 6000);
-    alert('✅ Teste de Envio Concluído!\n\nA notificação foi disparada para ' + targetEmail + '.\n\nCaso seja a primeira receção, verifique a caixa de entrada e a pasta de Spam/Lixo Eletrónico. Se receber uma mensagem do FormSubmit a solicitar ativação, basta clicar em "Activate Form" uma única vez para autorizar as notificações.');
+    alert('✅ Teste de Envio Concluído com Sucesso!\n\nA notificação por email foi enviada para ' + targetEmail + ' com o formato oficial do SIGEC-Pro.\n\nPor favor, verifique a sua Caixa de Entrada.');
   } else {
     const errorDetail = res && res.message ? res.message : 'Falha no envio';
-    showToast('❌ Não foi possível enviar: ' + errorDetail, 'error', 8000);
+    showToast('Aviso de Envio: ' + errorDetail, 'warning', 8000);
+    alert('ℹ️ Informação sobre o Envio SMTP:\n\n' + errorDetail + '\n\nCertifique-se de que:\n1. O programa está aberto através do SIGEC-Pro.exe.\n2. O campo "Palavra-Passe / App Password" tem a palavra-passe de aplicação do Google Workspace.');
   }
 }
 window.sendTestEmailNotification = sendTestEmailNotification;
