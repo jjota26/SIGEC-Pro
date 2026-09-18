@@ -23799,7 +23799,32 @@ async function sendTestEmailNotification() {
   } else {
     const errorDetail = res && res.message ? res.message : 'Falha no envio';
     showToast('Aviso de Envio: ' + errorDetail, 'warning', 8000);
-    alert('ℹ️ Informação sobre o Envio SMTP:\n\n' + errorDetail + '\n\nCertifique-se de que:\n1. O programa está aberto através do SIGEC-Pro.exe.\n2. O campo "Palavra-Passe / App Password" tem a palavra-passe de aplicação do Google Workspace.');
+
+    const isWebBrowser = typeof window !== 'undefined' && (window.location.protocol === 'https:' || !window.location.host.includes('127.0.0.1'));
+    if (isWebBrowser) {
+      const openGmail = confirm(
+        'ℹ️ Informação sobre o Envio Web (' + window.location.hostname + '):\n\n' +
+        'O envio automático silencioso em segundo plano funciona através do executável "SIGEC-Pro.exe" no seu computador.\n\n' +
+        'Nos navegadores web (Chrome/Edge/Render), o navegador restringe ligações directas a servidores de email por segurança.\n\n' +
+        'Deseja abrir o Gmail agora com este email de teste já preenchido para envio imediato?'
+      );
+      if (openGmail) {
+        const testSub = encodeURIComponent('[SIGEC-Pro Teste] Confirmação de Notificação por Email');
+        const testBody = encodeURIComponent(
+          'Email de Teste do Sistema SIGEC-Pro\n' +
+          '====================================\n\n' +
+          'Destinatário: ' + targetEmail + '\n' +
+          'Remetente: ' + (settings.smtpUser || 'jmcenturio@alegria-activity.com') + '\n' +
+          'Data/Hora: ' + new Date().toLocaleString('pt-PT') + '\n\n' +
+          'Este email confirma a configuração correta do sistema SIGEC-Pro.\n\n' +
+          'SIGEC-Pro • Sistema Integrado de Gestão Empresarial e Contactos\n' +
+          'Propriedade Exclusiva de José Centúrio'
+        );
+        window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(targetEmail) + '&su=' + testSub + '&body=' + testBody, '_blank');
+      }
+    } else {
+      alert('ℹ️ Informação sobre o Envio SMTP:\n\n' + errorDetail + '\n\nCertifique-se de que:\n1. O programa está aberto através do SIGEC-Pro.exe.\n2. O campo "Palavra-Passe / App Password" tem a palavra-passe de aplicação do Google Workspace.');
+    }
   }
 }
 window.sendTestEmailNotification = sendTestEmailNotification;
