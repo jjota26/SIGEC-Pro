@@ -74,9 +74,12 @@ function sendEmailViaSmtp(options) {
       } else if (step === 7 && msg.startsWith('354')) {
         step = 8;
         const subjectUtf8 = '=?UTF-8?B?' + Buffer.from(subject).toString('base64') + '?=';
-        const fromHeader = '=?UTF-8?B?' + Buffer.from('José Centúrio | SIGEC-Pro').toString('base64') + '?= <' + from + '>';
+        const senderName = 'SIGEC-Pro • Sistema Integrado de Clientes & Projetos';
+        const maskEmail = 'no-reply@sigec-pro.com';
+        const fromHeader = '=?UTF-8?B?' + Buffer.from(senderName).toString('base64') + '?= <' + maskEmail + '>';
         const emailContent = 
           'From: ' + fromHeader + '\r\n' +
+          'Reply-To: <' + maskEmail + '>\r\n' +
           'To: ' + to + '\r\n' +
           'Subject: ' + subjectUtf8 + '\r\n' +
           'MIME-Version: 1.0\r\n' +

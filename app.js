@@ -23499,8 +23499,8 @@ function generateEmailHTMLTemplate(subject, fields) {
   var greeting = fields.saudacao || "";
   var message = fields.mensagem || fields.mensagem_introducao || fields.mensagem_alerta || "";
   var instructions = fields.instrucoes || fields.instrucoes_administrador || fields["Instruções para o Administrador"] || "";
-  var company = "SIGEC_Pro - Sistema integrado de Clientes & Projetos";
-  var headerSubtitle = "SIGEC_Pro - Sistema integrado de Clientes &amp; Projetos";
+  var company = "SIGEC-Pro • Sistema Integrado de Clientes & Projetos";
+  var headerSubtitle = "SIGEC-Pro &bull; Sistema Integrado de Clientes &amp; Projetos";
 
   var ignoredKeys = new Set(["_subject", "_captcha", "_template", "_honey", "_replyto", "_autoresponse", "mensagem_titulo", "saudacao", "mensagem", "mensagem_introducao", "mensagem_alerta", "instrucoes", "instrucoes_administrador", "Instruções para o Administrador", "empresa", "user_lang", "is_html", "type", "is_user_email", "para_usuario"]);
   
@@ -23535,7 +23535,7 @@ function generateEmailHTMLTemplate(subject, fields) {
 '              <table width="100%" border="0" cellspacing="0" cellpadding="0">' +
 '                <tr>' +
 '                  <td>' +
-'                    <div style="font-size:20px;font-weight:800;color:#ffffff;letter-spacing:0.5px;margin:0;">SIGEC_Pro</div>' +
+'                    <div style="font-size:20px;font-weight:800;color:#ffffff;letter-spacing:0.5px;margin:0;">SIGEC-Pro</div>' +
 '                    <div style="font-size:12px;color:#bae6fd;margin-top:3px;font-weight:500;">' + headerSubtitle + '</div>' +
 '                  </td>' +
 '                </tr>' +
@@ -23558,9 +23558,9 @@ function generateEmailHTMLTemplate(subject, fields) {
 '          <!-- Footer -->' +
 '          <tr>' +
 '            <td style="background:#f8fafc;padding:20px 28px;border-top:1px solid #e2e8f0;text-align:center;">' +
-'              <p style="margin:0 0 4px 0;font-size:12px;color:#475569;font-weight:700;">SIGEC_Pro - Sistema integrado de Clientes &amp; Projetos</p>' +
+'              <p style="margin:0 0 4px 0;font-size:12px;color:#475569;font-weight:700;">SIGEC-Pro &bull; Sistema Integrado de Clientes &amp; Projetos</p>' +
 '              <p style="margin:0 0 6px 0;font-size:11px;color:#64748b;font-weight:500;">Propriedade Exclusiva de José Centúrio &bull; Todos os direitos reservados</p>' +
-'              <p style="margin:0;font-size:11px;color:#94a3b8;">Mensagem automática gerada pelo sistema SIGEC_Pro. Por favor não responda diretamente a este email.</p>' +
+'              <p style="margin:0;font-size:11px;color:#94a3b8;">Mensagem automática gerada pelo sistema SIGEC-Pro. Por favor não responda diretamente a este email.</p>' +
 '            </td>' +
 '          </tr>' +
 '        </table>' +
@@ -23643,6 +23643,9 @@ async function dispatchDirectEmail(targetEmail, subject, fields = {}) {
     smtpUser: settings.smtpUser || 'jmcenturio@alegria-activity.com',
     smtpPass: settings.smtpPass || '',
     webhookUrl: (settings.webhookUrl || '').trim(),
+    senderName: 'SIGEC-Pro • Sistema Integrado de Clientes & Projetos',
+    from: 'no-reply@sigec-pro.com',
+    replyTo: 'no-reply@sigec-pro.com',
     to: cleanEmail,
     subject: subject || '[SIGEC-Pro] Notificação do Sistema',
     body: emailHtml,
@@ -23684,6 +23687,10 @@ async function dispatchDirectEmail(targetEmail, subject, fields = {}) {
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({
           to: cleanEmail,
+          name: 'SIGEC-Pro • Sistema Integrado de Clientes & Projetos',
+          senderName: 'SIGEC-Pro • Sistema Integrado de Clientes & Projetos',
+          from: 'no-reply@sigec-pro.com',
+          replyTo: 'no-reply@sigec-pro.com',
           subject: subject || '[SIGEC-Pro] Notificação do Sistema',
           html: emailHtml,
           body: textSummary
@@ -23782,8 +23789,8 @@ async function sendNewUserRegistrationEmailNotification(userData, isTest = false
     'Instruções para o Administrador': isTest 
       ? 'Este é um email de teste para validar o canal SMTP e a receção de alertas no sistema SIGEC-Pro.' 
       : 'Aceda ao separador Configuração > Gestão de Utilizadores no programa SIGEC-Pro para aprovar e ativar o acesso deste utilizador.',
-    'Sistema': 'SIGEC_Pro - Sistema integrado de Clientes & Projetos',
-    empresa: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
+    'Sistema': 'SIGEC-Pro • Sistema Integrado de Clientes & Projetos',
+    empresa: 'SIGEC-Pro • Sistema Integrado de Clientes & Projetos'
   };
 
   const res = await dispatchDirectEmail(targetEmail, issueTitle, emailFields);
@@ -23845,7 +23852,7 @@ async function sendTestEmailNotification() {
           'Remetente: ' + (settings.smtpUser || 'jmcenturio@alegria-activity.com') + '\n' +
           'Data/Hora: ' + new Date().toLocaleString('pt-PT') + '\n\n' +
           'Este email confirma a configuração correta do sistema SIGEC-Pro.\n\n' +
-          'SIGEC_Pro - Sistema integrado de Clientes & Projetos\n' +
+          'SIGEC-Pro • Sistema Integrado de Clientes & Projetos\n' +
           'Propriedade Exclusiva de José Centúrio'
         );
         window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(targetEmail) + '&su=' + testSub + '&body=' + testBody, '_blank');
@@ -23883,7 +23890,7 @@ function sendUserRegistrationConfirmationEmail(userData) {
       lblData: 'Data e Hora do Registo',
       statusPending: 'Pendente de Ativação pelo Administrador',
       statusActive: 'Ativo',
-      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
+      company: 'SIGEC-Pro • Sistema Integrado de Clientes & Projetos'
     },
     'Español': {
       subject: '[SIGEC-Pro] Confirmación de su Registro de Usuario',
@@ -23899,7 +23906,7 @@ function sendUserRegistrationConfirmationEmail(userData) {
       lblData: 'Fecha y Hora del Registro',
       statusPending: 'Pendiente de Activación por el Administrador',
       statusActive: 'Activo',
-      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
+      company: 'SIGEC-Pro • Sistema Integrado de Clientes & Projetos'
     },
     'English': {
       subject: '[SIGEC-Pro] User Registration Confirmation',
@@ -23915,7 +23922,7 @@ function sendUserRegistrationConfirmationEmail(userData) {
       lblData: 'Registration Date and Time',
       statusPending: 'Pending Administrator Activation',
       statusActive: 'Active',
-      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
+      company: 'SIGEC-Pro • Sistema Integrado de Clientes & Projetos'
     },
     'Français': {
       subject: '[SIGEC-Pro] Confirmation de votre Inscription d\'Utilisateur',
@@ -23931,7 +23938,7 @@ function sendUserRegistrationConfirmationEmail(userData) {
       lblData: 'Date et Heure d\'Inscription',
       statusPending: 'En Attente d\'Activation par l\'Administrateur',
       statusActive: 'Actif',
-      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
+      company: 'SIGEC-Pro • Sistema Integrado de Clientes & Projetos'
     },
     'Polski': {
       subject: '[SIGEC-Pro] Potwierdzenie Rejestracji Użytkownika',
@@ -23947,7 +23954,7 @@ function sendUserRegistrationConfirmationEmail(userData) {
       lblData: 'Data i Godzina Rejestracji',
       statusPending: 'Oczekuje na Aktywację przez Administratora',
       statusActive: 'Aktywny',
-      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
+      company: 'SIGEC-Pro • Sistema Integrado de Clientes & Projetos'
     }
   };
 
@@ -23998,7 +24005,7 @@ function sendUserAccountActivatedEmail(user) {
       lblEstado: 'Estado da Conta',
       lblData: 'Data de Ativação',
       statusActive: 'Ativo / Aprovado',
-      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
+      company: 'SIGEC-Pro • Sistema Integrado de Clientes & Projetos'
     },
     'Español': {
       subject: '[SIGEC-Pro] ¡Su cuenta ya está activa!',
@@ -24013,7 +24020,7 @@ function sendUserAccountActivatedEmail(user) {
       lblEstado: 'Estado de la Cuenta',
       lblData: 'Fecha de Activación',
       statusActive: 'Activo / Aprovado',
-      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
+      company: 'SIGEC-Pro • Sistema Integrado de Clientes & Projetos'
     },
     'English': {
       subject: '[SIGEC-Pro] Your account is now active!',
@@ -24028,7 +24035,7 @@ function sendUserAccountActivatedEmail(user) {
       lblEstado: 'Account Status',
       lblData: 'Activation Date',
       statusActive: 'Active / Approved',
-      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
+      company: 'SIGEC-Pro • Sistema Integrado de Clientes & Projetos'
     },
     'Français': {
       subject: '[SIGEC-Pro] Votre compte est maintenant actif !',
@@ -24043,7 +24050,7 @@ function sendUserAccountActivatedEmail(user) {
       lblEstado: 'État du Compte',
       lblData: 'Date d\'Activation',
       statusActive: 'Actif / Approuvé',
-      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
+      company: 'SIGEC-Pro • Sistema Integrado de Clientes & Projetos'
     },
     'Polski': {
       subject: '[SIGEC-Pro] Twoje konto jest już aktywne!',
@@ -24058,7 +24065,7 @@ function sendUserAccountActivatedEmail(user) {
       lblEstado: 'Status Konta',
       lblData: 'Data Aktywacji',
       statusActive: 'Aktywny / Zatwierdzony',
-      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
+      company: 'SIGEC-Pro • Sistema Integrado de Clientes & Projetos'
     }
   };
 
@@ -24259,7 +24266,7 @@ function sendDirectUserConfirmationMail(userId) {
     `- Data e Hora de Registo: ${nowStr}\n\n` +
     `Instruções Importantes:\n` +
     `O seu acesso está associado ao sistema SIGEC-Pro. Poderá iniciar sessão com o seu email e palavra-passe.\n\n` +
-    `SIGEC_Pro - Sistema integrado de Clientes & Projetos\n` +
+    `SIGEC-Pro • Sistema Integrado de Clientes & Projetos\n` +
     `Propriedade Exclusiva de José Centúrio`;
 
   // 1. Tentar despacho direto via SMTP local se disponível
