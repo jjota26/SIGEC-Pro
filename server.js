@@ -134,14 +134,41 @@ const server = http.createServer(async (req, res) => {
           return;
         }
 
-        const result = await sendEmailViaSmtp({
-          user: payload.smtpUser || payload.user || DEFAULT_SMTP_USER,
-          pass: payload.smtpPass || payload.pass || DEFAULT_SMTP_PASS,
-          from: payload.smtpUser || payload.user || DEFAULT_SMTP_USER,
-          to: to,
-          subject: payload.subject,
-          html: payload.html || payload.body
-        });
+        let result = { success: false, message: '' };
+
+        // 1. Se houver Webhook HTTPS configurado (Google Apps Script / Cloud)
+        const webhookUrl = payload.webhookUrl || process.env.EMAIL_WEBHOOK_URL;
+        if (webhookUrl && webhookUrl.startsWith('https://')) {
+          try {
+            const wResp = await fetch(webhookUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify({
+                to: to,
+                subject: payload.subject,
+                html: payload.html || payload.body,
+                body: payload.body || ''
+              })
+            });
+            if (wResp && (wResp.ok || wResp.status === 200 || wResp.status === 302)) {
+              result = { success: true, message: 'Email enviado com sucesso via Google Workspace Gateway!' };
+            }
+          } catch(errW) {
+            console.warn('Erro ao disparar webhook:', errW.message);
+          }
+        }
+
+        // 2. Se não enviado via Webhook, tenta via SMTP direto
+        if (!result.success) {
+          result = await sendEmailViaSmtp({
+            user: payload.smtpUser || payload.user || DEFAULT_SMTP_USER,
+            pass: payload.smtpPass || payload.pass || DEFAULT_SMTP_PASS,
+            from: payload.smtpUser || payload.user || DEFAULT_SMTP_USER,
+            to: to,
+            subject: payload.subject,
+            html: payload.html || payload.body
+          });
+        }
 
         res.writeHead(result.success ? 200 : 500, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify(result));

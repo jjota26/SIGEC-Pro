@@ -23406,7 +23406,10 @@ function getEmailNotifySettings() {
     smtpHost: smtpHost.trim(),
     smtpPort: smtpPort.trim(),
     smtpUser: smtpUser.trim(),
-    smtpPass: smtpPass.trim()
+    smtpPass: smtpPass.trim(),
+    webhookUrl: (db && db.config && db.config.emailWebhookUrl) 
+      ? db.config.emailWebhookUrl 
+      : (localStorage.getItem('sigec_pro_email_webhook_url') || '')
   };
 }
 window.getEmailNotifySettings = getEmailNotifySettings;
@@ -23419,6 +23422,7 @@ function renderEmailNotifySettingsUI() {
   const portEl = document.getElementById('cfgSmtpPort');
   const userEl = document.getElementById('cfgSmtpUser');
   const passEl = document.getElementById('cfgSmtpPass');
+  const webhookEl = document.getElementById('cfgEmailWebhook');
 
   if (enabledEl) enabledEl.checked = settings.enabled;
   if (addressEl) addressEl.value = settings.email || 'jmcenturio@alegria-activity.com';
@@ -23426,6 +23430,7 @@ function renderEmailNotifySettingsUI() {
   if (portEl) portEl.value = settings.smtpPort || '587';
   if (userEl) userEl.value = settings.smtpUser || 'jmcenturio@alegria-activity.com';
   if (passEl) passEl.value = settings.smtpPass || DEFAULT_SYSTEM_SMTP_PASS;
+  if (webhookEl) webhookEl.value = settings.webhookUrl || '';
 }
 window.renderEmailNotifySettingsUI = renderEmailNotifySettingsUI;
 
@@ -23436,6 +23441,7 @@ function handleSaveEmailNotifySettings(showToastMsg = false) {
   const portEl = document.getElementById('cfgSmtpPort');
   const userEl = document.getElementById('cfgSmtpUser');
   const passEl = document.getElementById('cfgSmtpPass');
+  const webhookEl = document.getElementById('cfgEmailWebhook');
 
   const enabled = enabledEl ? enabledEl.checked : true;
   let email = addressEl ? addressEl.value.trim() : 'jmcenturio@alegria-activity.com';
@@ -23445,6 +23451,7 @@ function handleSaveEmailNotifySettings(showToastMsg = false) {
   let smtpUser = userEl ? userEl.value.trim() : 'jmcenturio@alegria-activity.com';
   if (!smtpUser || smtpUser.includes('José Centúrio') || !smtpUser.includes('@')) smtpUser = 'jmcenturio@alegria-activity.com';
   const smtpPass = (passEl && passEl.value.trim()) ? passEl.value.trim() : DEFAULT_SYSTEM_SMTP_PASS;
+  const webhookUrl = webhookEl ? webhookEl.value.trim() : '';
 
   localStorage.setItem('sigec_pro_admin_notify_enabled', enabled ? 'true' : 'false');
   localStorage.setItem('sigec_pro_admin_notify_email', email);
@@ -23452,6 +23459,7 @@ function handleSaveEmailNotifySettings(showToastMsg = false) {
   localStorage.setItem('sigec_pro_smtp_port', smtpPort);
   localStorage.setItem('sigec_pro_smtp_user', smtpUser);
   localStorage.setItem('sigec_pro_smtp_pass', smtpPass);
+  localStorage.setItem('sigec_pro_email_webhook_url', webhookUrl);
 
   if (typeof db !== 'undefined') {
     db.config = db.config || {};
@@ -23461,6 +23469,7 @@ function handleSaveEmailNotifySettings(showToastMsg = false) {
     db.config.smtpPort = smtpPort;
     db.config.smtpUser = smtpUser;
     db.config.smtpPass = smtpPass;
+    db.config.emailWebhookUrl = webhookUrl;
     if (typeof saveDatabase === 'function') {
       saveDatabase();
     }
@@ -23622,24 +23631,52 @@ async function dispatchDirectEmail(targetEmail, subject, fields = {}) {
   let statusMessage = '';
 
   // ------------------------------------------------------------------------
-  // CANAL 1: Servidor Desktop Local Bridge C# (Porta 59124 - SMTP Nativo)
-  // Envia diretamente via SMTP Corporativo com HTML completo (sem qualquer ativação de terceiros)
+  // CANAL 0: Google Apps Script Webhook (Porta 443 HTTPS - Envio Web 100% Silencioso)
+  // Sem bloqueios de portas de rede (Render / Navegadores) e envio direto via Google Workspace
   // ------------------------------------------------------------------------
-  try {
-    const bridgePayload = {
-      smtpHost: settings.smtpHost || 'smtp.gmail.com',
-      smtpPort: parseInt(settings.smtpPort, 10) || 587,
-      smtpUser: settings.smtpUser || 'jmcenturio@alegria-activity.com',
-      smtpPass: settings.smtpPass || '',
-      host: settings.smtpHost || 'smtp.gmail.com',
-      port: parseInt(settings.smtpPort, 10) || 587,
-      user: settings.smtpUser || 'jmcenturio@alegria-activity.com',
-      pass: settings.smtpPass || '',
-      to: cleanEmail,
-      subject: subject || '[SIGEC-Pro] Notificação do Sistema',
-      body: emailHtml,
-      html: emailHtml
-    };
+  const webhookUrl = (settings.webhookUrl || '').trim();
+  if (webhookUrl && webhookUrl.startsWith('https://')) {
+    try {
+      console.info('[SIGEC-Pro] A despachar email via Google Apps Script Gateway...');
+      const gResp = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          to: cleanEmail,
+          subject: subject || '[SIGEC-Pro] Notificação do Sistema',
+          html: emailHtml,
+          body: textSummary
+        })
+      });
+      if (gResp && (gResp.ok || gResp.type === 'opaque' || gResp.status === 200 || gResp.status === 302)) {
+        sentOk = true;
+        statusMessage = 'Email enviado com sucesso via Google Workspace Gateway!';
+      }
+    } catch(errG) {
+      console.warn('[SIGEC-Pro] Aviso no Webhook Google:', errG);
+    }
+  }
+
+  // ------------------------------------------------------------------------
+  // CANAL 1: Servidor Desktop Local Bridge C# ou API Local (SMTP Direto)
+  // ------------------------------------------------------------------------
+  if (!sentOk) {
+    try {
+      const bridgePayload = {
+        smtpHost: settings.smtpHost || 'smtp.gmail.com',
+        smtpPort: parseInt(settings.smtpPort, 10) || 587,
+        smtpUser: settings.smtpUser || 'jmcenturio@alegria-activity.com',
+        smtpPass: settings.smtpPass || '',
+        webhookUrl: webhookUrl,
+        host: settings.smtpHost || 'smtp.gmail.com',
+        port: parseInt(settings.smtpPort, 10) || 587,
+        user: settings.smtpUser || 'jmcenturio@alegria-activity.com',
+        pass: settings.smtpPass || '',
+        to: cleanEmail,
+        subject: subject || '[SIGEC-Pro] Notificação do Sistema',
+        body: emailHtml,
+        html: emailHtml
+      };
 
     const endpointsToTry = [
       '/api/send-email',
@@ -23666,7 +23703,8 @@ async function dispatchDirectEmail(targetEmail, subject, fields = {}) {
         }
       } catch(eEp) {}
     }
-  } catch(errBridge) {}
+    } catch(errBridge) {}
+  }
 
   // ------------------------------------------------------------------------
   // CANAL 2: Registo Central de Auditoria e Logs do Sistema
