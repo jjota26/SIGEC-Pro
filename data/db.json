@@ -7308,5 +7308,13 @@
     "interacoesProjetos": [],
     "orcamentos": [],
     "usuarios": []
+  },
+  "config": {
+    "emailNotifyAddress": "jmcenturio@alegria-activity.com",
+    "emailNotifyEnabled": true,
+    "smtpHost": "smtp.gmail.com",
+    "smtpPort": "587",
+    "smtpUser": "jmcenturio@alegria-activity.com",
+    "smtpPass": "iunh ytxv gqhy wjbb"
   }
 }

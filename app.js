@@ -23340,6 +23340,8 @@ window.extractPackageTimestamp = extractPackageTimestamp;
 // NOTIFICAÇÕES POR EMAIL DE NOVOS REGISTOS (AUTOMÁTICO VIA SERVIDOR)
 // ==========================================
 
+const DEFAULT_SYSTEM_SMTP_PASS = 'iunh ytxv gqhy wjbb';
+
 function getEmailNotifySettings() {
   const enabled = localStorage.getItem('sigec_pro_admin_notify_enabled') !== 'false';
   let email = localStorage.getItem('sigec_pro_admin_notify_email') || '';
@@ -23356,7 +23358,7 @@ function getEmailNotifySettings() {
   const smtpPort = localStorage.getItem('sigec_pro_smtp_port') || (typeof db !== 'undefined' && db.config && db.config.smtpPort) || '587';
   let smtpUser = localStorage.getItem('sigec_pro_smtp_user') || (typeof db !== 'undefined' && db.config && db.config.smtpUser) || 'jmcenturio@alegria-activity.com';
   if (smtpUser.includes('José Centúrio')) smtpUser = 'jmcenturio@alegria-activity.com';
-  const smtpPass = localStorage.getItem('sigec_pro_smtp_pass') || (typeof db !== 'undefined' && db.config && db.config.smtpPass) || '';
+  const smtpPass = localStorage.getItem('sigec_pro_smtp_pass') || (typeof db !== 'undefined' && db.config && db.config.smtpPass) || DEFAULT_SYSTEM_SMTP_PASS;
 
   return {
     enabled,
@@ -23383,7 +23385,7 @@ function renderEmailNotifySettingsUI() {
   if (hostEl) hostEl.value = settings.smtpHost || 'smtp.gmail.com';
   if (portEl) portEl.value = settings.smtpPort || '587';
   if (userEl) userEl.value = settings.smtpUser || 'jmcenturio@alegria-activity.com';
-  if (passEl) passEl.value = settings.smtpPass || '';
+  if (passEl) passEl.value = settings.smtpPass || DEFAULT_SYSTEM_SMTP_PASS;
 }
 window.renderEmailNotifySettingsUI = renderEmailNotifySettingsUI;
 
@@ -23402,7 +23404,7 @@ function handleSaveEmailNotifySettings(showToastMsg = false) {
   const smtpPort = portEl ? portEl.value.trim() : '587';
   let smtpUser = userEl ? userEl.value.trim() : 'jmcenturio@alegria-activity.com';
   if (!smtpUser || smtpUser.includes('José Centúrio') || !smtpUser.includes('@')) smtpUser = 'jmcenturio@alegria-activity.com';
-  const smtpPass = passEl ? passEl.value.trim() : '';
+  const smtpPass = (passEl && passEl.value.trim()) ? passEl.value.trim() : DEFAULT_SYSTEM_SMTP_PASS;
 
   localStorage.setItem('sigec_pro_admin_notify_enabled', enabled ? 'true' : 'false');
   localStorage.setItem('sigec_pro_admin_notify_email', email);
