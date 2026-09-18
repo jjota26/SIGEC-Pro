@@ -24061,7 +24061,10 @@ function showAdminPendingUserBanner(unacknowledged) {
           </div>
         </div>
       </div>
-      <div style="display: flex; gap: 0.4rem; justify-content: flex-end; margin-top: 2px;">
+      <div style="display: flex; gap: 0.4rem; justify-content: flex-end; flex-wrap: wrap; margin-top: 2px;">
+        <button type="button" class="btn btn-sm" onclick="sendDirectUserConfirmationMail('${u.id}')" title="Enviar dados de acesso por email" style="background: #0284c7; color: #ffffff; border: none; font-weight: 700; font-size: 0.78rem; padding: 0.35rem 0.65rem; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 0.3rem; box-shadow: 0 1px 3px rgba(2,132,199,0.3);">
+          <i class="fa-solid fa-paper-plane"></i> Enviar Email
+        </button>
         <button type="button" class="btn btn-sm" onclick="quickApproveUser('${u.id}')" style="background: #16a34a; color: #ffffff; border: none; font-weight: 700; font-size: 0.78rem; padding: 0.35rem 0.75rem; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem; box-shadow: 0 1px 3px rgba(22,163,74,0.3);">
           <i class="fa-solid fa-user-check"></i> ⚡ Dar de Alta Agora
         </button>
@@ -24140,6 +24143,60 @@ async function quickApproveUser(userId) {
   showToast('✅ Utilizador "' + user.nome + '" dado de alta e ativado com sucesso! Foi enviado email de confirmação.', 'success');
 }
 window.quickApproveUser = quickApproveUser;
+
+function sendDirectUserConfirmationMail(userId) {
+  ensureUsersInitialized();
+  const user = (db.usuarios || []).find(u => u && u.id === userId);
+  if (!user || !user.email) {
+    showToast('Utilizador não encontrado ou sem email registado.', 'warning');
+    return;
+  }
+
+  const userName = user.nome || 'Utilizador';
+  const userEmail = user.email.trim();
+  const userCargo = user.cargo || 'Não especificado';
+  const userPin = user.pin || '••••••••';
+  const userLang = user.idioma || 'Português';
+  const nowStr = new Date().toLocaleString('pt-PT');
+
+  const subject = `[SIGEC-Pro] Confirmação do seu Registo de Utilizador`;
+  const body = `Estimado(a) ${userName},\n\n` +
+    `O seu registo no sistema SIGEC-Pro foi submetido com sucesso.\n\n` +
+    `Dados da sua conta:\n` +
+    `- Nome Completo: ${userName}\n` +
+    `- Email de Acesso: ${userEmail}\n` +
+    `- Cargo / Função: ${userCargo}\n` +
+    `- Idioma Configurado: ${userLang}\n` +
+    `- Palavra-Passe / PIN de Acesso: ${userPin}\n` +
+    `- Estado da Conta: ${user.active ? 'Ativo' : 'Pendente de Ativação pelo Administrador'}\n` +
+    `- Data e Hora de Registo: ${nowStr}\n\n` +
+    `Instruções Importantes:\n` +
+    `O seu acesso está associado ao sistema SIGEC-Pro. Poderá iniciar sessão com o seu email e palavra-passe.\n\n` +
+    `SIGEC-Pro • Sistema Integrado de Gestão Empresarial e Contactos\n` +
+    `Propriedade Exclusiva de José Centúrio`;
+
+  // 1. Tentar despacho direto via SMTP local se disponível
+  if (typeof sendUserRegistrationConfirmationEmail === 'function') {
+    sendUserRegistrationConfirmationEmail(user).catch(() => {});
+  }
+
+  // 2. Abrir envio assistido no Gmail ou cliente de email pré-preenchido
+  const encSub = encodeURIComponent(subject);
+  const encBody = encodeURIComponent(body);
+  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(userEmail)}&su=${encSub}&body=${encBody}`;
+  const mailtoUrl = `mailto:${encodeURIComponent(userEmail)}?subject=${encSub}&body=${encBody}`;
+
+  try {
+    const win = window.open(gmailUrl, '_blank');
+    if (!win || win.closed || typeof win.closed === 'undefined') {
+      window.location.href = mailtoUrl;
+    }
+  } catch(e) {
+    window.location.href = mailtoUrl;
+  }
+  showToast(`A preparar envio de email para ${userEmail}...`, 'info');
+}
+window.sendDirectUserConfirmationMail = sendDirectUserConfirmationMail;
 
 function startAdminPendingUserWatcher() {
   if (_adminPendingWatcherInterval) {
