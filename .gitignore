@@ -1,0 +1,16 @@
+﻿# Ficheiros pesados e logs (>100MB e histórico bruto)
+Instalar-SIGEC-Pro.exe
+Historico_Conversas/
+*.iso
+*.sigecbak
+*.zip
+
+# Cache e ficheiros temporários do sistema
+EdgeData/
+.vs/
+bin/
+obj/
+*.tmp
+*.log
+Thumbs.db
+desktop.ini

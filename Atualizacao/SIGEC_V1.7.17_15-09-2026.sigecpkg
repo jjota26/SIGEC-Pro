@@ -1,0 +1,26 @@
+{
+  "packageName": "SIGEC_V1.7.17_15-09-2026",
+  "version": "SIGEC_V1.7.17",
+  "fileName": "SIGEC_V1.7.17_15-09-2026.sigecpkg",
+  "createdAt": "2026-09-15T20:25:00.000Z",
+  "dataHoraCriacao": "15/09/2026 22:25:00",
+  "system": "SIGEC-Pro",
+  "tipoPacote": "ATUALIZACAO_SOFTWARE_EXCLUSIVA",
+  "notes": "Pacote de atualização oficial SIGEC_V1.7.17 - Sincronização Automática ao Guardar e Notificação Universal de Atualizações em Nuvem - Titularidade Exclusiva José Centúrio",
+  "software": {
+    "version": "SIGEC_V1.7.17",
+    "releasedAt": "2026-09-15T20:25:00.000Z",
+    "modules": [
+      "clientes",
+      "contactos",
+      "projetos",
+      "interacoes",
+      "estatais",
+      "configuracao",
+      "seguranca",
+      "backups",
+      "servidor_huggingface"
+    ],
+    "requiresDataPreservation": true
+  }
+}
