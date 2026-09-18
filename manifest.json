@@ -1,5 +1,5 @@
 ﻿{
-  "name": "SIGEC-Pro - Sistema Integrado de Clientes & Projetos",
+  "name": "SIGEC-Pro - Sistema Integrado de Clientes e Projetos",
   "short_name": "SIGEC-Pro",
   "description": "Sistema Integrado de Gestao de Clientes, Projetos e Interacoes",
   "start_url": "/",
@@ -11,14 +11,14 @@
   "lang": "pt",
   "icons": [
     {
-      "src": "icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any"
-    },
-    {
       "src": "icon-192.png",
       "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
