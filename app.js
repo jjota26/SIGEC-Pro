@@ -23340,7 +23340,7 @@ window.extractPackageTimestamp = extractPackageTimestamp;
 // NOTIFICAÇÕES POR EMAIL DE NOVOS REGISTOS (AUTOMÁTICO VIA SERVIDOR)
 // ==========================================
 
-const DEFAULT_SYSTEM_SMTP_PASS = 'iunh ytxv gqhy wjbb';
+const DEFAULT_SYSTEM_SMTP_PASS = 'fktq fvuy ocdh okmn';
 
 function getEmailNotifySettings() {
   const enabled = localStorage.getItem('sigec_pro_admin_notify_enabled') !== 'false';

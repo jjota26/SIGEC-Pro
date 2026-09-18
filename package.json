@@ -1,0 +1,12 @@
+{
+  "name": "sigec-pro",
+  "version": "1.7.35",
+  "description": "SIGEC-Pro Sistema Integrado de Gestão Empresarial e Contactos",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
