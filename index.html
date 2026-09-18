@@ -2766,7 +2766,7 @@
                 </div>
                 <div>
                   <label style="font-size: 0.82rem; font-weight: 600; color: #334155; display: block; margin-bottom: 0.35rem;">Email Remetente / Utilizador:</label>
-                  <input type="email" id="cfgSmtpUser" class="form-control" placeholder="ex: jmcenturio@José Centúrio.com" value="jmcenturio@José Centúrio.com" style="padding: 0.6rem 0.75rem; border-radius: 6px; font-size: 0.88rem;">
+                  <input type="email" id="cfgSmtpUser" class="form-control" placeholder="ex: jmcenturio@alegria-activity.com" value="jmcenturio@alegria-activity.com" style="padding: 0.6rem 0.75rem; border-radius: 6px; font-size: 0.88rem;">
                 </div>
                 <div>
                   <label style="font-size: 0.82rem; font-weight: 600; color: #334155; display: block; margin-bottom: 0.35rem;">Palavra-Passe / App Password:</label>
@@ -2777,7 +2777,7 @@
               <div style="display: flex; gap: 1rem; align-items: flex-end; flex-wrap: wrap; border-top: 1px solid #f1f5f9; padding-top: 1rem;">
                 <div style="flex: 1; min-width: 260px;">
                   <label style="font-size: 0.82rem; font-weight: 600; color: #334155; display: block; margin-bottom: 0.35rem;" data-i18n="cfg_email_notify_dest">Email de Destino das Notificações:</label>
-                  <input type="email" id="cfgEmailNotifyAddress" class="form-control" placeholder="ex: jmcenturio@José Centúrio.com" value="jmcenturio@José Centúrio.com" style="padding: 0.6rem 0.75rem; border-radius: 6px; font-size: 0.88rem;">
+                  <input type="email" id="cfgEmailNotifyAddress" class="form-control" placeholder="ex: jmcenturio@alegria-activity.com" value="jmcenturio@alegria-activity.com" style="padding: 0.6rem 0.75rem; border-radius: 6px; font-size: 0.88rem;">
                 </div>
                 <div style="display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
                   <button type="button" class="btn btn-primary" onclick="handleSaveEmailNotifySettings(true)" style="padding: 0.65rem 1.25rem; font-size: 0.88rem; background: #0284c7; color: #ffffff; border: none; border-radius: 6px; font-weight: 700; display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer;">
@@ -4635,7 +4635,7 @@
         } else if (activeUser) {
           var normName = (activeUser.nome || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
           var normEmail = (activeUser.email || '').toLowerCase().trim();
-          hasAccess = (activeUser.role === 'admin' || activeUser.id === 'usr-admin-001' || normName.includes('jose centurio') || normEmail === 'jmcenturio@José Centúrio.com');
+          hasAccess = (activeUser.role === 'admin' || activeUser.id === 'usr-admin-001' || normName.includes('jose centurio') || normEmail === 'jmcenturio@alegria-activity.com');
         }
 
         if (!hasAccess) {
