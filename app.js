@@ -4716,6 +4716,43 @@ function mergeCloudDatabaseSafely(cloudData) {
     mergeEntityArray('usuarios');
   }
 
+  // Sincronização e propagação automática de configurações centrais (SMTP, alertas, app password)
+  if (cloudData.config && typeof cloudData.config === 'object') {
+    db.config = db.config || {};
+    let configUpdated = false;
+    if (cloudData.config.smtpPass && cloudData.config.smtpPass !== db.config.smtpPass) {
+      db.config.smtpPass = cloudData.config.smtpPass;
+      localStorage.setItem('sigec_pro_smtp_pass', cloudData.config.smtpPass);
+      configUpdated = true;
+    }
+    if (cloudData.config.emailNotifyAddress && cloudData.config.emailNotifyAddress !== db.config.emailNotifyAddress) {
+      db.config.emailNotifyAddress = cloudData.config.emailNotifyAddress;
+      localStorage.setItem('sigec_pro_admin_notify_email', cloudData.config.emailNotifyAddress);
+      configUpdated = true;
+    }
+    if (cloudData.config.smtpHost && cloudData.config.smtpHost !== db.config.smtpHost) {
+      db.config.smtpHost = cloudData.config.smtpHost;
+      localStorage.setItem('sigec_pro_smtp_host', cloudData.config.smtpHost);
+      configUpdated = true;
+    }
+    if (cloudData.config.smtpPort && cloudData.config.smtpPort !== db.config.smtpPort) {
+      db.config.smtpPort = cloudData.config.smtpPort;
+      localStorage.setItem('sigec_pro_smtp_port', cloudData.config.smtpPort);
+      configUpdated = true;
+    }
+    if (cloudData.config.smtpUser && cloudData.config.smtpUser !== db.config.smtpUser) {
+      db.config.smtpUser = cloudData.config.smtpUser;
+      localStorage.setItem('sigec_pro_smtp_user', cloudData.config.smtpUser);
+      configUpdated = true;
+    }
+    if (configUpdated) {
+      hasRemoteChangesApplied = true;
+      if (typeof renderEmailNotifySettingsUI === 'function') {
+        renderEmailNotifySettingsUI();
+      }
+    }
+  }
+
   // Se foram aplicadas alterações remotas, persistir no armazenamento local e re-renderizar a interface
   if (hasRemoteChangesApplied) {
     if (typeof saveDatabaseLocalOnly === 'function') {
@@ -23357,8 +23394,11 @@ function getEmailNotifySettings() {
   const smtpHost = localStorage.getItem('sigec_pro_smtp_host') || (typeof db !== 'undefined' && db.config && db.config.smtpHost) || 'smtp.gmail.com';
   const smtpPort = localStorage.getItem('sigec_pro_smtp_port') || (typeof db !== 'undefined' && db.config && db.config.smtpPort) || '587';
   let smtpUser = localStorage.getItem('sigec_pro_smtp_user') || (typeof db !== 'undefined' && db.config && db.config.smtpUser) || 'jmcenturio@alegria-activity.com';
-  if (smtpUser.includes('José Centúrio')) smtpUser = 'jmcenturio@alegria-activity.com';
-  const smtpPass = localStorage.getItem('sigec_pro_smtp_pass') || (typeof db !== 'undefined' && db.config && db.config.smtpPass) || DEFAULT_SYSTEM_SMTP_PASS;
+  let smtpPass = (typeof db !== 'undefined' && db.config && db.config.smtpPass) || localStorage.getItem('sigec_pro_smtp_pass') || DEFAULT_SYSTEM_SMTP_PASS;
+  if (!smtpPass || smtpPass.trim() === 'iunh ytxv gqhy wjbb' || smtpPass.trim() === 'iunhytxvgqhywjbb') {
+    smtpPass = DEFAULT_SYSTEM_SMTP_PASS;
+    try { localStorage.setItem('sigec_pro_smtp_pass', DEFAULT_SYSTEM_SMTP_PASS); } catch(e) {}
+  }
 
   return {
     enabled,
