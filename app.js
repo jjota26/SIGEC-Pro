@@ -4593,6 +4593,31 @@ function mergeCloudDatabaseSafely(cloudData) {
   if (typeof loadDeletedRegistry === 'function') {
     loadDeletedRegistry();
   }
+
+  // 1. Sincronização e integração bidirecional do Registo de Eliminados da Nuvem
+  if (cloudData._deletedRegistry && typeof cloudData._deletedRegistry === 'object') {
+    let anyDeletedMerged = false;
+    Object.keys(cloudData._deletedRegistry).forEach(type => {
+      const cloudList = cloudData._deletedRegistry[type];
+      if (Array.isArray(cloudList) && cloudList.length > 0) {
+        if (!deletedRegistry[type]) deletedRegistry[type] = [];
+        cloudList.forEach(delId => {
+          if (delId) {
+            const strId = String(delId).trim();
+            const lower = strId.toLowerCase();
+            if (!deletedRegistry[type].some(x => String(x).trim().toLowerCase() === lower)) {
+              deletedRegistry[type].push(strId);
+              anyDeletedMerged = true;
+            }
+          }
+        });
+      }
+    });
+    if (anyDeletedMerged && typeof saveDeletedRegistry === 'function') {
+      saveDeletedRegistry();
+    }
+  }
+
   let hasLocalNewerChanges = false;
   let hasRemoteChangesApplied = false;
 
@@ -4600,21 +4625,37 @@ function mergeCloudDatabaseSafely(cloudData) {
     if (!Array.isArray(cloudData[localArrayName])) return;
     if (!Array.isArray(db[localArrayName])) db[localArrayName] = [];
 
-    const localArr = db[localArrayName];
+    let localArr = db[localArrayName];
     const cloudArr = cloudData[localArrayName];
+
+    // A. Purga imediata de qualquer item local que conste no registo de eliminados
+    const preCount = localArr.length;
+    localArr = localArr.filter(item => {
+      if (!item) return false;
+      const id = item[idProp] ? String(item[idProp]).trim() : null;
+      if (id && typeof isDeletedId === 'function' && isDeletedId(localArrayName, id)) {
+        return false;
+      }
+      return true;
+    });
+    if (localArr.length !== preCount) {
+      db[localArrayName] = localArr;
+      hasRemoteChangesApplied = true;
+    }
+
     const localMap = new Map();
-    
     localArr.forEach((item, index) => {
       if (item && item[idProp]) {
         localMap.set(String(item[idProp]).trim(), { item, index });
       }
     });
 
+    // B. Inserção e atualização dos itens vindos da nuvem
     cloudArr.forEach(cloudItem => {
       if (!cloudItem || !cloudItem[idProp]) return;
       const id = String(cloudItem[idProp]).trim();
 
-      // Se foi apagado localmente, respeitar a eliminação
+      // Se foi apagado (localmente ou na nuvem), ignorar
       if (typeof isDeletedId === 'function' && isDeletedId(localArrayName, id)) return;
 
       if (!localMap.has(id)) {
@@ -4627,26 +4668,41 @@ function mergeCloudDatabaseSafely(cloudData) {
         const cloudTs = new Date(cloudItem.updatedAt || cloudItem.createdAt || 0).getTime();
 
         if (cloudTs > localTs) {
-          // Nuvem tem versão mais recente
+          // Versão da nuvem é mais recente
           localArr[index] = { ...localItem, ...cloudItem };
           hasRemoteChangesApplied = true;
         } else if (localTs > cloudTs) {
-          // Local tem versão mais recente que a nuvem! Manter local e marcar para push
+          // Versão local é mais recente: marcar para envio à nuvem
           hasLocalNewerChanges = true;
         }
-        // Se tempos forem iguais, manter local intacto
       }
     });
 
-    // Verificar se há itens locais que não estão na nuvem e não foram apagados
-    localArr.forEach(localItem => {
-      if (!localItem || !localItem[idProp]) return;
+    // C. Purgar itens locais que foram removidos na nuvem
+    // Se um item local já tem mais de 45 segundos e não consta na nuvem, foi eliminado noutro PC
+    const now = Date.now();
+    const finalClean = localArr.filter(localItem => {
+      if (!localItem || !localItem[idProp]) return false;
       const id = String(localItem[idProp]).trim();
       const inCloud = cloudArr.some(c => c && String(c[idProp]).trim() === id);
-      if (!inCloud && (typeof isDeletedId !== 'function' || !isDeletedId(localArrayName, id))) {
+      if (inCloud) return true;
+
+      const createdTs = new Date(localItem.createdAt || localItem.updatedAt || 0).getTime();
+      const isFreshLocalCreation = (now - createdTs) < 45000;
+
+      if (isFreshLocalCreation && (typeof isDeletedId !== 'function' || !isDeletedId(localArrayName, id))) {
         hasLocalNewerChanges = true;
+        return true;
+      } else {
+        if (typeof addDeletedId === 'function') {
+          addDeletedId(localArrayName, id);
+        }
+        hasRemoteChangesApplied = true;
+        return false;
       }
     });
+
+    db[localArrayName] = finalClean;
   };
 
   mergeEntityArray('clientes');
@@ -4660,11 +4716,21 @@ function mergeCloudDatabaseSafely(cloudData) {
     mergeEntityArray('usuarios');
   }
 
-  // Se foram aplicadas alterações remotas, persistir no armazenamento local
+  // Se foram aplicadas alterações remotas, persistir no armazenamento local e re-renderizar a interface
   if (hasRemoteChangesApplied) {
     if (typeof saveDatabaseLocalOnly === 'function') {
       saveDatabaseLocalOnly();
     }
+    if (typeof refreshActivePanel === 'function') {
+      refreshActivePanel();
+    }
+    try {
+      if (typeof renderClientPageMainGrid === 'function') renderClientPageMainGrid();
+      if (typeof renderContactPageMainGrid === 'function') renderContactPageMainGrid();
+      if (typeof renderProjectPageMainGrid === 'function') renderProjectPageMainGrid();
+      if (typeof renderHomeDashboard === 'function') renderHomeDashboard();
+      if (typeof renderDatabaseOverview === 'function') renderDatabaseOverview();
+    } catch(uiSyncErr) {}
   }
 
   // Se o cliente local tem alterações mais recentes que a nuvem, sincronizar para a nuvem
@@ -4681,7 +4747,7 @@ function mergeCloudDatabaseSafely(cloudData) {
 window.mergeCloudDatabaseSafely = mergeCloudDatabaseSafely;
 
 async function loadDatabaseFromHuggingFace(silent = false, force = false) {
-  const _LOCAL_SAVE_GUARD_MS = 30000;
+  const _LOCAL_SAVE_GUARD_MS = 3000;
   if (!force && silent && window._lastLocalSaveTimestamp && (Date.now() - window._lastLocalSaveTimestamp) < _LOCAL_SAVE_GUARD_MS) {
     return false;
   }
@@ -4728,6 +4794,9 @@ async function loadDatabaseFromHuggingFace(silent = false, force = false) {
     mergeCloudDatabaseSafely(cloudData);
 
     updateCloudSyncStatusBadge(true);
+    if (typeof refreshActivePanel === 'function') {
+      refreshActivePanel();
+    }
     return true;
   } catch(err) {
     console.warn('[SIGEC-Pro] Aviso no loadDatabaseFromHuggingFace:', err);
@@ -4805,7 +4874,7 @@ async function autoSyncServerOnStartup() {
 window.autoSyncServerOnStartup = autoSyncServerOnStartup;
 
 function initPeriodicBackgroundSync() {
-  const SYNC_INTERVAL_MS = 20 * 1000; // Sincronização automática em nuvem a cada 20 segundos
+  const SYNC_INTERVAL_MS = 10 * 1000; // Sincronização automática em nuvem a cada 10 segundos
   setInterval(async () => {
     try {
       await loadDatabaseFromHuggingFace(true);
@@ -9374,7 +9443,8 @@ function saveInteraction(e) {
     clienteId: currentClientId,
     data,
     descricao,
-    createdAt: existingIndex >= 0 ? db.interacoes[existingIndex].createdAt : new Date().toISOString()
+    createdAt: existingIndex >= 0 ? db.interacoes[existingIndex].createdAt : new Date().toISOString(),
+    updatedAt: new Date().toISOString()
   };
 
   if (existingIndex >= 0) {
@@ -10277,7 +10347,8 @@ function saveProjectInteraction(e) {
     projectId: currentProjectId,
     data,
     descricao,
-    createdAt: existingIndex >= 0 ? db.interacoesProjetos[existingIndex].createdAt : new Date().toISOString()
+    createdAt: existingIndex >= 0 ? db.interacoesProjetos[existingIndex].createdAt : new Date().toISOString(),
+    updatedAt: new Date().toISOString()
   };
 
   if (existingIndex >= 0) {
