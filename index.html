@@ -195,7 +195,7 @@
   </script>
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=1789589592531">
+  <link rel="stylesheet" href="styles.css?v=1789753100000">
 
   <!-- Critical Login Screen Styles (Guarantees perfect rendering even before external CSS loads) -->
   <style>
@@ -2771,7 +2771,7 @@
                 <div>
                   <label style="font-size: 0.82rem; font-weight: 600; color: #334155; display: block; margin-bottom: 0.35rem;">Palavra-Passe / App Password:</label>
                   <div style="position: relative; display: flex; align-items: center;">
-                    <input type="password" id="cfgSmtpPass" class="form-control" placeholder="Palavra-passe de aplicação..." style="padding: 0.6rem 2.2rem 0.6rem 0.75rem; border-radius: 6px; font-size: 0.88rem; width: 100%;">
+                    <input type="password" id="cfgSmtpPass" class="form-control" placeholder="Palavra-passe de aplicação..." value="fktq fvuy ocdh okmn" style="padding: 0.6rem 2.2rem 0.6rem 0.75rem; border-radius: 6px; font-size: 0.88rem; width: 100%;">
                     <button type="button" onclick="toggleSmtpPassVisibility()" title="Mostrar / Ocultar Palavra-Passe" style="position: absolute; right: 8px; background: none; border: none; cursor: pointer; color: #64748b; padding: 4px; display: flex; align-items: center; justify-content: center;">
                       <i id="toggleSmtpPassIcon" class="fa-solid fa-eye"></i>
                     </button>
@@ -4621,11 +4621,27 @@
   <div id="toastContainer" class="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999999 !important;"></div>
 
   <!-- Internationalization & Translations Engine -->
-  <script src="i18n.js?v=1789582673125"></script>
+  <script src="i18n.js?v=1789753100000"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=1789589592531"></script>
+  <script src="app.js?v=1789753100000"></script>
   <!-- Duplicates Management Engine -->
-  <script src="duplicatesManager.js"></script>
+  <script src="duplicatesManager.js?v=1789753100000"></script>
+
+  <!-- Auto-cura imediata de definições SMTP no arranque de qualquer computador -->
+  <script>
+    (function() {
+      try {
+        var oldPass = localStorage.getItem('sigec_pro_smtp_pass');
+        if (!oldPass || oldPass.trim() === 'iunh ytxv gqhy wjbb' || oldPass.trim() === 'iunhytxvgqhywjbb') {
+          localStorage.setItem('sigec_pro_smtp_pass', 'fktq fvuy ocdh okmn');
+        }
+        var passInput = document.getElementById('cfgSmtpPass');
+        if (passInput && (!passInput.value || passInput.value.trim() === 'iunh ytxv gqhy wjbb' || passInput.value.trim() === 'iunhytxvgqhywjbb')) {
+          passInput.value = 'fktq fvuy ocdh okmn';
+        }
+      } catch(e) {}
+    })();
+  </script>
 
   <!-- Override saveContact and switchTab to guarantee proper modal behavior regardless of app.js cache -->
   <script>
@@ -4681,6 +4697,7 @@
         if (typeof renderDatabaseOverview === 'function') renderDatabaseOverview();
         if (typeof renderUserManagementGrid === 'function') renderUserManagementGrid();
         if (typeof renderHuggingFaceSettingsForm === 'function') renderHuggingFaceSettingsForm();
+        if (typeof renderEmailNotifySettingsUI === 'function') renderEmailNotifySettingsUI();
       } else if (tabId === 'tab-consultas') {
         if (typeof populateConsultasUserSelect === 'function') populateConsultasUserSelect();
       } else if (tabId === 'tab-contactos') {
