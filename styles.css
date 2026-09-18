@@ -2734,10 +2734,30 @@ img, video, canvas, svg {
     flex-wrap: wrap;
   }
 
+  /* Botões do cabeçalho: só ícone em mobile (sem texto) */
   .header-action-compact-btn {
-    padding: 0.3rem 0.55rem;
+    padding: 0.45rem 0.6rem;
     font-size: 0.75rem;
-    border-radius: 8px;
+    border-radius: 10px;
+    gap: 0;
+    min-width: 38px;
+    min-height: 38px;
+    justify-content: center;
+  }
+
+  /* Oculta o texto — fica só o ícone */
+  .header-btn-text {
+    display: none;
+  }
+
+  /* Ícone ligeiramente maior para compensar a ausência de texto */
+  .header-action-compact-btn i {
+    font-size: 1.1rem !important;
+  }
+
+  /* Badge de sincronização: oculta texto, fica só o ícone da nuvem */
+  #sigecSyncStatusText {
+    display: none;
   }
 
   .nav-tabs {
