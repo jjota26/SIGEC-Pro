@@ -1,8 +1,9 @@
 services:
   - type: web
-    name: sigec-pro
+    name: sigec-pro-app
     env: node
     plan: free
-    buildCommand: ""
+    buildCommand: "npm install"
     startCommand: "node server.js"
+
 
