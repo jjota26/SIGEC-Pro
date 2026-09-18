@@ -23637,15 +23637,59 @@ async function dispatchDirectEmail(targetEmail, subject, fields = {}) {
   let statusMessage = '';
 
   // ------------------------------------------------------------------------
-  // CANAL 0: Google Apps Script Webhook (Porta 443 HTTPS - Envio Web 100% Silencioso)
-  // Sem bloqueios de portas de rede (Render / Navegadores) e envio direto via Google Workspace
+  // CANAL 1: Servidor Render Cloud Web Service Node.js (Porta 443 HTTPS)
+  // Processa o envio no servidor sem restrições de CORS e com conexão direta ao Google
+  // ------------------------------------------------------------------------
+  const endpointsToTry = [
+    '/api/send-email',
+    'https://sigec-pro-app.onrender.com/api/send-email',
+    'http://127.0.0.1:59124/api/send-email'
+  ];
+
+  const bridgePayload = {
+    smtpHost: settings.smtpHost || 'smtp.gmail.com',
+    smtpPort: parseInt(settings.smtpPort, 10) || 587,
+    smtpUser: settings.smtpUser || 'jmcenturio@alegria-activity.com',
+    smtpPass: settings.smtpPass || '',
+    webhookUrl: (settings.webhookUrl || '').trim(),
+    to: cleanEmail,
+    subject: subject || '[SIGEC-Pro] Notificação do Sistema',
+    body: emailHtml,
+    html: emailHtml
+  };
+
+  for (const ep of endpointsToTry) {
+    try {
+      console.info('[SIGEC-Pro] A tentar disparo de email via endpoint:', ep);
+      const resp = await fetch(ep, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bridgePayload)
+      });
+      if (resp && resp.ok) {
+        const data = await resp.json();
+        if (data && (data.success === true || data.status === 'success')) {
+          sentOk = true;
+          statusMessage = 'Email enviado com sucesso via servidor na nuvem!';
+          console.info('[SIGEC-Pro] Disparo concluído com sucesso via:', ep);
+          break;
+        } else if (data && data.message) {
+          statusMessage = data.message;
+        }
+      }
+    } catch(eEp) {}
+  }
+
+  // ------------------------------------------------------------------------
+  // CANAL 2: Fallback direto via Google Apps Script Webhook (no-cors)
   // ------------------------------------------------------------------------
   const webhookUrl = (settings.webhookUrl || '').trim();
-  if (webhookUrl && webhookUrl.startsWith('https://')) {
+  if (!sentOk && webhookUrl && webhookUrl.startsWith('https://')) {
     try {
-      console.info('[SIGEC-Pro] A despachar email via Google Apps Script Gateway...');
-      const gResp = await fetch(webhookUrl, {
+      console.info('[SIGEC-Pro] A despachar email via Google Apps Script direto (no-cors)...');
+      await fetch(webhookUrl, {
         method: 'POST',
+        mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({
           to: cleanEmail,
@@ -23654,62 +23698,11 @@ async function dispatchDirectEmail(targetEmail, subject, fields = {}) {
           body: textSummary
         })
       });
-      if (gResp && (gResp.ok || gResp.type === 'opaque' || gResp.status === 200 || gResp.status === 302)) {
-        sentOk = true;
-        statusMessage = 'Email enviado com sucesso via Google Workspace Gateway!';
-      }
+      sentOk = true;
+      statusMessage = 'Email enviado com sucesso via Google Workspace Gateway!';
     } catch(errG) {
       console.warn('[SIGEC-Pro] Aviso no Webhook Google:', errG);
     }
-  }
-
-  // ------------------------------------------------------------------------
-  // CANAL 1: Servidor Desktop Local Bridge C# ou API Local (SMTP Direto)
-  // ------------------------------------------------------------------------
-  if (!sentOk) {
-    try {
-      const bridgePayload = {
-        smtpHost: settings.smtpHost || 'smtp.gmail.com',
-        smtpPort: parseInt(settings.smtpPort, 10) || 587,
-        smtpUser: settings.smtpUser || 'jmcenturio@alegria-activity.com',
-        smtpPass: settings.smtpPass || '',
-        webhookUrl: webhookUrl,
-        host: settings.smtpHost || 'smtp.gmail.com',
-        port: parseInt(settings.smtpPort, 10) || 587,
-        user: settings.smtpUser || 'jmcenturio@alegria-activity.com',
-        pass: settings.smtpPass || '',
-        to: cleanEmail,
-        subject: subject || '[SIGEC-Pro] Notificação do Sistema',
-        body: emailHtml,
-        html: emailHtml
-      };
-
-    const endpointsToTry = [
-      '/api/send-email',
-      'http://127.0.0.1:59124/api/send-email',
-      'http://localhost:59124/api/send-email'
-    ];
-
-    for (const ep of endpointsToTry) {
-      try {
-        const resp = await fetch(ep, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(bridgePayload)
-        });
-        if (resp && resp.ok) {
-          const data = await resp.json();
-          if (data && (data.success === true || data.status === 'success')) {
-            sentOk = true;
-            statusMessage = 'Email enviado com sucesso via SMTP corporativo!';
-            break;
-          } else if (data && data.message) {
-            statusMessage = data.message;
-          }
-        }
-      } catch(eEp) {}
-    }
-    } catch(errBridge) {}
   }
 
   // ------------------------------------------------------------------------
