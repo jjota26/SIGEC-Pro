@@ -9,6 +9,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SIGEC-Pro - Sistema de Gestão</title>
 
+  <!-- PWA: Manifesto e Ícones -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0284c7">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- PWA: Suporte iOS (Safari) -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SIGEC-Pro">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+
+  <!-- PWA: Descrição -->
+  <meta name="description" content="Sistema Integrado de Gestão de Clientes, Projetos e Interações">
+
   
   <!-- Injeção Imediata e Permanente do Token Hugging Face -->
   <script>
@@ -5932,5 +5946,20 @@
   </div>
 
 </body>
+
+<!-- PWA: Registo do Service Worker -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js')
+        .then(function (reg) {
+          console.log('[PWA] Service Worker registado com sucesso. Scope:', reg.scope);
+        })
+        .catch(function (err) {
+          console.warn('[PWA] Falha no registo do Service Worker:', err);
+        });
+    });
+  }
+</script>
 
 </html>
