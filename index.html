@@ -2781,7 +2781,7 @@
                   <label style="font-size: 0.82rem; font-weight: 600; color: #334155; display: block; margin-bottom: 0.35rem;">
                     <i class="fa-brands fa-google" style="color: #ea4335;"></i> URL Gateway Google Apps Script (Envio Automático 100% Silencioso na Web):
                   </label>
-                  <input type="url" id="cfgEmailWebhook" class="form-control" placeholder="ex: https://script.google.com/macros/s/AKfycb.../exec" style="padding: 0.6rem 0.75rem; border-radius: 6px; font-size: 0.88rem; width: 100%;">
+                  <input type="url" id="cfgEmailWebhook" class="form-control" placeholder="ex: https://script.google.com/macros/s/AKfycb.../exec" value="https://script.google.com/macros/s/AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ/exec" style="padding: 0.6rem 0.75rem; border-radius: 6px; font-size: 0.88rem; width: 100%;">
                   <small style="color: #64748b; font-size: 0.76rem; display: block; margin-top: 3px;">
                     Permite à versão Web (Render / Navegadores) enviar emails instantâneos diretamente da sua conta Google Workspace sem bloqueios de firewall.
                   </small>
@@ -4630,13 +4630,13 @@
   <div id="toastContainer" class="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999999 !important;"></div>
 
   <!-- Internationalization & Translations Engine -->
-  <script src="i18n.js?v=1789753100000"></script>
+  <script src="i18n.js?v=1789756100000"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=1789753100000"></script>
+  <script src="app.js?v=1789756100000"></script>
   <!-- Duplicates Management Engine -->
-  <script src="duplicatesManager.js?v=1789753100000"></script>
+  <script src="duplicatesManager.js?v=1789756100000"></script>
 
-  <!-- Auto-cura imediata de definições SMTP no arranque de qualquer computador -->
+  <!-- Auto-cura imediata de definições SMTP e Webhook no arranque de qualquer computador -->
   <script>
     (function() {
       try {
@@ -4647,6 +4647,14 @@
         var passInput = document.getElementById('cfgSmtpPass');
         if (passInput && (!passInput.value || passInput.value.trim() === 'iunh ytxv gqhy wjbb' || passInput.value.trim() === 'iunhytxvgqhywjbb')) {
           passInput.value = 'fktq fvuy ocdh okmn';
+        }
+        var webhookUrl = localStorage.getItem('sigec_pro_email_webhook_url');
+        if (!webhookUrl || !webhookUrl.trim()) {
+          localStorage.setItem('sigec_pro_email_webhook_url', 'https://script.google.com/macros/s/AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ/exec');
+        }
+        var webhookInput = document.getElementById('cfgEmailWebhook');
+        if (webhookInput && (!webhookInput.value || !webhookInput.value.trim())) {
+          webhookInput.value = 'https://script.google.com/macros/s/AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ/exec';
         }
       } catch(e) {}
     })();

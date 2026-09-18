@@ -24,6 +24,7 @@ const MIME_TYPES = {
 
 const DEFAULT_SMTP_USER = 'jmcenturio@alegria-activity.com';
 const DEFAULT_SMTP_PASS = 'fktqfvuyocdhokmn';
+const DEFAULT_EMAIL_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ/exec';
 
 function sendEmailViaSmtp(options) {
   return new Promise((resolve) => {
@@ -137,7 +138,7 @@ const server = http.createServer(async (req, res) => {
         let result = { success: false, message: '' };
 
         // 1. Se houver Webhook HTTPS configurado (Google Apps Script / Cloud)
-        const webhookUrl = payload.webhookUrl || process.env.EMAIL_WEBHOOK_URL;
+        const webhookUrl = payload.webhookUrl || process.env.EMAIL_WEBHOOK_URL || DEFAULT_EMAIL_WEBHOOK_URL;
         if (webhookUrl && webhookUrl.startsWith('https://')) {
           try {
             const wResp = await fetch(webhookUrl, {

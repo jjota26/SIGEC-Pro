@@ -23378,6 +23378,7 @@ window.extractPackageTimestamp = extractPackageTimestamp;
 // ==========================================
 
 const DEFAULT_SYSTEM_SMTP_PASS = 'fktq fvuy ocdh okmn';
+const DEFAULT_SYSTEM_EMAIL_WEBHOOK = 'https://script.google.com/macros/s/AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ/exec';
 
 function getEmailNotifySettings() {
   const enabled = localStorage.getItem('sigec_pro_admin_notify_enabled') !== 'false';
@@ -23399,6 +23400,13 @@ function getEmailNotifySettings() {
     smtpPass = DEFAULT_SYSTEM_SMTP_PASS;
     try { localStorage.setItem('sigec_pro_smtp_pass', DEFAULT_SYSTEM_SMTP_PASS); } catch(e) {}
   }
+  let webhookUrl = (typeof db !== 'undefined' && db.config && db.config.emailWebhookUrl) 
+    ? db.config.emailWebhookUrl 
+    : (localStorage.getItem('sigec_pro_email_webhook_url') || DEFAULT_SYSTEM_EMAIL_WEBHOOK);
+  if (!webhookUrl || !webhookUrl.trim()) {
+    webhookUrl = DEFAULT_SYSTEM_EMAIL_WEBHOOK;
+    try { localStorage.setItem('sigec_pro_email_webhook_url', DEFAULT_SYSTEM_EMAIL_WEBHOOK); } catch(e) {}
+  }
 
   return {
     enabled,
@@ -23407,9 +23415,7 @@ function getEmailNotifySettings() {
     smtpPort: smtpPort.trim(),
     smtpUser: smtpUser.trim(),
     smtpPass: smtpPass.trim(),
-    webhookUrl: (db && db.config && db.config.emailWebhookUrl) 
-      ? db.config.emailWebhookUrl 
-      : (localStorage.getItem('sigec_pro_email_webhook_url') || '')
+    webhookUrl: webhookUrl.trim()
   };
 }
 window.getEmailNotifySettings = getEmailNotifySettings;
