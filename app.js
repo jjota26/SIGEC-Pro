@@ -23499,19 +23499,10 @@ function generateEmailHTMLTemplate(subject, fields) {
   var greeting = fields.saudacao || "";
   var message = fields.mensagem || fields.mensagem_introducao || fields.mensagem_alerta || "";
   var instructions = fields.instrucoes || fields.instrucoes_administrador || fields["Instruções para o Administrador"] || "";
-  var company = fields.empresa || "SIGEC-Pro &bull; Sistema Integrado de Gestão Empresarial e Contactos";
+  var company = "SIGEC_Pro - Sistema integrado de Clientes & Projetos";
+  var headerSubtitle = "SIGEC_Pro - Sistema integrado de Clientes &amp; Projetos";
 
-  var headerSubtitles = {
-    "Português": "SIGEC-Pro &bull; Sistema Integrado de Gestão Empresarial e Contactos &bull; José Centúrio",
-    "Español": "SIGEC-Pro &bull; Sistema Integrado de Gestión Empresarial y Contactos &bull; José Centúrio",
-    "English": "SIGEC-Pro &bull; Integrated Business &amp; Contact Management System &bull; José Centúrio",
-    "Français": "SIGEC-Pro &bull; Système Intégré de Gestion Commerciale et Contacts &bull; José Centúrio",
-    "Polski": "SIGEC-Pro &bull; Zintegrowany System Zarządzania Przedsiębiorstwem i Kontaktami &bull; José Centúrio"
-  };
-  var userLang = (fields.user_lang || fields.idioma_selecionado || fields["Idioma"] || fields["Idioma de Trabalho"] || fields["Idioma Configurado"] || fields["Working Language"] || fields["Langue de Travail"] || fields["Język Roboczy"] || fields["Wybrany Język"] || "Português").trim();
-  var headerSubtitle = headerSubtitles[userLang] || headerSubtitles["Português"];
-
-  var ignoredKeys = new Set(["_subject", "_captcha", "_template", "_honey", "_replyto", "_autoresponse", "mensagem_titulo", "saudacao", "mensagem", "mensagem_introducao", "mensagem_alerta", "instrucoes", "instrucoes_administrador", "Instruções para o Administrador", "empresa", "user_lang", "is_html", "type"]);
+  var ignoredKeys = new Set(["_subject", "_captcha", "_template", "_honey", "_replyto", "_autoresponse", "mensagem_titulo", "saudacao", "mensagem", "mensagem_introducao", "mensagem_alerta", "instrucoes", "instrucoes_administrador", "Instruções para o Administrador", "empresa", "user_lang", "is_html", "type", "is_user_email", "para_usuario"]);
   
   var rowsHTML = Object.entries(fields)
     .filter(function(entry) { return !ignoredKeys.has(entry[0]) && entry[1] !== undefined && entry[1] !== null && String(entry[1]).trim() !== ""; })
@@ -23522,6 +23513,9 @@ function generateEmailHTMLTemplate(subject, fields) {
       '</tr>';
     })
     .join('');
+
+  var isUserEmail = fields.is_user_email === true || fields.para_usuario === true;
+  var showInstructions = Boolean(instructions) && !isUserEmail;
 
   return '<!DOCTYPE html>' +
 '<html lang="pt">' +
@@ -23541,11 +23535,8 @@ function generateEmailHTMLTemplate(subject, fields) {
 '              <table width="100%" border="0" cellspacing="0" cellpadding="0">' +
 '                <tr>' +
 '                  <td>' +
-'                    <div style="font-size:20px;font-weight:800;color:#ffffff;letter-spacing:0.5px;margin:0;">SIGEC-Pro</div>' +
+'                    <div style="font-size:20px;font-weight:800;color:#ffffff;letter-spacing:0.5px;margin:0;">SIGEC_Pro</div>' +
 '                    <div style="font-size:12px;color:#bae6fd;margin-top:3px;font-weight:500;">' + headerSubtitle + '</div>' +
-'                  </td>' +
-'                  <td align="right">' +
-'                    <span style="display:inline-block;padding:4px 10px;background:rgba(255,255,255,0.18);color:#ffffff;border-radius:6px;font-size:11px;font-weight:600;letter-spacing:0.5px;">SISTEMA OFICIAL</span>' +
 '                  </td>' +
 '                </tr>' +
 '              </table>' +
@@ -23561,15 +23552,15 @@ function generateEmailHTMLTemplate(subject, fields) {
 '              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:16px 0 20px 0;border-radius:8px;overflow:hidden;border:1px solid #cbd5e1;border-collapse:separate;border-spacing:0;">' +
                 rowsHTML +
 '              </table>' +
-              (instructions ? '<div style="background:#f0f9ff;border-left:4px solid #0284c7;padding:12px 16px;border-radius:0 8px 8px 0;margin:18px 0 12px 0;"><p style="margin:0;font-size:13px;line-height:1.5;color:#0369a1;font-weight:500;"><strong>Informação Importante:</strong><br>' + instructions + '</p></div>' : '') +
+              (showInstructions ? '<div style="background:#f0f9ff;border-left:4px solid #0284c7;padding:12px 16px;border-radius:0 8px 8px 0;margin:18px 0 12px 0;"><p style="margin:0;font-size:13px;line-height:1.5;color:#0369a1;font-weight:500;"><strong>Informação Importante:</strong><br>' + instructions + '</p></div>' : '') +
 '            </td>' +
 '          </tr>' +
 '          <!-- Footer -->' +
 '          <tr>' +
 '            <td style="background:#f8fafc;padding:20px 28px;border-top:1px solid #e2e8f0;text-align:center;">' +
-'              <p style="margin:0 0 4px 0;font-size:12px;color:#475569;font-weight:700;">SIGEC-Pro &bull; Sistema Integrado de Gestão Empresarial e Contactos</p>' +
+'              <p style="margin:0 0 4px 0;font-size:12px;color:#475569;font-weight:700;">SIGEC_Pro - Sistema integrado de Clientes &amp; Projetos</p>' +
 '              <p style="margin:0 0 6px 0;font-size:11px;color:#64748b;font-weight:500;">Propriedade Exclusiva de José Centúrio &bull; Todos os direitos reservados</p>' +
-'              <p style="margin:0;font-size:11px;color:#94a3b8;">Mensagem automática gerada pelo sistema SIGEC-Pro. Por favor não responda diretamente a este email.</p>' +
+'              <p style="margin:0;font-size:11px;color:#94a3b8;">Mensagem automática gerada pelo sistema SIGEC_Pro. Por favor não responda diretamente a este email.</p>' +
 '            </td>' +
 '          </tr>' +
 '        </table>' +
@@ -23791,8 +23782,8 @@ async function sendNewUserRegistrationEmailNotification(userData, isTest = false
     'Instruções para o Administrador': isTest 
       ? 'Este é um email de teste para validar o canal SMTP e a receção de alertas no sistema SIGEC-Pro.' 
       : 'Aceda ao separador Configuração > Gestão de Utilizadores no programa SIGEC-Pro para aprovar e ativar o acesso deste utilizador.',
-    'Sistema': 'SIGEC-Pro | José Centúrio',
-    empresa: 'SIGEC-Pro • Sistema Integrado de Gestão Empresarial e Contactos • Propriedade de José Centúrio'
+    'Sistema': 'SIGEC_Pro - Sistema integrado de Clientes & Projetos',
+    empresa: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
   };
 
   const res = await dispatchDirectEmail(targetEmail, issueTitle, emailFields);
@@ -23854,7 +23845,7 @@ async function sendTestEmailNotification() {
           'Remetente: ' + (settings.smtpUser || 'jmcenturio@alegria-activity.com') + '\n' +
           'Data/Hora: ' + new Date().toLocaleString('pt-PT') + '\n\n' +
           'Este email confirma a configuração correta do sistema SIGEC-Pro.\n\n' +
-          'SIGEC-Pro • Sistema Integrado de Gestão Empresarial e Contactos\n' +
+          'SIGEC_Pro - Sistema integrado de Clientes & Projetos\n' +
           'Propriedade Exclusiva de José Centúrio'
         );
         window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(targetEmail) + '&su=' + testSub + '&body=' + testBody, '_blank');
@@ -23882,7 +23873,7 @@ function sendUserRegistrationConfirmationEmail(userData) {
       subject: '[SIGEC-Pro] Confirmação do seu Registo de Utilizador',
       title: 'Confirmação de Registo no Sistema SIGEC-Pro',
       greeting: 'Estimado(a) ' + userName + ',',
-      intro: 'O seu registo no sistema SIGEC-Pro foi submetido com sucesso. Seguem abaixo os dados da sua conta:',
+      intro: 'O seu registo no sistema SIGEC-Pro foi submetido com sucesso. O seu acesso está condicionado à aprovação do administrador do programa. Receberá uma nova notificação por email assim que a sua conta for ativada.\n\nSeguem abaixo os dados da sua conta:',
       lblNome: 'Nome Completo',
       lblEmail: 'Email de Acesso / Utilizador',
       lblCargo: 'Cargo / Função',
@@ -23892,14 +23883,13 @@ function sendUserRegistrationConfirmationEmail(userData) {
       lblData: 'Data e Hora do Registo',
       statusPending: 'Pendente de Ativação pelo Administrador',
       statusActive: 'Ativo',
-      instructions: 'O seu acesso está condicionado à aceitação do administrador do programa. Receberá um novo email assim que a sua conta for ativada.',
-      company: 'SIGEC-Pro - Sistema Integrado de Gestão Empresarial e Contactos | Propriedade Exclusiva de José Centúrio'
+      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
     },
     'Español': {
       subject: '[SIGEC-Pro] Confirmación de su Registro de Usuario',
       title: 'Confirmación de Registro en el Sistema SIGEC-Pro',
       greeting: 'Estimado/a ' + userName + ',',
-      intro: 'Su registro en el sistema SIGEC-Pro se ha completado con éxito. A continuación se detallan los datos de su cuenta:',
+      intro: 'Su registro en el sistema SIGEC-Pro se ha completado con éxito. Su acceso está condicionado a la aprobación del administrador del programa. Recibirá un nuevo correo electrónico tan pronto como su cuenta sea activada.\n\nA continuación se detallan los datos de su cuenta:',
       lblNome: 'Nombre Completo',
       lblEmail: 'Correo Electrónico de Acceso',
       lblCargo: 'Cargo / Función',
@@ -23909,14 +23899,13 @@ function sendUserRegistrationConfirmationEmail(userData) {
       lblData: 'Fecha y Hora del Registro',
       statusPending: 'Pendiente de Activación por el Administrador',
       statusActive: 'Activo',
-      instructions: 'Su acceso está condicionado a la aceptación del administrador del programa. Recibirá un nuevo correo electrónico tan pronto como su cuenta sea activada.',
-      company: 'SIGEC-Pro - Sistema Integrado de Gestión Empresarial y Contactos | Propiedad Exclusiva de José Centúrio'
+      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
     },
     'English': {
       subject: '[SIGEC-Pro] User Registration Confirmation',
       title: 'Registration Confirmation in SIGEC-Pro System',
       greeting: 'Dear ' + userName + ',',
-      intro: 'Your registration in the SIGEC-Pro system was successfully submitted. Below are your account details:',
+      intro: 'Your registration in the SIGEC-Pro system was successfully submitted. Your access is subject to approval by the system administrator. You will receive an email as soon as your account is activated.\n\nBelow are your account details:',
       lblNome: 'Full Name',
       lblEmail: 'Access Email / Username',
       lblCargo: 'Position / Department',
@@ -23926,14 +23915,13 @@ function sendUserRegistrationConfirmationEmail(userData) {
       lblData: 'Registration Date and Time',
       statusPending: 'Pending Administrator Activation',
       statusActive: 'Active',
-      instructions: 'Your access is subject to acceptance by the system administrator. You will receive an email as soon as your account is activated.',
-      company: 'SIGEC-Pro - Integrated Business and Contact Management System | Exclusive Property of José Centúrio'
+      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
     },
     'Français': {
       subject: '[SIGEC-Pro] Confirmation de votre Inscription d\'Utilisateur',
       title: 'Confirmation d\'Inscription dans le Système SIGEC-Pro',
       greeting: 'Cher/Chère ' + userName + ',',
-      intro: 'Votre inscription dans le système SIGEC-Pro a été enregistrée avec succès. Voici les détails de votre compte :',
+      intro: 'Votre inscription dans le système SIGEC-Pro a été enregistrée avec succès. Votre accès est soumis à l\'approbation de l\'administrateur du système. Vous recevrez un nouvel email dès que votre compte sera activé.\n\nVoici les détails de votre compte :',
       lblNome: 'Nom Complet',
       lblEmail: 'Email d\'Accès / Utilisateur',
       lblCargo: 'Poste / Fonction',
@@ -23943,14 +23931,13 @@ function sendUserRegistrationConfirmationEmail(userData) {
       lblData: 'Date et Heure d\'Inscription',
       statusPending: 'En Attente d\'Activation par l\'Administrateur',
       statusActive: 'Actif',
-      instructions: 'Votre accès est soumis à l\'approbation de l\'administrateur du système. Vous recevrez un nouvel email dès que votre compte sera activé.',
-      company: 'SIGEC-Pro - Système Intégré de Gestion Commerciale et Contacts | Propriété Exclusive de José Centúrio'
+      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
     },
     'Polski': {
       subject: '[SIGEC-Pro] Potwierdzenie Rejestracji Użytkownika',
       title: 'Potwierdzenie Rejestracji w Systemie SIGEC-Pro',
       greeting: 'Szanowny/a ' + userName + ',',
-      intro: 'Twoja rejestracja w systemie SIGEC-Pro została pomyślnie przesłana. Poniżej znajdują się dane Twojego konta:',
+      intro: 'Twoja rejestracja w systemie SIGEC-Pro została pomyślnie przesłana. Twój dostęp wymaga zatwierdzenia przez administratora systemu. Otrzymasz wiadomość e-mail, gdy Twoje konto zostanie aktywowane.\n\nPoniżej znajdują się dane Twojego konta:',
       lblNome: 'Imię i Nazwisko',
       lblEmail: 'Email Logowania / Użytkownik',
       lblCargo: 'Stanowisko / Rola',
@@ -23960,14 +23947,15 @@ function sendUserRegistrationConfirmationEmail(userData) {
       lblData: 'Data i Godzina Rejestracji',
       statusPending: 'Oczekuje na Aktywację przez Administratora',
       statusActive: 'Aktywny',
-      instructions: 'Twój dostęp wymaga aktywacji przez administratora systemu. Otrzymasz wiadomość e-mail, gdy Twoje konto zostanie aktywowane.',
-      company: 'SIGEC-Pro - Zintegrowany System Zarządzania Przedsiębiorstwem | Wyłączna Własność José Centúrio'
+      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
     }
   };
 
   const t = i18nRegEmail[userLang] || i18nRegEmail['Português'];
 
   const fields = {
+    is_user_email: true,
+    para_usuario: true,
     mensagem_titulo: t.title,
     saudacao: t.greeting,
     mensagem: t.intro,
@@ -23978,7 +23966,6 @@ function sendUserRegistrationConfirmationEmail(userData) {
     [t.lblPin]: userPin,
     [t.lblEstado]: isActive ? t.statusActive : t.statusPending,
     [t.lblData]: nowStr,
-    instrucoes: t.instructions,
     empresa: t.company,
     user_lang: userLang
   };
@@ -24011,8 +23998,7 @@ function sendUserAccountActivatedEmail(user) {
       lblEstado: 'Estado da Conta',
       lblData: 'Data de Ativação',
       statusActive: 'Ativo / Aprovado',
-      instructions: 'Aceda ao programa SIGEC-Pro e introduza o seu Email e Palavra-Passe para começar a trabalhar.',
-      company: 'SIGEC-Pro - Sistema Integrado de Gestão Empresarial e Contactos | Propriedade Exclusiva de José Centúrio'
+      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
     },
     'Español': {
       subject: '[SIGEC-Pro] ¡Su cuenta ya está activa!',
@@ -24022,13 +24008,12 @@ function sendUserAccountActivatedEmail(user) {
       lblNome: 'Nombre Completo',
       lblEmail: 'Correo Electrónico de Acceso',
       lblCargo: 'Cargo / Función',
-      lblIdioma: 'Idioma de Trabajo',
+      lblIdioma: 'Idioma de Trabalho',
       lblPin: 'Contraseña / PIN de Acceso',
       lblEstado: 'Estado de la Cuenta',
       lblData: 'Fecha de Activación',
       statusActive: 'Activo / Aprovado',
-      instructions: 'Acceda al programa SIGEC-Pro e introduzca su Correo Electrónico y Contraseña para comenzar a trabajar.',
-      company: 'SIGEC-Pro - Sistema Integrado de Gestión Empresarial y Contactos | Propiedad Exclusiva de José Centúrio'
+      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
     },
     'English': {
       subject: '[SIGEC-Pro] Your account is now active!',
@@ -24043,8 +24028,7 @@ function sendUserAccountActivatedEmail(user) {
       lblEstado: 'Account Status',
       lblData: 'Activation Date',
       statusActive: 'Active / Approved',
-      instructions: 'Open the SIGEC-Pro application and enter your Email and Password to start working.',
-      company: 'SIGEC-Pro - Integrated Business and Contact Management System | Exclusive Property of José Centúrio'
+      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
     },
     'Français': {
       subject: '[SIGEC-Pro] Votre compte est maintenant actif !',
@@ -24059,8 +24043,7 @@ function sendUserAccountActivatedEmail(user) {
       lblEstado: 'État du Compte',
       lblData: 'Date d\'Activation',
       statusActive: 'Actif / Approuvé',
-      instructions: 'Ouvrez l\'application SIGEC-Pro et saisissez votre adresse email et votre mot de passe pour commencer à travailler.',
-      company: 'SIGEC-Pro - Système Intégré de Gestion Commerciale et Contacts | Propriété Exclusive de José Centúrio'
+      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
     },
     'Polski': {
       subject: '[SIGEC-Pro] Twoje konto jest już aktywne!',
@@ -24075,14 +24058,15 @@ function sendUserAccountActivatedEmail(user) {
       lblEstado: 'Status Konta',
       lblData: 'Data Aktywacji',
       statusActive: 'Aktywny / Zatwierdzony',
-      instructions: 'Otwórz program SIGEC-Pro i wprowadź swój adres e-mail oraz hasło, aby rozpocząć pracę.',
-      company: 'SIGEC-Pro - Zintegrowany System Zarządzania Przedsiębiorstwem | Wyłączna Własność José Centúrio'
+      company: 'SIGEC_Pro - Sistema integrado de Clientes & Projetos'
     }
   };
 
   const t = i18nActEmail[userLang] || i18nActEmail['Português'];
 
   const fields = {
+    is_user_email: true,
+    para_usuario: true,
     mensagem_titulo: t.title,
     saudacao: t.greeting,
     mensagem: t.bodyMsg,
@@ -24093,7 +24077,6 @@ function sendUserAccountActivatedEmail(user) {
     [t.lblPin]: userPin,
     [t.lblEstado]: t.statusActive,
     [t.lblData]: nowStr,
-    instrucoes: t.instructions,
     empresa: t.company,
     user_lang: userLang
   };
@@ -24276,7 +24259,7 @@ function sendDirectUserConfirmationMail(userId) {
     `- Data e Hora de Registo: ${nowStr}\n\n` +
     `Instruções Importantes:\n` +
     `O seu acesso está associado ao sistema SIGEC-Pro. Poderá iniciar sessão com o seu email e palavra-passe.\n\n` +
-    `SIGEC-Pro • Sistema Integrado de Gestão Empresarial e Contactos\n` +
+    `SIGEC_Pro - Sistema integrado de Clientes & Projetos\n` +
     `Propriedade Exclusiva de José Centúrio`;
 
   // 1. Tentar despacho direto via SMTP local se disponível
