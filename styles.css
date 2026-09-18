@@ -3111,3 +3111,52 @@ img, video, canvas, svg {
 .header-user-profile-badge:active {
   transform: translateY(0);
 }
+
+/* ====================================================
+   RESPONSIVIDADE: Badge de Utilizador e Login
+   ==================================================== */
+
+/* Badge do utilizador: esconde o nome em smartphones */
+@media (max-width: 768px) {
+  .header-user-profile-badge {
+    padding: 0.3rem 0.5rem;
+    gap: 0.3rem;
+  }
+
+  .header-user-profile-badge .user-display-name,
+  .header-user-profile-badge .user-name-text {
+    display: none;
+  }
+
+  /* Fix: campo password com ícone não deve ultrapassar a largura do cartão */
+  .login-card .password-input-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .login-card .password-input-wrapper input[type="password"],
+  .login-card .password-input-wrapper input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 3rem; /* espaço para o botão do olho */
+  }
+
+  /* Garante que os inputs do login não causam overflow */
+  .login-card input.form-control {
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+}
+
+/* Em smartphones muito compactos: badge ainda mais compacto */
+@media (max-width: 480px) {
+  .header-user-profile-badge {
+    padding: 0.25rem 0.4rem;
+  }
+
+  .header-user-profile-badge i,
+  .header-user-profile-badge svg {
+    font-size: 1.1rem;
+  }
+}
