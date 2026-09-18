@@ -1,12 +1,24 @@
-﻿# Ficheiros pesados e logs (>100MB e histórico bruto)
-Instalar-SIGEC-Pro.exe
+﻿# Ficheiros do instalador e executáveis Windows Desktop
+*.exe
+*.manifest
+*.cs
+*.bat
+Hugging
+Atualizacao/
+Backup/
 Historico_Conversas/
-*.iso
+EdgeData/
+*.sigecpkg
 *.sigecbak
+*.iso
 *.zip
 
-# Cache e ficheiros temporários do sistema
-EdgeData/
+# Ficheiros de notas e contexto local
+AGENTS.md
+CONTEXTO_PROJETO.md
+HISTORICO_CONVERSAS_COMPLETO.md
+
+# Cache e ficheiros temporários
 .vs/
 bin/
 obj/
