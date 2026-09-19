@@ -5259,8 +5259,12 @@
   </script>
 
   <!-- MODAL DE INSPEÇÃO E CONFIRMAÇÃO DE RESTAURO DE BACKUP (HUGGING FACE / LOCAL) -->
-  <div id="backupRestoreConfirmationModal" class="modal-overlay" style="z-index: 100100;">
-    <div class="modal-window" style="max-width: 560px; padding: 1.75rem; border-radius: 16px;">
+  <div id="backupRestoreConfirmationModal" class="modal-overlay" onclick="if (event.target === this) closeBackupRestoreModal()" style="z-index: 100100; display: none;">
+    <div class="modal-window" style="max-width: 560px; padding: 1.75rem; border-radius: 16px; position: relative;">
+      <!-- Botão Fechar X no topo direito -->
+      <button type="button" onclick="closeBackupRestoreModal()" style="position: absolute; top: 1.1rem; right: 1.1rem; background: transparent; border: none; font-size: 1.35rem; color: #94a3b8; cursor: pointer; padding: 0.25rem 0.5rem; border-radius: 6px; transition: all 0.2s;" onmouseenter="this.style.color='#ef4444'" onmouseleave="this.style.color='#94a3b8'" title="Fechar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
       <div style="text-align: center; margin-bottom: 1.25rem;">
         <div
           style="width: 64px; height: 64px; border-radius: 50%; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 0.75rem auto; border: 2px solid #bae6fd; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);">

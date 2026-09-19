@@ -19869,18 +19869,36 @@ function openBackupRestoreModalWithData(parsed, fileName, source, detectedFolder
   const modal = document.getElementById('backupRestoreConfirmationModal');
   if (modal) {
     modal.style.zIndex = '100100';
+    modal.style.display = 'flex';
     modal.classList.add('active');
   }
 }
+window.openBackupRestoreModalWithData = openBackupRestoreModalWithData;
 
 function closeBackupRestoreModal() {
   const modal = document.getElementById('backupRestoreConfirmationModal');
-  if (modal) modal.classList.remove('active');
+  if (modal) {
+    modal.classList.remove('active');
+    modal.style.display = 'none';
+  }
   pendingBackupRestoreData = null;
   const selectContainer = document.getElementById('serverBackupSelectContainer');
   if (selectContainer) selectContainer.style.display = 'none';
   const loader = document.getElementById('serverBackupSelectLoading');
   if (loader) loader.style.display = 'none';
+}
+window.closeBackupRestoreModal = closeBackupRestoreModal;
+
+// Fechar com clique fora ou tecla Escape
+if (typeof document !== 'undefined') {
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const modal = document.getElementById('backupRestoreConfirmationModal');
+      if (modal && (modal.classList.contains('active') || modal.style.display === 'flex')) {
+        closeBackupRestoreModal();
+      }
+    }
+  });
 }
 
 async function confirmAndExecuteBackupRestore() {
