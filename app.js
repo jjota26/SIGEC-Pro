@@ -27993,6 +27993,114 @@ async function resolveEntityCandidatesFromWikidata(query, targetCountry) {
   return candidates;
 }
 
+// ─── OpenCorporates — registo de empresas de 140+ países ────────────────────
+async function resolveEntityCandidatesFromOpenCorporates(query, targetCountry) {
+  if (!query || query.trim().length < 2) return [];
+  const candidates = [];
+  try {
+    // Mapa de países para códigos de jurisdição OpenCorporates
+    const countryToJurisdiction = {
+      'portugal': 'pt', 'espanha': 'es', 'spain': 'es',
+      'france': 'fr', 'franca': 'fr', 'frança': 'fr',
+      'germany': 'de', 'alemanha': 'de',
+      'united kingdom': 'gb', 'reino unido': 'gb',
+      'italy': 'it', 'itália': 'it', 'italia': 'it',
+      'netherlands': 'nl', 'países baixos': 'nl',
+      'belgium': 'be', 'bélgica': 'be',
+      'brazil': 'br', 'brasil': 'br',
+      'usa': 'us', 'estados unidos': 'us', 'united states': 'us',
+      'canada': 'ca', 'canadá': 'ca',
+      'australia': 'au', 'austrália': 'au',
+      'switzerland': 'ch', 'suíça': 'ch', 'suica': 'ch',
+      'austria': 'at', 'áustria': 'at',
+      'ireland': 'ie', 'irlanda': 'ie',
+      'luxembourg': 'lu', 'luxemburgo': 'lu',
+      'denmark': 'dk', 'dinamarca': 'dk',
+      'sweden': 'se', 'suécia': 'se',
+      'norway': 'no', 'noruega': 'no',
+      'finland': 'fi', 'finlândia': 'fi',
+      'poland': 'pl', 'polónia': 'pl',
+    };
+
+    const cleanQ = cleanCompanySearchName(query) || query.trim();
+    let searchUrl = 'https://api.opencorporates.com/v0.4/companies/search?q=' +
+      encodeURIComponent(cleanQ) + '&format=json&per_page=8';
+
+    // Se há país, filtrar por jurisdição
+    const jCode = targetCountry ? countryToJurisdiction[(targetCountry || '').toLowerCase().trim()] : null;
+    if (jCode) searchUrl += '&jurisdiction_code=' + jCode;
+
+    const resp = await fetch(searchUrl, {
+      headers: { 'Accept': 'application/json' }
+    });
+    if (!resp.ok) return [];
+    const data = await resp.json();
+    const companies = data?.results?.companies || [];
+
+    for (const item of companies) {
+      const co = item?.company;
+      if (!co) continue;
+      const regAddr = co.registered_address || {};
+      const street = regAddr.street_address || '';
+      const city   = regAddr.locality || regAddr.city || '';
+      const post   = regAddr.postal_code || '';
+      const country= regAddr.country || targetCountry || '';
+      const cc     = (country || '').toLowerCase().startsWith('port') ? 'pt'
+                   : (country || '').toLowerCase().startsWith('esp')  ? 'es'
+                   : (co.jurisdiction_code || '').split('_')[0] || '';
+
+      if (!street && !city && !post) continue;
+
+      const key = (country + '|' + city + '|' + street).toLowerCase();
+      candidates.push({
+        nome:        co.name || query,
+        direcao1:    street,
+        direcao2:    '',
+        numero:      '',
+        andar:       '',
+        codigoPostal:post,
+        localidade:  city,
+        pais:        country,
+        countryCode: cc,
+        flag:        getCountryFlagEmoji(cc, country),
+        telefone:    '',
+        website:     co.homepage_url || '',
+        fonteUrl:    co.opencorporates_url || 'https://opencorporates.com',
+        provider:    '🏢 OpenCorporates (Registo Oficial de Empresas)'
+      });
+      if (candidates.length >= 5) break;
+    }
+  } catch(err) {
+    console.warn('OpenCorporates erro:', err);
+  }
+  return candidates;
+}
+
+// ─── DuckDuckGo Instant Answer — website + descrição da empresa ──────────────
+async function resolveEntityWebsiteFromDDG(query) {
+  if (!query || query.trim().length < 2) return null;
+  try {
+    const url = 'https://api.duckduckgo.com/?q=' + encodeURIComponent(query.trim()) +
+      '&format=json&no_redirect=1&no_html=1&skip_disambig=1';
+    const resp = await fetch(url);
+    if (!resp.ok) return null;
+    const data = await resp.json();
+
+    const website = data?.AbstractURL || data?.Website || '';
+    const heading = data?.Heading || '';
+    const abstract= data?.Abstract || data?.AbstractText || '';
+    const image   = data?.Image || '';
+    // Extrair domínio do website para usar como fonteUrl
+    const fonteUrl = website || (data?.Results?.[0]?.FirstURL) || '';
+
+    if (!website && !fonteUrl) return null;
+
+    return { website, heading, abstract, fonteUrl };
+  } catch(_) {
+    return null;
+  }
+}
+
 function renderAiCandidateCards() {
   const container = document.getElementById('aiCandidatesCardsList');
   if (!container) return;
@@ -28314,9 +28422,55 @@ async function triggerAiAddressEnrichment() {
       }
     }
 
-    // 4. Fallback Gemini AI Direto se chave estiver configurada e ainda sem candidatos
+    // 4. OpenCorporates — registo oficial de empresas (140+ países)
+    if (availableAiCandidates.length < 4) {
+      const ocCandidates = await resolveEntityCandidatesFromOpenCorporates(entityName, existingPais);
+      for (const oc of ocCandidates) {
+        const key = ((oc.pais || '') + '|' + (oc.localidade || '') + '|' + (oc.direcao1 || '')).toLowerCase();
+        if (!seenKeys.has(key)) {
+          seenKeys.add(key);
+          availableAiCandidates.push({
+            ...oc,
+            website: oc.website || existingWebsite || '',
+            telefone: oc.telefone || existingTelefone || ''
+          });
+        }
+      }
+    }
+
+    // 5. DuckDuckGo — obter website oficial se ainda não encontrado
+    if (!existingWebsite && availableAiCandidates.length < 4) {
+      const ddgResult = await resolveEntityWebsiteFromDDG(entityName);
+      if (ddgResult && ddgResult.website) {
+        // Enriquecer candidatos existentes com o website do DDG
+        for (const cand of availableAiCandidates) {
+          if (!cand.website) cand.website = ddgResult.website;
+        }
+        // Se ainda zero candidatos, criar entrada apenas com website
+        if (availableAiCandidates.length === 0 && ddgResult.fonteUrl) {
+          availableAiCandidates.push({
+            nome:        ddgResult.heading || entityName,
+            direcao1:    '',
+            direcao2:    '',
+            numero:      '',
+            andar:       '',
+            codigoPostal:'',
+            localidade:  existingPais || '',
+            pais:        existingPais || '',
+            countryCode: '',
+            flag:        getCountryFlagEmoji('', existingPais),
+            telefone:    existingTelefone || '',
+            website:     ddgResult.website,
+            fonteUrl:    ddgResult.fonteUrl,
+            provider:    '🔍 DuckDuckGo (Website Oficial)'
+          });
+        }
+      }
+    }
+
+    // 6. Fallback Gemini AI Direto se chave estiver configurada e ainda sem candidatos suficientes
     const geminiApiKey = localStorage.getItem('sigec_gemini_api_key') || '';
-    if (availableAiCandidates.length === 0 && geminiApiKey) {
+    if (availableAiCandidates.length < 2 && geminiApiKey) {
       try {
         const prompt = `Pesquisa na web o website oficial, telefone e a morada completa da sede de: "${entityName}". Contexto: Tipo: ${tipoCliente}${ministerio ? ', Ministério: ' + ministerio : ''}${existingPais ? ', País: ' + existingPais : ''}. Devolve EXCLUSIVAMENTE um objeto JSON no formato: {"website":"url", "telefone":"contacto", "direcao1":"rua/av/praca", "direcao2":"", "numero":"", "andar":"", "codigoPostal":"código postal", "localidade":"cidade", "pais":"nome do país", "fonteUrl":""}`;
         const gResp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
@@ -28357,7 +28511,7 @@ async function triggerAiAddressEnrichment() {
       }
     }
 
-    // 5. Se for estatal e ainda sem resultados, tentar ministério central
+    // 7. Se for estatal e ainda sem resultados, tentar ministério central
     if (availableAiCandidates.length === 0 && isEstatal) {
       const minMatch = resolveEntityFromLocalDirectory(ministerio, '', existingPais);
       if (minMatch) {
