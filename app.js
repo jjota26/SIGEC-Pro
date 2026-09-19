@@ -13500,6 +13500,158 @@ function handleCategoryImport(event) {
   event.target.value = '';
 }
 
+// ==========================================
+// FUNÇÕES AVANÇADAS DE PARSING INTELIGENTE (NOMES COMPOSTOS E DIREÇÕES)
+// ==========================================
+
+function smartSplitPortugueseName(fullName) {
+  if (!fullName || typeof fullName !== 'string') return { nome: '', apelido: '' };
+  const clean = fullName.trim().replace(/\s+/g, ' ');
+  const parts = clean.split(' ');
+  if (parts.length <= 1) return { nome: clean, apelido: '' };
+  if (parts.length === 2) return { nome: parts[0], apelido: parts[1] };
+
+  // 1. Nomes próprios compostos com 3 palavras (ex: Maria da Graça, Maria do Rosário, etc.)
+  if (parts.length >= 4) {
+    const first3 = (parts[0] + ' ' + parts[1] + ' ' + parts[2]).toLowerCase();
+    const threeWordFirstNames = [
+      'maria da graça', 'maria da graca', 'maria do rosário', 'maria do rosario',
+      'maria de fátima', 'maria de fatima', 'maria do carmo', 'maria de lurdes',
+      'maria de jesus', 'maria da conceição', 'maria da conceicao', 'maria da luz',
+      'maria da paz', 'maria da glória', 'maria da gloria'
+    ];
+    if (threeWordFirstNames.includes(first3)) {
+      return {
+        nome: parts.slice(0, 3).join(' '),
+        apelido: parts.slice(3).join(' ')
+      };
+    }
+  }
+
+  // 2. Nomes próprios compostos com 2 palavras
+  const first2 = (parts[0] + ' ' + parts[1]).toLowerCase();
+  const twoWordFirstNames = [
+    'ana paula', 'ana luísa', 'ana luisa', 'ana isabel', 'ana sofia', 'ana rita', 'ana catarina', 'ana maria', 'ana teresa', 'ana margarida', 'ana cristina', 'ana beatriz', 'ana filipa', 'ana carolina', 'ana carla', 'ana patrícia', 'ana patricia', 'ana francisca', 'ana inês', 'ana ines', 'ana lúcia', 'ana lucia',
+    'maria joão', 'maria joao', 'maria inês', 'maria ines', 'maria eduarda', 'maria helena', 'maria teresa', 'maria clara', 'maria luísa', 'maria luisa', 'maria francisca', 'maria antónia', 'maria antonia', 'maria josé', 'maria jose', 'maria amélia', 'maria amelia', 'maria isabel', 'maria alice', 'maria manuela',
+    'joão pedro', 'joao pedro', 'joão paulo', 'joao paulo', 'joão carlos', 'joao carlos', 'joão manuel', 'joao manuel', 'joão miguel', 'joao miguel', 'joão vítor', 'joao vitor', 'joão maria', 'joao maria', 'joão diogo', 'joao diogo', 'joão afonso', 'joao afonso', 'joão bernardo', 'joao bernardo', 'joão francisco', 'joao francisco', 'joão luís', 'joao luis', 'joão nuno', 'joao nuno', 'joão henrique', 'joao henrique', 'joão filipe', 'joao filipe',
+    'josé manuel', 'jose manuel', 'josé carlos', 'jose carlos', 'josé antónio', 'jose antonio', 'josé luís', 'jose luis', 'josé pedro', 'jose pedro', 'josé miguel', 'jose miguel', 'josé eduardo', 'jose eduardo', 'josé maria', 'jose maria', 'josé alberto', 'jose alberto', 'josé henrique', 'jose henrique', 'josé francisco', 'jose francisco', 'josé augusto', 'jose augusto', 'josé paulo', 'jose paulo', 'josé renato', 'jose renato',
+    'carlos augusto', 'carlos manuel', 'carlos alberto', 'carlos eduardo', 'carlos alexandre', 'carlos henrique',
+    'antónio manuel', 'antonio manuel', 'antónio josé', 'antonio jose', 'antónio carlos', 'antonio carlos', 'antónio pedro', 'antonio pedro', 'antónio maria', 'antonio maria', 'antónio vítor', 'antonio vitor', 'antónio luís', 'antonio luis', 'antónio joaquim', 'antonio joaquim',
+    'luís miguel', 'luis miguel', 'luís filipe', 'luis filipe', 'luís manuel', 'luis manuel', 'luís carlos', 'luis carlos', 'luís pedro', 'luis pedro', 'luís henrique', 'luis henrique', 'luís alberto', 'luis alberto',
+    'pedro miguel', 'pedro manuel', 'pedro nuno', 'pedro henrique', 'pedro filipe',
+    'paulo jorge', 'paulo alexandre', 'paulo manuel', 'paulo henrique', 'paulo renato',
+    'francisco josé', 'francisco jose', 'francisco manuel', 'francisco xavier', 'francisco antónio', 'francisco antonio',
+    'rui pedro', 'rui manuel', 'rui miguel', 'rui filipe', 'rui jorge',
+    'vítor manuel', 'vitor manuel', 'vítor hugo', 'vitor hugo', 'vítor eduardo', 'vitor eduardo',
+    'marco antónio', 'marco antonio', 'marco paulo',
+    'david carlos', 'rita sá', 'tiago andré', 'tiago andre', 'gonçalo nuno', 'goncalo nuno'
+  ];
+
+  if (twoWordFirstNames.includes(first2) && parts.length >= 3) {
+    return {
+      nome: parts.slice(0, 2).join(' '),
+      apelido: parts.slice(2).join(' ')
+    };
+  }
+
+  // Predefinição: 1ª palavra é nome próprio, restantes são apelido
+  return {
+    nome: parts[0],
+    apelido: parts.slice(1).join(' ')
+  };
+}
+window.smartSplitPortugueseName = smartSplitPortugueseName;
+
+function smartParseAddress(raw) {
+  const result = {
+    direcao1: '',
+    direcao2: '',
+    numero: '',
+    andar: '',
+    codigoPostal: '',
+    localidade: '',
+    pais: 'Portugal'
+  };
+
+  if (!raw || typeof raw !== 'string') return result;
+  let str = raw.trim().replace(/\s+/g, ' ');
+
+  // 1. Identificar País
+  const countries = [
+    { name: 'Portugal', regex: /\b(?:portugal|pt)\b/i },
+    { name: 'Espanha', regex: /\b(?:espanha|españa|spain|es)\b/i },
+    { name: 'França', regex: /\b(?:frança|france|francia)\b/i },
+    { name: 'Brasil', regex: /\b(?:brasil|brazil)\b/i },
+    { name: 'Cabo Verde', regex: /\b(?:cabo verde|cape verde)\b/i },
+    { name: 'Angola', regex: /\bangola\b/i },
+    { name: 'Moçambique', regex: /\b(?:moçambique|mozambique)\b/i },
+    { name: 'Reino Unido', regex: /\b(?:reino unido|united kingdom|uk)\b/i }
+  ];
+
+  for (const c of countries) {
+    if (c.regex.test(str)) {
+      result.pais = c.name;
+      str = str.replace(c.regex, '').trim();
+      break;
+    }
+  }
+
+  // 2. Extrair Código Postal e Localidade
+  const ptPostalRegex = /\b(\d{4}-\d{3})\b(?:\s+([^\,\;]+))?/i;
+  const esPostalRegex = /\b(\d{5})\b(?:\s+([^\,\;]+))?/i;
+
+  const matchPt = str.match(ptPostalRegex);
+  if (matchPt) {
+    result.codigoPostal = matchPt[1];
+    if (matchPt[2] && !result.localidade) {
+      result.localidade = matchPt[2].trim().replace(/[\,\.\;]+$/, '');
+    }
+    str = str.replace(matchPt[0], '').trim();
+  } else {
+    const matchEs = str.match(esPostalRegex);
+    if (matchEs) {
+      result.codigoPostal = matchEs[1];
+      if (matchEs[2] && !result.localidade) {
+        result.localidade = matchEs[2].trim().replace(/[\,\.\;]+$/, '');
+      }
+      str = str.replace(matchEs[0], '').trim();
+    }
+  }
+
+  // 3. Extrair Andar / Piso / Fração / Bloco / Torre
+  const floorRegex = /\b(?:(\d+[º°ªa]\s*(?:andar|piso|esq(?:uerdo)?|dto|direito|frente|recuado|trás|tras|d|e)?)|(r\/c|rés-do-chão|res-do-chao|cave|subcave|sobreloja)|(?:torre|bloco|lote|edif[íi]cio)\s+([A-Za-z0-9]+))\b/i;
+  const matchFloor = str.match(floorRegex);
+  if (matchFloor) {
+    result.andar = matchFloor[0].trim();
+    str = str.replace(matchFloor[0], '').trim();
+  }
+
+  // 4. Extrair Número de Porta / Polícia
+  const numRegex = /(?:,\s*|\s+)(?:n[º°.]?\s*|n[uú]mero\s*)?(\d+[\s\-]?[A-Za-z]?)(?=[\,\s]|$)/i;
+  const matchNum = str.match(numRegex);
+  if (matchNum) {
+    result.numero = matchNum[1].trim();
+    str = str.replace(matchNum[0], ',').trim();
+  }
+
+  // 5. Normalizar Direção 1 e Localidade restante
+  str = str.replace(/,\s*,/g, ',').replace(/^[\,\s\-]+|[\,\s\-]+$/g, '').trim();
+  const remainingParts = str.split(',').map(p => p.trim()).filter(Boolean);
+
+  if (remainingParts.length > 1 && !result.localidade) {
+    result.localidade = remainingParts.pop();
+    result.direcao1 = remainingParts.join(', ');
+  } else {
+    result.direcao1 = str;
+  }
+
+  // Limpeza final de pontuação em direcao1
+  result.direcao1 = (result.direcao1 || '').replace(/[\s,\-]+$/, '').replace(/^[\s,\-]+/, '').trim();
+
+  return result;
+}
+window.smartParseAddress = smartParseAddress;
+
 function processCategoryImport(category, items) {
   if (!Array.isArray(items) || items.length === 0) {
     showToast('Nenhum registo válido encontrado no ficheiro.', 'danger');
@@ -13515,27 +13667,54 @@ function processCategoryImport(category, items) {
     const activeUserNomeImport = activeUserImport ? activeUserImport.nome : '';
     items.forEach(item => {
       const id = item.id || generateId('cli');
-      const idx = db.clientes.findIndex(c => c.id === id || (c.nome && item.nome && String(c.nome).trim().toLowerCase() === String(item.nome).trim().toLowerCase()));
+      const nomeCliente = (item.nome || item.Nome || item.cliente || item.Cliente || item.empresa || item.Empresa || 'Cliente Importado').trim();
+      const idx = db.clientes.findIndex(c => c.id === id || (c.nome && nomeCliente && String(c.nome).trim().toLowerCase() === nomeCliente.toLowerCase()));
       const tipoClienteImport = (typeof normalizeClientType === 'function')
-        ? normalizeClientType(item.tipoCliente || item.tipo || 'Privado')
-        : (item.tipoCliente || item.tipo || 'Privado');
+        ? normalizeClientType(item.tipoCliente || item.tipo || item.Tipo || 'Privado')
+        : (item.tipoCliente || item.tipo || item.Tipo || 'Privado');
+
+      // Extração e tratamento inteligente de morada / direção
+      let rawDirecao = String(item.direcao1 || item.direcao || item.Direção || item.Direcao || item.morada || item.Morada || item.endereco || item.Endereço || item.Address || '').trim();
+      let numero = String(item.numero || item.Numero || item['Nº'] || item.No || '').trim();
+      let andar = String(item.andar || item.Andar || item.Piso || item.piso || item.Fracao || '').trim();
+      let codigoPostal = String(item.codigoPostal || item.CodigoPostal || item.cp || item.CP || item['Código Postal'] || '').trim();
+      let localidade = String(item.localidade || item.Localidade || item.cidade || item.Cidade || '').trim();
+      let pais = String(item.pais || item.Pais || item['País'] || '').trim();
+      let direcao1 = rawDirecao;
+      let direcao2 = String(item.direcao2 || item.Direcao2 || '').trim();
+
+      // Se a direção veio toda num único campo e os restantes estão vazios, decompõe com IA / parser inteligente
+      if (rawDirecao && (!codigoPostal || !localidade || !numero)) {
+        const parsedAddr = smartParseAddress(rawDirecao);
+        if (parsedAddr) {
+          direcao1 = parsedAddr.direcao1 || direcao1;
+          if (!numero && parsedAddr.numero) numero = parsedAddr.numero;
+          if (!andar && parsedAddr.andar) andar = parsedAddr.andar;
+          if (!codigoPostal && parsedAddr.codigoPostal) codigoPostal = parsedAddr.codigoPostal;
+          if (!localidade && parsedAddr.localidade) localidade = parsedAddr.localidade;
+          if (!pais && parsedAddr.pais) pais = parsedAddr.pais;
+          if (!direcao2 && parsedAddr.direcao2) direcao2 = parsedAddr.direcao2;
+        }
+      }
+      if (!pais) pais = 'Portugal';
+
       const clientObj = {
         id: idx >= 0 ? db.clientes[idx].id : id,
         tipoCliente: tipoClienteImport,
-        ministerio: item.ministerio || '',
-        secretariaEstado: item.secretariaEstado || '',
-        nome: item.nome || 'Cliente Importado',
-        contribuinte: String(item.contribuinte || item.nif || ''),
-        direcao1: item.direcao1 || item.morada || '',
-        direcao2: item.direcao2 || '',
-        numero: item.numero || '',
-        andar: item.andar || '',
-        codigoPostal: item.codigoPostal || item.cp || '',
-        localidade: item.localidade || '',
-        pais: item.pais || 'Portugal',
-        telefone: item.telefone || '',
-        telemovel: item.telemovel || '',
-        email: item.email || '',
+        ministerio: item.ministerio || item.Ministerio || '',
+        secretariaEstado: item.secretariaEstado || item.SecretariaEstado || '',
+        nome: nomeCliente,
+        contribuinte: String(item.contribuinte || item.Contribuinte || item.nif || item.NIF || ''),
+        direcao1: direcao1,
+        direcao2: direcao2,
+        numero: numero,
+        andar: andar,
+        codigoPostal: codigoPostal,
+        localidade: localidade,
+        pais: pais,
+        telefone: String(item.telefone || item.Telefone || ''),
+        telemovel: String(item.telemovel || item.Telemóvel || item.Telemovel || ''),
+        email: item.email || item.Email || '',
         userId: idx >= 0 ? (db.clientes[idx].userId || activeUserIdImport) : activeUserIdImport,
         comercialAtribuidoId: idx >= 0 ? (db.clientes[idx].comercialAtribuidoId || activeUserIdImport) : activeUserIdImport,
         comercialAtribuidoNome: idx >= 0 ? (db.clientes[idx].comercialAtribuidoNome || activeUserNomeImport) : activeUserNomeImport,
@@ -13556,11 +13735,17 @@ function processCategoryImport(category, items) {
       let rawNome = (item.nome || item.Nome || item['Primeiro Nome'] || item['First Name'] || item['Nome Contacto'] || '').trim();
       let rawApelido = (item.apelido || item.Apelido || item.sobrenome || item.Sobrenome || item['Último Nome'] || item['Last Name'] || item.Surname || '').trim();
       
-      // Se apenas o nome veio preenchido com nome completo e o apelido está vazio, divide de forma inteligente
+      // Se apenas o nome veio preenchido com nome completo (ou apelido vazio) e tem mais que uma palavra
       if (rawNome && !rawApelido && rawNome.includes(' ')) {
-        const parts = rawNome.split(/\s+/);
-        rawNome = parts[0];
-        rawApelido = parts.slice(1).join(' ');
+        const splitRes = smartSplitPortugueseName(rawNome);
+        rawNome = splitRes.nome;
+        rawApelido = splitRes.apelido;
+      }
+      // Se tiver coluna específica 'Nome Completo'
+      if (!rawNome && (item['Nome Completo'] || item.nomeCompleto)) {
+        const splitRes = smartSplitPortugueseName(item['Nome Completo'] || item.nomeCompleto);
+        rawNome = splitRes.nome;
+        if (!rawApelido) rawApelido = splitRes.apelido;
       }
       
       const cargo = (item.cargo || item.Cargo || item['Função'] || item.Funcao || '').trim();
