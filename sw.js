@@ -3,7 +3,7 @@
    Estrategia: Network First com fallback para cache
    ============================================================ */
 
-const CACHE_NAME = "sigec-pro-v2.6";
+const CACHE_NAME = "sigec-pro-v2.7";
 const CORE_ASSETS = [
   "/",
   "/index.html",

@@ -26533,14 +26533,16 @@ window.closeAiAddressModal = closeAiAddressModal;
 
 
 // ====================================================================
-// BASE DE DADOS INSTITUCIONAL E RESOLVEDOR DE DIREÇÃO INTERNACIONAL (PT, ES & MUNDIAL)
+// BASE DE DADOS INSTITUCIONAL E RESOLVEDOR DE DIREÇÃO, TELEFONE E WEBSITE
+// Suporte Universal: Clientes Estatais, Fundações e Privados (PT, ES e Global)
 // ====================================================================
 
 const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
-  // --- PORTUGAL: Presidência e Governo Central ---
+  // --- PORTUGAL: Presidência, Governo Central e Ministérios ---
   {
     aliases: ['presidência', 'presidencia', 'ministério da presidência', 'ministerio da presidencia', 'presidência do conselho de ministros', 'secretaria-geral da presidência'],
     website: 'https://www.portugal.gov.pt',
+    telefone: '+351 213 927 600',
     direcao1: 'Rua Professor Gomes Teixeira',
     numero: '',
     andar: '',
@@ -26552,6 +26554,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['assembleia da república', 'assembleia da republica', 'parlamento', 'assuntos parlamentares', 'ministério dos assuntos parlamentares', 'ministerio dos assuntos parlamentares'],
     website: 'https://www.parlamento.pt',
+    telefone: '+351 213 919 000',
     direcao1: 'Palácio de São Bento',
     numero: '',
     andar: '',
@@ -26563,6 +26566,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['presidência da república', 'presidencia da republica', 'palácio de belém', 'palacio de belem'],
     website: 'https://www.presidencia.pt',
+    telefone: '+351 213 614 600',
     direcao1: 'Calçada da Ajuda',
     numero: '',
     andar: '',
@@ -26574,6 +26578,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['negócios estrangeiros', 'negocios estrangeiros', 'mne', 'ministério dos negócios estrangeiros', 'ministerio de estado e dos negócios estrangeiros', 'secretaria de estado dos negócios estrangeiros', 'secretaria de estado de negocios extrangeiros e cooperação'],
     website: 'https://www.portaldiplomatico.mne.gov.pt',
+    telefone: '+351 213 946 000',
     direcao1: 'Largo do Rilvas (Palácio das Necessidades)',
     numero: '',
     andar: '',
@@ -26585,6 +26590,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['tesouro e finanças', 'tesouro e financas', 'dgtf', 'direção-geral do tesouro', 'direccao-geral do tesouro', 'direção geral do tesouro', 'direção-geral do tesouro e finanças'],
     website: 'https://www.dgtf.gov.pt',
+    telefone: '+351 218 812 000',
     direcao1: 'Rua da Alfândega',
     numero: '5',
     andar: '1.º andar',
@@ -26596,6 +26602,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ministério das finanças', 'ministerio das financas', 'finanças', 'financas', 'gabinete do ministro das finanças', 'ministerio finanzas'],
     website: 'https://www.portugal.gov.pt',
+    telefone: '+351 218 816 800',
     direcao1: 'Avenida Infante Dom Henrique',
     numero: '1',
     andar: '',
@@ -26607,6 +26614,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['autoridade tributária', 'autoridade tributaria', 'at', 'direção-geral dos impostos', 'alfândega', 'alfandega'],
     website: 'https://www.portaldasfinancas.gov.pt',
+    telefone: '+351 217 206 707',
     direcao1: 'Rua da Prata',
     numero: '10',
     andar: '',
@@ -26618,6 +26626,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['direção-geral do orçamento', 'direccao-geral do orcamento', 'dgo'],
     website: 'https://www.dgo.gov.pt',
+    telefone: '+351 218 817 000',
     direcao1: 'Avenida Infante Dom Henrique',
     numero: '1',
     andar: '',
@@ -26629,6 +26638,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ministério da defesa', 'ministerio da defesa', 'ministério da defesa nacional', 'ministerio de defensa nacional', 'ministerio da defesa nacional', 'secretaria de estado da defesa nacional'],
     website: 'https://www.defesa.gov.pt',
+    telefone: '+351 213 034 500',
     direcao1: 'Avenida da Ilha da Madeira',
     numero: '1',
     andar: '',
@@ -26640,6 +26650,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['direção-geral de recursos da defesa nacional', 'direção geral de recursos de defesa nacional', 'dgrdn'],
     website: 'https://www.defesa.gov.pt/pt/dgrdn',
+    telefone: '+351 213 038 500',
     direcao1: 'Avenida da Ilha da Madeira',
     numero: '1',
     andar: 'Edifício Defesa',
@@ -26651,6 +26662,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['administração interna', 'administracao interna', 'mai', 'ministério da administração interna', 'ministerio da administracion interna', 'secretaria de estado da administração interna', 'secretaria del estado de administración interna'],
     website: 'https://www.mai.gov.pt',
+    telefone: '+351 213 233 000',
     direcao1: 'Praça do Comércio',
     numero: '',
     andar: '',
@@ -26662,6 +26674,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['polícia de segurança pública', 'policia de seguranca publica', 'psp', 'direção nacional da psp'],
     website: 'https://www.psp.pt',
+    telefone: '+351 213 466 141',
     direcao1: 'Largo da Penha de França',
     numero: '1',
     andar: '',
@@ -26673,6 +26686,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['guarda nacional republicana', 'gnr', 'comando geral da gnr'],
     website: 'https://www.gnr.pt',
+    telefone: '+351 213 217 000',
     direcao1: 'Largo do Carmo',
     numero: '',
     andar: '',
@@ -26684,6 +26698,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['proteção civil', 'protecao civil', 'anepc'],
     website: 'https://prociv.gov.pt',
+    telefone: '+351 214 247 100',
     direcao1: 'Avenida do Forte em Carnaxide',
     numero: '',
     andar: '',
@@ -26695,6 +26710,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ministério da justiça', 'ministerio da justica', 'ministerio de justicia', 'secretaria de estado da justiça', 'secretaría del estado de justicia'],
     website: 'https://www.justica.gov.pt',
+    telefone: '+351 213 222 300',
     direcao1: 'Praça do Comércio',
     numero: '',
     andar: '',
@@ -26706,6 +26722,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['instituto dos registos e do notariado', 'irn', 'registos e notariado'],
     website: 'https://irn.justica.gov.pt',
+    telefone: '+351 211 950 500',
     direcao1: 'Avenida Dom João II, Campus de Justiça, Edifício H',
     numero: 'Lote 1.06.2.1',
     andar: '',
@@ -26717,6 +26734,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['polícia judiciária', 'policia judiciaria', 'pj'],
     website: 'https://www.policiajudiciaria.pt',
+    telefone: '+351 211 967 000',
     direcao1: 'Rua Gomes Freire',
     numero: '174',
     andar: '',
@@ -26728,6 +26746,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ministério da economia', 'ministerio da economia', 'ministério da economia e da coesão territorial', 'economia e coesão territorial', 'secretaria de estado do turismo, comércio e serviços'],
     website: 'https://www.portugal.gov.pt',
+    telefone: '+351 217 911 600',
     direcao1: 'Avenida da República',
     numero: '79',
     andar: '',
@@ -26739,6 +26758,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['coesão territorial', 'coesao territorial', 'ministério da coesão territorial'],
     website: 'https://www.portugal.gov.pt',
+    telefone: '+351 217 923 500',
     direcao1: 'Avenida Columbano Bordalo Pinheiro',
     numero: '86',
     andar: '',
@@ -26750,6 +26770,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['atividades económicas', 'actividades economicas', 'dgae', 'direção-geral das atividades económicas', 'direccao-geral das actividades economicas'],
     website: 'https://www.dgae.gov.pt',
+    telefone: '+351 217 919 100',
     direcao1: 'Avenida Visconde de Valmor',
     numero: '72',
     andar: '',
@@ -26761,6 +26782,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['iapmei', 'competitividade e inovação'],
     website: 'https://www.iapmei.pt',
+    telefone: '+351 213 836 000',
     direcao1: 'Estrada do Paço do Lumiar, Campus do Lumiar, Edifício A',
     numero: '',
     andar: '',
@@ -26772,6 +26794,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ministério da agricultura', 'ministerio da agricultura', 'ministério da agricultura e do mar', 'ministerio de agricultura y mar', 'secretaria de estado da agricultura', 'secretario de estado de agricultura'],
     website: 'https://www.portugal.gov.pt',
+    telefone: '+351 213 234 600',
     direcao1: 'Praça do Comércio',
     numero: '',
     andar: '',
@@ -26783,6 +26806,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['dgadr', 'agricultura e desenvolvimento rural', 'direção-geral de agricultura e desenvolvimento rural', 'direccao-geral de agricultura e desenvolvimento rural', 'dirección general agricultura y desenvolvimiento rural'],
     website: 'https://www.dgadr.gov.pt',
+    telefone: '+351 218 442 200',
     direcao1: 'Avenida Afonso Costa',
     numero: '3',
     andar: '',
@@ -26794,6 +26818,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ministério da cultura', 'ministerio da cultura', 'ministério da cultura, juventude e desporto', 'ministerio de cultura, juventud y deporte', 'secretaria de estado da cultura', 'secretario de estado de cultura'],
     website: 'https://www.portugal.gov.pt',
+    telefone: '+351 213 614 500',
     direcao1: 'Palácio Nacional da Ajuda',
     numero: '',
     andar: '',
@@ -26805,6 +26830,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['secretaria de estado do desporto', 'secretario de estado de deporte', 'secretaria de estado adjunta e da juventude', 'secretaria de estado adjunta e da juventude e da igualdade', 'ipdj', 'instituto português do desporto e juventude'],
     website: 'https://ipdj.gov.pt',
+    telefone: '+351 210 470 000',
     direcao1: 'Rua Rodrigo da Fonseca',
     numero: '55',
     andar: '',
@@ -26816,6 +26842,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ministério da educação', 'ministerio da educacao', 'ministério da educação, ciência e inovação', 'ministerio de educación, ciencia e innovacion', 'secretário de estado adjunto e de educação', 'secretario de estado adjunto e de educacao', 'secretaria de estado da educação'],
     website: 'https://www.portugal.gov.pt',
+    telefone: '+351 213 934 500',
     direcao1: 'Avenida 24 de Julho',
     numero: '134',
     andar: '',
@@ -26827,6 +26854,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['dge', 'direção-geral da educação', 'direccao-geral da educacao', 'dirección general de educación'],
     website: 'https://www.dge.mec.pt',
+    telefone: '+351 217 901 100',
     direcao1: 'Praça de Alvalade',
     numero: '12',
     andar: '',
@@ -26838,6 +26866,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ministério do trabalho', 'ministerio do trabalho', 'ministério do trabalho, solidariedade e segurança social', 'ministerio de trabajo, solidaridad y seguridad social', 'secretaria de estado da ação social e da inclusão', 'secretaria de estado de acción social y de inclusión', 'secretaria de estado do trabalho'],
     website: 'https://www.portugal.gov.pt',
+    telefone: '+351 215 953 000',
     direcao1: 'Praça de Londres',
     numero: '2',
     andar: '',
@@ -26849,6 +26878,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['direção-geral da segurança social', 'direccao-geral da seguranca social', 'dirección general de seguridad social', 'dgss'],
     website: 'https://www.seg-social.pt',
+    telefone: '+351 215 953 300',
     direcao1: 'Largo do Rato',
     numero: '1',
     andar: '',
@@ -26860,6 +26890,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['instituto da segurança social', 'instituto da seguranca social', 'segurança social', 'seguranca social', 'iss'],
     website: 'https://www.seg-social.pt',
+    telefone: '+351 300 502 502',
     direcao1: 'Avenida 5 de Outubro',
     numero: '175',
     andar: '',
@@ -26871,6 +26902,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ministério das infraestruturas', 'ministerio das infraestruturas', 'ministério das infraestruturas e habitação', 'ministerio infraestructuras e habitaçao', 'secretaria de estado das infraestruturas', 'secretaria del estado de infraestructura', 'secretaria de estado da habitação', 'palácio das infraestruturas e habitação'],
     website: 'https://www.portugal.gov.pt',
+    telefone: '+351 210 426 200',
     direcao1: 'Avenida Barbosa du Bocage',
     numero: '5',
     andar: '',
@@ -26882,6 +26914,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ihru', 'instituto da habitação e da reabilitação urbana'],
     website: 'https://www.ihru.pt',
+    telefone: '+351 217 231 500',
     direcao1: 'Avenida Columbano Bordalo Pinheiro',
     numero: '5',
     andar: '',
@@ -26893,6 +26926,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['infraestruturas de portugal'],
     website: 'https://www.infraestruturasdeportugal.pt',
+    telefone: '+351 212 879 000',
     direcao1: 'Praça da Portagem',
     numero: '',
     andar: '',
@@ -26904,6 +26938,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['reforma do estado', 'modernização administrativa', 'ministério da reforma do estado', 'ministerio de reforma de estado', 'secretaria de estado para a digitalização', 'secretaría del estado para la digitalización', 'secretaria de estado para a simplificação', 'secretaría del estado para la simplificación', 'ama', 'agência para a modernização administrativa'],
     website: 'https://www.ama.gov.pt',
+    telefone: '+351 217 231 200',
     direcao1: 'Rua Abranches Ferrão',
     numero: '10',
     andar: '3.º F',
@@ -26915,6 +26950,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ministério da saúde', 'ministerio da saude', 'sns', 'serviço nacional de saúde'],
     website: 'https://www.sns.gov.pt',
+    telefone: '+351 213 305 000',
     direcao1: 'Avenida João Crisóstomo',
     numero: '9',
     andar: '',
@@ -26926,6 +26962,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['direção-geral da saúde', 'direccao-geral da saude', 'dgs'],
     website: 'https://www.dgs.pt',
+    telefone: '+351 218 430 500',
     direcao1: 'Alameda Dom Afonso Henriques',
     numero: '45',
     andar: '',
@@ -26937,6 +26974,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['infarmed', 'medicamento e produtos de saúde'],
     website: 'https://www.infarmed.pt',
+    telefone: '+351 217 987 100',
     direcao1: 'Parque de Saúde de Lisboa, Avenida do Brasil',
     numero: '53',
     andar: '',
@@ -26948,6 +26986,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ambiente e energia', 'ministério do ambiente', 'ministerio do ambiente', 'ministério do ambiente e energia', 'secretaria de estado do ambiente', 'secretaria de estado da energia'],
     website: 'https://www.portugal.gov.pt',
+    telefone: '+351 213 232 500',
     direcao1: 'Rua de O Século',
     numero: '51',
     andar: '',
@@ -26959,6 +26998,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['agência portuguesa do ambiente', 'agencia portuguesa do ambiente', 'apa'],
     website: 'https://apambiente.pt',
+    telefone: '+351 214 728 200',
     direcao1: 'Rua da Murgueira',
     numero: '9/9A',
     andar: 'Zambujal',
@@ -26967,9 +27007,146 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Portugal',
     fonteUrl: 'https://apambiente.pt'
   },
+
+  // --- FUNDAÇÕES (Portugal e Espanha) ---
+  {
+    aliases: ['fundação calouste gulbenkian', 'fundacao calouste gulbenkian', 'gulbenkian'],
+    website: 'https://gulbenkian.pt',
+    telefone: '+351 217 823 000',
+    direcao1: 'Avenida de Berna',
+    numero: '45A',
+    andar: '',
+    codigoPostal: '1067-001',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://gulbenkian.pt'
+  },
+  {
+    aliases: ['fundação champalimaud', 'fundacao champalimaud', 'champalimaud'],
+    website: 'https://fchampalimaud.org',
+    telefone: '+351 210 480 000',
+    direcao1: 'Avenida Brasília',
+    numero: '',
+    andar: '',
+    codigoPostal: '1400-038',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://fchampalimaud.org'
+  },
+  {
+    aliases: ['fundação de serralves', 'fundacao de serralves', 'serralves'],
+    website: 'https://www.serralves.pt',
+    telefone: '+351 226 156 500',
+    direcao1: 'Rua Dom João de Castro',
+    numero: '210',
+    andar: '',
+    codigoPostal: '4150-417',
+    localidade: 'Porto',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.serralves.pt'
+  },
+  {
+    aliases: ['fundação oriente', 'fundacao oriente', 'museu do oriente'],
+    website: 'https://www.foriente.pt',
+    telefone: '+351 213 585 200',
+    direcao1: 'Avenida Brasília, Doca de Alcântara Norte',
+    numero: '',
+    andar: '',
+    codigoPostal: '1350-352',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.foriente.pt'
+  },
+  {
+    aliases: ['fundação edp', 'fundacao edp', 'maat'],
+    website: 'https://www.fundacaoedp.pt',
+    telefone: '+351 210 028 130',
+    direcao1: 'Avenida 24 de Julho',
+    numero: '12',
+    andar: '',
+    codigoPostal: '1249-300',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.fundacaoedp.pt'
+  },
+  {
+    aliases: ['fundação aga khan', 'fundacao aga khan'],
+    website: 'https://www.akdn.org',
+    telefone: '+351 217 229 000',
+    direcao1: 'Centro Ismaili, Avenida Lusíada',
+    numero: '',
+    andar: '',
+    codigoPostal: '1600-001',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.akdn.org'
+  },
+  {
+    aliases: ['fundação millennium bcp', 'fundacao millennium bcp'],
+    website: 'https://fundacaomillenniumbcp.pt',
+    telefone: '+351 211 131 000',
+    direcao1: 'Rua Augusta',
+    numero: '84',
+    andar: '',
+    codigoPostal: '1100-053',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://fundacaomillenniumbcp.pt'
+  },
+  {
+    aliases: ['fundación la caixa', 'fundacion la caixa', 'fundación bancaria la caixa', 'caixaforum'],
+    website: 'https://fundacionlacaixa.org',
+    telefone: '+34 934 046 000',
+    direcao1: 'Avenida Diagonal',
+    numero: '621',
+    andar: '',
+    codigoPostal: '08028',
+    localidade: 'Barcelona',
+    pais: 'España',
+    fonteUrl: 'https://fundacionlacaixa.org'
+  },
+  {
+    aliases: ['fundación mapfre', 'fundacion mapfre'],
+    website: 'https://www.fundacionmapfre.org',
+    telefone: '+34 915 811 600',
+    direcao1: 'Paseo de Recoletos',
+    numero: '23',
+    andar: '',
+    codigoPostal: '28004',
+    localidade: 'Madrid',
+    pais: 'España',
+    fonteUrl: 'https://www.fundacionmapfre.org'
+  },
+  {
+    aliases: ['fundación telefónica', 'fundacion telefonica', 'espacio fundación telefónica'],
+    website: 'https://fundaciontelefonica.com',
+    telefone: '+34 915 226 645',
+    direcao1: 'Gran Vía',
+    numero: '28',
+    andar: '',
+    codigoPostal: '28013',
+    localidade: 'Madrid',
+    pais: 'España',
+    fonteUrl: 'https://fundaciontelefonica.com'
+  },
+  {
+    aliases: ['fundación bbva', 'fundacion bbva'],
+    website: 'https://www.fbbva.es',
+    telefone: '+34 913 745 400',
+    direcao1: 'Paseo de Recoletos',
+    numero: '10',
+    andar: '',
+    codigoPostal: '28001',
+    localidade: 'Madrid',
+    pais: 'España',
+    fonteUrl: 'https://www.fbbva.es'
+  },
+
+  // --- AUTARQUIAS ---
   {
     aliases: ['câmara municipal de lisboa', 'camara municipal de lisboa', 'cml', 'município de lisboa'],
     website: 'https://www.lisboa.pt',
+    telefone: '+351 217 988 000',
     direcao1: 'Praça do Município',
     numero: '',
     andar: '',
@@ -26981,6 +27158,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['câmara municipal do porto', 'camara municipal do porto', 'cmp', 'município do porto'],
     website: 'https://www.cm-porto.pt',
+    telefone: '+351 222 090 400',
     direcao1: 'Praça General Humberto Delgado',
     numero: '',
     andar: '',
@@ -26992,6 +27170,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['câmara municipal de cascais', 'camara municipal de cascais', 'cmc', 'município de cascais'],
     website: 'https://www.cascais.pt',
+    telefone: '+351 214 815 000',
     direcao1: 'Praça 5 de Outubro',
     numero: '',
     andar: '',
@@ -27003,6 +27182,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['câmara municipal de sintra', 'camara municipal de sintra', 'cms', 'município de sintra'],
     website: 'https://cm-sintra.pt',
+    telefone: '+351 219 238 500',
     direcao1: 'Largo Dr. Virgílio Horta',
     numero: '',
     andar: '',
@@ -27014,6 +27194,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['câmara municipal de braga', 'camara municipal de braga', 'cmb', 'município de braga'],
     website: 'https://www.cm-braga.pt',
+    telefone: '+351 253 616 060',
     direcao1: 'Praça do Município',
     numero: '',
     andar: '',
@@ -27025,6 +27206,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['câmara municipal de coimbra', 'camara municipal de coimbra', 'município de coimbra'],
     website: 'https://www.cm-coimbra.pt',
+    telefone: '+351 239 857 500',
     direcao1: 'Praça 8 de Maio',
     numero: '',
     andar: '',
@@ -27033,9 +27215,12 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Portugal',
     fonteUrl: 'https://www.cm-coimbra.pt'
   },
+
+  // --- GRANDES EMPRESAS (Portugal) ---
   {
     aliases: ['edp', 'edp comercial', 'edp distribuição', 'e-redes'],
     website: 'https://www.edp.pt',
+    telefone: '+351 210 012 000',
     direcao1: 'Avenida 24 de Julho',
     numero: '12',
     andar: '',
@@ -27047,6 +27232,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['galp', 'galp energia', 'petróleos de portugal'],
     website: 'https://www.galp.com',
+    telefone: '+351 217 242 500',
     direcao1: 'Rua Tomás da Fonseca, Torre A',
     numero: '',
     andar: '',
@@ -27058,6 +27244,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['tap', 'tap air portugal', 'transportes aéreos portugueses'],
     website: 'https://www.flytap.com',
+    telefone: '+351 218 415 000',
     direcao1: 'Edifício 25, Aeroporto de Lisboa',
     numero: '',
     andar: '',
@@ -27069,6 +27256,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ctt', 'ctt correios de portugal', 'correios de portugal'],
     website: 'https://www.ctt.pt',
+    telefone: '+351 210 471 010',
     direcao1: 'Avenida Dom João II',
     numero: '13',
     andar: '',
@@ -27080,6 +27268,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['nos', 'nos comunicações', 'zon optimus'],
     website: 'https://www.nos.pt',
+    telefone: '+351 217 824 700',
     direcao1: 'Rua Cecília Meireles',
     numero: '7',
     andar: '',
@@ -27091,6 +27280,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['meo', 'altice', 'altice portugal', 'portugal telecom'],
     website: 'https://www.meo.pt',
+    telefone: '+351 215 002 000',
     direcao1: 'Avenida Fontes Pereira de Melo',
     numero: '40',
     andar: '',
@@ -27102,6 +27292,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['vodafone', 'vodafone portugal'],
     website: 'https://www.vodafone.pt',
+    telefone: '+351 210 915 000',
     direcao1: 'Avenida Dom João II',
     numero: '36',
     andar: '',
@@ -27113,6 +27304,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['cgd', 'caixa geral de depósitos', 'caixa geral de depositos'],
     website: 'https://www.cgd.pt',
+    telefone: '+351 217 953 000',
     direcao1: 'Avenida João XXI',
     numero: '63',
     andar: '',
@@ -27124,6 +27316,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['bcp', 'millennium bcp', 'banco comercial português'],
     website: 'https://www.millenniumbcp.pt',
+    telefone: '+351 211 131 000',
     direcao1: 'Praça Dom João I',
     numero: '28',
     andar: '',
@@ -27135,6 +27328,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['santander', 'banco santander', 'santander totta'],
     website: 'https://www.santander.pt',
+    telefone: '+351 213 834 000',
     direcao1: 'Rua do Ouro',
     numero: '88',
     andar: '',
@@ -27144,10 +27338,11 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.santander.pt'
   },
 
-  // --- ESPANHA: Governo, Ministérios e Grandes Entidades ---
+  // --- ESPANHA: Governo, Ministérios, Autarquias e Empresas ---
   {
     aliases: ['gobierno de españa', 'presidencia del gobierno de españa', 'la moncloa', 'palacio de la moncloa'],
     website: 'https://www.lamoncloa.gob.es',
+    telefone: '+34 913 353 535',
     direcao1: 'Avenida Puerta de Hierro',
     numero: 's/n',
     andar: 'Complejo de la Moncloa',
@@ -27159,6 +27354,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ministerio de hacienda', 'hacienda españa', 'hacienda y función pública'],
     website: 'https://www.hacienda.gob.es',
+    telefone: '+34 915 958 000',
     direcao1: 'Calle de Alcalá',
     numero: '9',
     andar: '',
@@ -27170,6 +27366,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['agencia tributaria', 'aeat', 'agencia estatal de administración tributaria'],
     website: 'https://sede.agenciatributaria.gob.es',
+    telefone: '+34 915 548 770',
     direcao1: 'Calle de Alcalá',
     numero: '5',
     andar: '',
@@ -27181,6 +27378,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ministerio del interior', 'interior españa'],
     website: 'https://www.interior.gob.es',
+    telefone: '+34 915 371 000',
     direcao1: 'Paseo de la Castellana',
     numero: '5',
     andar: '',
@@ -27192,6 +27390,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ministerio de justicia', 'justicia españa'],
     website: 'https://www.mjusticia.gob.es',
+    telefone: '+34 913 904 500',
     direcao1: 'Calle de San Bernardo',
     numero: '45',
     andar: '',
@@ -27203,6 +27402,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ministerio de asuntos exteriores', 'exteriores españa', 'asuntos exteriores, unión europea y cooperación'],
     website: 'https://www.exteriores.gob.es',
+    telefone: '+34 913 799 700',
     direcao1: 'Plaza del Marqués de Salamanca',
     numero: '8',
     andar: '',
@@ -27214,6 +27414,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ministerio de defensa españa', 'defensa españa'],
     website: 'https://www.defensa.gob.es',
+    telefone: '+34 913 955 000',
     direcao1: 'Paseo de la Castellana',
     numero: '109',
     andar: '',
@@ -27225,6 +27426,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ministerio de transportes', 'transportes y movilidad sostenible'],
     website: 'https://www.transportes.gob.es',
+    telefone: '+34 915 977 000',
     direcao1: 'Paseo de la Castellana',
     numero: '67',
     andar: '',
@@ -27236,6 +27438,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ministerio de trabajo y economía social', 'trabajo españa'],
     website: 'https://www.mites.gob.es',
+    telefone: '+34 913 630 000',
     direcao1: 'Paseo de la Castellana',
     numero: '63',
     andar: '',
@@ -27247,6 +27450,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ministerio de sanidad', 'sanidad españa'],
     website: 'https://www.sanidad.gob.es',
+    telefone: '+34 915 961 000',
     direcao1: 'Paseo del Prado',
     numero: '18-20',
     andar: '',
@@ -27258,6 +27462,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ayuntamiento de madrid'],
     website: 'https://www.madrid.es',
+    telefone: '+34 915 298 210',
     direcao1: 'Plaza de Cibeles',
     numero: '1',
     andar: '',
@@ -27269,6 +27474,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['ajuntament de barcelona', 'ayuntamiento de barcelona'],
     website: 'https://www.barcelona.cat',
+    telefone: '+34 934 027 000',
     direcao1: 'Plaça de Sant Jaume',
     numero: '1',
     andar: '',
@@ -27280,6 +27486,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['telefónica', 'telefonica españa', 'telefónica s.a.'],
     website: 'https://www.telefonica.com',
+    telefone: '+34 914 828 700',
     direcao1: 'Gran Vía',
     numero: '28',
     andar: '',
@@ -27291,6 +27498,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['mercadona'],
     website: 'https://www.mercadona.es',
+    telefone: '+34 900 500 103',
     direcao1: 'Calle Valencia',
     numero: '5',
     andar: '',
@@ -27302,6 +27510,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['inditex', 'zara españa'],
     website: 'https://www.inditex.com',
+    telefone: '+34 981 185 400',
     direcao1: 'Avenida de la Diputación',
     numero: 's/n',
     andar: '',
@@ -27313,6 +27522,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['iberdrola'],
     website: 'https://www.iberdrola.com',
+    telefone: '+34 944 151 411',
     direcao1: 'Plaza Euskadi',
     numero: '5',
     andar: '',
@@ -27324,6 +27534,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['repsol'],
     website: 'https://www.repsol.com',
+    telefone: '+34 917 538 000',
     direcao1: 'Calle Méndez Álvaro',
     numero: '44',
     andar: '',
@@ -27335,6 +27546,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['el corte inglés', 'el corte ingles'],
     website: 'https://www.elcorteingles.es',
+    telefone: '+34 901 122 122',
     direcao1: 'Calle Hermosilla',
     numero: '112',
     andar: '',
@@ -27356,16 +27568,27 @@ function normalizeSearchTerm(str) {
     .trim();
 }
 
+function cleanCompanySearchName(str) {
+  if (!str) return '';
+  return str
+    .replace(/\b(s\.?l\.?u?\.?|s\.?a\.?u?\.?|lda\.?|unipessoal|limitada|sociedad an[oó]nima|sociedad limitada|ltd\.?|gmbh|inc\.?|llc|corp\.?)\b/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function resolveEntityFromLocalDirectory(entityName, ministerio, targetPais) {
   const normName = normalizeSearchTerm(entityName);
+  const normClean = normalizeSearchTerm(cleanCompanySearchName(entityName));
   const normMin = normalizeSearchTerm(ministerio);
 
   const rawParts = (entityName || '').split(/[\/\-\|]/).map(s => s.trim()).filter(Boolean);
   const searchCandidates = [];
   if (rawParts.length > 1) {
     searchCandidates.push(normalizeSearchTerm(rawParts[rawParts.length - 1]));
+    searchCandidates.push(normalizeSearchTerm(cleanCompanySearchName(rawParts[rawParts.length - 1])));
     searchCandidates.push(normalizeSearchTerm(rawParts[0]));
   }
+  if (normClean && normClean !== normName) searchCandidates.push(normClean);
   if (normName) searchCandidates.push(normName);
 
   function matchAlias(target, alias) {
@@ -27408,30 +27631,37 @@ function resolveEntityFromLocalDirectory(entityName, ministerio, targetPais) {
 
 async function resolveEntityFromNominatim(query, targetCountry) {
   if (!query || typeof query !== 'string' || query.trim().length < 2) return null;
-  const parts = query.split(/[\/\-\|]/).map(p => p.trim()).filter(p => p.length > 2);
+  const rawParts = query.split(/[\/\-\|]/).map(p => p.trim()).filter(p => p.length > 2);
+  const cleanedQuery = cleanCompanySearchName(query);
+
   const baseCandidates = [];
-  if (parts.length > 1) {
-    baseCandidates.push(parts[parts.length - 1]);
-    baseCandidates.push(parts[0]);
+  if (rawParts.length > 1) {
+    baseCandidates.push(cleanCompanySearchName(rawParts[rawParts.length - 1]));
+    baseCandidates.push(rawParts[rawParts.length - 1]);
+    baseCandidates.push(cleanCompanySearchName(rawParts[0]));
+  }
+  if (cleanedQuery && cleanedQuery !== query) {
+    baseCandidates.push(cleanedQuery);
   }
   baseCandidates.push(query.trim());
 
   const countryParam = (targetCountry || '').trim();
 
   for (const cand of baseCandidates) {
+    if (!cand || cand.length < 2) continue;
     const urlsToTry = [];
 
     // 1. Se tem país preenchido diferente de Portugal (ex: Espanha, França, Brasil...)
     if (countryParam && countryParam.toLowerCase() !== 'portugal') {
-      urlsToTry.push('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(cand + ', ' + countryParam) + '&format=json&addressdetails=1&limit=1');
+      urlsToTry.push('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(cand + ', ' + countryParam) + '&format=json&addressdetails=1&extratags=1&limit=1');
     }
 
     // 2. Pesquisa global aberta em todo o mundo
-    urlsToTry.push('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(cand) + '&format=json&addressdetails=1&limit=1');
+    urlsToTry.push('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(cand) + '&format=json&addressdetails=1&extratags=1&limit=1');
 
     // 3. Pesquisa com sufixo Portugal se país estiver vazio ou for Portugal
     if (!countryParam || countryParam.toLowerCase() === 'portugal') {
-      urlsToTry.push('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(cand + ', Portugal') + '&format=json&addressdetails=1&limit=1');
+      urlsToTry.push('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(cand + ', Portugal') + '&format=json&addressdetails=1&extratags=1&limit=1');
     }
 
     for (const url of urlsToTry) {
@@ -27442,14 +27672,42 @@ async function resolveEntityFromNominatim(query, targetCountry) {
         if (!resp.ok) continue;
         const json = await resp.json();
         if (json && json.length > 0 && json[0].address) {
-          const addr = json[0].address;
-          const street = addr.road || addr.pedestrian || addr.street || addr.neighbourhood || addr.suburb || (json[0].display_name ? json[0].display_name.split(',')[0] : '') || '';
+          const item = json[0];
+          const addr = item.address;
+          const tags = item.extratags || {};
+
+          const street = addr.road || addr.pedestrian || addr.street || addr.neighbourhood || addr.suburb || (item.display_name ? item.display_name.split(',')[0] : '') || '';
           const city = addr.city || addr.town || addr.municipality || addr.village || addr.county || addr.state || '';
           const postcode = addr.postcode || '';
           const detectedCountry = addr.country || countryParam || 'Portugal';
+
+          // Extração de Telefone e Website de tags OSM
+          let phone = addr.phone || tags['contact:phone'] || tags.phone || tags['phone:mobile'] || '';
+          let website = tags['contact:website'] || tags.website || tags.url || '';
+
+          // Se tem wikidata e falta website/telefone, tentar resolver via Wikidata (CORS aberto)
+          if (tags.wikidata && (!website || !phone)) {
+            try {
+              const wikiResp = await fetch('https://www.wikidata.org/wiki/Special:EntityData/' + tags.wikidata + '.json');
+              if (wikiResp.ok) {
+                const wikiData = await wikiResp.json();
+                const entityClaims = wikiData?.entities?.[tags.wikidata]?.claims;
+                if (!website && entityClaims?.P856?.[0]?.mainsnak?.datavalue?.value) {
+                  website = entityClaims.P856[0].mainsnak.datavalue.value;
+                }
+                if (!phone && entityClaims?.P1329?.[0]?.mainsnak?.datavalue?.value) {
+                  phone = entityClaims.P1329[0].mainsnak.datavalue.value;
+                }
+              }
+            } catch (wErr) {
+              // Silencioso
+            }
+          }
+
           if (street || postcode || city) {
             return {
-              website: '',
+              website: website || '',
+              telefone: phone || '',
               direcao1: street,
               direcao2: '',
               numero: addr.house_number || '',
@@ -27457,12 +27715,12 @@ async function resolveEntityFromNominatim(query, targetCountry) {
               codigoPostal: postcode,
               localidade: city,
               pais: detectedCountry,
-              fonteUrl: 'https://www.openstreetmap.org/' + (json[0].osm_type || 'node') + '/' + (json[0].osm_id || '')
+              fonteUrl: 'https://www.openstreetmap.org/' + (item.osm_type || 'node') + '/' + (item.osm_id || '')
             };
           }
         }
       } catch(e) {
-        // Segue para próximo URL / candidato
+        // Segue para próximo candidato
       }
     }
   }
@@ -27475,6 +27733,7 @@ async function triggerAiAddressEnrichment() {
   let ministerio = '';
   let contribuinte = '';
   let existingWebsite = '';
+  let existingTelefone = '';
   let existingPais = '';
   let isEstatal = (tipoCliente === 'Estatal');
 
@@ -27491,6 +27750,7 @@ async function triggerAiAddressEnrichment() {
     ministerio = document.getElementById('ministerio')?.value?.trim() || '';
     contribuinte = activeSep.contribuinte || '';
     existingWebsite = activeSep.website || '';
+    existingTelefone = activeSep.telefone || '';
     existingPais = activeSep.pais?.trim() || '';
   } else {
     const nomeEl = document.getElementById('clientNome');
@@ -27501,6 +27761,7 @@ async function triggerAiAddressEnrichment() {
     entityName = nomeEl.value.trim();
     contribuinte = document.getElementById('clientContribuinte')?.value?.trim() || '';
     existingWebsite = document.getElementById('clientWebsite')?.value?.trim() || '';
+    existingTelefone = document.getElementById('clientTelefone')?.value?.trim() || '';
     existingPais = document.getElementById('clientPais')?.value?.trim() || '';
   }
 
@@ -27518,7 +27779,17 @@ async function triggerAiAddressEnrichment() {
   if (loadingState) loadingState.style.display = 'block';
   if (contentState) contentState.style.display = 'none';
   if (loadingTitle) loadingTitle.textContent = `A pesquisar direção de "${entityName}"...`;
-  if (loadingSubtitle) loadingSubtitle.textContent = existingPais ? `Pesquisa ativa no país: ${existingPais}` : (isEstatal ? 'A consultar organismos e delegações oficiais' : 'A consultar website e registo internacional');
+  if (loadingSubtitle) {
+    if (existingPais) {
+      loadingSubtitle.textContent = `Pesquisa ativa: ${entityName} (${existingPais})`;
+    } else if (tipoCliente === 'Fundação') {
+      loadingSubtitle.textContent = 'A consultar registo internacional de fundações e instituições';
+    } else if (isEstatal) {
+      loadingSubtitle.textContent = 'A consultar organismos e delegações oficiais';
+    } else {
+      loadingSubtitle.textContent = 'A consultar website e registo institucional internacional';
+    }
+  }
 
   const btn = document.getElementById('btnAiUpdateClientAddress');
   if (btn) {
@@ -27538,6 +27809,7 @@ async function triggerAiAddressEnrichment() {
         provider: 'Registo Institucional Oficial',
         data: {
           website: directMatch.website || existingWebsite || '',
+          telefone: directMatch.telefone || existingTelefone || '',
           direcao1: directMatch.direcao1 || '',
           direcao2: directMatch.direcao2 || '',
           numero: directMatch.numero || '',
@@ -27558,6 +27830,7 @@ async function triggerAiAddressEnrichment() {
         ministerio,
         contribuinte,
         existingWebsite,
+        existingTelefone,
         pais: existingPais,
         geminiApiKey
       };
@@ -27594,7 +27867,7 @@ async function triggerAiAddressEnrichment() {
     // 3. Fallback Gemini AI Direto se chave estiver configurada (Pesquisa Mundial)
     if ((!response || !response.success || (!response.data?.direcao1 && !response.data?.codigoPostal)) && geminiApiKey) {
       try {
-        const prompt = `Pesquisa na web o website oficial e a morada completa da sede de: "${entityName}". Contexto: ${tipoCliente === 'Estatal' ? 'Organismo público' + (ministerio ? ', Ministério: ' + ministerio : '') : 'Empresa'}${existingPais ? ', País: ' + existingPais : ''}. Devolve EXCLUSIVAMENTE um objeto JSON no formato: {"website":"url", "direcao1":"rua/av/praca", "direcao2":"", "numero":"", "andar":"", "codigoPostal":"código postal", "localidade":"cidade", "pais":"nome do país", "fonteUrl":""}`;
+        const prompt = `Pesquisa na web o website oficial, telefone e a morada completa da sede de: "${entityName}". Contexto: Tipo: ${tipoCliente}${ministerio ? ', Ministério: ' + ministerio : ''}${existingPais ? ', País: ' + existingPais : ''}. Devolve EXCLUSIVAMENTE um objeto JSON no formato: {"website":"url", "telefone":"contacto", "direcao1":"rua/av/praca", "direcao2":"", "numero":"", "andar":"", "codigoPostal":"código postal", "localidade":"cidade", "pais":"nome do país", "fonteUrl":""}`;
         const gResp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -27620,7 +27893,7 @@ async function triggerAiAddressEnrichment() {
       }
     }
 
-    // 4. Fallback Nominatim / OpenStreetMap Global (CORS nativo no navegador - Todos os Países)
+    // 4. Fallback Nominatim / OpenStreetMap Global com Extratags (CORS nativo no navegador - Todos os Países)
     if (!response || !response.success || (!response.data?.direcao1 && !response.data?.codigoPostal)) {
       const osmResult = await resolveEntityFromNominatim(entityName, existingPais);
       if (osmResult && (osmResult.direcao1 || osmResult.codigoPostal || osmResult.localidade)) {
@@ -27629,7 +27902,8 @@ async function triggerAiAddressEnrichment() {
           provider: 'OpenStreetMap Geocoder Global',
           data: {
             ...osmResult,
-            website: existingWebsite || ''
+            website: osmResult.website || existingWebsite || '',
+            telefone: osmResult.telefone || existingTelefone || ''
           }
         };
       }
@@ -27644,6 +27918,7 @@ async function triggerAiAddressEnrichment() {
           provider: 'Sede Ministerial Central',
           data: {
             website: minMatch.website || existingWebsite || 'https://www.gov.pt',
+            telefone: minMatch.telefone || existingTelefone || '',
             direcao1: minMatch.direcao1 || '',
             direcao2: minMatch.direcao2 || '',
             numero: minMatch.numero || '',
@@ -27664,6 +27939,7 @@ async function triggerAiAddressEnrichment() {
     pendingAiAddressData = {
       ...response.data,
       isEstatal,
+      tipoCliente,
       entityName,
       targetSepIndex: activeEstatalSeparadorIndex
     };
@@ -27673,7 +27949,15 @@ async function triggerAiAddressEnrichment() {
     if (contentState) contentState.style.display = 'block';
 
     const targetLabel = document.getElementById('aiTargetLabel');
-    if (targetLabel) targetLabel.textContent = isEstatal ? 'Separador Ativo (Organismo):' : 'Cliente / Razão Social:';
+    if (targetLabel) {
+      if (isEstatal) {
+        targetLabel.textContent = 'Separador Ativo (Organismo):';
+      } else if (tipoCliente === 'Fundação') {
+        targetLabel.textContent = 'Fundação / Instituição:';
+      } else {
+        targetLabel.textContent = 'Cliente / Razão Social:';
+      }
+    }
 
     const targetEntity = document.getElementById('aiTargetEntityName');
     if (targetEntity) targetEntity.textContent = entityName;
@@ -27682,7 +27966,7 @@ async function triggerAiAddressEnrichment() {
     if (targetContext) {
       targetContext.textContent = isEstatal 
         ? `Separador #${activeEstatalSeparadorIndex + 1}${ministerio ? ' • ' + ministerio : ''}`
-        : `Cliente ${tipoCliente}${contribuinte ? ' • NIF ' + contribuinte : ''}`;
+        : `Tipo: ${tipoCliente}${contribuinte ? ' • NIF ' + contribuinte : ''}`;
     }
 
     // Website Box
@@ -27697,6 +27981,27 @@ async function triggerAiAddressEnrichment() {
     } else {
       if (foundWebText) foundWebText.textContent = 'Não identificada na pesquisa direta';
       if (visitBtn) visitBtn.style.display = 'none';
+    }
+
+    // Telefone Box
+    const foundTelText = document.getElementById('aiFoundTelefoneText');
+    const callBtn = document.getElementById('aiBtnCallFoundTelefone');
+    if (response.data.telefone) {
+      if (foundTelText) foundTelText.textContent = response.data.telefone;
+      if (callBtn) {
+        callBtn.style.display = 'inline-flex';
+        callBtn.href = 'tel:' + response.data.telefone.replace(/\s+/g, '');
+      }
+    } else {
+      if (foundTelText) foundTelText.textContent = 'Não identificado';
+      if (callBtn) callBtn.style.display = 'none';
+    }
+
+    // Google Assisted Link
+    const googleBtn = document.getElementById('aiBtnGoogleSearchAssisted');
+    if (googleBtn) {
+      const qTerms = encodeURIComponent(entityName + (existingPais ? ' ' + existingPais : '') + ' sede morada contacto telefone');
+      googleBtn.href = `https://www.google.com/search?q=${qTerms}`;
     }
 
     // Address Breakdown
@@ -27756,13 +28061,16 @@ function confirmAndApplyAiAddress() {
       if (d.website && (!sep.website || sep.website.trim() === '')) {
         sep.website = d.website;
       }
+      if (d.telefone && (!sep.telefone || sep.telefone.trim() === '')) {
+        sep.telefone = d.telefone;
+      }
       if (typeof renderEstatalSeparadores === 'function') {
         renderEstatalSeparadores();
       }
-      showToast(`Direção do separador "${getSeparadorTitle(sep)}" atualizada com sucesso!`, 'success');
+      showToast(`Direção e contactos do separador "${getSeparadorTitle(sep)}" atualizados com sucesso!`, 'success');
     }
   } else {
-    // Cliente Privado / Fundação
+    // Cliente Privado ou Fundação
     if (d.direcao1) {
       const el = document.getElementById('clientDirecao1');
       if (el) el.value = d.direcao1;
@@ -27804,7 +28112,14 @@ function confirmAndApplyAiAddress() {
         if (typeof updateClientWebsiteBtnState === 'function') updateClientWebsiteBtnState(d.website);
       }
     }
-    showToast('Direção e dados da ficha do cliente atualizados com sucesso!', 'success');
+    if (d.telefone) {
+      const el = document.getElementById('clientTelefone');
+      if (el && (!el.value || el.value.trim() === '')) {
+        el.value = d.telefone;
+      }
+    }
+    const labelTipo = d.tipoCliente === 'Fundação' ? 'da Fundação' : 'da Empresa';
+    showToast(`Direção e dados ${labelTipo} atualizados com sucesso!`, 'success');
   }
 
   closeAiAddressModal();
@@ -27825,5 +28140,6 @@ function promptGeminiApiKey() {
   }
 }
 window.promptGeminiApiKey = promptGeminiApiKey;
+
 
 

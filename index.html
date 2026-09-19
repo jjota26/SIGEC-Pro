@@ -12,7 +12,7 @@
     if ('caches' in window) {
       caches.keys().then(function(keys) {
         keys.forEach(function(k) {
-          if (k !== 'sigec-pro-v2.6') {
+          if (k !== 'sigec-pro-v2.7') {
             console.log('[PWA] Purga imediata de cache antiga:', k);
             caches.delete(k);
           }
@@ -4871,11 +4871,11 @@
   <div id="toastContainer" class="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999999 !important;"></div>
 
   <!-- Internationalization & Translations Engine -->
-  <script src="i18n.js?v=202609200015"></script>
+  <script src="i18n.js?v=202609200030"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=202609200015"></script>
+  <script src="app.js?v=202609200030"></script>
   <!-- Duplicates Management Engine -->
-  <script src="duplicatesManager.js?v=202609200015"></script>
+  <script src="duplicatesManager.js?v=202609200030"></script>
 
   <!-- Auto-cura imediata de definições SMTP e Webhook no arranque de qualquer computador -->
   <script>
@@ -6289,15 +6289,33 @@
           <div style="font-size: 0.78rem; color: #64748b; margin-top: 0.2rem;" id="aiTargetContext">-</div>
         </div>
 
-        <!-- Found Website Box -->
-        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.85rem 1rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap;">
-          <div>
-            <div style="font-size: 0.75rem; font-weight: 600; color: #64748b;">Página Web Oficial Encontrada:</div>
-            <div style="font-size: 0.9rem; font-weight: 600; color: #0284c7; word-break: break-all;" id="aiFoundWebsiteText">Não encontrada</div>
+        <!-- Two-column Box: Found Website & Found Phone -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
+          <!-- Found Website Box -->
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.75rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.4rem;">
+            <div>
+              <div style="font-size: 0.72rem; font-weight: 600; color: #64748b; display: flex; align-items: center; gap: 5px;">
+                <i class="fa-solid fa-globe" style="color: #0284c7;"></i> Página Web Oficial:
+              </div>
+              <div style="font-size: 0.88rem; font-weight: 600; color: #0284c7; word-break: break-all; margin-top: 2px;" id="aiFoundWebsiteText">Não encontrada</div>
+            </div>
+            <a href="javascript:void(0)" id="aiBtnVisitFoundWebsite" target="_blank" rel="noopener noreferrer" style="display: none; align-self: flex-start; padding: 0.25rem 0.65rem; font-size: 0.75rem; font-weight: 600; background: #e0f2fe; color: #0369a1; border-radius: 6px; text-decoration: none; align-items: center; gap: 4px;">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Site
+            </a>
           </div>
-          <a href="javascript:void(0)" id="aiBtnVisitFoundWebsite" target="_blank" rel="noopener noreferrer" style="display: none; padding: 0.35rem 0.75rem; font-size: 0.78rem; font-weight: 600; background: #e0f2fe; color: #0369a1; border-radius: 6px; text-decoration: none; align-items: center; gap: 4px;">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Site
-          </a>
+
+          <!-- Found Telephone Box -->
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.75rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.4rem;">
+            <div>
+              <div style="font-size: 0.72rem; font-weight: 600; color: #64748b; display: flex; align-items: center; gap: 5px;">
+                <i class="fa-solid fa-phone" style="color: #16a34a;"></i> Telefone de Contacto:
+              </div>
+              <div style="font-size: 0.88rem; font-weight: 600; color: #16a34a; margin-top: 2px;" id="aiFoundTelefoneText">Não identificado</div>
+            </div>
+            <a href="javascript:void(0)" id="aiBtnCallFoundTelefone" style="display: none; align-self: flex-start; padding: 0.25rem 0.65rem; font-size: 0.75rem; font-weight: 600; background: #dcfce7; color: #15803d; border-radius: 6px; text-decoration: none; align-items: center; gap: 4px;">
+              <i class="fa-solid fa-phone-volume"></i> Ligar
+            </a>
+          </div>
         </div>
 
         <!-- Address Breakdown Grid -->
@@ -6339,9 +6357,14 @@
         </div>
 
         <div style="display: flex; gap: 0.75rem; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-          <a href="javascript:void(0)" onclick="promptGeminiApiKey()" style="font-size: 0.76rem; font-weight: 600; color: #6366f1; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; padding: 4px 8px; border-radius: 6px; background: #eef2ff;" title="Configurar chave de API Google Gemini (opcional)">
-            <i class="fa-solid fa-key"></i> Chave Gemini (Opcional)
-          </a>
+          <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <a href="javascript:void(0)" id="aiBtnGoogleSearchAssisted" target="_blank" rel="noopener noreferrer" style="font-size: 0.76rem; font-weight: 600; color: #2563eb; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 6px; background: #eff6ff; border: 1px solid #bfdbfe;" title="Ver resultados oficiais de pesquisa no Google">
+              <i class="fa-brands fa-google"></i> Ver no Google
+            </a>
+            <a href="javascript:void(0)" onclick="promptGeminiApiKey()" style="font-size: 0.76rem; font-weight: 600; color: #6366f1; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; padding: 4px 8px; border-radius: 6px; background: #eef2ff;" title="Configurar chave de API Google Gemini (opcional)">
+              <i class="fa-solid fa-key"></i> Chave Gemini (Opcional)
+            </a>
+          </div>
           <div style="display: flex; gap: 0.5rem; margin-left: auto;">
             <button type="button" class="btn btn-close" onclick="closeAiAddressModal()" style="padding: 0.6rem 1.1rem;">
               Cancelar
@@ -6361,7 +6384,7 @@
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js?v=202609200015')
+      navigator.serviceWorker.register('/sw.js?v=202609200030')
         .then(function (reg) {
           if (typeof reg.update === 'function') {
             reg.update();
