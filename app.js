@@ -5506,7 +5506,7 @@ function closeCurrentUserSettingsModal() {
 window.closeCurrentUserSettingsModal = closeCurrentUserSettingsModal;
 
 function switchUserSettingsTab(tabKey) {
-  const tabs = ['security', 'backup', 'theme', 'updates'];
+  const tabs = ['security', 'backup', 'templates', 'theme', 'updates'];
   tabs.forEach(k => {
     const content = document.getElementById('userSettingsTab' + k.charAt(0).toUpperCase() + k.slice(1));
     const btn = document.getElementById('tabBtnUserSettings' + k.charAt(0).toUpperCase() + k.slice(1));
@@ -6251,7 +6251,7 @@ function renderContactPageMainGrid() {
           </td>
           <td style="padding:0.75rem 1rem; color:#334155; font-weight:500;">${client ? escapeHtml(client.nome) : '<span style="color:#64748b; font-style:italic;">Sem Cliente Associado</span>'}</td>
           <td style="padding:0.75rem 1rem; color:#475569;">${escapeHtml(con.cargo || '-')}</td>
-          <td style="padding:0.75rem 1rem; color:#475569;">${escapeHtml(con.telemovel || con.telefone || '-')}</td>
+          <td style="padding:0.75rem 1rem; color:#475569;">${escapeHtml(con.telemovel ? con.telemovel + (con.telefone ? ' / ' + con.telefone + (con.extensao ? ' (Ext. ' + con.extensao + ')' : '') : '') : (con.telefone ? con.telefone + (con.extensao ? ' (Ext. ' + con.extensao + ')' : '') : '-'))}</td>
           <td style="padding:0.75rem 1rem; color:#475569;">${escapeHtml(con.email || '-')}</td>
           <td style="padding:0.75rem 1rem; text-align:center; white-space:nowrap;" onclick="event.stopPropagation();">
             <button type="button" class="action-icon-btn" onclick="openTransferContactModal('${con.id}')" title="Mudar de Cliente">
@@ -6308,7 +6308,7 @@ function renderContactPageMainGrid() {
         </div>
         <div class="contact-role"><i class="fa-solid fa-briefcase"></i> ${escapeHtml(con.cargo || 'Contacto')}</div>
         <div class="contact-detail" style="font-weight: 500; color: var(--primary-blue);"><i class="fa-solid fa-building"></i> ${clientName}</div>
-        ${con.telefone ? `<div class="contact-detail"><i class="fa-solid fa-phone"></i> ${escapeHtml(con.telefone)}</div>` : ''}
+        ${con.telefone ? `<div class="contact-detail"><i class="fa-solid fa-phone"></i> ${escapeHtml(con.telefone)}${con.extensao ? ' <span style="color:#0284c7; font-weight:600;">(Ext. ' + escapeHtml(con.extensao) + ')</span>' : ''}</div>` : ''}
         ${con.telemovel ? `<div class="contact-detail"><i class="fa-solid fa-mobile-screen"></i> ${escapeHtml(con.telemovel)}</div>` : ''}
         ${con.email ? `<div class="contact-detail"><i class="fa-solid fa-envelope"></i> ${escapeHtml(con.email)}</div>` : ''}
         ${con.notas ? `<div class="contact-notes-preview" title="${escapeHtmlAttr(con.notas)}"><strong>Notas:</strong> ${escapeHtml(con.notas)}</div>` : ''}
@@ -8265,10 +8265,16 @@ function renderClientContactsGrid(contacts) {
       ${con.cargo ? `<div class="contact-role" style="font-size: 0.8rem; color: #64748b; margin-bottom: 0.45rem; display: flex; align-items: center; gap: 0.35rem;"><i class="fa-solid fa-briefcase" style="width: 14px; color: #94a3b8; font-size: 0.75rem;"></i> ${escapeHtml(con.cargo)}</div>` : ''}
       
       <div style="display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.35rem; font-size: 0.82rem; color: #334155;">
-        ${con.telemovel || con.telefone ? `
+        ${con.telefone ? `
           <div style="display: flex; align-items: center; gap: 0.4rem;">
             <i class="fa-solid fa-phone" style="width: 14px; color: #0284c7; font-size: 0.75rem;"></i>
-            <span>${escapeHtml(con.telemovel || con.telefone)}</span>
+            <span>${escapeHtml(con.telefone)}${con.extensao ? ' <span style="color:#0284c7; font-weight:600;">(Ext. ' + escapeHtml(con.extensao) + ')</span>' : ''}</span>
+          </div>
+        ` : ''}
+        ${con.telemovel ? `
+          <div style="display: flex; align-items: center; gap: 0.4rem;">
+            <i class="fa-solid fa-mobile-screen" style="width: 14px; color: #0284c7; font-size: 0.75rem;"></i>
+            <span>${escapeHtml(con.telemovel)}</span>
           </div>
         ` : ''}
         ${con.email ? `
@@ -9199,6 +9205,8 @@ function openContactModalForNew(forcedSubIndex = null) {
   if (inativoReset) inativoReset.checked = false;
 
   populateContactModalClientSelect(currentClientId || '');
+  const extElReset = document.getElementById('contactExtensao');
+  if (extElReset) extElReset.value = '';
   document.getElementById('btnDeleteContact').style.display = 'none';
 
   document.getElementById('contactModalTitle').innerHTML = currentClientId 
@@ -9221,6 +9229,8 @@ function openContactModalForEdit(contactId) {
   document.getElementById('contactApelido').value = contact.apelido || '';
   document.getElementById('contactCargo').value = contact.cargo || '';
   document.getElementById('contactTelefone').value = contact.telefone || '';
+  const extElLoad = document.getElementById('contactExtensao');
+  if (extElLoad) extElLoad.value = contact.extensao || '';
   document.getElementById('contactTelemovel').value = contact.telemovel || '';
   document.getElementById('contactEmail').value = contact.email || '';
   document.getElementById('contactNotas').value = contact.notas || '';
@@ -9233,7 +9243,7 @@ function openContactModalForEdit(contactId) {
   document.getElementById('contactModalTitle').innerHTML = '<i class="fa-solid fa-user-pen"></i> Editar Ficha de Contacto';
   document.getElementById('contactModal').classList.add('active');
 
-  // Renderizar interaÃ§Ãµes deste contacto
+  // Renderizar interações deste contacto
   const contactInteractions = (db.interacoes || []).filter(i => i.contactoId === contact.id);
   renderContactPersonInteractionsGrid(contactInteractions);
 }
@@ -9269,6 +9279,7 @@ function saveContact(e) {
   const apelido = document.getElementById('contactApelido').value.trim();
   const cargo = document.getElementById('contactCargo').value.trim();
   const telefone = document.getElementById('contactTelefone').value.trim();
+  const extensao = document.getElementById('contactExtensao') ? document.getElementById('contactExtensao').value.trim() : '';
   const telemovel = document.getElementById('contactTelemovel').value.trim();
   const email = document.getElementById('contactEmail').value.trim();
   const notas = document.getElementById('contactNotas').value.trim();
@@ -9288,16 +9299,23 @@ function saveContact(e) {
   const selectedClientObj = selectedClienteId ? (db.clientes || []).find(c => String(c.id).trim() === String(selectedClienteId).trim()) : null;
   const existingContact = existingIndex >= 0 ? db.contactos[existingIndex] : null;
 
+  let assignedSeparadorId = existingContact ? (existingContact.separadorId || null) : null;
+  if (selectedClientObj && Array.isArray(selectedClientObj.separadores) && selectedClientObj.separadores[finalSubTabIndex]) {
+    assignedSeparadorId = selectedClientObj.separadores[finalSubTabIndex].id;
+  }
+
   const contactObj = {
     ...(existingContact || {}),
     id,
     clienteId: selectedClienteId || null,
     empresa: selectedClientObj ? (selectedClientObj.nome || '') : '',
     subTabIndex: selectedClienteId ? finalSubTabIndex : 0,
+    separadorId: assignedSeparadorId,
     nome,
     apelido,
     cargo,
     telefone,
+    extensao,
     telemovel,
     email,
     proximoContacto: (document.getElementById('contactProximoContacto')?.value?.trim() || (existingContact ? existingContact.proximoContacto : null)) || null,
@@ -10856,6 +10874,7 @@ function exportSearchResultsToExcel(customList) {
         'Empresa / Cliente': client ? client.nome : '',
         'Cargo': con.cargo,
         'Telefone': con.telefone || '',
+        'Extensão': con.extensao || '',
         'Telemóvel': con.telemovel || '',
         'Email': con.email || '',
         'Notas': con.notas || ''
@@ -13458,6 +13477,404 @@ function triggerCategoryImport(category) {
   if (input) input.click();
 }
 
+// =========================================================================
+// DESCARGA DE MODELOS OFICIAIS EXCEL (.XLSX) NAS DEFINIÇÕES DO UTILIZADOR
+// =========================================================================
+
+function downloadExcelTemplate(category) {
+  if (typeof XLSX === 'undefined') {
+    showToast('Biblioteca XLSX não se encontra disponível.', 'danger');
+    return;
+  }
+
+  function setColWidths(ws, widths) {
+    ws['!cols'] = widths.map(w => ({ wch: w }));
+  }
+
+  function buildContactosSheet() {
+    const headers = [
+      'Cliente / Entidade',
+      'Departamento / Separador',
+      'Nome Próprio',
+      'Apelido',
+      'Cargo / Função',
+      'Telefone Direto',
+      'Extensão',
+      'Telemóvel',
+      'Email',
+      'Notas / Observações'
+    ];
+    const sampleRows = [
+      [
+        'Ministério das Finanças',
+        'Direção-Geral do Tesouro',
+        'Maria da Graça',
+        'Carvalho',
+        'Diretora-Geral',
+        '213 222 300',
+        '2410',
+        '912 345 678',
+        'maria.carvalho@gov.pt',
+        'Responsável pela aprovação orçamental'
+      ],
+      [
+        'Ministério da Saúde',
+        'Direção-Geral da Saúde',
+        'Rita',
+        'Sá Machado',
+        'Diretora-Geral',
+        '218 430 500',
+        '1102',
+        '961 234 567',
+        'rita.samachado@dgs.min-saude.pt',
+        'Contacto institucional principal'
+      ],
+      [
+        'Galp Energia, SGPS, S.A.',
+        'Direção de Sustentabilidade',
+        'José Manuel',
+        'Fernandes',
+        'Diretor de Frota e Logística',
+        '217 242 500',
+        '305',
+        '931 987 654',
+        'jose.fernandes@galp.com',
+        'Gestão de unidades móveis e eventos solares'
+      ],
+      [
+        'Fundação Champalimaud',
+        'Gabinete de Relações Externas',
+        'Ana Paula',
+        'Martins',
+        'Coordenadora de Eventos',
+        '210 480 200',
+        '420',
+        '925 555 123',
+        'ana.martins@fchampalimaud.org',
+        'Contacto para iniciativas de rastreio móvel'
+      ]
+    ];
+    const ws = XLSX.utils.aoa_to_sheet([headers, ...sampleRows]);
+    setColWidths(ws, [28, 30, 18, 22, 25, 18, 12, 16, 32, 40]);
+    return ws;
+  }
+
+  function buildClientesSheet() {
+    const headers = [
+      'Tipo de Cliente',
+      'Nome / Razão Social / Ministério',
+      'Departamento / Separador',
+      'NIF / Contribuinte',
+      'Morada / Rua / Avenida',
+      'Número',
+      'Andar / Piso',
+      'Código Postal',
+      'Localidade',
+      'País',
+      'Telefone Geral',
+      'Telemóvel',
+      'Email Geral',
+      'Setor de Atividade',
+      'Comercial Atribuído'
+    ];
+    const sampleRows = [
+      [
+        'Estatal',
+        'Ministério da Agricultura e Mar',
+        'Direção-Geral de Agricultura e Desenvolvimento Rural',
+        '500000123',
+        'Avenida Afonso Costa',
+        '3',
+        '2.º Piso',
+        '1949-002',
+        'Lisboa',
+        'Portugal',
+        '+351 218 443 000',
+        '960 000 000',
+        'geral@dgadr.gov.pt',
+        'Administração Pública / Agricultura',
+        'Administrador SIGEC'
+      ],
+      [
+        'Estatal',
+        'Ministério da Saúde',
+        'Direção-Geral da Saúde',
+        '500000456',
+        'Alameda Dom Afonso Henriques',
+        '45',
+        '',
+        '1049-005',
+        'Lisboa',
+        'Portugal',
+        '+351 218 430 500',
+        '961 000 000',
+        'geral@dgs.min-saude.pt',
+        'Saúde Pública / Governamental',
+        'Administrador SIGEC'
+      ],
+      [
+        'Privado',
+        'Galp Energia, SGPS, S.A.',
+        '',
+        '504499777',
+        'Rua Tomás da Fonseca, Torre A',
+        'Torre A',
+        'Piso 7',
+        '1600-209',
+        'Lisboa',
+        'Portugal',
+        '+351 217 242 500',
+        '931 000 000',
+        'comercial@galp.com',
+        'Energia & Combustíveis',
+        'Administrador SIGEC'
+      ],
+      [
+        'Fundação',
+        'Fundação Champalimaud',
+        'Gabinete de Relações Externas',
+        '507000111',
+        'Avenida Brasília',
+        '',
+        '',
+        '1400-038',
+        'Lisboa',
+        'Portugal',
+        '+351 210 480 200',
+        '925 000 000',
+        'info@fchampalimaud.org',
+        'Investigação & Saúde',
+        'Administrador SIGEC'
+      ]
+    ];
+    const ws = XLSX.utils.aoa_to_sheet([headers, ...sampleRows]);
+    setColWidths(ws, [16, 32, 34, 18, 30, 10, 12, 14, 16, 14, 18, 16, 28, 26, 22]);
+    return ws;
+  }
+
+  function buildProjetosSheet() {
+    const headers = [
+      'Código / Referência',
+      'Designação do Projeto',
+      'Cliente / Entidade',
+      'Departamento / Separador',
+      'Contacto Principal',
+      'Tipo de Projeto',
+      'Estado',
+      'Valor Previsto (€)',
+      'Data de Início',
+      'Data de Conclusão',
+      'Viatura / Equipamento',
+      'Matrícula',
+      'Descrição / Observações'
+    ];
+    const sampleRows = [
+      [
+        'PRJ-2026-001',
+        'Unidade Móvel de Rastreio Oftalmológico',
+        'Ministério da Saúde',
+        'Direção-Geral da Saúde',
+        'Rita Sá Machado',
+        'Compra UM',
+        'Em Curso',
+        '75000.00',
+        '2026-10-01',
+        '2026-12-15',
+        'Iveco Daily 50C18',
+        '78-ZZ-99',
+        'Transformação e equipamento de consultório móvel completo'
+      ],
+      [
+        'PRJ-2026-002',
+        'Roadshow Promocional de Energias Renováveis',
+        'Galp Energia, SGPS, S.A.',
+        'Direção de Sustentabilidade',
+        'José Manuel Fernandes',
+        'Aluguer',
+        'Em Estudo',
+        '32000.00',
+        '2026-11-01',
+        '2026-11-30',
+        'Semirreboque Hospitality Expansível',
+        '',
+        'Ações itinerantes pelas capitais de distrito'
+      ]
+    ];
+    const ws = XLSX.utils.aoa_to_sheet([headers, ...sampleRows]);
+    setColWidths(ws, [20, 36, 28, 28, 22, 16, 18, 18, 15, 16, 26, 14, 45]);
+    return ws;
+  }
+
+  try {
+    const wb = XLSX.utils.book_new();
+    let filename = '';
+
+    if (category === 'contactos') {
+      const ws = buildContactosSheet();
+      XLSX.utils.book_append_sheet(wb, ws, 'Contactos');
+      filename = 'Modelo_Importacao_Contactos.xlsx';
+    } else if (category === 'clientes') {
+      const ws = buildClientesSheet();
+      XLSX.utils.book_append_sheet(wb, ws, 'Clientes');
+      filename = 'Modelo_Importacao_Clientes.xlsx';
+    } else if (category === 'projetos') {
+      const ws = buildProjetosSheet();
+      XLSX.utils.book_append_sheet(wb, ws, 'Projetos');
+      filename = 'Modelo_Importacao_Projetos.xlsx';
+    } else {
+      // Completo
+      const instructions = [
+        ['SIGEC-Pro - GUIA DE IMPORTAÇÃO DE DADOS EM MASSA'],
+        [''],
+        ['COMO UTILIZAR ESTE LIVRO EXCEL:'],
+        ['1. Cada aba corresponde a uma categoria do programa: Contactos, Clientes e Projetos.'],
+        ['2. Para Clientes Estatais (Ministérios/Organismos), preencha a coluna "Departamento / Separador".'],
+        ['   - Se o departamento ainda não existir, o SIGEC-Pro cria automaticamente esse separador no cliente com o nome correspondente.'],
+        ['   - Se o departamento já existir, o contacto ou projeto é associado sem criar separadores duplicados.'],
+        ['3. Nos Contactos, o novo campo "Extensão" permite registar o ramal telefónico direto da pessoa.'],
+        ['4. Os nomes próprios compostos portugueses (ex: Maria da Graça, José Manuel) são automaticamente identificados pela IA.'],
+        ['5. Pode carregar este ficheiro completo ou qualquer uma das abas de forma independente no SIGEC-Pro.'],
+        [''],
+        ['Versão do Sistema: SIGEC-Pro V1.7.35 | alegria-activity, S.L.']
+      ];
+      const wsInst = XLSX.utils.aoa_to_sheet(instructions);
+      setColWidths(wsInst, [85]);
+      XLSX.utils.book_append_sheet(wb, wsInst, 'Instruções');
+      XLSX.utils.book_append_sheet(wb, buildContactosSheet(), 'Contactos');
+      XLSX.utils.book_append_sheet(wb, buildClientesSheet(), 'Clientes');
+      XLSX.utils.book_append_sheet(wb, buildProjetosSheet(), 'Projetos');
+      filename = 'Modelo_Importacao_SIGEC-Pro_Completo.xlsx';
+    }
+
+    XLSX.writeFile(wb, filename);
+    showToast('Modelo descarregado com sucesso: ' + filename);
+  } catch (err) {
+    console.error(err);
+    showToast('Erro ao gerar modelo Excel: ' + (err.message || err), 'danger');
+  }
+}
+window.downloadExcelTemplate = downloadExcelTemplate;
+
+let activeSettingsImportCategory = null;
+
+function triggerCategoryImportFromSettings(category) {
+  activeSettingsImportCategory = category;
+  const input = document.getElementById('userSettingsCategoryImportInput');
+  if (input) {
+    input.value = '';
+    input.click();
+  }
+}
+window.triggerCategoryImportFromSettings = triggerCategoryImportFromSettings;
+
+function handleCategoryImportFromSettings(event) {
+  const file = event.target.files && event.target.files[0];
+  if (!file || !activeSettingsImportCategory) return;
+
+  const fileName = file.name.toLowerCase();
+  const targetCategory = activeSettingsImportCategory;
+
+  if (fileName.endsWith('.xlsx') || fileName.endsWith('.xls') || fileName.endsWith('.csv')) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+
+        if (targetCategory === 'all' || targetCategory === 'completo') {
+          // Multi-sheet import em sequência correta: Clientes -> Contactos -> Projetos
+          let totalImported = 0;
+          
+          // 1. Clientes primeiro
+          const cliSheetName = workbook.SheetNames.find(n => /cliente/i.test(n));
+          if (cliSheetName) {
+            const rawJsonCli = XLSX.utils.sheet_to_json(workbook.Sheets[cliSheetName]);
+            if (rawJsonCli && rawJsonCli.length > 0) {
+              processCategoryImport('clientes', rawJsonCli);
+              totalImported += rawJsonCli.length;
+            }
+          }
+
+          // 2. Contactos a seguir
+          const contSheetName = workbook.SheetNames.find(n => /contacto/i.test(n));
+          if (contSheetName) {
+            const rawJsonCont = XLSX.utils.sheet_to_json(workbook.Sheets[contSheetName]);
+            if (rawJsonCont && rawJsonCont.length > 0) {
+              processCategoryImport('contactos', rawJsonCont);
+              totalImported += rawJsonCont.length;
+            }
+          }
+
+          // 3. Projetos por fim
+          const projSheetName = workbook.SheetNames.find(n => /projeto/i.test(n));
+          if (projSheetName) {
+            const rawJsonProj = XLSX.utils.sheet_to_json(workbook.Sheets[projSheetName]);
+            if (rawJsonProj && rawJsonProj.length > 0) {
+              processCategoryImport('projetos', rawJsonProj);
+              totalImported += rawJsonProj.length;
+            }
+          }
+
+          if (totalImported === 0) {
+            const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+            const raw = XLSX.utils.sheet_to_json(firstSheet);
+            if (raw && raw.length > 0) {
+              processCategoryImport('clientes', raw);
+            } else {
+              showToast('Nenhum dado encontrado nas abas do ficheiro Excel.', 'warning');
+            }
+          } else {
+            showToast('Importação completa concluída com sucesso (' + totalImported + ' registos processados).');
+          }
+        } else {
+          // Categoria específica
+          let targetSheetName = workbook.SheetNames.find(n => {
+            if (targetCategory === 'contactos') return /contacto/i.test(n);
+            if (targetCategory === 'clientes') return /cliente/i.test(n);
+            if (targetCategory === 'projetos') return /projeto/i.test(n);
+            return false;
+          });
+          if (!targetSheetName) targetSheetName = workbook.SheetNames[0];
+
+          const worksheet = workbook.Sheets[targetSheetName];
+          const rawJson = XLSX.utils.sheet_to_json(worksheet);
+          processCategoryImport(targetCategory, rawJson);
+        }
+      } catch (err) {
+        console.error(err);
+        showToast('Erro ao importar ficheiro Excel: ' + (err.message || err), 'danger');
+      }
+    };
+    reader.readAsArrayBuffer(file);
+  } else if (fileName.endsWith('.json')) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        const parsed = JSON.parse(e.target.result);
+        let itemsToImport = [];
+        if (Array.isArray(parsed)) {
+          itemsToImport = parsed;
+        } else if (parsed[targetCategory] && Array.isArray(parsed[targetCategory])) {
+          itemsToImport = parsed[targetCategory];
+        } else {
+          showToast('Estrutura JSON inválida para "' + targetCategory + '".', 'danger');
+          return;
+        }
+        processCategoryImport(targetCategory, itemsToImport);
+      } catch (err) {
+        console.error(err);
+        showToast('Erro ao ler JSON de importação.', 'danger');
+      }
+    };
+    reader.readAsText(file);
+  } else {
+    showToast('Formato não suportado. Utilize ficheiros .xlsx, .xls ou .csv', 'danger');
+  }
+
+  event.target.value = '';
+}
+window.handleCategoryImportFromSettings = handleCategoryImportFromSettings;
+
 function handleCategoryImport(event) {
   const file = event.target.files[0];
   if (!file || !activeImportCategory) return;
@@ -13829,113 +14246,276 @@ function processCategoryImport(category, items) {
 
   let countAdded = 0;
   let countUpdated = 0;
+  const activeUserIdImport = sessionStorage.getItem('sigec_pro_active_user_id') || 'usr-admin-001';
+  const activeUserImport = (db.usuarios || []).find(u => u.id === activeUserIdImport);
+  const activeUserNomeImport = activeUserImport ? activeUserImport.nome : '';
 
   if (category === 'clientes') {
-    const activeUserIdImport = sessionStorage.getItem('sigec_pro_active_user_id') || 'usr-admin-001';
-    const activeUserImport = (db.usuarios || []).find(u => u.id === activeUserIdImport);
-    const activeUserNomeImport = activeUserImport ? activeUserImport.nome : '';
     items.forEach(item => {
       const id = item.id || generateId('cli');
-      const nomeCliente = (item.nome || item.Nome || item.cliente || item.Cliente || item.empresa || item.Empresa || 'Cliente Importado').trim();
+      const nomeCliente = String(item['Nome / Razão Social / Ministério'] || item['Nome / Razão Social'] || item['Ministério'] || item.nome || item.Nome || item.cliente || item.Cliente || item.empresa || item.Empresa || 'Cliente Importado').trim();
+      const departamento = String(item['Departamento / Separador'] || item.departamento || item.Departamento || item.separador || item.Separador || '').trim();
       const idx = db.clientes.findIndex(c => c.id === id || (c.nome && nomeCliente && String(c.nome).trim().toLowerCase() === nomeCliente.toLowerCase()));
+      
+      let rawTipo = item['Tipo de Cliente'] || item.tipoCliente || item.tipo || item.Tipo || (departamento ? 'Estatal' : 'Privado');
       const tipoClienteImport = (typeof normalizeClientType === 'function')
-        ? normalizeClientType(item.tipoCliente || item.tipo || item.Tipo || 'Privado')
-        : (item.tipoCliente || item.tipo || item.Tipo || 'Privado');
+        ? normalizeClientType(rawTipo)
+        : rawTipo;
 
-      // Extração e tratamento inteligente de morada / direção
-      let rawDirecao = String(item.direcao1 || item.direcao || item.Direção || item.Direcao || item.morada || item.Morada || item.endereco || item.Endereço || item.Address || '').trim();
-      let numero = String(item.numero || item.Numero || item['Nº'] || item.No || '').trim();
-      let andar = String(item.andar || item.Andar || item.Piso || item.piso || item.Fracao || '').trim();
-      let codigoPostal = String(item.codigoPostal || item.CodigoPostal || item.cp || item.CP || item['Código Postal'] || '').trim();
-      let localidade = String(item.localidade || item.Localidade || item.cidade || item.Cidade || '').trim();
-      let pais = String(item.pais || item.Pais || item['País'] || '').trim();
+      // Extração e tratamento de morada / direção
+      let rawDirecao = String(item['Morada / Rua / Avenida'] || item.direcao1 || item.direcao || item.Direção || item.Direcao || item.morada || item.Morada || item.endereco || item.Endereço || item.Address || '').trim();
+      let numero = String(item['Número'] || item.numero || item.Numero || item['Nº'] || item.No || '').trim();
+      let andar = String(item['Andar / Piso'] || item.andar || item.Andar || item.Piso || item.piso || item.Fracao || '').trim();
+      let codigoPostal = String(item['Código Postal'] || item.codigoPostal || item.CodigoPostal || item.cp || item.CP || '').trim();
+      let localidade = String(item['Localidade'] || item.localidade || item.Localidade || item.cidade || item.Cidade || '').trim();
+      let pais = String(item['País'] || item.pais || item.Pais || '').trim();
       let direcao1 = rawDirecao;
       let direcao2 = String(item.direcao2 || item.Direcao2 || '').trim();
 
-      // Se a direção veio toda num único campo e os restantes estão vazios, decompõe com IA / parser inteligente
       if (rawDirecao && (!codigoPostal || !localidade || !numero)) {
-        const parsedAddr = smartParseAddress(rawDirecao);
-        if (parsedAddr) {
-          direcao1 = parsedAddr.direcao1 || direcao1;
-          if (!numero && parsedAddr.numero) numero = parsedAddr.numero;
-          if (!andar && parsedAddr.andar) andar = parsedAddr.andar;
-          if (!codigoPostal && parsedAddr.codigoPostal) codigoPostal = parsedAddr.codigoPostal;
-          if (!localidade && parsedAddr.localidade) localidade = parsedAddr.localidade;
-          if (!pais && parsedAddr.pais) pais = parsedAddr.pais;
-          if (!direcao2 && parsedAddr.direcao2) direcao2 = parsedAddr.direcao2;
+        if (typeof smartParseAddress === 'function') {
+          const parsedAddr = smartParseAddress(rawDirecao);
+          if (parsedAddr) {
+            direcao1 = parsedAddr.direcao1 || direcao1;
+            if (!numero && parsedAddr.numero) numero = parsedAddr.numero;
+            if (!andar && parsedAddr.andar) andar = parsedAddr.andar;
+            if (!codigoPostal && parsedAddr.codigoPostal) codigoPostal = parsedAddr.codigoPostal;
+            if (!localidade && parsedAddr.localidade) localidade = parsedAddr.localidade;
+            if (!pais && parsedAddr.pais) pais = parsedAddr.pais;
+            if (!direcao2 && parsedAddr.direcao2) direcao2 = parsedAddr.direcao2;
+          }
         }
       }
       if (!pais) pais = 'Portugal';
 
-      const clientObj = {
-        id: idx >= 0 ? db.clientes[idx].id : id,
-        tipoCliente: tipoClienteImport,
-        ministerio: item.ministerio || item.Ministerio || '',
-        secretariaEstado: item.secretariaEstado || item.SecretariaEstado || '',
-        nome: nomeCliente,
-        contribuinte: String(item.contribuinte || item.Contribuinte || item.nif || item.NIF || ''),
-        direcao1: direcao1,
-        direcao2: direcao2,
-        numero: numero,
-        andar: andar,
-        codigoPostal: codigoPostal,
-        localidade: localidade,
-        pais: pais,
-        telefone: String(item.telefone || item.Telefone || ''),
-        telemovel: String(item.telemovel || item.Telemóvel || item.Telemovel || ''),
-        email: item.email || item.Email || '',
-        userId: idx >= 0 ? (db.clientes[idx].userId || activeUserIdImport) : activeUserIdImport,
-        comercialAtribuidoId: idx >= 0 ? (db.clientes[idx].comercialAtribuidoId || activeUserIdImport) : activeUserIdImport,
-        comercialAtribuidoNome: idx >= 0 ? (db.clientes[idx].comercialAtribuidoNome || activeUserNomeImport) : activeUserNomeImport,
-        createdAt: idx >= 0 ? db.clientes[idx].createdAt : new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-      };
+      const contribuinte = String(item['NIF / Contribuinte'] || item.contribuinte || item.Contribuinte || item.nif || item.NIF || '').trim();
+      const telefone = String(item['Telefone Geral'] || item.telefone || item.Telefone || '').trim();
+      const telemovel = String(item['Telemóvel'] || item.telemovel || item.Telemóvel || item.Telemovel || '').trim();
+      const email = String(item['Email Geral'] || item.email || item.Email || '').trim();
+      const setorAtividade = String(item['Setor de Atividade'] || item.setorAtividade || item.setor || item.Setor || '').trim();
+
+      let clientObj;
       if (idx >= 0) {
-        db.clientes[idx] = clientObj;
+        clientObj = db.clientes[idx];
+        clientObj.nome = nomeCliente || clientObj.nome;
+        if (tipoClienteImport) clientObj.tipoCliente = tipoClienteImport;
+        if (contribuinte) clientObj.contribuinte = contribuinte;
+        if (direcao1) clientObj.direcao1 = direcao1;
+        if (direcao2) clientObj.direcao2 = direcao2;
+        if (numero) clientObj.numero = numero;
+        if (andar) clientObj.andar = andar;
+        if (codigoPostal) clientObj.codigoPostal = codigoPostal;
+        if (localidade) clientObj.localidade = localidade;
+        if (pais) clientObj.pais = pais;
+        if (telefone) clientObj.telefone = telefone;
+        if (telemovel) clientObj.telemovel = telemovel;
+        if (email) clientObj.email = email;
+        if (setorAtividade) clientObj.setorAtividade = setorAtividade;
+        clientObj.updatedAt = new Date().toISOString();
         countUpdated++;
       } else {
+        clientObj = {
+          id: id,
+          tipoCliente: tipoClienteImport,
+          ministerio: (tipoClienteImport === 'Estatal') ? (item.ministerio || item.Ministerio || nomeCliente) : '',
+          secretariaEstado: item.secretariaEstado || item.SecretariaEstado || '',
+          nome: nomeCliente,
+          contribuinte: contribuinte,
+          direcao1: direcao1,
+          direcao2: direcao2,
+          numero: numero,
+          andar: andar,
+          codigoPostal: codigoPostal,
+          localidade: localidade,
+          pais: pais,
+          telefone: telefone,
+          telemovel: telemovel,
+          email: email,
+          setorAtividade: setorAtividade,
+          separadores: [],
+          userId: activeUserIdImport,
+          comercialAtribuidoId: activeUserIdImport,
+          comercialAtribuidoNome: activeUserNomeImport,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        };
         db.clientes.push(clientObj);
         countAdded++;
+      }
+
+      // Gestão de Separadores para clientes Estatais ou quando o departamento é fornecido
+      if (tipoClienteImport === 'Estatal' || departamento) {
+        clientObj.tipoCliente = 'Estatal';
+        if (!clientObj.ministerio) clientObj.ministerio = nomeCliente;
+        if (!Array.isArray(clientObj.separadores)) clientObj.separadores = [];
+
+        if (departamento) {
+          const depTrim = departamento.trim().toLowerCase();
+          const existingSep = clientObj.separadores.find(s => {
+            if (!s) return false;
+            const n = (s.nome || '').trim().toLowerCase();
+            const p = (s.nomePersonalizado || '').trim().toLowerCase();
+            const t = (s.tipoSeparador || '').trim().toLowerCase();
+            return n === depTrim || p === depTrim || t === depTrim;
+          });
+
+          if (!existingSep) {
+            clientObj.separadores.push({
+              id: generateId('sep'),
+              tipoSeparador: departamento.trim(),
+              nomePersonalizado: departamento.trim(),
+              nome: departamento.trim(),
+              contribuinte: contribuinte || clientObj.contribuinte || '',
+              direcao1: direcao1 || clientObj.direcao1 || '',
+              direcao2: direcao2 || clientObj.direcao2 || '',
+              numero: numero || clientObj.numero || '',
+              andar: andar || clientObj.andar || '',
+              codigoPostal: codigoPostal || clientObj.codigoPostal || '',
+              localidade: localidade || clientObj.localidade || '',
+              pais: pais || clientObj.pais || 'Portugal',
+              telefone: telefone || clientObj.telefone || '',
+              telemovel: telemovel || clientObj.telemovel || '',
+              email: email || clientObj.email || ''
+            });
+          }
+        } else if (clientObj.separadores.length === 0) {
+          clientObj.separadores.push({
+            id: generateId('sep'),
+            tipoSeparador: 'Ministério',
+            nomePersonalizado: '',
+            nome: nomeCliente,
+            contribuinte: contribuinte || '',
+            direcao1: direcao1 || '',
+            direcao2: direcao2 || '',
+            numero: numero || '',
+            andar: andar || '',
+            codigoPostal: codigoPostal || '',
+            localidade: localidade || '',
+            pais: pais || 'Portugal',
+            telefone: telefone || '',
+            telemovel: telemovel || '',
+            email: email || ''
+          });
+        }
       }
     });
   } else if (category === 'contactos') {
     items.forEach(item => {
-      // Normalização inteligente de campos (maiúsculas, minúsculas, modelos Excel/CSV)
-      let rawNome = (item.nome || item.Nome || item['Primeiro Nome'] || item['First Name'] || item['Nome Contacto'] || '').trim();
-      let rawApelido = (item.apelido || item.Apelido || item.sobrenome || item.Sobrenome || item['Último Nome'] || item['Last Name'] || item.Surname || '').trim();
+      let rawNome = String(item['Nome Próprio'] || item.nome || item.Nome || item['Primeiro Nome'] || item['First Name'] || item['Nome Contacto'] || '').trim();
+      let rawApelido = String(item['Apelido'] || item.apelido || item.Apelido || item.sobrenome || item.Sobrenome || item['Último Nome'] || item['Last Name'] || item.Surname || '').trim();
       
-      // Se apenas o nome veio preenchido com nome completo (ou apelido vazio) e tem mais que uma palavra
       if (rawNome && !rawApelido && rawNome.includes(' ')) {
-        const splitRes = smartSplitPortugueseName(rawNome);
-        rawNome = splitRes.nome;
-        rawApelido = splitRes.apelido;
+        if (typeof smartSplitPortugueseName === 'function') {
+          const splitRes = smartSplitPortugueseName(rawNome);
+          rawNome = splitRes.nome;
+          rawApelido = splitRes.apelido;
+        }
       }
-      // Se tiver coluna específica 'Nome Completo'
       if (!rawNome && (item['Nome Completo'] || item.nomeCompleto)) {
-        const splitRes = smartSplitPortugueseName(item['Nome Completo'] || item.nomeCompleto);
-        rawNome = splitRes.nome;
-        if (!rawApelido) rawApelido = splitRes.apelido;
+        if (typeof smartSplitPortugueseName === 'function') {
+          const splitRes = smartSplitPortugueseName(item['Nome Completo'] || item.nomeCompleto);
+          rawNome = splitRes.nome;
+          if (!rawApelido) rawApelido = splitRes.apelido;
+        }
       }
       
-      const cargo = (item.cargo || item.Cargo || item['Função'] || item.Funcao || '').trim();
-      const departamento = (item.departamento || item.Departamento || item['Área'] || item.Area || '').trim();
-      const telefone = String(item.telefone || item.Telefone || '').trim();
-      const telemovel = String(item.telemovel || item.Telemóvel || item.Telemovel || item['Telemóvel'] || '').trim();
-      const email = (item.email || item.Email || item['E-mail'] || '').trim();
-      const notas = (item.notas || item.Notas || item.observacoes || item.Observações || '').trim();
-      const tratamento = (item.tratamento || item.Tratamento || '').trim();
+      const cargo = String(item['Cargo / Função'] || item.cargo || item.Cargo || item['Função'] || item.Funcao || '').trim();
+      const departamento = String(item['Departamento / Separador'] || item.departamento || item.Departamento || item.separador || item.Separador || item['Área'] || item.Area || '').trim();
+      const telefone = String(item['Telefone Direto'] || item.telefone || item.Telefone || '').trim();
+      const extensao = String(item['Extensão'] || item['Extensao'] || item.extensao || item.Extensao || item['Ext.'] || item.ext || item.Ext || '').trim();
+      const telemovel = String(item['Telemóvel'] || item.telemovel || item.Telemóvel || item.Telemovel || item['Telemóvel'] || item.mobile || '').trim();
+      const email = String(item['Email'] || item.email || item.Email || item['E-mail'] || '').trim();
+      const notas = String(item['Notas / Observações'] || item.notas || item.Notas || item.observacoes || item.Observações || '').trim();
+      const tratamento = String(item.tratamento || item.Tratamento || '').trim();
       
       // Resolução inteligente do clienteId por ID ou por Nome da Empresa/Cliente
-      let clienteId = (item.clienteId || item.ClienteId || '').trim();
-      if (!clienteId || !db.clientes.some(c => c.id === clienteId)) {
-        const clientNameQuery = (item['Empresa / Cliente'] || item.empresa || item.Empresa || item.cliente || item.Cliente || item.clienteNome || '').trim().toLowerCase();
-        if (clientNameQuery) {
-          const matchedClient = db.clientes.find(c => c && c.nome && c.nome.toLowerCase().trim() === clientNameQuery);
-          if (matchedClient) clienteId = matchedClient.id;
+      let clienteId = String(item.clienteId || item.ClienteId || '').trim();
+      const clientNameQuery = String(item['Cliente / Entidade'] || item['Empresa / Cliente'] || item.empresa || item.Empresa || item.cliente || item.Cliente || item.clienteNome || '').trim();
+      
+      let targetClient = null;
+      if (clienteId) {
+        targetClient = db.clientes.find(c => c && c.id === clienteId);
+      }
+      if (!targetClient && clientNameQuery) {
+        targetClient = db.clientes.find(c => c && c.nome && c.nome.toLowerCase().trim() === clientNameQuery.toLowerCase());
+      }
+      if (!targetClient && clientNameQuery) {
+        // Criar o cliente automaticamente se ainda não existir
+        const newCId = generateId('cli');
+        targetClient = {
+          id: newCId,
+          tipoCliente: departamento ? 'Estatal' : 'Privado',
+          nome: clientNameQuery,
+          ministerio: departamento ? clientNameQuery : '',
+          separadores: [],
+          contribuinte: '',
+          direcao1: '',
+          numero: '',
+          andar: '',
+          codigoPostal: '',
+          localidade: '',
+          pais: 'Portugal',
+          telefone: '',
+          telemovel: '',
+          email: '',
+          userId: activeUserIdImport,
+          comercialAtribuidoId: activeUserIdImport,
+          comercialAtribuidoNome: activeUserNomeImport,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        };
+        db.clientes.push(targetClient);
+        clienteId = newCId;
+      } else if (targetClient) {
+        clienteId = targetClient.id;
+      }
+
+      // Gestão de Separador do Cliente Estatal para este Contacto
+      let assignedSeparadorId = null;
+      let assignedSubTabIndex = 0;
+      if (targetClient && departamento) {
+        targetClient.tipoCliente = 'Estatal';
+        if (!Array.isArray(targetClient.separadores)) targetClient.separadores = [];
+
+        const depTrim = departamento.trim().toLowerCase();
+        let sIdx = targetClient.separadores.findIndex(s => {
+          if (!s) return false;
+          const n = (s.nome || '').trim().toLowerCase();
+          const p = (s.nomePersonalizado || '').trim().toLowerCase();
+          const t = (s.tipoSeparador || '').trim().toLowerCase();
+          return n === depTrim || p === depTrim || t === depTrim;
+        });
+
+        if (sIdx >= 0) {
+          // Separador já existe! Reutilizar sem duplicar
+          assignedSeparadorId = targetClient.separadores[sIdx].id;
+          assignedSubTabIndex = sIdx;
+        } else {
+          // Não existe! Criar separador novo automaticamente com o nome indicado
+          const newSep = {
+            id: generateId('sep'),
+            tipoSeparador: departamento.trim(),
+            nomePersonalizado: departamento.trim(),
+            nome: departamento.trim(), // Nome/Razão Social com o nome do separador
+            contribuinte: '',
+            direcao1: targetClient.direcao1 || '',
+            direcao2: targetClient.direcao2 || '',
+            numero: targetClient.numero || '',
+            andar: targetClient.andar || '',
+            codigoPostal: targetClient.codigoPostal || '',
+            localidade: targetClient.localidade || '',
+            pais: targetClient.pais || 'Portugal',
+            telefone: '',
+            telemovel: '',
+            email: ''
+          };
+          targetClient.separadores.push(newSep);
+          assignedSeparadorId = newSep.id;
+          assignedSubTabIndex = targetClient.separadores.length - 1;
         }
       }
 
-      // Prevenção de duplicados: verificar se já existe por ID, por Email ou por Nome Completo + Empresa
+      // Prevenção de duplicados de contacto
       const id = item.id || '';
       let idx = -1;
       if (id) {
@@ -13960,12 +14540,16 @@ function processCategoryImport(category, items) {
       const contactObj = {
         id: finalId,
         clienteId: clienteId || (idx >= 0 ? db.contactos[idx].clienteId : ''),
+        empresa: targetClient ? targetClient.nome : (idx >= 0 ? (db.contactos[idx].empresa || '') : ''),
+        separadorId: assignedSeparadorId || (idx >= 0 ? db.contactos[idx].separadorId : null),
+        subTabIndex: assignedSubTabIndex !== undefined ? assignedSubTabIndex : (idx >= 0 && db.contactos[idx].subTabIndex !== undefined ? db.contactos[idx].subTabIndex : 0),
         tratamento: tratamento || (idx >= 0 ? db.contactos[idx].tratamento : ''),
         nome: rawNome || (idx >= 0 ? db.contactos[idx].nome : 'Contacto'),
         apelido: rawApelido || (idx >= 0 ? db.contactos[idx].apelido : ''),
         cargo: cargo || (idx >= 0 ? db.contactos[idx].cargo : ''),
         departamento: departamento || (idx >= 0 ? db.contactos[idx].departamento : ''),
         telefone: telefone || (idx >= 0 ? db.contactos[idx].telefone : ''),
+        extensao: extensao || (idx >= 0 ? (db.contactos[idx].extensao || '') : ''),
         telemovel: telemovel || (idx >= 0 ? db.contactos[idx].telemovel : ''),
         email: email || (idx >= 0 ? db.contactos[idx].email : ''),
         notas: notas || (idx >= 0 ? db.contactos[idx].notas : ''),
@@ -13984,25 +14568,128 @@ function processCategoryImport(category, items) {
   } else if (category === 'projetos') {
     items.forEach(item => {
       const id = item.id || generateId('proj');
-      if (deletedProjectIds.includes(id)) return;
+      if (typeof deletedProjectIds !== 'undefined' && deletedProjectIds.includes(id)) return;
 
-      const idx = db.projetos.findIndex(p => p.id === id || (p.nome && item.nome && String(p.nome).trim().toLowerCase() === String(item.nome).trim().toLowerCase()));
+      const codigo = String(item['Código / Referência'] || item['Código'] || item.codigo || item.Codigo || item.referencia || '').trim();
+      const nomeProjeto = String(item['Designação do Projeto'] || item['Nome do Projeto'] || item.nome || item.Nome || item.designacao || 'Projeto Importado').trim();
+      const departamento = String(item['Departamento / Separador'] || item.departamento || item.Departamento || '').trim();
+
+      // Cliente do projeto
+      let clienteId = String(item.clienteId || item.ClienteId || '').trim();
+      const clientNameQuery = String(item['Cliente / Entidade'] || item.cliente || item.Cliente || item.empresa || item.Empresa || '').trim();
+      let targetClient = null;
+      if (clienteId) targetClient = db.clientes.find(c => c && c.id === clienteId);
+      if (!targetClient && clientNameQuery) {
+        targetClient = db.clientes.find(c => c && c.nome && c.nome.toLowerCase().trim() === clientNameQuery.toLowerCase());
+      }
+      if (!targetClient && clientNameQuery) {
+        const newCId = generateId('cli');
+        targetClient = {
+          id: newCId,
+          tipoCliente: departamento ? 'Estatal' : 'Privado',
+          nome: clientNameQuery,
+          ministerio: departamento ? clientNameQuery : '',
+          separadores: [],
+          contribuinte: '',
+          direcao1: '',
+          numero: '',
+          andar: '',
+          codigoPostal: '',
+          localidade: '',
+          pais: 'Portugal',
+          telefone: '',
+          telemovel: '',
+          email: '',
+          userId: activeUserIdImport,
+          comercialAtribuidoId: activeUserIdImport,
+          comercialAtribuidoNome: activeUserNomeImport,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        };
+        db.clientes.push(targetClient);
+        clienteId = newCId;
+      } else if (targetClient) {
+        clienteId = targetClient.id;
+      }
+
+      // Separador do projeto
+      let assignedSeparadorId = null;
+      let assignedSubTabIndex = 0;
+      if (targetClient && departamento) {
+        targetClient.tipoCliente = 'Estatal';
+        if (!Array.isArray(targetClient.separadores)) targetClient.separadores = [];
+
+        const depTrim = departamento.trim().toLowerCase();
+        let sIdx = targetClient.separadores.findIndex(s => {
+          if (!s) return false;
+          const n = (s.nome || '').trim().toLowerCase();
+          const p = (s.nomePersonalizado || '').trim().toLowerCase();
+          const t = (s.tipoSeparador || '').trim().toLowerCase();
+          return n === depTrim || p === depTrim || t === depTrim;
+        });
+
+        if (sIdx >= 0) {
+          assignedSeparadorId = targetClient.separadores[sIdx].id;
+          assignedSubTabIndex = sIdx;
+        } else {
+          const newSep = {
+            id: generateId('sep'),
+            tipoSeparador: departamento.trim(),
+            nomePersonalizado: departamento.trim(),
+            nome: departamento.trim(),
+            contribuinte: '',
+            direcao1: targetClient.direcao1 || '',
+            direcao2: targetClient.direcao2 || '',
+            numero: targetClient.numero || '',
+            andar: targetClient.andar || '',
+            codigoPostal: targetClient.codigoPostal || '',
+            localidade: targetClient.localidade || '',
+            pais: targetClient.pais || 'Portugal',
+            telefone: '',
+            telemovel: '',
+            email: ''
+          };
+          targetClient.separadores.push(newSep);
+          assignedSeparadorId = newSep.id;
+          assignedSubTabIndex = targetClient.separadores.length - 1;
+        }
+      }
+
+      // Contacto Principal
+      let contacto1Id = String(item.contacto1Id || '').trim();
+      const contactQuery = String(item['Contacto Principal'] || item.contacto || item.Contacto || '').trim();
+      if (!contacto1Id && contactQuery) {
+        const matchedCon = (db.contactos || []).find(c => {
+          if (!c) return false;
+          const full = `${c.nome || ''} ${c.apelido || ''}`.trim().toLowerCase();
+          return full === contactQuery.toLowerCase() || (c.nome && c.nome.toLowerCase().trim() === contactQuery.toLowerCase());
+        });
+        if (matchedCon) contacto1Id = matchedCon.id;
+      }
+
+      const idx = db.projetos.findIndex(p => p.id === id || (p.codigo && codigo && p.codigo === codigo) || (p.nome && nomeProjeto && String(p.nome).trim().toLowerCase() === nomeProjeto.toLowerCase()));
       const projectObj = {
         id: idx >= 0 ? db.projetos[idx].id : id,
-        nome: item.nome || 'Projeto Importado',
-        tipo: item.tipo || 'Compra UM',
-        clienteId: item.clienteId || '',
-        contacto1Id: item.contacto1Id || '',
-        contacto2Id: item.contacto2Id || '',
-        dataInicio: item.dataInicio || new Date().toISOString().slice(0, 10),
-        dataFim: item.dataFim || '',
-        estado: item.estado || 'Aguarda Orçamento',
-        viatura: item.viatura || '',
-        matricula: item.matricula || '',
-        obs: item.obs || item.observacoes || item.descricao || '',
+        codigo: codigo || (idx >= 0 ? (db.projetos[idx].codigo || '') : ''),
+        nome: nomeProjeto,
+        tipo: item['Tipo de Projeto'] || item.tipo || item.Tipo || (idx >= 0 ? db.projetos[idx].tipo : 'Compra UM'),
+        clienteId: clienteId || (idx >= 0 ? db.projetos[idx].clienteId : ''),
+        separadorId: assignedSeparadorId || (idx >= 0 ? db.projetos[idx].separadorId : null),
+        subTabIndex: assignedSubTabIndex !== undefined ? assignedSubTabIndex : (idx >= 0 && db.projetos[idx].subTabIndex !== undefined ? db.projetos[idx].subTabIndex : 0),
+        contacto1Id: contacto1Id || (idx >= 0 ? db.projetos[idx].contacto1Id : ''),
+        contacto2Id: item.contacto2Id || (idx >= 0 ? db.projetos[idx].contacto2Id : ''),
+        dataInicio: item['Data de Início'] || item.dataInicio || (idx >= 0 ? db.projetos[idx].dataInicio : new Date().toISOString().slice(0, 10)),
+        dataFim: item['Data de Conclusão'] || item.dataFim || (idx >= 0 ? db.projetos[idx].dataFim : ''),
+        estado: item['Estado'] || item.estado || (idx >= 0 ? db.projetos[idx].estado : 'Aguarda Orçamento'),
+        valor: item['Valor Previsto (€)'] || item['Valor Estimado (€)'] || item.valor || (idx >= 0 ? db.projetos[idx].valor : ''),
+        viatura: item['Viatura / Equipamento'] || item.viatura || (idx >= 0 ? db.projetos[idx].viatura : ''),
+        matricula: item['Matrícula'] || item.matricula || (idx >= 0 ? db.projetos[idx].matricula : ''),
+        obs: item['Descrição / Observações'] || item.obs || item.observacoes || item.descricao || (idx >= 0 ? db.projetos[idx].obs : ''),
         media: idx >= 0 ? (db.projetos[idx].media || []) : (item.media || []),
-        createdAt: idx >= 0 ? db.projetos[idx].createdAt : new Date().toISOString()
+        createdAt: idx >= 0 ? db.projetos[idx].createdAt : new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       };
+
       if (idx >= 0) {
         db.projetos[idx] = projectObj;
         countUpdated++;
@@ -14018,6 +14705,8 @@ function processCategoryImport(category, items) {
   if (typeof populateClientSelects === 'function') populateClientSelects();
   if (typeof renderClientPageMainGrid === 'function') renderClientPageMainGrid();
   if (typeof renderProjectPageMainGrid === 'function') renderProjectPageMainGrid();
+  if (typeof renderContactPageMainGrid === 'function') renderContactPageMainGrid();
+  if (typeof renderHomeDashboard === 'function') renderHomeDashboard();
   if (currentClientId && typeof refreshClientSubLists === 'function') refreshClientSubLists(currentClientId);
   showToast(`Importação de ${category.toUpperCase()}: ${countAdded} adicionado(s), ${countUpdated} atualizado(s).`);
 }
@@ -16433,6 +17122,7 @@ function exportSearchToExcel(type, customList) {
         'Cliente Associado': client ? client.nome : '',
         'Cargo': con.cargo || '',
         'Telefone': con.telefone || '',
+        'Extensão': con.extensao || '',
         'Telemóvel': con.telemovel || '',
         'Email': con.email || '',
         'Notas': con.notas || ''

@@ -26,3 +26,6 @@ obj/
 *.log
 Thumbs.db
 desktop.ini
+
+node_modules/
+package-lock.json
