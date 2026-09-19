@@ -21,11 +21,11 @@ const SIGEC_I18N = {
     "Polski": "Otwórz Witrynę"
   },
   btn_ai_update_address: {
-    "Português": "Atualizar Morada com IA",
-    "Español": "Actualizar Dirección con IA",
-    "English": "Update Address with AI",
-    "Français": "Mettre à jour l'Adresse avec l'IA",
-    "Polski": "Zaktualizuj Adres przez AI"
+    "Português": "Atualização de Direção",
+    "Español": "Actualización de Dirección",
+    "English": "Address Update",
+    "Français": "Mise à Jour de l'Adresse",
+    "Polski": "Aktualizacja Adresu"
   },
   ai_modal_title: {
     "Português": "Atualização de Morada com IA",

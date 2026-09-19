@@ -26526,7 +26526,7 @@ function closeAiAddressModal() {
   const btn = document.getElementById('btnAiUpdateClientAddress');
   if (btn) {
     btn.disabled = false;
-    btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="btn_ai_update_address">Atualizar Morada com IA</span>';
+    btn.innerHTML = '<i class="fa-solid fa-house"></i> <span data-i18n="btn_ai_update_address">Atualização de Direção</span>';
   }
 }
 window.closeAiAddressModal = closeAiAddressModal;
@@ -26576,8 +26576,8 @@ async function triggerAiAddressEnrichment() {
   }
   if (loadingState) loadingState.style.display = 'block';
   if (contentState) contentState.style.display = 'none';
-  if (loadingTitle) loadingTitle.textContent = `A varrer a Net por "${entityName}"...`;
-  if (loadingSubtitle) loadingSubtitle.textContent = isEstatal ? `A pesquisar organismos e delegações oficiais com IA` : `A pesquisar página web e morada oficial com IA`;
+  if (loadingTitle) loadingTitle.textContent = `A pesquisar direção de "${entityName}"...`;
+  if (loadingSubtitle) loadingSubtitle.textContent = isEstatal ? `A consultar organismos e delegações oficiais` : `A consultar website e registo institucional`;
 
   const btn = document.getElementById('btnAiUpdateClientAddress');
   if (btn) {
@@ -26587,51 +26587,78 @@ async function triggerAiAddressEnrichment() {
 
   try {
     const geminiApiKey = localStorage.getItem('sigec_gemini_api_key') || '';
-    
-    // Determinar URL da API (suporta servidor Hugging Face / localhost ou relativo)
-    let apiUrl = '/api/ai-lookup-address';
-    if (window.location.protocol === 'file:') {
-      apiUrl = 'https://josecenturio-sigec-pro.hf.space/api/ai-lookup-address';
-    }
-
     let response = null;
+
+    // 1. Chamar o endpoint local do Launcher C# ou servidor Node
+    const apiPayload = {
+      entityName,
+      tipoCliente,
+      ministerio,
+      contribuinte,
+      existingWebsite,
+      geminiApiKey
+    };
+
     try {
-      const fetchResp = await fetch(apiUrl, {
+      const fetchResp = await fetch('/api/ai-lookup-address', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          entityName,
-          tipoCliente,
-          ministerio,
-          contribuinte,
-          existingWebsite,
-          geminiApiKey
-        })
+        body: JSON.stringify(apiPayload)
       });
       if (fetchResp.ok) {
         response = await fetchResp.json();
       }
-    } catch(fetchErr) {
-      console.warn('Falha na rota direta, a tentar fallback Hugging Face Space:', fetchErr);
-      if (apiUrl !== 'https://josecenturio-sigec-pro.hf.space/api/ai-lookup-address') {
-        const hfResp = await fetch('https://josecenturio-sigec-pro.hf.space/api/ai-lookup-address', {
+    } catch (e1) {
+      console.warn('Endpoint local falhou, a tentar rota absoluta:', e1);
+    }
+
+    // 2. Se a rota relativa não respondeu, tentar porta do Launcher Desktop
+    if (!response || !response.success || !response.data || (!response.data.direcao1 && !response.data.codigoPostal)) {
+      try {
+        const desktopResp = await fetch('http://127.0.0.1:59124/api/ai-lookup-address', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(apiPayload)
+        });
+        if (desktopResp.ok) {
+          response = await desktopResp.json();
+        }
+      } catch (e2) {
+        console.warn('Launcher desktop port 59124 não respondeu:', e2);
+      }
+    }
+
+    // 3. Fallback Direto com Google Gemini se a chave estiver configurada
+    if ((!response || !response.success || (!response.data?.direcao1 && !response.data?.codigoPostal)) && geminiApiKey) {
+      try {
+        const prompt = `Pesquisa na web o website oficial e a morada completa da sede de: "${entityName}". Contexto: ${tipoCliente === 'Estatal' ? 'Organismo publico, Ministerio: ' + ministerio : 'Empresa'}, Portugal. Devolve EXCLUSIVAMENTE um objeto JSON no formato: {"website":"url", "direcao1":"rua/av/praca", "direcao2":"", "numero":"", "andar":"", "codigoPostal":"XXXX-XXX", "localidade":"", "pais":"Portugal", "fonteUrl":""}`;
+        const gResp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            entityName,
-            tipoCliente,
-            ministerio,
-            contribuinte,
-            existingWebsite,
-            geminiApiKey
+            contents: [{ parts: [{ text: prompt }] }],
+            tools: [{ googleSearch: {} }]
           })
         });
-        if (hfResp.ok) response = await hfResp.json();
+        if (gResp.ok) {
+          const gData = await gResp.json();
+          const candidateText = gData?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+          const jm = candidateText.match(/\{[\s\S]*\}/);
+          if (jm) {
+            response = {
+              success: true,
+              provider: 'Google Gemini AI (com Google Search)',
+              data: JSON.parse(jm[0])
+            };
+          }
+        }
+      } catch (eGemini) {
+        console.warn('Gemini direto falhou:', eGemini);
       }
     }
 
     if (!response || !response.success || !response.data) {
-      throw new Error((response && response.message) || 'Não foi possível extrair a morada oficial desta entidade.');
+      throw new Error('Não foi possível identificar a direção oficial automaticamente na Internet.');
     }
 
     pendingAiAddressData = {
@@ -26668,7 +26695,7 @@ async function triggerAiAddressEnrichment() {
         visitBtn.href = response.data.website.startsWith('http') ? response.data.website : 'https://' + response.data.website;
       }
     } else {
-      if (foundWebText) foundWebText.textContent = 'Não encontrada na pesquisa direta';
+      if (foundWebText) foundWebText.textContent = 'Não identificada na pesquisa direta';
       if (visitBtn) visitBtn.style.display = 'none';
     }
 
@@ -26692,18 +26719,18 @@ async function triggerAiAddressEnrichment() {
     if (elPais) elPais.textContent = response.data.pais || 'Portugal';
 
     const elFonte = document.getElementById('aiPreviewFonte');
-    if (elFonte) elFonte.textContent = 'Fonte: ' + (response.data.fonteUrl || 'Pesquisa Web Oficial');
+    if (elFonte) elFonte.textContent = 'Fonte: ' + (response.data.fonteUrl || 'Pesquisa Oficial Institucional');
 
     const elEngine = document.getElementById('aiPreviewEngine');
-    if (elEngine) elEngine.textContent = response.provider || 'IA Search Engine';
+    if (elEngine) elEngine.textContent = response.provider || 'Motor de Pesquisa';
 
   } catch(err) {
     closeAiAddressModal();
-    showToast('Aviso da IA: ' + (err.message || 'Não foi possível encontrar a morada automaticamente na Internet.'), 'warning');
+    showToast('Aviso: ' + (err.message || 'Não foi possível encontrar a direção automaticamente na Internet.'), 'warning');
   } finally {
     if (btn) {
       btn.disabled = false;
-      btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="btn_ai_update_address">Atualizar Morada com IA</span>';
+      btn.innerHTML = '<i class="fa-solid fa-house"></i> <span data-i18n="btn_ai_update_address">Atualização de Direção</span>';
     }
   }
 }

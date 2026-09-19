@@ -428,7 +428,78 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
           }
         }
 
-        // 2. Motor de Varrimento e Extração Web (Server-side)
+        // 2. Consulta a Directórios Oficiais Portugueses (nif.pt / racius.com)
+        try {
+          const searchTerm = contribuinte || entityName;
+          const nifResp = await fetch('https://www.nif.pt/?q=' + encodeURIComponent(searchTerm), {
+            headers: {
+              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+              'Accept-Language': 'pt-PT,pt;q=0.9'
+            }
+          });
+          if (nifResp.ok) {
+            const nifHtml = await nifResp.text();
+            const cpMatch = nifHtml.match(/\b(\d{4}-\d{3})\b/);
+            let nifCp = cpMatch ? cpMatch[1] : '';
+            let nifLoc = '';
+            if (nifCp) {
+              const cpIdx = nifHtml.indexOf(nifCp);
+              const after = nifHtml.slice(cpIdx + nifCp.length, cpIdx + nifCp.length + 50);
+              const lm = after.match(/^[\s,–—\-]+([A-ZÀ-Úa-zà-ú\s]{3,25})/);
+              if (lm) {
+                nifLoc = lm[1].trim().split(/[<\n\r,;]/)[0].trim();
+              }
+            }
+
+            const raciusMatch = nifHtml.match(/href='(https:\/\/www\.racius\.com\/[^']+)'/);
+            let nifStreet = '';
+            let nifNum = '';
+            let raciusUrl = '';
+            if (raciusMatch) {
+              try {
+                raciusUrl = raciusMatch[1];
+                const rResp = await fetch(raciusUrl, {
+                  headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' }
+                });
+                if (rResp.ok) {
+                  const rHtml = await rResp.text();
+                  const sm = rHtml.match(/\b((?:Rua|Avenida|Av\.?|Praça|Pr\.?|Largo|Travessa|Alameda|Estrada|Calçada|Campo)\s+[A-ZÀ-Úa-zà-ú0-9\s\–\-ºª\'’]+?)(?:,\s*(?:n\.?[ºo]?\s*)?(\d+[A-Za-z]?))?/i);
+                  if (sm) {
+                    nifStreet = sm[1].trim().split(/[<\n\r]/)[0].trim();
+                    if (sm[2]) nifNum = sm[2];
+                  }
+                }
+              } catch(rErr) {}
+            }
+
+            if (nifCp || nifStreet) {
+              let officialWebsite = existingWebsite || '';
+              if (!officialWebsite && tipoCliente === 'Estatal') officialWebsite = 'https://www.gov.pt';
+
+              res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+              res.end(JSON.stringify({
+                success: true,
+                provider: 'Registo Institucional & Web Oficial',
+                data: {
+                  website: officialWebsite,
+                  direcao1: nifStreet,
+                  direcao2: '',
+                  numero: nifNum,
+                  andar: '',
+                  codigoPostal: nifCp,
+                  localidade: nifLoc,
+                  pais: 'Portugal',
+                  fonteUrl: raciusUrl || ('https://www.nif.pt/?q=' + encodeURIComponent(searchTerm))
+                }
+              }));
+              return;
+            }
+          }
+        } catch(nErr) {
+          console.warn('[AI Lookup] Erro na consulta NIF.pt:', nErr.message);
+        }
+
+        // 3. Motor de Varrimento e Extração Web Alternativo (Server-side)
         let query = `${entityName} morada sede contactos Portugal`;
         if (tipoCliente === 'Estatal' && ministerio) {
           query = `${entityName} ${ministerio} morada sede contactos Portugal`;
