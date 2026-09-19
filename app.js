@@ -28470,10 +28470,12 @@ async function triggerAiAddressEnrichment() {
 
     // 6. Gemini AI com Google Search — fonte real (pesquisa como o Google)
     const geminiApiKey = localStorage.getItem('sigec_gemini_api_key') || '';
-    if (availableAiCandidates.length < 2 && geminiApiKey) {
+    console.log('[SIGEC-Enrichment] Candidatos antes do Gemini:', availableAiCandidates.length, '| Chave Gemini:', geminiApiKey ? 'SIM (' + geminiApiKey.substring(0,8) + '...)' : 'NÃO');
+    if (geminiApiKey) {  // Chamar Gemini sempre que houver chave API
       try {
         // PASSO 6a: Gemini com Google Search grounding → texto em linguagem natural
         const promptGrounding = `Pesquisa na web e encontra a morada completa da sede, website oficial e telefone de contacto da empresa/organização: "${entityName}"${existingPais ? ' (país: ' + existingPais + ')' : ''}. Responde em português.`;
+        console.log('[SIGEC-Gemini 6a] A enviar pedido para:', entityName);
         const gRespGrounding = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -28491,7 +28493,12 @@ async function triggerAiAddressEnrichment() {
           // Tentar obter URL da fonte nos metadados de grounding
           const groundingChunks = gGroundData?.candidates?.[0]?.groundingMetadata?.groundingChunks || [];
           groundingSource = groundingChunks?.[0]?.web?.uri || '';
+          console.log('[SIGEC-Gemini 6a] Resposta OK. Texto (150 chars):', groundingText.substring(0,150), '| Fonte:', groundingSource);
+        } else {
+          const errBody = await gRespGrounding.text();
+          console.warn('[SIGEC-Gemini 6a] Erro HTTP', gRespGrounding.status, ':', errBody.substring(0,200));
         }
+
 
         // PASSO 6b: Gemini sem grounding → converte o texto em JSON estruturado
         const promptJson = `Com base neste texto sobre "${entityName}", extrai APENAS os dados de contacto em JSON:
@@ -28513,10 +28520,12 @@ Devolve APENAS este JSON (sem mais texto, sem markdown):
         if (gRespJson.ok) {
           const gJsonData = await gRespJson.json();
           const jsonText = gJsonData?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+          console.log('[SIGEC-Gemini 6b] JSON recebido:', jsonText.substring(0, 300));
           try {
             // Tentar parse direto (JSON mode garante saída limpa)
             const parsed = JSON.parse(jsonText.trim());
             const gCountry = parsed.pais || existingPais || 'Portugal';
+            console.log('[SIGEC-Gemini 6b] Parsed:', JSON.stringify(parsed));
             // Só adicionar se tiver pelo menos um campo útil
             if (parsed.website || parsed.localidade || parsed.direcao1 || parsed.telefone) {
               availableAiCandidates.push({
