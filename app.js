@@ -26531,6 +26531,444 @@ function closeAiAddressModal() {
 }
 window.closeAiAddressModal = closeAiAddressModal;
 
+
+// ====================================================================
+// BASE DE DADOS INSTITUCIONAL E RESOLVEDOR DE DIREÇÃO PARA NAVEGADOR
+// ====================================================================
+
+const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
+  // Finanças e Tesouro
+  {
+    aliases: ['tesouro e finanças', 'tesouro e financas', 'dgtf', 'direção-geral do tesouro', 'direccao-geral do tesouro', 'direção geral do tesouro'],
+    website: 'https://www.dgtf.gov.pt',
+    direcao1: 'Rua da Alfândega',
+    numero: '5',
+    andar: '1.º andar',
+    codigoPostal: '1149-008',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.gov.pt/entidades/direcao-geral-do-tesouro-e-financas'
+  },
+  {
+    aliases: ['ministério das finanças', 'ministerio das financas', 'gabinete do ministro das finanças'],
+    website: 'https://www.portugal.gov.pt/pt/gc24/governo/ministerios/financas',
+    direcao1: 'Avenida Infante Dom Henrique',
+    numero: '1',
+    andar: '',
+    codigoPostal: '1149-009',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.gov.pt'
+  },
+  {
+    aliases: ['autoridade tributária', 'autoridade tributaria', 'at', 'finanças', 'direção-geral dos impostos', 'alfândega'],
+    website: 'https://www.portaldasfinancas.gov.pt',
+    direcao1: 'Rua da Prata',
+    numero: '10',
+    andar: '',
+    codigoPostal: '1149-027',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portaldasfinancas.gov.pt'
+  },
+  {
+    aliases: ['direção-geral do orçamento', 'direccao-geral do orcamento', 'dgo'],
+    website: 'https://www.dgo.gov.pt',
+    direcao1: 'Avenida Infante Dom Henrique',
+    numero: '1',
+    andar: '',
+    codigoPostal: '1149-009',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.dgo.gov.pt'
+  },
+  // Saúde
+  {
+    aliases: ['direção-geral da saúde', 'direccao-geral da saude', 'dgs'],
+    website: 'https://www.dgs.pt',
+    direcao1: 'Alameda Dom Afonso Henriques',
+    numero: '45',
+    andar: '',
+    codigoPostal: '1049-005',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.dgs.pt'
+  },
+  {
+    aliases: ['ministério da saúde', 'ministerio da saude', 'infarmed'],
+    website: 'https://www.sns.gov.pt',
+    direcao1: 'Avenida João Crisóstomo',
+    numero: '9',
+    andar: '',
+    codigoPostal: '1049-062',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.sns.gov.pt'
+  },
+  {
+    aliases: ['administração central do sistema de saúde', 'acss'],
+    website: 'https://www.acss.min-saude.pt',
+    direcao1: 'Parque de Saúde de Lisboa, Edifício 16, Avenida do Brasil',
+    numero: '53',
+    andar: '',
+    codigoPostal: '1700-063',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.acss.min-saude.pt'
+  },
+  // Economia e Empresas
+  {
+    aliases: ['atividades económicas', 'actividades economicas', 'dgae', 'direção-geral das atividades económicas', 'direccao-geral das actividades economicas'],
+    website: 'https://www.dgae.gov.pt',
+    direcao1: 'Avenida Visconde de Valmor',
+    numero: '72',
+    andar: '',
+    codigoPostal: '1069-041',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.dgae.gov.pt'
+  },
+  {
+    aliases: ['ministério da economia', 'ministerio da economia', 'secretaria-geral da economia'],
+    website: 'https://www.portugal.gov.pt/pt/gc24/governo/ministerios/economia',
+    direcao1: 'Avenida da República',
+    numero: '79',
+    andar: '',
+    codigoPostal: '1050-143',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['iapmei', 'agência para a competitividade'],
+    website: 'https://www.iapmei.pt',
+    direcao1: 'Estrada do Paço do Lumiar, Campus do Lumiar, Edifício A',
+    numero: '',
+    andar: '',
+    codigoPostal: '1649-038',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.iapmei.pt'
+  },
+  {
+    aliases: ['aicep', 'aicep portugal global'],
+    website: 'https://www.portugalglobal.pt',
+    direcao1: 'Rua de Entrecampos',
+    numero: '28',
+    andar: 'Bloco B',
+    codigoPostal: '1700-158',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugalglobal.pt'
+  },
+  // Agricultura e Mar
+  {
+    aliases: ['agricultura e desenvolvimento rural', 'dgadr', 'direção-geral de agricultura'],
+    website: 'https://www.dgadr.gov.pt',
+    direcao1: 'Avenida Afonso Costa',
+    numero: '3',
+    andar: '',
+    codigoPostal: '1949-002',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.dgadr.gov.pt'
+  },
+  {
+    aliases: ['ministério da agricultura', 'ministerio da agricultura'],
+    website: 'https://www.portugal.gov.pt/pt/gc24/governo/ministerios/agricultura-e-pescas',
+    direcao1: 'Praça do Comércio',
+    numero: '',
+    andar: '',
+    codigoPostal: '1149-010',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  // Justiça e Registos
+  {
+    aliases: ['registos e do notariado', 'irn', 'instituto dos registos e do notariado', 'conservatória', 'conservatoria'],
+    website: 'https://irn.justica.gov.pt',
+    direcao1: 'Avenida Fontes Pereira de Melo',
+    numero: '7 a 11',
+    andar: '',
+    codigoPostal: '1150-999',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://irn.justica.gov.pt'
+  },
+  {
+    aliases: ['ministério da justiça', 'ministerio da justica'],
+    website: 'https://www.justica.gov.pt',
+    direcao1: 'Praça do Comércio',
+    numero: '',
+    andar: '',
+    codigoPostal: '1149-015',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.justica.gov.pt'
+  },
+  // Trabalho e Segurança Social
+  {
+    aliases: ['segurança social', 'seguranca social', 'iss', 'instituto da segurança social'],
+    website: 'https://www.seg-social.pt',
+    direcao1: 'Avenida 5 de Outubro',
+    numero: '175',
+    andar: '',
+    codigoPostal: '1069-451',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.seg-social.pt'
+  },
+  {
+    aliases: ['condições do trabalho', 'condicoes do trabalho', 'act', 'autoridade para as condições do trabalho'],
+    website: 'https://www.act.gov.pt',
+    direcao1: 'Avenida Casal Ribeiro',
+    numero: '18-A',
+    andar: '',
+    codigoPostal: '1000-093',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.act.gov.pt'
+  },
+  {
+    aliases: ['iefp', 'instituto do emprego e formação profissional'],
+    website: 'https://www.iefp.pt',
+    direcao1: 'Rua de Xabregas',
+    numero: '52',
+    andar: '',
+    codigoPostal: '1949-003',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.iefp.pt'
+  },
+  // Educação e Ensino
+  {
+    aliases: ['ministério da educação', 'ministerio da educacao', 'dge', 'dgeste', 'direção-geral da educação'],
+    website: 'https://www.dge.mec.pt',
+    direcao1: 'Praça de Alvalade',
+    numero: '12',
+    andar: '',
+    codigoPostal: '1700-036',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.dge.mec.pt'
+  },
+  // Ambiente e Energia
+  {
+    aliases: ['agência portuguesa do ambiente', 'agencia portuguesa do ambiente', 'apa'],
+    website: 'https://apambiente.pt',
+    direcao1: 'Rua da Murgueira, 9/9A - Zambujal',
+    numero: '9',
+    andar: '',
+    codigoPostal: '2610-124',
+    localidade: 'Amadora',
+    pais: 'Portugal',
+    fonteUrl: 'https://apambiente.pt'
+  },
+  {
+    aliases: ['energia e geologia', 'dgeg', 'direção-geral de energia e geologia'],
+    website: 'https://www.dgeg.gov.pt',
+    direcao1: 'Avenida 5 de Outubro',
+    numero: '208',
+    andar: '',
+    codigoPostal: '1069-203',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.dgeg.gov.pt'
+  },
+  // Administração Interna e Externa
+  {
+    aliases: ['administração interna', 'administracao interna', 'mai', 'ministério da administração interna'],
+    website: 'https://www.mai.gov.pt',
+    direcao1: 'Praça do Comércio',
+    numero: '',
+    andar: '',
+    codigoPostal: '1149-015',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.mai.gov.pt'
+  },
+  {
+    aliases: ['negócios estrangeiros', 'negocios estrangeiros', 'mne', 'ministério dos negócios estrangeiros'],
+    website: 'https://www.portaldiplomatico.mne.gov.pt',
+    direcao1: 'Largo das Necessidades',
+    numero: '',
+    andar: '',
+    codigoPostal: '1350-215',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portaldiplomatico.mne.gov.pt'
+  },
+  // Câmaras Municipais
+  {
+    aliases: ['câmara municipal de lisboa', 'camara municipal de lisboa', 'cml'],
+    website: 'https://www.lisboa.pt',
+    direcao1: 'Praça do Município',
+    numero: '',
+    andar: '',
+    codigoPostal: '1100-038',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.lisboa.pt'
+  },
+  {
+    aliases: ['câmara municipal do porto', 'camara municipal do porto', 'cmp'],
+    website: 'https://www.cm-porto.pt',
+    direcao1: 'Praça General Humberto Delgado',
+    numero: '',
+    andar: '',
+    codigoPostal: '4049-001',
+    localidade: 'Porto',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.cm-porto.pt'
+  },
+  // Grandes Empresas e Serviços Públicos
+  {
+    aliases: ['edp', 'edp comercial', 'edp distribuição', 'e-redes', 'energias de portugal'],
+    website: 'https://www.edp.pt',
+    direcao1: 'Avenida 24 de Julho',
+    numero: '12',
+    andar: '',
+    codigoPostal: '1249-300',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.edp.pt'
+  },
+  {
+    aliases: ['galp', 'galp energia', 'petróleos de portugal'],
+    website: 'https://www.galp.com',
+    direcao1: 'Rua Tomás da Fonseca',
+    numero: 'Torre A',
+    andar: '',
+    codigoPostal: '1600-209',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.galp.com'
+  },
+  {
+    aliases: ['ctt', 'correios de portugal', 'ctt correios'],
+    website: 'https://www.ctt.pt',
+    direcao1: 'Avenida D. João II',
+    numero: '13',
+    andar: '',
+    codigoPostal: '1999-001',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.ctt.pt'
+  },
+  {
+    aliases: ['tap', 'tap air portugal', 'transportes aéreos portugueses'],
+    website: 'https://www.flytap.com',
+    direcao1: 'Aeroporto de Lisboa',
+    numero: 'Edifício 25',
+    andar: '',
+    codigoPostal: '1704-801',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.flytap.com'
+  },
+  {
+    aliases: ['cp', 'comboios de portugal', 'cp - comboios de portugal'],
+    website: 'https://www.cp.pt',
+    direcao1: 'Calçada de Santo Amaro',
+    numero: '27',
+    andar: '',
+    codigoPostal: '1300-512',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.cp.pt'
+  },
+  {
+    aliases: ['meo', 'altice', 'altice portugal', 'pt comunicações'],
+    website: 'https://www.meo.pt',
+    direcao1: 'Avenida Fontes Pereira de Melo',
+    numero: '40',
+    andar: '',
+    codigoPostal: '1069-300',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.meo.pt'
+  },
+  {
+    aliases: ['vodafone', 'vodafone portugal'],
+    website: 'https://www.vodafone.pt',
+    direcao1: 'Avenida D. João II',
+    numero: '36',
+    andar: '',
+    codigoPostal: '1998-017',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.vodafone.pt'
+  },
+  {
+    aliases: ['nos', 'nos comunicações', 'zon optimus'],
+    website: 'https://www.nos.pt',
+    direcao1: 'Rua do Campo Alegre',
+    numero: '100',
+    andar: '',
+    codigoPostal: '4150-174',
+    localidade: 'Porto',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.nos.pt'
+  }
+];
+
+function normalizeSearchTerm(str) {
+  return String(str || '').toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function resolveEntityFromLocalDirectory(entityName, ministerio) {
+  const normName = normalizeSearchTerm(entityName);
+  const normMin = normalizeSearchTerm(ministerio);
+
+  if (!normName) return null;
+
+  for (const item of SIGEC_PT_INSTITUTIONAL_DIRECTORY) {
+    for (const alias of item.aliases) {
+      const aNorm = normalizeSearchTerm(alias);
+      if (normName === aNorm || normName.includes(aNorm) || (aNorm.length > 5 && aNorm.includes(normName))) {
+        return item;
+      }
+      if (normMin && (normMin.includes(aNorm) || (aNorm.length > 5 && aNorm.includes(normMin)))) {
+        return item;
+      }
+    }
+  }
+  return null;
+}
+
+async function resolveEntityFromNominatim(query) {
+  try {
+    const url = 'https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(query + ' Portugal') + '&format=json&addressdetails=1&limit=1';
+    const resp = await fetch(url, {
+      headers: { 'Accept-Language': 'pt-PT,pt;q=0.9' }
+    });
+    if (!resp.ok) return null;
+    const json = await resp.json();
+    if (json && json.length > 0 && json[0].address) {
+      const addr = json[0].address;
+      return {
+        website: '',
+        direcao1: addr.road || addr.pedestrian || addr.street || addr.neighbourhood || '',
+        direcao2: '',
+        numero: addr.house_number || '',
+        andar: '',
+        codigoPostal: addr.postcode || '',
+        localidade: addr.city || addr.town || addr.municipality || addr.village || 'Lisboa',
+        pais: addr.country || 'Portugal',
+        fonteUrl: 'https://www.openstreetmap.org/' + (json[0].osm_type || 'node') + '/' + (json[0].osm_id || '')
+      };
+    }
+  } catch(e) {
+    console.warn('Nominatim lookup error:', e);
+  }
+  return null;
+}
+
 async function triggerAiAddressEnrichment() {
   const tipoCliente = document.getElementById('tipoCliente')?.value || 'Privado';
   let entityName = '';
@@ -26657,8 +27095,23 @@ async function triggerAiAddressEnrichment() {
       }
     }
 
-    if (!response || !response.success || !response.data) {
-      throw new Error('Não foi possível identificar a direção oficial automaticamente na Internet.');
+    // B. Pesquisa Aberta no Nominatim / OpenStreetMap (CORS nativo no navegador)
+    if (!response || !response.success || (!response.data?.direcao1 && !response.data?.codigoPostal)) {
+      const osmResult = await resolveEntityFromNominatim(entityName);
+      if (osmResult && (osmResult.direcao1 || osmResult.codigoPostal)) {
+        response = {
+          success: true,
+          provider: 'OpenStreetMap Global Geocoder',
+          data: {
+            ...osmResult,
+            website: existingWebsite || (isEstatal ? 'https://www.gov.pt' : '')
+          }
+        };
+      }
+    }
+
+    if (!response || !response.success || !response.data || (!response.data.direcao1 && !response.data.codigoPostal)) {
+      throw new Error('Não foi possível identificar a direção oficial automaticamente para esta entidade.');
     }
 
     pendingAiAddressData = {
