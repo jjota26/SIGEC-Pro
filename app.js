@@ -26518,6 +26518,8 @@ let pendingAiAddressData = null;
 let availableAiCandidates = [];
 let selectedAiCandidateIndex = 0;
 let currentPendingContext = null;
+let lastGeminiError = "";
+let lastGeminiStatus = "";
 
 function closeAiAddressModal() {
   const modal = document.getElementById('aiAddressConfirmationModal');
@@ -26565,6 +26567,30 @@ function getCountryFlagEmoji(cc, countryName) {
 window.getCountryFlagEmoji = getCountryFlagEmoji;
 
 const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
+  {
+    aliases: ['alegria activity', 'alegria activity s.l.', 'alegria-activity', 'alegria activity manufacturing', 'grupo alegria activity', 'alegria activity espanha'],
+    website: 'https://alegria-activity.com',
+    telefone: '+34 876 26 20 97',
+    direcao1: 'Polígono Industrial Malpica, Calle E, 9',
+    numero: '9',
+    andar: '',
+    codigoPostal: '50016',
+    localidade: 'Zaragoza',
+    pais: 'Espanha',
+    fonteUrl: 'https://alegria-activity.com'
+  },
+  {
+    aliases: ['alegria activity vitoria', 'alegria activity sede central', 'alegria activity alava'],
+    website: 'https://alegria-activity.com',
+    telefone: '+34 945 00 12 00',
+    direcao1: 'Parque Tecnológico de Álava, Vitoria-Gasteiz',
+    numero: '',
+    andar: '',
+    codigoPostal: '01510',
+    localidade: 'Vitoria-Gasteiz (Álava)',
+    pais: 'Espanha',
+    fonteUrl: 'https://alegria-activity.com'
+  },
   // --- PORTUGAL: Presid??ncia, Governo Central e Minist??rios ---
   {
     aliases: ['presid??ncia', 'presidencia', 'minist??rio da presid??ncia', 'ministerio da presidencia', 'presid??ncia do conselho de ministros', 'secretaria-geral da presid??ncia'],
@@ -28108,18 +28134,81 @@ function renderAiCandidateCards() {
 
   // ── Estado "Não encontrado" ─────────────────────────────────────────────
   if (!availableAiCandidates || availableAiCandidates.length === 0) {
-    const entityQ = encodeURIComponent(
-      (currentPendingContext?.entityName || '') + ' sede morada contacto telefone'
-    );
+    const rawKey = localStorage.getItem('sigec_gemini_api_key') || '';
+    const hasKey = !!rawKey.trim();
+    const maskedKey = hasKey ? (rawKey.trim().slice(0, 7) + '...' + rawKey.trim().slice(-4)) : '';
+    const entityName = currentPendingContext?.entityName || 'a entidade';
+    const entityQ = encodeURIComponent(entityName + ' sede morada contacto telefone');
+
+    let geminiDiagnosticHtml = '';
+    if (!hasKey) {
+      geminiDiagnosticHtml = `
+        <div style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 8px; padding: 12px; margin-top: 12px; text-align: left;">
+          <div style="font-weight: 700; color: #92400e; font-size: 0.85rem; display: flex; align-items: center; gap: 6px;">
+            <i class="fa-solid fa-key" style="color: #d97706;"></i>
+            <span>Ativar Pesquisa Inteligente Google (Gemini)</span>
+          </div>
+          <p style="font-size: 0.78rem; color: #78350f; margin: 5px 0 8px;">
+            Ainda não tem a chave da Google API inserida neste navegador. Ao inserir uma chave gratuita do Google AI Studio, o SIGEC-Pro pesquisa qualquer empresa na Google em tempo real.
+          </p>
+          <div style="display: flex; gap: 6px;">
+            <input type="password" id="aiModalApiKeyInput" placeholder="Cole aqui a sua chave (ex: AIzaSy...)" 
+                   style="flex: 1; padding: 6px 10px; font-size: 0.8rem; border: 1.5px solid #d97706; border-radius: 6px; outline: none;">
+            <button type="button" onclick="saveGeminiKeyFromModal()" 
+                    style="background: #d97706; color: #ffffff; border: none; border-radius: 6px; padding: 6px 12px; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap;">
+              <i class="fa-solid fa-bolt"></i> Guardar e Pesquisar
+            </button>
+          </div>
+          <div style="margin-top: 6px; font-size: 0.72rem;">
+            <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="color: #2563eb; text-decoration: underline;">
+              Obter chave de API gratuita no Google AI Studio &rarr;
+            </a>
+          </div>
+        </div>`;
+    } else {
+      geminiDiagnosticHtml = `
+        <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 10px 12px; margin-top: 12px; text-align: left;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <span style="font-size: 0.8rem; font-weight: 700; color: #1e293b;">
+              <i class="fa-solid fa-key" style="color: #6366f1;"></i> Chave Gemini Configurada:
+            </span>
+            <code style="background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-size: 0.76rem; color: #334155;">${maskedKey}</code>
+          </div>
+          ${lastGeminiError ? `
+            <div style="background: #fee2e2; border-left: 3px solid #ef4444; padding: 6px 8px; font-size: 0.75rem; color: #991b1b; margin-bottom: 8px; word-break: break-word;">
+              <strong>Diagnóstico Google:</strong> ${lastGeminiError}
+            </div>` : ''}
+          <div style="display: flex; gap: 6px;">
+            <input type="password" id="aiModalApiKeyInput" placeholder="Substituir por outra chave..." 
+                   style="flex: 1; padding: 5px 8px; font-size: 0.78rem; border: 1px solid #cbd5e1; border-radius: 6px; outline: none;">
+            <button type="button" onclick="saveGeminiKeyFromModal()" 
+                    style="background: #6366f1; color: #ffffff; border: none; border-radius: 6px; padding: 5px 10px; font-size: 0.78rem; font-weight: 600; cursor: pointer;">
+              Atualizar
+            </button>
+            <button type="button" onclick="removeGeminiKeyFromModal()" 
+                    style="background: #ef4444; color: #ffffff; border: none; border-radius: 6px; padding: 5px 8px; font-size: 0.78rem; cursor: pointer;" title="Remover chave">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        </div>`;
+    }
+
     container.innerHTML = `
-      <div style="padding:20px;text-align:center;color:#555;">
-        <div style="font-size:2.2em;margin-bottom:8px;">🔍</div>
-        <p style="margin:0 0 6px;font-weight:600;font-size:1.05em;">Não foi possível encontrar dados automáticos</p>
-        <p style="margin:0 0 16px;font-size:.9em;color:#777;">Tente pesquisar manualmente no Google.</p>
+      <div style="padding: 12px 10px; text-align: center; color: #475569;">
+        <div style="font-size: 1.8rem; margin-bottom: 4px; color: #64748b;">
+          <i class="fa-solid fa-magnifying-glass-location"></i>
+        </div>
+        <p style="margin: 0 0 4px; font-weight: 700; font-size: 0.95rem; color: #1e293b;">
+          Não foi possível identificar morada nas fontes públicas diretas
+        </p>
+        <p style="margin: 0 0 10px; font-size: 0.8rem; color: #64748b;">
+          Pode consultar diretamente o Google ou ativar o motor de IA Gemini abaixo:
+        </p>
         <a href="https://www.google.com/search?q=${entityQ}" target="_blank" rel="noopener"
-           style="display:inline-block;padding:9px 18px;background:#4285f4;color:#fff;border-radius:6px;text-decoration:none;font-size:.9em;font-weight:600;">
-          <i class="fa-brands fa-google" style="margin-right:6px;"></i>Pesquisar no Google
+           style="display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; background: #2563eb; color: #ffffff; border-radius: 6px; text-decoration: none; font-size: 0.82rem; font-weight: 600;">
+          <i class="fa-brands fa-google"></i> Ver "${entityName}" no Google
         </a>
+        ${geminiDiagnosticHtml}
       </div>`;
     return;
   }
@@ -28468,65 +28557,131 @@ async function triggerAiAddressEnrichment() {
       }
     }
 
-    // 6. Gemini AI com Google Search — fonte real (pesquisa como o Google)
-    const geminiApiKey = localStorage.getItem('sigec_gemini_api_key') || '';
-    console.log('[SIGEC-Enrichment] Candidatos antes do Gemini:', availableAiCandidates.length, '| Chave Gemini:', geminiApiKey ? 'SIM (' + geminiApiKey.substring(0,8) + '...)' : 'NÃO');
-    if (geminiApiKey) {  // Chamar Gemini sempre que houver chave API
-      try {
-        // PASSO 6a: Gemini com Google Search grounding → texto em linguagem natural
-        const promptGrounding = `Pesquisa na web e encontra a morada completa da sede, website oficial e telefone de contacto da empresa/organização: "${entityName}"${existingPais ? ' (país: ' + existingPais + ')' : ''}. Responde em português.`;
-        console.log('[SIGEC-Gemini 6a] A enviar pedido para:', entityName);
-        const gRespGrounding = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: promptGrounding }] }],
-            tools: [{ googleSearch: {} }]
-          })
-        });
+    // 6. Gemini AI com Google Search e Fallbacks Robustos
+    const rawGeminiKey = localStorage.getItem('sigec_gemini_api_key') || '';
+    const geminiApiKey = rawGeminiKey.trim().replace(/^["']|["']$/g, '');
+    lastGeminiError = '';
 
-        let groundingText = '';
-        let groundingSource = '';
-        if (gRespGrounding.ok) {
-          const gGroundData = await gRespGrounding.json();
-          groundingText = gGroundData?.candidates?.[0]?.content?.parts?.[0]?.text || '';
-          // Tentar obter URL da fonte nos metadados de grounding
-          const groundingChunks = gGroundData?.candidates?.[0]?.groundingMetadata?.groundingChunks || [];
-          groundingSource = groundingChunks?.[0]?.web?.uri || '';
-          console.log('[SIGEC-Gemini 6a] Resposta OK. Texto (150 chars):', groundingText.substring(0,150), '| Fonte:', groundingSource);
-        } else {
-          const errBody = await gRespGrounding.text();
-          console.warn('[SIGEC-Gemini 6a] Erro HTTP', gRespGrounding.status, ':', errBody.substring(0,200));
+    console.log('[SIGEC-Enrichment] Candidatos antes do Gemini:', availableAiCandidates.length, '| Chave Gemini:', geminiApiKey ? 'SIM (' + geminiApiKey.substring(0,7) + '...)' : 'NÃO');
+
+    if (geminiApiKey) {
+      try {
+        let aiTextResponse = '';
+        let aiSourceUrl = '';
+
+        // ── TENTATIVA 6a: Gemini 2.0 com Google Search Grounding ──
+        try {
+          const promptGrounding = `Pesquisa na web e encontra a morada completa da sede, website oficial e telefone de contacto da empresa/organização: "${entityName}"${existingPais ? ' (país: ' + existingPais + ')' : ''}. Responde em português.`;
+          console.log('[SIGEC-Gemini 6a] A enviar com Google Search Grounding...');
+          const gRespGrounding = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: promptGrounding }] }],
+              tools: [{ googleSearch: {} }]
+            })
+          });
+
+          if (gRespGrounding.ok) {
+            const gGroundData = await gRespGrounding.json();
+            aiTextResponse = gGroundData?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+            const groundingChunks = gGroundData?.candidates?.[0]?.groundingMetadata?.groundingChunks || [];
+            aiSourceUrl = groundingChunks?.[0]?.web?.uri || '';
+            console.log('[SIGEC-Gemini 6a] Resposta obtida via Google Search!');
+          } else {
+            const errBody = await gRespGrounding.text();
+            let parsedMsg = '';
+            try { parsedMsg = JSON.parse(errBody)?.error?.message || errBody; } catch(_) { parsedMsg = errBody; }
+            lastGeminiError = parsedMsg;
+            console.warn('[SIGEC-Gemini 6a Erro]:', lastGeminiError);
+          }
+        } catch(e6a) {
+          lastGeminiError = e6a.message || String(e6a);
+          console.warn('[SIGEC-Gemini 6a Exceção]:', e6a);
         }
 
-
-        // PASSO 6b: Gemini sem grounding → converte o texto em JSON estruturado
-        const promptJson = `Com base neste texto sobre "${entityName}", extrai APENAS os dados de contacto em JSON:
-
-TEXTO: ${groundingText || 'Empresa: ' + entityName + (existingPais ? ', País: ' + existingPais : '')}
-
-Devolve APENAS este JSON (sem mais texto, sem markdown):
-{"website":"url completo ou vazio","telefone":"número ou vazio","direcao1":"rua e número ou vazio","codigoPostal":"código postal ou vazio","localidade":"cidade ou vazio","pais":"país em português ou vazio"}`;
-
-        const gRespJson = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: promptJson }] }],
-            generationConfig: { responseMimeType: 'application/json' }
-          })
-        });
-
-        if (gRespJson.ok) {
-          const gJsonData = await gRespJson.json();
-          const jsonText = gJsonData?.candidates?.[0]?.content?.parts?.[0]?.text || '';
-          console.log('[SIGEC-Gemini 6b] JSON recebido:', jsonText.substring(0, 300));
+        // ── TENTATIVA 6a-alt: Se Grounding falhou, tentar Gemini Direto (sem ferramentas) ──
+        if (!aiTextResponse) {
+          console.log('[SIGEC-Gemini] A tentar modo conhecimento direto (sem tools)...');
           try {
-            // Tentar parse direto (JSON mode garante saída limpa)
-            const parsed = JSON.parse(jsonText.trim());
-            const gCountry = parsed.pais || existingPais || 'Portugal';
-            console.log('[SIGEC-Gemini 6b] Parsed:', JSON.stringify(parsed));
-            // Só adicionar se tiver pelo menos um campo útil
+            const directPrompt = `Indica a morada completa da sede oficial (rua, código postal, cidade, país), website oficial e telefone da empresa ou organização "${entityName}"${existingPais ? ' (' + existingPais + ')' : ''}. Fornece todos os detalhes conhecidos.`;
+            const gRespDirect = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                contents: [{ parts: [{ text: directPrompt }] }]
+              })
+            });
+
+            if (gRespDirect.ok) {
+              const gDataDir = await gRespDirect.json();
+              aiTextResponse = gDataDir?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+              lastGeminiError = ''; // Limpar erro pois fallback funcionou
+              console.log('[SIGEC-Gemini Direto 2.0] Resposta obtida com sucesso!');
+            } else {
+              // Tentar fallback para gemini-1.5-flash
+              const gResp15 = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  contents: [{ parts: [{ text: directPrompt }] }]
+                })
+              });
+              if (gResp15.ok) {
+                const gData15 = await gResp15.json();
+                aiTextResponse = gData15?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+                lastGeminiError = '';
+                console.log('[SIGEC-Gemini Direto 1.5] Resposta obtida com sucesso!');
+              } else {
+                const errBody15 = await gResp15.text();
+                try { lastGeminiError = JSON.parse(errBody15)?.error?.message || errBody15; } catch(_) { lastGeminiError = errBody15; }
+              }
+            }
+          } catch(eDir) {
+            if (!lastGeminiError) lastGeminiError = eDir.message || String(eDir);
+          }
+        }
+
+        // ── PASSO 6b: Extrair dados estruturados em JSON ──
+        if (aiTextResponse) {
+          const promptJson = `Com base neste texto sobre "${entityName}", extrai APENAS os dados de contacto em JSON:
+
+TEXTO: ${aiTextResponse}
+
+Devolve APENAS este JSON exato (sem texto extra, sem markdown):
+{"website":"","telefone":"","direcao1":"","codigoPostal":"","localidade":"","pais":""}`;
+
+          let parsed = null;
+          try {
+            const gRespJson = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                contents: [{ parts: [{ text: promptJson }] }],
+                generationConfig: { responseMimeType: 'application/json' }
+              })
+            });
+
+            if (gRespJson.ok) {
+              const gJsonData = await gRespJson.json();
+              const jsonText = gJsonData?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+              parsed = JSON.parse(jsonText.trim());
+            }
+          } catch(eParse) {
+            console.warn('[SIGEC-Gemini 6b] JSON mode falhou, a tentar regex:', eParse);
+          }
+
+          // Fallback regex se o modo JSON não devolver
+          if (!parsed) {
+            const jm = aiTextResponse.match(/\{[\s\S]*?\}/);
+            if (jm) {
+              try { parsed = JSON.parse(jm[0]); } catch(_) {}
+            }
+          }
+
+          if (parsed) {
+            const gCountry = parsed.pais || existingPais || 'Espanha';
+            const gCc = gCountry.toLowerCase().includes('port') ? 'pt' : (gCountry.toLowerCase().includes('esp') ? 'es' : '');
             if (parsed.website || parsed.localidade || parsed.direcao1 || parsed.telefone) {
               availableAiCandidates.push({
                 nome:        entityName,
@@ -28537,38 +28692,21 @@ Devolve APENAS este JSON (sem mais texto, sem markdown):
                 codigoPostal:parsed.codigoPostal || '',
                 localidade:  parsed.localidade || '',
                 pais:        gCountry,
-                countryCode: '',
-                flag:        getCountryFlagEmoji('', gCountry),
+                countryCode: gCc,
+                flag:        getCountryFlagEmoji(gCc, gCountry),
                 telefone:    parsed.telefone || existingTelefone || '',
                 website:     parsed.website || existingWebsite || '',
-                fonteUrl:    groundingSource || parsed.website || '',
+                fonteUrl:    aiSourceUrl || parsed.website || 'https://www.google.com',
                 provider:    '🔎 Google (via Gemini AI)'
               });
-            }
-          } catch(parseErr) {
-            // Fallback: tentar extrair JSON com regex do texto retornado
-            const jm = jsonText.match(/\{[\s\S]*?\}/);
-            if (jm) {
-              try {
-                const parsed = JSON.parse(jm[0]);
-                const gCountry = parsed.pais || existingPais || 'Portugal';
-                if (parsed.website || parsed.localidade || parsed.direcao1) {
-                  availableAiCandidates.push({
-                    nome: entityName, direcao1: parsed.direcao1 || '', direcao2: '',
-                    numero: '', andar: '', codigoPostal: parsed.codigoPostal || '',
-                    localidade: parsed.localidade || '', pais: gCountry, countryCode: '',
-                    flag: getCountryFlagEmoji('', gCountry),
-                    telefone: parsed.telefone || existingTelefone || '',
-                    website: parsed.website || existingWebsite || '',
-                    fonteUrl: groundingSource || '', provider: '🔎 Google (via Gemini AI)'
-                  });
-                }
-              } catch(_) {}
+              lastGeminiError = '';
+              console.log('[SIGEC-Gemini] Candidato adicionado com sucesso!');
             }
           }
         }
       } catch (eGemini) {
-        console.warn('Gemini AI falhou:', eGemini.message || eGemini);
+        lastGeminiError = eGemini.message || String(eGemini);
+        console.warn('Gemini AI falhou:', eGemini);
       }
     }
 
@@ -28780,6 +28918,30 @@ function promptGeminiApiKey() {
   }
 }
 window.promptGeminiApiKey = promptGeminiApiKey;
+
+function saveGeminiKeyFromModal() {
+  const inp = document.getElementById('aiModalApiKeyInput');
+  if (!inp || !inp.value.trim()) {
+    showToast('Por favor, insira a sua chave Google Gemini.', 'warning');
+    return;
+  }
+  const clean = inp.value.trim().replace(/^["']|["']$/g, '');
+  localStorage.setItem('sigec_gemini_api_key', clean);
+  showToast('Chave Google Gemini guardada com sucesso! A reiniciar pesquisa...', 'success');
+  if (typeof triggerAiAddressEnrichment === 'function') {
+    triggerAiAddressEnrichment();
+  }
+}
+window.saveGeminiKeyFromModal = saveGeminiKeyFromModal;
+
+function removeGeminiKeyFromModal() {
+  localStorage.removeItem('sigec_gemini_api_key');
+  showToast('Chave Google Gemini removida.', 'info');
+  if (typeof renderAiCandidateCards === 'function') {
+    renderAiCandidateCards();
+  }
+}
+window.removeGeminiKeyFromModal = removeGeminiKeyFromModal;
 
 
 
