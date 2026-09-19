@@ -28468,46 +28468,98 @@ async function triggerAiAddressEnrichment() {
       }
     }
 
-    // 6. Fallback Gemini AI Direto se chave estiver configurada e ainda sem candidatos suficientes
+    // 6. Gemini AI com Google Search — fonte real (pesquisa como o Google)
     const geminiApiKey = localStorage.getItem('sigec_gemini_api_key') || '';
     if (availableAiCandidates.length < 2 && geminiApiKey) {
       try {
-        const prompt = `Pesquisa na web o website oficial, telefone e a morada completa da sede de: "${entityName}". Contexto: Tipo: ${tipoCliente}${ministerio ? ', Ministério: ' + ministerio : ''}${existingPais ? ', País: ' + existingPais : ''}. Devolve EXCLUSIVAMENTE um objeto JSON no formato: {"website":"url", "telefone":"contacto", "direcao1":"rua/av/praca", "direcao2":"", "numero":"", "andar":"", "codigoPostal":"código postal", "localidade":"cidade", "pais":"nome do país", "fonteUrl":""}`;
-        const gResp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
+        // PASSO 6a: Gemini com Google Search grounding → texto em linguagem natural
+        const promptGrounding = `Pesquisa na web e encontra a morada completa da sede, website oficial e telefone de contacto da empresa/organização: "${entityName}"${existingPais ? ' (país: ' + existingPais + ')' : ''}. Responde em português.`;
+        const gRespGrounding = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
+            contents: [{ parts: [{ text: promptGrounding }] }],
             tools: [{ googleSearch: {} }]
           })
         });
-        if (gResp.ok) {
-          const gData = await gResp.json();
-          const candidateText = gData?.candidates?.[0]?.content?.parts?.[0]?.text || '';
-          const jm = candidateText.match(/\{[\s\S]*\}/);
-          if (jm) {
-            const parsed = JSON.parse(jm[0]);
+
+        let groundingText = '';
+        let groundingSource = '';
+        if (gRespGrounding.ok) {
+          const gGroundData = await gRespGrounding.json();
+          groundingText = gGroundData?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+          // Tentar obter URL da fonte nos metadados de grounding
+          const groundingChunks = gGroundData?.candidates?.[0]?.groundingMetadata?.groundingChunks || [];
+          groundingSource = groundingChunks?.[0]?.web?.uri || '';
+        }
+
+        // PASSO 6b: Gemini sem grounding → converte o texto em JSON estruturado
+        const promptJson = `Com base neste texto sobre "${entityName}", extrai APENAS os dados de contacto em JSON:
+
+TEXTO: ${groundingText || 'Empresa: ' + entityName + (existingPais ? ', País: ' + existingPais : '')}
+
+Devolve APENAS este JSON (sem mais texto, sem markdown):
+{"website":"url completo ou vazio","telefone":"número ou vazio","direcao1":"rua e número ou vazio","codigoPostal":"código postal ou vazio","localidade":"cidade ou vazio","pais":"país em português ou vazio"}`;
+
+        const gRespJson = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: promptJson }] }],
+            generationConfig: { responseMimeType: 'application/json' }
+          })
+        });
+
+        if (gRespJson.ok) {
+          const gJsonData = await gRespJson.json();
+          const jsonText = gJsonData?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+          try {
+            // Tentar parse direto (JSON mode garante saída limpa)
+            const parsed = JSON.parse(jsonText.trim());
             const gCountry = parsed.pais || existingPais || 'Portugal';
-            availableAiCandidates.push({
-              nome: entityName,
-              direcao1: parsed.direcao1 || '',
-              direcao2: parsed.direcao2 || '',
-              numero: parsed.numero || '',
-              andar: parsed.andar || '',
-              codigoPostal: parsed.codigoPostal || '',
-              localidade: parsed.localidade || '',
-              pais: gCountry,
-              countryCode: '',
-              flag: getCountryFlagEmoji('', gCountry),
-              telefone: parsed.telefone || existingTelefone || '',
-              website: parsed.website || existingWebsite || '',
-              fonteUrl: parsed.fonteUrl || '',
-              provider: 'Google Gemini AI (Global)'
-            });
+            // Só adicionar se tiver pelo menos um campo útil
+            if (parsed.website || parsed.localidade || parsed.direcao1 || parsed.telefone) {
+              availableAiCandidates.push({
+                nome:        entityName,
+                direcao1:    parsed.direcao1 || '',
+                direcao2:    '',
+                numero:      '',
+                andar:       '',
+                codigoPostal:parsed.codigoPostal || '',
+                localidade:  parsed.localidade || '',
+                pais:        gCountry,
+                countryCode: '',
+                flag:        getCountryFlagEmoji('', gCountry),
+                telefone:    parsed.telefone || existingTelefone || '',
+                website:     parsed.website || existingWebsite || '',
+                fonteUrl:    groundingSource || parsed.website || '',
+                provider:    '🔎 Google (via Gemini AI)'
+              });
+            }
+          } catch(parseErr) {
+            // Fallback: tentar extrair JSON com regex do texto retornado
+            const jm = jsonText.match(/\{[\s\S]*?\}/);
+            if (jm) {
+              try {
+                const parsed = JSON.parse(jm[0]);
+                const gCountry = parsed.pais || existingPais || 'Portugal';
+                if (parsed.website || parsed.localidade || parsed.direcao1) {
+                  availableAiCandidates.push({
+                    nome: entityName, direcao1: parsed.direcao1 || '', direcao2: '',
+                    numero: '', andar: '', codigoPostal: parsed.codigoPostal || '',
+                    localidade: parsed.localidade || '', pais: gCountry, countryCode: '',
+                    flag: getCountryFlagEmoji('', gCountry),
+                    telefone: parsed.telefone || existingTelefone || '',
+                    website: parsed.website || existingWebsite || '',
+                    fonteUrl: groundingSource || '', provider: '🔎 Google (via Gemini AI)'
+                  });
+                }
+              } catch(_) {}
+            }
           }
         }
       } catch (eGemini) {
-        console.warn('Gemini AI falhou:', eGemini);
+        console.warn('Gemini AI falhou:', eGemini.message || eGemini);
       }
     }
 
