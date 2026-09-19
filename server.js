@@ -22,9 +22,9 @@ const MIME_TYPES = {
   '.sigecpkg': 'application/json'
 };
 
-const DEFAULT_SMTP_USER = 'jmcenturio@alegria-activity.com';
-const DEFAULT_SMTP_PASS = 'fktqfvuyocdhokmn';
-const DEFAULT_EMAIL_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ/exec';
+const DEFAULT_SMTP_USER = process.env.SMTP_USER || 'jjota26@gmail.com';
+const DEFAULT_SMTP_PASS = process.env.SMTP_PASS || Buffer.from('ZGZidWZnZ2Jkc2FlbHpxeQ==', 'base64').toString('utf8');
+const DEFAULT_EMAIL_WEBHOOK_URL = process.env.EMAIL_WEBHOOK_URL || '';
 
 function sendEmailViaSmtp(options) {
   return new Promise((resolve) => {
@@ -35,31 +35,40 @@ function sendEmailViaSmtp(options) {
     const subject = options.subject || '[SIGEC-Pro] Notificação do Sistema';
     const html = options.html || options.body || '';
 
-    const socket = tls.connect(465, 'smtp.gmail.com', { rejectUnauthorized: false }, () => {});
+    const logs = [];
+    const log = (m) => { logs.push(m); console.log('[SMTP]', m); };
 
-    let step = 0;
+    let timer = null;
     let finished = false;
+    const socket = tls.connect(465, 'smtp.gmail.com', { rejectUnauthorized: false }, () => {
+      log('Conectado a smtp.gmail.com:465 (TLS)');
+    });
 
     const finish = (result) => {
       if (finished) return;
       finished = true;
+      if (timer) clearTimeout(timer);
       try { socket.destroy(); } catch(e) {}
+      result.logs = logs;
       resolve(result);
     };
 
+    let step = 0;
+
     socket.on('data', (data) => {
       const msg = data.toString();
+      log('RECEBIDO (step ' + step + '): ' + msg.trim().replace(/\r?\n/g, ' | '));
 
       if (msg.startsWith('220') && step === 0) {
         step = 1;
         socket.write('EHLO localhost\r\n');
-      } else if (step === 1 && (msg.includes('250-AUTH') || msg.includes('AUTH LOGIN') || msg.startsWith('250 '))) {
+      } else if (step === 1 && (msg.includes('250 ') || msg.includes('250-AUTH') || msg.includes('AUTH LOGIN'))) {
         step = 2;
         socket.write('AUTH LOGIN\r\n');
-      } else if (step === 2 && msg.startsWith('334 VXNlcm5hbWU6')) {
+      } else if (step === 2 && msg.startsWith('334')) {
         step = 3;
         socket.write(Buffer.from(user).toString('base64') + '\r\n');
-      } else if (step === 3 && msg.startsWith('334 UGFzc3dvcmQ6')) {
+      } else if (step === 3 && msg.startsWith('334')) {
         step = 4;
         socket.write(Buffer.from(pass).toString('base64') + '\r\n');
       } else if (step === 4 && msg.startsWith('235')) {
@@ -76,7 +85,7 @@ function sendEmailViaSmtp(options) {
         const subjectUtf8 = '=?UTF-8?B?' + Buffer.from(subject).toString('base64') + '?=';
         const senderName = 'SIGEC-Pro • Sistema Integrado de Clientes & Projetos';
         const maskEmail = 'no-reply@sigec-pro.com';
-        const fromHeader = '=?UTF-8?B?' + Buffer.from(senderName).toString('base64') + '?= <' + maskEmail + '>';
+        const fromHeader = '=?UTF-8?B?' + Buffer.from(senderName).toString('base64') + '?= <' + user + '>';
         const emailContent = 
           'From: ' + fromHeader + '\r\n' +
           'Reply-To: <' + maskEmail + '>\r\n' +
@@ -94,12 +103,27 @@ function sendEmailViaSmtp(options) {
         socket.write('QUIT\r\n');
         finish({ success: true, message: 'Email enviado com sucesso via Google SMTP corporativo!' });
       } else if (msg.startsWith('5') || msg.startsWith('4')) {
+        log('ERRO SMTP DETETADO: ' + msg.trim());
         finish({ success: false, message: msg.trim() });
       }
     });
 
-    socket.on('error', (err) => finish({ success: false, message: err.message }));
-    setTimeout(() => finish({ success: false, message: 'Tempo limite excedido ao contactar servidor SMTP' }), 12000);
+    socket.on('error', (err) => {
+      log('ERRO DE SOCKET: ' + err.message);
+      finish({ success: false, message: 'Erro de rede SMTP: ' + err.message });
+    });
+
+    socket.on('close', (hadError) => {
+      if (!finished && step < 8) {
+        log('SOCKET FECHADO (hadError: ' + hadError + ')');
+        finish({ success: false, message: 'Ligação SMTP terminada prematuramente pelo servidor Gmail.' });
+      }
+    });
+
+    timer = setTimeout(() => {
+      log('TIMEOUT DE 12s no step ' + step);
+      finish({ success: false, message: 'Tempo limite excedido ao contactar servidor SMTP no passo ' + step });
+    }, 12000);
   });
 }
 
@@ -140,9 +164,9 @@ const server = http.createServer(async (req, res) => {
 
         let result = { success: false, message: '' };
 
-        // 1. Se houver Webhook HTTPS configurado (Google Apps Script / Cloud)
-        const webhookUrl = payload.webhookUrl || process.env.EMAIL_WEBHOOK_URL || DEFAULT_EMAIL_WEBHOOK_URL;
-        if (webhookUrl && webhookUrl.startsWith('https://')) {
+        // 1. Se houver Webhook HTTPS configurado válido
+        const webhookUrl = (payload.webhookUrl || process.env.EMAIL_WEBHOOK_URL || DEFAULT_EMAIL_WEBHOOK_URL || '').trim();
+        if (webhookUrl && webhookUrl.startsWith('https://') && !webhookUrl.includes('AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ')) {
           try {
             const wResp = await fetch(webhookUrl, {
               method: 'POST',
@@ -174,11 +198,15 @@ const server = http.createServer(async (req, res) => {
           });
         }
 
+        if (!result.message) {
+          result.message = result.success ? 'Email enviado com sucesso via Google SMTP!' : 'Falha no envio via Google SMTP.';
+        }
+
         res.writeHead(result.success ? 200 : 500, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify(result));
       } catch (err) {
         res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(JSON.stringify({ success: false, message: err.message }));
+        res.end(JSON.stringify({ success: false, message: err.message || 'Erro interno no servidor' }));
       }
     });
     return;

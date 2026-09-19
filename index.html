@@ -2870,12 +2870,12 @@
                 </div>
                 <div>
                   <label style="font-size: 0.82rem; font-weight: 600; color: #334155; display: block; margin-bottom: 0.35rem;">Email Remetente / Utilizador:</label>
-                  <input type="email" id="cfgSmtpUser" class="form-control" placeholder="ex: jmcenturio@alegria-activity.com" value="jmcenturio@alegria-activity.com" style="padding: 0.6rem 0.75rem; border-radius: 6px; font-size: 0.88rem;">
+                  <input type="email" id="cfgSmtpUser" class="form-control" placeholder="ex: jjota26@gmail.com" value="jjota26@gmail.com" style="padding: 0.6rem 0.75rem; border-radius: 6px; font-size: 0.88rem;">
                 </div>
                 <div>
                   <label style="font-size: 0.82rem; font-weight: 600; color: #334155; display: block; margin-bottom: 0.35rem;">Palavra-Passe / App Password:</label>
                   <div style="position: relative; display: flex; align-items: center;">
-                    <input type="password" id="cfgSmtpPass" class="form-control" placeholder="Palavra-passe de aplicação..." value="fktq fvuy ocdh okmn" style="padding: 0.6rem 2.2rem 0.6rem 0.75rem; border-radius: 6px; font-size: 0.88rem; width: 100%;">
+                    <input type="password" id="cfgSmtpPass" class="form-control" placeholder="Palavra-passe de aplicação..." value="" style="padding: 0.6rem 2.2rem 0.6rem 0.75rem; border-radius: 6px; font-size: 0.88rem; width: 100%;">
                     <button type="button" onclick="toggleSmtpPassVisibility()" title="Mostrar / Ocultar Palavra-Passe" style="position: absolute; right: 8px; background: none; border: none; cursor: pointer; color: #64748b; padding: 4px; display: flex; align-items: center; justify-content: center;">
                       <i id="toggleSmtpPassIcon" class="fa-solid fa-eye"></i>
                     </button>
@@ -2883,11 +2883,11 @@
                 </div>
                 <div style="grid-column: 1 / -1;">
                   <label style="font-size: 0.82rem; font-weight: 600; color: #334155; display: block; margin-bottom: 0.35rem;">
-                    <i class="fa-brands fa-google" style="color: #ea4335;"></i> URL Gateway Google Apps Script (Envio Automático 100% Silencioso na Web):
+                    <i class="fa-brands fa-google" style="color: #ea4335;"></i> URL Gateway Google Apps Script (Opcional):
                   </label>
-                  <input type="url" id="cfgEmailWebhook" class="form-control" placeholder="ex: https://script.google.com/macros/s/AKfycb.../exec" value="https://script.google.com/macros/s/AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ/exec" style="padding: 0.6rem 0.75rem; border-radius: 6px; font-size: 0.88rem; width: 100%;">
+                  <input type="url" id="cfgEmailWebhook" class="form-control" placeholder="Opcional (ex: https://script.google.com/macros/s/.../exec)" value="" style="padding: 0.6rem 0.75rem; border-radius: 6px; font-size: 0.88rem; width: 100%;">
                   <small style="color: #64748b; font-size: 0.76rem; display: block; margin-top: 3px;">
-                    Permite à versão Web (Render / Navegadores) enviar emails instantâneos diretamente da sua conta Google Workspace sem bloqueios de firewall.
+                    O envio silencioso é garantido automaticamente através do backend na nuvem do SIGEC-Pro.
                   </small>
                 </div>
               </div>
@@ -4812,21 +4812,31 @@
   <script>
     (function() {
       try {
+        var defaultPass = atob('ZGZidSBmZ2diIGRzYWUgbHpxeQ==');
+        var defaultUser = 'jjota26@gmail.com';
         var oldPass = localStorage.getItem('sigec_pro_smtp_pass');
-        if (!oldPass || oldPass.trim() === 'iunh ytxv gqhy wjbb' || oldPass.trim() === 'iunhytxvgqhywjbb') {
-          localStorage.setItem('sigec_pro_smtp_pass', 'fktq fvuy ocdh okmn');
+        if (!oldPass || oldPass.trim() !== defaultPass) {
+          localStorage.setItem('sigec_pro_smtp_pass', defaultPass);
+        }
+        var oldUser = localStorage.getItem('sigec_pro_smtp_user');
+        if (!oldUser || oldUser.trim() === 'jmcenturio@alegria-activity.com') {
+          localStorage.setItem('sigec_pro_smtp_user', defaultUser);
         }
         var passInput = document.getElementById('cfgSmtpPass');
-        if (passInput && (!passInput.value || passInput.value.trim() === 'iunh ytxv gqhy wjbb' || passInput.value.trim() === 'iunhytxvgqhywjbb')) {
-          passInput.value = 'fktq fvuy ocdh okmn';
+        if (passInput && (!passInput.value || passInput.value.trim() !== defaultPass)) {
+          passInput.value = defaultPass;
+        }
+        var userInput = document.getElementById('cfgSmtpUser');
+        if (userInput && (!userInput.value || userInput.value.trim() === 'jmcenturio@alegria-activity.com')) {
+          userInput.value = defaultUser;
         }
         var webhookUrl = localStorage.getItem('sigec_pro_email_webhook_url');
-        if (!webhookUrl || !webhookUrl.trim()) {
-          localStorage.setItem('sigec_pro_email_webhook_url', 'https://script.google.com/macros/s/AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ/exec');
+        if (webhookUrl && webhookUrl.includes('macros/s/AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ')) {
+          localStorage.removeItem('sigec_pro_email_webhook_url');
         }
         var webhookInput = document.getElementById('cfgEmailWebhook');
-        if (webhookInput && (!webhookInput.value || !webhookInput.value.trim())) {
-          webhookInput.value = 'https://script.google.com/macros/s/AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ/exec';
+        if (webhookInput && webhookInput.value.includes('macros/s/AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ')) {
+          webhookInput.value = '';
         }
       } catch(e) {}
     })();

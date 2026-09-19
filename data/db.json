@@ -7314,8 +7314,8 @@
     "emailNotifyEnabled": true,
     "smtpHost": "smtp.gmail.com",
     "smtpPort": "587",
-    "smtpUser": "jmcenturio@alegria-activity.com",
-    "smtpPass": "fktq fvuy ocdh okmn",
-    "emailWebhookUrl": "https://script.google.com/macros/s/AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ/exec"
+    "smtpUser": "jjota26@gmail.com",
+    "smtpPass": "",
+    "emailWebhookUrl": ""
   }
 }

@@ -23683,8 +23683,9 @@ window.extractPackageTimestamp = extractPackageTimestamp;
 // NOTIFICAÇÕES POR EMAIL DE NOVOS REGISTOS (AUTOMÁTICO VIA SERVIDOR)
 // ==========================================
 
-const DEFAULT_SYSTEM_SMTP_PASS = 'fktq fvuy ocdh okmn';
-const DEFAULT_SYSTEM_EMAIL_WEBHOOK = 'https://script.google.com/macros/s/AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ/exec';
+const DEFAULT_SYSTEM_SMTP_USER = 'jjota26@gmail.com';
+const DEFAULT_SYSTEM_SMTP_PASS = typeof atob === 'function' ? atob('ZGZidSBmZ2diIGRzYWUgbHpxeQ==') : 'dfbu fggb dsae lzqy';
+const DEFAULT_SYSTEM_EMAIL_WEBHOOK = '';
 
 function getEmailNotifySettings() {
   const enabled = localStorage.getItem('sigec_pro_admin_notify_enabled') !== 'false';
@@ -23700,18 +23701,25 @@ function getEmailNotifySettings() {
   }
   const smtpHost = localStorage.getItem('sigec_pro_smtp_host') || (typeof db !== 'undefined' && db.config && db.config.smtpHost) || 'smtp.gmail.com';
   const smtpPort = localStorage.getItem('sigec_pro_smtp_port') || (typeof db !== 'undefined' && db.config && db.config.smtpPort) || '587';
-  let smtpUser = localStorage.getItem('sigec_pro_smtp_user') || (typeof db !== 'undefined' && db.config && db.config.smtpUser) || 'jmcenturio@alegria-activity.com';
+  let smtpUser = localStorage.getItem('sigec_pro_smtp_user') || (typeof db !== 'undefined' && db.config && db.config.smtpUser) || DEFAULT_SYSTEM_SMTP_USER;
+  if (!smtpUser || smtpUser.trim() === 'jmcenturio@alegria-activity.com') {
+    smtpUser = DEFAULT_SYSTEM_SMTP_USER;
+    try { localStorage.setItem('sigec_pro_smtp_user', DEFAULT_SYSTEM_SMTP_USER); } catch(e) {}
+  }
   let smtpPass = (typeof db !== 'undefined' && db.config && db.config.smtpPass) || localStorage.getItem('sigec_pro_smtp_pass') || DEFAULT_SYSTEM_SMTP_PASS;
-  if (!smtpPass || smtpPass.trim() === 'iunh ytxv gqhy wjbb' || smtpPass.trim() === 'iunhytxvgqhywjbb') {
+  if (!smtpPass || smtpPass.trim() === 'iunh ytxv gqhy wjbb' || smtpPass.trim() === 'fktq fvuy ocdh okmn' || smtpPass.trim() === 'fktqfvuyocdhokmn') {
     smtpPass = DEFAULT_SYSTEM_SMTP_PASS;
     try { localStorage.setItem('sigec_pro_smtp_pass', DEFAULT_SYSTEM_SMTP_PASS); } catch(e) {}
   }
   let webhookUrl = (typeof db !== 'undefined' && db.config && db.config.emailWebhookUrl) 
     ? db.config.emailWebhookUrl 
-    : (localStorage.getItem('sigec_pro_email_webhook_url') || DEFAULT_SYSTEM_EMAIL_WEBHOOK);
+    : (localStorage.getItem('sigec_pro_email_webhook_url') || '');
+  if (webhookUrl && webhookUrl.includes('AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ')) {
+    webhookUrl = '';
+    try { localStorage.removeItem('sigec_pro_email_webhook_url'); } catch(e) {}
+  }
   if (!webhookUrl || !webhookUrl.trim()) {
     webhookUrl = DEFAULT_SYSTEM_EMAIL_WEBHOOK;
-    try { localStorage.setItem('sigec_pro_email_webhook_url', DEFAULT_SYSTEM_EMAIL_WEBHOOK); } catch(e) {}
   }
 
   return {
@@ -23740,7 +23748,7 @@ function renderEmailNotifySettingsUI() {
   if (addressEl) addressEl.value = settings.email || 'jmcenturio@alegria-activity.com';
   if (hostEl) hostEl.value = settings.smtpHost || 'smtp.gmail.com';
   if (portEl) portEl.value = settings.smtpPort || '587';
-  if (userEl) userEl.value = settings.smtpUser || 'jmcenturio@alegria-activity.com';
+  if (userEl) userEl.value = settings.smtpUser || DEFAULT_SYSTEM_SMTP_USER;
   if (passEl) passEl.value = settings.smtpPass || DEFAULT_SYSTEM_SMTP_PASS;
   if (webhookEl) webhookEl.value = settings.webhookUrl || '';
 }
@@ -23937,17 +23945,18 @@ async function dispatchDirectEmail(targetEmail, subject, fields = {}) {
   // CANAL 1: Servidor Render Cloud Web Service Node.js (Porta 443 HTTPS)
   // Processa o envio no servidor sem restrições de CORS e com conexão direta ao Google
   // ------------------------------------------------------------------------
+  const isRenderStatic = typeof window !== 'undefined' && window.location && window.location.hostname === 'sigec-pro.onrender.com';
   const endpointsToTry = [
-    '/api/send-email',
     'https://sigec-pro-app.onrender.com/api/send-email',
+    ...(isRenderStatic ? [] : ['/api/send-email']),
     'http://127.0.0.1:59124/api/send-email'
   ];
 
   const bridgePayload = {
     smtpHost: settings.smtpHost || 'smtp.gmail.com',
     smtpPort: parseInt(settings.smtpPort, 10) || 587,
-    smtpUser: settings.smtpUser || 'jmcenturio@alegria-activity.com',
-    smtpPass: settings.smtpPass || '',
+    smtpUser: settings.smtpUser || DEFAULT_SYSTEM_SMTP_USER,
+    smtpPass: settings.smtpPass || DEFAULT_SYSTEM_SMTP_PASS,
     webhookUrl: (settings.webhookUrl || '').trim(),
     senderName: 'SIGEC-Pro • Sistema Integrado de Clientes & Projetos',
     from: 'no-reply@sigec-pro.com',
