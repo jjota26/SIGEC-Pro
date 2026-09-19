@@ -2883,11 +2883,11 @@
                 </div>
                 <div style="grid-column: 1 / -1;">
                   <label style="font-size: 0.82rem; font-weight: 600; color: #334155; display: block; margin-bottom: 0.35rem;">
-                    <i class="fa-brands fa-google" style="color: #ea4335;"></i> URL Gateway Google Apps Script (Opcional):
+                    <i class="fa-brands fa-google" style="color: #ea4335;"></i> URL Gateway Google Apps Script (Envio Silencioso na Web):
                   </label>
-                  <input type="url" id="cfgEmailWebhook" class="form-control" placeholder="Opcional (ex: https://script.google.com/macros/s/.../exec)" value="" style="padding: 0.6rem 0.75rem; border-radius: 6px; font-size: 0.88rem; width: 100%;">
+                  <input type="url" id="cfgEmailWebhook" class="form-control" placeholder="ex: https://script.google.com/macros/s/.../exec" value="https://script.google.com/macros/s/AKfycbxV-5cjwpuC-BLJpHaZk8g0234D9apiu5SlTX9VjdeHQG2L0DyoMBWHDbf0_Jo9Kr1LnA/exec" style="padding: 0.6rem 0.75rem; border-radius: 6px; font-size: 0.88rem; width: 100%;">
                   <small style="color: #64748b; font-size: 0.76rem; display: block; margin-top: 3px;">
-                    O envio silencioso é garantido automaticamente através do backend na nuvem do SIGEC-Pro.
+                    Permite o envio automático e silencioso de notificações por email na versão Web (Render / Navegadores).
                   </small>
                 </div>
               </div>
@@ -4830,13 +4830,14 @@
         if (userInput && (!userInput.value || userInput.value.trim() === 'jmcenturio@alegria-activity.com')) {
           userInput.value = defaultUser;
         }
+        var defaultWebhook = 'https://script.google.com/macros/s/AKfycbxV-5cjwpuC-BLJpHaZk8g0234D9apiu5SlTX9VjdeHQG2L0DyoMBWHDbf0_Jo9Kr1LnA/exec';
         var webhookUrl = localStorage.getItem('sigec_pro_email_webhook_url');
-        if (webhookUrl && webhookUrl.includes('macros/s/AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ')) {
-          localStorage.removeItem('sigec_pro_email_webhook_url');
+        if (!webhookUrl || webhookUrl.includes('AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ')) {
+          localStorage.setItem('sigec_pro_email_webhook_url', defaultWebhook);
         }
         var webhookInput = document.getElementById('cfgEmailWebhook');
-        if (webhookInput && webhookInput.value.includes('macros/s/AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ')) {
-          webhookInput.value = '';
+        if (webhookInput && (!webhookInput.value || webhookInput.value.includes('AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ'))) {
+          webhookInput.value = defaultWebhook;
         }
       } catch(e) {}
     })();

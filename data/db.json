@@ -7316,6 +7316,6 @@
     "smtpPort": "587",
     "smtpUser": "jjota26@gmail.com",
     "smtpPass": "",
-    "emailWebhookUrl": ""
+    "emailWebhookUrl": "https://script.google.com/macros/s/AKfycbxV-5cjwpuC-BLJpHaZk8g0234D9apiu5SlTX9VjdeHQG2L0DyoMBWHDbf0_Jo9Kr1LnA/exec"
   }
 }

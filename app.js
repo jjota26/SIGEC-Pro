@@ -23685,7 +23685,7 @@ window.extractPackageTimestamp = extractPackageTimestamp;
 
 const DEFAULT_SYSTEM_SMTP_USER = 'jjota26@gmail.com';
 const DEFAULT_SYSTEM_SMTP_PASS = typeof atob === 'function' ? atob('ZGZidSBmZ2diIGRzYWUgbHpxeQ==') : 'dfbu fggb dsae lzqy';
-const DEFAULT_SYSTEM_EMAIL_WEBHOOK = '';
+const DEFAULT_SYSTEM_EMAIL_WEBHOOK = 'https://script.google.com/macros/s/AKfycbxV-5cjwpuC-BLJpHaZk8g0234D9apiu5SlTX9VjdeHQG2L0DyoMBWHDbf0_Jo9Kr1LnA/exec';
 
 function getEmailNotifySettings() {
   const enabled = localStorage.getItem('sigec_pro_admin_notify_enabled') !== 'false';

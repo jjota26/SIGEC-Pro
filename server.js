@@ -25,7 +25,7 @@ const MIME_TYPES = {
 
 const DEFAULT_SMTP_USER = process.env.SMTP_USER || 'jjota26@gmail.com';
 const DEFAULT_SMTP_PASS = process.env.SMTP_PASS || Buffer.from('ZGZidWZnZ2Jkc2FlbHpxeQ==', 'base64').toString('utf8');
-const DEFAULT_EMAIL_WEBHOOK_URL = process.env.EMAIL_WEBHOOK_URL || '';
+const DEFAULT_EMAIL_WEBHOOK_URL = process.env.EMAIL_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbxV-5cjwpuC-BLJpHaZk8g0234D9apiu5SlTX9VjdeHQG2L0DyoMBWHDbf0_Jo9Kr1LnA/exec';
 
 async function sendEmailViaSmtp(options) {
   const user = options.user || DEFAULT_SMTP_USER;
