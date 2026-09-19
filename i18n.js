@@ -6,6 +6,20 @@
  */
 
 const SIGEC_I18N = {
+  server_backup_select_label: {
+    "Português": "Selecione a Cópia do Servidor (Últimos 15 Backups):",
+    "Español": "Seleccione la Copia del Servidor (Últimos 15 Backups):",
+    "English": "Select Server Backup File (Last 15 Backups):",
+    "Français": "Sélectionnez la Sauvegarde du Serveur (15 Dernières) :",
+    "Polski": "Wybierz Kopię z Serwera (Ostatnie 15 Kopii):"
+  },
+  server_backup_select_hint: {
+    "Português": "Escolha qualquer uma das cópias para visualizar os seus dados e restaurá-la com 1 clique.",
+    "Español": "Elija cualquiera de las copias para visualizar sus datos y restaurarla con 1 clic.",
+    "English": "Choose any of the backup files to preview its data and restore it with 1 click.",
+    "Français": "Choisissez l'une des sauvegardes pour visualiser ses données et la restaurer en 1 clic.",
+    "Polski": "Wybierz dowolną kopię, aby podejrzeć jej dane i przywrócić ją jednym kliknięciem."
+  },
   user_settings_tab_templates: {
     "Português": "Modelos de Importação",
     "Español": "Plantillas de Importación",
@@ -829,6 +843,20 @@ const SIGEC_I18N = {
  * Permite a tradução automática e profunda de qualquer texto estático ou dinâmico
  */
 const SIGEC_PHRASES_MAP = {
+  "Selecione a Cópia do Servidor (Últimos 15 Backups):": {
+    "Português": "Selecione a Cópia do Servidor (Últimos 15 Backups):",
+    "Español": "Seleccione la Copia del Servidor (Últimos 15 Backups):",
+    "English": "Select Server Backup File (Last 15 Backups):",
+    "Français": "Sélectionnez la Sauvegarde du Serveur (15 Dernières) :",
+    "Polski": "Wybierz Kopię z Serwera (Ostatnie 15 Kopii):"
+  },
+  "Escolha qualquer uma das cópias para visualizar os seus dados e restaurá-la com 1 clique.": {
+    "Português": "Escolha qualquer uma das cópias para visualizar os seus dados e restaurá-la com 1 clique.",
+    "Español": "Elija cualquiera de las copias para visualizar sus datos y restaurarla con 1 clic.",
+    "English": "Choose any of the backup files to preview its data and restore it with 1 click.",
+    "Français": "Choisissez l'une des sauvegardes pour visualiser ses données et la restaurer en 1 clic.",
+    "Polski": "Wybierz dowolną kopię, aby podejrzeć jej dane i przywrócić ją jednym kliknięciem."
+  },
   "Extensão": {
     "Português": "Extensão",
     "Español": "Extensión",

@@ -5274,6 +5274,24 @@
         </span>
       </div>
 
+      <!-- SELETOR DINÂMICO DOS ÚLTIMOS 15 BACKUPS DO SERVIDOR -->
+      <div id="serverBackupSelectContainer" style="background: #f0f9ff; border: 1.5px solid #bae6fd; border-radius: 12px; padding: 0.85rem 1rem; margin-bottom: 1rem; display: none;">
+        <label for="serverBackupSelect" style="display: flex; justify-content: space-between; align-items: center; font-size: 0.84rem; font-weight: 700; color: #0369a1; margin-bottom: 0.45rem;">
+          <span data-i18n="server_backup_select_label"><i class="fa-solid fa-list-check" style="color: #0284c7; margin-right: 5px;"></i> Selecione a Cópia do Servidor (Últimos 15 Backups):</span>
+          <span id="serverBackupSelectCountBadge" style="font-size: 0.72rem; font-weight: 700; background: #dbeafe; color: #1d4ed8; padding: 2px 8px; border-radius: 999px; border: 1px solid #bfdbfe;">0 disponíveis</span>
+        </label>
+        <div style="position: relative;">
+          <select id="serverBackupSelect" class="form-control" onchange="handleServerBackupOptionChanged(this.value)" style="width: 100%; padding: 0.6rem 2.2rem 0.6rem 0.75rem; font-size: 0.84rem; font-weight: 600; border: 1.5px solid #0284c7; border-radius: 8px; background: #ffffff; color: #0f172a; cursor: pointer; box-shadow: 0 1px 3px rgba(2,132,199,0.12);">
+          </select>
+          <div id="serverBackupSelectLoading" style="display: none; position: absolute; right: 0.85rem; top: 50%; transform: translateY(-50%); font-size: 0.95rem; color: #0284c7;">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+          </div>
+        </div>
+        <div style="font-size: 0.74rem; color: #475569; margin-top: 0.4rem; display: flex; align-items: center; gap: 0.35rem;" data-i18n="server_backup_select_hint">
+          <i class="fa-solid fa-clock-rotate-left" style="color: #0284c7;"></i> Escolha qualquer uma das cópias para visualizar os seus dados e restaurá-la com 1 clique.
+        </div>
+      </div>
+
       <!-- Detalhes do Ficheiro Detetado -->
       <div
         style="background: #f8fafc; border: 1px solid var(--soft-blue-border); border-radius: 12px; padding: 1rem; margin-bottom: 1rem;">

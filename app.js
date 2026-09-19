@@ -19603,104 +19603,11 @@ async function exportDatabaseJSON() {
 }
 window.exportDatabaseJSON = exportDatabaseJSON;
 
-async function triggerDatabaseRestore() {
-  const activeUser = typeof getActiveLoggedInUser === 'function' ? getActiveLoggedInUser() : null;
-  const userFolder = getUserBackupFolderName(activeUser);
+let availableServerBackups = [];
+window.availableServerBackups = availableServerBackups;
 
-  const cfg = typeof getHuggingFaceConfig === 'function' ? getHuggingFaceConfig() : {};
-  const token = (cfg.token || DEFAULT_SYSTEM_HF_TOKEN).trim();
-  const space = (cfg.space || DEFAULT_SYSTEM_HF_SPACE || "josecenturio/SIGEC-Pro").trim();
-
-  showToast('A procurar cópias de segurança no Servidor Hugging Face...', 'info');
-
-  try {
-    let latestBackupFile = null;
-    let backupJson = null;
-
-    // Pastas a inspecionar no DATASET e no SPACE
-    const treeUrls = [
-      `https://huggingface.co/api/datasets/${space}/tree/main/Programa%20SIGEC-Pro/Backup/${userFolder}`,
-      `https://huggingface.co/api/datasets/${space}/tree/main/Programa%20SIGEC-Pro/Backup`,
-      `https://huggingface.co/api/spaces/${space}/tree/main/Backup/${userFolder}`,
-      `https://huggingface.co/api/spaces/${space}/tree/main/Backup`
-    ];
-
-    const headers = { 'Cache-Control': 'no-cache, no-store' };
-    if (token) headers['Authorization'] = `Bearer ${token}`;
-
-    for (const treeUrl of treeUrls) {
-      try {
-        const res = await fetch(treeUrl, { headers: headers, cache: 'no-store' });
-        if (res && res.ok) {
-          const items = await res.json();
-          if (Array.isArray(items)) {
-            const backupFiles = items.filter(it => it.path && (it.path.endsWith('.json') || it.path.endsWith('.sigecbak')) && !it.path.endsWith('.gitkeep') && !it.path.includes('README'));
-            if (backupFiles.length > 0) {
-              // Ordenar do mais recente para o mais antigo
-              backupFiles.sort((a, b) => (b.path || '').localeCompare(a.path || ''));
-              latestBackupFile = backupFiles[0];
-
-              // Descarregar o ficheiro JSON de backup
-              const isDataset = treeUrl.includes('/api/datasets/');
-              const rawBase = isDataset ? `https://huggingface.co/datasets/${space}/raw/main/` : `https://huggingface.co/spaces/${space}/raw/main/`;
-              const rawUrl = rawBase + encodeURIComponent(latestBackupFile.path).replace(/%2F/g, '/') + `?_t=${Date.now()}`;
-
-              const rawRes = await fetch(rawUrl, { headers: headers, cache: 'no-store' });
-              if (rawRes && rawRes.ok) {
-                backupJson = await rawRes.json();
-                break;
-              }
-            }
-          }
-        }
-      } catch(eTree) {}
-    }
-
-    if (backupJson && latestBackupFile) {
-      const displayFileName = latestBackupFile.path.split('/').pop();
-      showToast('Cópia de segurança encontrada no Servidor Hugging Face!', 'success');
-      openBackupRestoreModalWithData(backupJson, displayFileName, 'huggingface', 'Programa SIGEC-Pro / Backup');
-      return;
-    }
-  } catch(err) {
-    console.warn('[SIGEC-Pro] Aviso na pesquisa de backup no servidor:', err);
-  }
-
-  // Fallback: Se não encontrou no servidor ou sem internet, abrir seleção local do PC
-  showToast('Nenhuma cópia automática detetada no servidor. Selecione um ficheiro local...', 'info');
-  triggerLocalBackupFileSelect();
-}
-
-function triggerLocalBackupFileSelect() {
-  const fileInput = document.getElementById('fullDatabaseImportInput');
-  if (fileInput) {
-    fileInput.value = '';
-    fileInput.click();
-  }
-}
-
-function importDatabaseJSON(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    try {
-      const parsed = JSON.parse(e.target.result);
-      openBackupRestoreModalWithData(parsed, file.name, 'local');
-    } catch (err) {
-      alert(`❌ Erro ao ler ficheiro de backup:\n${err.message}`);
-    }
-    event.target.value = '';
-  };
-  reader.readAsText(file);
-}
-
-function openBackupRestoreModalWithData(parsed, fileName, source, detectedFolder) {
-  if (!parsed) {
-    alert('Erro: O ficheiro de backup selecionado está vazio ou inválido.');
-    return;
-  }
+function updateBackupRestoreModalUI(parsed, fileName, source, detectedFolder, fallbackDate) {
+  if (!parsed) return;
 
   const data = parsed.database || parsed.db || parsed;
   const clientes = Array.isArray(data.clientes) ? data.clientes : (Array.isArray(parsed.clientes) ? parsed.clientes : []);
@@ -19711,16 +19618,13 @@ function openBackupRestoreModalWithData(parsed, fileName, source, detectedFolder
   const orcamentos = Array.isArray(data.orcamentos) ? data.orcamentos : (Array.isArray(parsed.orcamentos) ? parsed.orcamentos : []);
   const deletedProj = data.deletedProjectIds || parsed.deletedProjectIds || [];
 
-  if (clientes.length === 0 && contactos.length === 0 && projetos.length === 0) {
-    alert('Aviso: O ficheiro de backup selecionado não contém registos válidos de Clientes, Contactos ou Projetos.');
-    return;
-  }
+  const exportDate = parsed.dataHoraFormatada || parsed.exportDate || parsed.dataExportacao || fallbackDate || 'Não especificada';
 
   pendingBackupRestoreData = {
     fileName: fileName || 'Backup_SIGEC-Pro.json',
     source: source || 'huggingface',
     detectedFolder: detectedFolder || 'Backup',
-    _rawParsed: parsed, // Preserva o objecto completo para recuperação do token (_spcfg)
+    _rawParsed: parsed,
     data: {
       clientes,
       contactos,
@@ -19730,10 +19634,9 @@ function openBackupRestoreModalWithData(parsed, fileName, source, detectedFolder
       orcamentos,
       deletedProjectIds: deletedProj
     },
-    exportDate: parsed.dataHoraFormatada || parsed.exportDate || parsed.dataExportacao || 'Não especificada'
+    exportDate: exportDate
   };
 
-  // Preenche os campos do modal
   const nameEl = document.getElementById('backupRestoreFileName');
   const dateEl = document.getElementById('backupRestoreFileDate');
   const badgeEl = document.getElementById('backupRestoreSourceBadge');
@@ -19763,6 +19666,205 @@ function openBackupRestoreModalWithData(parsed, fileName, source, detectedFolder
       badgeEl.style.borderColor = '#bae6fd';
     }
   }
+}
+window.updateBackupRestoreModalUI = updateBackupRestoreModalUI;
+
+async function handleServerBackupOptionChanged(indexStr) {
+  const index = parseInt(indexStr, 10);
+  if (isNaN(index) || !availableServerBackups[index]) return;
+
+  const selectedBackup = availableServerBackups[index];
+  const loader = document.getElementById('serverBackupSelectLoading');
+  if (loader) loader.style.display = 'block';
+
+  try {
+    const cfg = typeof getHuggingFaceConfig === 'function' ? getHuggingFaceConfig() : {};
+    const token = (cfg.token || DEFAULT_SYSTEM_HF_TOKEN).trim();
+    const headers = { 'Cache-Control': 'no-cache, no-store' };
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+
+    const res = await fetch(selectedBackup.rawUrl, { headers: headers, cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const backupJson = await res.json();
+
+    updateBackupRestoreModalUI(backupJson, selectedBackup.fileName, 'huggingface', 'Programa SIGEC-Pro / Backup', selectedBackup.dateStr);
+    showToast(`Cópia selecionada: ${selectedBackup.fileName}`);
+  } catch (err) {
+    console.error('Erro ao descarregar backup selecionado:', err);
+    showToast('Erro ao carregar ficheiro de backup selecionado.', 'danger');
+  } finally {
+    if (loader) loader.style.display = 'none';
+  }
+}
+window.handleServerBackupOptionChanged = handleServerBackupOptionChanged;
+window.triggerDatabaseRestore = triggerDatabaseRestore;
+
+async function triggerDatabaseRestore() {
+  const activeUser = typeof getActiveLoggedInUser === 'function' ? getActiveLoggedInUser() : null;
+  const userFolder = getUserBackupFolderName(activeUser);
+
+  const cfg = typeof getHuggingFaceConfig === 'function' ? getHuggingFaceConfig() : {};
+  const token = (cfg.token || DEFAULT_SYSTEM_HF_TOKEN).trim();
+  const space = (cfg.space || DEFAULT_SYSTEM_HF_SPACE || "josecenturio/SIGEC-Pro").trim();
+
+  showToast('A obter a lista dos últimos backups do Servidor...', 'info');
+
+  try {
+    const treeUrls = [
+      `https://huggingface.co/api/spaces/${space}/tree/main/Backup/${userFolder}`,
+      `https://huggingface.co/api/spaces/${space}/tree/main/Backup`,
+      `https://huggingface.co/api/datasets/${space}/tree/main/Programa%20SIGEC-Pro/Backup/${userFolder}`,
+      `https://huggingface.co/api/datasets/${space}/tree/main/Programa%20SIGEC-Pro/Backup`
+    ];
+
+    const headers = { 'Cache-Control': 'no-cache, no-store' };
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+
+    const fileMap = new Map();
+
+    for (const treeUrl of treeUrls) {
+      try {
+        const res = await fetch(treeUrl, { headers: headers, cache: 'no-store' });
+        if (res && res.ok) {
+          const items = await res.json();
+          if (Array.isArray(items)) {
+            items.forEach(it => {
+              if (!it.path) return;
+              if (!it.path.endsWith('.json') && !it.path.endsWith('.sigecbak')) return;
+              if (it.path.endsWith('.gitkeep') || it.path.includes('README')) return;
+
+              const fileName = it.path.split('/').pop();
+              if (!fileMap.has(fileName)) {
+                const isDataset = treeUrl.includes('/api/datasets/');
+                const rawBase = isDataset ? `https://huggingface.co/datasets/${space}/raw/main/` : `https://huggingface.co/spaces/${space}/raw/main/`;
+                const rawUrl = rawBase + encodeURIComponent(it.path).replace(/%2F/g, '/') + `?_t=${Date.now()}`;
+
+                const m = fileName.match(/(\d{2})-(\d{2})-(\d{4})_(\d{2})-(\d{2})-(\d{2})/);
+                let ts = 0;
+                let dateStr = '';
+                if (m) {
+                  const [_, d, mo, y, h, mi, s] = m;
+                  ts = new Date(Number(y), Number(mo) - 1, Number(d), Number(h), Number(mi), Number(s)).getTime();
+                  dateStr = `${d}/${mo}/${y} ${h}:${mi}:${s}`;
+                } else {
+                  ts = it.lastModified ? new Date(it.lastModified).getTime() : 0;
+                  dateStr = 'Data recente';
+                }
+
+                fileMap.set(fileName, {
+                  path: it.path,
+                  fileName: fileName,
+                  rawUrl: rawUrl,
+                  size: it.size || 0,
+                  ts: ts,
+                  dateStr: dateStr
+                });
+              }
+            });
+          }
+        }
+      } catch(eTree) {}
+    }
+
+    const allBackups = Array.from(fileMap.values());
+    allBackups.sort((a, b) => {
+      if (b.ts !== a.ts) return b.ts - a.ts;
+      return (b.fileName || '').localeCompare(a.fileName || '');
+    });
+
+    const last15Backups = allBackups.slice(0, 15);
+    availableServerBackups = last15Backups;
+    if (typeof window !== "undefined") window.availableServerBackups = last15Backups;
+
+    if (last15Backups.length > 0) {
+      const selectEl = document.getElementById('serverBackupSelect');
+      const countBadge = document.getElementById('serverBackupSelectCountBadge');
+      const selectContainer = document.getElementById('serverBackupSelectContainer');
+
+      if (selectEl) {
+        selectEl.innerHTML = '';
+        last15Backups.forEach((b, idx) => {
+          const opt = document.createElement('option');
+          opt.value = idx;
+          const mb = (b.size / (1024 * 1024)).toFixed(2);
+          const sizeText = b.size > 0 ? ` (${mb} MB)` : '';
+          const tag = idx === 0 ? ' [Mais Recente]' : '';
+          opt.textContent = `${b.dateStr} - ${b.fileName}${sizeText}${tag}`;
+          selectEl.appendChild(opt);
+        });
+      }
+
+      if (countBadge) {
+        countBadge.textContent = `${last15Backups.length} ${last15Backups.length === 1 ? 'disponível' : 'disponíveis'}`;
+      }
+      if (selectContainer) {
+        selectContainer.style.display = 'block';
+      }
+
+      // Descarrega inicialmente a cópia mais recente (índice 0)
+      const latestBackup = last15Backups[0];
+      const rawRes = await fetch(latestBackup.rawUrl, { headers: headers, cache: 'no-store' });
+      if (rawRes && rawRes.ok) {
+        const backupJson = await rawRes.json();
+        showToast(`Lista de ${last15Backups.length} cópias de segurança obtida com sucesso!`, 'success');
+        openBackupRestoreModalWithData(backupJson, latestBackup.fileName, 'huggingface', 'Programa SIGEC-Pro / Backup', latestBackup.dateStr);
+        return;
+      }
+    }
+  } catch(err) {
+    console.warn('[SIGEC-Pro] Aviso na pesquisa de backups no servidor:', err);
+  }
+
+  // Fallback se não encontrar cópias no servidor ou sem ligação
+  showToast('Nenhuma cópia detetada no servidor. Selecione um ficheiro local...', 'info');
+  triggerLocalBackupFileSelect();
+}
+
+function triggerLocalBackupFileSelect() {
+  availableServerBackups = [];
+  const selectContainer = document.getElementById('serverBackupSelectContainer');
+  if (selectContainer) selectContainer.style.display = 'none';
+
+  const fileInput = document.getElementById('fullDatabaseImportInput');
+  if (fileInput) {
+    fileInput.value = '';
+    fileInput.click();
+  }
+}
+
+function importDatabaseJSON(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const parsed = JSON.parse(e.target.result);
+      openBackupRestoreModalWithData(parsed, file.name, 'local');
+    } catch (err) {
+      alert(`❌ Erro ao ler ficheiro de backup:\n${err.message}`);
+    }
+    event.target.value = '';
+  };
+  reader.readAsText(file);
+}
+
+function openBackupRestoreModalWithData(parsed, fileName, source, detectedFolder, fallbackDate) {
+  if (!parsed) {
+    alert('Erro: O ficheiro de backup selecionado está vazio ou inválido.');
+    return;
+  }
+
+  updateBackupRestoreModalUI(parsed, fileName, source, detectedFolder, fallbackDate);
+
+  const selectContainer = document.getElementById('serverBackupSelectContainer');
+  if (selectContainer) {
+    if (source === 'huggingface' && availableServerBackups && availableServerBackups.length > 0) {
+      selectContainer.style.display = 'block';
+    } else {
+      selectContainer.style.display = 'none';
+    }
+  }
 
   const modal = document.getElementById('backupRestoreConfirmationModal');
   if (modal) {
@@ -19775,6 +19877,10 @@ function closeBackupRestoreModal() {
   const modal = document.getElementById('backupRestoreConfirmationModal');
   if (modal) modal.classList.remove('active');
   pendingBackupRestoreData = null;
+  const selectContainer = document.getElementById('serverBackupSelectContainer');
+  if (selectContainer) selectContainer.style.display = 'none';
+  const loader = document.getElementById('serverBackupSelectLoading');
+  if (loader) loader.style.display = 'none';
 }
 
 async function confirmAndExecuteBackupRestore() {
