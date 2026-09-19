@@ -26564,6 +26564,1099 @@ function getCountryFlagEmoji(cc, countryName) {
 }
 window.getCountryFlagEmoji = getCountryFlagEmoji;
 
+const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
+  // --- PORTUGAL: Presid??ncia, Governo Central e Minist??rios ---
+  {
+    aliases: ['presid??ncia', 'presidencia', 'minist??rio da presid??ncia', 'ministerio da presidencia', 'presid??ncia do conselho de ministros', 'secretaria-geral da presid??ncia'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 213 927 600',
+    direcao1: 'Rua Professor Gomes Teixeira',
+    numero: '',
+    andar: '',
+    codigoPostal: '1399-022',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['assembleia da rep??blica', 'assembleia da republica', 'parlamento', 'assuntos parlamentares', 'minist??rio dos assuntos parlamentares', 'ministerio dos assuntos parlamentares'],
+    website: 'https://www.parlamento.pt',
+    telefone: '+351 213 919 000',
+    direcao1: 'Pal??cio de S??o Bento',
+    numero: '',
+    andar: '',
+    codigoPostal: '1249-068',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.parlamento.pt'
+  },
+  {
+    aliases: ['presid??ncia da rep??blica', 'presidencia da republica', 'pal??cio de bel??m', 'palacio de belem'],
+    website: 'https://www.presidencia.pt',
+    telefone: '+351 213 614 600',
+    direcao1: 'Cal??ada da Ajuda',
+    numero: '',
+    andar: '',
+    codigoPostal: '1349-022',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.presidencia.pt'
+  },
+  {
+    aliases: ['neg??cios estrangeiros', 'negocios estrangeiros', 'mne', 'minist??rio dos neg??cios estrangeiros', 'ministerio de estado e dos neg??cios estrangeiros', 'secretaria de estado dos neg??cios estrangeiros', 'secretaria de estado de negocios extrangeiros e coopera????o'],
+    website: 'https://www.portaldiplomatico.mne.gov.pt',
+    telefone: '+351 213 946 000',
+    direcao1: 'Largo do Rilvas (Pal??cio das Necessidades)',
+    numero: '',
+    andar: '',
+    codigoPostal: '1399-030',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portaldiplomatico.mne.gov.pt'
+  },
+  {
+    aliases: ['tesouro e finan??as', 'tesouro e financas', 'dgtf', 'dire????o-geral do tesouro', 'direccao-geral do tesouro', 'dire????o geral do tesouro', 'dire????o-geral do tesouro e finan??as'],
+    website: 'https://www.dgtf.gov.pt',
+    telefone: '+351 218 812 000',
+    direcao1: 'Rua da Alf??ndega',
+    numero: '5',
+    andar: '1.?? andar',
+    codigoPostal: '1149-008',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.gov.pt/entidades/direcao-geral-do-tesouro-e-financas'
+  },
+  {
+    aliases: ['minist??rio das finan??as', 'ministerio das financas', 'finan??as', 'financas', 'gabinete do ministro das finan??as', 'ministerio finanzas'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 218 816 800',
+    direcao1: 'Avenida Infante Dom Henrique',
+    numero: '1',
+    andar: '',
+    codigoPostal: '1149-009',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['autoridade tribut??ria', 'autoridade tributaria', 'at', 'dire????o-geral dos impostos', 'alf??ndega', 'alfandega'],
+    website: 'https://www.portaldasfinancas.gov.pt',
+    telefone: '+351 217 206 707',
+    direcao1: 'Rua da Prata',
+    numero: '10',
+    andar: '',
+    codigoPostal: '1149-027',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portaldasfinancas.gov.pt'
+  },
+  {
+    aliases: ['dire????o-geral do or??amento', 'direccao-geral do orcamento', 'dgo'],
+    website: 'https://www.dgo.gov.pt',
+    telefone: '+351 218 817 000',
+    direcao1: 'Avenida Infante Dom Henrique',
+    numero: '1',
+    andar: '',
+    codigoPostal: '1149-009',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.dgo.gov.pt'
+  },
+  {
+    aliases: ['minist??rio da defesa', 'ministerio da defesa', 'minist??rio da defesa nacional', 'ministerio de defensa nacional', 'ministerio da defesa nacional', 'secretaria de estado da defesa nacional'],
+    website: 'https://www.defesa.gov.pt',
+    telefone: '+351 213 034 500',
+    direcao1: 'Avenida da Ilha da Madeira',
+    numero: '1',
+    andar: '',
+    codigoPostal: '1400-204',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.defesa.gov.pt'
+  },
+  {
+    aliases: ['dire????o-geral de recursos da defesa nacional', 'dire????o geral de recursos de defesa nacional', 'dgrdn'],
+    website: 'https://www.defesa.gov.pt/pt/dgrdn',
+    telefone: '+351 213 038 500',
+    direcao1: 'Avenida da Ilha da Madeira',
+    numero: '1',
+    andar: 'Edif??cio Defesa',
+    codigoPostal: '1400-204',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.defesa.gov.pt'
+  },
+  {
+    aliases: ['administra????o interna', 'administracao interna', 'mai', 'minist??rio da administra????o interna', 'ministerio da administracion interna', 'secretaria de estado da administra????o interna', 'secretaria del estado de administraci??n interna'],
+    website: 'https://www.mai.gov.pt',
+    telefone: '+351 213 233 000',
+    direcao1: 'Pra??a do Com??rcio',
+    numero: '',
+    andar: '',
+    codigoPostal: '1149-015',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.mai.gov.pt'
+  },
+  {
+    aliases: ['pol??cia de seguran??a p??blica', 'policia de seguranca publica', 'psp', 'dire????o nacional da psp'],
+    website: 'https://www.psp.pt',
+    telefone: '+351 213 466 141',
+    direcao1: 'Largo da Penha de Fran??a',
+    numero: '1',
+    andar: '',
+    codigoPostal: '1199-010',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.psp.pt'
+  },
+  {
+    aliases: ['guarda nacional republicana', 'gnr', 'comando geral da gnr'],
+    website: 'https://www.gnr.pt',
+    telefone: '+351 213 217 000',
+    direcao1: 'Largo do Carmo',
+    numero: '',
+    andar: '',
+    codigoPostal: '1200-092',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.gnr.pt'
+  },
+  {
+    aliases: ['prote????o civil', 'protecao civil', 'anepc'],
+    website: 'https://prociv.gov.pt',
+    telefone: '+351 214 247 100',
+    direcao1: 'Avenida do Forte em Carnaxide',
+    numero: '',
+    andar: '',
+    codigoPostal: '2794-112',
+    localidade: 'Carnaxide',
+    pais: 'Portugal',
+    fonteUrl: 'https://prociv.gov.pt'
+  },
+  {
+    aliases: ['minist??rio da justi??a', 'ministerio da justica', 'ministerio de justicia', 'secretaria de estado da justi??a', 'secretar??a del estado de justicia'],
+    website: 'https://www.justica.gov.pt',
+    telefone: '+351 213 222 300',
+    direcao1: 'Pra??a do Com??rcio',
+    numero: '',
+    andar: '',
+    codigoPostal: '1149-019',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.justica.gov.pt'
+  },
+  {
+    aliases: ['instituto dos registos e do notariado', 'irn', 'registos e notariado'],
+    website: 'https://irn.justica.gov.pt',
+    telefone: '+351 211 950 500',
+    direcao1: 'Avenida Dom Jo??o II, Campus de Justi??a, Edif??cio H',
+    numero: 'Lote 1.06.2.1',
+    andar: '',
+    codigoPostal: '1990-097',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://irn.justica.gov.pt'
+  },
+  {
+    aliases: ['pol??cia judici??ria', 'policia judiciaria', 'pj'],
+    website: 'https://www.policiajudiciaria.pt',
+    telefone: '+351 211 967 000',
+    direcao1: 'Rua Gomes Freire',
+    numero: '174',
+    andar: '',
+    codigoPostal: '1169-007',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.policiajudiciaria.pt'
+  },
+  {
+    aliases: ['minist??rio da economia', 'ministerio da economia', 'minist??rio da economia e da coes??o territorial', 'economia e coes??o territorial', 'secretaria de estado do turismo, com??rcio e servi??os'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 217 911 600',
+    direcao1: 'Avenida da Rep??blica',
+    numero: '79',
+    andar: '',
+    codigoPostal: '1050-243',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['coes??o territorial', 'coesao territorial', 'minist??rio da coes??o territorial'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 217 923 500',
+    direcao1: 'Avenida Columbano Bordalo Pinheiro',
+    numero: '86',
+    andar: '',
+    codigoPostal: '1070-065',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['atividades econ??micas', 'actividades economicas', 'dgae', 'dire????o-geral das atividades econ??micas', 'direccao-geral das actividades economicas'],
+    website: 'https://www.dgae.gov.pt',
+    telefone: '+351 217 919 100',
+    direcao1: 'Avenida Visconde de Valmor',
+    numero: '72',
+    andar: '',
+    codigoPostal: '1069-041',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.dgae.gov.pt'
+  },
+  {
+    aliases: ['iapmei', 'competitividade e inova????o'],
+    website: 'https://www.iapmei.pt',
+    telefone: '+351 213 836 000',
+    direcao1: 'Estrada do Pa??o do Lumiar, Campus do Lumiar, Edif??cio A',
+    numero: '',
+    andar: '',
+    codigoPostal: '1649-038',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.iapmei.pt'
+  },
+  {
+    aliases: ['minist??rio da agricultura', 'ministerio da agricultura', 'minist??rio da agricultura e do mar', 'ministerio de agricultura y mar', 'secretaria de estado da agricultura', 'secretario de estado de agricultura'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 213 234 600',
+    direcao1: 'Pra??a do Com??rcio',
+    numero: '',
+    andar: '',
+    codigoPostal: '1149-010',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['dgadr', 'agricultura e desenvolvimento rural', 'dire????o-geral de agricultura e desenvolvimento rural', 'direccao-geral de agricultura e desenvolvimento rural', 'direcci??n general agricultura y desenvolvimiento rural'],
+    website: 'https://www.dgadr.gov.pt',
+    telefone: '+351 218 442 200',
+    direcao1: 'Avenida Afonso Costa',
+    numero: '3',
+    andar: '',
+    codigoPostal: '1949-002',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.dgadr.gov.pt'
+  },
+  {
+    aliases: ['minist??rio da cultura', 'ministerio da cultura', 'minist??rio da cultura, juventude e desporto', 'ministerio de cultura, juventud y deporte', 'secretaria de estado da cultura', 'secretario de estado de cultura'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 213 614 500',
+    direcao1: 'Pal??cio Nacional da Ajuda',
+    numero: '',
+    andar: '',
+    codigoPostal: '1349-021',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['secretaria de estado do desporto', 'secretario de estado de deporte', 'secretaria de estado adjunta e da juventude', 'secretaria de estado adjunta e da juventude e da igualdade', 'ipdj', 'instituto portugu??s do desporto e juventude'],
+    website: 'https://ipdj.gov.pt',
+    telefone: '+351 210 470 000',
+    direcao1: 'Rua Rodrigo da Fonseca',
+    numero: '55',
+    andar: '',
+    codigoPostal: '1250-190',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://ipdj.gov.pt'
+  },
+  {
+    aliases: ['minist??rio da educa????o', 'ministerio da educacao', 'minist??rio da educa????o, ci??ncia e inova????o', 'ministerio de educaci??n, ciencia e innovacion', 'secret??rio de estado adjunto e de educa????o', 'secretario de estado adjunto e de educacao', 'secretaria de estado da educa????o'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 213 934 500',
+    direcao1: 'Avenida 24 de Julho',
+    numero: '134',
+    andar: '',
+    codigoPostal: '1399-029',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['dge', 'dire????o-geral da educa????o', 'direccao-geral da educacao', 'direcci??n general de educaci??n'],
+    website: 'https://www.dge.mec.pt',
+    telefone: '+351 217 901 100',
+    direcao1: 'Pra??a de Alvalade',
+    numero: '12',
+    andar: '',
+    codigoPostal: '1749-070',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.dge.mec.pt'
+  },
+  {
+    aliases: ['minist??rio do trabalho', 'ministerio do trabalho', 'minist??rio do trabalho, solidariedade e seguran??a social', 'ministerio de trabajo, solidaridad y seguridad social', 'secretaria de estado da a????o social e da inclus??o', 'secretaria de estado de acci??n social y de inclusi??n', 'secretaria de estado do trabalho'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 215 953 000',
+    direcao1: 'Pra??a de Londres',
+    numero: '2',
+    andar: '',
+    codigoPostal: '1049-056',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['dire????o-geral da seguran??a social', 'direccao-geral da seguranca social', 'direcci??n general de seguridad social', 'dgss'],
+    website: 'https://www.seg-social.pt',
+    telefone: '+351 215 953 300',
+    direcao1: 'Largo do Rato',
+    numero: '1',
+    andar: '',
+    codigoPostal: '1269-144',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.seg-social.pt'
+  },
+  {
+    aliases: ['instituto da seguran??a social', 'instituto da seguranca social', 'seguran??a social', 'seguranca social', 'iss'],
+    website: 'https://www.seg-social.pt',
+    telefone: '+351 300 502 502',
+    direcao1: 'Avenida 5 de Outubro',
+    numero: '175',
+    andar: '',
+    codigoPostal: '1069-451',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.seg-social.pt'
+  },
+  {
+    aliases: ['minist??rio das infraestruturas', 'ministerio das infraestruturas', 'minist??rio das infraestruturas e habita????o', 'ministerio infraestructuras e habita??ao', 'secretaria de estado das infraestruturas', 'secretaria del estado de infraestructura', 'secretaria de estado da habita????o', 'pal??cio das infraestruturas e habita????o'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 210 426 200',
+    direcao1: 'Avenida Barbosa du Bocage',
+    numero: '5',
+    andar: '',
+    codigoPostal: '1049-039',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['ihru', 'instituto da habita????o e da reabilita????o urbana'],
+    website: 'https://www.ihru.pt',
+    telefone: '+351 217 231 500',
+    direcao1: 'Avenida Columbano Bordalo Pinheiro',
+    numero: '5',
+    andar: '',
+    codigoPostal: '1099-019',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.ihru.pt'
+  },
+  {
+    aliases: ['infraestruturas de portugal'],
+    website: 'https://www.infraestruturasdeportugal.pt',
+    telefone: '+351 212 879 000',
+    direcao1: 'Pra??a da Portagem',
+    numero: '',
+    andar: '',
+    codigoPostal: '2809-013',
+    localidade: 'Almada',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.infraestruturasdeportugal.pt'
+  },
+  {
+    aliases: ['reforma do estado', 'moderniza????o administrativa', 'minist??rio da reforma do estado', 'ministerio de reforma de estado', 'secretaria de estado para a digitaliza????o', 'secretar??a del estado para la digitalizaci??n', 'secretaria de estado para a simplifica????o', 'secretar??a del estado para la simplificaci??n', 'ama', 'ag??ncia para a moderniza????o administrativa'],
+    website: 'https://www.ama.gov.pt',
+    telefone: '+351 217 231 200',
+    direcao1: 'Rua Abranches Ferr??o',
+    numero: '10',
+    andar: '3.?? F',
+    codigoPostal: '1600-001',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.ama.gov.pt'
+  },
+  {
+    aliases: ['minist??rio da sa??de', 'ministerio da saude', 'sns', 'servi??o nacional de sa??de'],
+    website: 'https://www.sns.gov.pt',
+    telefone: '+351 213 305 000',
+    direcao1: 'Avenida Jo??o Cris??stomo',
+    numero: '9',
+    andar: '',
+    codigoPostal: '1049-062',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.sns.gov.pt'
+  },
+  {
+    aliases: ['dire????o-geral da sa??de', 'direccao-geral da saude', 'dgs'],
+    website: 'https://www.dgs.pt',
+    telefone: '+351 218 430 500',
+    direcao1: 'Alameda Dom Afonso Henriques',
+    numero: '45',
+    andar: '',
+    codigoPostal: '1049-005',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.dgs.pt'
+  },
+  {
+    aliases: ['infarmed', 'medicamento e produtos de sa??de'],
+    website: 'https://www.infarmed.pt',
+    telefone: '+351 217 987 100',
+    direcao1: 'Parque de Sa??de de Lisboa, Avenida do Brasil',
+    numero: '53',
+    andar: '',
+    codigoPostal: '1749-004',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.infarmed.pt'
+  },
+  {
+    aliases: ['ambiente e energia', 'minist??rio do ambiente', 'ministerio do ambiente', 'minist??rio do ambiente e energia', 'secretaria de estado do ambiente', 'secretaria de estado da energia'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 213 232 500',
+    direcao1: 'Rua de O S??culo',
+    numero: '51',
+    andar: '',
+    codigoPostal: '1200-433',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['ag??ncia portuguesa do ambiente', 'agencia portuguesa do ambiente', 'apa'],
+    website: 'https://apambiente.pt',
+    telefone: '+351 214 728 200',
+    direcao1: 'Rua da Murgueira',
+    numero: '9/9A',
+    andar: 'Zambujal',
+    codigoPostal: '2610-124',
+    localidade: 'Amadora',
+    pais: 'Portugal',
+    fonteUrl: 'https://apambiente.pt'
+  },
+
+  // --- FUNDA????ES (Portugal e Espanha) ---
+  {
+    aliases: ['funda????o calouste gulbenkian', 'fundacao calouste gulbenkian', 'gulbenkian'],
+    website: 'https://gulbenkian.pt',
+    telefone: '+351 217 823 000',
+    direcao1: 'Avenida de Berna',
+    numero: '45A',
+    andar: '',
+    codigoPostal: '1067-001',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://gulbenkian.pt'
+  },
+  {
+    aliases: ['funda????o champalimaud', 'fundacao champalimaud', 'champalimaud'],
+    website: 'https://fchampalimaud.org',
+    telefone: '+351 210 480 000',
+    direcao1: 'Avenida Bras??lia',
+    numero: '',
+    andar: '',
+    codigoPostal: '1400-038',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://fchampalimaud.org'
+  },
+  {
+    aliases: ['funda????o de serralves', 'fundacao de serralves', 'serralves'],
+    website: 'https://www.serralves.pt',
+    telefone: '+351 226 156 500',
+    direcao1: 'Rua Dom Jo??o de Castro',
+    numero: '210',
+    andar: '',
+    codigoPostal: '4150-417',
+    localidade: 'Porto',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.serralves.pt'
+  },
+  {
+    aliases: ['funda????o oriente', 'fundacao oriente', 'museu do oriente'],
+    website: 'https://www.foriente.pt',
+    telefone: '+351 213 585 200',
+    direcao1: 'Avenida Bras??lia, Doca de Alc??ntara Norte',
+    numero: '',
+    andar: '',
+    codigoPostal: '1350-352',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.foriente.pt'
+  },
+  {
+    aliases: ['funda????o edp', 'fundacao edp', 'maat'],
+    website: 'https://www.fundacaoedp.pt',
+    telefone: '+351 210 028 130',
+    direcao1: 'Avenida 24 de Julho',
+    numero: '12',
+    andar: '',
+    codigoPostal: '1249-300',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.fundacaoedp.pt'
+  },
+  {
+    aliases: ['funda????o aga khan', 'fundacao aga khan'],
+    website: 'https://www.akdn.org',
+    telefone: '+351 217 229 000',
+    direcao1: 'Centro Ismaili, Avenida Lus??ada',
+    numero: '',
+    andar: '',
+    codigoPostal: '1600-001',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.akdn.org'
+  },
+  {
+    aliases: ['funda????o millennium bcp', 'fundacao millennium bcp'],
+    website: 'https://fundacaomillenniumbcp.pt',
+    telefone: '+351 211 131 000',
+    direcao1: 'Rua Augusta',
+    numero: '84',
+    andar: '',
+    codigoPostal: '1100-053',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://fundacaomillenniumbcp.pt'
+  },
+  {
+    aliases: ['fundaci??n la caixa', 'fundacion la caixa', 'fundaci??n bancaria la caixa', 'caixaforum'],
+    website: 'https://fundacionlacaixa.org',
+    telefone: '+34 934 046 000',
+    direcao1: 'Avenida Diagonal',
+    numero: '621',
+    andar: '',
+    codigoPostal: '08028',
+    localidade: 'Barcelona',
+    pais: 'Espa??a',
+    fonteUrl: 'https://fundacionlacaixa.org'
+  },
+  {
+    aliases: ['fundaci??n mapfre', 'fundacion mapfre'],
+    website: 'https://www.fundacionmapfre.org',
+    telefone: '+34 915 811 600',
+    direcao1: 'Paseo de Recoletos',
+    numero: '23',
+    andar: '',
+    codigoPostal: '28004',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.fundacionmapfre.org'
+  },
+  {
+    aliases: ['fundaci??n telef??nica', 'fundacion telefonica', 'espacio fundaci??n telef??nica'],
+    website: 'https://fundaciontelefonica.com',
+    telefone: '+34 915 226 645',
+    direcao1: 'Gran V??a',
+    numero: '28',
+    andar: '',
+    codigoPostal: '28013',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://fundaciontelefonica.com'
+  },
+  {
+    aliases: ['fundaci??n bbva', 'fundacion bbva'],
+    website: 'https://www.fbbva.es',
+    telefone: '+34 913 745 400',
+    direcao1: 'Paseo de Recoletos',
+    numero: '10',
+    andar: '',
+    codigoPostal: '28001',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.fbbva.es'
+  },
+
+  // --- AUTARQUIAS ---
+  {
+    aliases: ['c??mara municipal de lisboa', 'camara municipal de lisboa', 'cml', 'munic??pio de lisboa'],
+    website: 'https://www.lisboa.pt',
+    telefone: '+351 217 988 000',
+    direcao1: 'Pra??a do Munic??pio',
+    numero: '',
+    andar: '',
+    codigoPostal: '1100-038',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.lisboa.pt'
+  },
+  {
+    aliases: ['c??mara municipal do porto', 'camara municipal do porto', 'cmp', 'munic??pio do porto'],
+    website: 'https://www.cm-porto.pt',
+    telefone: '+351 222 090 400',
+    direcao1: 'Pra??a General Humberto Delgado',
+    numero: '',
+    andar: '',
+    codigoPostal: '4049-001',
+    localidade: 'Porto',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.cm-porto.pt'
+  },
+  {
+    aliases: ['c??mara municipal de cascais', 'camara municipal de cascais', 'cmc', 'munic??pio de cascais'],
+    website: 'https://www.cascais.pt',
+    telefone: '+351 214 815 000',
+    direcao1: 'Pra??a 5 de Outubro',
+    numero: '',
+    andar: '',
+    codigoPostal: '2754-501',
+    localidade: 'Cascais',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.cascais.pt'
+  },
+  {
+    aliases: ['c??mara municipal de sintra', 'camara municipal de sintra', 'cms', 'munic??pio de sintra'],
+    website: 'https://cm-sintra.pt',
+    telefone: '+351 219 238 500',
+    direcao1: 'Largo Dr. Virg??lio Horta',
+    numero: '',
+    andar: '',
+    codigoPostal: '2714-501',
+    localidade: 'Sintra',
+    pais: 'Portugal',
+    fonteUrl: 'https://cm-sintra.pt'
+  },
+  {
+    aliases: ['c??mara municipal de braga', 'camara municipal de braga', 'cmb', 'munic??pio de braga'],
+    website: 'https://www.cm-braga.pt',
+    telefone: '+351 253 616 060',
+    direcao1: 'Pra??a do Munic??pio',
+    numero: '',
+    andar: '',
+    codigoPostal: '4700-435',
+    localidade: 'Braga',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.cm-braga.pt'
+  },
+  {
+    aliases: ['c??mara municipal de coimbra', 'camara municipal de coimbra', 'munic??pio de coimbra'],
+    website: 'https://www.cm-coimbra.pt',
+    telefone: '+351 239 857 500',
+    direcao1: 'Pra??a 8 de Maio',
+    numero: '',
+    andar: '',
+    codigoPostal: '3000-300',
+    localidade: 'Coimbra',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.cm-coimbra.pt'
+  },
+
+  // --- GRANDES EMPRESAS (Portugal) ---
+  {
+    aliases: ['edp', 'edp comercial', 'edp distribui????o', 'e-redes'],
+    website: 'https://www.edp.pt',
+    telefone: '+351 210 012 000',
+    direcao1: 'Avenida 24 de Julho',
+    numero: '12',
+    andar: '',
+    codigoPostal: '1249-300',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.edp.pt'
+  },
+  {
+    aliases: ['galp', 'galp energia', 'petr??leos de portugal'],
+    website: 'https://www.galp.com',
+    telefone: '+351 217 242 500',
+    direcao1: 'Rua Tom??s da Fonseca, Torre A',
+    numero: '',
+    andar: '',
+    codigoPostal: '1600-209',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.galp.com'
+  },
+  {
+    aliases: ['tap', 'tap air portugal', 'transportes a??reos portugueses'],
+    website: 'https://www.flytap.com',
+    telefone: '+351 218 415 000',
+    direcao1: 'Edif??cio 25, Aeroporto de Lisboa',
+    numero: '',
+    andar: '',
+    codigoPostal: '1704-801',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.flytap.com'
+  },
+  {
+    aliases: ['ctt', 'ctt correios de portugal', 'correios de portugal'],
+    website: 'https://www.ctt.pt',
+    telefone: '+351 210 471 010',
+    direcao1: 'Avenida Dom Jo??o II',
+    numero: '13',
+    andar: '',
+    codigoPostal: '1999-001',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.ctt.pt'
+  },
+  {
+    aliases: ['nos', 'nos comunica????es', 'zon optimus'],
+    website: 'https://www.nos.pt',
+    telefone: '+351 217 824 700',
+    direcao1: 'Rua Cec??lia Meireles',
+    numero: '7',
+    andar: '',
+    codigoPostal: '2720-090',
+    localidade: 'Amadora',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.nos.pt'
+  },
+  {
+    aliases: ['meo', 'altice', 'altice portugal', 'portugal telecom'],
+    website: 'https://www.meo.pt',
+    telefone: '+351 215 002 000',
+    direcao1: 'Avenida Fontes Pereira de Melo',
+    numero: '40',
+    andar: '',
+    codigoPostal: '1069-300',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.meo.pt'
+  },
+  {
+    aliases: ['vodafone', 'vodafone portugal'],
+    website: 'https://www.vodafone.pt',
+    telefone: '+351 210 915 000',
+    direcao1: 'Avenida Dom Jo??o II',
+    numero: '36',
+    andar: '',
+    codigoPostal: '1998-017',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.vodafone.pt'
+  },
+  {
+    aliases: ['cgd', 'caixa geral de dep??sitos', 'caixa geral de depositos'],
+    website: 'https://www.cgd.pt',
+    telefone: '+351 217 953 000',
+    direcao1: 'Avenida Jo??o XXI',
+    numero: '63',
+    andar: '',
+    codigoPostal: '1000-300',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.cgd.pt'
+  },
+  {
+    aliases: ['bcp', 'millennium bcp', 'banco comercial portugu??s'],
+    website: 'https://www.millenniumbcp.pt',
+    telefone: '+351 211 131 000',
+    direcao1: 'Pra??a Dom Jo??o I',
+    numero: '28',
+    andar: '',
+    codigoPostal: '4000-295',
+    localidade: 'Porto',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.millenniumbcp.pt'
+  },
+  {
+    aliases: ['santander', 'banco santander', 'santander totta'],
+    website: 'https://www.santander.pt',
+    telefone: '+351 213 834 000',
+    direcao1: 'Rua do Ouro',
+    numero: '88',
+    andar: '',
+    codigoPostal: '1100-063',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.santander.pt'
+  },
+
+  // --- ESPANHA: Governo, Minist??rios, Autarquias e Empresas ---
+  {
+    aliases: ['gobierno de espa??a', 'presidencia del gobierno de espa??a', 'la moncloa', 'palacio de la moncloa'],
+    website: 'https://www.lamoncloa.gob.es',
+    telefone: '+34 913 353 535',
+    direcao1: 'Avenida Puerta de Hierro',
+    numero: 's/n',
+    andar: 'Complejo de la Moncloa',
+    codigoPostal: '28071',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.lamoncloa.gob.es'
+  },
+  {
+    aliases: ['ministerio de hacienda', 'hacienda espa??a', 'hacienda y funci??n p??blica'],
+    website: 'https://www.hacienda.gob.es',
+    telefone: '+34 915 958 000',
+    direcao1: 'Calle de Alcal??',
+    numero: '9',
+    andar: '',
+    codigoPostal: '28014',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.hacienda.gob.es'
+  },
+  {
+    aliases: ['agencia tributaria', 'aeat', 'agencia estatal de administraci??n tributaria'],
+    website: 'https://sede.agenciatributaria.gob.es',
+    telefone: '+34 915 548 770',
+    direcao1: 'Calle de Alcal??',
+    numero: '5',
+    andar: '',
+    codigoPostal: '28014',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://sede.agenciatributaria.gob.es'
+  },
+  {
+    aliases: ['ministerio del interior', 'interior espa??a'],
+    website: 'https://www.interior.gob.es',
+    telefone: '+34 915 371 000',
+    direcao1: 'Paseo de la Castellana',
+    numero: '5',
+    andar: '',
+    codigoPostal: '28071',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.interior.gob.es'
+  },
+  {
+    aliases: ['ministerio de justicia', 'justicia espa??a'],
+    website: 'https://www.mjusticia.gob.es',
+    telefone: '+34 913 904 500',
+    direcao1: 'Calle de San Bernardo',
+    numero: '45',
+    andar: '',
+    codigoPostal: '28015',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.mjusticia.gob.es'
+  },
+  {
+    aliases: ['ministerio de asuntos exteriores', 'exteriores espa??a', 'asuntos exteriores, uni??n europea y cooperaci??n'],
+    website: 'https://www.exteriores.gob.es',
+    telefone: '+34 913 799 700',
+    direcao1: 'Plaza del Marqu??s de Salamanca',
+    numero: '8',
+    andar: '',
+    codigoPostal: '28006',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.exteriores.gob.es'
+  },
+  {
+    aliases: ['ministerio de defensa espa??a', 'defensa espa??a'],
+    website: 'https://www.defensa.gob.es',
+    telefone: '+34 913 955 000',
+    direcao1: 'Paseo de la Castellana',
+    numero: '109',
+    andar: '',
+    codigoPostal: '28046',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.defensa.gob.es'
+  },
+  {
+    aliases: ['ministerio de transportes', 'transportes y movilidad sostenible'],
+    website: 'https://www.transportes.gob.es',
+    telefone: '+34 915 977 000',
+    direcao1: 'Paseo de la Castellana',
+    numero: '67',
+    andar: '',
+    codigoPostal: '28071',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.transportes.gob.es'
+  },
+  {
+    aliases: ['ministerio de trabajo y econom??a social', 'trabajo espa??a'],
+    website: 'https://www.mites.gob.es',
+    telefone: '+34 913 630 000',
+    direcao1: 'Paseo de la Castellana',
+    numero: '63',
+    andar: '',
+    codigoPostal: '28071',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.mites.gob.es'
+  },
+  {
+    aliases: ['ministerio de sanidad', 'sanidad espa??a'],
+    website: 'https://www.sanidad.gob.es',
+    telefone: '+34 915 961 000',
+    direcao1: 'Paseo del Prado',
+    numero: '18-20',
+    andar: '',
+    codigoPostal: '28014',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.sanidad.gob.es'
+  },
+  {
+    aliases: ['ayuntamiento de madrid'],
+    website: 'https://www.madrid.es',
+    telefone: '+34 915 298 210',
+    direcao1: 'Plaza de Cibeles',
+    numero: '1',
+    andar: '',
+    codigoPostal: '28014',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.madrid.es'
+  },
+  {
+    aliases: ['ajuntament de barcelona', 'ayuntamiento de barcelona'],
+    website: 'https://www.barcelona.cat',
+    telefone: '+34 934 027 000',
+    direcao1: 'Pla??a de Sant Jaume',
+    numero: '1',
+    andar: '',
+    codigoPostal: '08002',
+    localidade: 'Barcelona',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.barcelona.cat'
+  },
+  {
+    aliases: ['telef??nica', 'telefonica espa??a', 'telef??nica s.a.'],
+    website: 'https://www.telefonica.com',
+    telefone: '+34 914 828 700',
+    direcao1: 'Gran V??a',
+    numero: '28',
+    andar: '',
+    codigoPostal: '28013',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.telefonica.com'
+  },
+  {
+    aliases: ['mercadona'],
+    website: 'https://www.mercadona.es',
+    telefone: '+34 900 500 103',
+    direcao1: 'Calle Valencia',
+    numero: '5',
+    andar: '',
+    codigoPostal: '46130',
+    localidade: 'Tavernes Blanques (Valencia)',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.mercadona.es'
+  },
+  {
+    aliases: ['inditex', 'zara espa??a'],
+    website: 'https://www.inditex.com',
+    telefone: '+34 981 185 400',
+    direcao1: 'Avenida de la Diputaci??n',
+    numero: 's/n',
+    andar: '',
+    codigoPostal: '15143',
+    localidade: 'Arteixo (A Coru??a)',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.inditex.com'
+  },
+  {
+    aliases: ['iberdrola'],
+    website: 'https://www.iberdrola.com',
+    telefone: '+34 944 151 411',
+    direcao1: 'Plaza Euskadi',
+    numero: '5',
+    andar: '',
+    codigoPostal: '48009',
+    localidade: 'Bilbao',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.iberdrola.com'
+  },
+  {
+    aliases: ['repsol'],
+    website: 'https://www.repsol.com',
+    telefone: '+34 917 538 000',
+    direcao1: 'Calle M??ndez ??lvaro',
+    numero: '44',
+    andar: '',
+    codigoPostal: '28045',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.repsol.com'
+  },
+  {
+    aliases: ['el corte ingl??s', 'el corte ingles'],
+    website: 'https://www.elcorteingles.es',
+    telefone: '+34 901 122 122',
+    direcao1: 'Calle Hermosilla',
+    numero: '112',
+    andar: '',
+    codigoPostal: '28009',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.elcorteingles.es'
+  }
+];
+
+function normalizeSearchTerm(str) {
+  if (!str) return '';
+  return str.toString()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function cleanCompanySearchName(str) {
+  if (!str) return '';
+  return str
+    .replace(/\b(s\.?l\.?u?\.?|s\.?a\.?u?\.?|lda\.?|unipessoal|limitada|sociedad an[o??]nima|sociedad limitada|ltd\.?|gmbh|inc\.?|llc|corp\.?)\b/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function resolveEntityFromLocalDirectory(entityName, ministerio, targetPais) {
+  const normName = normalizeSearchTerm(entityName);
+  const normClean = normalizeSearchTerm(cleanCompanySearchName(entityName));
+  const normMin = normalizeSearchTerm(ministerio);
+
+  const rawParts = (entityName || '').split(/[\/\-\|]/).map(s => s.trim()).filter(Boolean);
+  const searchCandidates = [];
+  if (rawParts.length > 1) {
+    searchCandidates.push(normalizeSearchTerm(rawParts[rawParts.length - 1]));
+    searchCandidates.push(normalizeSearchTerm(cleanCompanySearchName(rawParts[rawParts.length - 1])));
+    searchCandidates.push(normalizeSearchTerm(rawParts[0]));
+  }
+  if (normClean && normClean !== normName) searchCandidates.push(normClean);
+  if (normName) searchCandidates.push(normName);
+
+  function matchAlias(target, alias) {
+    if (!target || !alias) return false;
+    const t = normalizeSearchTerm(target);
+    const a = normalizeSearchTerm(alias);
+    if (!t || !a) return false;
+    if (t === a) return true;
+    if (a.length <= 4) {
+      return t.split(/\s+/).includes(a);
+    }
+    return t.includes(a) || a.includes(t);
+  }
+
+  // Pass 1: Busca nos candidatos da entidade
+  for (const cand of searchCandidates) {
+    if (!cand || cand.length < 2) continue;
+    for (const item of SIGEC_PT_INSTITUTIONAL_DIRECTORY) {
+      for (const alias of item.aliases) {
+        if (matchAlias(cand, alias)) {
+          return item;
+        }
+      }
+    }
+  }
+
+  // Pass 2: Busca no minist??rio
+  if (normMin && normMin.length >= 3) {
+    for (const item of SIGEC_PT_INSTITUTIONAL_DIRECTORY) {
+      for (const alias of item.aliases) {
+        if (matchAlias(normMin, alias)) {
+          return item;
+        }
+      }
+    }
+  }
+
+  return null;
+}
+
+
 function cleanCompanySearchName(rawName) {
   if (!rawName || typeof rawName !== 'string') return '';
   let cleaned = rawName.trim();
