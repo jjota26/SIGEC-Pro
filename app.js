@@ -26533,11 +26533,11 @@ window.closeAiAddressModal = closeAiAddressModal;
 
 
 // ====================================================================
-// BASE DE DADOS INSTITUCIONAL E RESOLVEDOR DE DIREÇÃO PARA NAVEGADOR
+// BASE DE DADOS INSTITUCIONAL E RESOLVEDOR DE DIREÇÃO INTERNACIONAL (PT, ES & MUNDIAL)
 // ====================================================================
 
 const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
-  // Presidência e Governo Central
+  // --- PORTUGAL: Presidência e Governo Central ---
   {
     aliases: ['presidência', 'presidencia', 'ministério da presidência', 'ministerio da presidencia', 'presidência do conselho de ministros', 'secretaria-geral da presidência'],
     website: 'https://www.portugal.gov.pt',
@@ -26571,8 +26571,6 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Portugal',
     fonteUrl: 'https://www.presidencia.pt'
   },
-
-  // Negócios Estrangeiros
   {
     aliases: ['negócios estrangeiros', 'negocios estrangeiros', 'mne', 'ministério dos negócios estrangeiros', 'ministerio de estado e dos negócios estrangeiros', 'secretaria de estado dos negócios estrangeiros', 'secretaria de estado de negocios extrangeiros e cooperação'],
     website: 'https://www.portaldiplomatico.mne.gov.pt',
@@ -26584,8 +26582,6 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Portugal',
     fonteUrl: 'https://www.portaldiplomatico.mne.gov.pt'
   },
-
-  // Finanças e Tesouro
   {
     aliases: ['tesouro e finanças', 'tesouro e financas', 'dgtf', 'direção-geral do tesouro', 'direccao-geral do tesouro', 'direção geral do tesouro', 'direção-geral do tesouro e finanças'],
     website: 'https://www.dgtf.gov.pt',
@@ -26630,8 +26626,6 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Portugal',
     fonteUrl: 'https://www.dgo.gov.pt'
   },
-
-  // Defesa Nacional
   {
     aliases: ['ministério da defesa', 'ministerio da defesa', 'ministério da defesa nacional', 'ministerio de defensa nacional', 'ministerio da defesa nacional', 'secretaria de estado da defesa nacional'],
     website: 'https://www.defesa.gov.pt',
@@ -26654,8 +26648,6 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Portugal',
     fonteUrl: 'https://www.defesa.gov.pt'
   },
-
-  // Administração Interna
   {
     aliases: ['administração interna', 'administracao interna', 'mai', 'ministério da administração interna', 'ministerio da administracion interna', 'secretaria de estado da administração interna', 'secretaria del estado de administración interna'],
     website: 'https://www.mai.gov.pt',
@@ -26700,8 +26692,6 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Portugal',
     fonteUrl: 'https://prociv.gov.pt'
   },
-
-  // Justiça
   {
     aliases: ['ministério da justiça', 'ministerio da justica', 'ministerio de justicia', 'secretaria de estado da justiça', 'secretaría del estado de justicia'],
     website: 'https://www.justica.gov.pt',
@@ -26735,8 +26725,6 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Portugal',
     fonteUrl: 'https://www.policiajudiciaria.pt'
   },
-
-  // Economia e Coesão
   {
     aliases: ['ministério da economia', 'ministerio da economia', 'ministério da economia e da coesão territorial', 'economia e coesão territorial', 'secretaria de estado do turismo, comércio e serviços'],
     website: 'https://www.portugal.gov.pt',
@@ -26781,8 +26769,6 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Portugal',
     fonteUrl: 'https://www.iapmei.pt'
   },
-
-  // Agricultura, Alimentação e Pescas
   {
     aliases: ['ministério da agricultura', 'ministerio da agricultura', 'ministério da agricultura e do mar', 'ministerio de agricultura y mar', 'secretaria de estado da agricultura', 'secretario de estado de agricultura'],
     website: 'https://www.portugal.gov.pt',
@@ -26805,8 +26791,6 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Portugal',
     fonteUrl: 'https://www.dgadr.gov.pt'
   },
-
-  // Cultura, Juventude e Desporto
   {
     aliases: ['ministério da cultura', 'ministerio da cultura', 'ministério da cultura, juventude e desporto', 'ministerio de cultura, juventud y deporte', 'secretaria de estado da cultura', 'secretario de estado de cultura'],
     website: 'https://www.portugal.gov.pt',
@@ -26829,8 +26813,6 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Portugal',
     fonteUrl: 'https://ipdj.gov.pt'
   },
-
-  // Educação, Ciência e Inovação
   {
     aliases: ['ministério da educação', 'ministerio da educacao', 'ministério da educação, ciência e inovação', 'ministerio de educación, ciencia e innovacion', 'secretário de estado adjunto e de educação', 'secretario de estado adjunto e de educacao', 'secretaria de estado da educação'],
     website: 'https://www.portugal.gov.pt',
@@ -26853,8 +26835,6 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Portugal',
     fonteUrl: 'https://www.dge.mec.pt'
   },
-
-  // Trabalho, Solidariedade e Segurança Social
   {
     aliases: ['ministério do trabalho', 'ministerio do trabalho', 'ministério do trabalho, solidariedade e segurança social', 'ministerio de trabajo, solidaridad y seguridad social', 'secretaria de estado da ação social e da inclusão', 'secretaria de estado de acción social y de inclusión', 'secretaria de estado do trabalho'],
     website: 'https://www.portugal.gov.pt',
@@ -26888,8 +26868,6 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Portugal',
     fonteUrl: 'https://www.seg-social.pt'
   },
-
-  // Infraestruturas e Habitação
   {
     aliases: ['ministério das infraestruturas', 'ministerio das infraestruturas', 'ministério das infraestruturas e habitação', 'ministerio infraestructuras e habitaçao', 'secretaria de estado das infraestruturas', 'secretaria del estado de infraestructura', 'secretaria de estado da habitação', 'palácio das infraestruturas e habitação'],
     website: 'https://www.portugal.gov.pt',
@@ -26923,8 +26901,6 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Portugal',
     fonteUrl: 'https://www.infraestruturasdeportugal.pt'
   },
-
-  // Reforma do Estado e Modernização
   {
     aliases: ['reforma do estado', 'modernização administrativa', 'ministério da reforma do estado', 'ministerio de reforma de estado', 'secretaria de estado para a digitalização', 'secretaría del estado para la digitalización', 'secretaria de estado para a simplificação', 'secretaría del estado para la simplificación', 'ama', 'agência para a modernização administrativa'],
     website: 'https://www.ama.gov.pt',
@@ -26936,8 +26912,6 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Portugal',
     fonteUrl: 'https://www.ama.gov.pt'
   },
-
-  // Saúde
   {
     aliases: ['ministério da saúde', 'ministerio da saude', 'sns', 'serviço nacional de saúde'],
     website: 'https://www.sns.gov.pt',
@@ -26971,8 +26945,6 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Portugal',
     fonteUrl: 'https://www.infarmed.pt'
   },
-
-  // Ambiente e Energia
   {
     aliases: ['ambiente e energia', 'ministério do ambiente', 'ministerio do ambiente', 'ministério do ambiente e energia', 'secretaria de estado do ambiente', 'secretaria de estado da energia'],
     website: 'https://www.portugal.gov.pt',
@@ -26995,8 +26967,6 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Portugal',
     fonteUrl: 'https://apambiente.pt'
   },
-
-  // Autarquias
   {
     aliases: ['câmara municipal de lisboa', 'camara municipal de lisboa', 'cml', 'município de lisboa'],
     website: 'https://www.lisboa.pt',
@@ -27063,8 +27033,6 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Portugal',
     fonteUrl: 'https://www.cm-coimbra.pt'
   },
-
-  // Grandes Empresas
   {
     aliases: ['edp', 'edp comercial', 'edp distribuição', 'e-redes'],
     website: 'https://www.edp.pt',
@@ -27174,6 +27142,206 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     localidade: 'Lisboa',
     pais: 'Portugal',
     fonteUrl: 'https://www.santander.pt'
+  },
+
+  // --- ESPANHA: Governo, Ministérios e Grandes Entidades ---
+  {
+    aliases: ['gobierno de españa', 'presidencia del gobierno de españa', 'la moncloa', 'palacio de la moncloa'],
+    website: 'https://www.lamoncloa.gob.es',
+    direcao1: 'Avenida Puerta de Hierro',
+    numero: 's/n',
+    andar: 'Complejo de la Moncloa',
+    codigoPostal: '28071',
+    localidade: 'Madrid',
+    pais: 'España',
+    fonteUrl: 'https://www.lamoncloa.gob.es'
+  },
+  {
+    aliases: ['ministerio de hacienda', 'hacienda españa', 'hacienda y función pública'],
+    website: 'https://www.hacienda.gob.es',
+    direcao1: 'Calle de Alcalá',
+    numero: '9',
+    andar: '',
+    codigoPostal: '28014',
+    localidade: 'Madrid',
+    pais: 'España',
+    fonteUrl: 'https://www.hacienda.gob.es'
+  },
+  {
+    aliases: ['agencia tributaria', 'aeat', 'agencia estatal de administración tributaria'],
+    website: 'https://sede.agenciatributaria.gob.es',
+    direcao1: 'Calle de Alcalá',
+    numero: '5',
+    andar: '',
+    codigoPostal: '28014',
+    localidade: 'Madrid',
+    pais: 'España',
+    fonteUrl: 'https://sede.agenciatributaria.gob.es'
+  },
+  {
+    aliases: ['ministerio del interior', 'interior españa'],
+    website: 'https://www.interior.gob.es',
+    direcao1: 'Paseo de la Castellana',
+    numero: '5',
+    andar: '',
+    codigoPostal: '28071',
+    localidade: 'Madrid',
+    pais: 'España',
+    fonteUrl: 'https://www.interior.gob.es'
+  },
+  {
+    aliases: ['ministerio de justicia', 'justicia españa'],
+    website: 'https://www.mjusticia.gob.es',
+    direcao1: 'Calle de San Bernardo',
+    numero: '45',
+    andar: '',
+    codigoPostal: '28015',
+    localidade: 'Madrid',
+    pais: 'España',
+    fonteUrl: 'https://www.mjusticia.gob.es'
+  },
+  {
+    aliases: ['ministerio de asuntos exteriores', 'exteriores españa', 'asuntos exteriores, unión europea y cooperación'],
+    website: 'https://www.exteriores.gob.es',
+    direcao1: 'Plaza del Marqués de Salamanca',
+    numero: '8',
+    andar: '',
+    codigoPostal: '28006',
+    localidade: 'Madrid',
+    pais: 'España',
+    fonteUrl: 'https://www.exteriores.gob.es'
+  },
+  {
+    aliases: ['ministerio de defensa españa', 'defensa españa'],
+    website: 'https://www.defensa.gob.es',
+    direcao1: 'Paseo de la Castellana',
+    numero: '109',
+    andar: '',
+    codigoPostal: '28046',
+    localidade: 'Madrid',
+    pais: 'España',
+    fonteUrl: 'https://www.defensa.gob.es'
+  },
+  {
+    aliases: ['ministerio de transportes', 'transportes y movilidad sostenible'],
+    website: 'https://www.transportes.gob.es',
+    direcao1: 'Paseo de la Castellana',
+    numero: '67',
+    andar: '',
+    codigoPostal: '28071',
+    localidade: 'Madrid',
+    pais: 'España',
+    fonteUrl: 'https://www.transportes.gob.es'
+  },
+  {
+    aliases: ['ministerio de trabajo y economía social', 'trabajo españa'],
+    website: 'https://www.mites.gob.es',
+    direcao1: 'Paseo de la Castellana',
+    numero: '63',
+    andar: '',
+    codigoPostal: '28071',
+    localidade: 'Madrid',
+    pais: 'España',
+    fonteUrl: 'https://www.mites.gob.es'
+  },
+  {
+    aliases: ['ministerio de sanidad', 'sanidad españa'],
+    website: 'https://www.sanidad.gob.es',
+    direcao1: 'Paseo del Prado',
+    numero: '18-20',
+    andar: '',
+    codigoPostal: '28014',
+    localidade: 'Madrid',
+    pais: 'España',
+    fonteUrl: 'https://www.sanidad.gob.es'
+  },
+  {
+    aliases: ['ayuntamiento de madrid'],
+    website: 'https://www.madrid.es',
+    direcao1: 'Plaza de Cibeles',
+    numero: '1',
+    andar: '',
+    codigoPostal: '28014',
+    localidade: 'Madrid',
+    pais: 'España',
+    fonteUrl: 'https://www.madrid.es'
+  },
+  {
+    aliases: ['ajuntament de barcelona', 'ayuntamiento de barcelona'],
+    website: 'https://www.barcelona.cat',
+    direcao1: 'Plaça de Sant Jaume',
+    numero: '1',
+    andar: '',
+    codigoPostal: '08002',
+    localidade: 'Barcelona',
+    pais: 'España',
+    fonteUrl: 'https://www.barcelona.cat'
+  },
+  {
+    aliases: ['telefónica', 'telefonica españa', 'telefónica s.a.'],
+    website: 'https://www.telefonica.com',
+    direcao1: 'Gran Vía',
+    numero: '28',
+    andar: '',
+    codigoPostal: '28013',
+    localidade: 'Madrid',
+    pais: 'España',
+    fonteUrl: 'https://www.telefonica.com'
+  },
+  {
+    aliases: ['mercadona'],
+    website: 'https://www.mercadona.es',
+    direcao1: 'Calle Valencia',
+    numero: '5',
+    andar: '',
+    codigoPostal: '46130',
+    localidade: 'Tavernes Blanques (Valencia)',
+    pais: 'España',
+    fonteUrl: 'https://www.mercadona.es'
+  },
+  {
+    aliases: ['inditex', 'zara españa'],
+    website: 'https://www.inditex.com',
+    direcao1: 'Avenida de la Diputación',
+    numero: 's/n',
+    andar: '',
+    codigoPostal: '15143',
+    localidade: 'Arteixo (A Coruña)',
+    pais: 'España',
+    fonteUrl: 'https://www.inditex.com'
+  },
+  {
+    aliases: ['iberdrola'],
+    website: 'https://www.iberdrola.com',
+    direcao1: 'Plaza Euskadi',
+    numero: '5',
+    andar: '',
+    codigoPostal: '48009',
+    localidade: 'Bilbao',
+    pais: 'España',
+    fonteUrl: 'https://www.iberdrola.com'
+  },
+  {
+    aliases: ['repsol'],
+    website: 'https://www.repsol.com',
+    direcao1: 'Calle Méndez Álvaro',
+    numero: '44',
+    andar: '',
+    codigoPostal: '28045',
+    localidade: 'Madrid',
+    pais: 'España',
+    fonteUrl: 'https://www.repsol.com'
+  },
+  {
+    aliases: ['el corte inglés', 'el corte ingles'],
+    website: 'https://www.elcorteingles.es',
+    direcao1: 'Calle Hermosilla',
+    numero: '112',
+    andar: '',
+    codigoPostal: '28009',
+    localidade: 'Madrid',
+    pais: 'España',
+    fonteUrl: 'https://www.elcorteingles.es'
   }
 ];
 
@@ -27182,13 +27350,13 @@ function normalizeSearchTerm(str) {
   return str.toString()
     .toLowerCase()
     .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
+    .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9\s]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 }
 
-function resolveEntityFromLocalDirectory(entityName, ministerio) {
+function resolveEntityFromLocalDirectory(entityName, ministerio, targetPais) {
   const normName = normalizeSearchTerm(entityName);
   const normMin = normalizeSearchTerm(ministerio);
 
@@ -27238,45 +27406,64 @@ function resolveEntityFromLocalDirectory(entityName, ministerio) {
   return null;
 }
 
-async function resolveEntityFromNominatim(query) {
+async function resolveEntityFromNominatim(query, targetCountry) {
   if (!query || typeof query !== 'string' || query.trim().length < 2) return null;
   const parts = query.split(/[\/\-\|]/).map(p => p.trim()).filter(p => p.length > 2);
-  const candidates = [];
+  const baseCandidates = [];
   if (parts.length > 1) {
-    candidates.push(parts[parts.length - 1]);
-    candidates.push(parts[0]);
+    baseCandidates.push(parts[parts.length - 1]);
+    baseCandidates.push(parts[0]);
   }
-  candidates.push(query.trim());
+  baseCandidates.push(query.trim());
 
-  for (const cand of candidates) {
-    try {
-      const url = 'https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(cand + ', Portugal') + '&format=json&addressdetails=1&limit=1';
-      const resp = await fetch(url, {
-        headers: { 'Accept-Language': 'pt-PT,pt;q=0.9' }
-      });
-      if (!resp.ok) continue;
-      const json = await resp.json();
-      if (json && json.length > 0 && json[0].address) {
-        const addr = json[0].address;
-        const street = addr.road || addr.pedestrian || addr.street || addr.neighbourhood || addr.suburb || (json[0].display_name ? json[0].display_name.split(',')[0] : '') || '';
-        const city = addr.city || addr.town || addr.municipality || addr.village || addr.county || 'Lisboa';
-        const postcode = addr.postcode || '';
-        if (street || postcode) {
-          return {
-            website: '',
-            direcao1: street,
-            direcao2: '',
-            numero: addr.house_number || '',
-            andar: '',
-            codigoPostal: postcode,
-            localidade: city,
-            pais: addr.country || 'Portugal',
-            fonteUrl: 'https://www.openstreetmap.org/' + (json[0].osm_type || 'node') + '/' + (json[0].osm_id || '')
-          };
+  const countryParam = (targetCountry || '').trim();
+
+  for (const cand of baseCandidates) {
+    const urlsToTry = [];
+
+    // 1. Se tem país preenchido diferente de Portugal (ex: Espanha, França, Brasil...)
+    if (countryParam && countryParam.toLowerCase() !== 'portugal') {
+      urlsToTry.push('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(cand + ', ' + countryParam) + '&format=json&addressdetails=1&limit=1');
+    }
+
+    // 2. Pesquisa global aberta em todo o mundo
+    urlsToTry.push('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(cand) + '&format=json&addressdetails=1&limit=1');
+
+    // 3. Pesquisa com sufixo Portugal se país estiver vazio ou for Portugal
+    if (!countryParam || countryParam.toLowerCase() === 'portugal') {
+      urlsToTry.push('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(cand + ', Portugal') + '&format=json&addressdetails=1&limit=1');
+    }
+
+    for (const url of urlsToTry) {
+      try {
+        const resp = await fetch(url, {
+          headers: { 'Accept-Language': 'pt,es,fr,en;q=0.9' }
+        });
+        if (!resp.ok) continue;
+        const json = await resp.json();
+        if (json && json.length > 0 && json[0].address) {
+          const addr = json[0].address;
+          const street = addr.road || addr.pedestrian || addr.street || addr.neighbourhood || addr.suburb || (json[0].display_name ? json[0].display_name.split(',')[0] : '') || '';
+          const city = addr.city || addr.town || addr.municipality || addr.village || addr.county || addr.state || '';
+          const postcode = addr.postcode || '';
+          const detectedCountry = addr.country || countryParam || 'Portugal';
+          if (street || postcode || city) {
+            return {
+              website: '',
+              direcao1: street,
+              direcao2: '',
+              numero: addr.house_number || '',
+              andar: '',
+              codigoPostal: postcode,
+              localidade: city,
+              pais: detectedCountry,
+              fonteUrl: 'https://www.openstreetmap.org/' + (json[0].osm_type || 'node') + '/' + (json[0].osm_id || '')
+            };
+          }
         }
+      } catch(e) {
+        // Segue para próximo URL / candidato
       }
-    } catch(e) {
-      console.warn('Nominatim lookup error for ' + cand + ':', e);
     }
   }
   return null;
@@ -27288,6 +27475,7 @@ async function triggerAiAddressEnrichment() {
   let ministerio = '';
   let contribuinte = '';
   let existingWebsite = '';
+  let existingPais = '';
   let isEstatal = (tipoCliente === 'Estatal');
 
   if (isEstatal) {
@@ -27303,6 +27491,7 @@ async function triggerAiAddressEnrichment() {
     ministerio = document.getElementById('ministerio')?.value?.trim() || '';
     contribuinte = activeSep.contribuinte || '';
     existingWebsite = activeSep.website || '';
+    existingPais = activeSep.pais?.trim() || '';
   } else {
     const nomeEl = document.getElementById('clientNome');
     if (!nomeEl || !nomeEl.value.trim()) {
@@ -27312,6 +27501,7 @@ async function triggerAiAddressEnrichment() {
     entityName = nomeEl.value.trim();
     contribuinte = document.getElementById('clientContribuinte')?.value?.trim() || '';
     existingWebsite = document.getElementById('clientWebsite')?.value?.trim() || '';
+    existingPais = document.getElementById('clientPais')?.value?.trim() || '';
   }
 
   // Abrir Modal no estado Loading
@@ -27328,7 +27518,7 @@ async function triggerAiAddressEnrichment() {
   if (loadingState) loadingState.style.display = 'block';
   if (contentState) contentState.style.display = 'none';
   if (loadingTitle) loadingTitle.textContent = `A pesquisar direção de "${entityName}"...`;
-  if (loadingSubtitle) loadingSubtitle.textContent = isEstatal ? 'A consultar organismos e delegações oficiais' : 'A consultar website e registo institucional';
+  if (loadingSubtitle) loadingSubtitle.textContent = existingPais ? `Pesquisa ativa no país: ${existingPais}` : (isEstatal ? 'A consultar organismos e delegações oficiais' : 'A consultar website e registo internacional');
 
   const btn = document.getElementById('btnAiUpdateClientAddress');
   if (btn) {
@@ -27340,12 +27530,12 @@ async function triggerAiAddressEnrichment() {
     const geminiApiKey = localStorage.getItem('sigec_gemini_api_key') || '';
     let response = null;
 
-    // 1. Verificação Imediata no Diretório Institucional Oficial (0ms, 100% fiável, sem CORS nem rede)
-    const directMatch = resolveEntityFromLocalDirectory(entityName, ministerio);
+    // 1. Verificação Imediata no Diretório Oficial Integrado (0ms, sem bloqueios)
+    const directMatch = resolveEntityFromLocalDirectory(entityName, ministerio, existingPais);
     if (directMatch) {
       response = {
         success: true,
-        provider: 'Registo Institucional Oficial Português',
+        provider: 'Registo Institucional Oficial',
         data: {
           website: directMatch.website || existingWebsite || '',
           direcao1: directMatch.direcao1 || '',
@@ -27354,7 +27544,7 @@ async function triggerAiAddressEnrichment() {
           andar: directMatch.andar || '',
           codigoPostal: directMatch.codigoPostal || '',
           localidade: directMatch.localidade || 'Lisboa',
-          pais: directMatch.pais || 'Portugal',
+          pais: directMatch.pais || existingPais || 'Portugal',
           fonteUrl: directMatch.fonteUrl || directMatch.website || 'https://www.gov.pt'
         }
       };
@@ -27368,6 +27558,7 @@ async function triggerAiAddressEnrichment() {
         ministerio,
         contribuinte,
         existingWebsite,
+        pais: existingPais,
         geminiApiKey
       };
 
@@ -27381,7 +27572,7 @@ async function triggerAiAddressEnrichment() {
           response = await fetchResp.json();
         }
       } catch (e1) {
-        // Ignora erro de rede se estiver estático
+        // Ignora erro de rede em modo estático
       }
 
       if (!response || !response.success || (!response.data?.direcao1 && !response.data?.codigoPostal)) {
@@ -27395,15 +27586,15 @@ async function triggerAiAddressEnrichment() {
             response = await desktopResp.json();
           }
         } catch (e2) {
-          // Ignora erro em navegadores comuns sem desktop
+          // Ignora se não houver desktop local
         }
       }
     }
 
-    // 3. Fallback Gemini AI Direto se chave estiver configurada
+    // 3. Fallback Gemini AI Direto se chave estiver configurada (Pesquisa Mundial)
     if ((!response || !response.success || (!response.data?.direcao1 && !response.data?.codigoPostal)) && geminiApiKey) {
       try {
-        const prompt = `Pesquisa na web o website oficial e a morada completa da sede de: "${entityName}". Contexto: ${tipoCliente === 'Estatal' ? 'Organismo publico, Ministerio: ' + ministerio : 'Empresa'}, Portugal. Devolve EXCLUSIVAMENTE um objeto JSON no formato: {"website":"url", "direcao1":"rua/av/praca", "direcao2":"", "numero":"", "andar":"", "codigoPostal":"XXXX-XXX", "localidade":"", "pais":"Portugal", "fonteUrl":""}`;
+        const prompt = `Pesquisa na web o website oficial e a morada completa da sede de: "${entityName}". Contexto: ${tipoCliente === 'Estatal' ? 'Organismo público' + (ministerio ? ', Ministério: ' + ministerio : '') : 'Empresa'}${existingPais ? ', País: ' + existingPais : ''}. Devolve EXCLUSIVAMENTE um objeto JSON no formato: {"website":"url", "direcao1":"rua/av/praca", "direcao2":"", "numero":"", "andar":"", "codigoPostal":"código postal", "localidade":"cidade", "pais":"nome do país", "fonteUrl":""}`;
         const gResp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -27419,7 +27610,7 @@ async function triggerAiAddressEnrichment() {
           if (jm) {
             response = {
               success: true,
-              provider: 'Google Gemini AI',
+              provider: 'Google Gemini AI (Global)',
               data: JSON.parse(jm[0])
             };
           }
@@ -27429,24 +27620,24 @@ async function triggerAiAddressEnrichment() {
       }
     }
 
-    // 4. Fallback Nominatim / OpenStreetMap (CORS nativo no navegador)
+    // 4. Fallback Nominatim / OpenStreetMap Global (CORS nativo no navegador - Todos os Países)
     if (!response || !response.success || (!response.data?.direcao1 && !response.data?.codigoPostal)) {
-      const osmResult = await resolveEntityFromNominatim(entityName);
-      if (osmResult && (osmResult.direcao1 || osmResult.codigoPostal)) {
+      const osmResult = await resolveEntityFromNominatim(entityName, existingPais);
+      if (osmResult && (osmResult.direcao1 || osmResult.codigoPostal || osmResult.localidade)) {
         response = {
           success: true,
-          provider: 'OpenStreetMap Geocoder',
+          provider: 'OpenStreetMap Geocoder Global',
           data: {
             ...osmResult,
-            website: existingWebsite || (isEstatal ? 'https://www.gov.pt' : '')
+            website: existingWebsite || ''
           }
         };
       }
     }
 
-    // 5. Fallback Institucional Ministerial para Clientes Estatais
+    // 5. Fallback Institucional Ministerial Central (se for estatal)
     if ((!response || !response.success || (!response.data?.direcao1 && !response.data?.codigoPostal)) && isEstatal) {
-      const minMatch = resolveEntityFromLocalDirectory(ministerio, '');
+      const minMatch = resolveEntityFromLocalDirectory(ministerio, '', existingPais);
       if (minMatch) {
         response = {
           success: true,
@@ -27459,14 +27650,14 @@ async function triggerAiAddressEnrichment() {
             andar: minMatch.andar || '',
             codigoPostal: minMatch.codigoPostal || '',
             localidade: minMatch.localidade || 'Lisboa',
-            pais: 'Portugal',
+            pais: minMatch.pais || existingPais || 'Portugal',
             fonteUrl: minMatch.fonteUrl || 'https://www.gov.pt'
           }
         };
       }
     }
 
-    if (!response || !response.success || !response.data || (!response.data.direcao1 && !response.data.codigoPostal)) {
+    if (!response || !response.success || !response.data || (!response.data.direcao1 && !response.data.codigoPostal && !response.data.localidade)) {
       throw new Error('Não foi possível identificar a direção oficial automaticamente para esta entidade.');
     }
 
@@ -27525,7 +27716,7 @@ async function triggerAiAddressEnrichment() {
     if (elLoc) elLoc.textContent = response.data.localidade || '(Vazio)';
 
     const elPais = document.getElementById('aiPreviewPais');
-    if (elPais) elPais.textContent = response.data.pais || 'Portugal';
+    if (elPais) elPais.textContent = response.data.pais || existingPais || 'Portugal';
 
     const elFonte = document.getElementById('aiPreviewFonte');
     if (elFonte) elFonte.textContent = 'Fonte: ' + (response.data.fonteUrl || 'Pesquisa Oficial Institucional');
@@ -27634,4 +27825,5 @@ function promptGeminiApiKey() {
   }
 }
 window.promptGeminiApiKey = promptGeminiApiKey;
+
 
