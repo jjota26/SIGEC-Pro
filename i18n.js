@@ -6,6 +6,27 @@
  */
 
 const SIGEC_I18N = {
+  user_settings_tab_templates: {
+    "Português": "Modelos de Importação",
+    "Español": "Plantillas de Importación",
+    "English": "Import Templates",
+    "Français": "Modèles d'Importation",
+    "Polski": "Szablony Importu"
+  },
+  contact_extensao: {
+    "Português": "Extensão",
+    "Español": "Extensión",
+    "English": "Extension",
+    "Français": "Extension",
+    "Polski": "Wewnętrzny"
+  },
+  contact_extensao_placeholder: {
+    "Português": "Ex: 2410",
+    "Español": "Ej: 2410",
+    "English": "Ex: 2410",
+    "Français": "Ex : 2410",
+    "Polski": "Np.: 2410"
+  },
   dash_project_tracking_title: { "Portugu\u00EAs": "Acompanhamento de Projetos", "Espa\u00F1ol": "Seguimiento de Proyectos", "English": "Project Tracking", "Fran\u00E7ais": "Suivi des Projets", "Polski": "Åšledzenie Projektów" },
   dash_contact_tracking_title: { "Portugu\u00EAs": "Acompanhamento de Contactos", "Espa\u00F1ol": "Seguimiento de Contactos", "English": "Contact Tracking", "Fran\u00E7ais": "Suivi des Contacts", "Polski": "Åšledzenie Kontaktów" },
   dash_client_tracking_title: { "Portugu\u00EAs": "Acompanhamento de Clientes", "Espa\u00F1ol": "Seguimiento de Clientes", "English": "Client Tracking", "Fran\u00E7ais": "Suivi des Clients", "Polski": "Åšledzenie Klientów" },
@@ -808,6 +829,153 @@ const SIGEC_I18N = {
  * Permite a tradução automática e profunda de qualquer texto estático ou dinâmico
  */
 const SIGEC_PHRASES_MAP = {
+  "Extensão": {
+    "Português": "Extensão",
+    "Español": "Extensión",
+    "English": "Extension",
+    "Français": "Extension",
+    "Polski": "Wewnętrzny"
+  },
+  "Extensão:": {
+    "Português": "Extensão:",
+    "Español": "Extensión:",
+    "English": "Extension:",
+    "Français": "Extension :",
+    "Polski": "Wewnętrzny:"
+  },
+  "Modelos de Importação": {
+    "Português": "Modelos de Importação",
+    "Español": "Plantillas de Importación",
+    "English": "Import Templates",
+    "Français": "Modèles d'Importation",
+    "Polski": "Szablony Importu"
+  },
+  "Modelos Oficiais de Importação em Massa (Excel .xlsx)": {
+    "Português": "Modelos Oficiais de Importação em Massa (Excel .xlsx)",
+    "Español": "Plantillas Oficiales de Importación Masiva (Excel .xlsx)",
+    "English": "Official Bulk Import Templates (Excel .xlsx)",
+    "Français": "Modèles Officiels d'Importation en Masse (Excel .xlsx)",
+    "Polski": "Oficjalne Szablony Importu Masowego (Excel .xlsx)"
+  },
+  "Descarregue os ficheiros Excel oficiais ajustados às fichas do SIGEC-Pro. Preencha os seus registos e carregue-os diretamente com 1 clique.": {
+    "Português": "Descarregue os ficheiros Excel oficiais ajustados às fichas do SIGEC-Pro. Preencha os seus registos e carregue-os diretamente com 1 clique.",
+    "Español": "Descargue los archivos Excel oficiales adaptados a las fichas de SIGEC-Pro. Rellene sus registros y cárguelos directamente con 1 clic.",
+    "English": "Download official Excel files tailored to SIGEC-Pro records. Fill in your entries and import them directly with 1 click.",
+    "Français": "Téléchargez les fichiers Excel officiels adaptés aux fiches SIGEC-Pro. Remplissez vos entrées et chargez-les directement en 1 clic.",
+    "Polski": "Pobierz oficjalne pliki Excel dopasowane do formularzy SIGEC-Pro. Wypełnij wpisy i wgraj je bezpośrednio jednym kliknięciem."
+  },
+  "Clientes Estatais & Separadores Automáticos:": {
+    "Português": "Clientes Estatais & Separadores Automáticos:",
+    "Español": "Clientes Estatales y Pestañas Automáticas:",
+    "English": "State Clients & Automatic Tabs:",
+    "Français": "Clients Publics & Onglets Automatiques :",
+    "Polski": "Klienci Państwowi i Automatyczne Zakładki:"
+  },
+  "Com Extensão": {
+    "Português": "Com Extensão",
+    "Español": "Con Extensión",
+    "English": "With Extension",
+    "Français": "Avec Extension",
+    "Polski": "Z Wewnętrznym"
+  },
+  "Inclui Cliente/Entidade, Departamento/Separador, Nome, Apelido, Cargo, Telefone, Extensão, Telemóvel e Email.": {
+    "Português": "Inclui Cliente/Entidade, Departamento/Separador, Nome, Apelido, Cargo, Telefone, Extensão, Telemóvel e Email.",
+    "Español": "Incluye Cliente/Entidad, Departamento/Pestaña, Nombre, Apellido, Cargo, Teléfono, Extensión, Móvil y Email.",
+    "English": "Includes Client/Entity, Department/Tab, First Name, Surname, Position, Telephone, Extension, Mobile, and Email.",
+    "Français": "Comprend Client/Entité, Département/Onglet, Prénom, Nom, Poste, Téléphone, Extension, Portable et Email.",
+    "Polski": "Zawiera Klienta/Podmiot, Departament/Zakładkę, Imię, Nazwisko, Stanowisko, Telefon, Wewnętrzny, Komórkę i Email."
+  },
+  "Descarregar .xlsx": {
+    "Português": "Descarregar .xlsx",
+    "Español": "Descargar .xlsx",
+    "English": "Download .xlsx",
+    "Français": "Télécharger .xlsx",
+    "Polski": "Pobierz .xlsx"
+  },
+  "Carregar Contactos": {
+    "Português": "Carregar Contactos",
+    "Español": "Cargar Contactos",
+    "English": "Upload Contacts",
+    "Français": "Importer Contacts",
+    "Polski": "Wgraj Kontakty"
+  },
+  "Estatais & Privados": {
+    "Português": "Estatais & Privados",
+    "Español": "Estatales y Privados",
+    "English": "State & Private",
+    "Français": "Publics et Privés",
+    "Polski": "Państwowi i Prywatni"
+  },
+  "Inclui Tipo (Estatal/Privado), Ministério/Razão Social, Departamento/Separador, NIF, Morada detalhada, CP e Localidade.": {
+    "Português": "Inclui Tipo (Estatal/Privado), Ministério/Razão Social, Departamento/Separador, NIF, Morada detalhada, CP e Localidade.",
+    "Español": "Incluye Tipo (Estatal/Privado), Ministerio/Razón Social, Departamento/Pestaña, NIF, Dirección detallada, Código Postal y Localidad.",
+    "English": "Includes Type (State/Private), Ministry/Company Name, Department/Tab, Tax ID, Detailed Address, Postal Code, and City.",
+    "Français": "Comprend Type (Public/Privé), Ministère/Raison Sociale, Département/Onglet, NIF, Adresse détaillée, Code Postal et Ville.",
+    "Polski": "Zawiera Typ (Państwowy/Prywatny), Ministerstwo/Nazwę Firmy, Departament/Zakładkę, NIP, Adres szczegółowy, Kod Pocztowy i Miejscowość."
+  },
+  "Carregar Clientes": {
+    "Português": "Carregar Clientes",
+    "Español": "Cargar Clientes",
+    "English": "Upload Clients",
+    "Français": "Importer Clients",
+    "Polski": "Wgraj Klientów"
+  },
+  "Com Departamentos": {
+    "Português": "Com Departamentos",
+    "Español": "Con Departamentos",
+    "English": "With Departments",
+    "Français": "Avec Départements",
+    "Polski": "Z Departamentami"
+  },
+  "Inclui Código, Designação, Cliente, Departamento Estatal, Contacto Principal, Tipo, Estado, Valor e Prazos.": {
+    "Português": "Inclui Código, Designação, Cliente, Departamento Estatal, Contacto Principal, Tipo, Estado, Valor e Prazos.",
+    "Español": "Incluye Código, Designación, Cliente, Departamento Estatal, Contacto Principal, Tipo, Estado, Valor y Plazos.",
+    "English": "Includes Code, Project Title, Client, State Department, Main Contact, Type, Status, Value, and Deadlines.",
+    "Français": "Comprend Code, Désignation, Client, Département Public, Contact Principal, Type, Statut, Valeur et Délais.",
+    "Polski": "Zawiera Kod, Nazwę Projektu, Klienta, Departament Państwowy, Główny Kontakt, Typ, Status, Wartość i Terminy."
+  },
+  "Carregar Projetos": {
+    "Português": "Carregar Projetos",
+    "Español": "Cargar Proyectos",
+    "English": "Upload Projects",
+    "Français": "Importer Projets",
+    "Polski": "Wgraj Projekty"
+  },
+  "Livro Completo (Multi-Abas)": {
+    "Português": "Livro Completo (Multi-Abas)",
+    "Español": "Libro Completo (Multi-Pestañas)",
+    "English": "Complete Workbook (Multi-Sheet)",
+    "Français": "Classeur Complet (Multi-Feuilles)",
+    "Polski": "Kompletny Arkusz (Wielozakładkowy)"
+  },
+  "Tudo-em-Um": {
+    "Português": "Tudo-em-Um",
+    "Español": "Todo en Uno",
+    "English": "All-in-One",
+    "Français": "Tout-en-Un",
+    "Polski": "Wszystko w Jednym"
+  },
+  "Livro de cálculo com todas as abas (Contactos, Clientes, Projetos e Instruções) integradas num único ficheiro.": {
+    "Português": "Livro de cálculo com todas as abas (Contactos, Clientes, Projetos e Instruções) integradas num único ficheiro.",
+    "Español": "Libro de cálculo con todas las pestañas (Contactos, Clientes, Proyectos e Instrucciones) integradas en un único archivo.",
+    "English": "Spreadsheet workbook with all sheets (Contacts, Clients, Projects, and Instructions) integrated into a single file.",
+    "Français": "Classeur avec tous les onglets (Contacts, Clients, Projets et Instructions) intégrés dans un seul fichier.",
+    "Polski": "Arkusz kalkulacyjny ze wszystkimi zakładkami (Kontakty, Klienci, Projekty i Instrukcje) zintegrowanymi w jednym pliku."
+  },
+  "Livro Completo .xlsx": {
+    "Português": "Livro Completo .xlsx",
+    "Español": "Libro Completo .xlsx",
+    "English": "Complete Workbook .xlsx",
+    "Français": "Classeur Complet .xlsx",
+    "Polski": "Kompletny Arkusz .xlsx"
+  },
+  "Carregar Livro": {
+    "Português": "Carregar Livro",
+    "Español": "Cargar Libro",
+    "English": "Upload Workbook",
+    "Français": "Importer Classeur",
+    "Polski": "Wgraj Arkusz"
+  },
   "Acesso Pendente de Aprovação": {"Português":"Acesso Pendente de Aprovação","Español":"Acceso Pendiente de Aprobación","English":"Access Pending Approval","Français":"Accès en Attente d'Approbation","Polski":"Dostęp Oczekuje na Zatwierdzenie"},
   "O seu acesso está condicionado à aceitação do administrador do programa.": {"Português":"O seu acesso está condicionado à aceitação do administrador do programa.","Español":"Su acceso está condicionado a la aceptación del administrador del programa.","English":"Your access is subject to acceptance by the program administrator.","Français":"Votre accès est soumis à l'acceptation de l'administrateur du programme.","Polski":"Twój dostęp jest uzależniony od akceptacji przez administratora programu."},
 
