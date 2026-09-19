@@ -10772,21 +10772,31 @@ function closeSearchModal() {
 // 8. EXPORTAÇÃO PARA EXCEL (.XLSX) E PDF
 // ==========================================
 
-function exportSearchResultsToExcel() {
-  if (!currentSearchResults || currentSearchResults.length === 0) {
+function exportSearchResultsToExcel(customList) {
+  if (!customList) {
+    if (!currentSearchResults || currentSearchResults.length === 0) {
+      showToast('Não há dados para exportar!', 'danger');
+      return;
+    }
+    openBulkExportModal('search_results', 'excel');
+    return;
+  }
+
+  const itemsToExport = customList;
+  if (!itemsToExport || itemsToExport.length === 0) {
     showToast('Não há dados para exportar!', 'danger');
     return;
   }
 
   if (currentSearchCategory === 'projetos_nome') {
-    exportProjectsToExcel(currentSearchResults);
+    exportProjectsToExcel(itemsToExport, true);
     return;
   }
 
   let exportData = [];
 
   if (currentSearchCategory === 'clientes') {
-    exportData = currentSearchResults.map(c => ({
+    exportData = itemsToExport.map(c => ({
       'Tipo de Cliente': c.tipoCliente,
       'Ministério': c.ministerio || '',
       'Secretaria de Estado': c.secretariaEstado || '',
@@ -10805,7 +10815,7 @@ function exportSearchResultsToExcel() {
       'Projetos Relacionados': c.matchedProjectNames || ''
     }));
   } else if (currentSearchCategory === 'contactos') {
-    exportData = currentSearchResults.map(con => {
+    exportData = itemsToExport.map(con => {
       const client = db.clientes.find(c => c.id === con.clienteId);
       return {
         'Nome': con.nome,
@@ -10834,14 +10844,24 @@ function exportSearchResultsToExcel() {
   }
 }
 
-function exportSearchResultsToPDF() {
-  if (!currentSearchResults || currentSearchResults.length === 0) {
+function exportSearchResultsToPDF(customList) {
+  if (!customList) {
+    if (!currentSearchResults || currentSearchResults.length === 0) {
+      showToast('Não há dados para exportar!', 'danger');
+      return;
+    }
+    openBulkExportModal('search_results', 'pdf');
+    return;
+  }
+
+  const itemsToExport = customList;
+  if (!itemsToExport || itemsToExport.length === 0) {
     showToast('Não há dados para exportar!', 'danger');
     return;
   }
 
   if (currentSearchCategory === 'projetos_nome') {
-    exportProjectsToPDF(currentSearchResults);
+    exportProjectsToPDF(itemsToExport, true);
     return;
   }
 
@@ -10856,14 +10876,14 @@ function exportSearchResultsToPDF() {
     doc.text('SIGEC-Pro - Relatório de Pesquisa', 14, 14);
 
     doc.setFontSize(10);
-    doc.text(`Categoria: ${currentSearchCategory.toUpperCase()} | Data: ${new Date().toLocaleDateString('pt-PT')}`, 180, 14);
+    doc.text(`Categoria: ${currentSearchCategory.toUpperCase()} | Registos: ${itemsToExport.length} | Data: ${new Date().toLocaleDateString('pt-PT')}`, 170, 14);
 
     let head = [];
     let body = [];
 
     if (currentSearchCategory === 'clientes') {
       head = [['Tipo', 'Nome / Razão Social', 'NIF', 'Código Postal', 'Localidade', 'País', 'Contacto']];
-      body = currentSearchResults.map(c => [
+      body = itemsToExport.map(c => [
         c.tipoCliente,
         c.nome + (c.ministerio ? ` (${c.ministerio})` : ''),
         c.contribuinte,
@@ -10874,7 +10894,7 @@ function exportSearchResultsToPDF() {
       ]);
     } else if (currentSearchCategory === 'contactos') {
       head = [['Nome Completo', 'Empresa / Cliente', 'Cargo', 'Telefone / Telemóvel', 'Email', 'Notas']];
-      body = currentSearchResults.map(con => {
+      body = itemsToExport.map(con => {
         const client = db.clientes.find(c => c.id === con.clienteId);
         return [
           `${con.nome} ${con.apelido}`,
@@ -15850,31 +15870,27 @@ function getFilteredProjetosList() {
   return { list, query };
 }
 
-function exportSearchToPDF(type) {
+function exportSearchToPDF(type, customList) {
+  if (!customList) {
+    // Abre o modal de seleção prévia
+    openBulkExportModal(type, 'pdf');
+    return;
+  }
+
   let title = '';
   let headers = [];
   let rows = [];
 
   if (type === 'global') {
     const cat = document.getElementById('searchCategory')?.value || 'clientes';
-    const query = document.getElementById('globalSearchQuery')?.value.trim() || '';
-    if (cat === 'clientes') {
-      if (document.getElementById('clientPageSearchQuery')) document.getElementById('clientPageSearchQuery').value = query;
-      type = 'clientes';
-    } else if (cat === 'contactos') {
-      if (document.getElementById('contactPageSearchQuery')) document.getElementById('contactPageSearchQuery').value = query;
-      type = 'contactos';
-    } else {
-      if (document.getElementById('projectPageSearchQuery')) document.getElementById('projectPageSearchQuery').value = query;
-      type = 'projetos';
-    }
+    type = cat === 'contactos' ? 'contactos' : (cat === 'projetos' ? 'projetos' : 'clientes');
   }
 
   if (type === 'clientes') {
-    const { list, query } = getFilteredClientesList();
+    const query = currentBulkExportContextQuery;
     title = query ? `Resultados da Pesquisa de Clientes ("${query}")` : 'Lista de Clientes Registados';
     headers = [['Tipo', 'Nome / Razão Social', 'Contribuinte (NIF)', 'Telefone / Telemóvel', 'Email', 'Localidade', 'País']];
-    rows = list.map(c => [
+    rows = customList.map(c => [
       c.tipoCliente || 'Privado',
       c.nome || '-',
       c.contribuinte || '-',
@@ -15884,10 +15900,10 @@ function exportSearchToPDF(type) {
       c.pais || 'Portugal'
     ]);
   } else if (type === 'contactos') {
-    const { list, query } = getFilteredContactosList();
+    const query = currentBulkExportContextQuery;
     title = query ? `Resultados da Pesquisa de Contactos ("${query}")` : 'Lista de Contactos Diretos';
     headers = [['Nome do Contacto', 'Cliente Associado', 'Cargo', 'Telemóvel / Telefone', 'Email']];
-    rows = list.map(con => {
+    rows = customList.map(con => {
       const client = db.clientes.find(c => c.id === con.clienteId);
       return [
         `${con.nome || ''} ${con.apelido || ''}`.trim(),
@@ -15898,10 +15914,10 @@ function exportSearchToPDF(type) {
       ];
     });
   } else if (type === 'projetos') {
-    const { list, query } = getFilteredProjetosList();
+    const query = currentBulkExportContextQuery;
     title = query ? `Resultados da Pesquisa de Projetos ("${query}")` : 'Lista de Projetos Registados';
     headers = [['Nome do Projeto', 'Cliente Associado', 'Tipo', 'Estado', 'Data Início', 'Viatura / Matrícula']];
-    rows = list.map(p => {
+    rows = customList.map(p => {
       const client = db.clientes.find(c => c.id === p.clienteId);
       const vehicle = [p.viatura, p.matricula].filter(Boolean).join(' - ');
       return [
@@ -15916,7 +15932,7 @@ function exportSearchToPDF(type) {
   }
 
   if (rows.length === 0) {
-    showToast('Nenhum resultado encontrado para imprimir em PDF.', 'warning');
+    showToast('Nenhum registo selecionado para imprimir em PDF.', 'warning');
     return;
   }
 
@@ -15934,7 +15950,7 @@ function exportSearchToPDF(type) {
 
   doc.setFontSize(9);
   doc.setTextColor(100, 116, 139);
-  doc.text(`Total de Registos: ${rows.length} | Data da Impressão: ${new Date().toLocaleDateString('pt-PT')}`, 14, 22);
+  doc.text(`Total de Registos Selecionados: ${rows.length} | Data da Impressão: ${new Date().toLocaleDateString('pt-PT')}`, 14, 22);
 
   doc.autoTable({
     startY: 26,
@@ -15951,29 +15967,25 @@ function exportSearchToPDF(type) {
   showToast('Ficheiro PDF gerado com sucesso!');
 }
 
-function exportSearchToExcel(type) {
+function exportSearchToExcel(type, customList) {
+  if (!customList) {
+    // Abre o modal de seleção prévia
+    openBulkExportModal(type, 'excel');
+    return;
+  }
+
   let fileName = '';
   let dataObjects = [];
 
   if (type === 'global') {
     const cat = document.getElementById('searchCategory')?.value || 'clientes';
-    const query = document.getElementById('globalSearchQuery')?.value.trim() || '';
-    if (cat === 'clientes') {
-      if (document.getElementById('clientPageSearchQuery')) document.getElementById('clientPageSearchQuery').value = query;
-      type = 'clientes';
-    } else if (cat === 'contactos') {
-      if (document.getElementById('contactPageSearchQuery')) document.getElementById('contactPageSearchQuery').value = query;
-      type = 'contactos';
-    } else {
-      if (document.getElementById('projectPageSearchQuery')) document.getElementById('projectPageSearchQuery').value = query;
-      type = 'projetos';
-    }
+    type = cat === 'contactos' ? 'contactos' : (cat === 'projetos' ? 'projetos' : 'clientes');
   }
 
   if (type === 'clientes') {
-    const { list, query } = getFilteredClientesList();
+    const query = currentBulkExportContextQuery;
     fileName = query ? `Pesquisa_Clientes_${query.replace(/[^\w-]/g, '_')}` : 'Pesquisa_Clientes';
-    dataObjects = list.map(c => ({
+    dataObjects = customList.map(c => ({
       'Tipo Cliente': c.tipoCliente || 'Privado',
       'Nome / Razão Social': c.nome || '',
       'Contribuinte (NIF)': c.contribuinte || '',
@@ -15986,9 +15998,9 @@ function exportSearchToExcel(type) {
       'País': c.pais || 'Portugal'
     }));
   } else if (type === 'contactos') {
-    const { list, query } = getFilteredContactosList();
+    const query = currentBulkExportContextQuery;
     fileName = query ? `Pesquisa_Contactos_${query.replace(/[^\w-]/g, '_')}` : 'Pesquisa_Contactos';
-    dataObjects = list.map(con => {
+    dataObjects = customList.map(con => {
       const client = db.clientes.find(c => c.id === con.clienteId);
       return {
         'Nome Contacto': `${con.nome || ''} ${con.apelido || ''}`.trim(),
@@ -16001,9 +16013,9 @@ function exportSearchToExcel(type) {
       };
     });
   } else if (type === 'projetos') {
-    const { list, query } = getFilteredProjetosList();
+    const query = currentBulkExportContextQuery;
     fileName = query ? `Pesquisa_Projetos_${query.replace(/[^\w-]/g, '_')}` : 'Pesquisa_Projetos';
-    dataObjects = list.map(p => {
+    dataObjects = customList.map(p => {
       const client = db.clientes.find(c => c.id === p.clienteId);
       return {
         'Nome Projeto': p.nome || '',
@@ -16019,7 +16031,7 @@ function exportSearchToExcel(type) {
   }
 
   if (dataObjects.length === 0) {
-    showToast('Nenhum resultado encontrado para exportar em Excel.', 'warning');
+    showToast('Nenhum registo selecionado para exportar em Excel.', 'warning');
     return;
   }
 
@@ -16036,6 +16048,10 @@ function exportSearchToExcel(type) {
   XLSX.writeFile(workbook, `${fileName}_${timestamp}.xlsx`);
   showToast('Ficheiro Excel (.xlsx) gerado com sucesso!');
 }
+window.exportSearchToPDF = exportSearchToPDF;
+window.exportSearchToExcel = exportSearchToExcel;
+window.exportSearchResultsToPDF = exportSearchResultsToPDF;
+window.exportSearchResultsToExcel = exportSearchResultsToExcel;
 
 var CURRENT_SYSTEM_VERSION = "SIGEC_V1.7.25";
 window.CURRENT_SYSTEM_VERSION = "SIGEC_V1.7.25";
@@ -19353,6 +19369,296 @@ window.openBulkAddressLabelsModal = openBulkAddressLabelsModal;
 window.closeBulkAddressLabelsModal = closeBulkAddressLabelsModal;
 window.renderBulkAddressLabelsList = renderBulkAddressLabelsList;
 window.toggleBulkLabelItem = toggleBulkLabelItem;
+
+// ==========================================
+// SISTEMA DE SELEÇÃO MÚLTIPLA PARA EXPORTAÇÃO EXCEL E PDF
+// ==========================================
+
+let currentBulkExportCategory = 'clientes'; // 'clientes' | 'contactos' | 'projetos' | 'search_results'
+let currentBulkExportFormat = 'excel';       // 'excel' | 'pdf'
+let bulkExportSelectedIds = new Set();
+let currentBulkExportItemsCache = [];
+let currentBulkExportContextQuery = '';
+
+function openBulkExportModal(category, format) {
+  currentBulkExportCategory = category || 'clientes';
+  currentBulkExportFormat = format || 'excel';
+
+  const modal = document.getElementById('bulkExportSelectionModal');
+  const titleEl = document.getElementById('bulkExportModalTitle');
+  const headerEl = document.getElementById('bulkExportModalHeader');
+  const searchInput = document.getElementById('bulkExportSearchInput');
+  const confirmBtn = document.getElementById('btnBulkExportConfirm');
+  const confirmIcon = document.getElementById('bulkExportConfirmIcon');
+  const confirmText = document.getElementById('bulkExportConfirmText');
+
+  if (searchInput) searchInput.value = '';
+
+  const isExcel = currentBulkExportFormat === 'excel';
+
+  // Configura visual do cabeçalho e botão de confirmação conforme o formato (Verde para Excel, Azul/Vermelho para PDF)
+  if (headerEl) {
+    headerEl.style.background = isExcel
+      ? 'linear-gradient(135deg, #065f46, #059669)'
+      : 'linear-gradient(135deg, #991b1b, #dc2626)';
+  }
+
+  if (confirmBtn) {
+    confirmBtn.className = isExcel ? 'btn btn-success' : 'btn btn-danger';
+    confirmBtn.style.background = isExcel ? '#059669' : '#dc2626';
+    confirmBtn.style.borderColor = isExcel ? '#047857' : '#b91c1c';
+  }
+
+  if (confirmIcon) {
+    confirmIcon.className = isExcel ? 'fa-solid fa-file-excel' : 'fa-solid fa-file-pdf';
+  }
+
+  let catLabel = 'Registos';
+  let rawList = [];
+  currentBulkExportContextQuery = '';
+
+  if (currentBulkExportCategory === 'clientes') {
+    catLabel = 'Clientes';
+    const res = typeof getFilteredClientesList === 'function' ? getFilteredClientesList() : { list: db.clientes || [], query: '' };
+    rawList = res.list || [];
+    currentBulkExportContextQuery = res.query || '';
+  } else if (currentBulkExportCategory === 'contactos') {
+    catLabel = 'Contactos';
+    const res = typeof getFilteredContactosList === 'function' ? getFilteredContactosList() : { list: db.contactos || [], query: '' };
+    rawList = res.list || [];
+    currentBulkExportContextQuery = res.query || '';
+  } else if (currentBulkExportCategory === 'projetos') {
+    catLabel = 'Projetos';
+    const res = typeof getFilteredProjetosList === 'function' ? getFilteredProjetosList() : { list: db.projetos || [], query: '' };
+    rawList = res.list || [];
+    currentBulkExportContextQuery = res.query || '';
+  } else if (currentBulkExportCategory === 'search_results') {
+    catLabel = currentSearchCategory === 'contactos' ? 'Contactos da Pesquisa' : (currentSearchCategory === 'projetos_nome' ? 'Projetos da Pesquisa' : 'Clientes da Pesquisa');
+    rawList = [...(currentSearchResults || [])];
+    currentBulkExportContextQuery = '';
+  }
+
+  if (titleEl) {
+    titleEl.innerHTML = isExcel
+      ? `<i class="fa-solid fa-file-excel" style="color: #6ee7b7;"></i> Exportar ${catLabel} para Excel`
+      : `<i class="fa-solid fa-file-pdf" style="color: #fca5a5;"></i> Imprimir / Exportar ${catLabel} em PDF`;
+  }
+
+  currentBulkExportItemsCache = [...rawList];
+
+  // Atribui IDs sintéticos se algum item não tiver ID (como em pesquisas mistas)
+  currentBulkExportItemsCache.forEach((item, idx) => {
+    if (!item.id && item.id !== 0) item._bulkExportId = 'bulk_item_' + idx;
+  });
+
+  // Por defeito, todos começam selecionados
+  bulkExportSelectedIds = new Set(currentBulkExportItemsCache.map(i => i.id !== undefined && i.id !== null ? i.id : i._bulkExportId));
+
+  renderBulkExportList();
+
+  if (modal) {
+    modal.classList.add('active');
+  }
+}
+window.openBulkExportModal = openBulkExportModal;
+
+function closeBulkExportModal() {
+  const modal = document.getElementById('bulkExportSelectionModal');
+  if (modal) {
+    modal.classList.remove('active');
+  }
+}
+window.closeBulkExportModal = closeBulkExportModal;
+
+function renderBulkExportList() {
+  const container = document.getElementById('bulkExportItemsList');
+  const searchVal = (document.getElementById('bulkExportSearchInput')?.value || '').trim().toLowerCase();
+  const selectedCountEl = document.getElementById('bulkExportSelectedCount');
+  const totalCountEl = document.getElementById('bulkExportTotalCount');
+  const btnCountEl = document.getElementById('bulkExportBtnCount');
+  const confirmTextEl = document.getElementById('bulkExportConfirmText');
+
+  if (!container) return;
+
+  const isExcel = currentBulkExportFormat === 'excel';
+  const cat = currentBulkExportCategory;
+
+  let filteredList = (currentBulkExportItemsCache || []).filter(item => {
+    if (!searchVal) return true;
+    const norm = (str) => typeof normalizeText === 'function' ? normalizeText(str || '') : (str || '').toLowerCase();
+    const sNorm = typeof normalizeText === 'function' ? normalizeText(searchVal) : searchVal;
+
+    if (cat === 'contactos' || (cat === 'search_results' && currentSearchCategory === 'contactos')) {
+      const client = db.clientes ? db.clientes.find(c => c.id === item.clienteId) : null;
+      const clientName = client ? client.nome : '';
+      return norm(item.nome).includes(sNorm) ||
+             norm(item.apelido).includes(sNorm) ||
+             norm(item.cargo).includes(sNorm) ||
+             norm(item.email).includes(sNorm) ||
+             norm(clientName).includes(sNorm);
+    } else if (cat === 'projetos' || (cat === 'search_results' && currentSearchCategory === 'projetos_nome')) {
+      const client = db.clientes ? db.clientes.find(c => c.id === item.clienteId) : null;
+      const clientName = client ? client.nome : (item.clientName || '');
+      return norm(item.nome).includes(sNorm) ||
+             norm(item.tipo).includes(sNorm) ||
+             norm(item.estado).includes(sNorm) ||
+             norm(item.viatura).includes(sNorm) ||
+             norm(item.matricula).includes(sNorm) ||
+             norm(clientName).includes(sNorm);
+    } else {
+      return norm(item.nome).includes(sNorm) ||
+             norm(item.contribuinte).includes(sNorm) ||
+             norm(item.localidade).includes(sNorm) ||
+             norm(item.codigoPostal).includes(sNorm) ||
+             norm(item.direcao1).includes(sNorm) ||
+             norm(item.email).includes(sNorm) ||
+             norm(item.tipoCliente).includes(sNorm);
+    }
+  });
+
+  const totalCount = currentBulkExportItemsCache.length;
+  const selectedCount = bulkExportSelectedIds.size;
+  if (selectedCountEl) selectedCountEl.textContent = selectedCount;
+  if (totalCountEl) totalCountEl.textContent = totalCount;
+  if (btnCountEl) btnCountEl.textContent = selectedCount;
+
+  if (confirmTextEl) {
+    const actionWord = isExcel ? 'Gerar Excel' : 'Gerar PDF';
+    confirmTextEl.innerHTML = `${actionWord} (<span id="bulkExportBtnCount">${selectedCount}</span>)`;
+  }
+
+  if (filteredList.length === 0) {
+    container.innerHTML = `
+      <div style="padding: 2rem; text-align: center; color: #64748b; font-size: 0.9rem;">
+        <i class="fa-solid fa-magnifying-glass" style="font-size: 1.5rem; margin-bottom: 0.5rem; display: block; opacity: 0.5;"></i>
+        Nenhum registo encontrado com o critério de pesquisa.
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = filteredList.map(item => {
+    const itemId = item.id !== undefined && item.id !== null ? item.id : item._bulkExportId;
+    const isSelected = bulkExportSelectedIds.has(itemId);
+
+    let mainTitle = '';
+    let subInfo = '';
+    let extraLine = '';
+    let iconClass = 'fa-building';
+    let iconBg = '#dbeafe';
+    let iconColor = '#1e40af';
+
+    if (cat === 'contactos' || (cat === 'search_results' && currentSearchCategory === 'contactos')) {
+      iconClass = 'fa-user';
+      iconBg = '#e0e7ff';
+      iconColor = '#4338ca';
+      mainTitle = `${item.nome || ''} ${item.apelido || ''}`.trim() || 'Sem Nome';
+      const client = db.clientes ? db.clientes.find(c => c.id === item.clienteId) : null;
+      subInfo = client ? `<span style="color: #2563eb; font-weight: 600;">${escapeHtml(client.nome)}</span>` : '';
+      if (item.cargo) subInfo += (subInfo ? ' &bull; ' : '') + escapeHtml(item.cargo);
+      const contactBits = [item.telemovel || item.telefone, item.email].filter(Boolean).join(' | ');
+      if (contactBits) extraLine = `<i class="fa-solid fa-address-book" style="margin-right: 4px; color: #94a3b8;"></i> ${escapeHtml(contactBits)}`;
+    } else if (cat === 'projetos' || (cat === 'search_results' && currentSearchCategory === 'projetos_nome')) {
+      iconClass = 'fa-folder-open';
+      iconBg = '#fef3c7';
+      iconColor = '#b45309';
+      mainTitle = item.nome || 'Projeto Sem Nome';
+      const client = db.clientes ? db.clientes.find(c => c.id === item.clienteId) : null;
+      const clientName = client ? client.nome : (item.clientName || '');
+      subInfo = `<span class="badge badge-info" style="font-size: 0.72rem; padding: 0.15rem 0.45rem;">${escapeHtml(item.tipo || 'Geral')}</span>`;
+      if (item.estado) {
+        subInfo += ` <span class="badge ${item.estado === 'Concluído' ? 'badge-green' : (item.estado === 'Em Curso' ? 'badge-blue' : 'badge-yellow')}" style="font-size: 0.72rem; padding: 0.15rem 0.45rem;">${escapeHtml(item.estado)}</span>`;
+      }
+      const projBits = [clientName ? `Cliente: ${clientName}` : '', item.viatura ? `Viatura: ${item.viatura}` : ''].filter(Boolean).join(' | ');
+      if (projBits) extraLine = `<i class="fa-solid fa-circle-info" style="margin-right: 4px; color: #94a3b8;"></i> ${escapeHtml(projBits)}`;
+    } else {
+      // Clientes
+      iconClass = 'fa-building';
+      iconBg = item.tipoCliente === 'Estatal' ? '#e0f2fe' : (item.tipoCliente === 'Fundação' ? '#f3e8ff' : '#dcfce7');
+      iconColor = item.tipoCliente === 'Estatal' ? '#0369a1' : (item.tipoCliente === 'Fundação' ? '#7e22ce' : '#15803d');
+      mainTitle = item.nome || 'Cliente Sem Nome';
+      subInfo = `<span class="badge ${item.tipoCliente === 'Estatal' ? 'badge-blue' : (item.tipoCliente === 'Fundação' ? 'badge-purple' : 'badge-green')}" style="font-size: 0.72rem; padding: 0.15rem 0.45rem;">${escapeHtml(item.tipoCliente || 'Privado')}</span>`;
+      if (item.contribuinte && item.contribuinte !== '000000000') {
+        subInfo += ` <span style="color: #64748b; font-size: 0.78rem;">NIF: ${escapeHtml(item.contribuinte)}</span>`;
+      }
+      const locBits = [item.localidade, item.codigoPostal, item.telefone || item.telemovel].filter(Boolean).join(' | ');
+      if (locBits) extraLine = `<i class="fa-solid fa-location-dot" style="margin-right: 4px; color: #94a3b8;"></i> ${escapeHtml(locBits)}`;
+    }
+
+    return `
+      <div class="bulk-export-item-row" onclick="toggleBulkExportItem('${itemId}', event)" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.55rem 0.85rem; border-radius: 6px; border: 1px solid ${isSelected ? (isExcel ? '#86efac' : '#fca5a5') : '#e2e8f0'}; background: ${isSelected ? (isExcel ? '#f0fdf4' : '#fef2f2') : '#ffffff'}; cursor: pointer; transition: all 0.15s ease;">
+        <input type="checkbox" ${isSelected ? 'checked' : ''} onclick="event.stopPropagation(); toggleBulkExportItem('${itemId}', event)" style="width: 17px; height: 17px; cursor: pointer; accent-color: ${isExcel ? '#16a34a' : '#dc2626'};">
+
+        <div style="width: 32px; height: 32px; border-radius: 50%; background: ${iconBg}; color: ${iconColor}; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0;">
+          <i class="fa-solid ${iconClass}"></i>
+        </div>
+
+        <div style="flex: 1; min-width: 0;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap;">
+            <span style="font-weight: 700; color: #1e293b; font-size: 0.92rem;">${escapeHtml(mainTitle)}</span>
+            <div>${subInfo}</div>
+          </div>
+          ${extraLine ? `<div style="font-size: 0.78rem; color: #64748b; margin-top: 0.15rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${extraLine}</div>` : ''}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+window.renderBulkExportList = renderBulkExportList;
+window.filterBulkExportList = renderBulkExportList;
+
+function toggleBulkExportItem(id, event) {
+  if (event) event.stopPropagation();
+  if (bulkExportSelectedIds.has(id)) {
+    bulkExportSelectedIds.delete(id);
+  } else {
+    bulkExportSelectedIds.add(id);
+  }
+  renderBulkExportList();
+}
+window.toggleBulkExportItem = toggleBulkExportItem;
+
+function toggleAllBulkExport(selectAll) {
+  if (selectAll) {
+    bulkExportSelectedIds = new Set(currentBulkExportItemsCache.map(i => i.id !== undefined && i.id !== null ? i.id : i._bulkExportId));
+  } else {
+    bulkExportSelectedIds.clear();
+  }
+  renderBulkExportList();
+}
+window.toggleAllBulkExport = toggleAllBulkExport;
+
+function confirmBulkExportAction() {
+  if (bulkExportSelectedIds.size === 0) {
+    showToast('Selecione pelo menos um registo para exportar.', 'warning');
+    return;
+  }
+
+  const selectedItems = (currentBulkExportItemsCache || []).filter(item => {
+    const itemId = item.id !== undefined && item.id !== null ? item.id : item._bulkExportId;
+    return bulkExportSelectedIds.has(itemId);
+  });
+
+  closeBulkExportModal();
+
+  const isExcel = currentBulkExportFormat === 'excel';
+  const cat = currentBulkExportCategory;
+
+  if (cat === 'search_results') {
+    if (isExcel) {
+      exportSearchResultsToExcel(selectedItems);
+    } else {
+      exportSearchResultsToPDF(selectedItems);
+    }
+  } else {
+    if (isExcel) {
+      exportSearchToExcel(cat, selectedItems);
+    } else {
+      exportSearchToPDF(cat, selectedItems);
+    }
+  }
+}
+window.confirmBulkExportAction = confirmBulkExportAction;
 
 // ==========================================
 // MÓDULO DE ORÇAMENTAÇÃO (SIGEC-PRO)

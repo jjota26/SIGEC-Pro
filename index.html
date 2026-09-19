@@ -4730,6 +4730,74 @@
     </div>
   </div>
 
+  <!-- MODAL DE SELEÇÃO MÚLTIPLA PARA EXPORTAÇÃO EXCEL E PDF -->
+  <div id="bulkExportSelectionModal" class="modal-overlay">
+    <div class="modal-window" style="max-width: 860px; width: 94vw;">
+      <div class="modal-header" id="bulkExportModalHeader" style="background: linear-gradient(135deg, #1e3a8a, #2563eb);">
+        <h3 class="modal-title" id="bulkExportModalTitle" style="color: #ffffff;">
+          <i class="fa-solid fa-file-export"></i> Seleção de Registos para Exportação
+        </h3>
+        <button type="button" class="action-icon-btn" onclick="closeBulkExportModal()"
+          style="color: #ffffff; font-size: 1.2rem;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body" style="padding: 1.25rem;">
+        <!-- Barra superior de pesquisa rápida e botões Marcar/Desmarcar Todos -->
+        <div
+          style="display: flex; gap: 0.75rem; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-bottom: 0.85rem; background: #f8fafc; padding: 0.75rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+          <div style="position: relative; flex: 1; min-width: 220px;">
+            <i class="fa-solid fa-magnifying-glass"
+              style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 0.85rem;"></i>
+            <input type="text" id="bulkExportSearchInput" placeholder="Pesquisar por nome, NIF, cargo, localidade, projeto..."
+              oninput="filterBulkExportList()"
+              style="width: 100%; padding: 0.45rem 0.65rem 0.45rem 2rem; font-size: 0.88rem; border: 1px solid #cbd5e1; border-radius: 6px; outline: none; box-sizing: border-box;">
+          </div>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <button type="button" class="btn btn-sm btn-secondary" onclick="toggleAllBulkExport(true)"
+              style="font-size: 0.8rem; padding: 0.45rem 0.75rem;">
+              <i class="fa-solid fa-square-check" style="color: #2563eb;"></i> Selecionar Todos
+            </button>
+            <button type="button" class="btn btn-sm btn-secondary" onclick="toggleAllBulkExport(false)"
+              style="font-size: 0.8rem; padding: 0.45rem 0.75rem;">
+              <i class="fa-solid fa-square" style="color: #64748b;"></i> Desmarcar Todos
+            </button>
+          </div>
+        </div>
+
+        <!-- Indicador de contagem -->
+        <div
+          style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; font-size: 0.85rem; color: #475569; font-weight: 600;">
+          <span>Registos (<span id="bulkExportSelectedCount"
+              style="color: #2563eb; font-weight: 700;">0</span> selecionados de <span
+              id="bulkExportTotalCount">0</span>)</span>
+          <span style="font-size: 0.78rem; color: #64748b; font-weight: normal;">Clique em qualquer linha para
+            selecionar/desmarcar</span>
+        </div>
+
+        <!-- Lista scrollável com caixas de seleção -->
+        <div id="bulkExportItemsList"
+          style="max-height: 390px; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 8px; background: #ffffff; padding: 0.35rem; display: flex; flex-direction: column; gap: 0.35rem;">
+          <!-- Renderizado dinamicamente -->
+        </div>
+      </div>
+
+      <div class="modal-footer"
+        style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+        <button type="button" class="btn btn-close" onclick="closeBulkExportModal()">
+          <i class="fa-solid fa-xmark"></i> Cancelar
+        </button>
+        <button type="button" class="btn btn-primary" id="btnBulkExportConfirm"
+          onclick="confirmBulkExportAction()"
+          style="font-weight: 600; padding: 0.55rem 1.35rem; font-size: 0.92rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+          <i class="fa-solid fa-download" id="bulkExportConfirmIcon"></i>
+          <span id="bulkExportConfirmText">Exportar Registos (<span id="bulkExportBtnCount">0</span>)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Notifications Container -->
   <div id="toastContainer" class="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999999 !important;"></div>
 
