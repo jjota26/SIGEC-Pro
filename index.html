@@ -4873,7 +4873,7 @@
   <!-- Internationalization & Translations Engine -->
   <script src="i18n.js?v=202609200030"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=202609200030"></script>
+  <script src="app.js?v=202609200050"></script>
   <!-- Duplicates Management Engine -->
   <script src="duplicatesManager.js?v=202609200030"></script>
 
@@ -6289,6 +6289,21 @@
           <div style="font-size: 0.78rem; color: #64748b; margin-top: 0.2rem;" id="aiTargetContext">-</div>
         </div>
 
+        <!-- Multi-candidate Selector (Shown when 2 or more real locations/countries are found) -->
+        <div id="aiMultipleCandidatesContainer" style="display: none; margin-bottom: 1rem; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 0.75rem 0.9rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <div style="font-size: 0.8rem; font-weight: 700; color: #1e293b; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-layer-group" style="color: #4f46e5;"></i>
+              <span>Várias localizações encontradas:</span>
+              <span id="aiCandidatesCountBadge" style="background: #e0e7ff; color: #4338ca; padding: 1px 7px; border-radius: 10px; font-size: 0.75rem; font-weight: 700;">0</span>
+            </div>
+            <span style="font-size: 0.72rem; color: #64748b; font-style: italic;">Clique para escolher a pretendida</span>
+          </div>
+          <div id="aiCandidatesCardsList" style="display: flex; flex-direction: column; gap: 0.4rem; max-height: 155px; overflow-y: auto; padding-right: 4px;">
+            <!-- Renderizado dinamicamente via JS -->
+          </div>
+        </div>
+
         <!-- Two-column Box: Found Website & Found Phone -->
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
           <!-- Found Website Box -->
@@ -6384,7 +6399,7 @@
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js?v=202609200030')
+      navigator.serviceWorker.register('/sw.js?v=202609200050')
         .then(function (reg) {
           if (typeof reg.update === 'function') {
             reg.update();
