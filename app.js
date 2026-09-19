@@ -6040,6 +6040,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function switchTab(tabId) {
+  if (tabId === 'tab-duplicados') {
+    switchTab('tab-database');
+    if (typeof switchCfgSubTab === 'function') {
+      switchCfgSubTab('duplicados');
+    }
+    return;
+  }
+
   if (tabId === 'tab-database' || tabId === 'tab-configuracao') {
     const activeUserId = sessionStorage.getItem('sigec_pro_active_user_id') || localStorage.getItem('sigec_pro_active_user_id');
     let activeUser = (activeUserId && typeof db !== 'undefined' && Array.isArray(db.usuarios)) ? db.usuarios.find(u => u && u.id === activeUserId) : null;
@@ -6091,6 +6099,10 @@ function switchTab(tabId) {
 
   if (tabId === 'tab-database') {
     renderDatabaseOverview();
+    const isDupActive = document.getElementById('cfgPanel-duplicados')?.style.display === 'block';
+    if (typeof switchCfgSubTab === 'function') {
+      switchCfgSubTab(isDupActive ? 'duplicados' : 'config');
+    }
   } else if (tabId === 'tab-contactos') {
     renderContactPageMainGrid();
   } else if (tabId === 'tab-clientes') {
@@ -25567,15 +25579,41 @@ window.handleRemoveHuggingFaceToken = handleRemoveHuggingFaceToken;
 
 
 function switchCfgSubTab(subTab) {
+  const target = (subTab === 'duplicados') ? 'duplicados' : 'config';
   const tabs = ['config', 'duplicados'];
   tabs.forEach(t => {
     const btn = document.getElementById('cfgSubTab-' + t);
-    const sec = document.getElementById('cfgSubSection-' + t);
-    if (btn) btn.classList.toggle('active', t === subTab);
-    if (sec) sec.style.display = (t === subTab ? 'block' : 'none');
+    const sec = document.getElementById('cfgPanel-' + t) || document.getElementById('cfgSubSection-' + t);
+    const isActive = (t === target);
+    if (btn) {
+      btn.classList.toggle('active', isActive);
+      if (isActive) {
+        btn.style.color = (t === 'duplicados' ? '#4f46e5' : '#2563eb');
+        btn.style.borderBottom = `3px solid ${t === 'duplicados' ? '#6366f1' : '#2563eb'}`;
+        btn.style.background = (t === 'duplicados' ? 'rgba(99, 102, 241, 0.08)' : 'rgba(37, 99, 235, 0.08)');
+      } else {
+        btn.style.color = '#64748b';
+        btn.style.borderBottom = '3px solid transparent';
+        btn.style.background = 'transparent';
+      }
+    }
+    if (sec) {
+      sec.style.display = isActive ? 'block' : 'none';
+    }
   });
-  if (subTab === 'duplicados' && typeof initDuplicatesManager === 'function') {
-    initDuplicatesManager();
+
+  if (target === 'duplicados') {
+    if (typeof runDuplicatesScan === 'function') {
+      runDuplicatesScan(false);
+    } else if (typeof renderDuplicatesUI === 'function') {
+      renderDuplicatesUI();
+    } else if (typeof scanDuplicates === 'function') {
+      scanDuplicates();
+    }
+  } else {
+    if (typeof renderDatabaseOverview === 'function') {
+      renderDatabaseOverview();
+    }
   }
 }
 if (typeof window !== 'undefined') {

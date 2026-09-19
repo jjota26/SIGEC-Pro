@@ -22,6 +22,29 @@
   // Grupo ativo no modal (referência estável para confirmExecuteKeep*)
   let currentActiveGroup = null;
 
+  function isDuplicatePairDecided(id1, id2) {
+    if (!id1 || !id2) return false;
+    try {
+      const ignored = JSON.parse(localStorage.getItem('sigec_pro_dup_ignored') || '[]');
+      const key = [id1, id2].sort().join('|');
+      return ignored.includes(key);
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function markDuplicatePairDecided(id1, id2) {
+    if (!id1 || !id2) return;
+    try {
+      const ignored = JSON.parse(localStorage.getItem('sigec_pro_dup_ignored') || '[]');
+      const key = [id1, id2].sort().join('|');
+      if (!ignored.includes(key)) {
+        ignored.push(key);
+        localStorage.setItem('sigec_pro_dup_ignored', JSON.stringify(ignored));
+      }
+    } catch (e) {}
+  }
+
   // =========================================================================
   // 1. UTILITÁRIOS DE NORMALIZAÇÃO E SIMILARIDADE DE TEXTO
   // =========================================================================
