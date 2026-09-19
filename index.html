@@ -8,6 +8,18 @@
   <meta http-equiv="Expires" content="0">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SIGEC-Pro - Sistema de Gestão</title>
+  <script>
+    if ('caches' in window) {
+      caches.keys().then(function(keys) {
+        keys.forEach(function(k) {
+          if (k !== 'sigec-pro-v2.5') {
+            console.log('[PWA] Purga imediata de cache antiga:', k);
+            caches.delete(k);
+          }
+        });
+      });
+    }
+  </script>
 
   <!-- PWA: Manifesto e Ícones -->
   <link rel="manifest" href="/manifest.json">
@@ -4859,11 +4871,11 @@
   <div id="toastContainer" class="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999999 !important;"></div>
 
   <!-- Internationalization & Translations Engine -->
-  <script src="i18n.js?v=1789758500000"></script>
+  <script src="i18n.js?v=202609200010"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=1789758500000"></script>
+  <script src="app.js?v=202609200010"></script>
   <!-- Duplicates Management Engine -->
-  <script src="duplicatesManager.js?v=1789758500000"></script>
+  <script src="duplicatesManager.js?v=202609200010"></script>
 
   <!-- Auto-cura imediata de definições SMTP e Webhook no arranque de qualquer computador -->
   <script>
@@ -6345,13 +6357,16 @@
 
 </body>
 
-<!-- PWA: Registo do Service Worker -->
+<!-- PWA: Registo do Service Worker com Auto-Update -->
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js')
+      navigator.serviceWorker.register('/sw.js?v=202609200010')
         .then(function (reg) {
-          console.log('[PWA] Service Worker registado com sucesso. Scope:', reg.scope);
+          if (typeof reg.update === 'function') {
+            reg.update();
+          }
+          console.log('[PWA] Service Worker registado e atualizado. Scope:', reg.scope);
         })
         .catch(function (err) {
           console.warn('[PWA] Falha no registo do Service Worker:', err);

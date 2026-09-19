@@ -1,9 +1,9 @@
-﻿/* ============================================================
+/* ============================================================
    SIGEC-Pro — Service Worker PWA
    Estrategia: Network First com fallback para cache
    ============================================================ */
 
-const CACHE_NAME = "sigec-pro-v1";
+const CACHE_NAME = "sigec-pro-v2.5";
 const CORE_ASSETS = [
   "/",
   "/index.html",
