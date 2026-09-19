@@ -4839,6 +4839,22 @@
         if (webhookInput && (!webhookInput.value || webhookInput.value.includes('AKfycbx5sgU7FzCL5uZdpyzhyqYlIiTYg6tT1g-Rs36apcOvIhXtxc1eAPNPLKQwVOZ7aFS7BQ'))) {
           webhookInput.value = defaultWebhook;
         }
+
+        // Auto-limpeza imediata de resíduos de importação defeituosa de contactos (17-09-2026)
+        ['sigec_pro_contactos', 'centauro_db_contactos_v6'].forEach(function(k) {
+          var raw = localStorage.getItem(k);
+          if (raw && (raw.includes('con-1789667264257') || raw.includes('con-1789667264258'))) {
+            try {
+              var arr = JSON.parse(raw);
+              if (Array.isArray(arr)) {
+                var cleanArr = arr.filter(function(c) {
+                  return c && c.id && !c.id.startsWith('con-1789667264257') && !c.id.startsWith('con-1789667264258');
+                });
+                localStorage.setItem(k, JSON.stringify(cleanArr));
+              }
+            } catch(e) {}
+          }
+        });
       } catch(e) {}
     })();
   </script>

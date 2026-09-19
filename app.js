@@ -3698,12 +3698,28 @@ function normalizeText(str) {
   return str.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
+function cleanupResidualLocalStorage() {
+  try {
+    ['sigec_pro_contactos', 'centauro_db_contactos_v6'].forEach(function(key) {
+      const raw = localStorage.getItem(key);
+      if (raw && (raw.includes('con-1789667264257') || raw.includes('con-1789667264258'))) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          const cleaned = parsed.filter(function(c) {
+            return c && c.id && !c.id.startsWith('con-1789667264257') && !c.id.startsWith('con-1789667264258');
+          });
+          localStorage.setItem(key, JSON.stringify(cleaned));
+        }
+      }
+    });
+  } catch(e) {}
+}
+window.cleanupResidualLocalStorage = cleanupResidualLocalStorage;
+
 // Função para Carregar a Base de Dados (Garante persistência de alterações e eliminações permanentes)
 function loadDatabase() {
   try {
-    if (typeof cleanupResidualLocalStorage === 'function') {
-      cleanupResidualLocalStorage();
-    }
+    cleanupResidualLocalStorage();
     loadDeletedRegistry();
 
     let rawClientes = localStorage.getItem(STORAGE_KEYS.CLIENTES);
@@ -3733,6 +3749,10 @@ function loadDatabase() {
         if (!item) return false;
         const id = item.id ? String(item.id).trim() : null;
         if (id && isDeletedId(type, id)) return false;
+        if (type === 'contactos' && id && (id.startsWith('con-1789667264257') || id.startsWith('con-1789667264258'))) {
+          if (typeof addDeletedId === 'function') addDeletedId('contactos', id);
+          return false;
+        }
         if (type === 'usuarios') {
           if (item.role === 'admin' || item.id === 'usr-admin-001') return true;
           return item && item.id && !isDeletedId('usuarios', item.id);
@@ -4657,6 +4677,7 @@ function mergeCloudDatabaseSafely(cloudData) {
 
       // Se foi apagado (localmente ou na nuvem), ignorar
       if (typeof isDeletedId === 'function' && isDeletedId(localArrayName, id)) return;
+      if (localArrayName === 'contactos' && (id.startsWith('con-1789667264257') || id.startsWith('con-1789667264258'))) return;
 
       if (!localMap.has(id)) {
         // Novo item vindo da nuvem
@@ -13531,22 +13552,73 @@ function processCategoryImport(category, items) {
     });
   } else if (category === 'contactos') {
     items.forEach(item => {
-      const id = item.id || generateId('con');
-      const idx = db.contactos.findIndex(c => c.id === id);
+      // Normalização inteligente de campos (maiúsculas, minúsculas, modelos Excel/CSV)
+      let rawNome = (item.nome || item.Nome || item['Primeiro Nome'] || item['First Name'] || item['Nome Contacto'] || '').trim();
+      let rawApelido = (item.apelido || item.Apelido || item.sobrenome || item.Sobrenome || item['Último Nome'] || item['Last Name'] || item.Surname || '').trim();
+      
+      // Se apenas o nome veio preenchido com nome completo e o apelido está vazio, divide de forma inteligente
+      if (rawNome && !rawApelido && rawNome.includes(' ')) {
+        const parts = rawNome.split(/\s+/);
+        rawNome = parts[0];
+        rawApelido = parts.slice(1).join(' ');
+      }
+      
+      const cargo = (item.cargo || item.Cargo || item['Função'] || item.Funcao || '').trim();
+      const departamento = (item.departamento || item.Departamento || item['Área'] || item.Area || '').trim();
+      const telefone = String(item.telefone || item.Telefone || '').trim();
+      const telemovel = String(item.telemovel || item.Telemóvel || item.Telemovel || item['Telemóvel'] || '').trim();
+      const email = (item.email || item.Email || item['E-mail'] || '').trim();
+      const notas = (item.notas || item.Notas || item.observacoes || item.Observações || '').trim();
+      const tratamento = (item.tratamento || item.Tratamento || '').trim();
+      
+      // Resolução inteligente do clienteId por ID ou por Nome da Empresa/Cliente
+      let clienteId = (item.clienteId || item.ClienteId || '').trim();
+      if (!clienteId || !db.clientes.some(c => c.id === clienteId)) {
+        const clientNameQuery = (item['Empresa / Cliente'] || item.empresa || item.Empresa || item.cliente || item.Cliente || item.clienteNome || '').trim().toLowerCase();
+        if (clientNameQuery) {
+          const matchedClient = db.clientes.find(c => c && c.nome && c.nome.toLowerCase().trim() === clientNameQuery);
+          if (matchedClient) clienteId = matchedClient.id;
+        }
+      }
+
+      // Prevenção de duplicados: verificar se já existe por ID, por Email ou por Nome Completo + Empresa
+      const id = item.id || '';
+      let idx = -1;
+      if (id) {
+        idx = db.contactos.findIndex(c => c && c.id === id);
+      }
+      if (idx === -1 && email && email.includes('@')) {
+        idx = db.contactos.findIndex(c => c && c.email && c.email.toLowerCase().trim() === email.toLowerCase());
+      }
+      if (idx === -1 && rawNome && rawApelido) {
+        const fullNew = (rawNome + ' ' + rawApelido).toLowerCase().trim();
+        idx = db.contactos.findIndex(c => {
+          if (!c) return false;
+          const fullExisting = ((c.nome || '') + ' ' + (c.apelido || '')).toLowerCase().trim();
+          if (fullExisting === fullNew) {
+            return !clienteId || !c.clienteId || c.clienteId === clienteId;
+          }
+          return false;
+        });
+      }
+
+      const finalId = (idx >= 0 && db.contactos[idx].id) ? db.contactos[idx].id : (id || generateId('con'));
       const contactObj = {
-        id: idx >= 0 ? db.contactos[idx].id : id,
-        clienteId: item.clienteId || '',
-        tratamento: item.tratamento || '',
-        nome: item.nome || 'Contacto',
-        apelido: item.apelido || '',
-        cargo: item.cargo || '',
-        departamento: item.departamento || '',
-        telefone: item.telefone || '',
-        telemovel: item.telemovel || '',
-        email: item.email || '',
-        notas: item.notas || item.observacoes || '',
-        createdAt: idx >= 0 ? db.contactos[idx].createdAt : new Date().toISOString()
+        id: finalId,
+        clienteId: clienteId || (idx >= 0 ? db.contactos[idx].clienteId : ''),
+        tratamento: tratamento || (idx >= 0 ? db.contactos[idx].tratamento : ''),
+        nome: rawNome || (idx >= 0 ? db.contactos[idx].nome : 'Contacto'),
+        apelido: rawApelido || (idx >= 0 ? db.contactos[idx].apelido : ''),
+        cargo: cargo || (idx >= 0 ? db.contactos[idx].cargo : ''),
+        departamento: departamento || (idx >= 0 ? db.contactos[idx].departamento : ''),
+        telefone: telefone || (idx >= 0 ? db.contactos[idx].telefone : ''),
+        telemovel: telemovel || (idx >= 0 ? db.contactos[idx].telemovel : ''),
+        email: email || (idx >= 0 ? db.contactos[idx].email : ''),
+        notas: notas || (idx >= 0 ? db.contactos[idx].notas : ''),
+        createdAt: idx >= 0 ? db.contactos[idx].createdAt : new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       };
+
       if (idx >= 0) {
         db.contactos[idx] = contactObj;
         countUpdated++;
