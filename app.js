@@ -27736,6 +27736,7 @@ function resolveEntityFromLocalDirectory(query, ministerio, targetCountry) {
 }
 
 async function resolveEntityCandidatesFromNominatim(query, targetCountry) {
+  // ─── Versão filtrada: só aceita nós OSM do tipo escritório/empresa ───
   if (!query || typeof query !== 'string' || query.trim().length < 2) return [];
   const rawParts = query.split(/[\/\-\|]/).map(p => p.trim()).filter(p => p.length > 2);
   const cleanedQuery = cleanCompanySearchName(query);
@@ -27746,9 +27747,7 @@ async function resolveEntityCandidatesFromNominatim(query, targetCountry) {
     baseCandidates.push(rawParts[rawParts.length - 1]);
     baseCandidates.push(cleanCompanySearchName(rawParts[0]));
   }
-  if (cleanedQuery && cleanedQuery !== query) {
-    baseCandidates.push(cleanedQuery);
-  }
+  if (cleanedQuery && cleanedQuery !== query) baseCandidates.push(cleanedQuery);
   baseCandidates.push(query.trim());
 
   const countryParam = (targetCountry || '').trim();
@@ -27758,66 +27757,66 @@ async function resolveEntityCandidatesFromNominatim(query, targetCountry) {
   for (const cand of baseCandidates) {
     if (!cand || cand.length < 2) continue;
     const urlsToTry = [];
-
-    // 1. Se tem país preenchido diferente de Portugal
     if (countryParam && countryParam.toLowerCase() !== 'portugal') {
-      urlsToTry.push('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(cand + ', ' + countryParam) + '&format=json&addressdetails=1&extratags=1&limit=6');
+      urlsToTry.push('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(cand + ', ' + countryParam) + '&format=json&addressdetails=1&extratags=1&limit=8');
     }
-
-    // 2. Pesquisa global aberta
-    urlsToTry.push('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(cand) + '&format=json&addressdetails=1&extratags=1&limit=6');
-
-    // 3. Pesquisa com sufixo Portugal se país estiver vazio ou for Portugal
+    urlsToTry.push('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(cand) + '&format=json&addressdetails=1&extratags=1&limit=8');
     if (!countryParam || countryParam.toLowerCase() === 'portugal') {
-      urlsToTry.push('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(cand + ', Portugal') + '&format=json&addressdetails=1&extratags=1&limit=6');
+      urlsToTry.push('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(cand + ', Portugal') + '&format=json&addressdetails=1&extratags=1&limit=8');
     }
 
     for (const url of urlsToTry) {
       try {
-        const resp = await fetch(url, {
-          headers: { 'Accept-Language': 'pt,es,fr,en;q=0.9' }
-        });
+        const resp = await fetch(url, { headers: { 'Accept-Language': 'pt,es,fr,en;q=0.9' } });
         if (!resp.ok) continue;
         const json = await resp.json();
         if (!Array.isArray(json) || json.length === 0) continue;
 
         for (const item of json) {
           if (!item || !item.address) continue;
-          const addr = item.address;
-          const tags = item.extratags || {};
 
+          // ── FILTRO: só aceitar resultados do tipo "escritório / empresa" ──
+          const tags = item.extratags || {};
+          const isOfficeType = (
+            item.class === 'office' ||
+            item.type === 'office' ||
+            item.type === 'company' ||
+            item.type === 'commercial' ||
+            item.type === 'government' ||
+            tags.office ||
+            tags['amenity'] === 'company' ||
+            tags['building'] === 'commercial' ||
+            tags['building'] === 'office' ||
+            tags.wikidata
+          );
+          if (!isOfficeType) continue;
+          // ─────────────────────────────────────────────────────────────────
+
+          const addr = item.address;
           const street = addr.road || addr.pedestrian || addr.street || addr.neighbourhood || addr.suburb || (item.display_name ? item.display_name.split(',')[0] : '') || '';
           const city = addr.city || addr.town || addr.municipality || addr.village || addr.county || addr.state || '';
           const postcode = addr.postcode || '';
           const detectedCountry = addr.country || countryParam || 'Portugal';
           const detectedCountryCode = (addr.country_code || '').toLowerCase();
-
           if (!street && !postcode && !city) continue;
 
           const key = (detectedCountry + '|' + city + '|' + street).toLowerCase();
           if (seenKeys.has(key)) continue;
           seenKeys.add(key);
 
-          let phone = addr.phone || tags['contact:phone'] || tags.phone || tags['phone:mobile'] || '';
+          let phone = tags['contact:phone'] || tags.phone || tags['phone:mobile'] || addr.phone || '';
           let website = tags['contact:website'] || tags.website || tags.url || '';
 
-          // Se tem wikidata e falta website/telefone, consultar wikidata (apenas primeiros 2 candidatos)
           if (tags.wikidata && (!website || !phone) && candidates.length < 2) {
             try {
-              const wikiResp = await fetch('https://www.wikidata.org/wiki/Special:EntityData/' + tags.wikidata + '.json');
-              if (wikiResp.ok) {
-                const wikiData = await wikiResp.json();
-                const entityClaims = wikiData?.entities?.[tags.wikidata]?.claims;
-                if (!website && entityClaims?.P856?.[0]?.mainsnak?.datavalue?.value) {
-                  website = entityClaims.P856[0].mainsnak.datavalue.value;
-                }
-                if (!phone && entityClaims?.P1329?.[0]?.mainsnak?.datavalue?.value) {
-                  phone = entityClaims.P1329[0].mainsnak.datavalue.value;
-                }
+              const wResp = await fetch('https://www.wikidata.org/wiki/Special:EntityData/' + tags.wikidata + '.json');
+              if (wResp.ok) {
+                const wData = await wResp.json();
+                const ec = wData?.entities?.[tags.wikidata]?.claims;
+                if (!website && ec?.P856?.[0]?.mainsnak?.datavalue?.value) website = ec.P856[0].mainsnak.datavalue.value;
+                if (!phone && ec?.P1329?.[0]?.mainsnak?.datavalue?.value) phone = ec.P1329[0].mainsnak.datavalue.value;
               }
-            } catch (wErr) {
-              // Silencioso
-            }
+            } catch(_) {}
           }
 
           candidates.push({
@@ -27834,19 +27833,163 @@ async function resolveEntityCandidatesFromNominatim(query, targetCountry) {
             telefone: phone,
             website: website,
             fonteUrl: 'https://www.openstreetmap.org/' + (item.osm_type || 'node') + '/' + (item.osm_id || ''),
-            provider: 'OpenStreetMap Geocoder Global'
+            provider: 'OpenStreetMap (Sede Verificada)'
           });
-
-          if (candidates.length >= 8) break;
+          if (candidates.length >= 6) break;
         }
-      } catch (e) {
-        // Segue
-      }
-      if (candidates.length >= 8) break;
+      } catch(_) {}
+      if (candidates.length >= 6) break;
     }
-    if (candidates.length >= 8) break;
+    if (candidates.length >= 6) break;
   }
+  return candidates;
+}
 
+// ─── Wikidata (Wikipedia) — fonte principal de dados reais de empresas ───────
+async function resolveEntityCandidatesFromWikidata(query, targetCountry) {
+  if (!query || typeof query !== 'string' || query.trim().length < 2) return [];
+
+  const candidates = [];
+  try {
+    // ── PASSO 1: pesquisa por nome → IDs de entidades ──────────────────────
+    const searchUrl = 'https://www.wikidata.org/w/api.php?action=wbsearchentities' +
+      '&search=' + encodeURIComponent(query.trim()) +
+      '&language=pt&type=item&format=json&origin=*&limit=8';
+
+    const sResp = await fetch(searchUrl);
+    if (!sResp.ok) return [];
+    const sData = await sResp.json();
+    const searchResults = sData?.search || [];
+    if (!searchResults.length) {
+      // Tentar também em inglês
+      const searchUrlEn = 'https://www.wikidata.org/w/api.php?action=wbsearchentities' +
+        '&search=' + encodeURIComponent(cleanCompanySearchName(query) || query.trim()) +
+        '&language=en&type=item&format=json&origin=*&limit=8';
+      const sRespEn = await fetch(searchUrlEn);
+      if (sRespEn.ok) {
+        const sDataEn = await sRespEn.json();
+        (sDataEn?.search || []).forEach(r => { if (!searchResults.find(x => x.id === r.id)) searchResults.push(r); });
+      }
+    }
+    if (!searchResults.length) return [];
+
+    // ── PASSO 2: obter claims/labels de todas as entidades de uma vez ──────
+    const ids = searchResults.map(r => r.id).join('|');
+    const entUrl = 'https://www.wikidata.org/w/api.php?action=wbgetentities' +
+      '&ids=' + encodeURIComponent(ids) +
+      '&props=claims|labels|descriptions&languages=pt|en|es|fr&format=json&origin=*';
+
+    const eResp = await fetch(entUrl);
+    if (!eResp.ok) return [];
+    const eData = await eResp.json();
+    const entities = eData?.entities || {};
+
+    // IDs secundários que precisamos de resolver (país P17, cidade-sede P159)
+    const secondaryIds = new Set();
+    for (const [, ent] of Object.entries(entities)) {
+      const cl = ent.claims || {};
+      const getQid = (prop) => cl?.[prop]?.[0]?.mainsnak?.datavalue?.value?.id;
+      const pid17  = getQid('P17');  // país
+      const pid159 = getQid('P159'); // cidade da sede
+      if (pid17)  secondaryIds.add(pid17);
+      if (pid159) secondaryIds.add(pid159);
+    }
+
+    // ── PASSO 3: resolver IDs secundários (país, cidade) num único pedido ──
+    const secondaryEntities = {};
+    if (secondaryIds.size > 0) {
+      try {
+        const secUrl = 'https://www.wikidata.org/w/api.php?action=wbgetentities' +
+          '&ids=' + encodeURIComponent([...secondaryIds].join('|')) +
+          '&props=claims|labels&languages=pt|en&format=json&origin=*';
+        const secResp = await fetch(secUrl);
+        if (secResp.ok) {
+          const secData = await secResp.json();
+          Object.assign(secondaryEntities, secData?.entities || {});
+        }
+      } catch(_) {}
+    }
+
+    function getLabel(ent, fallback) {
+      if (!ent || !ent.labels) return fallback || '';
+      return ent.labels?.pt?.value || ent.labels?.en?.value || ent.labels?.es?.value || fallback || '';
+    }
+
+    function getClaimStr(claims, prop) {
+      const snak = claims?.[prop]?.[0]?.mainsnak?.datavalue?.value;
+      if (!snak) return '';
+      if (typeof snak === 'string') return snak;
+      if (snak?.text) return snak.text;
+      return '';
+    }
+
+    function getClaimQid(claims, prop) {
+      return claims?.[prop]?.[0]?.mainsnak?.datavalue?.value?.id || '';
+    }
+
+    // ── PASSO 4: construir candidatos ──────────────────────────────────────
+    for (const [qid, ent] of Object.entries(entities)) {
+      if (!ent || ent.missing) continue;
+      const cl = ent.claims || {};
+
+      // Só entidades com pelo menos morada ou website
+      const website   = getClaimStr(cl, 'P856');
+      const phone     = getClaimStr(cl, 'P1329');
+      const streetRaw = getClaimStr(cl, 'P6375'); // endereço em formato texto
+      const postcode  = getClaimStr(cl, 'P281');
+      const countryQid= getClaimQid(cl, 'P17');
+      const hqQid     = getClaimQid(cl, 'P159');
+
+      const countryEnt = countryQid ? secondaryEntities[countryQid] : null;
+      const hqEnt      = hqQid ? secondaryEntities[hqQid] : null;
+
+      const countryName = getLabel(countryEnt, '');
+      const hqCity      = getLabel(hqEnt, '');
+
+      // Código ISO do país (P297 nas claims do país)
+      const countryIso  = countryEnt ? (getClaimStr(countryEnt.claims || {}, 'P297') || '').toLowerCase() : '';
+
+      // Filtrar por país se especificado
+      if (targetCountry && targetCountry.trim() && countryName && !countryName.toLowerCase().includes(targetCountry.trim().toLowerCase())) {
+        // permitir mesmo assim se não houver pais preenchido no Wikidata
+        if (countryName) continue;
+      }
+
+      const entityLabel = getLabel(ent, query);
+
+      if (!streetRaw && !postcode && !hqCity && !website) continue;
+
+      // Separar número de rua do nome da rua
+      let direcao1 = streetRaw || '';
+      let numero   = '';
+      const numMatch = streetRaw.match(/^(.*?),?\s+(\d+[A-Za-z]?)\s*$/);
+      if (numMatch) { direcao1 = numMatch[1].trim(); numero = numMatch[2]; }
+
+      const pais = countryName || targetCountry || '';
+      const fonteUrl = 'https://www.wikidata.org/wiki/' + qid;
+
+      candidates.push({
+        nome:        entityLabel,
+        direcao1:    direcao1,
+        direcao2:    '',
+        numero:      numero,
+        andar:       '',
+        codigoPostal:postcode,
+        localidade:  hqCity,
+        pais:        pais,
+        countryCode: countryIso,
+        flag:        getCountryFlagEmoji(countryIso, pais),
+        telefone:    phone,
+        website:     website,
+        fonteUrl:    fonteUrl,
+        provider:    '🌐 Wikipedia / Wikidata (Verificado)'
+      });
+
+      if (candidates.length >= 6) break;
+    }
+  } catch(err) {
+    console.warn('Wikidata resolver erro:', err);
+  }
   return candidates;
 }
 
@@ -27854,6 +27997,25 @@ function renderAiCandidateCards() {
   const container = document.getElementById('aiCandidatesCardsList');
   if (!container) return;
   container.innerHTML = '';
+
+  // ── Estado "Não encontrado" ─────────────────────────────────────────────
+  if (!availableAiCandidates || availableAiCandidates.length === 0) {
+    const entityQ = encodeURIComponent(
+      (currentPendingContext?.entityName || '') + ' sede morada contacto telefone'
+    );
+    container.innerHTML = `
+      <div style="padding:20px;text-align:center;color:#555;">
+        <div style="font-size:2.2em;margin-bottom:8px;">🔍</div>
+        <p style="margin:0 0 6px;font-weight:600;font-size:1.05em;">Não foi possível encontrar dados automáticos</p>
+        <p style="margin:0 0 16px;font-size:.9em;color:#777;">Tente pesquisar manualmente no Google.</p>
+        <a href="https://www.google.com/search?q=${entityQ}" target="_blank" rel="noopener"
+           style="display:inline-block;padding:9px 18px;background:#4285f4;color:#fff;border-radius:6px;text-decoration:none;font-size:.9em;font-weight:600;">
+          <i class="fa-brands fa-google" style="margin-right:6px;"></i>Pesquisar no Google
+        </a>
+      </div>`;
+    return;
+  }
+  // ────────────────────────────────────────────────────────────────────────
 
   availableAiCandidates.forEach((cand, idx) => {
     const isSelected = (idx === selectedAiCandidateIndex);
@@ -28124,7 +28286,21 @@ async function triggerAiAddressEnrichment() {
       }
     }
 
-    // 2. Consulta Global Nominatim / OpenStreetMap com múltiplos candidatos
+    // 2. Wikipedia / Wikidata — fonte principal de dados reais de empresas
+    const wikiCandidates = await resolveEntityCandidatesFromWikidata(entityName, existingPais);
+    for (const wiki of wikiCandidates) {
+      const key = ((wiki.pais || '') + '|' + (wiki.localidade || '') + '|' + (wiki.direcao1 || '')).toLowerCase();
+      if (!seenKeys.has(key)) {
+        seenKeys.add(key);
+        availableAiCandidates.push({
+          ...wiki,
+          website: wiki.website || existingWebsite || '',
+          telefone: wiki.telefone || existingTelefone || ''
+        });
+      }
+    }
+
+    // 3. OpenStreetMap (filtrado — só nós do tipo escritório/empresa/sede)
     const osmCandidates = await resolveEntityCandidatesFromNominatim(entityName, existingPais);
     for (const osm of osmCandidates) {
       const key = ((osm.pais || '') + '|' + (osm.localidade || '') + '|' + (osm.direcao1 || '')).toLowerCase();
@@ -28138,7 +28314,7 @@ async function triggerAiAddressEnrichment() {
       }
     }
 
-    // 3. Fallback Gemini AI Direto se chave estiver configurada e ainda sem candidatos
+    // 4. Fallback Gemini AI Direto se chave estiver configurada e ainda sem candidatos
     const geminiApiKey = localStorage.getItem('sigec_gemini_api_key') || '';
     if (availableAiCandidates.length === 0 && geminiApiKey) {
       try {
@@ -28181,7 +28357,7 @@ async function triggerAiAddressEnrichment() {
       }
     }
 
-    // 4. Se for estatal e ainda sem resultados, tentar ministério central
+    // 5. Se for estatal e ainda sem resultados, tentar ministério central
     if (availableAiCandidates.length === 0 && isEstatal) {
       const minMatch = resolveEntityFromLocalDirectory(ministerio, '', existingPais);
       if (minMatch) {
@@ -28207,7 +28383,23 @@ async function triggerAiAddressEnrichment() {
     }
 
     if (availableAiCandidates.length === 0) {
-      throw new Error('Não foi possível identificar a direção oficial automaticamente para esta entidade.');
+      // Não fechar o modal — mostrar estado "não encontrado" com link Google
+      if (loadingState) loadingState.style.display = 'none';
+      if (contentState) contentState.style.display = 'block';
+      const multiContainer = document.getElementById('aiMultipleCandidatesContainer');
+      if (multiContainer) multiContainer.style.display = 'block';
+      const countBadge = document.getElementById('aiCandidatesCountBadge');
+      if (countBadge) countBadge.textContent = '0';
+      renderAiCandidateCards(); // mostra o estado "não encontrado" com Google link
+      const targetLabel = document.getElementById('aiTargetLabel');
+      if (targetLabel) targetLabel.textContent = 'Entidade pesquisada:';
+      const targetEntity = document.getElementById('aiTargetEntityName');
+      if (targetEntity) targetEntity.textContent = entityName;
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-house"></i> <span data-i18n="btn_ai_update_address">Atualização de Direção</span>';
+      }
+      return;
     }
 
     // Ordenar candidatos: Se o utilizador já indicou um País, priorizar no topo
