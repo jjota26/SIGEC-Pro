@@ -13544,7 +13544,7 @@ function smartSplitPortugueseName(fullName) {
     'rui pedro', 'rui manuel', 'rui miguel', 'rui filipe', 'rui jorge',
     'vítor manuel', 'vitor manuel', 'vítor hugo', 'vitor hugo', 'vítor eduardo', 'vitor eduardo',
     'marco antónio', 'marco antonio', 'marco paulo',
-    'david carlos', 'rita sá', 'tiago andré', 'tiago andre', 'gonçalo nuno', 'goncalo nuno'
+    'david carlos', 'tiago andré', 'tiago andre', 'gonçalo nuno', 'goncalo nuno'
   ];
 
   if (twoWordFirstNames.includes(first2) && parts.length >= 3) {
@@ -13563,6 +13563,13 @@ function smartSplitPortugueseName(fullName) {
 window.smartSplitPortugueseName = smartSplitPortugueseName;
 
 function smartParseAddress(raw) {
+  if (!raw || typeof raw !== 'string') return null;
+  let str = raw.trim();
+  if (!str) return null;
+
+  // Sanitize common UTF-8 double-encoding artifacts like 'n.Âº' -> 'n.º'
+  str = str.replace(/Â[º°ª]/g, 'º').replace(/Â/g, '');
+
   const result = {
     direcao1: '',
     direcao2: '',
@@ -13573,36 +13580,32 @@ function smartParseAddress(raw) {
     pais: 'Portugal'
   };
 
-  if (!raw || typeof raw !== 'string') return result;
-  let str = raw.trim().replace(/\s+/g, ' ');
-
-  // 1. Identificar País
-  const countries = [
-    { name: 'Portugal', regex: /\b(?:portugal|pt)\b/i },
-    { name: 'Espanha', regex: /\b(?:espanha|españa|spain|es)\b/i },
-    { name: 'França', regex: /\b(?:frança|france|francia)\b/i },
-    { name: 'Brasil', regex: /\b(?:brasil|brazil)\b/i },
-    { name: 'Cabo Verde', regex: /\b(?:cabo verde|cape verde)\b/i },
-    { name: 'Angola', regex: /\bangola\b/i },
-    { name: 'Moçambique', regex: /\b(?:moçambique|mozambique)\b/i },
-    { name: 'Reino Unido', regex: /\b(?:reino unido|united kingdom|uk)\b/i }
+  // 1. Extrair País no fim da morada se presente
+  const countryPatterns = [
+    { regex: /[\,\s]+(Portugal)[\.\s]*$/i, name: 'Portugal' },
+    { regex: /[\,\s]+(Espanha|Spain|España)[\.\s]*$/i, name: 'Espanha' },
+    { regex: /[\,\s]+(Cabo\s+Verde)[\.\s]*$/i, name: 'Cabo Verde' },
+    { regex: /[\,\s]+(Angola)[\.\s]*$/i, name: 'Angola' },
+    { regex: /[\,\s]+(Moçambique|Mozambique)[\.\s]*$/i, name: 'Moçambique' },
+    { regex: /[\,\s]+(Brasil|Brazil)[\.\s]*$/i, name: 'Brasil' },
+    { regex: /[\,\s]+(França|France)[\.\s]*$/i, name: 'França' },
+    { regex: /[\,\s]+(Reino\s+Unido|United\s+Kingdom|UK)[\.\s]*$/i, name: 'Reino Unido' }
   ];
-
-  for (const c of countries) {
-    if (c.regex.test(str)) {
-      result.pais = c.name;
-      str = str.replace(c.regex, '').trim();
+  for (const cp of countryPatterns) {
+    if (cp.regex.test(str)) {
+      result.pais = cp.name;
+      str = str.replace(cp.regex, '').trim();
       break;
     }
   }
 
-  // 2. Extrair Código Postal e Localidade
-  const ptPostalRegex = /\b(\d{4}-\d{3})\b(?:\s+([^\,\;]+))?/i;
-  const esPostalRegex = /\b(\d{5})\b(?:\s+([^\,\;]+))?/i;
+  // 2. Extrair Código Postal e Localidade associada
+  const ptPostalRegex = /\b(\d{4}\s*-\s*\d{3})(?:\s+([A-Za-zÀ-ÿ\s\-\'\.]+))?(?=[\,\.\;]|$)/i;
+  const esPostalRegex = /\b(\d{5})(?:\s+([A-Za-zÀ-ÿ\s\-\'\.]+))?(?=[\,\.\;]|$)/i;
 
   const matchPt = str.match(ptPostalRegex);
   if (matchPt) {
-    result.codigoPostal = matchPt[1];
+    result.codigoPostal = matchPt[1].replace(/\s+/g, '');
     if (matchPt[2] && !result.localidade) {
       result.localidade = matchPt[2].trim().replace(/[\,\.\;]+$/, '');
     }
@@ -13618,39 +13621,193 @@ function smartParseAddress(raw) {
     }
   }
 
-  // 3. Extrair Andar / Piso / Fração / Bloco / Torre
-  const floorRegex = /\b(?:(\d+[º°ªa]\s*(?:andar|piso|esq(?:uerdo)?|dto|direito|frente|recuado|trás|tras|d|e)?)|(r\/c|rés-do-chão|res-do-chao|cave|subcave|sobreloja)|(?:torre|bloco|lote|edif[íi]cio)\s+([A-Za-z0-9]+))\b/i;
+  // 3. Proteger datas históricas e estradas nacionais com números (ex: 24 de Julho, Estrada Nacional 115, Km 78.67)
+  let protectedPlaceholders = [];
+  let tokenCounter = 0;
+
+  // Protect Estradas e Quilómetros: Estrada Nacional 123, EN 123, Km 78.67, etc.
+  str = str.replace(/\b(?:Estrada\s+Nacional|EN|IC|IP|Autoestrada|A)\s*\d+(?:[\.\-]\d+)?\b/gi, match => {
+    const token = `__PROTECTED_ROAD_${tokenCounter++}__`;
+    protectedPlaceholders.push({ token, original: match });
+    return token;
+  });
+  str = str.replace(/\b(?:Km|KM|Quil[óo]metro)\s*\d+(?:[\.,]\d+)?\b/gi, match => {
+    const token = `__PROTECTED_KM_${tokenCounter++}__`;
+    protectedPlaceholders.push({ token, original: match });
+    return token;
+  });
+
+  // Protect Historical Dates
+  const historicalDates = [
+    '24 de julho', '25 de abril', '5 de outubro', '1º de maio', '1 de maio',
+    '1º de dezembro', '1 de dezembro', '31 de janeiro', '28 de maio', '9 de abril'
+  ];
+  historicalDates.forEach(hd => {
+    const reg = new RegExp('\\b' + hd + '\\b', 'gi');
+    str = str.replace(reg, match => {
+      const token = `__PROTECTED_DATE_${tokenCounter++}__`;
+      protectedPlaceholders.push({ token, original: match });
+      return token;
+    });
+  });
+
+  // 4. Extrair Andar / Piso / Fração / Bloco / Torre (ex: 2.º Piso, 3º andar, 1º Dto, R/C, Bloco B)
+  const floorRegex = /(?:,\s*|\s+)(\d+(?:\.?[º°ªa]|\.)?\s*(?:andar|piso|esq(?:uerdo)?|dto|direito|frente|recuado|trás|tras|d|e)\b|(?:r\/c|rés-do-chão|res-do-chao|cave|subcave|sobreloja)|(?:torre|bloco|lote|edif[íi]cio)\s+[A-Za-z0-9]+)/i;
   const matchFloor = str.match(floorRegex);
   if (matchFloor) {
-    result.andar = matchFloor[0].trim();
-    str = str.replace(matchFloor[0], '').trim();
+    result.andar = matchFloor[1].replace(/^[\,\s]+|[\,\s\.]+$/g, '').trim();
+    str = str.replace(matchFloor[0], ' ').trim();
   }
 
-  // 4. Extrair Número de Porta / Polícia
-  const numRegex = /(?:,\s*|\s+)(?:n[º°.]?\s*|n[uú]mero\s*)?(\d+[\s\-]?[A-Za-z]?)(?=[\,\s]|$)/i;
-  const matchNum = str.match(numRegex);
-  if (matchNum) {
-    result.numero = matchNum[1].trim();
-    str = str.replace(matchNum[0], ',').trim();
-  }
-
-  // 5. Normalizar Direção 1 e Localidade restante
-  str = str.replace(/,\s*,/g, ',').replace(/^[\,\s\-]+|[\,\s\-]+$/g, '').trim();
-  const remainingParts = str.split(',').map(p => p.trim()).filter(Boolean);
-
-  if (remainingParts.length > 1 && !result.localidade) {
-    result.localidade = remainingParts.pop();
-    result.direcao1 = remainingParts.join(', ');
+  // 5. Extrair Número de Porta / Polícia (ex: "n.º 1", "nº 251", ", 140", " 63")
+  const explicitNumRegex = /(?:,\s*|\s+)(?:n[\.º°]+[o]?\s*|n[uú]mero\s*)(\d+[\s\-]?[A-Za-z]?)(?=[\,\s\.]|$)/i;
+  const matchExplicit = str.match(explicitNumRegex);
+  if (matchExplicit) {
+    result.numero = matchExplicit[1].trim();
+    str = str.replace(matchExplicit[0], ' ').trim();
   } else {
-    result.direcao1 = str;
+    // Isolado após vírgula ou espaço no fim
+    const numRegex = /(?:,\s*|\s+)(\d+[\s\-]?[A-Za-z]?)(?=[\,\s\.]|$)/i;
+    const matchNum = str.match(numRegex);
+    if (matchNum) {
+      result.numero = matchNum[1].trim();
+      str = str.replace(matchNum[0], ' ').trim();
+    }
   }
 
-  // Limpeza final de pontuação em direcao1
-  result.direcao1 = (result.direcao1 || '').replace(/[\s,\-]+$/, '').replace(/^[\s,\-]+/, '').trim();
+  // Restaurar tokens protegidos
+  protectedPlaceholders.forEach(p => {
+    str = str.replace(p.token, p.original);
+  });
+
+  // 6. Limpar prefixos órfãos como 'n.º', 'nº', 'n.', 'nº.', vírgulas e pontos duplos
+  str = str.replace(/(?:,\s*|\s+)(?:n[\.º°]+[o]?|número)(?=[\,\s\.]|$)/gi, '').trim();
+
+  // 7. Normalizar Direção 1 e Localidade restante
+  str = str.replace(/,\s*,/g, ',').replace(/^[\,\s\-\.]+|[\,\s\-\.]+$/g, '').trim();
+  const parts = str.split(',').map(p => p.trim()).filter(Boolean);
+
+  // Se não há localidade e o último segmento não for uma rua/avenida/km, assume localidade
+  if (parts.length > 1 && !result.localidade) {
+    const lastPart = parts[parts.length - 1];
+    const isStreetType = /^(?:rua|avenida|av|alameda|travessa|largo|praça|praca|estrada|campus|parque|edif[íi]cio|km|quil[óo]metro)\b/i.test(lastPart);
+    if (!isStreetType) {
+      result.localidade = parts.pop();
+    }
+  }
+
+  result.direcao1 = parts.join(', ').replace(/[\s,\-\.]+$/, '').replace(/^[\s,\-\.]+/, '').trim();
 
   return result;
 }
 window.smartParseAddress = smartParseAddress;
+
+// Normalização retroativa de moradas e contactos já existentes no SIGEC-Pro
+function normalizeExistingContactsAndAddresses(interactive = false) {
+  if (typeof db === 'undefined' || !db) {
+    if (interactive && typeof showToast === 'function') showToast('Base de dados não disponível.', 'warning');
+    return { clientsUpdated: 0, contactsUpdated: 0 };
+  }
+
+  let clientsUpdated = 0;
+  let contactsUpdated = 0;
+
+  // 1. Normalizar moradas de clientes existentes
+  if (Array.isArray(db.clientes)) {
+    db.clientes.forEach(c => {
+      const rawDir = (c.direcao1 || '').trim();
+      let changed = false;
+
+      // Normalizar país se em falta
+      if (!c.pais) {
+        if (/cabo verde/i.test(c.localidade || '') || /@.*\.cv$/i.test(c.email || '') || /\+238/.test(c.telefone || '')) {
+          c.pais = 'Cabo Verde';
+          changed = true;
+        } else {
+          c.pais = 'Portugal';
+          changed = true;
+        }
+      }
+
+      if (rawDir) {
+        const parsed = smartParseAddress(rawDir);
+        if (parsed) {
+          if (parsed.direcao1 && parsed.direcao1 !== c.direcao1 && (parsed.numero || parsed.codigoPostal || parsed.andar || parsed.localidade)) {
+            c.direcao1 = parsed.direcao1;
+            changed = true;
+          }
+          if (!c.numero && parsed.numero) {
+            c.numero = parsed.numero;
+            changed = true;
+          }
+          if (!c.andar && parsed.andar) {
+            c.andar = parsed.andar;
+            changed = true;
+          }
+          if (!c.codigoPostal && parsed.codigoPostal) {
+            c.codigoPostal = parsed.codigoPostal;
+            changed = true;
+          }
+          if (!c.localidade && parsed.localidade) {
+            c.localidade = parsed.localidade;
+            changed = true;
+          }
+          if (parsed.pais && (!c.pais || (c.pais !== parsed.pais && parsed.pais !== 'Portugal'))) {
+            c.pais = parsed.pais;
+            changed = true;
+          }
+        }
+      }
+
+      // Limpeza de caracteres corrompidos em direcao1
+      if (c.direcao1 && /Â[º°ª]/.test(c.direcao1)) {
+        c.direcao1 = c.direcao1.replace(/Â[º°ª]/g, 'º').replace(/Â/g, '');
+        changed = true;
+      }
+
+      if (changed) clientsUpdated++;
+    });
+  }
+
+  // 2. Normalizar nomes próprios compostos e apelidos em contactos existentes
+  if (Array.isArray(db.contactos)) {
+    db.contactos.forEach(ct => {
+      const nome = (ct.nome || '').trim();
+      const apelido = (ct.apelido || '').trim();
+      const fullName = (nome + ' ' + apelido).trim();
+
+      if (fullName) {
+        const splitRes = smartSplitPortugueseName(fullName);
+        if (splitRes && splitRes.nome && (splitRes.nome !== nome || splitRes.apelido !== apelido)) {
+          ct.nome = splitRes.nome;
+          ct.apelido = splitRes.apelido;
+          contactsUpdated++;
+        }
+      }
+    });
+  }
+
+  if (clientsUpdated > 0 || contactsUpdated > 0) {
+    if (typeof saveDatabase === 'function') {
+      saveDatabase(true);
+    }
+    if (typeof renderClientsTable === 'function') renderClientsTable();
+    if (typeof renderContactsTable === 'function') renderContactsTable();
+
+    const msg = `Normalização concluída: ${clientsUpdated} moradas de clientes e ${contactsUpdated} contactos aperfeiçoados com sucesso!`;
+    if (interactive && typeof showToast === 'function') {
+      showToast(msg, 'success');
+    }
+    console.log('[IA Normalization]', msg);
+  } else {
+    if (interactive && typeof showToast === 'function') {
+      showToast('Todos os registos de clientes e contactos já se encontram perfeitamente normalizados.', 'info');
+    }
+  }
+
+  return { clientsUpdated, contactsUpdated };
+}
+window.normalizeExistingContactsAndAddresses = normalizeExistingContactsAndAddresses;
 
 function processCategoryImport(category, items) {
   if (!Array.isArray(items) || items.length === 0) {

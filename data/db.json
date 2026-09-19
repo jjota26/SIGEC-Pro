@@ -19,7 +19,8 @@
       "createdAt": "2026-08-14T17:09:33.519Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-003",
@@ -41,7 +42,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T18:53:56.743Z",
       "comercial": "José Centúrio",
@@ -67,7 +68,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T18:53:36.784Z",
       "comercial": "José Centúrio",
@@ -92,7 +93,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-006",
@@ -114,7 +116,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T20:23:58.509Z",
       "comercial": "José Centúrio",
@@ -139,7 +141,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-008",
@@ -161,7 +164,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T20:24:15.245Z",
       "comercial": "José Centúrio",
@@ -187,7 +190,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T17:43:25.224Z",
       "comercial": "José Centúrio",
@@ -213,7 +216,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T17:44:33.417Z",
       "comercial": "José Centúrio",
@@ -239,7 +242,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T17:43:01.017Z",
       "comercial": "José Centúrio",
@@ -265,7 +268,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T17:42:39.409Z",
       "comercial": "José Centúrio",
@@ -291,7 +294,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T17:42:50.627Z",
       "comercial": "José Centúrio",
@@ -317,7 +320,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T17:43:44.649Z",
       "comercial": "José Centúrio",
@@ -343,7 +346,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T17:43:39.457Z",
       "comercial": "José Centúrio",
@@ -369,7 +372,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T17:42:55.936Z",
       "comercial": "José Centúrio",
@@ -395,7 +398,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T17:43:19.984Z",
       "comercial": "José Centúrio",
@@ -421,7 +424,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T17:44:09.880Z",
       "comercial": "José Centúrio",
@@ -447,7 +450,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T17:43:50.728Z",
       "comercial": "José Centúrio",
@@ -460,7 +463,7 @@
       "secretariaEstado": "",
       "nome": "Fundação Serralves",
       "contribuinte": "500001173",
-      "direcao1": "Rua Dom João de Castro, 210, 4150-417 Porto",
+      "direcao1": "Rua Dom João de Castro",
       "direcao2": "",
       "numero": "210",
       "andar": "",
@@ -473,7 +476,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T17:44:29.456Z",
       "comercial": "José Centúrio",
@@ -499,7 +502,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T17:44:01.192Z",
       "comercial": "José Centúrio",
@@ -525,7 +528,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T17:42:45.729Z",
       "comercial": "José Centúrio",
@@ -551,7 +554,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T17:44:19.272Z",
       "comercial": "José Centúrio",
@@ -577,7 +580,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T17:44:14.449Z",
       "comercial": "José Centúrio",
@@ -603,7 +606,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T17:44:24.410Z",
       "comercial": "José Centúrio",
@@ -662,7 +665,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-033",
@@ -829,9 +833,9 @@
       "secretariaEstado": "Secretario de estado de agricultura",
       "nome": "MINISTERIO DE AGRICULTURA Y MAR / Secretario de estado de agricultura",
       "contribuinte": "500000663",
-      "direcao1": "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
+      "direcao1": "Campus XXI, Avenida João XXI",
       "direcao2": "",
-      "numero": "",
+      "numero": "63",
       "andar": "",
       "codigoPostal": "1000-300",
       "localidade": "Lisboa",
@@ -841,7 +845,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-039",
@@ -850,9 +855,9 @@
       "secretariaEstado": "Dirección general agricultura y desenvolvimiento rural",
       "nome": "MINISTERIO DE AGRICULTURA Y MAR / Dirección general agricultura y desenvolvimiento rural",
       "contribuinte": "500000680",
-      "direcao1": "Avenida Afonso Costa, 3, 1949-002 Lisboa, Portugal",
+      "direcao1": "Avenida Afonso Costa",
       "direcao2": "",
-      "numero": "",
+      "numero": "3",
       "andar": "",
       "codigoPostal": "1949-002",
       "localidade": "Lisboa",
@@ -880,7 +885,8 @@
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-041",
@@ -889,9 +895,9 @@
       "secretariaEstado": "Secretario de estado de cultura",
       "nome": "MINISTERIO DE CULTURA, JUVENTUD Y DEPORTE / Secretario de estado de cultura",
       "contribuinte": "500000714",
-      "direcao1": "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
+      "direcao1": "Campus XXI, Avenida João XXI",
       "direcao2": "",
-      "numero": "",
+      "numero": "63",
       "andar": "",
       "codigoPostal": "1000-300",
       "localidade": "Lisboa",
@@ -901,7 +907,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-043",
@@ -972,7 +979,8 @@
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-044",
@@ -981,9 +989,9 @@
       "secretariaEstado": "Ministério, Secretário de Estado Adjunto e da Educação, Direção Geral",
       "nome": "Ministério da Educação, Ciência e Inovação",
       "contribuinte": "500000765",
-      "direcao1": "Avenida Infante Santo, 2 1350-178 LISBOA",
+      "direcao1": "Avenida Infante Santo",
       "direcao2": "",
-      "numero": "",
+      "numero": "2",
       "andar": "",
       "codigoPostal": "1350-178",
       "localidade": "Lisboa",
@@ -1060,9 +1068,9 @@
       "secretariaEstado": "Secretário de estado adjunto e de educação",
       "nome": "MINISTERIO DE EDUCACIÃ“N, CIENCIA E INNOVACION / Secretário de estado adjunto e de educação",
       "contribuinte": "500000782",
-      "direcao1": "Avenida Infante Santo, 2 1350-178 LISBOA",
+      "direcao1": "Avenida Infante Santo",
       "direcao2": "",
-      "numero": "",
+      "numero": "2",
       "andar": "",
       "codigoPostal": "1350-178",
       "localidade": "Lisboa",
@@ -1072,7 +1080,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-046",
@@ -1081,9 +1090,9 @@
       "secretariaEstado": "Dirección general de educación",
       "nome": "MINISTERIO DE EDUCACIÃ“N, CIENCIA E INNOVACION / Dirección general de educación",
       "contribuinte": "500000799",
-      "direcao1": "Avenida 24 de Julho, 140, 1399-025 Lisboa, Portugal.",
+      "direcao1": "Avenida 24 de Julho",
       "direcao2": "",
-      "numero": "",
+      "numero": "140",
       "andar": "",
       "codigoPostal": "1399-025",
       "localidade": "Lisboa",
@@ -1093,7 +1102,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-047",
@@ -1181,9 +1191,9 @@
       "secretariaEstado": "Secretaria de estado de acción social y de inclusión",
       "nome": "MINISTERIO DE TRABAJO, SOLIDARIDAD Y SEGURIDAD SOCIAL / Secretaria de estado de acción social y de inclusión",
       "contribuinte": "500000833",
-      "direcao1": "Praça de Londres, 2 1049-056 LISBOA",
+      "direcao1": "Praça de Londres",
       "direcao2": "",
-      "numero": "",
+      "numero": "2",
       "andar": "",
       "codigoPostal": "1049-056",
       "localidade": "Lisboa",
@@ -1193,7 +1203,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-049",
@@ -1202,9 +1213,9 @@
       "secretariaEstado": "Dirección general de seguridad social",
       "nome": "MINISTERIO DE TRABAJO, SOLIDARIDAD Y SEGURIDAD SOCIAL / Dirección general de seguridad social",
       "contribuinte": "500000850",
-      "direcao1": "Largo do Rato, n.Âº 1, 1269-144 Lisboa, Portugal",
+      "direcao1": "Largo do Rato",
       "direcao2": "",
-      "numero": "",
+      "numero": "1",
       "andar": "",
       "codigoPostal": "1269-144",
       "localidade": "Lisboa",
@@ -1214,7 +1225,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-051",
@@ -1269,7 +1281,8 @@
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-052",
@@ -1369,7 +1382,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-054",
@@ -1378,7 +1392,7 @@
       "secretariaEstado": "Ministério, Secretaria de Estado",
       "nome": "Ministério da Justiça",
       "contribuinte": "500000935",
-      "direcao1": "Praça do Comércio 1149-019 LISBOA",
+      "direcao1": "Praça do Comércio",
       "direcao2": "",
       "numero": "",
       "andar": "",
@@ -1440,7 +1454,7 @@
       "secretariaEstado": "Secretaría del estado de justicia",
       "nome": "MINISTERIO DE JUSTICIA / Secretaría del estado de justicia",
       "contribuinte": "500000952",
-      "direcao1": "Praça do Comércio 1149-019 LISBOA",
+      "direcao1": "Praça do Comércio",
       "direcao2": "",
       "numero": "",
       "andar": "",
@@ -1452,7 +1466,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-056",
@@ -1461,7 +1476,7 @@
       "secretariaEstado": "Ministério",
       "nome": "Ministério da Defesa Nacional",
       "contribuinte": "500000969",
-      "direcao1": "Avenida da Ilha da Madeira 1400-204 LISBOA",
+      "direcao1": "Avenida da Ilha da Madeira",
       "direcao2": "",
       "numero": "",
       "andar": "",
@@ -1506,10 +1521,10 @@
       "secretariaEstado": "Direção Geral dos recursos da Defesa Nacional",
       "nome": "Direção Geral dos recursos da Defesa Nacional",
       "contribuinte": "500000986",
-      "direcao1": "Avenida Ilha da Madeira n.º 1, 2.º Piso, 1400-204 Lisboa, Portugal.",
+      "direcao1": "Avenida Ilha da Madeira",
       "direcao2": "",
-      "numero": "",
-      "andar": "",
+      "numero": "1",
+      "andar": "2.º Piso",
       "codigoPostal": "1400-204",
       "localidade": "Lisboa",
       "telefone": "+351 21 303 85 00",
@@ -1551,7 +1566,7 @@
       "secretariaEstado": "Ministério",
       "nome": "Ministério dos Assuntos Parlamentares",
       "contribuinte": "500001003",
-      "direcao1": "Palácio de São Bento 1249-068 LISBOA",
+      "direcao1": "Palácio de São Bento",
       "direcao2": "",
       "numero": "",
       "andar": "",
@@ -1692,9 +1707,9 @@
       "secretariaEstado": "Secretaría del estado para la digitalización",
       "nome": "MINISTERIO DE REFORMA DE ESTADO / Secretaría del estado para la digitalización",
       "contribuinte": "500001037",
-      "direcao1": "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
+      "direcao1": "Campus XXI, Avenida João XXI",
       "direcao2": "",
-      "numero": "",
+      "numero": "63",
       "andar": "",
       "codigoPostal": "1000-300",
       "localidade": "Lisboa",
@@ -1704,7 +1719,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-061",
@@ -1713,9 +1729,9 @@
       "secretariaEstado": "Secretaría del estado para la simplificación",
       "nome": "MINISTERIO DE REFORMA DE ESTADO / Secretaría del estado para la simplificación",
       "contribuinte": "500001054",
-      "direcao1": "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
+      "direcao1": "Campus XXI, Avenida João XXI",
       "direcao2": "",
-      "numero": "",
+      "numero": "63",
       "andar": "",
       "codigoPostal": "1000-300",
       "localidade": "Lisboa",
@@ -1725,7 +1741,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-062",
@@ -1813,9 +1830,9 @@
       "secretariaEstado": "Secretaría del estado de turismo, comercio y servicios",
       "nome": "MINISTERIO DE ECONOMIA E DA COESAO TERRITORIAL / Secretaría del estado de turismo, comercio y servicios",
       "contribuinte": "500001088",
-      "direcao1": "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
+      "direcao1": "Campus XXI, Avenida João XXI",
       "direcao2": "",
-      "numero": "",
+      "numero": "63",
       "andar": "",
       "codigoPostal": "1000-300",
       "localidade": "Lisboa",
@@ -1825,7 +1842,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-064",
@@ -1879,7 +1897,7 @@
       "secretariaEstado": "Ministro",
       "nome": "MINISTERIO DE ESTADO E DOS NEGÃ“CIOS ESTRANGEIROS",
       "contribuinte": "500001122",
-      "direcao1": "Palácio das Necessidades Largo do Rilvas 1399-030 LISBOA",
+      "direcao1": "Palácio das Necessidades Largo do Rilvas",
       "direcao2": "",
       "numero": "",
       "andar": "",
@@ -1891,7 +1909,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-066",
@@ -1900,7 +1919,7 @@
       "secretariaEstado": "Ministério, Secretaria de Estado dos Negócios Estrangeiros e Cooperação",
       "nome": "Ministério Negócios Estrangeiros e Cooperação",
       "contribuinte": "500001122",
-      "direcao1": "Palácio das Necessidades Largo do Rilvas 1399-030 LISBOA",
+      "direcao1": "Palácio das Necessidades Largo do Rilvas",
       "direcao2": "",
       "numero": "",
       "andar": "",
@@ -2020,7 +2039,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T17:43:29.624Z",
       "comercial": "José Centúrio",
@@ -2045,7 +2064,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-071",
@@ -2066,7 +2086,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-072",
@@ -2087,7 +2108,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-073",
@@ -2108,7 +2130,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-076",
@@ -2130,7 +2153,7 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "",
+      "pais": "Portugal",
       "notas": "",
       "updatedAt": "2026-09-17T20:57:25.394Z",
       "comercial": "José Centúrio",
@@ -2155,7 +2178,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-078",
@@ -2176,7 +2200,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-079",
@@ -2197,7 +2222,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-080",
@@ -2218,7 +2244,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-081",
@@ -2239,7 +2266,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-082",
@@ -2260,7 +2288,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-084",
@@ -2269,9 +2298,9 @@
       "secretariaEstado": "Secretaria de Estado",
       "nome": "CCDR-N (Comissão de Coordenação e Desenvolvimento Regional do Norte)",
       "contribuinte": "501227181",
-      "direcao1": "Rua Rainha Dona Estefânia, n.Âº 251",
+      "direcao1": "Rua Rainha Dona Estefânia",
       "direcao2": "",
-      "numero": "",
+      "numero": "251",
       "andar": "",
       "codigoPostal": "4150-304",
       "localidade": "Porto",
@@ -2299,7 +2328,8 @@
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-imp-085",
@@ -2308,9 +2338,9 @@
       "secretariaEstado": "",
       "nome": "Banco Caboverdiano de Negócios - BCN",
       "contribuinte": "500001462",
-      "direcao1": "Avenida Amílcar Cabral, n.Âº 44",
+      "direcao1": "Avenida Amílcar Cabral",
       "direcao2": "",
-      "numero": "",
+      "numero": "44",
       "andar": "",
       "codigoPostal": "1000-001",
       "localidade": "Lisboa",
@@ -2320,7 +2350,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Cabo Verde"
     },
     {
       "id": "cli-1785514129444-833",
@@ -2341,7 +2372,8 @@
       "createdAt": "2026-07-31T16:08:49.444Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-1786604620361-357",
@@ -2362,7 +2394,8 @@
       "createdAt": "2026-08-13T07:03:40.361Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Cabo Verde"
     },
     {
       "id": "cli-imp-050",
@@ -2371,7 +2404,7 @@
       "secretariaEstado": "Ministério, Secretaria de Estado",
       "nome": "Ministério da Administração Interna",
       "contribuinte": "500000867",
-      "direcao1": "Praça do Comércio - Ala Oriental 1149-015 LISBOA",
+      "direcao1": "Praça do Comércio - Ala Oriental",
       "direcao2": "",
       "numero": "",
       "andar": "",
@@ -2529,9 +2562,9 @@
       "secretariaEstado": "Secretario de estado de deporte",
       "nome": "MINISTERIO DE CULTURA, JUVENTUD Y DEPORTE / Secretario de estado de deporte",
       "contribuinte": "500000731",
-      "direcao1": "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
+      "direcao1": "Campus XXI, Avenida João XXI",
       "direcao2": "",
-      "numero": "",
+      "numero": "63",
       "andar": "",
       "codigoPostal": "1000-300",
       "localidade": "Lisboa",
@@ -2541,7 +2574,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "pais": "Portugal"
     },
     {
       "id": "cli-1789584673991-289",
@@ -3141,8 +3175,8 @@
     {
       "id": "con-imp-040",
       "clienteId": "cli-imp-014",
-      "nome": "Maria",
-      "apelido": "Amélia Cupertino de Miranda",
+      "nome": "Maria Amélia",
+      "apelido": "Cupertino de Miranda",
       "cargo": "Presidente",
       "telefone": "351226101189",
       "telemovel": "",
@@ -3155,8 +3189,8 @@
     {
       "id": "con-imp-041",
       "clienteId": "cli-imp-070",
-      "nome": "António",
-      "apelido": "Vítor Martins Monteiro",
+      "nome": "António Vítor",
+      "apelido": "Martins Monteiro",
       "cargo": "Presidente",
       "telefone": "+ 351 211 131 682",
       "telemovel": "",
@@ -3254,8 +3288,8 @@
     {
       "id": "con-imp-048",
       "clienteId": "cli-imp-022",
-      "nome": "Maria",
-      "apelido": "Manuela Queirós Vasconcelos Mota dos Santos",
+      "nome": "Maria Manuela",
+      "apelido": "Queirós Vasconcelos Mota dos Santos",
       "cargo": "Presidente",
       "telefone": "+351 226 079 100",
       "telemovel": "",
@@ -3338,8 +3372,8 @@
     {
       "id": "con-imp-054",
       "clienteId": "cli-imp-028",
-      "nome": "Carlos",
-      "apelido": "Augusto Pulido Valente Monjardino",
+      "nome": "Carlos Augusto",
+      "apelido": "Pulido Valente Monjardino",
       "cargo": "Presidente",
       "telefone": "+351 213 585 200",
       "telemovel": "",
@@ -3408,8 +3442,8 @@
     {
       "id": "con-imp-059",
       "clienteId": "cli-imp-033",
-      "nome": "Maria",
-      "apelido": "da Graça Carvalho",
+      "nome": "Maria da Graça",
+      "apelido": "Carvalho",
       "cargo": "Ministra",
       "telefone": "+351 213 927 600",
       "telemovel": "",
@@ -3453,8 +3487,8 @@
     {
       "id": "con-imp-063",
       "clienteId": "cli-imp-037",
-      "nome": "Jose",
-      "apelido": "Manuel Fernandes",
+      "nome": "Jose Manuel",
+      "apelido": "Fernandes",
       "cargo": "Ministro",
       "telefone": "+351 213 234 600",
       "telemovel": "",
@@ -3582,8 +3616,8 @@
     {
       "id": "con-imp-072",
       "clienteId": "cli-imp-046",
-      "nome": "David",
-      "apelido": "Carlos da Rocha Sousa",
+      "nome": "David Carlos",
+      "apelido": "da Rocha Sousa",
       "cargo": "Dirección general de educación",
       "telefone": "+351 218 430 500",
       "telemovel": "",
@@ -3596,8 +3630,8 @@
     {
       "id": "con-imp-073",
       "clienteId": "cli-imp-047",
-      "nome": "Maria",
-      "apelido": "do Rosário Palma Ramalho",
+      "nome": "Maria do Rosário",
+      "apelido": "Palma Ramalho",
       "cargo": "Ministra",
       "telefone": "+351 215 963 800",
       "telemovel": "",
@@ -3638,8 +3672,8 @@
     {
       "id": "con-imp-076",
       "clienteId": "cli-imp-049",
-      "nome": "João",
-      "apelido": "Manuel Grossinho Gonçalves",
+      "nome": "João Manuel",
+      "apelido": "Grossinho Gonçalves",
       "cargo": "Dirección general de seguridad social",
       "telefone": "+351 215 952 990",
       "telemovel": "",
@@ -3750,8 +3784,8 @@
     {
       "id": "con-imp-084",
       "clienteId": "cli-imp-053",
-      "nome": "Joao",
-      "apelido": "Pedro Coutinho",
+      "nome": "Joao Pedro",
+      "apelido": "Coutinho",
       "cargo": "Chefe de Gabinete - Secretaria del estado de infraestructura",
       "telefone": "gabinete.seinf@mih.gov.pt",
       "telemovel": "",
@@ -3806,8 +3840,8 @@
     {
       "id": "con-imp-088",
       "clienteId": "cli-imp-055",
-      "nome": "Ana",
-      "apelido": "Luísa Machado",
+      "nome": "Ana Luísa",
+      "apelido": "Machado",
       "cargo": "Secretaría del estado de justicia",
       "telefone": "+351 213 222 300",
       "telemovel": "",
@@ -3974,8 +4008,8 @@
     {
       "id": "con-imp-100",
       "clienteId": "cli-imp-061",
-      "nome": "Maria",
-      "apelido": "Joao Santos",
+      "nome": "Maria Joao",
+      "apelido": "Santos",
       "cargo": "Chefe de Gabinete - Secretaría del estado para la simplificación",
       "telefone": "+351 213 927 600",
       "telemovel": "",
@@ -4100,8 +4134,8 @@
     {
       "id": "con-imp-109",
       "clienteId": "cli-imp-066",
-      "nome": "Ana",
-      "apelido": "Isabel Xavier",
+      "nome": "Ana Isabel",
+      "apelido": "Xavier",
       "cargo": "Secretaria de estado de negocios extranjeros y cooperación",
       "telefone": "+351 213 946 000",
       "telemovel": "",
@@ -4185,8 +4219,8 @@
     {
       "id": "con-imp-115",
       "clienteId": "cli-imp-070",
-      "nome": "Maria",
-      "apelido": "de Fátima Coelho Dias",
+      "nome": "Maria de Fátima",
+      "apelido": "Coelho Dias",
       "cargo": "Secretária-Geral / Administradora Executiva",
       "telefone": "211131682",
       "telemovel": "",
@@ -4314,8 +4348,8 @@
     {
       "id": "con-imp-126",
       "clienteId": "cli-imp-072",
-      "nome": "Maria",
-      "apelido": "Inês Marques",
+      "nome": "Maria Inês",
+      "apelido": "Marques",
       "cargo": "R&D Senior Project Manager",
       "telefone": "210012500",
       "telemovel": "",
