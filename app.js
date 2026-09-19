@@ -5486,7 +5486,7 @@ function openCurrentUserSettingsModal() {
   if (alertMismatch) alertMismatch.style.display = 'none';
 
   renderUserThemePaletteGrid();
-  switchUserSettingsTab('security');
+  switchUserSettingsTab('templates');
   if (typeof updateInstalledVersionUI === 'function') updateInstalledVersionUI(); // openCurrentUserSettingsModal_hooked
 
   if (modal) {
@@ -5506,7 +5506,7 @@ function closeCurrentUserSettingsModal() {
 window.closeCurrentUserSettingsModal = closeCurrentUserSettingsModal;
 
 function switchUserSettingsTab(tabKey) {
-  const tabs = ['security', 'backup', 'templates', 'theme', 'updates'];
+  const tabs = ['templates', 'backup', 'updates', 'security', 'theme'];
   tabs.forEach(k => {
     const content = document.getElementById('userSettingsTab' + k.charAt(0).toUpperCase() + k.slice(1));
     const btn = document.getElementById('tabBtnUserSettings' + k.charAt(0).toUpperCase() + k.slice(1));
