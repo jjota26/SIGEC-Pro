@@ -7200,6 +7200,17 @@ function renderEstatalSeparadores() {
           <label>Email</label>
           <input type="email" class="form-control" value="${escapeHtmlAttr(activeSep.email || '')}" placeholder="contacto@organismo.pt" oninput="syncSeparadorField(${activeEstatalSeparadorIndex}, 'email', this.value)">
         </div>
+
+        <!-- Página Web / Website com Botão de Abertura Direta para este Separador -->
+        <div class="form-group col-12" style="margin-top: 0.15rem;">
+          <label style="display: flex; justify-content: space-between; align-items: center;">
+            <span><i class="fa-solid fa-globe" style="color: #0284c7; margin-right: 4px;"></i> <span data-i18n="client_website_label">Página Web / Website</span></span>
+            <a href="javascript:void(0)" onclick="openEstatalWebsiteLink(${activeEstatalSeparadorIndex})" style="font-size: 0.8rem; font-weight: 600; color: #2563eb; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; padding: 2px 10px; border-radius: 6px; background: #eff6ff; border: 1px solid #bfdbfe; transition: all 0.2s;" title="Abrir página web deste organismo num novo separador">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> <span data-i18n="btn_open_website">Abrir Página Web</span>
+            </a>
+          </label>
+          <input type="text" class="form-control" value="${escapeHtmlAttr(activeSep.website || '')}" placeholder="ex: https://www.organismo.gov.pt" oninput="syncSeparadorField(${activeEstatalSeparadorIndex}, 'website', this.value)">
+        </div>
       </div>
     </div>
   `;
@@ -7405,6 +7416,7 @@ function resetClientForm(skipConfirm = false) {
 
   localStorage.removeItem('sigec_pro_last_client_id');
   document.getElementById('clientForm').reset();
+  if (document.getElementById('clientWebsite')) document.getElementById('clientWebsite').value = '';
   const locEl = document.getElementById('clientLocalidade');
   if (locEl) { locEl.value = ''; locEl.style.minWidth = ''; }
   const paisEl = document.getElementById('clientPais');
@@ -7515,6 +7527,8 @@ function loadClientIntoForm(clientId, skipDirtyCheck = false, skipTabSwitch = fa
     document.getElementById('clientTelefone').value = client.telefone || '';
     document.getElementById('clientTelemovel').value = client.telemovel || '';
     document.getElementById('clientEmail').value = client.email || '';
+    const websiteEl = document.getElementById('clientWebsite');
+    if (websiteEl) websiteEl.value = client.website || '';
   }
 
   const proxElLoad = document.getElementById('clientProximoContacto');
@@ -8795,6 +8809,7 @@ function saveClient(e) {
         telefone: cleanStr(primarySep.telefone),
         telemovel: cleanStr(primarySep.telemovel),
         email: cleanStr(primarySep.email),
+        website: cleanStr(primarySep.website),
         notas: notasVal,
         separadores: currentEstatalSeparadores.map(s => s ? {
           ...s,
@@ -8809,7 +8824,8 @@ function saveClient(e) {
           pais: cleanStr(s.pais) || 'Portugal',
           telefone: cleanStr(s.telefone),
           telemovel: cleanStr(s.telemovel),
-          email: cleanStr(s.email)
+          email: cleanStr(s.email),
+          website: cleanStr(s.website)
         } : s),
         userId: comercialId,
         comercialAtribuidoId: comercialId,
@@ -8838,6 +8854,7 @@ function saveClient(e) {
       const telefone = document.getElementById('clientTelefone') ? document.getElementById('clientTelefone').value.trim() : '';
       const telemovel = document.getElementById('clientTelemovel') ? document.getElementById('clientTelemovel').value.trim() : '';
       const email = document.getElementById('clientEmail') ? document.getElementById('clientEmail').value.trim() : '';
+      const website = document.getElementById('clientWebsite') ? document.getElementById('clientWebsite').value.trim() : '';
 
       if (codigoPostal && !cpRegex.test(codigoPostal)) {
         showToast('Aviso: Código Postal não está no formato XXXX-XXX. Foi guardado como preenchido.', 'warning');
@@ -8866,6 +8883,7 @@ function saveClient(e) {
         telefone,
         telemovel,
         email,
+        website,
         notas: notasVal,
         userId: comercialId,
         comercialAtribuidoId: comercialId,
@@ -10586,7 +10604,8 @@ function performSearch(category, rawQuery) {
         normalizeText(s.nomePersonalizado).includes(q) ||
         normalizeText(s.direcao1).includes(q) ||
         normalizeText(s.localidade).includes(q) ||
-        normalizeText(s.email).includes(q)
+        normalizeText(s.email).includes(q) ||
+        (s.website && normalizeText(s.website).includes(q))
       );
     }
 
@@ -14271,6 +14290,7 @@ function processCategoryImport(category, items) {
       let pais = String(item['País'] || item.pais || item.Pais || '').trim();
       let direcao1 = rawDirecao;
       let direcao2 = String(item.direcao2 || item.Direcao2 || '').trim();
+      let website = String(item['Página Web / Website'] || item['Página Web'] || item['Website'] || item.website || item.Website || item.url || item.Url || '').trim();
 
       if (rawDirecao && (!codigoPostal || !localidade || !numero)) {
         if (typeof smartParseAddress === 'function') {
@@ -14331,6 +14351,7 @@ function processCategoryImport(category, items) {
           telefone: telefone,
           telemovel: telemovel,
           email: email,
+          website: website,
           setorAtividade: setorAtividade,
           separadores: [],
           userId: activeUserIdImport,
@@ -26447,3 +26468,333 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof updateHeaderActiveUserBadge === 'function') updateHeaderActiveUserBadge();
   }
 });
+
+// ====================================================================
+// FUNÇÕES DE GESTÃO DE PÁGINA WEB E ATUALIZAÇÃO DE MORADA COM IA
+// ====================================================================
+
+function openClientWebsiteLink() {
+  const input = document.getElementById('clientWebsite');
+  let url = input ? input.value.trim() : '';
+  if (!url) {
+    showToast('Por favor, introduza primeiro o endereço da página web do cliente.', 'warning');
+    return;
+  }
+  if (!url.startsWith('http://') && !url.startsWith('https://')) {
+    url = 'https://' + url;
+  }
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+window.openClientWebsiteLink = openClientWebsiteLink;
+
+function openEstatalWebsiteLink(idx) {
+  if (typeof syncCurrentActiveTabFromDOM === 'function') {
+    syncCurrentActiveTabFromDOM();
+  }
+  const sep = currentEstatalSeparadores && currentEstatalSeparadores[idx];
+  let url = sep ? (sep.website || '').trim() : '';
+  if (!url) {
+    showToast('Por favor, introduza primeiro o endereço da página web deste separador.', 'warning');
+    return;
+  }
+  if (!url.startsWith('http://') && !url.startsWith('https://')) {
+    url = 'https://' + url;
+  }
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+window.openEstatalWebsiteLink = openEstatalWebsiteLink;
+
+function updateClientWebsiteBtnState(val) {
+  const btn = document.getElementById('btnOpenClientWebsite');
+  if (!btn) return;
+  if (val && val.trim().length > 0) {
+    btn.style.opacity = '1';
+    btn.style.pointerEvents = 'auto';
+  }
+}
+window.updateClientWebsiteBtnState = updateClientWebsiteBtnState;
+
+let pendingAiAddressData = null;
+
+function closeAiAddressModal() {
+  const modal = document.getElementById('aiAddressConfirmationModal');
+  if (modal) {
+    modal.classList.remove('active');
+    modal.style.display = 'none';
+  }
+  pendingAiAddressData = null;
+  const btn = document.getElementById('btnAiUpdateClientAddress');
+  if (btn) {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="btn_ai_update_address">Atualizar Morada com IA</span>';
+  }
+}
+window.closeAiAddressModal = closeAiAddressModal;
+
+async function triggerAiAddressEnrichment() {
+  const tipoCliente = document.getElementById('tipoCliente')?.value || 'Privado';
+  let entityName = '';
+  let ministerio = '';
+  let contribuinte = '';
+  let existingWebsite = '';
+  let isEstatal = (tipoCliente === 'Estatal');
+
+  if (isEstatal) {
+    if (typeof syncCurrentActiveTabFromDOM === 'function') {
+      syncCurrentActiveTabFromDOM();
+    }
+    const activeSep = currentEstatalSeparadores && currentEstatalSeparadores[activeEstatalSeparadorIndex];
+    if (!activeSep || !activeSep.nome || !activeSep.nome.trim()) {
+      showToast('Por favor, preencha primeiro o campo "Nome / Razão Social" deste separador.', 'warning');
+      return;
+    }
+    entityName = activeSep.nome.trim();
+    ministerio = document.getElementById('ministerio')?.value.trim() || '';
+    contribuinte = activeSep.contribuinte || '';
+    existingWebsite = activeSep.website || '';
+  } else {
+    const nomeEl = document.getElementById('clientNome');
+    if (!nomeEl || !nomeEl.value.trim()) {
+      showToast('Por favor, preencha primeiro o campo "Nome / Razão Social" do cliente.', 'warning');
+      return;
+    }
+    entityName = nomeEl.value.trim();
+    contribuinte = document.getElementById('clientContribuinte')?.value.trim() || '';
+    existingWebsite = document.getElementById('clientWebsite')?.value.trim() || '';
+  }
+
+  // Abrir Modal no estado Loading
+  const modal = document.getElementById('aiAddressConfirmationModal');
+  const loadingState = document.getElementById('aiAddressLoadingState');
+  const contentState = document.getElementById('aiAddressContentState');
+  const loadingTitle = document.getElementById('aiLoadingTitle');
+  const loadingSubtitle = document.getElementById('aiLoadingSubtitle');
+
+  if (modal) {
+    modal.style.display = 'flex';
+    modal.classList.add('active');
+  }
+  if (loadingState) loadingState.style.display = 'block';
+  if (contentState) contentState.style.display = 'none';
+  if (loadingTitle) loadingTitle.textContent = `A varrer a Net por "${entityName}"...`;
+  if (loadingSubtitle) loadingSubtitle.textContent = isEstatal ? `A pesquisar organismos e delegações oficiais com IA` : `A pesquisar página web e morada oficial com IA`;
+
+  const btn = document.getElementById('btnAiUpdateClientAddress');
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>A pesquisar...</span>';
+  }
+
+  try {
+    const geminiApiKey = localStorage.getItem('sigec_gemini_api_key') || '';
+    
+    // Determinar URL da API (suporta servidor Hugging Face / localhost ou relativo)
+    let apiUrl = '/api/ai-lookup-address';
+    if (window.location.protocol === 'file:') {
+      apiUrl = 'https://josecenturio-sigec-pro.hf.space/api/ai-lookup-address';
+    }
+
+    let response = null;
+    try {
+      const fetchResp = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          entityName,
+          tipoCliente,
+          ministerio,
+          contribuinte,
+          existingWebsite,
+          geminiApiKey
+        })
+      });
+      if (fetchResp.ok) {
+        response = await fetchResp.json();
+      }
+    } catch(fetchErr) {
+      console.warn('Falha na rota direta, a tentar fallback Hugging Face Space:', fetchErr);
+      if (apiUrl !== 'https://josecenturio-sigec-pro.hf.space/api/ai-lookup-address') {
+        const hfResp = await fetch('https://josecenturio-sigec-pro.hf.space/api/ai-lookup-address', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            entityName,
+            tipoCliente,
+            ministerio,
+            contribuinte,
+            existingWebsite,
+            geminiApiKey
+          })
+        });
+        if (hfResp.ok) response = await hfResp.json();
+      }
+    }
+
+    if (!response || !response.success || !response.data) {
+      throw new Error((response && response.message) || 'Não foi possível extrair a morada oficial desta entidade.');
+    }
+
+    pendingAiAddressData = {
+      ...response.data,
+      isEstatal,
+      entityName,
+      targetSepIndex: activeEstatalSeparadorIndex
+    };
+
+    // Preencher Modal com os Resultados
+    if (loadingState) loadingState.style.display = 'none';
+    if (contentState) contentState.style.display = 'block';
+
+    const targetLabel = document.getElementById('aiTargetLabel');
+    if (targetLabel) targetLabel.textContent = isEstatal ? 'Separador Ativo (Organismo):' : 'Cliente / Razão Social:';
+
+    const targetEntity = document.getElementById('aiTargetEntityName');
+    if (targetEntity) targetEntity.textContent = entityName;
+
+    const targetContext = document.getElementById('aiTargetContext');
+    if (targetContext) {
+      targetContext.textContent = isEstatal 
+        ? `Separador #${activeEstatalSeparadorIndex + 1}${ministerio ? ' • ' + ministerio : ''}`
+        : `Cliente ${tipoCliente}${contribuinte ? ' • NIF ' + contribuinte : ''}`;
+    }
+
+    // Website Box
+    const foundWebText = document.getElementById('aiFoundWebsiteText');
+    const visitBtn = document.getElementById('aiBtnVisitFoundWebsite');
+    if (response.data.website) {
+      if (foundWebText) foundWebText.textContent = response.data.website;
+      if (visitBtn) {
+        visitBtn.style.display = 'inline-flex';
+        visitBtn.href = response.data.website.startsWith('http') ? response.data.website : 'https://' + response.data.website;
+      }
+    } else {
+      if (foundWebText) foundWebText.textContent = 'Não encontrada na pesquisa direta';
+      if (visitBtn) visitBtn.style.display = 'none';
+    }
+
+    // Address Breakdown
+    const elDir1 = document.getElementById('aiPreviewDirecao1');
+    if (elDir1) elDir1.textContent = response.data.direcao1 || '(Não identificada)';
+
+    const elNumAnd = document.getElementById('aiPreviewNumeroAndar');
+    let numAndStr = '';
+    if (response.data.numero) numAndStr += 'Nº ' + response.data.numero;
+    if (response.data.andar) numAndStr += (numAndStr ? ' • ' : '') + response.data.andar;
+    if (elNumAnd) elNumAnd.textContent = numAndStr || '-';
+
+    const elCp = document.getElementById('aiPreviewCodigoPostal');
+    if (elCp) elCp.textContent = response.data.codigoPostal || '(Vazio)';
+
+    const elLoc = document.getElementById('aiPreviewLocalidade');
+    if (elLoc) elLoc.textContent = response.data.localidade || '(Vazio)';
+
+    const elPais = document.getElementById('aiPreviewPais');
+    if (elPais) elPais.textContent = response.data.pais || 'Portugal';
+
+    const elFonte = document.getElementById('aiPreviewFonte');
+    if (elFonte) elFonte.textContent = 'Fonte: ' + (response.data.fonteUrl || 'Pesquisa Web Oficial');
+
+    const elEngine = document.getElementById('aiPreviewEngine');
+    if (elEngine) elEngine.textContent = response.provider || 'IA Search Engine';
+
+  } catch(err) {
+    closeAiAddressModal();
+    showToast('Aviso da IA: ' + (err.message || 'Não foi possível encontrar a morada automaticamente na Internet.'), 'warning');
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="btn_ai_update_address">Atualizar Morada com IA</span>';
+    }
+  }
+}
+window.triggerAiAddressEnrichment = triggerAiAddressEnrichment;
+
+function confirmAndApplyAiAddress() {
+  if (!pendingAiAddressData) {
+    closeAiAddressModal();
+    return;
+  }
+
+  const d = pendingAiAddressData;
+  if (d.isEstatal) {
+    if (currentEstatalSeparadores && currentEstatalSeparadores[d.targetSepIndex]) {
+      const sep = currentEstatalSeparadores[d.targetSepIndex];
+      if (d.direcao1) sep.direcao1 = d.direcao1;
+      if (d.direcao2) sep.direcao2 = d.direcao2;
+      if (d.numero) sep.numero = d.numero;
+      if (d.andar) sep.andar = d.andar;
+      if (d.codigoPostal) sep.codigoPostal = d.codigoPostal;
+      if (d.localidade) sep.localidade = d.localidade;
+      if (d.pais) sep.pais = d.pais;
+      if (d.website && (!sep.website || sep.website.trim() === '')) {
+        sep.website = d.website;
+      }
+      if (typeof renderEstatalSeparadores === 'function') {
+        renderEstatalSeparadores();
+      }
+      showToast(`Morada do separador "${getSeparadorTitle(sep)}" atualizada com sucesso pela IA!`, 'success');
+    }
+  } else {
+    // Cliente Privado / Fundação
+    if (d.direcao1) {
+      const el = document.getElementById('clientDirecao1');
+      if (el) el.value = d.direcao1;
+    }
+    if (d.direcao2) {
+      const el = document.getElementById('clientDirecao2');
+      if (el) el.value = d.direcao2;
+    }
+    if (d.numero) {
+      const el = document.getElementById('clientNumero');
+      if (el) el.value = d.numero;
+    }
+    if (d.andar) {
+      const el = document.getElementById('clientAndar');
+      if (el) el.value = d.andar;
+    }
+    if (d.codigoPostal) {
+      const el = document.getElementById('clientCodigoPostal');
+      if (el) el.value = d.codigoPostal;
+    }
+    if (d.localidade) {
+      const el = document.getElementById('clientLocalidade');
+      if (el) {
+        el.value = d.localidade;
+        if (typeof autoExpandInput === 'function') autoExpandInput(el);
+      }
+    }
+    if (d.pais) {
+      const el = document.getElementById('clientPais');
+      if (el) {
+        el.value = d.pais;
+        if (typeof autoExpandInput === 'function') autoExpandInput(el);
+      }
+    }
+    if (d.website) {
+      const el = document.getElementById('clientWebsite');
+      if (el && (!el.value || el.value.trim() === '')) {
+        el.value = d.website;
+        if (typeof updateClientWebsiteBtnState === 'function') updateClientWebsiteBtnState(d.website);
+      }
+    }
+    showToast('Morada e dados da ficha do cliente atualizados com sucesso pela IA!', 'success');
+  }
+
+  closeAiAddressModal();
+}
+window.confirmAndApplyAiAddress = confirmAndApplyAiAddress;
+
+function promptGeminiApiKey() {
+  const currentKey = localStorage.getItem('sigec_gemini_api_key') || '';
+  const newKey = prompt('Configuração da Chave da API Google Gemini:\n\nInsira a sua chave (Google AI Studio) para usar IA Gemini com pesquisa Google em tempo real.\nDeixe em branco para usar o motor de pesquisa web integrado:', currentKey);
+  if (newKey !== null) {
+    if (newKey.trim()) {
+      localStorage.setItem('sigec_gemini_api_key', newKey.trim());
+      showToast('Chave Google Gemini guardada com sucesso!', 'success');
+    } else {
+      localStorage.removeItem('sigec_gemini_api_key');
+      showToast('Chave removida. A utilizar motor web integrado.', 'info');
+    }
+  }
+}
+window.promptGeminiApiKey = promptGeminiApiKey;

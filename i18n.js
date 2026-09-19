@@ -6,6 +6,34 @@
  */
 
 const SIGEC_I18N = {
+  client_website_label: {
+    "Português": "Página Web / Website",
+    "Español": "Página Web / Sitio Web",
+    "English": "Website / Web Page",
+    "Français": "Site Web / Page Web",
+    "Polski": "Strona Internetowa / Witryna"
+  },
+  btn_open_website: {
+    "Português": "Abrir Página Web",
+    "Español": "Abrir Página Web",
+    "English": "Open Website",
+    "Français": "Ouvrir le Site Web",
+    "Polski": "Otwórz Witrynę"
+  },
+  btn_ai_update_address: {
+    "Português": "Atualizar Morada com IA",
+    "Español": "Actualizar Dirección con IA",
+    "English": "Update Address with AI",
+    "Français": "Mettre à jour l'Adresse avec l'IA",
+    "Polski": "Zaktualizuj Adres przez AI"
+  },
+  ai_modal_title: {
+    "Português": "Atualização de Morada com IA",
+    "Español": "Actualización de Dirección con IA",
+    "English": "AI Address Update",
+    "Français": "Mise à Jour de l'Adresse avec IA",
+    "Polski": "Aktualizacja Adresu przez AI"
+  },
   server_backup_select_label: {
     "Português": "Selecione a Cópia do Servidor (Últimos 15 Backups):",
     "Español": "Seleccione la Copia del Servidor (Últimos 15 Backups):",

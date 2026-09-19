@@ -346,6 +346,229 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // Endpoint de Pesquisa e Enriquecimento de Morada com IA
+  if (pathname === '/api/ai-lookup-address') {
+    if (req.method !== 'POST') {
+      res.writeHead(405, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, message: 'Método não permitido' }));
+      return;
+    }
+
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', async () => {
+      try {
+        const payload = JSON.parse(body || '{}');
+        const entityName = (payload.entityName || '').trim();
+        const tipoCliente = payload.tipoCliente || 'Privado';
+        const ministerio = (payload.ministerio || '').trim();
+        const contribuinte = (payload.contribuinte || '').trim();
+        const existingWebsite = (payload.existingWebsite || '').trim();
+        const geminiApiKey = (payload.geminiApiKey || process.env.GEMINI_API_KEY || '').trim();
+
+        if (!entityName) {
+          res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
+          res.end(JSON.stringify({ success: false, message: 'Nome da entidade não fornecido' }));
+          return;
+        }
+
+        // 1. Tentar Google Gemini AI com Search Grounding se houver chave
+        if (geminiApiKey) {
+          try {
+            const prompt = `Pesquisa na web o website oficial e a morada completa da sede de: "${entityName}". Contexto: ${tipoCliente === 'Estatal' ? 'Organismo público em Portugal, Ministério: ' + ministerio : 'Entidade em Portugal'}.
+Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto extra) no formato:
+{
+  "website": "url oficial da entidade",
+  "direcao1": "apenas nome da rua, avenida, praça, etc.",
+  "direcao2": "edifício, bloco, etc. se houver",
+  "numero": "número de porta",
+  "andar": "andar ou fração se houver",
+  "codigoPostal": "código postal no formato XXXX-XXX",
+  "localidade": "cidade ou localidade",
+  "pais": "Portugal",
+  "fonteUrl": "url oficial de onde a morada foi extraída"
+}`;
+
+            const gResp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                contents: [{ parts: [{ text: prompt }] }],
+                tools: [{ googleSearch: {} }]
+              })
+            });
+
+            if (gResp.ok) {
+              const gData = await gResp.json();
+              const candidateText = gData?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+              const jsonMatch = candidateText.match(/\{[\s\S]*\}/);
+              if (jsonMatch) {
+                const parsed = JSON.parse(jsonMatch[0]);
+                res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+                res.end(JSON.stringify({
+                  success: true,
+                  provider: 'Google Gemini AI (Google Search Grounding)',
+                  data: {
+                    website: parsed.website || existingWebsite || '',
+                    direcao1: parsed.direcao1 || '',
+                    direcao2: parsed.direcao2 || '',
+                    numero: parsed.numero || '',
+                    andar: parsed.andar || '',
+                    codigoPostal: parsed.codigoPostal || '',
+                    localidade: parsed.localidade || '',
+                    pais: parsed.pais || 'Portugal',
+                    fonteUrl: parsed.fonteUrl || ''
+                  }
+                }));
+                return;
+              }
+            }
+          } catch (gErr) {
+            console.warn('[AI Lookup] Erro Gemini, fallback para motor web:', gErr.message);
+          }
+        }
+
+        // 2. Motor de Varrimento e Extração Web (Server-side)
+        let query = `${entityName} morada sede contactos Portugal`;
+        if (tipoCliente === 'Estatal' && ministerio) {
+          query = `${entityName} ${ministerio} morada sede contactos Portugal`;
+        }
+        if (contribuinte) {
+          query += ` NIF ${contribuinte}`;
+        }
+
+        const searchUrl = 'https://html.duckduckgo.com/html/?q=' + encodeURIComponent(query);
+        const sResp = await fetch(searchUrl, {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'pt-PT,pt;q=0.9,en;q=0.8'
+          }
+        });
+
+        const html = await sResp.text();
+        const snippets = [...html.matchAll(/class="result__snippet[^>]*>([\s\S]*?)<\/a>/g)].map(m => m[1].replace(/<[^>]+>/g, '').trim());
+        const rawUrls = [...html.matchAll(/class="result__url"[^>]*href="([^"]+)"/g)].map(m => m[1]);
+
+        const decodedUrls = rawUrls.map(u => {
+          try {
+            const m = u.match(/uddg=([^&]+)/);
+            return m ? decodeURIComponent(m[1]) : u;
+          } catch (e) { return u; }
+        });
+
+        let detectedWebsite = existingWebsite || '';
+        if (!detectedWebsite) {
+          for (const u of decodedUrls) {
+            if (!u.includes('duckduckgo.com') && 
+                !u.includes('google.') && 
+                !u.includes('empresite.') && 
+                !u.includes('racius.') && 
+                !u.includes('einforma.') && 
+                !u.includes('facebook.') && 
+                !u.includes('linkedin.') &&
+                !u.includes('wikipedia.org')) {
+              try {
+                const parsedU = new URL(u);
+                detectedWebsite = parsedU.origin;
+                break;
+              } catch (e) {}
+            }
+          }
+          if (!detectedWebsite && decodedUrls[0] && !decodedUrls[0].includes('duckduckgo.com')) {
+            try { detectedWebsite = new URL(decodedUrls[0]).origin; } catch (e) { detectedWebsite = decodedUrls[0]; }
+          }
+        }
+
+        const fullText = snippets.join(' \n ');
+        const address = {
+          direcao1: '',
+          direcao2: '',
+          numero: '',
+          andar: '',
+          codigoPostal: '',
+          localidade: '',
+          pais: 'Portugal'
+        };
+
+        // Código Postal
+        const cpMatch = fullText.match(/\b(\d{4}-\d{3})\b/);
+        if (cpMatch) {
+          address.codigoPostal = cpMatch[1];
+          const cpIndex = fullText.indexOf(cpMatch[1]);
+          const afterCp = fullText.slice(cpIndex + cpMatch[1].length, cpIndex + cpMatch[1].length + 45);
+          const locMatch = afterCp.match(/^[\s,–—\-]+([A-ZÀ-Úa-zà-ú\s]{3,25})/);
+          if (locMatch) {
+            address.localidade = locMatch[1].trim()
+              .replace(/\b(?:Tel|Telefone|Fax|Email|Contacto|NIF)\b.*/i, '')
+              .replace(/[\.,;].*$/, '')
+              .trim();
+          }
+        }
+
+        // Rua / Avenida / Praça
+        const streetMatch = fullText.match(/\b((?:Rua|Avenida|Av\.?|Praça|Pr\.?|Largo|Travessa|Alameda|Estrada|Calçada|Campo)\s+(?:(?:D\.|S\.|Sto\.|Sta\.|Dr\.|Eng\.|Prof\.)|[A-ZÀ-Úa-zà-ú0-9\s\–\-ºª\'’])+?)(?=(?:,\s*(?:n\.º|\d|andar|\d{4}-\d{3})|,(?!\s*[A-ZÀ-Úa-zà-ú])|\n|\d{4}-\d{3}|$))/i);
+        if (streetMatch) {
+          let street = streetMatch[1].trim();
+          const streetDateRegex = /\b(\d{1,2}(?:º)?\s+de\s+(?:Janeiro|Fevereiro|Março|Abril|Maio|Junho|Julho|Agosto|Setembro|Outubro|Novembro|Dezembro))\b/i;
+          const dateMatch = street.match(streetDateRegex);
+          let searchStreet = street;
+          if (dateMatch) {
+            searchStreet = street.replace(dateMatch[0], '###DATE###');
+          }
+          const numInside = searchStreet.match(/\b(?:n\.?[ºo]?\s*)?(\d+[A-Za-z]?)\b/i);
+          if (numInside && !address.numero) {
+            address.numero = numInside[1];
+            street = street.replace(new RegExp('\\b' + numInside[0] + '\\b'), '').replace(/\s+,$/, '').trim();
+          }
+          address.direcao1 = street;
+        }
+
+        // Número de porta
+        if (!address.numero) {
+          const numMatch = fullText.match(/\b(?:n\.?[ºo]?|número|no\.)\s*(\d+[A-Za-z]?)\b/i) || fullText.match(/,\s*(\d+[A-Za-z]?)\s*,/);
+          if (numMatch) address.numero = numMatch[1];
+        }
+
+        // Andar
+        const andarMatch = fullText.match(/\b(\d+[ºªo]\s*(?:andar|Dto|Esq|Frt|frente)?|R\/C|rés-do-chão)\b/i);
+        if (andarMatch) address.andar = andarMatch[1];
+
+        // Localidade Fallback
+        if (!address.localidade) {
+          const cities = ['Lisboa', 'Porto', 'Coimbra', 'Braga', 'Aveiro', 'Faro', 'Setúbal', 'Leiria', 'Viseu', 'Viana do Castelo', 'Évora', 'Guimarães', 'Funchal', 'Ponta Delgada'];
+          for (const city of cities) {
+            if (new RegExp('\\b' + city + '\\b', 'i').test(fullText)) {
+              address.localidade = city;
+              break;
+            }
+          }
+        }
+
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({
+          success: true,
+          provider: 'Web Search Engine',
+          data: {
+            website: detectedWebsite,
+            direcao1: address.direcao1,
+            direcao2: address.direcao2,
+            numero: address.numero,
+            andar: address.andar,
+            codigoPostal: address.codigoPostal,
+            localidade: address.localidade,
+            pais: address.pais || 'Portugal',
+            fonteUrl: decodedUrls[0] || 'https://duckduckgo.com'
+          }
+        }));
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ success: false, message: 'Erro na pesquisa: ' + (err.message || String(err)) }));
+      }
+    });
+    return;
+  }
+
   // Endpoint de Heartbeat
   if (pathname === '/api/heartbeat') {
     res.writeHead(200, { 'Content-Type': 'application/json' });

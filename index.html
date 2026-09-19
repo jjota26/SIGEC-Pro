@@ -3328,6 +3328,17 @@
                 <input type="email" id="clientEmail" class="form-control" placeholder="contacto@empresa.pt">
               </div>
 
+              <!-- Página Web / Website da Empresa com Botão de Abertura Direta -->
+              <div class="form-group col-12" style="margin-top: 0.15rem;">
+                <label for="clientWebsite" style="display: flex; justify-content: space-between; align-items: center;">
+                  <span><i class="fa-solid fa-globe" style="color: #0284c7; margin-right: 4px;"></i> <span data-i18n="client_website_label">Página Web / Website</span></span>
+                  <a href="javascript:void(0)" id="btnOpenClientWebsite" onclick="openClientWebsiteLink()" style="font-size: 0.8rem; font-weight: 600; color: #2563eb; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; padding: 2px 10px; border-radius: 6px; background: #eff6ff; border: 1px solid #bfdbfe; transition: all 0.2s;" title="Abrir página web num novo separador">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> <span data-i18n="btn_open_website">Abrir Página Web</span>
+                  </a>
+                </label>
+                <input type="text" id="clientWebsite" class="form-control" placeholder="ex: https://www.empresa.pt" oninput="updateClientWebsiteBtnState(this.value)">
+              </div>
+
               <!-- Campo de Notas com Barra de Deslocação Vertical -->
               <div class="form-group col-12">
                 <label for="clientNotas">Notas</label>
@@ -3492,11 +3503,20 @@
           </div>
         </div>
 
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" onclick="deleteCurrentClient()" id="btnDeleteClient"
-            style="display: none;">
-            <i class="fa-solid fa-trash"></i> Apagar Cliente
-          </button>
+        <div class="modal-footer" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <button type="button" class="btn btn-danger" onclick="deleteCurrentClient()" id="btnDeleteClient"
+              style="display: none;">
+              <i class="fa-solid fa-trash"></i> Apagar Cliente
+            </button>
+            <!-- Botão de Atualização de Morada com IA no Rodapé da Ficha -->
+            <button type="button" id="btnAiUpdateClientAddress" class="btn" onclick="triggerAiAddressEnrichment()"
+              style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: #ffffff; border: none; font-weight: 600; padding: 0.55rem 1rem; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 5px rgba(79, 70, 229, 0.3); transition: all 0.2s;"
+              title="Varrer a Net com IA para encontrar a página web e atualizar a morada deste cliente">
+              <i class="fa-solid fa-wand-magic-sparkles" id="iconAiUpdateClientAddress"></i>
+              <span id="textAiUpdateClientAddress" data-i18n="btn_ai_update_address">Atualizar Morada com IA</span>
+            </button>
+          </div>
           <div style="margin-left: auto; display: flex; gap: 0.5rem;">
             <button type="button" class="btn btn-close" onclick="closeClientModal()">
               <i class="fa-solid fa-xmark"></i> Fechar Ficha
@@ -6217,6 +6237,106 @@
           <div style="background: #f8fafc; border-radius: 8px; padding: 0.85rem 1rem; font-size: 0.82rem; color: #475569; border: 1px solid #e2e8f0; display: flex; align-items: center; gap: 0.6rem;">
             <i class="fa-solid fa-circle-check" style="color: #16a34a; font-size: 1.1rem;"></i>
             <span><strong>Segurança Garantida:</strong> A atualização não altera nem apaga quaisquer dados da sua base de dados.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL DE INSPEÇÃO E CONFIRMAÇÃO DE MORADA COM IA -->
+  <div id="aiAddressConfirmationModal" class="modal-overlay" onclick="if (event.target === this) closeAiAddressModal()" style="z-index: 100200; display: none;">
+    <div class="modal-window" style="max-width: 600px; padding: 1.75rem; border-radius: 16px; position: relative;">
+      <button type="button" onclick="closeAiAddressModal()" style="position: absolute; top: 1.1rem; right: 1.1rem; background: transparent; border: none; font-size: 1.35rem; color: #94a3b8; cursor: pointer; padding: 0.25rem 0.5rem; border-radius: 6px; transition: all 0.2s;" onmouseenter="this.style.color='#ef4444'" onmouseleave="this.style.color='#94a3b8'" title="Fechar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1.25rem;">
+        <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.4rem; box-shadow: 0 4px 10px rgba(79, 70, 229, 0.35);">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </div>
+        <div>
+          <h3 style="margin: 0; font-size: 1.2rem; color: #1e293b; font-weight: 700;" data-i18n="ai_modal_title">Atualização de Morada com IA</h3>
+          <p style="margin: 0.15rem 0 0 0; font-size: 0.82rem; color: #64748b;" id="aiModalSubtitle">Varrimento na Net e extração de morada oficial</p>
+        </div>
+      </div>
+
+      <div id="aiAddressLoadingState" style="display: none; padding: 2rem 1rem; text-align: center;">
+        <div style="font-size: 2.2rem; color: #6366f1; margin-bottom: 0.75rem;">
+          <i class="fa-solid fa-spinner fa-spin"></i>
+        </div>
+        <div style="font-weight: 600; color: #1e293b; font-size: 1rem;" id="aiLoadingTitle">A varrer a Net pelo website e morada oficial...</div>
+        <div style="font-size: 0.82rem; color: #64748b; margin-top: 0.4rem;" id="aiLoadingSubtitle">A pesquisar página institucional e registos empresariais</div>
+      </div>
+
+      <div id="aiAddressContentState">
+        <!-- Target Info Badge -->
+        <div style="background: #f1f5f9; border-left: 4px solid #6366f1; padding: 0.75rem 1rem; border-radius: 0 8px 8px 0; margin-bottom: 1rem;">
+          <div style="font-size: 0.75rem; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.5px;" id="aiTargetLabel">Cliente / Razão Social:</div>
+          <div style="font-size: 0.95rem; font-weight: 700; color: #1e293b; margin-top: 0.15rem;" id="aiTargetEntityName">-</div>
+          <div style="font-size: 0.78rem; color: #64748b; margin-top: 0.2rem;" id="aiTargetContext">-</div>
+        </div>
+
+        <!-- Found Website Box -->
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.85rem 1rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap;">
+          <div>
+            <div style="font-size: 0.75rem; font-weight: 600; color: #64748b;">Página Web Oficial Encontrada:</div>
+            <div style="font-size: 0.9rem; font-weight: 600; color: #0284c7; word-break: break-all;" id="aiFoundWebsiteText">Não encontrada</div>
+          </div>
+          <a href="javascript:void(0)" id="aiBtnVisitFoundWebsite" target="_blank" rel="noopener noreferrer" style="display: none; padding: 0.35rem 0.75rem; font-size: 0.78rem; font-weight: 600; background: #e0f2fe; color: #0369a1; border-radius: 6px; text-decoration: none; align-items: center; gap: 4px;">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Site
+          </a>
+        </div>
+
+        <!-- Address Breakdown Grid -->
+        <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 1rem; margin-bottom: 1.25rem;">
+          <div style="font-size: 0.82rem; font-weight: 700; color: #1e293b; margin-bottom: 0.65rem; display: flex; align-items: center; gap: 6px;">
+            <i class="fa-solid fa-location-dot" style="color: #ef4444;"></i> Morada Completa Identificada:
+          </div>
+
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <div>
+              <label style="font-size: 0.72rem; color: #64748b; font-weight: 600; display: block;">Direção (Linha 1)</label>
+              <div id="aiPreviewDirecao1" style="font-size: 0.86rem; font-weight: 600; color: #1e293b; padding: 4px 8px; background: #f8fafc; border-radius: 4px; min-height: 28px;">-</div>
+            </div>
+            <div>
+              <label style="font-size: 0.72rem; color: #64748b; font-weight: 600; display: block;">Nº / Andar</label>
+              <div id="aiPreviewNumeroAndar" style="font-size: 0.86rem; font-weight: 600; color: #1e293b; padding: 4px 8px; background: #f8fafc; border-radius: 4px; min-height: 28px;">-</div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 0.5rem;">
+            <div>
+              <label style="font-size: 0.72rem; color: #64748b; font-weight: 600; display: block;">Código Postal</label>
+              <div id="aiPreviewCodigoPostal" style="font-size: 0.86rem; font-weight: 600; color: #1e293b; padding: 4px 8px; background: #f8fafc; border-radius: 4px; min-height: 28px;">-</div>
+            </div>
+            <div>
+              <label style="font-size: 0.72rem; color: #64748b; font-weight: 600; display: block;">Localidade</label>
+              <div id="aiPreviewLocalidade" style="font-size: 0.86rem; font-weight: 600; color: #1e293b; padding: 4px 8px; background: #f8fafc; border-radius: 4px; min-height: 28px;">-</div>
+            </div>
+            <div>
+              <label style="font-size: 0.72rem; color: #64748b; font-weight: 600; display: block;">País</label>
+              <div id="aiPreviewPais" style="font-size: 0.86rem; font-weight: 600; color: #1e293b; padding: 4px 8px; background: #f8fafc; border-radius: 4px; min-height: 28px;">Portugal</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 0.65rem; font-size: 0.72rem; color: #94a3b8; display: flex; align-items: center; justify-content: space-between;">
+            <span id="aiPreviewFonte">Fonte: Pesquisa Web Oficial</span>
+            <span id="aiPreviewEngine" style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-weight: 600; color: #64748b;">IA Search</span>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+          <a href="javascript:void(0)" onclick="promptGeminiApiKey()" style="font-size: 0.76rem; font-weight: 600; color: #6366f1; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; padding: 4px 8px; border-radius: 6px; background: #eef2ff;" title="Configurar chave de API Google Gemini (opcional)">
+            <i class="fa-solid fa-key"></i> Chave Gemini (Opcional)
+          </a>
+          <div style="display: flex; gap: 0.5rem; margin-left: auto;">
+            <button type="button" class="btn btn-close" onclick="closeAiAddressModal()" style="padding: 0.6rem 1.1rem;">
+              Cancelar
+            </button>
+            <button type="button" class="btn btn-primary" onclick="confirmAndApplyAiAddress()" style="padding: 0.6rem 1.25rem; font-weight: 600; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
+              <i class="fa-solid fa-check"></i> Confirmar e Aplicar à Ficha
+            </button>
           </div>
         </div>
       </div>
