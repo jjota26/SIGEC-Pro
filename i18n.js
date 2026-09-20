@@ -911,7 +911,79 @@ const SIGEC_I18N = {
   cfg_email_notify_active: { Português: "Notificações Ativas", Español: "Notificaciones Activas", "English": "Active Notifications", Français: "Notifications Actives", "Polski": "Powiadomienia Aktywne" },
   cfg_email_notify_dest: { Português: "Email de Destino das Notificações:", Español: "Correo de Destino de las Notificaciones:", "English": "Notification Destination Email:", Français: "Email de Destination des Notifications :", "Polski": "Docelowy Email Powiadomień:" },
   cfg_email_notify_test: { Português: "Testar Envio de Notificação", Español: "Probar Envío de Notificación", "English": "Test Notification Dispatch", Français: "Tester l'Envoi de Notification", "Polski": "Testuj Wysyłkę Powiadomienia" },
-  btn_save_config: { Português: "Guardar", Español: "Guardar", "English": "Save", Français: "Enregistrer", "Polski": "Zapisz" }
+  btn_save_config: { Português: "Guardar", Español: "Guardar", "English": "Save", Français: "Enregistrer", "Polski": "Zapisz" },
+
+  // --- CLIENT MODAL ADICIONAIS & EMPTY STATES ---
+  client_empty_contacts: {
+    Português: "Nenhum contacto registado para este cliente.",
+    Español: "Ningún contacto registrado para este cliente.",
+    "English": "No contacts registered for this client.",
+    Français: "Aucun contact enregistré pour ce client.",
+    "Polski": "Brak zarejestrowanych kontaktów dla tego klienta."
+  },
+  client_empty_interactions: {
+    Português: "Nenhum contacto/interação registada com este cliente.",
+    Español: "Ningún contacto/interacción registrada con este cliente.",
+    "English": "No contact/interaction registered with this client.",
+    Français: "Aucun contact/interaction enregistré avec ce client.",
+    "Polski": "Brak zarejestrowanych kontaktów/interakcji z tym klientem."
+  },
+  client_empty_projects: {
+    Português: "Nenhum projeto associado a este cliente.",
+    Español: "Ningún proyecto asociado a este cliente.",
+    "English": "No projects associated with this client.",
+    Français: "Aucun projet associé à ce client.",
+    "Polski": "Brak projektów powiązanych z tym klientem."
+  },
+  client_empty_budgets: {
+    Português: "Nenhum orçamento guardado para este cliente.",
+    Español: "Ningún presupuesto guardado para este cliente.",
+    "English": "No budgets saved for this client.",
+    Français: "Aucun devis enregistré pour ce client.",
+    "Polski": "Brak zapisanych wycen dla tego klienta."
+  },
+  text_sort_most_recent: {
+    Português: "Mais recente",
+    Español: "Más reciente",
+    "English": "Most recent",
+    Français: "Plus récent",
+    "Polski": "Najnowsze"
+  },
+  contact_inactive_label: {
+    Português: "Contacto Inativo",
+    Español: "Contacto Inactivo",
+    "English": "Inactive Contact",
+    Français: "Contact Inactif",
+    "Polski": "Kontakt Nieaktywny"
+  },
+  client_placeholder_ministerio: {
+    Português: "ex: Ministério da Economia",
+    Español: "ej: Ministerio de Economía",
+    "English": "e.g.: Ministry of Economy",
+    Français: "ex : Ministère de l'Économie",
+    "Polski": "np.: Ministerstwo Gospodarki"
+  },
+  client_placeholder_name: {
+    Português: "Nome completo da empresa ou cliente",
+    Español: "Nombre completo de la empresa o cliente",
+    "English": "Full company or client name",
+    Français: "Nom complet de l'entreprise ou du client",
+    "Polski": "Pełna nazwa firmy lub klienta"
+  },
+  client_placeholder_notes: {
+    Português: "Escreva observações ou notas sobre este cliente...",
+    Español: "Escriba observaciones o notas sobre este cliente...",
+    "English": "Write observations or notes about this client...",
+    Français: "Écrivez des remarques ou des notes sur ce client...",
+    "Polski": "Wpisz uwagi lub notatki dotyczące tego klienta..."
+  },
+  client_placeholder_quick_interaction: {
+    Português: "Escreva aqui livremente os detalhes do contacto efetuado...",
+    Español: "Escriba aquí libremente los detalles del contacto realizado...",
+    "English": "Write freely here the details of the contact made...",
+    Français: "Écrivez ici librement les détails du contact effectué...",
+    "Polski": "Wpisz tutaj swobodnie szczegóły zrealizowanego kontaktu..."
+  }
 };
 
 /**
@@ -2037,6 +2109,48 @@ const SIGEC_PHRASES_MAP = {
     "English": "Open Profile",
     Français: "Ouvrir Fiche",
     "Polski": "Otwórz Kartę"
+  },
+  "Desassociar contacto deste cliente": {
+    Português: "Desassociar contacto deste cliente",
+    Español: "Desasociar contacto de este cliente",
+    "English": "Unlink contact from this client",
+    Français: "Dissocier le contact de ce client",
+    "Polski": "Odłącz kontakt od tego klienta"
+  },
+  "Mover contacto para outro separador deste cliente": {
+    Português: "Mover contacto para outro separador deste cliente",
+    Español: "Mover contacto a otra pestaña de este cliente",
+    "English": "Move contact to another tab of this client",
+    Français: "Déplacer le contact vers un autre onglet de ce client",
+    "Polski": "Przenieś kontakt do innej zakładki tego klienta"
+  },
+  "Editar Registo": {
+    Português: "Editar Registo",
+    Español: "Editar Registro",
+    "English": "Edit Record",
+    Français: "Modifier l'Enregistrement",
+    "Polski": "Edytuj Wpis"
+  },
+  "Apagar Registo": {
+    Português: "Apagar Registo",
+    Español: "Eliminar Registro",
+    "English": "Delete Record",
+    Français: "Supprimer l'Enregistrement",
+    "Polski": "Usuń Wpis"
+  },
+  "Contacto Inativo (clique para reativar)": {
+    Português: "Contacto Inativo (clique para reativar)",
+    Español: "Contacto Inactivo (haga clic para reactivar)",
+    "English": "Inactive Contact (click to reactivate)",
+    Français: "Contact Inactif (cliquer pour réactiver)",
+    "Polski": "Kontakt Nieaktywny (kliknij, aby aktywować)"
+  },
+  "Contacto Ativo (clique para marcar inativo)": {
+    Português: "Contacto Ativo (clique para marcar inativo)",
+    Español: "Contacto Activo (haga clic para marcar inactivo)",
+    "English": "Active Contact (click to mark inactive)",
+    Français: "Contact Actif (cliquer pour marquer inactif)",
+    "Polski": "Kontakt Aktywny (kliknij, aby oznaczyć jako nieaktywny)"
   }
 };
 window.SIGEC_I18N = SIGEC_I18N;

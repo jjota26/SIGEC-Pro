@@ -7299,18 +7299,6 @@ function formatCodigoPostal(input) {
   input.value = val;
 }
 
-function ensureUsersInitialized() {
-  if (!db || !Array.isArray(db.usuarios) || db.usuarios.length === 0) {
-    try {
-      const raw = localStorage.getItem('sigec_pro_usuarios');
-      if (raw) db.usuarios = JSON.parse(raw);
-    } catch(e) {}
-    if (!Array.isArray(db.usuarios) || db.usuarios.length === 0) {
-      db.usuarios = (typeof INITIAL_EXCEL_DATABASE !== 'undefined' && INITIAL_EXCEL_DATABASE.usuarios) ? [...INITIAL_EXCEL_DATABASE.usuarios] : [];
-    }
-  }
-}
-window.ensureUsersInitialized = ensureUsersInitialized;
 
 function populateClientComercialOptions(selectedUserId = null) {
   const select = document.getElementById('clientComercialAtribuido');
@@ -7994,7 +7982,10 @@ function renderClientBudgetsList(clientId) {
   }
 
   if (budgets.length === 0) {
-    container.innerHTML = '<span class="empty-state">Nenhum orçamento guardado para este separador.</span>';
+    const curClient = currentClientId ? (db.clientes || []).find(c => c.id === currentClientId) : null;
+    const clientLang = curClient ? getClientDisplayLanguage(curClient) : (typeof getActiveUserLanguage === 'function' ? getActiveUserLanguage() : 'Português');
+    const emptyText = typeof t === 'function' ? t('client_empty_budgets', 'Nenhum orçamento guardado para este separador.', clientLang) : 'Nenhum orçamento guardado para este separador.';
+    container.innerHTML = `<span class="empty-state" data-i18n="client_empty_budgets">${escapeHtml(emptyText)}</span>`;
     return;
   }
 
@@ -8315,8 +8306,12 @@ function renderClientRelatedProjects(projects) {
   if (!container) return;
   container.innerHTML = '';
 
+  const curClient = currentClientId ? (db.clientes || []).find(c => c.id === currentClientId) : null;
+  const clientLang = curClient ? getClientDisplayLanguage(curClient) : (typeof getActiveUserLanguage === 'function' ? getActiveUserLanguage() : 'Português');
+
   if (!projects || projects.length === 0) {
-    container.innerHTML = '<span class="empty-state">Nenhum projeto associado a este cliente.</span>';
+    const emptyText = typeof t === 'function' ? t('client_empty_projects', 'Nenhum projeto associado a este cliente.', clientLang) : 'Nenhum projeto associado a este cliente.';
+    container.innerHTML = `<span class="empty-state" data-i18n="client_empty_projects">${escapeHtml(emptyText)}</span>`;
     return;
   }
 
@@ -8349,8 +8344,12 @@ function renderClientContactsGrid(contacts) {
   if (!grid) return;
   grid.innerHTML = '';
 
+  const curClient = currentClientId ? (db.clientes || []).find(c => c.id === currentClientId) : null;
+  const clientLang = curClient ? getClientDisplayLanguage(curClient) : (typeof getActiveUserLanguage === 'function' ? getActiveUserLanguage() : 'Português');
+
   if (!contacts || contacts.length === 0) {
-    grid.innerHTML = '<span class="empty-state">Nenhum contacto registado para este cliente.</span>';
+    const emptyText = typeof t === 'function' ? t('client_empty_contacts', 'Nenhum contacto registado para este cliente.', clientLang) : 'Nenhum contacto registado para este cliente.';
+    grid.innerHTML = `<span class="empty-state" data-i18n="client_empty_contacts">${escapeHtml(emptyText)}</span>`;
     return;
   }
 
@@ -8365,13 +8364,9 @@ function renderClientContactsGrid(contacts) {
   sortedContacts.forEach(con => {
     const isInactive = !!con.inativo;
     const card = document.createElement('div');
-    card.className = `contact-card ${isInactive ? 'contact-card-inactive' : ''}`;
-    card.style.cssText = `padding: 0.8rem 0.9rem; border-radius: 8px; border: 1px solid ${isInactive ? '#cbd5e1' : '#e2e8f0'}; background: ${isInactive ? '#f8fafc' : '#ffffff'}; position: relative; box-shadow: 0 1px 3px rgba(0,0,0,0.04); cursor: pointer; transition: all 0.2s ease; ${isInactive ? 'opacity: 0.82;' : ''}`;
+    card.className = `contact-card ${isInactive ? 'inactive-contact-card' : ''}`;
     card.onclick = () => openContactModalForEdit(con.id);
 
-    card.onmouseenter = () => { card.style.borderColor = isInactive ? '#94a3b8' : '#93c5fd'; card.style.boxShadow = '0 3px 8px rgba(37,99,235,0.08)'; };
-    card.onmouseleave = () => { card.style.borderColor = isInactive ? '#cbd5e1' : '#e2e8f0'; card.style.boxShadow = '0 1px 3px rgba(0,0,0,0.04)'; };
-    
     let subTabBadge = '';
     const cSub = (con.subTabIndex !== undefined && con.subTabIndex !== null && con.subTabIndex !== '') ? Number(con.subTabIndex) : 0;
     if (isEstatal && currentEstatalSeparadores && currentEstatalSeparadores[cSub]) {
@@ -8379,29 +8374,37 @@ function renderClientContactsGrid(contacts) {
       subTabBadge = `<span class="badge badge-amber" style="margin-left: 4px; font-size: 0.7rem; padding: 1px 6px;">${escapeHtml(sepTitle)}</span>`;
     }
 
-    const inactiveBadge = isInactive ? `<span class="badge badge-secondary" style="margin-left: 4px; font-size: 0.7rem; padding: 1px 6px; background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5;"><i class="fa-solid fa-user-slash" style="margin-right: 3px;"></i>${escapeHtml(t('Inativo'))}</span>` : '';
+    const inactiveBadge = isInactive ? `<span class="badge badge-secondary" style="margin-left: 4px; font-size: 0.7rem; padding: 1px 6px; background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5;"><i class="fa-solid fa-user-slash" style="margin-right: 3px;"></i>${escapeHtml(t('Inativo', 'Inativo', clientLang))}</span>` : '';
+
+    const labelTitle = isInactive ? escapeHtml(t('Contacto Inativo (clique para reativar)', '', clientLang)) : escapeHtml(t('Contacto Ativo (clique para marcar inativo)', '', clientLang));
+    const labelText = escapeHtml(t('Inativo', 'Inativo', clientLang));
+    const titleMoveSep = escapeHtml(t('Mover contacto para outro separador deste cliente', '', clientLang));
+    const titleChangeClient = escapeHtml(t('Mudar de cliente', '', clientLang));
+    const titleDetach = escapeHtml(t('Desassociar contacto deste cliente', '', clientLang));
+    const titleEdit = escapeHtml(t('Editar Ficha de Contacto', '', clientLang));
+    const titleDelete = escapeHtml(t('Apagar Contacto', '', clientLang));
 
     card.innerHTML = `
       <div class="contact-card-actions" style="position: absolute; top: 0.6rem; right: 0.6rem; display: flex; gap: 0.3rem; align-items: center;" onclick="event.stopPropagation();">
-        <label style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; font-weight: 600; color: ${isInactive ? '#dc2626' : '#64748b'}; cursor: pointer; margin: 0 4px 0 0; background: ${isInactive ? '#fee2e2' : '#f1f5f9'}; padding: 2px 6px; border-radius: 4px; border: 1px solid ${isInactive ? '#fca5a5' : '#e2e8f0'};" title="${isInactive ? escapeHtml(t('Contacto Inativo (clique para reativar)')) : escapeHtml(t('Contacto Ativo (clique para marcar inativo)'))}">
+        <label style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; font-weight: 600; color: ${isInactive ? '#dc2626' : '#64748b'}; cursor: pointer; margin: 0 4px 0 0; background: ${isInactive ? '#fee2e2' : '#f1f5f9'}; padding: 2px 6px; border-radius: 4px; border: 1px solid ${isInactive ? '#fca5a5' : '#e2e8f0'};" title="${labelTitle}">
           <input type="checkbox" ${isInactive ? 'checked' : ''} onchange="toggleContactInactiveStatus('${con.id}', this.checked)" style="width: 14px; height: 14px; accent-color: #dc2626; cursor: pointer; margin: 0;">
-          <span>${isInactive ? escapeHtml(t('Inativo')) : escapeHtml(t('Inativo'))}</span>
+          <span>${labelText}</span>
         </label>
         ${isEstatal ? `
-          <button type="button" class="action-icon-btn" onclick="openMoveSubTabContactModal('${con.id}')" title="Mover contacto para outro separador deste cliente" style="width: 26px; height: 26px; font-size: 0.78rem;">
+          <button type="button" class="action-icon-btn" onclick="openMoveSubTabContactModal('${con.id}')" title="${titleMoveSep}" style="width: 26px; height: 26px; font-size: 0.78rem;">
             <i class="fa-solid fa-folder-tree" style="color: #2563eb;"></i>
           </button>
         ` : ''}
-        <button type="button" class="action-icon-btn" onclick="openTransferContactModal('${con.id}')" title="Mudar de cliente" style="width: 26px; height: 26px; font-size: 0.78rem;">
+        <button type="button" class="action-icon-btn" onclick="openTransferContactModal('${con.id}')" title="${titleChangeClient}" style="width: 26px; height: 26px; font-size: 0.78rem;">
           <i class="fa-solid fa-arrow-right-arrow-left"></i>
         </button>
-        <button type="button" class="action-icon-btn" onclick="detachContactFromClient('${con.id}')" title="Desassociar contacto deste cliente" style="width: 26px; height: 26px; font-size: 0.78rem;">
+        <button type="button" class="action-icon-btn" onclick="detachContactFromClient('${con.id}')" title="${titleDetach}" style="width: 26px; height: 26px; font-size: 0.78rem;">
           <i class="fa-solid fa-link-slash" style="color: #ea580c;"></i>
         </button>
-        <button type="button" class="action-icon-btn" onclick="openContactModalForEdit('${con.id}')" title="Editar Ficha de Contacto" style="width: 26px; height: 26px; font-size: 0.78rem;">
+        <button type="button" class="action-icon-btn" onclick="openContactModalForEdit('${con.id}')" title="${titleEdit}" style="width: 26px; height: 26px; font-size: 0.78rem;">
           <i class="fa-solid fa-pen-to-square"></i>
         </button>
-        <button type="button" class="action-icon-btn danger" onclick="deleteContactInline('${con.id}')" title="Apagar Contacto" style="width: 26px; height: 26px; font-size: 0.78rem;">
+        <button type="button" class="action-icon-btn danger" onclick="deleteContactInline('${con.id}')" title="${titleDelete}" style="width: 26px; height: 26px; font-size: 0.78rem;">
           <i class="fa-solid fa-trash"></i>
         </button>
       </div>
@@ -9959,6 +9962,9 @@ function renderClientInteractionsGrid(interactions) {
   const grid = document.getElementById('clientInteractionsGrid');
   grid.innerHTML = '';
 
+  const curClient = currentClientId ? (db.clientes || []).find(c => c.id === currentClientId) : null;
+  const clientLang = curClient ? getClientDisplayLanguage(curClient) : (typeof getActiveUserLanguage === 'function' ? getActiveUserLanguage() : 'Português');
+
   const quickDateInput = document.getElementById('quickInteractionData');
   if (quickDateInput && !quickDateInput.value) {
     const now = new Date();
@@ -9967,12 +9973,16 @@ function renderClientInteractionsGrid(interactions) {
   }
 
   if (!interactions || interactions.length === 0) {
-    grid.innerHTML = '<span class="empty-state">Nenhum contacto/interação registada com este cliente.</span>';
+    const emptyText = typeof t === 'function' ? t('client_empty_interactions', 'Nenhum contacto/interação registada com este cliente.', clientLang) : 'Nenhum contacto/interação registada com este cliente.';
+    grid.innerHTML = `<span class="empty-state" data-i18n="client_empty_interactions">${escapeHtml(emptyText)}</span>`;
     return;
   }
 
   const isAsc = (typeof clientInteractionsSortOrder !== 'undefined' && clientInteractionsSortOrder === 'asc');
   const sorted = [...interactions].sort((a, b) => isAsc ? (new Date(a.data || 0) - new Date(b.data || 0)) : (new Date(b.data || 0) - new Date(a.data || 0)));
+
+  const titleEditReg = escapeHtml(t('Editar Registo', 'Editar Registo', clientLang));
+  const titleDeleteReg = escapeHtml(t('Apagar Registo', 'Apagar Registo', clientLang));
 
   sorted.forEach(item => {
     const formattedDate = item.data ? new Date(item.data).toLocaleString('pt-PT', { dateStyle: 'short', timeStyle: 'short' }) : '-';
@@ -9981,10 +9991,10 @@ function renderClientInteractionsGrid(interactions) {
     card.className = 'interaction-card';
     card.innerHTML = `
       <div class="contact-card-actions">
-        <button type="button" class="action-icon-btn" onclick="openInteractionModalForEdit('${item.id}')" title="Editar Registo">
+        <button type="button" class="action-icon-btn" onclick="openInteractionModalForEdit('${item.id}')" title="${titleEditReg}">
           <i class="fa-solid fa-pen-to-square"></i>
         </button>
-        <button type="button" class="action-icon-btn danger" onclick="deleteInteractionInline('${item.id}')" title="Apagar Registo">
+        <button type="button" class="action-icon-btn danger" onclick="deleteInteractionInline('${item.id}')" title="${titleDeleteReg}">
           <i class="fa-solid fa-trash"></i>
         </button>
       </div>
@@ -17963,12 +17973,19 @@ window.sanitizeUtf8String = sanitizeUtf8String;
 function ensureUsersInitialized() {
   loadDeletedRegistry();
 
+  if (!Array.isArray(db.usuarios) || db.usuarios.length === 0) {
+    if (typeof INITIAL_EXCEL_DATABASE !== 'undefined' && Array.isArray(INITIAL_EXCEL_DATABASE.usuarios)) {
+      db.usuarios = JSON.parse(JSON.stringify(INITIAL_EXCEL_DATABASE.usuarios));
+    } else {
+      db.usuarios = [];
+    }
+  }
+
   const rawStoredUsers = localStorage.getItem('sigec_pro_usuarios');
   if (rawStoredUsers) {
     try {
       const parsed = JSON.parse(rawStoredUsers);
       if (Array.isArray(parsed) && parsed.length > 0) {
-        if (!Array.isArray(db.usuarios)) db.usuarios = [];
         parsed.forEach(storedU => {
           if (storedU && storedU.id && !isDeletedId('usuarios', storedU.id)) {
             const idx = db.usuarios.findIndex(u => u && (u.id === storedU.id || (u.email && storedU.email && u.email.toLowerCase().trim() === storedU.email.toLowerCase().trim())));
@@ -17989,12 +18006,25 @@ function ensureUsersInitialized() {
       return u && u.id && !isDeletedId('usuarios', u.id);
     });
 
-    // Garantir que todas as contas de José Centúrio / Administrador têm acesso total ativo
+    let needsSave = false;
+
+    // Garantir integridade de Administradores e normalização de idiomas de todos os utilizadores
     db.usuarios.forEach(u => {
       if (u.nome) u.nome = sanitizeUtf8String(u.nome);
       if (u.cargo) u.cargo = sanitizeUtf8String(u.cargo);
       const uEmail = (u.email || '').toLowerCase().trim();
       const uName = (u.nome || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+
+      // Normalizar idioma para todos os utilizadores
+      if (u.idioma) {
+        const normLang = typeof normalizeLanguageName === 'function' ? normalizeLanguageName(u.idioma) : u.idioma;
+        if (normLang !== u.idioma) {
+          u.idioma = normLang;
+          needsSave = true;
+        }
+      }
+
+      // Garantir acesso total ao Administrador principal José Centúrio
       if (u.id === 'usr-admin-001' || (u.role === 'admin' && (uName === 'jose centurio' || uEmail === 'jmcenturio@alegria-activity.com'))) {
         u.nome = 'José Centúrio';
         u.cargo = 'Administrador do Sistema';
@@ -18002,7 +18032,41 @@ function ensureUsersInitialized() {
         u.chefia = true;
         u.active = true;
       }
+
+      // Garantir que José Maria tem SEMPRE idioma Español e está ativo
+      if (u.id === 'usr-1789862031944' || uEmail === 'jjota26@gmail.com' || uName === 'jose maria' || uName === 'josemaria') {
+        u.nome = 'José Maria';
+        if (u.idioma !== 'Español') {
+          u.idioma = 'Español';
+          needsSave = true;
+        }
+        u.active = true;
+      }
     });
+
+    // Garantir que o utilizador José Maria está sempre presente no sistema
+    const hasJoseMaria = db.usuarios.some(u => u && (u.id === 'usr-1789862031944' || (u.email && u.email.toLowerCase().trim() === 'jjota26@gmail.com') || ((u.nome || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim() === 'jose maria')));
+    if (!hasJoseMaria) {
+      db.usuarios.push({
+        id: "usr-1789862031944",
+        nome: "José Maria",
+        primeiroNome: "José",
+        apelido: "Maria",
+        email: "jjota26@gmail.com",
+        cargo: "Comercial",
+        idioma: "Español",
+        pin: "J*cen*1971",
+        role: "user",
+        chefia: false,
+        active: true,
+        createdAt: "2026-09-19T23:53:51.944Z"
+      });
+      needsSave = true;
+    }
+
+    if (needsSave) {
+      try { safeSetStorage('sigec_pro_usuarios', JSON.stringify(db.usuarios)); } catch(e) {}
+    }
   }
 
   if (!Array.isArray(db.usuarios) || db.usuarios.length === 0) {
@@ -18020,12 +18084,27 @@ function ensureUsersInitialized() {
         chefia: true,
         active: true,
         createdAt: "2026-08-10T09:45:00.000Z"
+      },
+      {
+        id: "usr-1789862031944",
+        nome: "José Maria",
+        primeiroNome: "José",
+        apelido: "Maria",
+        email: "jjota26@gmail.com",
+        cargo: "Comercial",
+        idioma: "Español",
+        pin: "J*cen*1971",
+        role: "user",
+        chefia: false,
+        active: true,
+        createdAt: "2026-09-19T23:53:51.944Z"
       }
     ];
     safeSetStorage('sigec_pro_usuarios', JSON.stringify(db.usuarios));
     safeSetStorage('sigec_pro_security_pin', adminPin);
   }
 }
+window.ensureUsersInitialized = ensureUsersInitialized;
 
 function togglePinVisibility(inputId, iconId) {
   const pinInput = document.getElementById(inputId);
