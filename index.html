@@ -4873,7 +4873,7 @@
   <!-- Internationalization & Translations Engine -->
   <script src="i18n.js?v=202609200030"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=202609200700"></script>
+  <script src="app.js?v=202609200800"></script>
   <!-- Duplicates Management Engine -->
   <script src="duplicatesManager.js?v=202609200030"></script>
 
@@ -6304,30 +6304,43 @@
           </div>
         </div>
 
-        <!-- Two-column Box: Found Website & Found Phone -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
+        <!-- Three-column Box: Found Website, Email & Phone -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.65rem; margin-bottom: 1rem;">
           <!-- Found Website Box -->
-          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.75rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.4rem;">
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.7rem 0.85rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
             <div>
               <div style="font-size: 0.72rem; font-weight: 600; color: #64748b; display: flex; align-items: center; gap: 5px;">
                 <i class="fa-solid fa-globe" style="color: #0284c7;"></i> Página Web Oficial:
               </div>
-              <div style="font-size: 0.88rem; font-weight: 600; color: #0284c7; word-break: break-all; margin-top: 2px;" id="aiFoundWebsiteText">Não encontrada</div>
+              <div style="font-size: 0.84rem; font-weight: 600; color: #0284c7; word-break: break-all; margin-top: 2px;" id="aiFoundWebsiteText">Não encontrada</div>
             </div>
-            <a href="javascript:void(0)" id="aiBtnVisitFoundWebsite" target="_blank" rel="noopener noreferrer" style="display: none; align-self: flex-start; padding: 0.25rem 0.65rem; font-size: 0.75rem; font-weight: 600; background: #e0f2fe; color: #0369a1; border-radius: 6px; text-decoration: none; align-items: center; gap: 4px;">
+            <a href="javascript:void(0)" id="aiBtnVisitFoundWebsite" target="_blank" rel="noopener noreferrer" style="display: none; align-self: flex-start; padding: 0.2rem 0.55rem; font-size: 0.72rem; font-weight: 600; background: #e0f2fe; color: #0369a1; border-radius: 6px; text-decoration: none; align-items: center; gap: 4px;">
               <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Site
             </a>
           </div>
 
+          <!-- Found Email Box -->
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.7rem 0.85rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
+            <div>
+              <div style="font-size: 0.72rem; font-weight: 600; color: #64748b; display: flex; align-items: center; gap: 5px;">
+                <i class="fa-solid fa-envelope" style="color: #7c3aed;"></i> Email de Contacto:
+              </div>
+              <div style="font-size: 0.84rem; font-weight: 600; color: #7c3aed; word-break: break-all; margin-top: 2px;" id="aiFoundEmailText">Não identificado</div>
+            </div>
+            <a href="javascript:void(0)" id="aiBtnMailFoundEmail" style="display: none; align-self: flex-start; padding: 0.2rem 0.55rem; font-size: 0.72rem; font-weight: 600; background: #f3e8ff; color: #7e22ce; border-radius: 6px; text-decoration: none; align-items: center; gap: 4px;">
+              <i class="fa-solid fa-paper-plane"></i> Escrever
+            </a>
+          </div>
+
           <!-- Found Telephone Box -->
-          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.75rem 1rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.4rem;">
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.7rem 0.85rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem;">
             <div>
               <div style="font-size: 0.72rem; font-weight: 600; color: #64748b; display: flex; align-items: center; gap: 5px;">
                 <i class="fa-solid fa-phone" style="color: #16a34a;"></i> Telefone de Contacto:
               </div>
-              <div style="font-size: 0.88rem; font-weight: 600; color: #16a34a; margin-top: 2px;" id="aiFoundTelefoneText">Não identificado</div>
+              <div style="font-size: 0.84rem; font-weight: 600; color: #16a34a; margin-top: 2px;" id="aiFoundTelefoneText">Não identificado</div>
             </div>
-            <a href="javascript:void(0)" id="aiBtnCallFoundTelefone" style="display: none; align-self: flex-start; padding: 0.25rem 0.65rem; font-size: 0.75rem; font-weight: 600; background: #dcfce7; color: #15803d; border-radius: 6px; text-decoration: none; align-items: center; gap: 4px;">
+            <a href="javascript:void(0)" id="aiBtnCallFoundTelefone" style="display: none; align-self: flex-start; padding: 0.2rem 0.55rem; font-size: 0.72rem; font-weight: 600; background: #dcfce7; color: #15803d; border-radius: 6px; text-decoration: none; align-items: center; gap: 4px;">
               <i class="fa-solid fa-phone-volume"></i> Ligar
             </a>
           </div>
@@ -6399,7 +6412,7 @@
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js?v=202609200700')
+      navigator.serviceWorker.register('/sw.js?v=202609200800')
         .then(function (reg) {
           if (typeof reg.update === 'function') {
             reg.update();

@@ -26611,6 +26611,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['alegria activity', 'alegria activity s.l.', 'alegria-activity', 'alegria activity manufacturing', 'grupo alegria activity', 'alegria activity espanha'],
     website: 'https://alegria-activity.com',
+    email: 'info@alegria-activity.com',
     telefone: '+34 876 26 20 97',
     direcao1: 'Polígono Industrial Malpica, Calle E, 9',
     numero: '9',
@@ -26623,6 +26624,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['alegria activity vitoria', 'alegria activity sede central', 'alegria activity alava'],
     website: 'https://alegria-activity.com',
+    email: 'info@alegria-activity.com',
     telefone: '+34 945 00 12 00',
     direcao1: 'Parque Tecnológico de Álava, Vitoria-Gasteiz',
     numero: '',
@@ -28307,6 +28309,13 @@ function renderAiCandidateCards() {
       right.appendChild(wBadge);
     }
 
+    if (cand.email) {
+      const eBadge = document.createElement('span');
+      eBadge.title = 'Email: ' + cand.email;
+      eBadge.style.cssText = 'font-size: 0.68rem; color: #7c3aed; background: #f3e8ff; padding: 2px 5px; border-radius: 4px;';
+      eBadge.innerHTML = '<i class="fa-solid fa-envelope"></i>';
+      right.appendChild(eBadge);
+    }
     if (cand.telefone) {
       const tBadge = document.createElement('span');
       tBadge.title = 'Telefone disponível';
@@ -28343,6 +28352,20 @@ function updateAiModalPreview(cand) {
   } else {
     if (foundWebText) foundWebText.textContent = 'Não identificada na pesquisa direta';
     if (visitBtn) visitBtn.style.display = 'none';
+  }
+
+  // Email Box
+  const foundEmailText = document.getElementById('aiFoundEmailText');
+  const mailBtn = document.getElementById('aiBtnMailFoundEmail');
+  if (cand.email) {
+    if (foundEmailText) foundEmailText.textContent = cand.email;
+    if (mailBtn) {
+      mailBtn.style.display = 'inline-flex';
+      mailBtn.href = 'mailto:' + cand.email.trim();
+    }
+  } else {
+    if (foundEmailText) foundEmailText.textContent = 'Não identificado';
+    if (mailBtn) mailBtn.style.display = 'none';
   }
 
   // Telefone Box
@@ -28416,6 +28439,7 @@ async function triggerAiAddressEnrichment() {
   let ministerio = '';
   let contribuinte = '';
   let existingWebsite = '';
+  let existingEmail = '';
   let existingTelefone = '';
   let existingPais = '';
   let isEstatal = (tipoCliente === 'Estatal');
@@ -28433,6 +28457,7 @@ async function triggerAiAddressEnrichment() {
     ministerio = document.getElementById('ministerio')?.value?.trim() || '';
     contribuinte = activeSep.contribuinte || '';
     existingWebsite = activeSep.website || '';
+    existingEmail = activeSep.email || '';
     existingTelefone = activeSep.telefone || '';
     existingPais = activeSep.pais?.trim() || '';
   } else {
@@ -28444,6 +28469,7 @@ async function triggerAiAddressEnrichment() {
     entityName = nomeEl.value.trim();
     contribuinte = document.getElementById('clientContribuinte')?.value?.trim() || '';
     existingWebsite = document.getElementById('clientWebsite')?.value?.trim() || '';
+    existingEmail = document.getElementById('clientEmail')?.value?.trim() || '';
     existingTelefone = document.getElementById('clientTelefone')?.value?.trim() || '';
     existingPais = document.getElementById('clientPais')?.value?.trim() || '';
   }
@@ -28455,6 +28481,7 @@ async function triggerAiAddressEnrichment() {
     ministerio,
     contribuinte,
     existingWebsite,
+    existingEmail,
     existingTelefone,
     existingPais,
     targetSepIndex: activeEstatalSeparadorIndex
@@ -28517,6 +28544,7 @@ async function triggerAiAddressEnrichment() {
           countryCode: dCc,
           flag: getCountryFlagEmoji(dCc, dCountry),
           telefone: d.telefone || existingTelefone || '',
+          email: d.email || existingEmail || '',
           website: d.website || existingWebsite || '',
           fonteUrl: d.fonteUrl || d.website || 'https://www.gov.pt',
           provider: 'Registo Institucional Oficial (Sede Principal)'
@@ -28612,7 +28640,7 @@ async function triggerAiAddressEnrichment() {
 
         // ── TENTATIVA 6a: Gemini 2.0 com Google Search Grounding ──
         try {
-          const promptGrounding = `Pesquisa na web e encontra a morada completa da sede, website oficial e telefone de contacto da empresa/organização: "${entityName}"${existingPais ? ' (país: ' + existingPais + ')' : ''}. Responde em português.`;
+          const promptGrounding = `Pesquisa na web e encontra a morada completa da sede, website oficial, email de contacto oficial e telefone de contacto da empresa/organização: "${entityName}"${existingPais ? ' (país: ' + existingPais + ')' : ''}. Responde em português.`;
           console.log('[SIGEC-Gemini 6a] A enviar com Google Search Grounding...');
           const gRespGrounding = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
             method: 'POST',
@@ -28645,7 +28673,7 @@ async function triggerAiAddressEnrichment() {
         if (!aiTextResponse) {
           console.log('[SIGEC-Gemini] A tentar modo conhecimento direto (sem tools)...');
           try {
-            const directPrompt = `Indica a morada completa da sede oficial (rua, código postal, cidade, país), website oficial e telefone da empresa ou organização "${entityName}"${existingPais ? ' (' + existingPais + ')' : ''}. Fornece todos os detalhes conhecidos.`;
+            const directPrompt = `Indica a morada completa da sede oficial (rua, código postal, cidade, país), website oficial, email oficial e telefone da empresa ou organização "${entityName}"${existingPais ? ' (' + existingPais + ')' : ''}. Fornece todos os detalhes conhecidos.`;
             const gRespDirect = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -28690,7 +28718,7 @@ async function triggerAiAddressEnrichment() {
 TEXTO: ${aiTextResponse}
 
 Devolve APENAS este JSON exato (sem texto extra, sem markdown):
-{"website":"","telefone":"","direcao1":"","codigoPostal":"","localidade":"","pais":""}`;
+{"website":"","email":"","telefone":"","direcao1":"","codigoPostal":"","localidade":"","pais":""}`;
 
           let parsed = null;
           try {
@@ -28723,7 +28751,7 @@ Devolve APENAS este JSON exato (sem texto extra, sem markdown):
           if (parsed) {
             const gCountry = parsed.pais || existingPais || 'Espanha';
             const gCc = gCountry.toLowerCase().includes('port') ? 'pt' : (gCountry.toLowerCase().includes('esp') ? 'es' : '');
-            if (parsed.website || parsed.localidade || parsed.direcao1 || parsed.telefone) {
+            if (parsed.website || parsed.email || parsed.localidade || parsed.direcao1 || parsed.telefone) {
               availableAiCandidates.push({
                 nome:        entityName,
                 direcao1:    parsed.direcao1 || '',
@@ -28736,6 +28764,7 @@ Devolve APENAS este JSON exato (sem texto extra, sem markdown):
                 countryCode: gCc,
                 flag:        getCountryFlagEmoji(gCc, gCountry),
                 telefone:    parsed.telefone || existingTelefone || '',
+                email:       parsed.email || existingEmail || '',
                 website:     parsed.website || existingWebsite || '',
                 fonteUrl:    aiSourceUrl || parsed.website || 'https://www.google.com',
                 provider:    '🔎 Google (via Gemini AI)'
@@ -28880,6 +28909,9 @@ function confirmAndApplyAiAddress() {
       if (d.website && (!sep.website || sep.website.trim() === '')) {
         sep.website = d.website;
       }
+      if (d.email && (!sep.email || sep.email.trim() === '')) {
+        sep.email = d.email;
+      }
       if (d.telefone && (!sep.telefone || sep.telefone.trim() === '')) {
         sep.telefone = d.telefone;
       }
@@ -28929,6 +28961,12 @@ function confirmAndApplyAiAddress() {
       if (el && (!el.value || el.value.trim() === '')) {
         el.value = d.website;
         if (typeof updateClientWebsiteBtnState === 'function') updateClientWebsiteBtnState(d.website);
+      }
+    }
+    if (d.email) {
+      const el = document.getElementById('clientEmail');
+      if (el && (!el.value || el.value.trim() === '')) {
+        el.value = d.email;
       }
     }
     if (d.telefone) {
