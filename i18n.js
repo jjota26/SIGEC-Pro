@@ -586,6 +586,15 @@ const SIGEC_I18N = {
   btn_upload_budget: { Português: "Carregar Orçamento", Español: "Subir Presupuesto", "English": "Upload Budget", Français: "Charger Devis", "Polski": "Prześlij Wycenę" },
   btn_create_budget: { Português: "Criar Orçamento", Español: "Crear Presupuesto", "English": "Create Budget", Français: "Créer Devis", "Polski": "Utwórz Wycenę" },
   btn_ai_update_address: { Português: "Atualização de Direção", Español: "Actualización de Dirección", "English": "Update Address", Français: "Mise à Jour d'Adresse", "Polski": "Aktualizacja Adresu" },
+  client_placeholder_org_name: { Português: "Nome completo do organismo/secretaria", Español: "Nombre completo del organismo/secretaría", "English": "Full name of the organism/secretariat", Français: "Nom complet de l'organisme/secrétariat", "Polski": "Pełna nazwa organu/sekretariatu" },
+  client_placeholder_address1: { Português: "Rua, Avenida, Praça...", Español: "Calle, Avenida, Plaza...", "English": "Street, Avenue, Square...", Français: "Rue, Avenue, Place...", "Polski": "Ulica, Aleja, Plac..." },
+  client_placeholder_address2: { Português: "Bloco, Edifício, Referência...", Español: "Bloque, Edificio, Referencia...", "English": "Block, Building, Reference...", Français: "Bâtiment, Immeuble, Référence...", "Polski": "Blok, Budynek, Punkt orientacyjny..." },
+  client_placeholder_locality: { Português: "ex: Lisboa, Porto, Tavira", Español: "ej: Madrid, Barcelona, Valencia", "English": "e.g.: London, Manchester", Français: "ex : Paris, Lyon, Marseille", "Polski": "np.: Warszawa, Kraków" },
+  client_placeholder_country: { Português: "ex: Portugal, Espanha...", Español: "ej: España, Portugal...", "English": "e.g.: Spain, Portugal...", Français: "ex : Espagne, Portugal...", "Polski": "np.: Hiszpania, Portugalia..." },
+  estatal_tab_title_hint: { Português: "Duplo clique para renomear | Arraste para reordenar", Español: "Doble clic para renombrar | Arrastre para reordenar", "English": "Double click to rename | Drag to reorder", Français: "Double-clic pour renommer | Glisser pour réorganiser", "Polski": "Kliknij dwukrotnie, aby zmienić nazwę | Przeciągnij, aby zmienić kolejność" },
+  estatal_tab_move_hint: { Português: "Mudar este separador para outro cliente", Español: "Mover esta pestaña a otro cliente", "English": "Move this tab to another client", Français: "Déplacer cet onglet vers un autre client", "Polski": "Przenieś tę zakładkę do innego klienta" },
+  estatal_tab_delete_hint: { Português: "Apagar separador", Español: "Eliminar pestaña", "English": "Delete tab", Français: "Supprimer l'onglet", "Polski": "Usuń zakładkę" },
+  btn_open_website_title: { Português: "Abrir página web deste organismo num novo separador", Español: "Abrir página web de este organismo en una nueva pestaña", "English": "Open this organism's website in a new tab", Français: "Ouvrir le site Web de cet organisme dans un nouvel onglet", "Polski": "Otwórz stronę internetową tego organu w nowej zakładce" },
 
   // --- BOTÕES E AÇÕES GERAIS ---
   btn_new_client: { Português: "Novo Cliente", Español: "Nuevo Cliente", "English": "New Client", Français: "Nouveau Client", "Polski": "Nowy Klient" },
@@ -2053,8 +2062,8 @@ window.normalizeLanguageName = normalizeLanguageName;
 /**
  * Obtém a tradução de uma chave ou frase
  */
-function t(key, defaultText = '') {
-  const activeLang = (typeof window !== 'undefined' && window.currentSystemLanguage) ? window.currentSystemLanguage : currentSystemLanguage;
+function t(key, defaultText = '', targetLang = null) {
+  const activeLang = targetLang || ((typeof window !== 'undefined' && window.currentSystemLanguage) ? window.currentSystemLanguage : currentSystemLanguage);
   const lang = normalizeLanguageName(activeLang);
   if (SIGEC_I18N[key]) {
     if (SIGEC_I18N[key][lang]) return SIGEC_I18N[key][lang];
@@ -2212,6 +2221,63 @@ window.translateDOMTree = translateDOMTree;
 /**
  * Aplica o idioma em toda a interface do programa
  */
+function applyModalLanguage(modalEl, langName) {
+  if (!modalEl) return;
+  langName = normalizeLanguageName(langName);
+
+  // 1. Atualizar atributos data-i18n dentro do modal
+  modalEl.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const translation = t(key, '', langName);
+    if (translation && translation !== key) {
+      const icon = el.querySelector('i');
+      if (icon) {
+        const iconHtml = icon.outerHTML;
+        el.innerHTML = iconHtml + ' ' + translation;
+      } else {
+        el.textContent = translation;
+      }
+    }
+  });
+
+  // 2. Atualizar placeholders data-i18n-placeholder
+  modalEl.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    const translation = t(key, '', langName);
+    if (translation && translation !== key) {
+      el.setAttribute('placeholder', translation);
+    }
+  });
+
+  // 3. Atualizar títulos data-i18n-title
+  modalEl.querySelectorAll('[data-i18n-title]').forEach(el => {
+    const key = el.getAttribute('data-i18n-title');
+    const translation = t(key, '', langName);
+    if (translation && translation !== key) {
+      el.setAttribute('title', translation);
+    }
+  });
+
+  // 4. Traduzir opções de select específicas do modal (ex: tipoCliente)
+  modalEl.querySelectorAll('select option').forEach(opt => {
+    const key = opt.getAttribute('data-i18n');
+    if (key) {
+      const translation = t(key, '', langName);
+      if (translation && translation !== key) {
+        opt.textContent = translation;
+      }
+    } else if (opt.textContent && typeof translateSystemTerm === 'function') {
+      const clean = opt.textContent.trim();
+      const trans = translateSystemTerm(clean, langName);
+      if (trans && trans !== clean) opt.textContent = trans;
+    }
+  });
+
+  // 5. Traduzir árvore interna do modal
+  translateDOMTree(modalEl, langName);
+}
+window.applyModalLanguage = applyModalLanguage;
+
 function applyUserLanguage(langName) {
   if (!langName) {
     langName = getActiveUserLanguage();
@@ -2227,16 +2293,22 @@ function applyUserLanguage(langName) {
   if (typeof document !== 'undefined') {
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
-      const translation = t(key);
+      const translation = t(key, '', langName);
       if (translation && translation !== key) {
-        el.textContent = translation;
+        const icon = el.querySelector('i');
+        if (icon) {
+          const iconHtml = icon.outerHTML;
+          el.innerHTML = iconHtml + ' ' + translation;
+        } else {
+          el.textContent = translation;
+        }
       }
     });
 
     // 2. Atualizar placeholders data-i18n-placeholder
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
       const key = el.getAttribute('data-i18n-placeholder');
-      const translation = t(key);
+      const translation = t(key, '', langName);
       if (translation && translation !== key) {
         el.setAttribute('placeholder', translation);
       }
@@ -2245,7 +2317,7 @@ function applyUserLanguage(langName) {
     // 3. Atualizar títulos data-i18n-title
     document.querySelectorAll('[data-i18n-title]').forEach(el => {
       const key = el.getAttribute('data-i18n-title');
-      const translation = t(key);
+      const translation = t(key, '', langName);
       if (translation && translation !== key) {
         el.setAttribute('title', translation);
       }
@@ -2781,7 +2853,8 @@ function translateSystemTerm(term, targetLang) {
   const cleanTerm = term.trim();
   if (!cleanTerm) return term;
 
-  const normalizedLang = normalizeLanguageName(targetLang);
+  const effectiveLang = targetLang || (typeof getActiveUserLanguage === 'function' ? getActiveUserLanguage() : 'Português');
+  const normalizedLang = normalizeLanguageName(effectiveLang);
 
   // 1. Verificar em SIGEC_PHRASES_MAP direto
   if (SIGEC_PHRASES_MAP[cleanTerm]) {
