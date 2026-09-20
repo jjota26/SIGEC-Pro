@@ -28483,6 +28483,17 @@ function updateAiModalPreview(cand) {
   const elPais = document.getElementById('aiPreviewPais');
   if (elPais) elPais.textContent = cand.pais || 'Portugal';
 
+  // Contribuinte (NIF/NIPC)
+  const elContribuinte = document.getElementById('aiPreviewContribuinte');
+  const elContribuinteContainer = document.getElementById('aiPreviewContribuinteContainer');
+  if (cand.contribuinte && cand.contribuinte.trim() && cand.contribuinte.trim() !== '000000000') {
+    if (elContribuinte) elContribuinte.textContent = cand.contribuinte.trim();
+    if (elContribuinteContainer) elContribuinteContainer.style.display = 'block';
+  } else {
+    if (elContribuinte) elContribuinte.textContent = '-';
+    if (elContribuinteContainer) elContribuinteContainer.style.display = 'none';
+  }
+
   const elFonte = document.getElementById('aiPreviewFonte');
   if (elFonte) elFonte.textContent = 'Fonte: ' + (cand.fonteUrl || 'Pesquisa Oficial Institucional');
 
@@ -28994,6 +29005,9 @@ function confirmAndApplyAiAddress() {
       if (d.codigoPostal) sep.codigoPostal = d.codigoPostal;
       if (d.localidade) sep.localidade = d.localidade;
       if (d.pais) sep.pais = d.pais;
+      if (d.contribuinte && d.contribuinte.trim() && d.contribuinte.trim() !== '000000000' && (!sep.contribuinte || sep.contribuinte.trim() === '' || sep.contribuinte.trim() === '000000000')) {
+        sep.contribuinte = d.contribuinte.trim();
+      }
       if (d.website && (!sep.website || sep.website.trim() === '')) {
         sep.website = d.website;
       }
@@ -29061,6 +29075,12 @@ function confirmAndApplyAiAddress() {
       const el = document.getElementById('clientTelefone');
       if (el && (!el.value || el.value.trim() === '')) {
         el.value = d.telefone;
+      }
+    }
+    if (d.contribuinte && d.contribuinte.trim() && d.contribuinte.trim() !== '000000000') {
+      const el = document.getElementById('clientContribuinte');
+      if (el && (!el.value || el.value.trim() === '' || el.value.trim() === '000000000')) {
+        el.value = d.contribuinte.trim();
       }
     }
     const labelTipo = d.tipoCliente === 'Fundação' ? 'da Fundação' : 'da Empresa';
