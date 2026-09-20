@@ -26609,28 +26609,41 @@ window.getCountryFlagEmoji = getCountryFlagEmoji;
 
 const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
-    aliases: ['alegria activity', 'alegria activity s.l.', 'alegria-activity', 'alegria activity manufacturing', 'grupo alegria activity', 'alegria activity espanha'],
+    aliases: ['alegria activity', 'alegria activity s.l.', 'alegria-activity', 'alegria activity sede', 'grupo alegria activity', 'alegria activity vitoria', 'alegria activity espanha'],
     website: 'https://alegria-activity.com',
     email: 'info@alegria-activity.com',
-    telefone: '+34 876 26 20 97',
-    direcao1: 'Polígono Industrial Malpica, Calle E, 9',
-    numero: '9',
+    telefone: '+34 945 128 415',
+    direcao1: 'Calle Landaluzea (Polígono Industrial Júndiz)',
+    numero: '24',
     andar: '',
-    codigoPostal: '50016',
-    localidade: 'Zaragoza',
+    codigoPostal: '01015',
+    localidade: 'Vitoria-Gasteiz (Álava)',
     pais: 'Espanha',
     fonteUrl: 'https://alegria-activity.com'
   },
   {
-    aliases: ['alegria activity vitoria', 'alegria activity sede central', 'alegria activity alava'],
+    aliases: ['alegria activity instalacoes', 'alegria activity lermandabidea', 'alegria activity operacional'],
     website: 'https://alegria-activity.com',
     email: 'info@alegria-activity.com',
-    telefone: '+34 945 00 12 00',
-    direcao1: 'Parque Tecnológico de Álava, Vitoria-Gasteiz',
-    numero: '',
+    telefone: '+34 945 128 415',
+    direcao1: 'Lermandabidea Kalea',
+    numero: '7',
     andar: '',
-    codigoPostal: '01510',
+    codigoPostal: '01015',
     localidade: 'Vitoria-Gasteiz (Álava)',
+    pais: 'Espanha',
+    fonteUrl: 'https://alegria-activity.com'
+  },
+  {
+    aliases: ['alegria activity manufacturing', 'alegria activity zaragoza', 'alegria activity fabrica'],
+    website: 'https://alegria-activity.com',
+    email: 'info@alegria-activity.com',
+    telefone: '+34 876 26 20 97',
+    direcao1: 'Polígono Industrial Malpica, Calle E',
+    numero: '9',
+    andar: '',
+    codigoPostal: '50016',
+    localidade: 'Zaragoza',
     pais: 'Espanha',
     fonteUrl: 'https://alegria-activity.com'
   },
@@ -28640,7 +28653,7 @@ async function triggerAiAddressEnrichment() {
 
         // ── TENTATIVA 6a: Gemini 2.0 com Google Search Grounding ──
         try {
-          const promptGrounding = `Pesquisa na web e encontra a morada completa da sede, website oficial, email de contacto oficial e telefone de contacto da empresa/organização: "${entityName}"${existingPais ? ' (país: ' + existingPais + ')' : ''}. Responde em português.`;
+          const promptGrounding = `Pesquisa na web e encontra a morada oficial e exata da sede social/fiscal (rua exata com número de porta, código postal e cidade oficial), website oficial, email oficial de atendimento e telefone da empresa/organização: "${entityName}"${existingPais ? ' (país: ' + existingPais + ')' : ''}. Responde em português.`;
           console.log('[SIGEC-Gemini 6a] A enviar com Google Search Grounding...');
           const gRespGrounding = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
             method: 'POST',
@@ -28673,7 +28686,7 @@ async function triggerAiAddressEnrichment() {
         if (!aiTextResponse) {
           console.log('[SIGEC-Gemini] A tentar modo conhecimento direto (sem tools)...');
           try {
-            const directPrompt = `Indica a morada completa da sede oficial (rua, código postal, cidade, país), website oficial, email oficial e telefone da empresa ou organização "${entityName}"${existingPais ? ' (' + existingPais + ')' : ''}. Fornece todos os detalhes conhecidos.`;
+            const directPrompt = `Indica a morada oficial e exata da sede fiscal/social registada (rua e número de porta exatos, código postal, cidade/município e país), website oficial, email de contacto oficial e telefone da empresa ou organização "${entityName}"${existingPais ? ' (' + existingPais + ')' : ''}. Fornece todos os detalhes conhecidos.`;
             const gRespDirect = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },

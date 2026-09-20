@@ -4873,7 +4873,7 @@
   <!-- Internationalization & Translations Engine -->
   <script src="i18n.js?v=202609200030"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=202609200800"></script>
+  <script src="app.js?v=202609200900"></script>
   <!-- Duplicates Management Engine -->
   <script src="duplicatesManager.js?v=202609200030"></script>
 
@@ -6412,7 +6412,7 @@
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js?v=202609200800')
+      navigator.serviceWorker.register('/sw.js?v=202609200900')
         .then(function (reg) {
           if (typeof reg.update === 'function') {
             reg.update();
