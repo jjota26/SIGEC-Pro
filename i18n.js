@@ -28,11 +28,11 @@ const SIGEC_I18N = {
     "Polski": "Aktualizacja Adresu"
   },
   ai_modal_title: {
-    "Português": "Atualização de Morada com IA",
-    "Español": "Actualización de Dirección con IA",
-    "English": "AI Address Update",
-    "Français": "Mise à Jour de l'Adresse avec IA",
-    "Polski": "Aktualizacja Adresu przez AI"
+    "Português": "Atualização de Direção",
+    "Español": "Actualización de Dirección",
+    "English": "Address Update",
+    "Français": "Mise à Jour de l'Adresse",
+    "Polski": "Aktualizacja Adresu"
   },
   server_backup_select_label: {
     "Português": "Selecione a Cópia do Servidor (Últimos 15 Backups):",

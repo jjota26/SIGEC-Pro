@@ -26567,6 +26567,14 @@ function closeAiAddressModal() {
   if (modal) {
     modal.classList.remove('active');
     modal.style.display = 'none';
+    const win = modal.querySelector('.modal-window');
+    if (win) {
+      win.style.left = '';
+      win.style.top = '';
+      win.style.margin = '';
+      win.style.position = '';
+      win.style.transform = '';
+    }
   }
   pendingAiAddressData = null;
   availableAiCandidates = [];
@@ -28456,6 +28464,16 @@ function updateAiModalPreview(cand) {
   if (cand.andar) numAndStr += (numAndStr ? ' • ' : '') + cand.andar;
   if (elNumAnd) elNumAnd.textContent = numAndStr || '-';
 
+  const elDir2 = document.getElementById('aiPreviewDirecao2');
+  const elDir2Container = document.getElementById('aiPreviewDirecao2Container');
+  if (cand.direcao2 && cand.direcao2.trim()) {
+    if (elDir2) elDir2.textContent = cand.direcao2.trim();
+    if (elDir2Container) elDir2Container.style.display = 'block';
+  } else {
+    if (elDir2) elDir2.textContent = '-';
+    if (elDir2Container) elDir2Container.style.display = 'none';
+  }
+
   const elCp = document.getElementById('aiPreviewCodigoPostal');
   if (elCp) elCp.textContent = cand.codigoPostal || '(Vazio)';
 
@@ -28554,6 +28572,17 @@ async function triggerAiAddressEnrichment() {
   if (modal) {
     modal.style.display = 'flex';
     modal.classList.add('active');
+    const win = modal.querySelector('.modal-window');
+    if (win) {
+      win.style.left = '';
+      win.style.top = '';
+      win.style.margin = '';
+      win.style.position = 'relative';
+      win.style.transform = '';
+    }
+    if (typeof initModalResizing === 'function') {
+      initModalResizing();
+    }
   }
   if (loadingState) loadingState.style.display = 'block';
   if (contentState) contentState.style.display = 'none';
