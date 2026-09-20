@@ -4871,11 +4871,11 @@
   <div id="toastContainer" class="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999999 !important;"></div>
 
   <!-- Internationalization & Translations Engine -->
-  <script src="i18n.js?v=202609200425"></script>
+  <script src="i18n.js?v=202609200450"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=202609200425"></script>
+  <script src="app.js?v=202609200450"></script>
   <!-- Duplicates Management Engine -->
-  <script src="duplicatesManager.js?v=202609200425"></script>
+  <script src="duplicatesManager.js?v=202609200450"></script>
 
   <!-- Auto-cura imediata de definições SMTP e Webhook no arranque de qualquer computador -->
   <script>
@@ -6105,20 +6105,20 @@
               <div>
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
                   <span style="font-weight: 700; color: #0f172a; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;">
-                    <i class="fa-solid fa-address-book" style="color: #2563eb;"></i> Contactos
+                    <i class="fa-solid fa-address-book" style="color: #2563eb;"></i> <span data-i18n="tpl_card_contacts_title">Contactos</span>
                   </span>
-                  <span style="font-size: 0.7rem; font-weight: 700; background: #e0f2fe; color: #0284c7; padding: 2px 6px; border-radius: 4px;">Com Extensão</span>
+                  <span style="font-size: 0.7rem; font-weight: 700; background: #e0f2fe; color: #0284c7; padding: 2px 6px; border-radius: 4px;" data-i18n="tpl_card_contacts_badge">Com Extensão</span>
                 </div>
-                <p style="font-size: 0.78rem; color: #64748b; line-height: 1.4; margin-bottom: 1rem;">
+                <p style="font-size: 0.78rem; color: #64748b; line-height: 1.4; margin-bottom: 1rem;" data-i18n="tpl_card_contacts_desc">
                   Inclui Cliente/Entidade, Departamento/Separador, Nome, Apelido, Cargo, Telefone, <strong>Extensão</strong>, Telemóvel e Email.
                 </p>
               </div>
               <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
                 <button type="button" class="btn btn-outline-success" onclick="downloadExcelTemplate('contactos')" style="flex: 1; min-width: 130px; font-size: 0.8rem; padding: 0.5rem 0.6rem; justify-content: center;">
-                  <i class="fa-solid fa-download"></i> Descarregar .xlsx
+                  <i class="fa-solid fa-download"></i> <span data-i18n="btn_download_xlsx">Descarregar .xlsx</span>
                 </button>
                 <button type="button" class="btn btn-primary" onclick="triggerCategoryImportFromSettings('contactos')" style="flex: 1; min-width: 130px; font-size: 0.8rem; padding: 0.5rem 0.6rem; justify-content: center; background: #2563eb;">
-                  <i class="fa-solid fa-file-import"></i> Carregar Contactos
+                  <i class="fa-solid fa-file-import"></i> <span data-i18n="btn_upload_contacts">Carregar Contactos</span>
                 </button>
               </div>
             </div>
@@ -6128,20 +6128,20 @@
               <div>
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
                   <span style="font-weight: 700; color: #0f172a; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;">
-                    <i class="fa-solid fa-building" style="color: #16a34a;"></i> Clientes
+                    <i class="fa-solid fa-building" style="color: #16a34a;"></i> <span data-i18n="tpl_card_clients_title">Clientes</span>
                   </span>
-                  <span style="font-size: 0.7rem; font-weight: 700; background: #dcfce7; color: #16a34a; padding: 2px 6px; border-radius: 4px;">Estatais & Privados</span>
+                  <span style="font-size: 0.7rem; font-weight: 700; background: #dcfce7; color: #16a34a; padding: 2px 6px; border-radius: 4px;" data-i18n="tpl_card_clients_badge">Estatais & Privados</span>
                 </div>
-                <p style="font-size: 0.78rem; color: #64748b; line-height: 1.4; margin-bottom: 1rem;">
-                  Inclui Tipo (Estatal/Privado), Ministério/Razão Social, Departamento/Separador, NIF, Morada detalhada, CP e Localidade.
+                <p style="font-size: 0.78rem; color: #64748b; line-height: 1.4; margin-bottom: 1rem;" data-i18n="tpl_card_clients_desc">
+                  Inclui Tipo (Estatal/Privado), Ministério/Razão Social, Departamento/Separador, NIF, Morada detalhada, CP, Localidade e Página Web.
                 </p>
               </div>
               <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
                 <button type="button" class="btn btn-outline-success" onclick="downloadExcelTemplate('clientes')" style="flex: 1; min-width: 130px; font-size: 0.8rem; padding: 0.5rem 0.6rem; justify-content: center;">
-                  <i class="fa-solid fa-download"></i> Descarregar .xlsx
+                  <i class="fa-solid fa-download"></i> <span data-i18n="btn_download_xlsx">Descarregar .xlsx</span>
                 </button>
                 <button type="button" class="btn btn-primary" onclick="triggerCategoryImportFromSettings('clientes')" style="flex: 1; min-width: 130px; font-size: 0.8rem; padding: 0.5rem 0.6rem; justify-content: center; background: #16a34a; border-color: #16a34a;">
-                  <i class="fa-solid fa-file-import"></i> Carregar Clientes
+                  <i class="fa-solid fa-file-import"></i> <span data-i18n="btn_upload_clients">Carregar Clientes</span>
                 </button>
               </div>
             </div>
@@ -6151,20 +6151,20 @@
               <div>
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
                   <span style="font-weight: 700; color: #0f172a; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;">
-                    <i class="fa-solid fa-diagram-project" style="color: #6366f1;"></i> Projetos
+                    <i class="fa-solid fa-diagram-project" style="color: #6366f1;"></i> <span data-i18n="tpl_card_projects_title">Projetos</span>
                   </span>
-                  <span style="font-size: 0.7rem; font-weight: 700; background: #e0e7ff; color: #6366f1; padding: 2px 6px; border-radius: 4px;">Com Departamentos</span>
+                  <span style="font-size: 0.7rem; font-weight: 700; background: #e0e7ff; color: #6366f1; padding: 2px 6px; border-radius: 4px;" data-i18n="tpl_card_projects_badge">Com Departamentos</span>
                 </div>
-                <p style="font-size: 0.78rem; color: #64748b; line-height: 1.4; margin-bottom: 1rem;">
+                <p style="font-size: 0.78rem; color: #64748b; line-height: 1.4; margin-bottom: 1rem;" data-i18n="tpl_card_projects_desc">
                   Inclui Código, Designação, Cliente, Departamento Estatal, Contacto Principal, Tipo, Estado, Valor e Prazos.
                 </p>
               </div>
               <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
                 <button type="button" class="btn btn-outline-success" onclick="downloadExcelTemplate('projetos')" style="flex: 1; min-width: 130px; font-size: 0.8rem; padding: 0.5rem 0.6rem; justify-content: center;">
-                  <i class="fa-solid fa-download"></i> Descarregar .xlsx
+                  <i class="fa-solid fa-download"></i> <span data-i18n="btn_download_xlsx">Descarregar .xlsx</span>
                 </button>
                 <button type="button" class="btn btn-primary" onclick="triggerCategoryImportFromSettings('projetos')" style="flex: 1; min-width: 130px; font-size: 0.8rem; padding: 0.5rem 0.6rem; justify-content: center; background: #6366f1; border-color: #6366f1;">
-                  <i class="fa-solid fa-file-import"></i> Carregar Projetos
+                  <i class="fa-solid fa-file-import"></i> <span data-i18n="btn_upload_projects">Carregar Projetos</span>
                 </button>
               </div>
             </div>
@@ -6174,20 +6174,20 @@
               <div>
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
                   <span style="font-weight: 700; color: #0f172a; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;">
-                    <i class="fa-solid fa-book-bookmark" style="color: #0284c7;"></i> Livro Completo (Multi-Abas)
+                    <i class="fa-solid fa-book-bookmark" style="color: #0284c7;"></i> <span data-i18n="tpl_card_complete_title">Livro Completo (Multi-Abas)</span>
                   </span>
-                  <span style="font-size: 0.7rem; font-weight: 700; background: #f1f5f9; color: #334155; padding: 2px 6px; border-radius: 4px;">Tudo-em-Um</span>
+                  <span style="font-size: 0.7rem; font-weight: 700; background: #f1f5f9; color: #334155; padding: 2px 6px; border-radius: 4px;" data-i18n="tpl_card_complete_badge">Tudo-em-Um</span>
                 </div>
-                <p style="font-size: 0.78rem; color: #64748b; line-height: 1.4; margin-bottom: 1rem;">
+                <p style="font-size: 0.78rem; color: #64748b; line-height: 1.4; margin-bottom: 1rem;" data-i18n="tpl_card_complete_desc">
                   Livro de cálculo com todas as abas (Contactos, Clientes, Projetos e Instruções) integradas num único ficheiro.
                 </p>
               </div>
               <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
                 <button type="button" class="btn btn-outline-primary" onclick="downloadExcelTemplate('completo')" style="flex: 1; min-width: 130px; font-size: 0.8rem; padding: 0.5rem 0.6rem; justify-content: center;">
-                  <i class="fa-solid fa-download"></i> Livro Completo .xlsx
+                  <i class="fa-solid fa-download"></i> <span data-i18n="btn_download_full_xlsx">Livro Completo .xlsx</span>
                 </button>
                 <button type="button" class="btn btn-secondary" onclick="triggerCategoryImportFromSettings('all')" style="flex: 1; min-width: 130px; font-size: 0.8rem; padding: 0.5rem 0.6rem; justify-content: center;">
-                  <i class="fa-solid fa-cloud-arrow-up"></i> Carregar Livro
+                  <i class="fa-solid fa-cloud-arrow-up"></i> <span data-i18n="btn_upload_workbook">Carregar Livro</span>
                 </button>
               </div>
             </div>
@@ -6430,7 +6430,7 @@
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js?v=202609200425')
+      navigator.serviceWorker.register('/sw.js?v=202609200450')
         .then(function (reg) {
           if (typeof reg.update === 'function') {
             reg.update();

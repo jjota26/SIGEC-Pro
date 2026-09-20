@@ -983,6 +983,134 @@ const SIGEC_I18N = {
     "English": "Write freely here the details of the contact made...",
     Français: "Écrivez ici librement les détails du contact effectué...",
     "Polski": "Wpisz tutaj swobodnie szczegóły zrealizowanego kontaktu..."
+  },
+
+  // --- MODELOS DE IMPORTAÇÃO (TEMPLATES) ---
+  tpl_card_contacts_title: {
+    Português: "Contactos",
+    Español: "Contactos",
+    English: "Contacts",
+    Français: "Contacts",
+    Polski: "Kontakty"
+  },
+  tpl_card_contacts_badge: {
+    Português: "Com Extensão",
+    Español: "Con Extensión",
+    English: "With Extension",
+    Français: "Avec Extension",
+    Polski: "Z Wewnętrznym"
+  },
+  tpl_card_contacts_desc: {
+    Português: "Inclui Cliente/Entidade, Departamento/Separador, Nome, Apelido, Cargo, Telefone, Extensão, Telemóvel e Email.",
+    Español: "Incluye Cliente/Entidad, Departamento/Pestaña, Nombre, Apellidos, Cargo, Teléfono, Extensión, Móvil y Correo.",
+    English: "Includes Client/Entity, Department/Tab, First Name, Last Name, Role, Phone, Extension, Mobile and Email.",
+    Français: "Comprend Client/Entité, Département/Onglet, Prénom, Nom, Poste, Téléphone, Extension, Portable et Email.",
+    Polski: "Zawiera Klienta/Podmiot, Dział/Zakładkę, Imię, Nazwisko, Stanowisko, Telefon, Wewnętrzny, Komórkę i Email."
+  },
+  tpl_card_clients_title: {
+    Português: "Clientes",
+    Español: "Clientes",
+    English: "Clients",
+    Français: "Clients",
+    Polski: "Klienci"
+  },
+  tpl_card_clients_badge: {
+    Português: "Estatais & Privados",
+    Español: "Estatales y Privados",
+    English: "Public & Private",
+    Français: "Publics & Privés",
+    Polski: "Publiczni i Prywatni"
+  },
+  tpl_card_clients_desc: {
+    Português: "Inclui Tipo (Estatal/Privado), Ministério/Razão Social, Departamento/Separador, NIF, Morada detalhada, CP, Localidade e Página Web.",
+    Español: "Incluye Tipo (Estatal/Privado), Ministerio/Razón Social, Departamento/Pestaña, NIF/CIF, Dirección detallada, CP, Localidad y Página Web.",
+    English: "Includes Type (Public/Private), Ministry/Company Name, Department/Tab, Tax ID, detailed Address, Postal Code, City and Website.",
+    Français: "Comprend Type (Public/Privé), Ministère/Raison Sociale, Département/Onglet, Numéro Fiscal, Adresse détaillée, Code Postal, Ville et Site Web.",
+    Polski: "Zawiera Typ (Publiczny/Prywatny), Ministerstwo/Nazwę, Dział/Zakładkę, NIP, Dokładny adres, Kod pocztowy, Miejscowość i Stronę WWW."
+  },
+  tpl_card_projects_title: {
+    Português: "Projetos",
+    Español: "Proyectos",
+    English: "Projects",
+    Français: "Projets",
+    Polski: "Projekty"
+  },
+  tpl_card_projects_badge: {
+    Português: "Com Departamentos",
+    Español: "Con Departamentos",
+    English: "With Departments",
+    Français: "Avec Départements",
+    Polski: "Z Działami"
+  },
+  tpl_card_projects_desc: {
+    Português: "Inclui Código, Designação, Cliente, Departamento Estatal, Contacto Principal, Tipo, Estado, Valor e Prazos.",
+    Español: "Incluye Código, Designación, Cliente, Departamento Estatal, Contacto Principal, Tipo, Estado, Valor y Plazos.",
+    English: "Includes Code, Name, Client, State Department, Main Contact, Type, Status, Value and Timelines.",
+    Français: "Comprend Code, Désignation, Client, Département Étatique, Contact Principal, Type, Statut, Valeur et Délais.",
+    Polski: "Zawiera Kod, Nazwę, Klienta, Dział Państwowy, Główny Kontakt, Typ, Status, Wartość i Terminy."
+  },
+  tpl_card_complete_title: {
+    Português: "Livro Completo (Multi-Abas)",
+    Español: "Libro Completo (Multi-Pestañas)",
+    English: "Complete Workbook (Multi-Tab)",
+    Français: "Classeur Complet (Multi-Onglets)",
+    Polski: "Kompletny Skoroszyt (Wieloarkuszowy)"
+  },
+  tpl_card_complete_badge: {
+    Português: "Tudo-em-Um",
+    Español: "Todo-en-Uno",
+    English: "All-in-One",
+    Français: "Tout-en-Un",
+    Polski: "Wszystko-w-Jednym"
+  },
+  tpl_card_complete_desc: {
+    Português: "Livro de cálculo com todas as abas (Contactos, Clientes, Projetos e Instruções) integradas num único ficheiro.",
+    Español: "Libro de cálculo con todas las pestañas (Contactos, Clientes, Proyectos e Instrucciones) integradas en un solo archivo.",
+    English: "Spreadsheet workbook with all tabs (Contacts, Clients, Projects and Instructions) integrated in a single file.",
+    Français: "Classeur avec tous les onglets (Contacts, Clients, Projets et Instructions) intégrés dans un seul fichier.",
+    Polski: "Skoroszyt ze wszystkimi arkuszami (Kontakty, Klienci, Projekty i Instrukcje) zintegrowanymi w jednym pliku."
+  },
+  btn_download_xlsx: {
+    Português: "Descarregar .xlsx",
+    Español: "Descargar .xlsx",
+    English: "Download .xlsx",
+    Français: "Télécharger .xlsx",
+    Polski: "Pobierz .xlsx"
+  },
+  btn_download_full_xlsx: {
+    Português: "Livro Completo .xlsx",
+    Español: "Libro Completo .xlsx",
+    English: "Full Workbook .xlsx",
+    Français: "Classeur Complet .xlsx",
+    Polski: "Kompletny Skoroszyt .xlsx"
+  },
+  btn_upload_contacts: {
+    Português: "Carregar Contactos",
+    Español: "Cargar Contactos",
+    English: "Import Contacts",
+    Français: "Charger Contacts",
+    Polski: "Wczytaj Kontakty"
+  },
+  btn_upload_clients: {
+    Português: "Carregar Clientes",
+    Español: "Cargar Clientes",
+    English: "Import Clients",
+    Français: "Charger Clients",
+    Polski: "Wczytaj Klientów"
+  },
+  btn_upload_projects: {
+    Português: "Carregar Projetos",
+    Español: "Cargar Proyectos",
+    English: "Import Projects",
+    Français: "Charger Projets",
+    Polski: "Wczytaj Projekty"
+  },
+  btn_upload_workbook: {
+    Português: "Carregar Livro",
+    Español: "Cargar Libro",
+    English: "Import Workbook",
+    Français: "Charger Classeur",
+    Polski: "Wczytaj Skoroszyt"
   }
 };
 

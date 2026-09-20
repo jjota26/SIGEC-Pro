@@ -5511,6 +5511,10 @@ function openCurrentUserSettingsModal() {
   if (typeof updateInstalledVersionUI === 'function') updateInstalledVersionUI(); // openCurrentUserSettingsModal_hooked
 
   if (modal) {
+    const userLang = (user && user.idioma) ? (typeof normalizeLanguageName === 'function' ? normalizeLanguageName(user.idioma) : user.idioma) : (typeof getActiveUserLanguage === 'function' ? getActiveUserLanguage() : 'Português');
+    if (typeof applyModalLanguage === 'function') {
+      applyModalLanguage(modal, userLang);
+    }
     modal.style.display = 'flex';
     modal.classList.add('active');
   }
@@ -13663,227 +13667,318 @@ function triggerCategoryImport(category) {
 // DESCARGA DE MODELOS OFICIAIS EXCEL (.XLSX) NAS DEFINIÇÕES DO UTILIZADOR
 // =========================================================================
 
+const SIGEC_EXCEL_TEMPLATE_SPECS = {
+  'Português': {
+    filenameClientes: 'Modelo_Importacao_Clientes.xlsx',
+    filenameContactos: 'Modelo_Importacao_Contactos.xlsx',
+    filenameProjetos: 'Modelo_Importacao_Projetos.xlsx',
+    filenameCompleto: 'Modelo_Importacao_SIGEC-Pro_Completo.xlsx',
+    sheetClientes: 'Clientes',
+    sheetContactos: 'Contactos',
+    sheetProjetos: 'Projetos',
+    sheetInstrucoes: 'Instruções',
+    msgSuccess: 'Modelo descarregado com sucesso: ',
+    headersContactos: [
+      'Cliente / Entidade', 'Departamento / Separador', 'Nome Próprio', 'Apelido',
+      'Cargo / Função', 'Telefone Direto', 'Extensão', 'Telemóvel', 'Email', 'Notas / Observações'
+    ],
+    sampleContactos: [
+      ['Ministério das Finanças', 'Direção-Geral do Tesouro', 'Maria da Graça', 'Carvalho', 'Diretora-Geral', '213 222 300', '2410', '912 345 678', 'maria.carvalho@gov.pt', 'Responsável pela aprovação orçamental'],
+      ['Ministério da Saúde', 'Direção-Geral da Saúde', 'Rita', 'Sá Machado', 'Diretora-Geral', '218 430 500', '1102', '961 234 567', 'rita.samachado@dgs.min-saude.pt', 'Contacto institucional principal'],
+      ['Galp Energia, SGPS, S.A.', 'Direção de Sustentabilidade', 'José Manuel', 'Fernandes', 'Diretor de Frota e Logística', '217 242 500', '305', '931 987 654', 'jose.fernandes@galp.com', 'Gestão de unidades móveis e eventos solares'],
+      ['Fundação Champalimaud', 'Gabinete de Relações Externas', 'Ana Paula', 'Martins', 'Coordenadora de Eventos', '210 480 200', '420', '925 555 123', 'ana.martins@fchampalimaud.org', 'Contacto para iniciativas de rastreio móvel']
+    ],
+    headersClientes: [
+      'Tipo de Cliente', 'Nome / Razão Social / Ministério', 'Departamento / Separador', 'NIF / Contribuinte',
+      'Morada / Rua / Avenida', 'Número', 'Andar / Piso', 'Código Postal', 'Localidade', 'País',
+      'Telefone Geral', 'Telemóvel', 'Email Geral', 'Página Web / Website', 'Setor de Atividade', 'Comercial Atribuído'
+    ],
+    sampleClientes: [
+      ['Estatal', 'Ministério da Agricultura e Mar', 'Direção-Geral de Agricultura e Desenvolvimento Rural', '500000123', 'Avenida Afonso Costa', '3', '2.º Piso', '1949-002', 'Lisboa', 'Portugal', '+351 218 443 000', '960 000 000', 'geral@dgadr.gov.pt', 'https://www.dgadr.gov.pt', 'Administração Pública / Agricultura', 'José Centúrio'],
+      ['Estatal', 'Ministério da Saúde', 'Direção-Geral da Saúde', '500000456', 'Alameda Dom Afonso Henriques', '45', '', '1049-005', 'Lisboa', 'Portugal', '+351 218 430 500', '961 000 000', 'geral@dgs.min-saude.pt', 'https://www.dgs.pt', 'Saúde Pública / Governamental', 'José Centúrio'],
+      ['Privado', 'Galp Energia, SGPS, S.A.', '', '504499777', 'Rua Tomás da Fonseca, Torre A', 'Torre A', 'Piso 7', '1600-209', 'Lisboa', 'Portugal', '+351 217 242 500', '931 000 000', 'comercial@galp.com', 'https://www.galp.com', 'Energia & Combustíveis', 'José Centúrio'],
+      ['Fundação', 'Fundação Champalimaud', 'Gabinete de Relações Externas', '507000111', 'Avenida Brasília', '', '', '1400-038', 'Lisboa', 'Portugal', '+351 210 480 200', '925 000 000', 'info@fchampalimaud.org', 'https://fchampalimaud.org', 'Investigação & Saúde', 'José Centúrio']
+    ],
+    headersProjetos: [
+      'Código / Referência', 'Designação do Projeto', 'Cliente / Entidade', 'Departamento / Separador',
+      'Contacto Principal', 'Tipo de Projeto', 'Estado', 'Valor Previsto (€)', 'Data de Início',
+      'Data de Conclusão', 'Viatura / Equipamento', 'Matrícula', 'Descrição / Observações'
+    ],
+    sampleProjetos: [
+      ['PRJ-2026-001', 'Unidade Móvel de Rastreio Oftalmológico', 'Ministério da Saúde', 'Direção-Geral da Saúde', 'Rita Sá Machado', 'Compra UM', 'Em Curso', '75000.00', '2026-10-01', '2026-12-15', 'Iveco Daily 50C18', '78-ZZ-99', 'Transformação e equipamento de consultório móvel completo'],
+      ['PRJ-2026-002', 'Roadshow Promocional de Energias Renováveis', 'Galp Energia, SGPS, S.A.', 'Direção de Sustentabilidade', 'José Manuel Fernandes', 'Aluguer', 'Em Estudo', '32000.00', '2026-11-01', '2026-11-30', 'Semirreboque Hospitality Expansível', '', 'Ações itinerantes pelas capitais de distrito']
+    ],
+    instructions: [
+      ['SIGEC-Pro - GUIA DE IMPORTAÇÃO DE DADOS EM MASSA'],
+      [''],
+      ['COMO UTILIZAR ESTE LIVRO EXCEL:'],
+      ['1. Cada aba corresponde a uma categoria do programa: Contactos, Clientes e Projetos.'],
+      ['2. Na aba Clientes, a coluna "Página Web / Website" permite associar o portal oficial da entidade.'],
+      ['3. Para Clientes Estatais (Ministérios/Organismos), preencha a coluna "Departamento / Separador".'],
+      ['   - Se o departamento ainda não existir, o SIGEC-Pro cria automaticamente esse separador.'],
+      ['   - Se já existir, o contacto ou projeto é associado sem criar separadores duplicados.'],
+      ['4. Nos Contactos, o novo campo "Extensão" permite registar o ramal telefónico direto da pessoa.'],
+      ['5. Os nomes próprios compostos portugueses (ex: Maria da Graça, José Manuel) são automaticamente identificados pela IA.'],
+      ['6. Pode carregar este ficheiro completo ou qualquer uma das abas de forma independente no SIGEC-Pro.'],
+      [''],
+      ['Versão do Sistema: SIGEC-Pro V1.7.35 | alegria-activity, S.L.']
+    ]
+  },
+  'Español': {
+    filenameClientes: 'Plantilla_Importacion_Clientes.xlsx',
+    filenameContactos: 'Plantilla_Importacion_Contactos.xlsx',
+    filenameProjetos: 'Plantilla_Importacion_Proyectos.xlsx',
+    filenameCompleto: 'Plantilla_Importacion_SIGEC-Pro_Completa.xlsx',
+    sheetClientes: 'Clientes',
+    sheetContactos: 'Contactos',
+    sheetProjetos: 'Proyectos',
+    sheetInstrucoes: 'Instrucciones',
+    msgSuccess: 'Plantilla descargada con éxito: ',
+    headersContactos: [
+      'Cliente / Entidad', 'Departamento / Pestaña', 'Nombre de Pila', 'Apellidos',
+      'Cargo / Función', 'Teléfono Directo', 'Extensión', 'Móvil', 'Correo Electrónico', 'Notas / Observaciones'
+    ],
+    sampleContactos: [
+      ['Ministerio de Hacienda', 'Dirección General del Tesoro', 'María del Carmen', 'Navarro', 'Directora General', '912 222 300', '2410', '612 345 678', 'maria.navarro@hacienda.gob.es', 'Responsable de la aprobación presupuestaria'],
+      ['Ministerio de Sanidad', 'Dirección General de Salud Pública', 'Rita', 'Sánchez', 'Directora General', '918 430 500', '1102', '661 234 567', 'rita.sanchez@sanidad.gob.es', 'Contacto institucional principal'],
+      ['Repsol, S.A.', 'Dirección de Sostenibilidad', 'José Manuel', 'Fernández', 'Director de Flota y Logística', '917 242 500', '305', '631 987 654', 'jose.fernandez@repsol.com', 'Gestión de unidades móviles y eventos sostenibles'],
+      ['Fundación Telefónica', 'Gabinete de Relaciones Externas', 'Ana Paula', 'Martín', 'Coordinadora de Eventos', '910 480 200', '420', '625 555 123', 'ana.martin@fundaciontelefonica.com', 'Contacto para iniciativas de cribado móvil']
+    ],
+    headersClientes: [
+      'Tipo de Cliente', 'Nombre / Razón Social / Ministerio', 'Departamento / Pestaña', 'NIF / CIF',
+      'Dirección / Calle / Avenida', 'Número', 'Piso / Planta', 'Código Postal', 'Localidad / Población', 'País',
+      'Teléfono General', 'Móvil', 'Correo Electrónico / Email', 'Página Web / Sitio Web', 'Sector de Actividad', 'Comercial Asignado'
+    ],
+    sampleClientes: [
+      ['Estatal', 'Ministerio de Agricultura, Pesca y Alimentación', 'Dirección General de Desarrollo Rural', 'S2800012A', 'Paseo de la Infanta Isabel', '1', 'Planta 2', '28014', 'Madrid', 'España', '+34 913 475 000', '660 000 000', 'informacion@mapa.gob.es', 'https://www.mapa.gob.es', 'Administración Pública / Agricultura', 'José Maria'],
+      ['Estatal', 'Ministerio de Sanidad', 'Dirección General de Salud Pública', 'S2800045B', 'Paseo del Prado', '18-20', '', '28014', 'Madrid', 'España', '+34 915 961 000', '661 000 000', 'oiac@sanidad.gob.es', 'https://www.sanidad.gob.es', 'Salud Pública / Gubernamental', 'José Maria'],
+      ['Privado', 'Repsol, S.A.', '', 'A28475045', 'Calle Méndez Álvaro', '44', 'Planta 5', '28045', 'Madrid', 'España', '+34 917 538 000', '631 000 000', 'comercial@repsol.com', 'https://www.repsol.com', 'Energía y Combustibles', 'José Maria'],
+      ['Fundación', 'Fundación Telefónica', 'Gabinete de Relaciones Externas', 'G82124578', 'Gran Vía', '28', '', '28013', 'Madrid', 'España', '+34 915 840 500', '625 000 000', 'info@fundaciontelefonica.com', 'https://fundaciontelefonica.com', 'Investigación y Salud', 'José Maria']
+    ],
+    headersProjetos: [
+      'Código / Referencia', 'Designación del Proyecto', 'Cliente / Entidad', 'Departamento / Pestaña',
+      'Contacto Principal', 'Tipo de Proyecto', 'Estado', 'Valor Previsto (€)', 'Fecha de Inicio',
+      'Fecha de Conclusión', 'Vehículo / Equipamiento', 'Matrícula', 'Descripción / Observaciones'
+    ],
+    sampleProjetos: [
+      ['PRJ-2026-001', 'Unidad Móvil de Cribado Oftalmológico', 'Ministerio de Sanidad', 'Dirección General de Salud Pública', 'Rita Sánchez', 'Compra UM', 'En Curso', '75000.00', '2026-10-01', '2026-12-15', 'Iveco Daily 50C18', '7890-ZZZ', 'Transformación y equipamiento de consulta móvil completa'],
+      ['PRJ-2026-002', 'Roadshow Promocional de Energías Renovables', 'Repsol, S.A.', 'Dirección de Sostenibilidad', 'José Manuel Fernández', 'Alquiler', 'En Estudio', '32000.00', '2026-11-01', '2026-11-30', 'Semirremolque Hospitality Extensible', '', 'Acciones itinerantes por capitales de provincia']
+    ],
+    instructions: [
+      ['SIGEC-Pro - GUÍA DE IMPORTACIÓN MASIVA DE DATOS'],
+      [''],
+      ['CÓMO UTILIZAR ESTE LIBRO EXCEL:'],
+      ['1. Cada pestaña corresponde a una categoría del programa: Contactos, Clientes y Proyectos.'],
+      ['2. En la pestaña Clientes, la columna "Página Web / Sitio Web" permite vincular la web oficial del cliente.'],
+      ['3. Para Clientes Estatales (Ministerios/Organismos), complete la columna "Departamento / Pestaña".'],
+      ['   - Si el departamento no existe aún, SIGEC-Pro creará automáticamente esa pestaña.'],
+      ['   - Si el departamento ya existe, el contacto o proyecto se vinculará sin duplicar pestañas.'],
+      ['4. En Contactos, el campo "Extensión" permite registrar la extensión telefónica directa de la persona.'],
+      ['5. Los nombres compuestos son analizados e identificados de forma automática por la IA.'],
+      ['6. Puede importar este archivo completo o cualquiera de sus pestañas de forma independiente.'],
+      [''],
+      ['Versión del Sistema: SIGEC-Pro V1.7.35 | alegria-activity, S.L.']
+    ]
+  },
+  'English': {
+    filenameClientes: 'Import_Template_Clients.xlsx',
+    filenameContactos: 'Import_Template_Contacts.xlsx',
+    filenameProjetos: 'Import_Template_Projects.xlsx',
+    filenameCompleto: 'Import_Template_SIGEC-Pro_Full.xlsx',
+    sheetClientes: 'Clients',
+    sheetContactos: 'Contacts',
+    sheetProjetos: 'Projects',
+    sheetInstrucoes: 'Instructions',
+    msgSuccess: 'Template downloaded successfully: ',
+    headersContactos: [
+      'Client / Organization', 'Department / Tab', 'First Name', 'Last Name',
+      'Job Title / Role', 'Direct Phone', 'Extension', 'Mobile Phone', 'Email', 'Notes / Remarks'
+    ],
+    sampleContactos: [
+      ['Ministry of Finance', 'General Directorate of the Treasury', 'Maria', 'Carvalho', 'General Director', '+44 20 7222 300', '2410', '+44 7912 345 678', 'maria.carvalho@gov.uk', 'Responsible for budget approval'],
+      ['National Health Service', 'Public Health Directorate', 'Rita', 'Machado', 'Director', '+44 20 7843 500', '1102', '+44 7961 234 567', 'rita.machado@nhs.net', 'Main institutional contact'],
+      ['BP Energy, PLC', 'Sustainability Department', 'Joseph', 'Fernandes', 'Fleet & Logistics Director', '+44 20 7217 242', '305', '+44 7931 987 654', 'joseph.fernandes@bp.com', 'Management of mobile units and green events'],
+      ['Wellcome Trust', 'External Relations Office', 'Ann', 'Martins', 'Events Coordinator', '+44 20 7210 480', '420', '+44 7925 555 123', 'ann.martins@wellcome.org', 'Contact for mobile screening initiatives']
+    ],
+    headersClientes: [
+      'Client Type', 'Name / Company / Ministry', 'Department / Tab', 'VAT / Tax ID',
+      'Address / Street / Avenue', 'Number', 'Floor / Suite', 'Postal Code', 'City / Locality', 'Country',
+      'General Phone', 'Mobile Phone', 'General Email', 'Website / Web Page', 'Industry / Activity', 'Assigned Sales Rep'
+    ],
+    sampleClientes: [
+      ['Estatal', 'Department for Environment, Food & Rural Affairs', 'Rural Development Directorate', 'GB123456789', 'Nobel House, 17 Smith Square', '17', 'Floor 2', 'SW1P 3JR', 'London', 'United Kingdom', '+44 20 7238 6000', '+44 7960 000 000', 'helpline@defra.gov.uk', 'https://www.gov.uk/defra', 'Public Administration / Agriculture', 'José Centúrio'],
+      ['Estatal', 'Department of Health & Social Care', 'Public Health Agency', 'GB987654321', '39 Victoria Street', '39', '', 'SW1H 0EU', 'London', 'United Kingdom', '+44 20 7210 4850', '+44 7961 000 000', 'dhsc.enquiries@dhsc.gov.uk', 'https://www.gov.uk/dhsc', 'Public Health / Government', 'José Centúrio'],
+      ['Privado', 'BP Energy, PLC', '', 'GB243516010', '1 St James\'s Square', '1', 'Floor 4', 'SW1Y 4PD', 'London', 'United Kingdom', '+44 20 7496 4000', '+44 7931 000 000', 'commercial@bp.com', 'https://www.bp.com', 'Energy & Fuels', 'José Centúrio'],
+      ['Fundação', 'Wellcome Trust', 'External Relations Office', 'GB210183914', '215 Euston Road', '215', '', 'NW1 2BE', 'London', 'United Kingdom', '+44 20 7611 8888', '+44 7925 000 000', 'info@wellcome.org', 'https://wellcome.org', 'Research & Healthcare', 'José Centúrio']
+    ],
+    headersProjetos: [
+      'Code / Reference', 'Project Name', 'Client / Organization', 'Department / Tab',
+      'Main Contact', 'Project Type', 'Status', 'Estimated Value (€)', 'Start Date',
+      'End Date', 'Vehicle / Equipment', 'License Plate', 'Description / Remarks'
+    ],
+    sampleProjetos: [
+      ['PRJ-2026-001', 'Mobile Ophthalmology Screening Unit', 'Department of Health & Social Care', 'Public Health Agency', 'Rita Machado', 'Purchase MU', 'In Progress', '75000.00', '2026-10-01', '2026-12-15', 'Iveco Daily 50C18', 'GB-26-XYZ', 'Conversion and outfitting of full mobile clinic'],
+      ['PRJ-2026-002', 'Renewable Energy Roadshow', 'BP Energy, PLC', 'Sustainability Department', 'Joseph Fernandes', 'Rental', 'Under Study', '32000.00', '2026-11-01', '2026-11-30', 'Expanding Hospitality Semi-Trailer', '', 'Itinerant campaigns across regional cities']
+    ],
+    instructions: [
+      ['SIGEC-Pro - BULK DATA IMPORT GUIDE'],
+      [''],
+      ['HOW TO USE THIS EXCEL WORKBOOK:'],
+      ['1. Each tab corresponds to a system category: Contacts, Clients, and Projects.'],
+      ['2. On the Clients tab, the "Website / Web Page" column stores the official web address.'],
+      ['3. For State / Public Clients (Ministries/Agencies), complete the "Department / Tab" column.'],
+      ['   - If the department does not yet exist, SIGEC-Pro automatically creates it.'],
+      ['   - If it already exists, the record links seamlessly without duplicate tabs.'],
+      ['4. On Contacts, the "Extension" column records direct telephone extension numbers.'],
+      ['5. AI automatically parses full names and composite names into proper first and last names.'],
+      ['6. You can import this full workbook or each tab independently into SIGEC-Pro.'],
+      [''],
+      ['System Version: SIGEC-Pro V1.7.35 | alegria-activity, S.L.']
+    ]
+  },
+  'Français': {
+    filenameClientes: 'Modele_Importation_Clients.xlsx',
+    filenameContactos: 'Modele_Importation_Contacts.xlsx',
+    filenameProjetos: 'Modele_Importation_Projets.xlsx',
+    filenameCompleto: 'Modele_Importation_SIGEC-Pro_Complet.xlsx',
+    sheetClientes: 'Clients',
+    sheetContactos: 'Contacts',
+    sheetProjetos: 'Projets',
+    sheetInstrucoes: 'Instructions',
+    msgSuccess: 'Modèle téléchargé avec succès : ',
+    headersContactos: [
+      'Client / Entité', 'Département / Onglet', 'Prénom', 'Nom de Famille',
+      'Poste / Fonction', 'Téléphone Direct', 'Extension', 'Téléphone Portable', 'Email', 'Notes / Remarques'
+    ],
+    sampleContactos: [
+      ['Ministère de l\'Économie et des Finances', 'Direction Générale du Trésor', 'Marie', 'Carvalho', 'Directrice Générale', '+33 1 40 04 04 04', '2410', '+33 6 12 34 56 78', 'marie.carvalho@finances.gouv.fr', 'Responsable de l\'approbation budgétaire'],
+      ['Ministère de la Santé', 'Direction Générale de la Santé', 'Rita', 'Machado', 'Directrice', '+33 1 40 56 60 00', '1102', '+33 6 61 23 45 67', 'rita.machado@sante.gouv.fr', 'Contact institutionnel principal'],
+      ['TotalEnergies SE', 'Direction du Développement Durable', 'Joseph', 'Fernandes', 'Directeur Flotte et Logistique', '+33 1 47 44 45 46', '305', '+33 6 31 98 76 54', 'joseph.fernandes@totalenergies.com', 'Gestion des unités mobiles et événements'],
+      ['Fondation de France', 'Bureau des Relations Extérieures', 'Anne', 'Martins', 'Coordinatrice d\'Événements', '+33 1 44 21 31 00', '420', '+33 6 25 55 51 23', 'anne.martins@fdf.org', 'Contact pour les opérations de dépistage mobile']
+    ],
+    headersClientes: [
+      'Type de Client', 'Nom / Raison Sociale / Ministère', 'Département / Onglet', 'Numéro Fiscal / TVA',
+      'Adresse / Rue / Avenue', 'Numéro', 'Étage', 'Code Postal', 'Localité / Ville', 'Pays',
+      'Téléphone Général', 'Téléphone Portable', 'Email Général', 'Site Web / Page Web', 'Secteur d\'Activité', 'Commercial Assigné'
+    ],
+    sampleClientes: [
+      ['Estatal', 'Ministère de l\'Agriculture et de la Souveraineté Alimentaire', 'Direction Générale de la Performance Économique', 'FR12345678901', '78 Rue de Varenne', '78', '2e Étage', '75007', 'Paris', 'France', '+33 1 49 55 49 55', '+33 6 60 00 00 00', 'contact@agriculture.gouv.fr', 'https://agriculture.gouv.fr', 'Administration Publique / Agriculture', 'José Centúrio'],
+      ['Estatal', 'Ministère de la Santé et de la Prévention', 'Direction Générale de la Santé', 'FR98765432109', '14 Avenue Duquesne', '14', '', '75007', 'Paris', 'France', '+33 1 40 56 60 00', '+33 6 61 00 00 00', 'dgs-contact@sante.gouv.fr', 'https://sante.gouv.fr', 'Santé Publique / Gouvernemental', 'José Centúrio'],
+      ['Privado', 'TotalEnergies SE', '', 'FR54542051580', '2 Place Jean Millier', '2', 'Tour Coupole', '92400', 'Courbevoie', 'France', '+33 1 47 44 45 46', '+33 6 31 00 00 00', 'commercial@totalenergies.com', 'https://totalenergies.com', 'Énergie & Carburants', 'José Centúrio'],
+      ['Fundação', 'Fondation de France', 'Bureau des Relations Extérieures', 'FR78784314125', '40 Avenue Hoche', '40', '', '75008', 'Paris', 'France', '+33 1 44 21 31 00', '+33 6 25 00 00 00', 'contact@fdf.org', 'https://www.fondationdefrance.org', 'Recherche & Santé', 'José Centúrio']
+    ],
+    headersProjetos: [
+      'Code / Référence', 'Désignation du Projet', 'Client / Entité', 'Département / Onglet',
+      'Contact Principal', 'Type de Projet', 'Statut', 'Valeur Estimée (€)', 'Date de Début',
+      'Date de Fin', 'Véhicule / Équipement', 'Plaque d\'Immatriculation', 'Description / Remarques'
+    ],
+    sampleProjetos: [
+      ['PRJ-2026-001', 'Unité Mobile de Dépistage Ophtalmologique', 'Ministère de la Santé et de la Prévention', 'Direction Générale de la Santé', 'Rita Machado', 'Achat UM', 'En Cours', '75000.00', '2026-10-01', '2026-12-15', 'Iveco Daily 50C18', 'FR-789-ZZ', 'Transformation et aménagement de cabinet mobile complet'],
+      ['PRJ-2026-002', 'Roadshow Promotionnel Énergies Renouvelables', 'TotalEnergies SE', 'Direction du Développement Durable', 'Joseph Fernandes', 'Location', 'À l\'Étude', '32000.00', '2026-11-01', '2026-11-30', 'Semi-remorque Hospitality Extensible', '', 'Actions itinérantes dans les grandes villes']
+    ],
+    instructions: [
+      ['SIGEC-Pro - GUIDE D\'IMPORTATION MASSIVE DE DONNÉES'],
+      [''],
+      ['COMMENT UTILISER CE FICHIER EXCEL :'],
+      ['1. Chaque onglet correspond à une catégorie : Contacts, Clients et Projets.'],
+      ['2. Dans l\'onglet Clients, la colonne "Site Web / Page Web" permet d\'associer le portail officiel.'],
+      ['3. Pour les Clients Étatiques (Ministères/Organismes), renseignez "Département / Onglet".'],
+      ['   - Si le département n\'existe pas, SIGEC-Pro crée automatiquement l\'onglet.'],
+      ['   - S\'il existe déjà, le contact ou projet y est rattaché sans doublon.'],
+      ['4. Dans Contacts, la colonne "Extension" permet d\'enregistrer le poste interne direct.'],
+      ['5. L\'intelligence artificielle sépare automatiquement les prénoms et noms composés.'],
+      ['6. Vous pouvez importer le fichier complet ou chaque onglet individuellement.'],
+      [''],
+      ['Version du Système : SIGEC-Pro V1.7.35 | alegria-activity, S.L.']
+    ]
+  },
+  'Polski': {
+    filenameClientes: 'Szablon_Importu_Klienci.xlsx',
+    filenameContactos: 'Szablon_Importu_Kontakty.xlsx',
+    filenameProjetos: 'Szablon_Importu_Projekty.xlsx',
+    filenameCompleto: 'Szablon_Importu_SIGEC-Pro_Pelny.xlsx',
+    sheetClientes: 'Klienci',
+    sheetContactos: 'Kontakty',
+    sheetProjetos: 'Projekty',
+    sheetInstrucoes: 'Instrukcje',
+    msgSuccess: 'Szablon pobrany pomyślnie: ',
+    headersContactos: [
+      'Klient / Podmiot', 'Dział / Zakładka', 'Imię', 'Nazwisko',
+      'Stanowisko / Rola', 'Telefon Bezpośredni', 'Wewnętrzny', 'Telefon Komórkowy', 'Email', 'Uwagi / Notatki'
+    ],
+    sampleContactos: [
+      ['Ministerstwo Finansów', 'Departament Skarbu Państwa', 'Maria', 'Kowalska', 'Dyrektor Generalny', '+48 22 694 55 55', '2410', '+48 612 345 678', 'maria.kowalska@mf.gov.pl', 'Osoba odpowiedzialna za zatwierdzanie budżetu'],
+      ['Ministerstwo Zdrowia', 'Główny Inspektorat Sanitarny', 'Rita', 'Nowak', 'Dyrektor', '+48 22 635 60 51', '1102', '+48 661 234 567', 'rita.nowak@mz.gov.pl', 'Główny kontakt instytucjonalny'],
+      ['Orlen S.A.', 'Dział Zrównoważonego Rozwoju', 'Józef', 'Wiśniewski', 'Dyrektor Floty i Logistyki', '+48 24 256 00 00', '305', '+48 631 987 654', 'jozef.wisniewski@orlen.pl', 'Zarządzanie jednostkami mobilnymi i eventami'],
+      ['Fundacja TVN', 'Biuro Relacji Zewnętrznych', 'Anna', 'Wójcik', 'Koordynator Wydarzeń', '+48 22 840 40 40', '420', '+48 625 555 123', 'anna.wojcik@fundacjatvn.pl', 'Kontakt w sprawach mobilnych badań profilaktycznych']
+    ],
+    headersClientes: [
+      'Typ Klienta', 'Nazwa / Firma / Ministerstwo', 'Dział / Zakładka', 'NIP / REGON',
+      'Adres / Ulica / Aleja', 'Numer', 'Piętro', 'Kod Pocztowy', 'Miejscowość', 'Kraj',
+      'Telefon Główny', 'Telefon Komórkowy', 'Główny Email', 'Strona Internetowa / Witryna', 'Sektor Działalności', 'Przypisany Handlowiec'
+    ],
+    sampleClientes: [
+      ['Estatal', 'Ministerstwo Rolnictwa i Rozwoju Wsi', 'Departament Rozwoju Obszarów Wiejskich', '5260250274', 'ul. Wspólna', '30', 'Piętro 2', '00-930', 'Warszawa', 'Polska', '+48 22 623 10 00', '+48 660 000 000', 'kancelaria@minrol.gov.pl', 'https://www.gov.pl/rolnictwo', 'Administracja Publiczna / Rolnictwo', 'José Centúrio'],
+      ['Estatal', 'Ministerstwo Zdrowia', 'Główny Inspektorat Sanitarny', '5251577299', 'ul. Miodowa', '15', '', '00-952', 'Warszawa', 'Polska', '+48 22 634 96 00', '+48 661 000 000', 'kancelaria@mz.gov.pl', 'https://www.gov.pl/zdrowie', 'Zdrowie Publiczne / Rządowe', 'José Centúrio'],
+      ['Privado', 'Orlen S.A.', '', '7740001454', 'ul. Chemików', '7', 'Budynek A', '09-411', 'Płock', 'Polska', '+48 24 256 00 00', '+48 631 000 000', 'kontakt@orlen.pl', 'https://www.orlen.pl', 'Energetyka i Paliwa', 'José Centúrio'],
+      ['Fundação', 'Fundacja TVN', 'Biuro Relacji Zewnętrznych', '5213158021', 'ul. Wiertnicza', '166', '', '02-952', 'Warszawa', 'Polska', '+48 22 840 40 40', '+48 625 000 000', 'kontakt@fundacjatvn.pl', 'https://fundacja.tvn.pl', 'Badania i Ochrona Zdrowia', 'José Centúrio']
+    ],
+    headersProjetos: [
+      'Kod / Referencja', 'Nazwa Projektu', 'Klient / Podmiot', 'Dział / Zakładka',
+      'Główny Kontakt', 'Typ Projektu', 'Status', 'Wartość Szacunkowa (€)', 'Data Rozpoczęcia',
+      'Data Zakończenia', 'Pojazd / Sprzęt', 'Numer Rejestracyjny', 'Opis / Uwagi'
+    ],
+    sampleProjetos: [
+      ['PRJ-2026-001', 'Mobilna Jednostka Badań Okulistycznych', 'Ministerstwo Zdrowia', 'Główny Inspektorat Sanitarny', 'Rita Nowak', 'Zakup UM', 'W Trakcie', '75000.00', '2026-10-01', '2026-12-15', 'Iveco Daily 50C18', 'PL-12345', 'Zabudowa i wyposażenie mobilnego gabinetu lekarskiego'],
+      ['PRJ-2026-002', 'Roadshow Promocyjny Energii Odnawialnej', 'Orlen S.A.', 'Dział Zrównoważonego Rozwoju', 'Józef Wiśniewski', 'Wynajem', 'W Przygotowaniu', '32000.00', '2026-11-01', '2026-11-30', 'Rozkładana Naczepa Hospitality', '', 'Kampania objazdowa po miastach wojewódzkich']
+    ],
+    instructions: [
+      ['SIGEC-Pro - PRZEWODNIK MASOWEGO IMPORTU DANYCH'],
+      [''],
+      ['JAK KORZYSTAĆ Z TEGO ARKUSZA EXCEL:'],
+      ['1. Każda zakładka odpowiada jednej kategorii systemu: Kontakty, Klienci i Projekty.'],
+      ['2. W zakładce Klienci kolumna "Strona Internetowa / Witryna" pozwala przypisać adres www.'],
+      ['3. Dla Klientów Państwowych (Ministerstwa/Instytucje), uzupełnij kolumnę "Dział / Zakładka".'],
+      ['   - Jeśli dział jeszcze nie istnieje, SIGEC-Pro utworzy go automatycznie.'],
+      ['   - Jeśli dział już istnieje, rekord zostanie przypisany bez duplikowania zakładek.'],
+      ['4. W Kontaktach pole "Wewnętrzny" pozwala zapisać numer wewnętrzny telefonu.'],
+      ['5. Sztuczna inteligencja automatycznie dzieli imiona i nazwiska złożone.'],
+      ['6. Możesz zaimportować cały plik lub każdą zakładkę oddzielnie.'],
+      [''],
+      ['Wersja Systemu: SIGEC-Pro V1.7.35 | alegria-activity, S.L.']
+    ]
+  }
+};
+
 function downloadExcelTemplate(category) {
   if (typeof XLSX === 'undefined') {
     showToast('Biblioteca XLSX não se encontra disponível.', 'danger');
     return;
   }
 
+  const rawLang = (typeof getActiveUserLanguage === 'function') ? getActiveUserLanguage() : 'Português';
+  const lang = (typeof normalizeLanguageName === 'function') ? normalizeLanguageName(rawLang) : 'Português';
+  const spec = SIGEC_EXCEL_TEMPLATE_SPECS[lang] || SIGEC_EXCEL_TEMPLATE_SPECS['Português'];
+
   function setColWidths(ws, widths) {
     ws['!cols'] = widths.map(w => ({ wch: w }));
   }
 
   function buildContactosSheet() {
-    const headers = [
-      'Cliente / Entidade',
-      'Departamento / Separador',
-      'Nome Próprio',
-      'Apelido',
-      'Cargo / Função',
-      'Telefone Direto',
-      'Extensão',
-      'Telemóvel',
-      'Email',
-      'Notas / Observações'
-    ];
-    const sampleRows = [
-      [
-        'Ministério das Finanças',
-        'Direção-Geral do Tesouro',
-        'Maria da Graça',
-        'Carvalho',
-        'Diretora-Geral',
-        '213 222 300',
-        '2410',
-        '912 345 678',
-        'maria.carvalho@gov.pt',
-        'Responsável pela aprovação orçamental'
-      ],
-      [
-        'Ministério da Saúde',
-        'Direção-Geral da Saúde',
-        'Rita',
-        'Sá Machado',
-        'Diretora-Geral',
-        '218 430 500',
-        '1102',
-        '961 234 567',
-        'rita.samachado@dgs.min-saude.pt',
-        'Contacto institucional principal'
-      ],
-      [
-        'Galp Energia, SGPS, S.A.',
-        'Direção de Sustentabilidade',
-        'José Manuel',
-        'Fernandes',
-        'Diretor de Frota e Logística',
-        '217 242 500',
-        '305',
-        '931 987 654',
-        'jose.fernandes@galp.com',
-        'Gestão de unidades móveis e eventos solares'
-      ],
-      [
-        'Fundação Champalimaud',
-        'Gabinete de Relações Externas',
-        'Ana Paula',
-        'Martins',
-        'Coordenadora de Eventos',
-        '210 480 200',
-        '420',
-        '925 555 123',
-        'ana.martins@fchampalimaud.org',
-        'Contacto para iniciativas de rastreio móvel'
-      ]
-    ];
-    const ws = XLSX.utils.aoa_to_sheet([headers, ...sampleRows]);
-    setColWidths(ws, [28, 30, 18, 22, 25, 18, 12, 16, 32, 40]);
+    const ws = XLSX.utils.aoa_to_sheet([spec.headersContactos, ...spec.sampleContactos]);
+    setColWidths(ws, [30, 32, 18, 22, 26, 18, 12, 16, 32, 42]);
     return ws;
   }
 
   function buildClientesSheet() {
-    const headers = [
-      'Tipo de Cliente',
-      'Nome / Razão Social / Ministério',
-      'Departamento / Separador',
-      'NIF / Contribuinte',
-      'Morada / Rua / Avenida',
-      'Número',
-      'Andar / Piso',
-      'Código Postal',
-      'Localidade',
-      'País',
-      'Telefone Geral',
-      'Telemóvel',
-      'Email Geral',
-      'Setor de Atividade',
-      'Comercial Atribuído'
-    ];
-    const sampleRows = [
-      [
-        'Estatal',
-        'Ministério da Agricultura e Mar',
-        'Direção-Geral de Agricultura e Desenvolvimento Rural',
-        '500000123',
-        'Avenida Afonso Costa',
-        '3',
-        '2.º Piso',
-        '1949-002',
-        'Lisboa',
-        'Portugal',
-        '+351 218 443 000',
-        '960 000 000',
-        'geral@dgadr.gov.pt',
-        'Administração Pública / Agricultura',
-        'Administrador SIGEC'
-      ],
-      [
-        'Estatal',
-        'Ministério da Saúde',
-        'Direção-Geral da Saúde',
-        '500000456',
-        'Alameda Dom Afonso Henriques',
-        '45',
-        '',
-        '1049-005',
-        'Lisboa',
-        'Portugal',
-        '+351 218 430 500',
-        '961 000 000',
-        'geral@dgs.min-saude.pt',
-        'Saúde Pública / Governamental',
-        'Administrador SIGEC'
-      ],
-      [
-        'Privado',
-        'Galp Energia, SGPS, S.A.',
-        '',
-        '504499777',
-        'Rua Tomás da Fonseca, Torre A',
-        'Torre A',
-        'Piso 7',
-        '1600-209',
-        'Lisboa',
-        'Portugal',
-        '+351 217 242 500',
-        '931 000 000',
-        'comercial@galp.com',
-        'Energia & Combustíveis',
-        'Administrador SIGEC'
-      ],
-      [
-        'Fundação',
-        'Fundação Champalimaud',
-        'Gabinete de Relações Externas',
-        '507000111',
-        'Avenida Brasília',
-        '',
-        '',
-        '1400-038',
-        'Lisboa',
-        'Portugal',
-        '+351 210 480 200',
-        '925 000 000',
-        'info@fchampalimaud.org',
-        'Investigação & Saúde',
-        'Administrador SIGEC'
-      ]
-    ];
-    const ws = XLSX.utils.aoa_to_sheet([headers, ...sampleRows]);
-    setColWidths(ws, [16, 32, 34, 18, 30, 10, 12, 14, 16, 14, 18, 16, 28, 26, 22]);
+    const ws = XLSX.utils.aoa_to_sheet([spec.headersClientes, ...spec.sampleClientes]);
+    setColWidths(ws, [16, 36, 36, 18, 34, 10, 12, 14, 18, 14, 18, 16, 28, 28, 26, 22]);
     return ws;
   }
 
   function buildProjetosSheet() {
-    const headers = [
-      'Código / Referência',
-      'Designação do Projeto',
-      'Cliente / Entidade',
-      'Departamento / Separador',
-      'Contacto Principal',
-      'Tipo de Projeto',
-      'Estado',
-      'Valor Previsto (€)',
-      'Data de Início',
-      'Data de Conclusão',
-      'Viatura / Equipamento',
-      'Matrícula',
-      'Descrição / Observações'
-    ];
-    const sampleRows = [
-      [
-        'PRJ-2026-001',
-        'Unidade Móvel de Rastreio Oftalmológico',
-        'Ministério da Saúde',
-        'Direção-Geral da Saúde',
-        'Rita Sá Machado',
-        'Compra UM',
-        'Em Curso',
-        '75000.00',
-        '2026-10-01',
-        '2026-12-15',
-        'Iveco Daily 50C18',
-        '78-ZZ-99',
-        'Transformação e equipamento de consultório móvel completo'
-      ],
-      [
-        'PRJ-2026-002',
-        'Roadshow Promocional de Energias Renováveis',
-        'Galp Energia, SGPS, S.A.',
-        'Direção de Sustentabilidade',
-        'José Manuel Fernandes',
-        'Aluguer',
-        'Em Estudo',
-        '32000.00',
-        '2026-11-01',
-        '2026-11-30',
-        'Semirreboque Hospitality Expansível',
-        '',
-        'Ações itinerantes pelas capitais de distrito'
-      ]
-    ];
-    const ws = XLSX.utils.aoa_to_sheet([headers, ...sampleRows]);
-    setColWidths(ws, [20, 36, 28, 28, 22, 16, 18, 18, 15, 16, 26, 14, 45]);
+    const ws = XLSX.utils.aoa_to_sheet([spec.headersProjetos, ...spec.sampleProjetos]);
+    setColWidths(ws, [20, 38, 30, 30, 22, 16, 18, 18, 15, 16, 28, 16, 48]);
     return ws;
   }
 
@@ -13893,43 +13988,29 @@ function downloadExcelTemplate(category) {
 
     if (category === 'contactos') {
       const ws = buildContactosSheet();
-      XLSX.utils.book_append_sheet(wb, ws, 'Contactos');
-      filename = 'Modelo_Importacao_Contactos.xlsx';
+      XLSX.utils.book_append_sheet(wb, ws, spec.sheetContactos);
+      filename = spec.filenameContactos;
     } else if (category === 'clientes') {
       const ws = buildClientesSheet();
-      XLSX.utils.book_append_sheet(wb, ws, 'Clientes');
-      filename = 'Modelo_Importacao_Clientes.xlsx';
+      XLSX.utils.book_append_sheet(wb, ws, spec.sheetClientes);
+      filename = spec.filenameClientes;
     } else if (category === 'projetos') {
       const ws = buildProjetosSheet();
-      XLSX.utils.book_append_sheet(wb, ws, 'Projetos');
-      filename = 'Modelo_Importacao_Projetos.xlsx';
+      XLSX.utils.book_append_sheet(wb, ws, spec.sheetProjetos);
+      filename = spec.filenameProjetos;
     } else {
       // Completo
-      const instructions = [
-        ['SIGEC-Pro - GUIA DE IMPORTAÇÃO DE DADOS EM MASSA'],
-        [''],
-        ['COMO UTILIZAR ESTE LIVRO EXCEL:'],
-        ['1. Cada aba corresponde a uma categoria do programa: Contactos, Clientes e Projetos.'],
-        ['2. Para Clientes Estatais (Ministérios/Organismos), preencha a coluna "Departamento / Separador".'],
-        ['   - Se o departamento ainda não existir, o SIGEC-Pro cria automaticamente esse separador no cliente com o nome correspondente.'],
-        ['   - Se o departamento já existir, o contacto ou projeto é associado sem criar separadores duplicados.'],
-        ['3. Nos Contactos, o novo campo "Extensão" permite registar o ramal telefónico direto da pessoa.'],
-        ['4. Os nomes próprios compostos portugueses (ex: Maria da Graça, José Manuel) são automaticamente identificados pela IA.'],
-        ['5. Pode carregar este ficheiro completo ou qualquer uma das abas de forma independente no SIGEC-Pro.'],
-        [''],
-        ['Versão do Sistema: SIGEC-Pro V1.7.35 | alegria-activity, S.L.']
-      ];
-      const wsInst = XLSX.utils.aoa_to_sheet(instructions);
-      setColWidths(wsInst, [85]);
-      XLSX.utils.book_append_sheet(wb, wsInst, 'Instruções');
-      XLSX.utils.book_append_sheet(wb, buildContactosSheet(), 'Contactos');
-      XLSX.utils.book_append_sheet(wb, buildClientesSheet(), 'Clientes');
-      XLSX.utils.book_append_sheet(wb, buildProjetosSheet(), 'Projetos');
-      filename = 'Modelo_Importacao_SIGEC-Pro_Completo.xlsx';
+      const wsInst = XLSX.utils.aoa_to_sheet(spec.instructions);
+      wsInst['!cols'] = [{ wch: 88 }];
+      XLSX.utils.book_append_sheet(wb, wsInst, spec.sheetInstrucoes);
+      XLSX.utils.book_append_sheet(wb, buildContactosSheet(), spec.sheetContactos);
+      XLSX.utils.book_append_sheet(wb, buildClientesSheet(), spec.sheetClientes);
+      XLSX.utils.book_append_sheet(wb, buildProjetosSheet(), spec.sheetProjetos);
+      filename = spec.filenameCompleto;
     }
 
     XLSX.writeFile(wb, filename);
-    showToast('Modelo descarregado com sucesso: ' + filename);
+    showToast(spec.msgSuccess + filename);
   } catch (err) {
     console.error(err);
     showToast('Erro ao gerar modelo Excel: ' + (err.message || err), 'danger');
@@ -13968,7 +14049,7 @@ function handleCategoryImportFromSettings(event) {
           let totalImported = 0;
           
           // 1. Clientes primeiro
-          const cliSheetName = workbook.SheetNames.find(n => /cliente/i.test(n));
+          const cliSheetName = workbook.SheetNames.find(n => /(cliente|client|klienc)/i.test(n));
           if (cliSheetName) {
             const rawJsonCli = XLSX.utils.sheet_to_json(workbook.Sheets[cliSheetName]);
             if (rawJsonCli && rawJsonCli.length > 0) {
@@ -13978,7 +14059,7 @@ function handleCategoryImportFromSettings(event) {
           }
 
           // 2. Contactos a seguir
-          const contSheetName = workbook.SheetNames.find(n => /contacto/i.test(n));
+          const contSheetName = workbook.SheetNames.find(n => /(contacto|contact|kontakt)/i.test(n));
           if (contSheetName) {
             const rawJsonCont = XLSX.utils.sheet_to_json(workbook.Sheets[contSheetName]);
             if (rawJsonCont && rawJsonCont.length > 0) {
@@ -13988,7 +14069,7 @@ function handleCategoryImportFromSettings(event) {
           }
 
           // 3. Projetos por fim
-          const projSheetName = workbook.SheetNames.find(n => /projeto/i.test(n));
+          const projSheetName = workbook.SheetNames.find(n => /(projeto|proyecto|project|projet|projekt)/i.test(n));
           if (projSheetName) {
             const rawJsonProj = XLSX.utils.sheet_to_json(workbook.Sheets[projSheetName]);
             if (rawJsonProj && rawJsonProj.length > 0) {
@@ -14011,9 +14092,9 @@ function handleCategoryImportFromSettings(event) {
         } else {
           // Categoria específica
           let targetSheetName = workbook.SheetNames.find(n => {
-            if (targetCategory === 'contactos') return /contacto/i.test(n);
-            if (targetCategory === 'clientes') return /cliente/i.test(n);
-            if (targetCategory === 'projetos') return /projeto/i.test(n);
+            if (targetCategory === 'contactos') return /(contacto|contact|kontakt)/i.test(n);
+            if (targetCategory === 'clientes') return /(cliente|client|klienc)/i.test(n);
+            if (targetCategory === 'projetos') return /(projeto|proyecto|project|projet|projekt)/i.test(n);
             return false;
           });
           if (!targetSheetName) targetSheetName = workbook.SheetNames[0];
@@ -14435,25 +14516,52 @@ function processCategoryImport(category, items) {
   if (category === 'clientes') {
     items.forEach(item => {
       const id = item.id || generateId('cli');
-      const nomeCliente = String(item['Nome / Razão Social / Ministério'] || item['Nome / Razão Social'] || item['Ministério'] || item.nome || item.Nome || item.cliente || item.Cliente || item.empresa || item.Empresa || 'Cliente Importado').trim();
-      const departamento = String(item['Departamento / Separador'] || item.departamento || item.Departamento || item.separador || item.Separador || '').trim();
+      const nomeCliente = String(
+        item['Nome / Razão Social / Ministério'] || item['Nombre / Razón Social / Ministerio'] ||
+        item['Name / Company / Ministry'] || item['Nom / Raison Sociale / Ministère'] ||
+        item['Nazwa / Firma / Ministerstwo'] || item['Nome / Razão Social'] || item['Nombre / Razón Social'] ||
+        item['Ministério'] || item['Ministerio'] || item.nome || item.Nome || item.cliente || item.Cliente ||
+        item.empresa || item.Empresa || 'Cliente Importado'
+      ).trim();
+
+      const departamento = String(
+        item['Departamento / Separador'] || item['Departamento / Pestaña'] ||
+        item['Department / Tab'] || item['Département / Onglet'] ||
+        item['Dział / Zakładka'] || item.departamento || item.Departamento || item.separador || item.Separador || ''
+      ).trim();
+
       const idx = db.clientes.findIndex(c => c.id === id || (c.nome && nomeCliente && String(c.nome).trim().toLowerCase() === nomeCliente.toLowerCase()));
       
-      let rawTipo = item['Tipo de Cliente'] || item.tipoCliente || item.tipo || item.Tipo || (departamento ? 'Estatal' : 'Privado');
+      let rawTipo = item['Tipo de Cliente'] || item['Client Type'] || item['Type de Client'] || item['Typ Klienta'] || item.tipoCliente || item.tipo || item.Tipo || (departamento ? 'Estatal' : 'Privado');
       const tipoClienteImport = (typeof normalizeClientType === 'function')
         ? normalizeClientType(rawTipo)
         : rawTipo;
 
       // Extração e tratamento de morada / direção
-      let rawDirecao = String(item['Morada / Rua / Avenida'] || item.direcao1 || item.direcao || item.Direção || item.Direcao || item.morada || item.Morada || item.endereco || item.Endereço || item.Address || '').trim();
-      let numero = String(item['Número'] || item.numero || item.Numero || item['Nº'] || item.No || '').trim();
-      let andar = String(item['Andar / Piso'] || item.andar || item.Andar || item.Piso || item.piso || item.Fracao || '').trim();
-      let codigoPostal = String(item['Código Postal'] || item.codigoPostal || item.CodigoPostal || item.cp || item.CP || '').trim();
-      let localidade = String(item['Localidade'] || item.localidade || item.Localidade || item.cidade || item.Cidade || '').trim();
-      let pais = String(item['País'] || item.pais || item.Pais || '').trim();
+      let rawDirecao = String(
+        item['Morada / Rua / Avenida'] || item['Dirección / Calle / Avenida'] ||
+        item['Address / Street / Avenue'] || item['Adresse / Rue / Avenue'] ||
+        item['Adres / Ulica / Aleja'] || item.direcao1 || item.direcao ||
+        item.Direção || item.Direcao || item.morada || item.Morada ||
+        item.endereco || item.Endereço || item.Address || item.address || ''
+      ).trim();
+
+      let numero = String(item['Número'] || item['Numero'] || item['Number'] || item['Numéro'] || item['Numer'] || item.numero || item.Numero || item['Nº'] || item.No || '').trim();
+      let andar = String(item['Andar / Piso'] || item['Piso / Planta'] || item['Floor / Suite'] || item['Étage'] || item['Piętro'] || item.andar || item.Andar || item.Piso || item.piso || item.Fracao || '').trim();
+      let codigoPostal = String(item['Código Postal'] || item['Codigo Postal'] || item['Postal Code'] || item['Code Postal'] || item['Kod Pocztowy'] || item.codigoPostal || item.CodigoPostal || item.cp || item.CP || '').trim();
+      let localidade = String(item['Localidade'] || item['Localidad / Población'] || item['City / Locality'] || item['Localité / Ville'] || item['Miejscowość'] || item.localidade || item.Localidade || item.cidade || item.Cidade || item.City || item.Poblacion || '').trim();
+      let pais = String(item['País'] || item['Pais'] || item['Country'] || item['Pays'] || item['Kraj'] || '').trim();
       let direcao1 = rawDirecao;
       let direcao2 = String(item.direcao2 || item.Direcao2 || '').trim();
-      let website = String(item['Página Web / Website'] || item['Página Web'] || item['Website'] || item.website || item.Website || item.url || item.Url || '').trim();
+
+      let website = String(
+        item['Página Web / Website'] || item['Página Web / Sitio Web'] ||
+        item['Website / Web Page'] || item['Site Web / Page Web'] ||
+        item['Strona Internetowa / Witryna'] || item['Página Web'] ||
+        item['Pagina Web'] || item['Sitio Web'] || item['Site Web'] ||
+        item['Website'] || item['Web'] || item['web'] ||
+        item.website || item.Website || item.url || item.Url || ''
+      ).trim();
 
       if (rawDirecao && (!codigoPostal || !localidade || !numero)) {
         if (typeof smartParseAddress === 'function') {
@@ -14471,11 +14579,31 @@ function processCategoryImport(category, items) {
       }
       if (!pais) pais = 'Portugal';
 
-      const contribuinte = String(item['NIF / Contribuinte'] || item.contribuinte || item.Contribuinte || item.nif || item.NIF || '').trim();
-      const telefone = String(item['Telefone Geral'] || item.telefone || item.Telefone || '').trim();
-      const telemovel = String(item['Telemóvel'] || item.telemovel || item.Telemóvel || item.Telemovel || '').trim();
-      const email = String(item['Email Geral'] || item.email || item.Email || '').trim();
-      const setorAtividade = String(item['Setor de Atividade'] || item.setorAtividade || item.setor || item.Setor || '').trim();
+      const contribuinte = String(
+        item['NIF / Contribuinte'] || item['NIF / CIF'] || item['VAT / Tax ID'] ||
+        item['Numéro Fiscal / TVA'] || item['NIP / REGON'] || item.contribuinte || item.Contribuinte ||
+        item.nif || item.NIF || item.cif || item.CIF || ''
+      ).trim();
+
+      const telefone = String(item['Telefone Geral'] || item['Teléfono General'] || item['General Phone'] || item['Téléphone Général'] || item['Telefon Główny'] || item.telefone || item.Telefone || '').trim();
+      const telemovel = String(item['Telemóvel'] || item['Móvil'] || item['Mobile Phone'] || item['Téléphone Portable'] || item['Telefon Komórkowy'] || item.telemovel || item.Telemóvel || item.Telemovel || item.mobile || '').trim();
+      const email = String(item['Email Geral'] || item['Correo Electrónico / Email'] || item['General Email'] || item['Główny Email'] || item.email || item.Email || '').trim();
+      const setorAtividade = String(item['Setor de Atividade'] || item['Sector de Actividad'] || item['Industry / Activity'] || item['Secteur d\'Activité'] || item['Sektor Działalności'] || item.setorAtividade || item.setor || item.Setor || '').trim();
+
+      const comercialCol = String(
+        item['Comercial Atribuído'] || item['Comercial Asignado'] ||
+        item['Assigned Sales Rep'] || item['Commercial Assigné'] ||
+        item['Przypisany Handlowiec'] || item.comercial || item.Comercial || ''
+      ).trim();
+
+      let assignedUser = null;
+      if (comercialCol) {
+        assignedUser = (db.usuarios || []).find(u => 
+          (u.nome && u.nome.toLowerCase() === comercialCol.toLowerCase()) ||
+          (u.id && u.id.toLowerCase() === comercialCol.toLowerCase()) ||
+          (u.email && u.email.toLowerCase() === comercialCol.toLowerCase())
+        );
+      }
 
       let clientObj;
       if (idx >= 0) {
@@ -14493,10 +14621,17 @@ function processCategoryImport(category, items) {
         if (telefone) clientObj.telefone = telefone;
         if (telemovel) clientObj.telemovel = telemovel;
         if (email) clientObj.email = email;
+        if (website) clientObj.website = website;
         if (setorAtividade) clientObj.setorAtividade = setorAtividade;
+        if (assignedUser) {
+          clientObj.comercialAtribuidoId = assignedUser.id;
+          clientObj.comercialAtribuidoNome = assignedUser.nome;
+        }
         clientObj.updatedAt = new Date().toISOString();
         countUpdated++;
       } else {
+        const finalComercialId = assignedUser ? assignedUser.id : activeUserIdImport;
+        const finalComercialNome = assignedUser ? assignedUser.nome : activeUserNomeImport;
         clientObj = {
           id: id,
           tipoCliente: tipoClienteImport,
@@ -14517,9 +14652,9 @@ function processCategoryImport(category, items) {
           website: website,
           setorAtividade: setorAtividade,
           separadores: [],
-          userId: activeUserIdImport,
-          comercialAtribuidoId: activeUserIdImport,
-          comercialAtribuidoNome: activeUserNomeImport,
+          userId: finalComercialId,
+          comercialAtribuidoId: finalComercialId,
+          comercialAtribuidoNome: finalComercialNome,
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString()
         };
@@ -14585,8 +14720,17 @@ function processCategoryImport(category, items) {
     });
   } else if (category === 'contactos') {
     items.forEach(item => {
-      let rawNome = String(item['Nome Próprio'] || item.nome || item.Nome || item['Primeiro Nome'] || item['First Name'] || item['Nome Contacto'] || '').trim();
-      let rawApelido = String(item['Apelido'] || item.apelido || item.Apelido || item.sobrenome || item.Sobrenome || item['Último Nome'] || item['Last Name'] || item.Surname || '').trim();
+      let rawNome = String(
+        item['Nome Próprio'] || item['Nombre de Pila'] || item['First Name'] ||
+        item['Prénom'] || item['Prenom'] || item['Imię'] || item['Imie'] ||
+        item.nome || item.Nome || item['Primeiro Nome'] || item['Nome Contacto'] || ''
+      ).trim();
+
+      let rawApelido = String(
+        item['Apelido'] || item['Apellidos'] || item['Last Name'] ||
+        item['Nom de Famille'] || item['Nazwisko'] || item['Surname'] ||
+        item.apelido || item.Apelido || item.sobrenome || item.Sobrenome || item['Último Nome'] || ''
+      ).trim();
       
       if (rawNome && !rawApelido && rawNome.includes(' ')) {
         if (typeof smartSplitPortugueseName === 'function') {
@@ -14603,18 +14747,59 @@ function processCategoryImport(category, items) {
         }
       }
       
-      const cargo = String(item['Cargo / Função'] || item.cargo || item.Cargo || item['Função'] || item.Funcao || '').trim();
-      const departamento = String(item['Departamento / Separador'] || item.departamento || item.Departamento || item.separador || item.Separador || item['Área'] || item.Area || '').trim();
-      const telefone = String(item['Telefone Direto'] || item.telefone || item.Telefone || '').trim();
-      const extensao = String(item['Extensão'] || item['Extensao'] || item.extensao || item.Extensao || item['Ext.'] || item.ext || item.Ext || '').trim();
-      const telemovel = String(item['Telemóvel'] || item.telemovel || item.Telemóvel || item.Telemovel || item['Telemóvel'] || item.mobile || '').trim();
-      const email = String(item['Email'] || item.email || item.Email || item['E-mail'] || '').trim();
-      const notas = String(item['Notas / Observações'] || item.notas || item.Notas || item.observacoes || item.Observações || '').trim();
+      const cargo = String(
+        item['Cargo / Função'] || item['Cargo / Función'] || item['Cargo / Funcion'] ||
+        item['Job Title / Role'] || item['Poste / Fonction'] || item['Stanowisko / Rola'] ||
+        item.cargo || item.Cargo || item['Função'] || item.Funcao || ''
+      ).trim();
+
+      const departamento = String(
+        item['Departamento / Separador'] || item['Departamento / Pestaña'] || item['Departamento / Pestana'] ||
+        item['Department / Tab'] || item['Département / Onglet'] || item['Departement / Onglet'] ||
+        item['Dział / Zakładka'] || item['Dzial / Zakladka'] ||
+        item.departamento || item.Departamento || item.separador || item.Separador || item['Área'] || item.Area || ''
+      ).trim();
+
+      const telefone = String(
+        item['Telefone Direto'] || item['Teléfono Directo'] || item['Telefono Directo'] ||
+        item['Direct Phone'] || item['Téléphone Direct'] || item['Telephone Direct'] ||
+        item['Telefon Bezpośredni'] || item['Telefon Bezposredni'] ||
+        item.telefone || item.Telefone || ''
+      ).trim();
+
+      const extensao = String(
+        item['Extensão'] || item['Extensao'] || item['Extensión'] || item['Extension'] ||
+        item['Wewnętrzny'] || item['Wewnetrzny'] ||
+        item.extensao || item.Extensao || item['Ext.'] || item.ext || item.Ext || ''
+      ).trim();
+
+      const telemovel = String(
+        item['Telemóvel'] || item['Móvil'] || item['Movil'] || item['Mobile Phone'] ||
+        item['Téléphone Portable'] || item['Telephone Portable'] ||
+        item['Telefon Komórkowy'] || item['Telefon Komorkowy'] ||
+        item.telemovel || item.Telemóvel || item.Telemovel || item.mobile || ''
+      ).trim();
+
+      const email = String(
+        item['Email'] || item['Correo Electrónico'] || item['Correo Electronico'] ||
+        item.email || item.Email || item['E-mail'] || ''
+      ).trim();
+
+      const notas = String(
+        item['Notas / Observações'] || item['Notas / Observaciones'] || item['Notes / Remarks'] ||
+        item['Notes / Remarques'] || item['Uwagi / Notatki'] ||
+        item.notas || item.Notas || item.observacoes || item.Observações || ''
+      ).trim();
+
       const tratamento = String(item.tratamento || item.Tratamento || '').trim();
       
       // Resolução inteligente do clienteId por ID ou por Nome da Empresa/Cliente
       let clienteId = String(item.clienteId || item.ClienteId || '').trim();
-      const clientNameQuery = String(item['Cliente / Entidade'] || item['Empresa / Cliente'] || item.empresa || item.Empresa || item.cliente || item.Cliente || item.clienteNome || '').trim();
+      const clientNameQuery = String(
+        item['Cliente / Entidade'] || item['Cliente / Entidad'] || item['Client / Organization'] ||
+        item['Client / Entité'] || item['Client / Entite'] || item['Klient / Podmiot'] ||
+        item['Empresa / Cliente'] || item.empresa || item.Empresa || item.cliente || item.Cliente || item.clienteNome || ''
+      ).trim();
       
       let targetClient = null;
       if (clienteId) {
@@ -14754,13 +14939,33 @@ function processCategoryImport(category, items) {
       const id = item.id || generateId('proj');
       if (typeof deletedProjectIds !== 'undefined' && deletedProjectIds.includes(id)) return;
 
-      const codigo = String(item['Código / Referência'] || item['Código'] || item.codigo || item.Codigo || item.referencia || '').trim();
-      const nomeProjeto = String(item['Designação do Projeto'] || item['Nome do Projeto'] || item.nome || item.Nome || item.designacao || 'Projeto Importado').trim();
-      const departamento = String(item['Departamento / Separador'] || item.departamento || item.Departamento || '').trim();
+      const codigo = String(
+        item['Código / Referência'] || item['Código / Referencia'] || item['Codigo / Referencia'] ||
+        item['Code / Reference'] || item['Code / Référence'] || item['Kod / Referencja'] ||
+        item['Código'] || item.codigo || item.Codigo || item.referencia || ''
+      ).trim();
+
+      const nomeProjeto = String(
+        item['Designação do Projeto'] || item['Designación del Proyecto'] || item['Designacion del Proyecto'] ||
+        item['Project Name'] || item['Désignation du Projet'] || item['Designation du Projet'] ||
+        item['Nazwa Projektu'] || item['Nome do Projeto'] ||
+        item.nome || item.Nome || item.designacao || 'Projeto Importado'
+      ).trim();
+
+      const departamento = String(
+        item['Departamento / Separador'] || item['Departamento / Pestaña'] || item['Departamento / Pestana'] ||
+        item['Department / Tab'] || item['Département / Onglet'] || item['Departement / Onglet'] ||
+        item['Dział / Zakładka'] || item['Dzial / Zakladka'] ||
+        item.departamento || item.Departamento || ''
+      ).trim();
 
       // Cliente do projeto
       let clienteId = String(item.clienteId || item.ClienteId || '').trim();
-      const clientNameQuery = String(item['Cliente / Entidade'] || item.cliente || item.Cliente || item.empresa || item.Empresa || '').trim();
+      const clientNameQuery = String(
+        item['Cliente / Entidade'] || item['Cliente / Entidad'] || item['Client / Organization'] ||
+        item['Client / Entité'] || item['Client / Entite'] || item['Klient / Podmiot'] ||
+        item.cliente || item.Cliente || item.empresa || item.Empresa || ''
+      ).trim();
       let targetClient = null;
       if (clienteId) targetClient = db.clientes.find(c => c && c.id === clienteId);
       if (!targetClient && clientNameQuery) {
@@ -14841,7 +15046,11 @@ function processCategoryImport(category, items) {
 
       // Contacto Principal
       let contacto1Id = String(item.contacto1Id || '').trim();
-      const contactQuery = String(item['Contacto Principal'] || item.contacto || item.Contacto || '').trim();
+      const contactQuery = String(
+        item['Contacto Principal'] || item['Main Contact'] || item['Contact Principal'] ||
+        item['Główny Kontakt'] || item['Glowny Kontakt'] ||
+        item.contacto || item.Contacto || ''
+      ).trim();
       if (!contacto1Id && contactQuery) {
         const matchedCon = (db.contactos || []).find(c => {
           if (!c) return false;
@@ -14856,19 +15065,19 @@ function processCategoryImport(category, items) {
         id: idx >= 0 ? db.projetos[idx].id : id,
         codigo: codigo || (idx >= 0 ? (db.projetos[idx].codigo || '') : ''),
         nome: nomeProjeto,
-        tipo: item['Tipo de Projeto'] || item.tipo || item.Tipo || (idx >= 0 ? db.projetos[idx].tipo : 'Compra UM'),
+        tipo: item['Tipo de Projeto'] || item['Tipo de Proyecto'] || item['Project Type'] || item['Type de Projet'] || item['Typ Projektu'] || item.tipo || item.Tipo || (idx >= 0 ? db.projetos[idx].tipo : 'Compra UM'),
         clienteId: clienteId || (idx >= 0 ? db.projetos[idx].clienteId : ''),
         separadorId: assignedSeparadorId || (idx >= 0 ? db.projetos[idx].separadorId : null),
         subTabIndex: assignedSubTabIndex !== undefined ? assignedSubTabIndex : (idx >= 0 && db.projetos[idx].subTabIndex !== undefined ? db.projetos[idx].subTabIndex : 0),
         contacto1Id: contacto1Id || (idx >= 0 ? db.projetos[idx].contacto1Id : ''),
         contacto2Id: item.contacto2Id || (idx >= 0 ? db.projetos[idx].contacto2Id : ''),
-        dataInicio: item['Data de Início'] || item.dataInicio || (idx >= 0 ? db.projetos[idx].dataInicio : new Date().toISOString().slice(0, 10)),
-        dataFim: item['Data de Conclusão'] || item.dataFim || (idx >= 0 ? db.projetos[idx].dataFim : ''),
-        estado: item['Estado'] || item.estado || (idx >= 0 ? db.projetos[idx].estado : 'Aguarda Orçamento'),
-        valor: item['Valor Previsto (€)'] || item['Valor Estimado (€)'] || item.valor || (idx >= 0 ? db.projetos[idx].valor : ''),
-        viatura: item['Viatura / Equipamento'] || item.viatura || (idx >= 0 ? db.projetos[idx].viatura : ''),
-        matricula: item['Matrícula'] || item.matricula || (idx >= 0 ? db.projetos[idx].matricula : ''),
-        obs: item['Descrição / Observações'] || item.obs || item.observacoes || item.descricao || (idx >= 0 ? db.projetos[idx].obs : ''),
+        dataInicio: item['Data de Início'] || item['Fecha de Inicio'] || item['Start Date'] || item['Date de Début'] || item['Date de Debut'] || item['Data Rozpoczęcia'] || item['Data Rozpoczecia'] || item.dataInicio || (idx >= 0 ? db.projetos[idx].dataInicio : new Date().toISOString().slice(0, 10)),
+        dataFim: item['Data de Conclusão'] || item['Fecha de Conclusión'] || item['Fecha de Conclusion'] || item['End Date'] || item['Date de Fin'] || item['Data Zakończenia'] || item['Data Zakonczenia'] || item.dataFim || (idx >= 0 ? db.projetos[idx].dataFim : ''),
+        estado: item['Estado'] || item['Status'] || item['Statut'] || item.estado || (idx >= 0 ? db.projetos[idx].estado : 'Aguarda Orçamento'),
+        valor: item['Valor Previsto (€)'] || item['Valor Estimado (€)'] || item['Estimated Value (€)'] || item['Valeur Estimée (€)'] || item['Valeur Estimee (€)'] || item['Wartość Szacunkowa (€)'] || item['Wartosc Szacunkowa (€)'] || item.valor || (idx >= 0 ? db.projetos[idx].valor : ''),
+        viatura: item['Viatura / Equipamento'] || item['Vehículo / Equipamiento'] || item['Vehiculo / Equipamiento'] || item['Vehicle / Equipment'] || item['Véhicule / Équipement'] || item['Vehicule / Equipement'] || item['Pojazd / Sprzęt'] || item['Pojazd / Sprzet'] || item.viatura || (idx >= 0 ? db.projetos[idx].viatura : ''),
+        matricula: item['Matrícula'] || item['Matricula'] || item['License Plate'] || item['Plaque d\'Immatriculation'] || item['Plaque d\'immatriculation'] || item['Numer Rejestracyjny'] || item.matricula || (idx >= 0 ? db.projetos[idx].matricula : ''),
+        obs: item['Descrição / Observações'] || item['Descripción / Observaciones'] || item['Descripcion / Observaciones'] || item['Description / Remarks'] || item['Description / Remarques'] || item['Opis / Uwagi'] || item.obs || item.observacoes || item.descricao || (idx >= 0 ? db.projetos[idx].obs : ''),
         media: idx >= 0 ? (db.projetos[idx].media || []) : (item.media || []),
         createdAt: idx >= 0 ? db.projetos[idx].createdAt : new Date().toISOString(),
         updatedAt: new Date().toISOString()
