@@ -12,7 +12,7 @@
     if ('caches' in window) {
       caches.keys().then(function(keys) {
         keys.forEach(function(k) {
-          if (k !== 'sigec-pro-v4.3') {
+          if (k !== 'sigec-pro-v4.5') {
             console.log('[PWA] Purga imediata de cache antiga:', k);
             caches.delete(k);
           }
@@ -3207,7 +3207,7 @@
   <div id="clientModal" class="modal-overlay">
     <div class="modal-window" style="max-width: 1240px; width: 94vw;">
       <div class="modal-header">
-        <h3 class="modal-title" id="clientModalTitle">
+        <h3 class="modal-title" id="clientModalTitle" data-i18n="client_modal_title">
           <i class="fa-solid fa-building-user"></i> Registo / Ficha do Cliente
         </h3>
         <button type="button" class="action-icon-btn" onclick="closeClientModal()"
@@ -3223,11 +3223,11 @@
           <div class="form-grid">
             <!-- Tipo de Cliente -->
             <div class="form-group col-6">
-              <label for="tipoCliente">Tipo de Cliente *</label>
+              <label for="tipoCliente" data-i18n="client_type_label">Tipo de Cliente *</label>
               <select id="tipoCliente" class="form-control" onchange="handleTipoClienteChange()" required style="background: #ffffff;">
-                <option value="Privado">Privado</option>
-                <option value="Fundação">Fundação</option>
-                <option value="Estatal">Estatal</option>
+                <option value="Privado" data-i18n="client_type_opt_privado">Privado</option>
+                <option value="Fundação" data-i18n="client_type_opt_fundacao">Fundação</option>
+                <option value="Estatal" data-i18n="client_type_opt_estatal">Estatal</option>
               </select>
             </div>
 
@@ -3244,7 +3244,7 @@
             <!-- Campo Condicional para Estatal (Ministério) -->
             <div id="estatalFieldsContainer" class="form-grid col-12 conditional-field" style="margin: 0; padding: 0;">
               <div class="form-group col-12">
-                <label for="ministerio">Ministério *</label>
+                <label for="ministerio" data-i18n="client_ministerio_label">Ministério *</label>
                 <input type="text" id="ministerio" class="form-control" placeholder="ex: Ministério da Economia">
               </div>
             </div>
@@ -3270,24 +3270,24 @@
             <div id="standardClientFields" class="form-grid col-12" style="margin: 0; padding: 0;">
               <!-- Dados Básicos -->
               <div class="form-group col-8">
-                <label for="clientNome">Nome / Razão Social *</label>
+                <label for="clientNome" data-i18n="client_name_label">Nome / Razão Social *</label>
                 <input type="text" id="clientNome" class="form-control"
                   placeholder="Nome completo da empresa ou cliente">
               </div>
 
               <div class="form-group col-4">
-                <label for="clientContribuinte">Contribuinte (NIF) *</label>
+                <label for="clientContribuinte" data-i18n="client_nif_label">Contribuinte (NIF) *</label>
                 <input type="text" id="clientContribuinte" class="form-control" placeholder="999999999" maxlength="9">
               </div>
 
               <!-- Direção / Morada -->
               <div class="form-group col-8">
-                <label for="clientDirecao1">Direção (Linha 1)</label>
+                <label for="clientDirecao1" data-i18n="client_address1_label">Direção (Linha 1)</label>
                 <input type="text" id="clientDirecao1" class="form-control" placeholder="Rua, Avenida, Praça...">
               </div>
 
               <div class="form-group col-4">
-                <label for="clientDirecao2">Direção (Linha 2)</label>
+                <label for="clientDirecao2" data-i18n="client_address2_label">Direção (Linha 2)</label>
                 <input type="text" id="clientDirecao2" class="form-control"
                   placeholder="Bloco, Edifício, Referência...">
               </div>
@@ -3296,29 +3296,29 @@
               <div class="col-12"
                 style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: flex-start; margin: 0; padding: 0;">
                 <div class="form-group" style="flex: 0 0 70px; min-width: 60px;">
-                  <label for="clientNumero">Nº</label>
+                  <label for="clientNumero" data-i18n="client_number_label">Nº</label>
                   <input type="text" id="clientNumero" class="form-control" placeholder="123">
                 </div>
 
                 <div class="form-group" style="flex: 0 0 85px; min-width: 75px;">
-                  <label for="clientAndar">Andar</label>
+                  <label for="clientAndar" data-i18n="client_floor_label">Andar</label>
                   <input type="text" id="clientAndar" class="form-control" placeholder="2º Dto">
                 </div>
 
                 <div class="form-group" style="flex: 0 0 135px; min-width: 120px;">
-                  <label for="clientCodigoPostal">Código Postal</label>
+                  <label for="clientCodigoPostal" data-i18n="client_postal_code_label">Código Postal</label>
                   <input type="text" id="clientCodigoPostal" class="form-control" placeholder="1000-001" maxlength="8"
                     oninput="formatCodigoPostal(this)">
                 </div>
 
                 <div class="form-group" style="flex: 1 1 170px; min-width: 140px;">
-                  <label for="clientLocalidade">Localidade</label>
+                  <label for="clientLocalidade" data-i18n="client_locality_label">Localidade</label>
                   <input type="text" id="clientLocalidade" class="form-control auto-expand-input"
                     placeholder="ex: Lisboa, Porto, Tavira" oninput="autoExpandInput(this)">
                 </div>
 
                 <div class="form-group" style="flex: 1 1 170px; min-width: 140px;">
-                  <label for="clientPais">País</label>
+                  <label for="clientPais" data-i18n="client_country_label">País</label>
                   <input type="text" id="clientPais" class="form-control auto-expand-input"
                     placeholder="ex: Portugal, Espanha..." oninput="autoExpandInput(this)">
                 </div>
@@ -3326,17 +3326,17 @@
 
               <!-- Contactos da Empresa -->
               <div class="form-group col-4">
-                <label for="clientTelefone">Telefone</label>
+                <label for="clientTelefone" data-i18n="client_phone_label">Telefone</label>
                 <input type="tel" id="clientTelefone" class="form-control" placeholder="210 000 000">
               </div>
 
               <div class="form-group col-4">
-                <label for="clientTelemovel">Telemóvel</label>
+                <label for="clientTelemovel" data-i18n="client_mobile_label">Telemóvel</label>
                 <input type="tel" id="clientTelemovel" class="form-control" placeholder="910 000 000">
               </div>
 
               <div class="form-group col-4">
-                <label for="clientEmail">Email</label>
+                <label for="clientEmail" data-i18n="client_email_label">Email</label>
                 <input type="email" id="clientEmail" class="form-control" placeholder="contacto@empresa.pt">
               </div>
 
@@ -3353,7 +3353,7 @@
 
               <!-- Campo de Notas com Barra de Deslocação Vertical -->
               <div class="form-group col-12">
-                <label for="clientNotas">Notas</label>
+                <label for="clientNotas" data-i18n="client_notes_label">Notas</label>
                 <textarea id="clientNotas" class="form-control notes-textarea"
                   placeholder="Escreva observações ou notas sobre este cliente..."></textarea>
               </div>
@@ -3364,7 +3364,7 @@
           <div class="embedded-section">
             <div class="embedded-header">
               <h3 class="embedded-title">
-                <i class="fa-solid fa-users"></i> Pessoas de Contacto (Pessoas que trabalham nesta empresa)
+                <i class="fa-solid fa-users"></i> <span data-i18n="client_contacts_heading">Pessoas de Contacto</span>
               </h3>
               <div style="display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap;">
                 <button type="button" id="btnToggleInactiveContacts" class="btn btn-secondary" onclick="toggleClientInactiveContactsVisibility()"
@@ -3375,16 +3375,16 @@
                 <button type="button" class="btn btn-secondary" onclick="openAttachExistingContactModal()"
                   style="padding: 0.35rem 0.75rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.35rem;"
                   title="Adicionar contacto escolhendo da lista de contactos existentes">
-                  <i class="fa-solid fa-address-book" style="color: #10b981;"></i> Associar Contacto Existente
+                  <i class="fa-solid fa-address-book" style="color: #10b981;"></i> <span data-i18n="btn_attach_contact">Associar Contacto Existente</span>
                 </button>
                 <button type="button" class="btn btn-secondary" onclick="openDetachContactModal()"
                   style="padding: 0.35rem 0.75rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.35rem;"
                   title="Desassociar um contacto deste cliente, fazendo com que fique sem cliente associado">
-                  <i class="fa-solid fa-link-slash" style="color: #ea580c;"></i> Desassociar Contacto
+                  <i class="fa-solid fa-link-slash" style="color: #ea580c;"></i> <span data-i18n="btn_detach_contact">Desassociar Contacto</span>
                 </button>
                 <button type="button" class="btn btn-secondary" onclick="openContactModalForNew()"
                   style="padding: 0.35rem 0.75rem; font-size: 0.8rem;">
-                  <i class="fa-solid fa-user-plus"></i> Novo Contacto
+                  <i class="fa-solid fa-user-plus"></i> <span data-i18n="btn_new_contact">Novo Contacto</span>
                 </button>
               </div>
             </div>
@@ -3400,7 +3400,7 @@
               style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
               <h3 class="embedded-title" style="display: inline-flex; align-items: center; gap: 0.5rem; margin: 0;">
                 <i class="fa-solid fa-phone-volume"></i>
-                <span>Registo de Contactos Realizados com este Cliente</span>
+                <span data-i18n="client_interactions_heading">Registo de Contactos Realizados com este Cliente</span>
                 <button type="button" id="btnSortClientInteractions" class="btn-sort-toggle"
                   onclick="toggleClientInteractionsSort()" title="Alternar ordem das datas: Mais recente / Mais antigo"
                   style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 2px 8px; font-size: 0.78rem; font-weight: 600; color: #1e3a8a; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); margin-left: 0.25rem;">
@@ -3414,7 +3414,7 @@
                 <label for="clientProximoContacto"
                   style="font-weight: 600; font-size: 0.85rem; color: #1e3a8a; margin: 0; white-space: nowrap; display: inline-flex; align-items: center; gap: 4px;">
                   <i class="fa-regular fa-calendar-plus" style="color: #2563eb;"></i>
-                  <span>Próximo contacto:</span>
+                  <span data-i18n="client_next_contact_label">Próximo contacto:</span>
                 </label>
                 <input type="date" id="clientProximoContacto" class="form-control"
                   style="width: auto; padding: 0.25rem 0.6rem; font-size: 0.85rem; font-weight: 500; height: 34px; border: 1.5px solid #cbd5e1; border-radius: 6px;"
@@ -3426,11 +3426,11 @@
             <div class="inline-interaction-container">
               <div class="inline-interaction-row">
                 <div class="form-group inline-date-col">
-                  <label for="quickInteractionData">Data do Contacto *</label>
+                  <label for="quickInteractionData" data-i18n="client_interaction_date_label">Data do Contacto *</label>
                   <input type="datetime-local" id="quickInteractionData" class="form-control">
                 </div>
                 <div class="form-group inline-text-col">
-                  <label for="quickInteractionText">Registo do Contacto (Escrita Livre) *</label>
+                  <label for="quickInteractionText" data-i18n="client_interaction_notes_label">Registo do Contacto (Escrita Livre) *</label>
                   <textarea id="quickInteractionText" class="auto-expand-textarea"
                     placeholder="Escreva aqui livremente os detalhes do contacto efetuado..."
                     oninput="autoExpandTextarea(this)"></textarea>
@@ -3438,7 +3438,7 @@
                 <div style="align-self: flex-end;">
                   <button type="button" class="btn btn-primary" onclick="addQuickInteraction()"
                     style="white-space: nowrap;">
-                    <i class="fa-solid fa-plus"></i> Adicionar Contacto
+                    <i class="fa-solid fa-plus"></i> <span data-i18n="btn_add_interaction">Adicionar Contacto</span>
                   </button>
                 </div>
               </div>
@@ -3453,18 +3453,18 @@
           <div class="embedded-section">
             <div class="embedded-header">
               <h3 class="embedded-title">
-                <i class="fa-solid fa-folder-open"></i> Projetos Relacionados com este Cliente
+                <i class="fa-solid fa-folder-open"></i> <span data-i18n="client_projects_heading">Projetos Relacionados com este Cliente</span>
               </h3>
               <div style="display: flex; gap: 0.5rem; align-items: center;">
                 <input type="file" id="clientRelatedProjectsDocsInput" multiple
                   onchange="handleClientRelatedProjectsUpload(event)" style="display: none;">
                 <button type="button" class="btn btn-secondary" onclick="triggerClientRelatedProjectsUpload()"
                   style="padding: 0.35rem 0.75rem; font-size: 0.8rem;">
-                  <i class="fa-solid fa-cloud-arrow-up"></i> Carregar Ficheiros
+                  <i class="fa-solid fa-cloud-arrow-up"></i> <span data-i18n="btn_upload_files">Carregar Ficheiros</span>
                 </button>
                 <button type="button" class="btn btn-secondary" onclick="newProjectForCurrentClient()"
                   style="padding: 0.35rem 0.75rem; font-size: 0.8rem;">
-                  <i class="fa-solid fa-plus"></i> Adicionar Projeto
+                  <i class="fa-solid fa-plus"></i> <span data-i18n="btn_add_project">Adicionar Projeto</span>
                 </button>
               </div>
             </div>
@@ -3475,9 +3475,9 @@
               style="margin-top: 0.75rem; margin-bottom: 0.75rem; padding: 1rem;">
               <i class="fa-solid fa-cloud-arrow-up"
                 style="font-size: 1.5rem; color: var(--primary-blue, #2563eb); margin-bottom: 0.35rem; display: block;"></i>
-              <div style="font-weight: 600; color: var(--navy-dark, #1e3a8a); font-size: 0.9rem;">Clique ou arraste
+              <div style="font-weight: 600; color: var(--navy-dark, #1e3a8a); font-size: 0.9rem;" data-i18n="dropzone_click_drag">Clique ou arraste
                 ficheiros para aqui</div>
-              <div style="font-size: 0.78rem; color: var(--text-muted, #64748b); margin-top: 0.2rem;">Carregar ficheiros
+              <div style="font-size: 0.78rem; color: var(--text-muted, #64748b); margin-top: 0.2rem;" data-i18n="dropzone_upload_hint">Carregar ficheiros
                 para os projetos deste cliente (qualquer formato)</div>
             </div>
             <div id="clientDocsGrid" class="media-grid" style="margin-bottom: 0.85rem; display: none;">
@@ -3492,7 +3492,7 @@
           <div class="embedded-section" style="margin-top: 1rem;">
             <div class="embedded-header">
               <h3 class="embedded-title">
-                <i class="fa-solid fa-file-invoice-dollar" style="color: #f59e0b;"></i> Orçamentos do Cliente
+                <i class="fa-solid fa-file-invoice-dollar" style="color: #f59e0b;"></i> <span data-i18n="client_budgets_heading">Orçamentos do Cliente</span>
               </h3>
               <div style="display: flex; gap: 0.5rem; align-items: center;">
                 <input type="file" id="clientBudgetFileInput" accept=".json,.pdf,.xlsx,.xls,.docx,.doc"
@@ -3500,12 +3500,12 @@
                 <button type="button" class="btn btn-secondary" onclick="document.getElementById('clientBudgetFileInput').click()"
                   style="padding: 0.35rem 0.75rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.4rem;"
                   title="Carregar ficheiro de orçamento a partir do computador">
-                  <i class="fa-solid fa-upload"></i> Carregar Orçamento
+                  <i class="fa-solid fa-upload"></i> <span data-i18n="btn_upload_budget">Carregar Orçamento</span>
                 </button>
                 <button type="button" class="btn btn-secondary" onclick="newBudgetForCurrentClient()"
                   style="padding: 0.35rem 0.75rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.4rem;"
                   title="Criar novo orçamento no formulário">
-                  <i class="fa-solid fa-plus"></i> Criar Orçamento
+                  <i class="fa-solid fa-plus"></i> <span data-i18n="btn_create_budget">Criar Orçamento</span>
                 </button>
               </div>
             </div>
@@ -3519,7 +3519,7 @@
           <div style="display: flex; align-items: center; gap: 0.5rem;">
             <button type="button" class="btn btn-danger" onclick="deleteCurrentClient()" id="btnDeleteClient"
               style="display: none;">
-              <i class="fa-solid fa-trash"></i> Apagar Cliente
+              <i class="fa-solid fa-trash"></i> <span data-i18n="btn_delete_client">Apagar Cliente</span>
             </button>
             <!-- Botão de Atualização de Morada com IA no Rodapé da Ficha -->
             <button type="button" id="btnAiUpdateClientAddress" class="btn" onclick="triggerAiAddressEnrichment()"
@@ -3531,10 +3531,10 @@
           </div>
           <div style="margin-left: auto; display: flex; gap: 0.5rem;">
             <button type="button" class="btn btn-close" onclick="closeClientModal()">
-              <i class="fa-solid fa-xmark"></i> Fechar Ficha
+              <i class="fa-solid fa-xmark"></i> <span data-i18n="btn_close_client">Fechar Ficha</span>
             </button>
             <button type="submit" class="btn btn-primary" style="font-weight: 600;">
-              <i class="fa-solid fa-floppy-disk"></i> Guardar Alterações
+              <i class="fa-solid fa-floppy-disk"></i> <span data-i18n="btn_save_client">Guardar Alterações</span>
             </button>
           </div>
         </div>
@@ -4871,11 +4871,11 @@
   <div id="toastContainer" class="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999999 !important;"></div>
 
   <!-- Internationalization & Translations Engine -->
-  <script src="i18n.js?v=202609200330"></script>
+  <script src="i18n.js?v=202609200335"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=202609200330"></script>
+  <script src="app.js?v=202609200335"></script>
   <!-- Duplicates Management Engine -->
-  <script src="duplicatesManager.js?v=202609200330"></script>
+  <script src="duplicatesManager.js?v=202609200335"></script>
 
   <!-- Auto-cura imediata de definições SMTP e Webhook no arranque de qualquer computador -->
   <script>
@@ -6430,7 +6430,7 @@
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js?v=202609200330')
+      navigator.serviceWorker.register('/sw.js?v=202609200335')
         .then(function (reg) {
           if (typeof reg.update === 'function') {
             reg.update();

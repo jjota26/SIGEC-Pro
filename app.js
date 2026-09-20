@@ -7306,33 +7306,29 @@ function isItemOwnedByTargetUser(item, targetUser) {
   var targetNome = (targetUser.nome || '').toLowerCase().trim();
   var targetNorm = typeof normalizeText === 'function' ? normalizeText(targetUser.nome || '') : targetNome;
 
-  var isTargetAdmin = (targetId === 'usr-admin-001') || (targetUser.role === 'admin') || (targetNorm.indexOf('centurio') !== -1) || (targetNorm.indexOf('administrador') !== -1);
-
-  // Se o utilizador ativo for o Administrador (José Centúrio), tem acesso total irrestrito a todos os registos do sistema
-  if (isTargetAdmin) {
-    return true;
+  // 1. Identificadores explícitos no próprio item (Prioridade Estrita por ID)
+  var cAtribId = String(item.comercialAtribuidoId || item.userId || item.criadoPorId || item.comercialId || item.comercial_id || '').trim();
+  if (cAtribId && targetId) {
+    return cAtribId === targetId;
   }
 
-  // 1. Identificadores explícitos no próprio item
-  var cAtribId = String(item.comercialAtribuidoId || item.userId || item.criadoPorId || item.comercialId || item.comercial_id || '').trim();
-  var cAtribNome = String(item.comercialAtribuidoNome || item.comercial || item.comercialNome || item.responsavel || '').toLowerCase().trim();
-  var cAtribNorm = typeof normalizeText === 'function' ? normalizeText(item.comercialAtribuidoNome || item.comercial || '') : cAtribNome;
+  // 2. Correspondência por Nome Completo Exato (Apenas se não houver ID explícito)
+  var cAtribNome = String(item.comercialAtribuidoNome || item.comercial || item.comercialNome || item.responsavel || '').trim();
+  if (cAtribNome && targetNome) {
+    var cAtribNorm = typeof normalizeText === 'function' ? normalizeText(cAtribNome) : cAtribNome.toLowerCase();
+    if (cAtribNorm === targetNorm) return true;
 
-  if (cAtribId && targetId && cAtribId === targetId) return true;
-  if (cAtribNome && targetNome && (cAtribNome === targetNome || cAtribNorm === targetNorm || cAtribNorm.indexOf(targetNorm) !== -1 || targetNorm.indexOf(cAtribNorm) !== -1)) return true;
+    // Verificar se está explicitamente atribuído a outro utilizador conhecido
+    var allUsers = Array.isArray(db.usuarios) ? db.usuarios : [];
+    var isAssignedToOther = allUsers.some(function(u) {
+      if (!u || u.id === targetId) return false;
+      var uNorm = typeof normalizeText === 'function' ? normalizeText(u.nome || '') : (u.nome || '').toLowerCase().trim();
+      return uNorm === cAtribNorm;
+    });
+    if (isAssignedToOther) return false;
+  }
 
-  var allUsers = Array.isArray(db.usuarios) ? db.usuarios : [];
-  var isExplicitlyAssignedToOther = allUsers.some(function(u) {
-    if (!u || u.id === targetId) return false;
-    var uId = String(u.id || '').trim();
-    var uNorm = typeof normalizeText === 'function' ? normalizeText(u.nome || '') : (u.nome || '').toLowerCase().trim();
-    if (cAtribId && uId && cAtribId === uId) return true;
-    if (cAtribNome && uNorm && (cAtribNome === uNorm || cAtribNorm.indexOf(uNorm) !== -1 || uNorm.indexOf(cAtribNorm) !== -1)) return true;
-    return false;
-  });
-  if (isExplicitlyAssignedToOther) return false;
-
-  // 2. Se o item tiver ligação a um Cliente Pai
+  // 3. Se for um item filho (Contacto, Projeto, etc.) com ligação a um Cliente Pai
   var parentClient = null;
   if (item.clienteId) {
     parentClient = (db.clientes || []).find(function(c) { return c && String(c.id).trim() === String(item.clienteId).trim(); });
@@ -7344,32 +7340,27 @@ function isItemOwnedByTargetUser(item, targetUser) {
       parentClient = (db.clientes || []).find(function(c) {
         if (!c || !c.nome) return false;
         var cNorm = typeof normalizeText === 'function' ? normalizeText(c.nome) : c.nome.toLowerCase().trim();
-        return cNorm === normCliName || cNorm.indexOf(normCliName) !== -1 || normCliName.indexOf(cNorm) !== -1;
+        return cNorm === normCliName;
       });
     }
   }
 
   if (parentClient) {
     var pAtribId = String(parentClient.comercialAtribuidoId || parentClient.userId || parentClient.criadoPorId || '').trim();
-    var pAtribNome = String(parentClient.comercialAtribuidoNome || parentClient.comercial || '').toLowerCase().trim();
-    var pAtribNorm = typeof normalizeText === 'function' ? normalizeText(parentClient.comercialAtribuidoNome || parentClient.comercial || '') : pAtribNome;
-
-    if (pAtribId && targetId && pAtribId === targetId) return true;
-    if (pAtribNome && targetNome && (pAtribNome === targetNome || pAtribNorm === targetNorm || pAtribNorm.indexOf(targetNorm) !== -1 || targetNorm.indexOf(pAtribNorm) !== -1)) return true;
-
-    var isParentAssignedToOther = allUsers.some(function(u) {
-      if (!u || u.id === targetId) return false;
-      var uId = String(u.id || '').trim();
-      var uNorm = typeof normalizeText === 'function' ? normalizeText(u.nome || '') : (u.nome || '').toLowerCase().trim();
-      if (pAtribId && uId && pAtribId === uId) return true;
-      if (pAtribNome && uNorm && (pAtribNome === uNorm || pAtribNorm.indexOf(uNorm) !== -1)) return true;
-      return false;
-    });
-    if (isParentAssignedToOther) return false;
-    return true;
+    if (pAtribId && targetId) {
+      return pAtribId === targetId;
+    }
+    var pAtribNome = String(parentClient.comercialAtribuidoNome || parentClient.comercial || '').trim();
+    if (pAtribNome && targetNome) {
+      var pAtribNorm = typeof normalizeText === 'function' ? normalizeText(pAtribNome) : pAtribNome.toLowerCase();
+      return pAtribNorm === targetNorm;
+    }
+    return false;
   }
 
-  return true;
+  // 4. Se o item não tiver atribuição comercial e o utilizador atual for Administrador, permitir visualização
+  var isTargetAdmin = (targetId === 'usr-admin-001') || (targetUser.role === 'admin') || (targetNorm.indexOf('administrador') !== -1);
+  return isTargetAdmin;
 }
 window.isItemOwnedByTargetUser = isItemOwnedByTargetUser;
 
@@ -7395,6 +7386,9 @@ window.getUserScopedItems = getUserScopedItems;
 function openClientModal() {
   initModalResizing();
   populateClientComercialOptions();
+  if (typeof applyUserLanguage === 'function') {
+    applyUserLanguage();
+  }
   document.getElementById('clientModal')?.classList.add('active');
 }
 
@@ -7499,10 +7493,18 @@ function loadClientIntoForm(clientId, skipDirtyCheck = false, skipTabSwitch = fa
 
   populateClientComercialOptions(client.comercialAtribuidoId || client.userId || 'usr-admin-001');
 
+  const activeLang = typeof getActiveUserLanguage === 'function' ? getActiveUserLanguage() : (typeof currentSystemLanguage !== 'undefined' ? currentSystemLanguage : 'Português');
+
   if (tipoCliente === 'Estatal') {
     document.getElementById('ministerio').value = client.ministerio || '';
     const seps = ensureClientSeparadoresArray(client);
     currentEstatalSeparadores = JSON.parse(JSON.stringify(seps));
+    if (typeof translateSystemTerm === 'function') {
+      currentEstatalSeparadores.forEach(sep => {
+        if (sep.tipoSeparador) sep.tipoSeparador = translateSystemTerm(sep.tipoSeparador, activeLang);
+        if (sep.pais) sep.pais = translateSystemTerm(sep.pais, activeLang);
+      });
+    }
     activeEstatalSeparadorIndex = 0;
   } else {
     currentEstatalSeparadores = [];
@@ -7521,7 +7523,11 @@ function loadClientIntoForm(clientId, skipDirtyCheck = false, skipTabSwitch = fa
     }
     const paisEl = document.getElementById('clientPais');
     if (paisEl) {
-      paisEl.value = client.pais || '';
+      let clientPaisVal = client.pais || '';
+      if (clientPaisVal && typeof translateSystemTerm === 'function') {
+        clientPaisVal = translateSystemTerm(clientPaisVal, activeLang);
+      }
+      paisEl.value = clientPaisVal;
       autoExpandInput(paisEl);
     }
     document.getElementById('clientTelefone').value = client.telefone || '';
@@ -8687,8 +8693,7 @@ function translateClientAndLinkedDataForUser(clientObj, targetUserId) {
   if (!clientObj || !targetUserId) return;
   ensureUsersInitialized();
   const targetUser = (db.usuarios || []).find(u => u.id === targetUserId);
-  if (!targetUser || !targetUser.idioma) return;
-  const destLang = targetUser.idioma;
+  const destLang = (targetUser && targetUser.idioma) ? targetUser.idioma : (typeof getActiveUserLanguage === 'function' ? getActiveUserLanguage() : 'Português');
 
   if (typeof translateSystemTerm === 'function') {
     if (clientObj.tipoCliente) {
@@ -8702,14 +8707,19 @@ function translateClientAndLinkedDataForUser(clientObj, targetUserId) {
         if (sep.tipoSeparador) {
           sep.tipoSeparador = translateSystemTerm(sep.tipoSeparador, destLang);
         }
+        if (sep.pais) {
+          sep.pais = translateSystemTerm(sep.pais, destLang);
+        }
       });
     }
 
     // Contactos vinculados
     if (Array.isArray(db.contactos)) {
       db.contactos.forEach(con => {
-        if (con.clienteId === clientObj.id) {
+        if (con.clienteId === clientObj.id || (con.empresa && clientObj.nome && con.empresa.toLowerCase().trim() === clientObj.nome.toLowerCase().trim())) {
           if (con.cargo) con.cargo = translateSystemTerm(con.cargo, destLang);
+          if (con.departamento) con.departamento = translateSystemTerm(con.departamento, destLang);
+          if (con.pais) con.pais = translateSystemTerm(con.pais, destLang);
         }
       });
     }
@@ -8717,9 +8727,19 @@ function translateClientAndLinkedDataForUser(clientObj, targetUserId) {
     // Projetos vinculados
     if (Array.isArray(db.projetos)) {
       db.projetos.forEach(p => {
-        if (p.clienteId === clientObj.id) {
+        if (p.clienteId === clientObj.id || (p.cliente && clientObj.nome && p.cliente.toLowerCase().trim() === clientObj.nome.toLowerCase().trim())) {
           if (p.tipo) p.tipo = translateSystemTerm(p.tipo, destLang);
           if (p.estado) p.estado = translateSystemTerm(p.estado, destLang);
+          if (p.fase) p.fase = translateSystemTerm(p.fase, destLang);
+        }
+      });
+    }
+
+    // Orçamentos vinculados
+    if (Array.isArray(db.orcamentos)) {
+      db.orcamentos.forEach(b => {
+        if (b.clienteId === clientObj.id || (b.cliente && clientObj.nome && b.cliente.toLowerCase().trim() === clientObj.nome.toLowerCase().trim())) {
+          if (b.modeloBase) b.modeloBase = translateSystemTerm(b.modeloBase, destLang);
         }
       });
     }
