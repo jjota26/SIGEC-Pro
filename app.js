@@ -26607,13 +26607,57 @@ function getCountryFlagEmoji(cc, countryName) {
 }
 window.getCountryFlagEmoji = getCountryFlagEmoji;
 
+function splitSmartAddressLines(direcao1, direcao2, numero) {
+  let d1 = (direcao1 || '').trim();
+  let d2 = (direcao2 || '').trim();
+  let num = (numero || '').trim();
+
+  // Padrões de Zona Secundária (Polígonos, Parques, Edifícios, etc.)
+  const secondaryPatterns = [
+    /\(?\s*(Pol[íi]gono\s+Industrial\s+[^,\)\-]+)\s*\)?/i,
+    /\(?\s*(Zona\s+Industrial\s+[^,\)\-]+)\s*\)?/i,
+    /\(?\s*(Parque\s+(?:Empresarial|Tecnol[óo]gico|de\s+Neg[óo]cios|Industrial)\s+[^,\)\-]+)\s*\)?/i,
+    /\(?\s*(Centro\s+Empresarial\s+[^,\)\-]+)\s*\)?/i,
+    /\(?\s*(Edif[íi]cio\s+[^,\)\-]+)\s*\)?/i,
+    /\(?\s*(Torre\s+[A-Za-z0-9\s]+)\s*\)?/i,
+    /\(?\s*(Bloco\s+[A-Za-z0-9\s]+)\s*\)?/i,
+    /\(?\s*(Lote\s+[A-Za-z0-9\s]+)\s*\)?/i,
+    /\(?\s*(Urbaniza[çc][ãa]o\s+[^,\)\-]+)\s*\)?/i
+  ];
+
+  if (!d2) {
+    for (const pat of secondaryPatterns) {
+      const match = d1.match(pat);
+      if (match) {
+        d2 = match[1].trim();
+        d1 = d1.replace(match[0], '').replace(/^[\s,\-\/]+|[\s,\-\/]+$/g, '').trim();
+        break;
+      }
+    }
+  }
+
+  // Extrair número se não foi fornecido
+  if (!num) {
+    const numMatch = d1.match(/,\s*(?:n\.?[ºo]?\s*)?(\d+[A-Za-z]?)\s*$/i) || d1.match(/\s+n\.?[ºo]?\s*(\d+[A-Za-z]?)\s*$/i);
+    if (numMatch) {
+      num = numMatch[1];
+      d1 = d1.slice(0, numMatch.index).trim();
+    }
+  }
+
+  return { direcao1: d1, direcao2: d2, numero: num };
+}
+window.splitSmartAddressLines = splitSmartAddressLines;
+
+
 const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
     aliases: ['alegria activity, s.l.', 'alegria activity s.l.', 'alegria activity', 'alegria-activity', 'alegria activity sede', 'grupo alegria activity', 'alegria activity vitoria', 'alegria activity espanha'],
     website: 'https://alegria-activity.com',
     email: 'info@alegria-activity.com',
     telefone: '+34 945 128 415',
-    direcao1: 'Calle Lermandabidea (Polígono Industrial Júndiz)',
+    direcao1: 'Calle Lermandabidea',
+    direcao2: 'Polígono Industrial Júndiz',
     numero: '7',
     andar: '',
     codigoPostal: '01015',
@@ -28303,7 +28347,7 @@ function renderAiCandidateCards() {
 
     const sub = document.createElement('div');
     sub.style.cssText = 'font-size: 0.74rem; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;';
-    const addressPreview = [cand.direcao1, cand.numero ? 'Nº ' + cand.numero : '', cand.codigoPostal].filter(Boolean).join(', ') || '(Morada registada)';
+    const addressPreview = [cand.direcao1, cand.numero ? 'Nº ' + cand.numero : '', cand.direcao2, cand.codigoPostal].filter(Boolean).join(', ') || '(Morada registada)';
     sub.textContent = addressPreview;
 
     info.appendChild(title);
@@ -28545,11 +28589,12 @@ async function triggerAiAddressEnrichment() {
         seenKeys.add(key);
         const dCountry = d.pais || 'Portugal';
         const dCc = (dCountry.toLowerCase() === 'espanha') ? 'es' : 'pt';
+        const splitDir = splitSmartAddressLines(d.direcao1, d.direcao2, d.numero);
         availableAiCandidates.push({
           nome: d.aliases?.[0] || entityName,
-          direcao1: d.direcao1 || '',
-          direcao2: d.direcao2 || '',
-          numero: d.numero || '',
+          direcao1: splitDir.direcao1,
+          direcao2: splitDir.direcao2,
+          numero: splitDir.numero,
           andar: d.andar || '',
           codigoPostal: d.codigoPostal || '',
           localidade: d.localidade || 'Lisboa',
@@ -28765,11 +28810,12 @@ Devolve APENAS este JSON exato (sem texto extra, sem markdown):
             const gCountry = parsed.pais || existingPais || 'Espanha';
             const gCc = gCountry.toLowerCase().includes('port') ? 'pt' : (gCountry.toLowerCase().includes('esp') ? 'es' : '');
             if (parsed.website || parsed.email || parsed.localidade || parsed.direcao1 || parsed.telefone) {
+              const gSplit = splitSmartAddressLines(parsed.direcao1 || '', parsed.direcao2 || '', parsed.numero || '');
               availableAiCandidates.push({
                 nome:        entityName,
-                direcao1:    parsed.direcao1 || '',
-                direcao2:    '',
-                numero:      '',
+                direcao1:    gSplit.direcao1,
+                direcao2:    gSplit.direcao2,
+                numero:      gSplit.numero,
                 andar:       '',
                 codigoPostal:parsed.codigoPostal || '',
                 localidade:  parsed.localidade || '',
