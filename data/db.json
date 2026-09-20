@@ -4913,18 +4913,19 @@
       "active": true
     },
     {
-      "id": "usr-1789746081506",
-      "nome": "josé maria",
-      "primeiroNome": "josé",
-      "apelido": "maria",
+      "id": "usr-1789862031944",
+      "nome": "José Maria",
+      "primeiroNome": "José",
+      "apelido": "Maria",
       "email": "jjota26@gmail.com",
-      "cargo": "comercial",
+      "cargo": "Comercial",
       "idioma": "Português",
       "pin": "J*cen*1971",
       "role": "user",
       "chefia": false,
-      "active": false,
-      "createdAt": "2026-09-18T15:41:21.506Z"
+      "active": true,
+      "createdAt": "2026-09-19T23:53:51.944Z",
+      "updatedAt": "2026-09-20T00:02:18.514Z"
     }
   ],
   "userLogs": [

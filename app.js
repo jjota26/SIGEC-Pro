@@ -17952,7 +17952,7 @@ function renderUserSelectOptions() {
 }
 window.renderUserSelectOptions = renderUserSelectOptions;
 
-function verifyLoginPin() {
+async function verifyLoginPin() {
   ensureUsersInitialized();
   const userInput = document.getElementById('loginUserInput');
   const pinInput = document.getElementById('loginPinInput');
@@ -17983,9 +17983,21 @@ function verifyLoginPin() {
     return;
   }
 
-  // Pesquisa estrita unicamente por correio eletrónico registado em db.usuarios
-  const usersList = (typeof db !== 'undefined' && Array.isArray(db.usuarios)) ? db.usuarios : [];
-  const matchedUser = usersList.find(u => u && u.email && u.email.trim().toLowerCase() === enteredEmail);
+  // Pesquisa de utilizadores registados por correio eletrónico
+  let usersList = (typeof db !== 'undefined' && Array.isArray(db.usuarios)) ? db.usuarios : [];
+  let matchingUsers = usersList.filter(u => u && u.email && u.email.trim().toLowerCase() === enteredEmail);
+  // Priorizar registo que já esteja Ativo
+  let matchedUser = matchingUsers.find(u => u.active === true) || matchingUsers[matchingUsers.length - 1];
+
+  // Se o utilizador não constar localmente, tentar sincronizar imediatamente com a nuvem antes de rejeitar
+  if (!matchedUser && typeof loadDatabaseFromHuggingFace === 'function') {
+    try {
+      await loadDatabaseFromHuggingFace(true, true);
+      usersList = (typeof db !== 'undefined' && Array.isArray(db.usuarios)) ? db.usuarios : [];
+      matchingUsers = usersList.filter(u => u && u.email && u.email.trim().toLowerCase() === enteredEmail);
+      matchedUser = matchingUsers.find(u => u.active === true) || matchingUsers[matchingUsers.length - 1];
+    } catch (_) {}
+  }
 
   // Se o email não constar dos utilizadores registados, o acesso é estritamente bloqueado
   if (!matchedUser) {
@@ -18021,7 +18033,22 @@ function verifyLoginPin() {
     return;
   }
 
-  // Bloqueio se a conta estiver pendente de ativação pelo Administrador
+  // Se a conta local estiver marcada como inativa, consultar imediatamente o servidor para verificar se o administrador já a ativou
+  if (matchedUser.active === false && matchedUser.role !== 'admin' && typeof loadDatabaseFromHuggingFace === 'function') {
+    try {
+      await loadDatabaseFromHuggingFace(true, true);
+      const freshUsers = (typeof db !== 'undefined' && Array.isArray(db.usuarios)) ? db.usuarios : [];
+      const freshMatching = freshUsers.filter(u => u && u.email && u.email.trim().toLowerCase() === enteredEmail);
+      const activatedCandidate = freshMatching.find(u => u.active === true);
+      if (activatedCandidate) {
+        matchedUser = activatedCandidate;
+        saveDatabase();
+        console.log('[SIGEC-Pro Login] Conta ativada detetada com sucesso no servidor para:', enteredEmail);
+      }
+    } catch (_) {}
+  }
+
+  // Bloqueio se a conta continuar pendente de ativação pelo Administrador
   if (matchedUser.active === false && matchedUser.role !== 'admin') {
     const userLang = matchedUser.idioma || 'Português';
     const titleText = typeof translateSystemTerm === 'function' ? translateSystemTerm('Acesso Pendente de Aprovação', userLang) : 'Acesso Pendente de Aprovação';
@@ -18039,7 +18066,7 @@ function verifyLoginPin() {
   }
 
   // Autenticação autorizada estritamente em sessionStorage (memória volátil da sessão)
-  sessionStorage.setItem('sigec_pro_authenticated', 'true');
+  sessionStorage.setItem('sigec_pro_authenticated', 'true');  sessionStorage.setItem('sigec_pro_authenticated', 'true');
   sessionStorage.setItem('sigec_pro_active_user_id', matchedUser.id);
   localStorage.removeItem('sigec_pro_authenticated');
   localStorage.removeItem('sigec_pro_active_user_id');
@@ -18335,7 +18362,21 @@ function toggleUserActiveStatus(userId, activate) {
     alert("Não é possível alterar o estado da conta do Administrador principal.");
     return;
   }
+  const nowIso = new Date().toISOString();
   user.active = activate;
+  user.updatedAt = nowIso;
+
+  // Harmonizar todos os registos existentes com o mesmo email
+  if (user.email) {
+    const targetEmail = user.email.trim().toLowerCase();
+    (db.usuarios || []).forEach(u => {
+      if (u && u.email && u.email.trim().toLowerCase() === targetEmail) {
+        u.active = activate;
+        u.updatedAt = nowIso;
+      }
+    });
+  }
+
   saveDatabase();
   renderUserManagementGrid();
   renderUserSelectOptions();
@@ -18345,7 +18386,7 @@ function toggleUserActiveStatus(userId, activate) {
     sendUserAccountActivatedEmail(user).catch(() => {});
   }
 
-  // Sincronizar com o servidor se configurado
+  // Sincronizar imediatamente com o servidor
   if (typeof syncDatabaseToHuggingFace === 'function') {
     syncDatabaseToHuggingFace(true, true).catch(() => {});
   }
