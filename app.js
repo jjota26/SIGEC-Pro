@@ -8692,23 +8692,21 @@ window.renderDetachContactList = renderDetachContactList;
 function translateClientAndLinkedDataForUser(clientObj, targetUserId) {
   if (!clientObj || !targetUserId) return;
   ensureUsersInitialized();
-  const targetUser = (db.usuarios || []).find(u => u.id === targetUserId);
-  const destLang = (targetUser && targetUser.idioma) ? targetUser.idioma : (typeof getActiveUserLanguage === 'function' ? getActiveUserLanguage() : 'Português');
+  // Normalize all fields to canonical Português — display-time translation in
+  // loadClientIntoForm handles rendering in each user's language.
+  const canonicalLang = 'Português';
 
   if (typeof translateSystemTerm === 'function') {
-    if (clientObj.tipoCliente) {
-      clientObj.tipoCliente = translateSystemTerm(clientObj.tipoCliente, destLang);
-    }
     if (clientObj.pais) {
-      clientObj.pais = translateSystemTerm(clientObj.pais, destLang);
+      clientObj.pais = translateSystemTerm(clientObj.pais, canonicalLang);
     }
     if (Array.isArray(clientObj.separadores)) {
       clientObj.separadores.forEach(sep => {
         if (sep.tipoSeparador) {
-          sep.tipoSeparador = translateSystemTerm(sep.tipoSeparador, destLang);
+          sep.tipoSeparador = translateSystemTerm(sep.tipoSeparador, canonicalLang);
         }
         if (sep.pais) {
-          sep.pais = translateSystemTerm(sep.pais, destLang);
+          sep.pais = translateSystemTerm(sep.pais, canonicalLang);
         }
       });
     }
@@ -8717,9 +8715,9 @@ function translateClientAndLinkedDataForUser(clientObj, targetUserId) {
     if (Array.isArray(db.contactos)) {
       db.contactos.forEach(con => {
         if (con.clienteId === clientObj.id || (con.empresa && clientObj.nome && con.empresa.toLowerCase().trim() === clientObj.nome.toLowerCase().trim())) {
-          if (con.cargo) con.cargo = translateSystemTerm(con.cargo, destLang);
-          if (con.departamento) con.departamento = translateSystemTerm(con.departamento, destLang);
-          if (con.pais) con.pais = translateSystemTerm(con.pais, destLang);
+          if (con.cargo) con.cargo = translateSystemTerm(con.cargo, canonicalLang);
+          if (con.departamento) con.departamento = translateSystemTerm(con.departamento, canonicalLang);
+          if (con.pais) con.pais = translateSystemTerm(con.pais, canonicalLang);
         }
       });
     }
@@ -8728,9 +8726,9 @@ function translateClientAndLinkedDataForUser(clientObj, targetUserId) {
     if (Array.isArray(db.projetos)) {
       db.projetos.forEach(p => {
         if (p.clienteId === clientObj.id || (p.cliente && clientObj.nome && p.cliente.toLowerCase().trim() === clientObj.nome.toLowerCase().trim())) {
-          if (p.tipo) p.tipo = translateSystemTerm(p.tipo, destLang);
-          if (p.estado) p.estado = translateSystemTerm(p.estado, destLang);
-          if (p.fase) p.fase = translateSystemTerm(p.fase, destLang);
+          if (p.tipo) p.tipo = translateSystemTerm(p.tipo, canonicalLang);
+          if (p.estado) p.estado = translateSystemTerm(p.estado, canonicalLang);
+          if (p.fase) p.fase = translateSystemTerm(p.fase, canonicalLang);
         }
       });
     }
@@ -8739,7 +8737,7 @@ function translateClientAndLinkedDataForUser(clientObj, targetUserId) {
     if (Array.isArray(db.orcamentos)) {
       db.orcamentos.forEach(b => {
         if (b.clienteId === clientObj.id || (b.cliente && clientObj.nome && b.cliente.toLowerCase().trim() === clientObj.nome.toLowerCase().trim())) {
-          if (b.modeloBase) b.modeloBase = translateSystemTerm(b.modeloBase, destLang);
+          if (b.modeloBase) b.modeloBase = translateSystemTerm(b.modeloBase, canonicalLang);
         }
       });
     }
@@ -8825,7 +8823,7 @@ function saveClient(e) {
         andar: cleanStr(primarySep.andar),
         codigoPostal: cleanStr(primarySep.codigoPostal),
         localidade: cleanStr(primarySep.localidade),
-        pais: cleanStr(primarySep.pais) || 'Portugal',
+        pais: (typeof translateSystemTerm === 'function' ? translateSystemTerm(cleanStr(primarySep.pais) || 'Portugal', 'Português') : (cleanStr(primarySep.pais) || 'Portugal')),
         telefone: cleanStr(primarySep.telefone),
         telemovel: cleanStr(primarySep.telemovel),
         email: cleanStr(primarySep.email),
@@ -8841,7 +8839,7 @@ function saveClient(e) {
           andar: cleanStr(s.andar),
           codigoPostal: cleanStr(s.codigoPostal),
           localidade: cleanStr(s.localidade),
-          pais: cleanStr(s.pais) || 'Portugal',
+          pais: (typeof translateSystemTerm === 'function' ? translateSystemTerm(cleanStr(s.pais) || 'Portugal', 'Português') : (cleanStr(s.pais) || 'Portugal')),
           telefone: cleanStr(s.telefone),
           telemovel: cleanStr(s.telemovel),
           email: cleanStr(s.email),
@@ -8870,7 +8868,8 @@ function saveClient(e) {
       const andar = document.getElementById('clientAndar') ? document.getElementById('clientAndar').value.trim() : '';
       const codigoPostal = document.getElementById('clientCodigoPostal') ? document.getElementById('clientCodigoPostal').value.trim() : '';
       const localidade = document.getElementById('clientLocalidade') ? document.getElementById('clientLocalidade').value.trim() : '';
-      const pais = document.getElementById('clientPais') ? document.getElementById('clientPais').value.trim() : '';
+      const _paisRaw = document.getElementById('clientPais') ? document.getElementById('clientPais').value.trim() : '';
+      const pais = (typeof translateSystemTerm === 'function' && _paisRaw) ? translateSystemTerm(_paisRaw, 'Português') : _paisRaw;
       const telefone = document.getElementById('clientTelefone') ? document.getElementById('clientTelefone').value.trim() : '';
       const telemovel = document.getElementById('clientTelemovel') ? document.getElementById('clientTelemovel').value.trim() : '';
       const email = document.getElementById('clientEmail') ? document.getElementById('clientEmail').value.trim() : '';
