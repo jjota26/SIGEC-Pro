@@ -26609,12 +26609,12 @@ window.getCountryFlagEmoji = getCountryFlagEmoji;
 
 const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
-    aliases: ['alegria activity', 'alegria activity s.l.', 'alegria-activity', 'alegria activity sede', 'grupo alegria activity', 'alegria activity vitoria', 'alegria activity espanha'],
+    aliases: ['alegria activity, s.l.', 'alegria activity s.l.', 'alegria activity', 'alegria-activity', 'alegria activity sede', 'grupo alegria activity', 'alegria activity vitoria', 'alegria activity espanha'],
     website: 'https://alegria-activity.com',
     email: 'info@alegria-activity.com',
     telefone: '+34 945 128 415',
-    direcao1: 'Calle Landaluzea (Polígono Industrial Júndiz)',
-    numero: '24',
+    direcao1: 'Calle Lermandabidea (Polígono Industrial Júndiz)',
+    numero: '7',
     andar: '',
     codigoPostal: '01015',
     localidade: 'Vitoria-Gasteiz (Álava)',
@@ -26622,12 +26622,12 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://alegria-activity.com'
   },
   {
-    aliases: ['alegria activity instalacoes', 'alegria activity lermandabidea', 'alegria activity operacional'],
+    aliases: ['alegria activity landaluzea', 'alegria activity jundiz'],
     website: 'https://alegria-activity.com',
     email: 'info@alegria-activity.com',
     telefone: '+34 945 128 415',
-    direcao1: 'Lermandabidea Kalea',
-    numero: '7',
+    direcao1: 'Calle Landaluzea (Polígono Industrial Júndiz)',
+    numero: '24',
     andar: '',
     codigoPostal: '01015',
     localidade: 'Vitoria-Gasteiz (Álava)',
