@@ -28454,6 +28454,22 @@ function updateAiModalPreview(cand) {
     googleBtn.href = `https://www.google.com/search?q=${qTerms}`;
   }
 
+  // Google Maps Assisted Link
+  const mapsBtn = document.getElementById('aiBtnGoogleMapsAssisted');
+  if (mapsBtn) {
+    const mapParts = [
+      cand.direcao1,
+      cand.numero ? ('nº ' + cand.numero) : '',
+      cand.direcao2,
+      cand.codigoPostal,
+      cand.localidade,
+      cand.pais,
+      currentPendingContext?.entityName || cand.nome
+    ].filter(Boolean);
+    const mapQuery = encodeURIComponent(mapParts.join(', '));
+    mapsBtn.href = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
+  }
+
   // Address Breakdown
   const elDir1 = document.getElementById('aiPreviewDirecao1');
   if (elDir1) elDir1.textContent = cand.direcao1 || '(Não identificada)';

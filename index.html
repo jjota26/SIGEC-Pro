@@ -4871,11 +4871,11 @@
   <div id="toastContainer" class="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999999 !important;"></div>
 
   <!-- Internationalization & Translations Engine -->
-  <script src="i18n.js?v=202609200300"></script>
+  <script src="i18n.js?v=202609200315"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=202609200300"></script>
+  <script src="app.js?v=202609200315"></script>
   <!-- Duplicates Management Engine -->
-  <script src="duplicatesManager.js?v=202609200300"></script>
+  <script src="duplicatesManager.js?v=202609200315"></script>
 
   <!-- Auto-cura imediata de definições SMTP e Webhook no arranque de qualquer computador -->
   <script>
@@ -6404,6 +6404,9 @@
             <a href="javascript:void(0)" id="aiBtnGoogleSearchAssisted" target="_blank" rel="noopener noreferrer" style="font-size: 0.76rem; font-weight: 600; color: #2563eb; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 6px; background: #eff6ff; border: 1px solid #bfdbfe;" title="Ver resultados oficiais de pesquisa no Google">
               <i class="fa-brands fa-google"></i> Ver no Google
             </a>
+            <a href="javascript:void(0)" id="aiBtnGoogleMapsAssisted" target="_blank" rel="noopener noreferrer" style="font-size: 0.76rem; font-weight: 600; color: #15803d; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 6px; background: #f0fdf4; border: 1px solid #bbf7d0;" title="Ver localização no Google Maps">
+              <i class="fa-solid fa-location-dot" style="color: #ea4335;"></i> Ver no Google Maps
+            </a>
             <a href="javascript:void(0)" onclick="promptGeminiApiKey()" style="font-size: 0.76rem; font-weight: 600; color: #6366f1; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; padding: 4px 8px; border-radius: 6px; background: #eef2ff;" title="Configurar chave de API Google Gemini (opcional)">
               <i class="fa-solid fa-key"></i> Chave Gemini (Opcional)
             </a>
@@ -6427,7 +6430,7 @@
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js?v=202609200300')
+      navigator.serviceWorker.register('/sw.js?v=202609200315')
         .then(function (reg) {
           if (typeof reg.update === 'function') {
             reg.update();
