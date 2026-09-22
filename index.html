@@ -4871,11 +4871,11 @@
   <div id="toastContainer" class="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999999 !important;"></div>
 
   <!-- Internationalization & Translations Engine -->
-  <script src="i18n.js?v=202609200450"></script>
+  <script src="i18n.js?v=202609221150"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=202609200450"></script>
+  <script src="app.js?v=202609221150"></script>
   <!-- Duplicates Management Engine -->
-  <script src="duplicatesManager.js?v=202609200450"></script>
+  <script src="duplicatesManager.js?v=202609221150"></script>
 
   <!-- Auto-cura imediata de definições SMTP e Webhook no arranque de qualquer computador -->
   <script>
@@ -6355,7 +6355,7 @@
 
           <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.5rem; margin-bottom: 0.5rem;">
             <div>
-              <label style="font-size: 0.72rem; color: #64748b; font-weight: 600; display: block;">Direção (Linha 1) â€” Rua / Avenida</label>
+              <label style="font-size: 0.72rem; color: #64748b; font-weight: 600; display: block;">Direção (Linha 1) - Rua / Avenida</label>
               <div id="aiPreviewDirecao1" style="font-size: 0.86rem; font-weight: 600; color: #1e293b; padding: 4px 8px; background: #f8fafc; border-radius: 4px; min-height: 28px;">-</div>
             </div>
             <div>
@@ -6366,7 +6366,7 @@
 
           <div style="margin-bottom: 0.5rem;" id="aiPreviewDirecao2Container">
             <label style="font-size: 0.72rem; color: #4338ca; font-weight: 600; display: flex; align-items: center; gap: 5px;">
-              <i class="fa-solid fa-industry" style="color: #6366f1;"></i> Direção (Linha 2) â€” Polígono Industrial / Edifício / Zona:
+              <i class="fa-solid fa-industry" style="color: #6366f1;"></i> Direção (Linha 2) - Zona Industrial / Edifício / Bloco:
             </label>
             <div id="aiPreviewDirecao2" style="font-size: 0.86rem; font-weight: 600; color: #3730a3; padding: 4px 8px; background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 4px; min-height: 28px;">-</div>
           </div>
@@ -6415,7 +6415,7 @@
             <button type="button" class="btn btn-close" onclick="closeAiAddressModal()" style="padding: 0.6rem 1.1rem;">
               Cancelar
             </button>
-            <button type="button" class="btn btn-primary" onclick="confirmAndApplyAiAddress()" style="padding: 0.6rem 1.25rem; font-weight: 600; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
+            <button type="button" class="btn btn-primary" id="btnConfirmApplyAiAddress" onclick="confirmAndApplyAiAddress()" style="padding: 0.6rem 1.25rem; font-weight: 600; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
               <i class="fa-solid fa-check"></i> Confirmar e Aplicar à Ficha
             </button>
           </div>
@@ -6430,7 +6430,7 @@
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js?v=202609200450')
+      navigator.serviceWorker.register('/sw.js?v=202609221150')
         .then(function (reg) {
           if (typeof reg.update === 'function') {
             reg.update();

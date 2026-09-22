@@ -27100,6 +27100,175 @@ window.splitSmartAddressLines = splitSmartAddressLines;
 
 
 const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
+  // --- ORGANISMOS E INSTITUTOS PÚBLICOS DE PORTUGAL ---
+  {
+    aliases: [
+      'turismo de portugal', 'turismo de portugal ip', 'turismo de portugal, i.p.', 'turismodeportugal',
+      'instituto de turismo de portugal', 'turismo portugal', 'turismo de portugal i.p.'
+    ],
+    website: 'https://www.turismodeportugal.pt',
+    telefone: '+351 211 140 200',
+    email: 'info@turismodeportugal.pt',
+    direcao1: 'Rua Ivone Silva',
+    numero: 'Lote 6',
+    andar: '',
+    codigoPostal: '1050-124',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.turismodeportugal.pt'
+  },
+  {
+    aliases: ['iapmei', 'iapmei ip', 'iapmei, i.p.', 'agência para a competitividade e inovação', 'agencia para a competitividade e inovacao'],
+    website: 'https://www.iapmei.pt',
+    telefone: '+351 213 836 000',
+    email: 'info@iapmei.pt',
+    direcao1: 'Estrada do Paço do Lumiar, Campus do Lumiar',
+    numero: 'Edifício A',
+    andar: '',
+    codigoPostal: '1649-038',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.iapmei.pt'
+  },
+  {
+    aliases: ['aicep', 'aicep epe', 'aicep, e.p.e.', 'aicep portugal global', 'agência para o investimento e comércio externo'],
+    website: 'https://www.portugalglobal.pt',
+    telefone: '+351 217 909 500',
+    email: 'aicep@portugalglobal.pt',
+    direcao1: 'Rua de Entrecampos',
+    numero: '28',
+    andar: 'Bloco B, 12º',
+    codigoPostal: '1700-158',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugalglobal.pt'
+  },
+  {
+    aliases: ['asae', 'autoridade de segurança alimentar e económica', 'autoridade de seguranca alimentar e economica'],
+    website: 'https://www.asae.gov.pt',
+    telefone: '+351 217 983 600',
+    email: 'correio.asae@asae.pt',
+    direcao1: 'Rua Rodrigo da Fonseca',
+    numero: '73',
+    andar: '',
+    codigoPostal: '1269-274',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.asae.gov.pt'
+  },
+  {
+    aliases: ['at', 'autoridade tributária', 'autoridade tributaria', 'autoridade tributária e aduaneira', 'portal das finanças', 'dgci'],
+    website: 'https://www.portaldasfinancas.gov.pt',
+    telefone: '+351 217 206 707',
+    direcao1: 'Rua da Prata',
+    numero: '10',
+    andar: '',
+    codigoPostal: '1149-027',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portaldasfinancas.gov.pt'
+  },
+  {
+    aliases: ['imt', 'imt ip', 'imt, i.p.', 'instituto da mobilidade e dos transportes', 'imtt'],
+    website: 'https://www.imt-ip.pt',
+    telefone: '+351 217 949 000',
+    email: 'imt@imt-ip.pt',
+    direcao1: 'Avenida das Forças Armadas',
+    numero: '40',
+    andar: '',
+    codigoPostal: '1649-022',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.imt-ip.pt'
+  },
+  {
+    aliases: ['iefp', 'iefp ip', 'iefp, i.p.', 'instituto do emprego e formação profissional', 'instituto do emprego e formacao profissional'],
+    website: 'https://www.iefp.pt',
+    telefone: '+351 215 803 000',
+    direcao1: 'Rua de Xabregas',
+    numero: '52',
+    andar: '',
+    codigoPostal: '1949-003',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.iefp.pt'
+  },
+  {
+    aliases: ['inem', 'inem ip', 'inem, i.p.', 'instituto nacional de emergência médica'],
+    website: 'https://www.inem.pt',
+    telefone: '+351 213 508 100',
+    email: 'inem@inem.pt',
+    direcao1: 'Rua Almirante Barroso',
+    numero: '36',
+    andar: '',
+    codigoPostal: '1000-013',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.inem.pt'
+  },
+  {
+    aliases: ['icnf', 'icnf ip', 'icnf, i.p.', 'instituto da conservação da natureza e das florestas'],
+    website: 'https://www.icnf.pt',
+    telefone: '+351 213 507 900',
+    email: 'icnf@icnf.pt',
+    direcao1: 'Avenida da República',
+    numero: '16 a 16B',
+    andar: '',
+    codigoPostal: '1050-191',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.icnf.pt'
+  },
+  {
+    aliases: ['ipdj', 'ipdj ip', 'ipdj, i.p.', 'instituto português do desporto e juventude'],
+    website: 'https://ipdj.gov.pt',
+    telefone: '+351 210 470 000',
+    email: 'geral@ipdj.pt',
+    direcao1: 'Rua Rodrigo da Fonseca',
+    numero: '55',
+    andar: '',
+    codigoPostal: '1250-190',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://ipdj.gov.pt'
+  },
+  {
+    aliases: ['dgae', 'direção-geral das atividades económicas', 'direccao-geral das actividades economicas'],
+    website: 'https://www.dgae.gov.pt',
+    telefone: '+351 217 919 100',
+    email: 'dgae@dgae.gov.pt',
+    direcao1: 'Avenida Visconde de Valmor',
+    numero: '72',
+    andar: '',
+    codigoPostal: '1069-041',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.dgae.gov.pt'
+  },
+  {
+    aliases: ['turespaña', 'turespana', 'instituto de turismo de españa', 'instituto de turismo de espana', 'turismo de españa'],
+    website: 'https://www.tourspain.es',
+    telefone: '+34 913 433 500',
+    direcao1: 'Calle Poeta Joan Maragall',
+    numero: '41',
+    andar: '',
+    codigoPostal: '28020',
+    localidade: 'Madrid',
+    pais: 'España',
+    fonteUrl: 'https://www.tourspain.es'
+  },
+  {
+    aliases: ['icex', 'icex españa', 'icex españa exportación e inversiones'],
+    website: 'https://www.icex.es',
+    telefone: '+34 913 496 100',
+    direcao1: 'Paseo de la Castellana',
+    numero: '278',
+    andar: '',
+    codigoPostal: '28046',
+    localidade: 'Madrid',
+    pais: 'España',
+    fonteUrl: 'https://www.icex.es'
+  },
   {
     aliases: ['alegria activity, s.l.', 'alegria activity s.l.', 'alegria activity', 'alegria-activity', 'alegria activity sede', 'grupo alegria activity', 'alegria activity vitoria', 'alegria activity espanha'],
     website: 'https://alegria-activity.com',
@@ -28170,74 +28339,17 @@ function normalizeSearchTerm(str) {
     .trim();
 }
 
-function cleanCompanySearchName(str) {
-  if (!str) return '';
-  return str
-    .replace(/\b(s\.?l\.?u?\.?|s\.?a\.?u?\.?|lda\.?|unipessoal|limitada|sociedad an[o??]nima|sociedad limitada|ltd\.?|gmbh|inc\.?|llc|corp\.?)\b/gi, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-function resolveEntityFromLocalDirectory(entityName, ministerio, targetPais) {
-  const normName = normalizeSearchTerm(entityName);
-  const normClean = normalizeSearchTerm(cleanCompanySearchName(entityName));
-  const normMin = normalizeSearchTerm(ministerio);
-
-  const rawParts = (entityName || '').split(/[\/\-\|]/).map(s => s.trim()).filter(Boolean);
-  const searchCandidates = [];
-  if (rawParts.length > 1) {
-    searchCandidates.push(normalizeSearchTerm(rawParts[rawParts.length - 1]));
-    searchCandidates.push(normalizeSearchTerm(cleanCompanySearchName(rawParts[rawParts.length - 1])));
-    searchCandidates.push(normalizeSearchTerm(rawParts[0]));
-  }
-  if (normClean && normClean !== normName) searchCandidates.push(normClean);
-  if (normName) searchCandidates.push(normName);
-
-  function matchAlias(target, alias) {
-    if (!target || !alias) return false;
-    const t = normalizeSearchTerm(target);
-    const a = normalizeSearchTerm(alias);
-    if (!t || !a) return false;
-    if (t === a) return true;
-    if (a.length <= 4) {
-      return t.split(/\s+/).includes(a);
-    }
-    return t.includes(a) || a.includes(t);
-  }
-
-  // Pass 1: Busca nos candidatos da entidade
-  for (const cand of searchCandidates) {
-    if (!cand || cand.length < 2) continue;
-    for (const item of SIGEC_PT_INSTITUTIONAL_DIRECTORY) {
-      for (const alias of item.aliases) {
-        if (matchAlias(cand, alias)) {
-          return item;
-        }
-      }
-    }
-  }
-
-  // Pass 2: Busca no minist??rio
-  if (normMin && normMin.length >= 3) {
-    for (const item of SIGEC_PT_INSTITUTIONAL_DIRECTORY) {
-      for (const alias of item.aliases) {
-        if (matchAlias(normMin, alias)) {
-          return item;
-        }
-      }
-    }
-  }
-
-  return null;
-}
-
-
 function cleanCompanySearchName(rawName) {
   if (!rawName || typeof rawName !== 'string') return '';
   let cleaned = rawName.trim();
+  // Remover parênteses finais e notas: (Sede), (Portugal), etc.
   cleaned = cleaned.replace(/\s*\([A-Z0-9\s\.\-]+\)$/i, '');
-  cleaned = cleaned.replace(/\b(S\.L\.U\.?|S\.L\.?|S\.A\.U\.?|S\.A\.?|S\.C\.P\.?|S\.C\.?|S\.A\.R\.L\.?|S\.A\.S\.?|Lda\.?|Limitada|Sociedade An[oó]nima|GmbH|AG|Ltd\.?|Limited|Inc\.?|Incorporated|LLC|Corp\.?|Corporation)\b/gi, '');
+  // Remover tipos societários, siglas públicas e comerciais comuns em PT e ES
+  cleaned = cleaned.replace(/,?\s*\b(I\.?[\s]*P\.?|E\.?[\s]*P\.?[\s]*E\.?|E\.?[\s]*P\.?|E\.?[\s]*M\.?|S\.?[\s]*G\.?[\s]*P\.?[\s]*S\.?|C\.?[\s]*R\.?[\s]*L\.?|S\.?[\s]*A\.?[\s]*U\.?|S\.?[\s]*L\.?[\s]*U\.?|S\.?[\s]*A\.?|S\.?[\s]*L\.?|S\.?[\s]*C\.?[\s]*P\.?|S\.?[\s]*A\.?[\s]*R\.?[\s]*L\.?|S\.?[\s]*A\.?[\s]*S\.?|Lda\.?|Limitada|Unipessoal|Sociedade An[oó]nima|Sociedad An[oó]nima|Sociedad Limitada|GmbH|AG|Ltd\.?|Limited|Inc\.?|Incorporated|LLC|Corp\.?|Corporation)\b/gi, '');
+  // Remover sucursais
   cleaned = cleaned.replace(/\b(Sucursal em Portugal|Sucursal Portugal|Sucursal de Espa[ñn]a)\b/gi, '');
+  // Remover pontuação residual no início e fim
+  cleaned = cleaned.replace(/^[\,\.\-\s]+|[\,\.\-\s]+$/g, '');
   cleaned = cleaned.replace(/\s{2,}/g, ' ').trim();
   return cleaned;
 }
@@ -28427,24 +28539,37 @@ async function resolveEntityCandidatesFromWikidata(query, targetCountry) {
   const candidates = [];
   try {
     // ── PASSO 1: pesquisa por nome → IDs de entidades ──────────────────────
-    const searchUrl = 'https://www.wikidata.org/w/api.php?action=wbsearchentities' +
-      '&search=' + encodeURIComponent(query.trim()) +
-      '&language=pt&type=item&format=json&origin=*&limit=8';
+    const cleanedQuery = (typeof cleanCompanySearchName === 'function') ? cleanCompanySearchName(query) : query.trim();
+    const queriesToTry = [cleanedQuery, query.trim()].filter((q, idx, arr) => q && q.length >= 2 && arr.indexOf(q) === idx);
 
-    const sResp = await fetch(searchUrl);
-    if (!sResp.ok) return [];
-    const sData = await sResp.json();
-    const searchResults = sData?.search || [];
+    let searchResults = [];
+    for (const qTerm of queriesToTry) {
+      try {
+        const searchUrl = 'https://www.wikidata.org/w/api.php?action=wbsearchentities' +
+          '&search=' + encodeURIComponent(qTerm) +
+          '&language=pt&type=item&format=json&origin=*&limit=8';
+        const sResp = await fetch(searchUrl);
+        if (sResp.ok) {
+          const sData = await sResp.json();
+          const found = sData?.search || [];
+          found.forEach(r => { if (!searchResults.find(x => x.id === r.id)) searchResults.push(r); });
+          if (searchResults.length >= 2) break;
+        }
+      } catch(_) {}
+    }
+
     if (!searchResults.length) {
-      // Tentar também em inglês
-      const searchUrlEn = 'https://www.wikidata.org/w/api.php?action=wbsearchentities' +
-        '&search=' + encodeURIComponent(cleanCompanySearchName(query) || query.trim()) +
-        '&language=en&type=item&format=json&origin=*&limit=8';
-      const sRespEn = await fetch(searchUrlEn);
-      if (sRespEn.ok) {
-        const sDataEn = await sRespEn.json();
-        (sDataEn?.search || []).forEach(r => { if (!searchResults.find(x => x.id === r.id)) searchResults.push(r); });
-      }
+      // Tentar também em inglês com termo limpo
+      try {
+        const searchUrlEn = 'https://www.wikidata.org/w/api.php?action=wbsearchentities' +
+          '&search=' + encodeURIComponent(cleanedQuery || query.trim()) +
+          '&language=en&type=item&format=json&origin=*&limit=8';
+        const sRespEn = await fetch(searchUrlEn);
+        if (sRespEn.ok) {
+          const sDataEn = await sRespEn.json();
+          (sDataEn?.search || []).forEach(r => { if (!searchResults.find(x => x.id === r.id)) searchResults.push(r); });
+        }
+      } catch(_) {}
     }
     if (!searchResults.length) return [];
 
@@ -28843,7 +28968,140 @@ function renderAiCandidateCards() {
   });
 }
 
+
+function clearAiModalPreview() {
+  const foundWebText = document.getElementById('aiFoundWebsiteText');
+  const visitBtn = document.getElementById('aiBtnVisitFoundWebsite');
+  if (foundWebText) foundWebText.textContent = 'Não identificada na pesquisa direta';
+  if (visitBtn) visitBtn.style.display = 'none';
+
+  const foundEmailText = document.getElementById('aiFoundEmailText');
+  const mailBtn = document.getElementById('aiBtnMailFoundEmail');
+  if (foundEmailText) foundEmailText.textContent = 'Não identificado';
+  if (mailBtn) mailBtn.style.display = 'none';
+
+  const foundTelText = document.getElementById('aiFoundTelefoneText');
+  const callBtn = document.getElementById('aiBtnCallFoundTelefone');
+  if (foundTelText) foundTelText.textContent = 'Não identificado';
+  if (callBtn) callBtn.style.display = 'none';
+
+  const elDir1 = document.getElementById('aiPreviewDirecao1');
+  if (elDir1) elDir1.textContent = '-';
+
+  const elNumAnd = document.getElementById('aiPreviewNumeroAndar');
+  if (elNumAnd) elNumAnd.textContent = '-';
+
+  const elDir2 = document.getElementById('aiPreviewDirecao2');
+  const elDir2Container = document.getElementById('aiPreviewDirecao2Container');
+  if (elDir2) elDir2.textContent = '-';
+  if (elDir2Container) elDir2Container.style.display = 'none';
+
+  const elCp = document.getElementById('aiPreviewCodigoPostal');
+  if (elCp) elCp.textContent = '-';
+
+  const elLoc = document.getElementById('aiPreviewLocalidade');
+  if (elLoc) elLoc.textContent = '-';
+
+  const elPais = document.getElementById('aiPreviewPais');
+  if (elPais) elPais.textContent = '-';
+
+  const elContribuinte = document.getElementById('aiPreviewContribuinte');
+  const elContribuinteContainer = document.getElementById('aiPreviewContribuinteContainer');
+  if (elContribuinte) elContribuinte.textContent = '-';
+  if (elContribuinteContainer) elContribuinteContainer.style.display = 'none';
+
+  const elFonte = document.getElementById('aiPreviewFonte');
+  if (elFonte) elFonte.textContent = 'Fonte: -';
+
+  const elEngine = document.getElementById('aiPreviewEngine');
+  if (elEngine) elEngine.textContent = '-';
+
+  const applyBtn = document.getElementById('btnConfirmApplyAiAddress');
+  if (applyBtn) {
+    applyBtn.disabled = true;
+    applyBtn.style.opacity = '0.45';
+    applyBtn.style.cursor = 'not-allowed';
+    applyBtn.title = 'Nenhuma morada selecionada para aplicar';
+  }
+}
+window.clearAiModalPreview = clearAiModalPreview;
+
+function parseAndApplyQuickPasteAddress() {
+  const input = document.getElementById('aiQuickPasteInput');
+  if (!input || !input.value.trim()) {
+    showToast('Por favor, cole primeiro a morada ou texto copiado da pesquisa.', 'warning');
+    return;
+  }
+  const rawText = input.value.trim();
+
+  // 1. Extrair email, telefone e website do texto
+  const emailMatch = rawText.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
+  const phoneMatch = rawText.match(/(?:\+351\s*)?(?:2\d{1,2}\s*\d{3}\s*\d{3,4}|9\d{1,2}\s*\d{3}\s*\d{3,4}|808\s*\d{3}\s*\d{3})/);
+  const webMatch = rawText.match(/https?:\/\/[^\s\,]+|(?:www\.)[^\s\,]+/);
+
+  // 2. Usar smartParseAddress para decompor a morada
+  const parsed = (typeof smartParseAddress === 'function') ? smartParseAddress(rawText) : null;
+  const entityName = currentPendingContext?.entityName || 'Entidade';
+  const targetCountry = currentPendingContext?.existingPais || 'Portugal';
+
+  let direcao1 = '';
+  let numero = '';
+  let andar = '';
+  let codigoPostal = '';
+  let localidade = '';
+  let pais = targetCountry;
+
+  if (parsed) {
+    direcao1 = parsed.direcao1 || '';
+    numero = parsed.numero || '';
+    andar = parsed.andar || '';
+    codigoPostal = parsed.codigoPostal || '';
+    localidade = parsed.localidade || '';
+    pais = parsed.pais || targetCountry;
+  }
+
+  // Se o utilizador colou algo com "Lote 6", extrair
+  const loteMatch = rawText.match(/\b(Lote\s*\d+[A-Za-z]?)\b/i);
+  if (loteMatch && !numero) {
+    numero = loteMatch[1];
+    if (andar === loteMatch[1]) andar = '';
+  }
+
+  const newCand = {
+    nome: entityName,
+    direcao1: direcao1,
+    direcao2: '',
+    numero: numero,
+    andar: andar,
+    codigoPostal: codigoPostal,
+    localidade: localidade,
+    pais: pais,
+    countryCode: pais.toLowerCase().includes('esp') ? 'es' : 'pt',
+    flag: getCountryFlagEmoji(pais.toLowerCase().includes('esp') ? 'es' : 'pt', pais),
+    telefone: phoneMatch ? phoneMatch[0] : (currentPendingContext?.existingTelefone || ''),
+    email: emailMatch ? emailMatch[0] : (currentPendingContext?.existingEmail || ''),
+    website: webMatch ? (webMatch[0].startsWith('http') ? webMatch[0] : 'https://' + webMatch[0]) : (currentPendingContext?.existingWebsite || ''),
+    fonteUrl: 'https://www.google.com',
+    provider: '📋 Dados Extraídos de Texto Copiado (Google / Web)'
+  };
+
+  if (!availableAiCandidates) availableAiCandidates = [];
+  availableAiCandidates.unshift(newCand);
+  selectedAiCandidateIndex = 0;
+  selectAiCandidate(0);
+  showToast('Morada extraída e aplicada com sucesso!', 'success');
+}
+window.parseAndApplyQuickPasteAddress = parseAndApplyQuickPasteAddress;
+
 function updateAiModalPreview(cand) {
+  const applyBtn = document.getElementById("btnConfirmApplyAiAddress");
+  if (applyBtn) {
+    applyBtn.disabled = false;
+    applyBtn.style.opacity = "1";
+    applyBtn.style.cursor = "pointer";
+    applyBtn.title = "Confirmar e aplicar esta morada";
+  }
+
   if (!cand) return;
 
   // Website Box
@@ -29179,6 +29437,59 @@ async function triggerAiAddressEnrichment() {
           });
         }
       }
+    }
+
+    // 5b. Pesquisa Web em Tempo Real via Servidor SIGEC-Pro (/api/ai-lookup-address)
+    if (availableAiCandidates.length < 3) {
+      try {
+        const serverEndpoint = (window.location && window.location.origin) ? (window.location.origin + '/api/ai-lookup-address') : '/api/ai-lookup-address';
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3500);
+        const sResp = await fetch(serverEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            entityName: entityName,
+            tipoCliente: tipoCliente,
+            ministerio: ministerio,
+            contribuinte: contribuinte,
+            existingWebsite: existingWebsite
+          }),
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+        if (sResp.ok) {
+          const sJson = await sResp.json();
+          if (sJson && sJson.success && sJson.data) {
+            const sd = sJson.data;
+            if (sd.direcao1 || sd.codigoPostal || sd.website || sd.telefone) {
+              const sKey = ((sd.pais || '') + '|' + (sd.localidade || '') + '|' + (sd.direcao1 || '')).toLowerCase();
+              if (!seenKeys.has(sKey)) {
+                seenKeys.add(sKey);
+                const sCountry = sd.pais || existingPais || 'Portugal';
+                const sCc = sCountry.toLowerCase().includes('esp') ? 'es' : 'pt';
+                availableAiCandidates.push({
+                  nome: entityName,
+                  direcao1: sd.direcao1 || '',
+                  direcao2: sd.direcao2 || '',
+                  numero: sd.numero || '',
+                  andar: sd.andar || '',
+                  codigoPostal: sd.codigoPostal || '',
+                  localidade: sd.localidade || '',
+                  pais: sCountry,
+                  countryCode: sCc,
+                  flag: getCountryFlagEmoji(sCc, sCountry),
+                  telefone: sd.telefone || existingTelefone || '',
+                  email: sd.email || existingEmail || '',
+                  website: sd.website || existingWebsite || '',
+                  fonteUrl: sd.fonteUrl || 'https://duckduckgo.com',
+                  provider: '🌐 Pesquisa Web Oficial (Live Search)'
+                });
+              }
+            }
+          }
+        }
+      } catch(_) {}
     }
 
     // 6. Gemini AI com Google Search e Fallbacks Robustos

@@ -500,7 +500,12 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
         }
 
         // 3. Motor de Varrimento e Extração Web Alternativo (Server-side)
-        let query = `${entityName} morada sede contactos Portugal`;
+        const cleanEntityName = entityName
+          .replace(/\s*\([A-Z0-9\s\.\-]+\)$/i, '')
+          .replace(/,?\s*\b(I\.?[\s]*P\.?|E\.?[\s]*P\.?[\s]*E\.?|E\.?[\s]*P\.?|E\.?[\s]*M\.?|S\.?[\s]*G\.?[\s]*P\.?[\s]*S\.?|C\.?[\s]*R\.?[\s]*L\.?|S\.?[\s]*A\.?[\s]*U\.?|S\.?[\s]*L\.?[\s]*U\.?|S\.?[\s]*A\.?|S\.?[\s]*L\.?|Lda\.?|Limitada|Unipessoal)\b/gi, '')
+          .replace(/^[\,\.\-\s]+|[\,\.\-\s]+$/g, '')
+          .trim();
+        let query = `${cleanEntityName || entityName} morada sede contactos Portugal`;
         if (tipoCliente === 'Estatal' && ministerio) {
           query = `${entityName} ${ministerio} morada sede contactos Portugal`;
         }
@@ -595,11 +600,20 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
           address.direcao1 = street;
         }
 
-        // Número de porta
+        // Número de porta ou Lote
         if (!address.numero) {
-          const numMatch = fullText.match(/\b(?:n\.?[ºo]?|número|no\.)\s*(\d+[A-Za-z]?)\b/i) || fullText.match(/,\s*(\d+[A-Za-z]?)\s*,/);
-          if (numMatch) address.numero = numMatch[1];
+          const loteMatch = fullText.match(/\b(Lote\s*\d+[A-Za-z]?)\b/i);
+          if (loteMatch) {
+            address.numero = loteMatch[1];
+          } else {
+            const numMatch = fullText.match(/\b(?:n\.?[ºo]?|número|no\.)\s*(\d+[A-Za-z]?)\b/i) || fullText.match(/,\s*(\d+[A-Za-z]?)\s*,/);
+            if (numMatch) address.numero = numMatch[1];
+          }
         }
+
+        // Contactos (Telefone e Email)
+        const phoneMatch = fullText.match(/(?:\+351\s*)?(?:2\d{1,2}\s*\d{3}\s*\d{3,4}|9\d{1,2}\s*\d{3}\s*\d{3,4}|808\s*\d{3}\s*\d{3})/);
+        const emailMatch = fullText.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
 
         // Andar
         const andarMatch = fullText.match(/\b(\d+[ºªo]\s*(?:andar|Dto|Esq|Frt|frente)?|R\/C|rés-do-chão)\b/i);
@@ -622,6 +636,8 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
           provider: 'Web Search Engine',
           data: {
             website: detectedWebsite,
+            telefone: phoneMatch ? phoneMatch[0] : '',
+            email: emailMatch ? emailMatch[0] : '',
             direcao1: address.direcao1,
             direcao2: address.direcao2,
             numero: address.numero,
