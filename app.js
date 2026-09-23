@@ -4531,7 +4531,22 @@ async function syncDatabaseToHuggingFace(silent = false, force = false) {
 
     let pushSuccess = false;
 
-    // PRIORIDADE 1: Bridge local nativo C# (grava localmente e envia para Nuvem)
+    // PRIORIDADE 1: Servidor Web/Node local ou de rede da aplicação
+    try {
+      const serverOrigin = (typeof window !== 'undefined' && window.location && window.location.origin && !window.location.origin.startsWith('file:')) ? window.location.origin : '';
+      if (serverOrigin) {
+        const srvPushRes = await fetch(`${serverOrigin}/api/save-db-json`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: dbString
+        }).catch(() => null);
+        if (srvPushRes && srvPushRes.ok) {
+          pushSuccess = true;
+        }
+      }
+    } catch(eSrv) {}
+
+    // PRIORIDADE 1B: Bridge local nativo C# (grava localmente e envia para Nuvem)
     try {
       const bridgePushRes = await fetch('http://127.0.0.1:59124/api/push-cloud-db', {
         method: 'POST',
@@ -4709,9 +4724,16 @@ function mergeCloudDatabaseSafely(cloudData) {
         const localTs = new Date(localItem.updatedAt || localItem.createdAt || 0).getTime();
         const cloudTs = new Date(cloudItem.updatedAt || cloudItem.createdAt || 0).getTime();
 
-        if (cloudTs > localTs) {
-          // Versão da nuvem é mais recente
+        // Para utilizadores: se a nuvem indicar active === true e localmente estiver inativo, a aprovação do Administrador prevalece sempre
+        const isUserActivation = (localArrayName === 'usuarios' && cloudItem.active === true && localItem.active !== true);
+
+        if (isUserActivation || cloudTs >= localTs) {
+          // Versão da nuvem é mais recente ou confirma ativação pelo Administrador
           localArr[index] = { ...localItem, ...cloudItem };
+          if (isUserActivation) {
+            localArr[index].active = true;
+            localArr[index].updatedAt = cloudItem.updatedAt || new Date().toISOString();
+          }
           hasRemoteChangesApplied = true;
         } else if (localTs > cloudTs) {
           // Versão local é mais recente: marcar para envio à nuvem
@@ -4756,6 +4778,22 @@ function mergeCloudDatabaseSafely(cloudData) {
   
   if (Array.isArray(cloudData.usuarios) && cloudData.usuarios.length > 0) {
     mergeEntityArray('usuarios');
+
+    // Harmonização incondicional por email para utilizadores ativados na nuvem
+    const cloudActiveEmails = new Set(
+      cloudData.usuarios
+        .filter(u => u && u.active === true && u.email)
+        .map(u => u.email.trim().toLowerCase())
+    );
+    if (cloudActiveEmails.size > 0 && Array.isArray(db.usuarios)) {
+      db.usuarios.forEach(u => {
+        if (u && u.email && cloudActiveEmails.has(u.email.trim().toLowerCase()) && u.active !== true) {
+          u.active = true;
+          u.updatedAt = new Date().toISOString();
+          hasRemoteChangesApplied = true;
+        }
+      });
+    }
   }
 
   // Sincronização e propagação automática de configurações centrais (SMTP, alertas, app password)
@@ -18393,6 +18431,92 @@ function renderUserSelectOptions() {
 }
 window.renderUserSelectOptions = renderUserSelectOptions;
 
+// Consulta em tempo real e de latência zero do estado de ativação do utilizador no servidor
+async function checkUserLiveActivationStatus(enteredEmail) {
+  if (!enteredEmail) return null;
+  const targetEmail = enteredEmail.trim().toLowerCase();
+
+  const cfg = typeof getHuggingFaceConfig === 'function' ? getHuggingFaceConfig() : {};
+  const token = (cfg.token || (typeof DEFAULT_SYSTEM_HF_TOKEN !== 'undefined' ? DEFAULT_SYSTEM_HF_TOKEN : '')).trim();
+  const space = (cfg.space || (typeof DEFAULT_SYSTEM_HF_SPACE !== 'undefined' ? DEFAULT_SYSTEM_HF_SPACE : "josecenturio/SIGEC-Pro")).trim();
+  const serverOrigin = (typeof window !== 'undefined' && window.location && window.location.origin && !window.location.origin.startsWith('file:')) ? window.location.origin : '';
+
+  const sources = [];
+
+  // 1. Endpoint dedicado de consulta rápida do servidor Node
+  if (serverOrigin) {
+    sources.push({
+      url: `${serverOrigin}/api/user-status?email=${encodeURIComponent(targetEmail)}&_t=${Date.now()}`,
+      isStatusEndpoint: true
+    });
+    sources.push({
+      url: `${serverOrigin}/data/db.json?_t=${Date.now()}`,
+      isDbJson: true
+    });
+  }
+
+  // 2. Bridge nativo local (se aplicação desktop C#)
+  sources.push({
+    url: `http://127.0.0.1:59124/data/db.json?_t=${Date.now()}`,
+    isDbJson: true
+  });
+
+  // 3. Hugging Face Space raw (git commit imediato)
+  sources.push({
+    url: `https://huggingface.co/spaces/${space}/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
+    isDbJson: true,
+    auth: token
+  });
+
+  // 4. Hugging Face Dataset raw (git commit imediato)
+  sources.push({
+    url: `https://huggingface.co/datasets/${space}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`,
+    isDbJson: true,
+    auth: token
+  });
+
+  // 5. Hugging Face Static Space
+  sources.push({
+    url: `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}`,
+    isDbJson: true
+  });
+
+  for (const src of sources) {
+    try {
+      const headers = { 'Cache-Control': 'no-cache, no-store' };
+      if (src.auth) headers['Authorization'] = `Bearer ${src.auth}`;
+
+      const res = await fetch(src.url, {
+        headers: headers,
+        cache: 'no-store'
+      }).catch(() => null);
+
+      if (res && res.ok) {
+        const json = await res.json().catch(() => null);
+        if (!json) continue;
+
+        if (src.isStatusEndpoint) {
+          if (json.success && json.exists && json.active === true) {
+            return { active: true, user: json.user };
+          }
+        } else if (src.isDbJson && Array.isArray(json.usuarios)) {
+          const matching = json.usuarios.filter(u => u && u.email && u.email.trim().toLowerCase() === targetEmail);
+          const activeUser = matching.find(u => u.active === true);
+          if (activeUser) {
+            if (typeof mergeCloudDatabaseSafely === 'function') {
+              mergeCloudDatabaseSafely(json);
+            }
+            return { active: true, user: activeUser };
+          }
+        }
+      }
+    } catch (_) {}
+  }
+
+  return null;
+}
+window.checkUserLiveActivationStatus = checkUserLiveActivationStatus;
+
 async function verifyLoginPin() {
   ensureUsersInitialized();
   const userInput = document.getElementById('loginUserInput');
@@ -18430,14 +18554,47 @@ async function verifyLoginPin() {
   // Priorizar registo que já esteja Ativo
   let matchedUser = matchingUsers.find(u => u.active === true) || matchingUsers[matchingUsers.length - 1];
 
-  // Se o utilizador não constar localmente, tentar sincronizar imediatamente com a nuvem antes de rejeitar
-  if (!matchedUser && typeof loadDatabaseFromHuggingFace === 'function') {
+  // Se o utilizador não constar localmente OU constar com active === false, consultar IMEDIATAMENTE o servidor central em direto
+  if (!matchedUser || (matchedUser.active === false && matchedUser.role !== 'admin')) {
+    if (errorMsg) {
+      errorMsg.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> A validar autorização no servidor central...';
+      errorMsg.style.display = 'block';
+      errorMsg.style.color = '#0284c7';
+    }
+
     try {
-      await loadDatabaseFromHuggingFace(true, true);
-      usersList = (typeof db !== 'undefined' && Array.isArray(db.usuarios)) ? db.usuarios : [];
-      matchingUsers = usersList.filter(u => u && u.email && u.email.trim().toLowerCase() === enteredEmail);
-      matchedUser = matchingUsers.find(u => u.active === true) || matchingUsers[matchingUsers.length - 1];
-    } catch (_) {}
+      const liveCheck = await checkUserLiveActivationStatus(enteredEmail);
+      if (liveCheck && liveCheck.active === true) {
+        ensureUsersInitialized();
+        usersList = (typeof db !== 'undefined' && Array.isArray(db.usuarios)) ? db.usuarios : [];
+        matchingUsers = usersList.filter(u => u && u.email && u.email.trim().toLowerCase() === enteredEmail);
+        matchedUser = matchingUsers.find(u => u.active === true) || liveCheck.user;
+        if (matchedUser) {
+          matchedUser.active = true;
+          (db.usuarios || []).forEach(u => {
+            if (u && u.email && u.email.trim().toLowerCase() === enteredEmail) {
+              u.active = true;
+              u.updatedAt = new Date().toISOString();
+            }
+          });
+          safeSetStorage('sigec_pro_usuarios', JSON.stringify(db.usuarios || []));
+          saveDatabase();
+          console.log('[SIGEC-Pro Login] Utilizador ativado detetado de imediato no servidor central:', enteredEmail);
+        }
+        if (errorMsg) errorMsg.style.display = 'none';
+      } else if (typeof loadDatabaseFromHuggingFace === 'function') {
+        await loadDatabaseFromHuggingFace(true, true);
+        usersList = (typeof db !== 'undefined' && Array.isArray(db.usuarios)) ? db.usuarios : [];
+        matchingUsers = usersList.filter(u => u && u.email && u.email.trim().toLowerCase() === enteredEmail);
+        matchedUser = matchingUsers.find(u => u.active === true) || matchingUsers[matchingUsers.length - 1];
+        if (matchedUser && matchedUser.active === true) {
+          saveDatabase();
+          if (errorMsg) errorMsg.style.display = 'none';
+        }
+      }
+    } catch (eLiveCheck) {
+      console.warn('[SIGEC-Pro Login] Erro na verificação online:', eLiveCheck);
+    }
   }
 
   // Se o email não constar dos utilizadores registados, o acesso é estritamente bloqueado
@@ -18474,17 +18631,21 @@ async function verifyLoginPin() {
     return;
   }
 
-  // Se a conta local estiver marcada como inativa, consultar imediatamente o servidor para verificar se o administrador já a ativou
-  if (matchedUser.active === false && matchedUser.role !== 'admin' && typeof loadDatabaseFromHuggingFace === 'function') {
+  // Se mesmo assim a conta ainda constar como inativa, efetuar uma última consulta forçada com bypass total
+  if (matchedUser.active === false && matchedUser.role !== 'admin') {
     try {
-      await loadDatabaseFromHuggingFace(true, true);
-      const freshUsers = (typeof db !== 'undefined' && Array.isArray(db.usuarios)) ? db.usuarios : [];
-      const freshMatching = freshUsers.filter(u => u && u.email && u.email.trim().toLowerCase() === enteredEmail);
-      const activatedCandidate = freshMatching.find(u => u.active === true);
-      if (activatedCandidate) {
-        matchedUser = activatedCandidate;
+      const finalCheck = await checkUserLiveActivationStatus(enteredEmail);
+      if (finalCheck && finalCheck.active === true) {
+        matchedUser = finalCheck.user || matchedUser;
+        matchedUser.active = true;
+        (db.usuarios || []).forEach(u => {
+          if (u && u.email && u.email.trim().toLowerCase() === enteredEmail) {
+            u.active = true;
+            u.updatedAt = new Date().toISOString();
+          }
+        });
         saveDatabase();
-        console.log('[SIGEC-Pro Login] Conta ativada detetada com sucesso no servidor para:', enteredEmail);
+        console.log('[SIGEC-Pro Login] Conta ativada confirmada na verificação final:', enteredEmail);
       }
     } catch (_) {}
   }
@@ -18818,6 +18979,7 @@ function toggleUserActiveStatus(userId, activate) {
     });
   }
 
+  safeSetStorage('sigec_pro_usuarios', JSON.stringify(db.usuarios || []));
   saveDatabase();
   renderUserManagementGrid();
   renderUserSelectOptions();
@@ -18827,13 +18989,25 @@ function toggleUserActiveStatus(userId, activate) {
     sendUserAccountActivatedEmail(user).catch(() => {});
   }
 
-  // Sincronizar imediatamente com o servidor
+  // Gravação direta no servidor local/rede
+  try {
+    const serverOrigin = (typeof window !== 'undefined' && window.location && window.location.origin && !window.location.origin.startsWith('file:')) ? window.location.origin : '';
+    if (serverOrigin) {
+      fetch(`${serverOrigin}/api/save-db-json`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(db)
+      }).catch(() => {});
+    }
+  } catch(eSrv) {}
+
+  // Sincronizar imediatamente com o servidor central
   if (typeof syncDatabaseToHuggingFace === 'function') {
     syncDatabaseToHuggingFace(true, true).catch(() => {});
   }
 
   logUserActivity('Gestão de Utilizadores', `Estado do utilizador ${user.nome} (${user.email}) alterado para ${activate ? 'Ativo / Aprovado' : 'Bloqueado'}.`);
-  showToast(`Utilizador "${user.nome}" ${activate ? 'aprovado e ativado' : 'bloqueado'} com sucesso!`, activate ? 'success' : 'warning');
+  showToast(`Utilizador "${user.nome}" ${activate ? 'aprovado e ativado no servidor' : 'bloqueado'} com sucesso!`, activate ? 'success' : 'warning');
 }
 window.toggleUserActiveStatus = toggleUserActiveStatus;
 
@@ -19357,6 +19531,7 @@ function handleSaveUserProfile(event) {
     }
   }
 
+  const profileNowIso = new Date().toISOString();
   db.usuarios[userIndex] = {
     ...db.usuarios[userIndex],
     nome: nome,
@@ -19368,16 +19543,41 @@ function handleSaveUserProfile(event) {
     role: role,
     pin: pin,
     active: newActiveState,
-    chefia: newChefiaState
+    chefia: newChefiaState,
+    updatedAt: profileNowIso
   };
+
+  // Harmonizar registos com o mesmo email
+  if (email) {
+    const targetEmail = email.trim().toLowerCase();
+    (db.usuarios || []).forEach(u => {
+      if (u && u.email && u.email.trim().toLowerCase() === targetEmail) {
+        u.active = newActiveState;
+        u.updatedAt = profileNowIso;
+      }
+    });
+  }
 
   if (role === 'admin' || userId === "usr-admin-001") {
     safeSetStorage('sigec_pro_security_pin', pin);
   }
 
+  safeSetStorage('sigec_pro_usuarios', JSON.stringify(db.usuarios || []));
   saveDatabase();
   renderUserManagementGrid();
   renderUserSelectOptions();
+
+  // Gravação direta no servidor local/rede
+  try {
+    const serverOrigin = (typeof window !== 'undefined' && window.location && window.location.origin && !window.location.origin.startsWith('file:')) ? window.location.origin : '';
+    if (serverOrigin) {
+      fetch(`${serverOrigin}/api/save-db-json`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(db)
+      }).catch(() => {});
+    }
+  } catch(eSrv) {}
 
   if (typeof syncDatabaseToHuggingFace === 'function') {
     syncDatabaseToHuggingFace(true, true).catch(() => {});
@@ -26272,8 +26472,22 @@ async function quickApproveUser(userId) {
   const user = db.usuarios.find(u => u && u.id === userId);
   if (!user) return;
 
+  const nowIso = new Date().toISOString();
   user.active = true;
+  user.updatedAt = nowIso;
   _dismissedPendingAlertIds.delete(userId);
+
+  // Harmonizar todos os registos existentes com o mesmo email
+  if (user.email) {
+    const targetEmail = user.email.trim().toLowerCase();
+    (db.usuarios || []).forEach(u => {
+      if (u && u.email && u.email.trim().toLowerCase() === targetEmail) {
+        u.active = true;
+        u.updatedAt = nowIso;
+      }
+    });
+  }
+
   safeSetStorage('sigec_pro_usuarios', JSON.stringify(db.usuarios || []));
   saveDatabase();
 
@@ -26286,13 +26500,25 @@ async function quickApproveUser(userId) {
     sendUserAccountActivatedEmail(user).catch(() => {});
   }
 
+  // Gravação direta no servidor local/rede
+  try {
+    const serverOrigin = (typeof window !== 'undefined' && window.location && window.location.origin && !window.location.origin.startsWith('file:')) ? window.location.origin : '';
+    if (serverOrigin) {
+      fetch(`${serverOrigin}/api/save-db-json`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(db)
+      }).catch(() => {});
+    }
+  } catch(eSrv) {}
+
   // Sincronização em tempo real para o servidor Hugging Face
   if (typeof syncDatabaseToHuggingFace === 'function') {
     syncDatabaseToHuggingFace(true, true).catch(() => {});
   }
 
-  logUserActivity('Gestão de Utilizadores', 'Utilizador ' + user.nome + ' (' + user.email + ') foi dado de alta e ativado de imediato pelo Administrador.');
-  showToast('✅ Utilizador "' + user.nome + '" dado de alta e ativado com sucesso! Foi enviado email de confirmação.', 'success');
+  logUserActivity('Gestão de Utilizadores', 'Utilizador ' + user.nome + ' (' + user.email + ') foi dado de alta e ativado de imediato no servidor pelo Administrador.');
+  showToast('✅ Utilizador "' + user.nome + '" dado de alta e ativado no servidor com sucesso!', 'success');
 }
 window.quickApproveUser = quickApproveUser;
 

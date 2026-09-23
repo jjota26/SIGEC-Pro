@@ -346,6 +346,98 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // Endpoint de Consulta em Tempo Real do Estado de Ativação do Utilizador
+  if (pathname === '/api/user-status') {
+    const email = (parsedUrl.searchParams.get('email') || '').trim().toLowerCase();
+    if (!email) {
+      res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ success: false, message: 'Email obrigatório' }));
+      return;
+    }
+
+    try {
+      const dbPath = path.join(__dirname, 'data', 'db.json');
+      if (!fs.existsSync(dbPath)) {
+        res.writeHead(404, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ success: false, message: 'Base de dados não encontrada' }));
+        return;
+      }
+      const raw = fs.readFileSync(dbPath, 'utf8');
+      const dbData = JSON.parse(raw);
+      const users = Array.isArray(dbData.usuarios) ? dbData.usuarios : [];
+      const matching = users.filter(u => u && u.email && u.email.trim().toLowerCase() === email);
+      const activeUser = matching.find(u => u.active === true) || matching[matching.length - 1];
+
+      if (!activeUser) {
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ success: true, exists: false, active: false }));
+        return;
+      }
+
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({
+        success: true,
+        exists: true,
+        active: activeUser.active === true,
+        user: {
+          id: activeUser.id,
+          nome: activeUser.nome,
+          email: activeUser.email,
+          role: activeUser.role,
+          active: activeUser.active === true,
+          pin: activeUser.pin,
+          idioma: activeUser.idioma
+        }
+      }));
+    } catch (errStatus) {
+      res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ success: false, message: errStatus.message }));
+    }
+    return;
+  }
+
+  // Endpoint de Gravação Imediata da Base de Dados no Servidor
+  if (pathname === '/api/save-db-json' || pathname === '/api/push-cloud-db') {
+    if (req.method !== 'POST') {
+      res.writeHead(405, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, message: 'Método não permitido' }));
+      return;
+    }
+
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', async () => {
+      try {
+        const payload = JSON.parse(body || '{}');
+        if (!payload || typeof payload !== 'object') {
+          res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
+          res.end(JSON.stringify({ success: false, message: 'Payload inválido' }));
+          return;
+        }
+
+        const dataDir = path.join(__dirname, 'data');
+        if (!fs.existsSync(dataDir)) {
+          fs.mkdirSync(dataDir, { recursive: true });
+        }
+        const dbPath = path.join(dataDir, 'db.json');
+        fs.writeFileSync(dbPath, JSON.stringify(payload, null, 2), 'utf8');
+
+        // Se existir a pasta alternativa 'Programa SIGEC-Pro/data', atualizar também
+        const altDir = path.join(__dirname, 'Programa SIGEC-Pro', 'data');
+        if (fs.existsSync(altDir)) {
+          fs.writeFileSync(path.join(altDir, 'db.json'), JSON.stringify(payload, null, 2), 'utf8');
+        }
+
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ success: true, message: 'Base de dados gravada no servidor com sucesso' }));
+      } catch (errSave) {
+        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ success: false, message: errSave.message }));
+      }
+    });
+    return;
+  }
+
   // Endpoint de Pesquisa e Enriquecimento de Morada com IA
   if (pathname === '/api/ai-lookup-address') {
     if (req.method !== 'POST') {
