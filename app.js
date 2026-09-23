@@ -27885,7 +27885,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1050-124",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.turismodeportugal.pt"
+    "fonteUrl": "https://www.turismodeportugal.pt",
+    "nome": "Turismo De Portugal"
   },
   {
     "aliases": [
@@ -27905,7 +27906,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "localidade": "Lisboa",
     "pais": "Portugal",
     "fonteUrl": "https://www.iapmei.pt",
-    "direcao2": "Campus do Lumiar"
+    "direcao2": "Campus do Lumiar",
+    "nome": "Iapmei"
   },
   {
     "aliases": [
@@ -27924,7 +27926,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1700-158",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.portugalglobal.pt"
+    "fonteUrl": "https://www.portugalglobal.pt",
+    "nome": "Aicep"
   },
   {
     "aliases": [
@@ -27941,7 +27944,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1269-274",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.asae.gov.pt"
+    "fonteUrl": "https://www.asae.gov.pt",
+    "nome": "Asae"
   },
   {
     "aliases": [
@@ -27960,7 +27964,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1149-027",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.portaldasfinancas.gov.pt"
+    "fonteUrl": "https://www.portaldasfinancas.gov.pt",
+    "nome": "At"
   },
   {
     "aliases": [
@@ -27979,7 +27984,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1649-022",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.imt-ip.pt"
+    "fonteUrl": "https://www.imt-ip.pt",
+    "nome": "Imt"
   },
   {
     "aliases": [
@@ -27998,7 +28004,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1949-003",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.iefp.pt"
+    "fonteUrl": "https://www.iefp.pt",
+    "nome": "Iefp"
   },
   {
     "aliases": [
@@ -28017,7 +28024,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1000-013",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.inem.pt"
+    "fonteUrl": "https://www.inem.pt",
+    "nome": "Inem"
   },
   {
     "aliases": [
@@ -28036,7 +28044,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1050-191",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.icnf.pt"
+    "fonteUrl": "https://www.icnf.pt",
+    "nome": "Icnf"
   },
   {
     "aliases": [
@@ -28055,7 +28064,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1250-190",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://ipdj.gov.pt"
+    "fonteUrl": "https://ipdj.gov.pt",
+    "nome": "Ipdj"
   },
   {
     "aliases": [
@@ -28071,7 +28081,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1069-041",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.dgae.gov.pt"
+    "fonteUrl": "https://www.dgae.gov.pt",
+    "nome": "Dgae"
   },
   {
     "aliases": [
@@ -28089,7 +28100,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "28020",
     "localidade": "Madrid",
     "pais": "España",
-    "fonteUrl": "https://www.tourspain.es"
+    "fonteUrl": "https://www.tourspain.es",
+    "nome": "Turespaña"
   },
   {
     "aliases": [
@@ -28105,7 +28117,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "28046",
     "localidade": "Madrid",
     "pais": "España",
-    "fonteUrl": "https://www.icex.es"
+    "fonteUrl": "https://www.icex.es",
+    "nome": "Icex"
   },
   {
     "aliases": [
@@ -28128,7 +28141,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "01015",
     "localidade": "Vitoria-Gasteiz (Álava)",
     "pais": "Espanha",
-    "fonteUrl": "https://alegria-activity.com"
+    "fonteUrl": "https://alegria-activity.com",
+    "nome": "Alegria Activity, S.l."
   },
   {
     "aliases": [
@@ -28145,7 +28159,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "localidade": "Vitoria-Gasteiz (Álava)",
     "pais": "Espanha",
     "fonteUrl": "https://alegria-activity.com",
-    "direcao2": "Polígono Industrial Júndiz"
+    "direcao2": "Polígono Industrial Júndiz",
+    "nome": "Alegria Activity Landaluzea"
   },
   {
     "aliases": [
@@ -28163,7 +28178,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "localidade": "Zaragoza",
     "pais": "Espanha",
     "fonteUrl": "https://alegria-activity.com",
-    "direcao2": "Polígono Industrial Malpica"
+    "direcao2": "Polígono Industrial Malpica",
+    "nome": "Alegria Activity Manufacturing"
   },
   {
     "aliases": [
@@ -28182,7 +28198,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1399-022",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt"
+    "fonteUrl": "https://www.portugal.gov.pt",
+    "nome": "Presidência"
   },
   {
     "aliases": [
@@ -28201,7 +28218,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1249-068",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.parlamento.pt"
+    "fonteUrl": "https://www.parlamento.pt",
+    "nome": "Assembleia Da República"
   },
   {
     "aliases": [
@@ -28218,7 +28236,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1349-022",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.presidencia.pt"
+    "fonteUrl": "https://www.presidencia.pt",
+    "nome": "Presidência Da República"
   },
   {
     "aliases": [
@@ -28239,7 +28258,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "localidade": "Lisboa",
     "pais": "Portugal",
     "fonteUrl": "https://www.portaldiplomatico.mne.gov.pt",
-    "direcao2": "Palácio das Necessidades"
+    "direcao2": "Palácio das Necessidades",
+    "nome": "Negócios Estrangeiros"
   },
   {
     "aliases": [
@@ -28259,7 +28279,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1149-008",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.gov.pt/entidades/direcao-geral-do-tesouro-e-financas"
+    "fonteUrl": "https://www.gov.pt/entidades/direcao-geral-do-tesouro-e-financas",
+    "nome": "Tesouro E Finanças"
   },
   {
     "aliases": [
@@ -28278,7 +28299,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1149-009",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt"
+    "fonteUrl": "https://www.portugal.gov.pt",
+    "nome": "Ministério Das Finanças"
   },
   {
     "aliases": [
@@ -28297,7 +28319,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1149-027",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.portaldasfinancas.gov.pt"
+    "fonteUrl": "https://www.portaldasfinancas.gov.pt",
+    "nome": "Autoridade Tributária"
   },
   {
     "aliases": [
@@ -28313,7 +28336,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1149-009",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.dgo.gov.pt"
+    "fonteUrl": "https://www.dgo.gov.pt",
+    "nome": "Direção-geral Do Orçamento"
   },
   {
     "aliases": [
@@ -28332,7 +28356,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1400-204",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.defesa.gov.pt"
+    "fonteUrl": "https://www.defesa.gov.pt",
+    "nome": "Ministério Da Defesa"
   },
   {
     "aliases": [
@@ -28348,7 +28373,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1400-204",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.defesa.gov.pt"
+    "fonteUrl": "https://www.defesa.gov.pt",
+    "nome": "Direção-geral De Recursos Da Defesa Nacional"
   },
   {
     "aliases": [
@@ -28368,7 +28394,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1149-015",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.mai.gov.pt"
+    "fonteUrl": "https://www.mai.gov.pt",
+    "nome": "Administração Interna"
   },
   {
     "aliases": [
@@ -28385,7 +28412,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1199-010",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.psp.pt"
+    "fonteUrl": "https://www.psp.pt",
+    "nome": "Polícia De Segurança Pública"
   },
   {
     "aliases": [
@@ -28401,7 +28429,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1200-092",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.gnr.pt"
+    "fonteUrl": "https://www.gnr.pt",
+    "nome": "Guarda Nacional Republicana"
   },
   {
     "aliases": [
@@ -28417,7 +28446,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "2794-112",
     "localidade": "Carnaxide",
     "pais": "Portugal",
-    "fonteUrl": "https://prociv.gov.pt"
+    "fonteUrl": "https://prociv.gov.pt",
+    "nome": "Proteção Civil"
   },
   {
     "aliases": [
@@ -28435,7 +28465,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1149-019",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.justica.gov.pt"
+    "fonteUrl": "https://www.justica.gov.pt",
+    "nome": "Ministério Da Justiça"
   },
   {
     "aliases": [
@@ -28452,7 +28483,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "localidade": "Lisboa",
     "pais": "Portugal",
     "fonteUrl": "https://irn.justica.gov.pt",
-    "direcao2": "Campus de Justiça, Edifício H"
+    "direcao2": "Campus de Justiça, Edifício H",
+    "nome": "Instituto Dos Registos E Do Notariado"
   },
   {
     "aliases": [
@@ -28468,7 +28500,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1169-007",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.policiajudiciaria.pt"
+    "fonteUrl": "https://www.policiajudiciaria.pt",
+    "nome": "Polícia Judiciária"
   },
   {
     "aliases": [
@@ -28486,7 +28519,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1050-243",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt"
+    "fonteUrl": "https://www.portugal.gov.pt",
+    "nome": "Ministério Da Economia"
   },
   {
     "aliases": [
@@ -28502,7 +28536,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1070-065",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt"
+    "fonteUrl": "https://www.portugal.gov.pt",
+    "nome": "Coesão Territorial"
   },
   {
     "aliases": [
@@ -28520,7 +28555,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1069-041",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.dgae.gov.pt"
+    "fonteUrl": "https://www.dgae.gov.pt",
+    "nome": "Atividades Económicas"
   },
   {
     "aliases": [
@@ -28536,7 +28572,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "localidade": "Lisboa",
     "pais": "Portugal",
     "fonteUrl": "https://www.iapmei.pt",
-    "direcao2": "Campus do Lumiar, Edifício A"
+    "direcao2": "Campus do Lumiar, Edifício A",
+    "nome": "Iapmei"
   },
   {
     "aliases": [
@@ -28555,7 +28592,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1149-010",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt"
+    "fonteUrl": "https://www.portugal.gov.pt",
+    "nome": "Ministério Da Agricultura"
   },
   {
     "aliases": [
@@ -28573,7 +28611,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1949-002",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.dgadr.gov.pt"
+    "fonteUrl": "https://www.dgadr.gov.pt",
+    "nome": "Dgadr"
   },
   {
     "aliases": [
@@ -28593,7 +28632,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "localidade": "Lisboa",
     "pais": "Portugal",
     "fonteUrl": "https://www.portugal.gov.pt",
-    "direcao2": "Campus XXI"
+    "direcao2": "Campus XXI",
+    "nome": "Ministério Da Cultura, Juventude E Desporto"
   },
   {
     "aliases": [
@@ -28612,7 +28652,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1000-300",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt"
+    "fonteUrl": "https://www.portugal.gov.pt",
+    "nome": "Secretaria De Estado Da Cultura"
   },
   {
     "aliases": [
@@ -28633,7 +28674,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1250-190",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://ipdj.gov.pt"
+    "fonteUrl": "https://ipdj.gov.pt",
+    "nome": "Secretaria De Estado Do Desporto"
   },
   {
     "aliases": [
@@ -28653,7 +28695,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1399-029",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt"
+    "fonteUrl": "https://www.portugal.gov.pt",
+    "nome": "Ministério Da Educação"
   },
   {
     "aliases": [
@@ -28670,7 +28713,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1749-070",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.dge.mec.pt"
+    "fonteUrl": "https://www.dge.mec.pt",
+    "nome": "Dge"
   },
   {
     "aliases": [
@@ -28690,7 +28734,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1049-056",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt"
+    "fonteUrl": "https://www.portugal.gov.pt",
+    "nome": "Ministério Do Trabalho"
   },
   {
     "aliases": [
@@ -28707,7 +28752,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1269-144",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.seg-social.pt"
+    "fonteUrl": "https://www.seg-social.pt",
+    "nome": "Direção-geral Da Segurança Social"
   },
   {
     "aliases": [
@@ -28725,7 +28771,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1069-451",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.seg-social.pt"
+    "fonteUrl": "https://www.seg-social.pt",
+    "nome": "Instituto Da Segurança Social"
   },
   {
     "aliases": [
@@ -28746,7 +28793,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1049-039",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt"
+    "fonteUrl": "https://www.portugal.gov.pt",
+    "nome": "Ministério Das Infraestruturas"
   },
   {
     "aliases": [
@@ -28761,7 +28809,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1099-019",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.ihru.pt"
+    "fonteUrl": "https://www.ihru.pt",
+    "nome": "Ihru"
   },
   {
     "aliases": [
@@ -28775,7 +28824,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "2809-013",
     "localidade": "Almada",
     "pais": "Portugal",
-    "fonteUrl": "https://www.infraestruturasdeportugal.pt"
+    "fonteUrl": "https://www.infraestruturasdeportugal.pt",
+    "nome": "Infraestruturas De Portugal"
   },
   {
     "aliases": [
@@ -28798,7 +28848,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1600-001",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.ama.gov.pt"
+    "fonteUrl": "https://www.ama.gov.pt",
+    "nome": "Reforma Do Estado"
   },
   {
     "aliases": [
@@ -28815,7 +28866,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1049-062",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.sns.gov.pt"
+    "fonteUrl": "https://www.sns.gov.pt",
+    "nome": "Ministério Da Saúde"
   },
   {
     "aliases": [
@@ -28831,7 +28883,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1049-005",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.dgs.pt"
+    "fonteUrl": "https://www.dgs.pt",
+    "nome": "Direção-geral Da Saúde"
   },
   {
     "aliases": [
@@ -28847,7 +28900,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "localidade": "Lisboa",
     "pais": "Portugal",
     "fonteUrl": "https://www.infarmed.pt",
-    "direcao2": "Parque de Saúde de Lisboa"
+    "direcao2": "Parque de Saúde de Lisboa",
+    "nome": "Infarmed"
   },
   {
     "aliases": [
@@ -28866,7 +28920,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1200-433",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt"
+    "fonteUrl": "https://www.portugal.gov.pt",
+    "nome": "Ambiente E Energia"
   },
   {
     "aliases": [
@@ -28882,7 +28937,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "2610-124",
     "localidade": "Amadora",
     "pais": "Portugal",
-    "fonteUrl": "https://apambiente.pt"
+    "fonteUrl": "https://apambiente.pt",
+    "nome": "Agência Portuguesa Do Ambiente"
   },
   {
     "aliases": [
@@ -28898,7 +28954,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1067-001",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://gulbenkian.pt"
+    "fonteUrl": "https://gulbenkian.pt",
+    "nome": "Fundação Calouste Gulbenkian"
   },
   {
     "aliases": [
@@ -28914,7 +28971,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1400-038",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://fchampalimaud.org"
+    "fonteUrl": "https://fchampalimaud.org",
+    "nome": "Fundação Champalimaud"
   },
   {
     "aliases": [
@@ -28930,7 +28988,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "4150-417",
     "localidade": "Porto",
     "pais": "Portugal",
-    "fonteUrl": "https://www.serralves.pt"
+    "fonteUrl": "https://www.serralves.pt",
+    "nome": "Fundação De Serralves"
   },
   {
     "aliases": [
@@ -28947,7 +29006,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "localidade": "Lisboa",
     "pais": "Portugal",
     "fonteUrl": "https://www.foriente.pt",
-    "direcao2": "Doca de Alcântara Norte"
+    "direcao2": "Doca de Alcântara Norte",
+    "nome": "Fundação Oriente"
   },
   {
     "aliases": [
@@ -28963,7 +29023,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1249-300",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.fundacaoedp.pt"
+    "fonteUrl": "https://www.fundacaoedp.pt",
+    "nome": "Fundação Edp"
   },
   {
     "aliases": [
@@ -28979,7 +29040,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "localidade": "Lisboa",
     "pais": "Portugal",
     "fonteUrl": "https://www.akdn.org",
-    "direcao2": "Centro Ismaili"
+    "direcao2": "Centro Ismaili",
+    "nome": "Fundação Aga Khan"
   },
   {
     "aliases": [
@@ -28994,7 +29056,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1100-053",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://fundacaomillenniumbcp.pt"
+    "fonteUrl": "https://fundacaomillenniumbcp.pt",
+    "nome": "Fundação Millennium Bcp"
   },
   {
     "aliases": [
@@ -29011,7 +29074,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "08028",
     "localidade": "Barcelona",
     "pais": "España",
-    "fonteUrl": "https://fundacionlacaixa.org"
+    "fonteUrl": "https://fundacionlacaixa.org",
+    "nome": "Fundación La Caixa"
   },
   {
     "aliases": [
@@ -29026,7 +29090,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "28004",
     "localidade": "Madrid",
     "pais": "España",
-    "fonteUrl": "https://www.fundacionmapfre.org"
+    "fonteUrl": "https://www.fundacionmapfre.org",
+    "nome": "Fundación Mapfre"
   },
   {
     "aliases": [
@@ -29042,7 +29107,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "28013",
     "localidade": "Madrid",
     "pais": "España",
-    "fonteUrl": "https://fundaciontelefonica.com"
+    "fonteUrl": "https://fundaciontelefonica.com",
+    "nome": "Fundación Telefónica"
   },
   {
     "aliases": [
@@ -29057,7 +29123,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "28001",
     "localidade": "Madrid",
     "pais": "España",
-    "fonteUrl": "https://www.fbbva.es"
+    "fonteUrl": "https://www.fbbva.es",
+    "nome": "Fundación Bbva"
   },
   {
     "aliases": [
@@ -29074,7 +29141,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1100-038",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.lisboa.pt"
+    "fonteUrl": "https://www.lisboa.pt",
+    "nome": "Câmara Municipal De Lisboa"
   },
   {
     "aliases": [
@@ -29091,7 +29159,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "4049-001",
     "localidade": "Porto",
     "pais": "Portugal",
-    "fonteUrl": "https://www.cm-porto.pt"
+    "fonteUrl": "https://www.cm-porto.pt",
+    "nome": "Câmara Municipal Do Porto"
   },
   {
     "aliases": [
@@ -29108,7 +29177,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "2754-501",
     "localidade": "Cascais",
     "pais": "Portugal",
-    "fonteUrl": "https://www.cascais.pt"
+    "fonteUrl": "https://www.cascais.pt",
+    "nome": "Câmara Municipal De Cascais"
   },
   {
     "aliases": [
@@ -29125,7 +29195,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "2714-501",
     "localidade": "Sintra",
     "pais": "Portugal",
-    "fonteUrl": "https://cm-sintra.pt"
+    "fonteUrl": "https://cm-sintra.pt",
+    "nome": "Câmara Municipal De Sintra"
   },
   {
     "aliases": [
@@ -29142,7 +29213,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "4700-435",
     "localidade": "Braga",
     "pais": "Portugal",
-    "fonteUrl": "https://www.cm-braga.pt"
+    "fonteUrl": "https://www.cm-braga.pt",
+    "nome": "Câmara Municipal De Braga"
   },
   {
     "aliases": [
@@ -29158,7 +29230,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "3000-300",
     "localidade": "Coimbra",
     "pais": "Portugal",
-    "fonteUrl": "https://www.cm-coimbra.pt"
+    "fonteUrl": "https://www.cm-coimbra.pt",
+    "nome": "Câmara Municipal De Coimbra"
   },
   {
     "aliases": [
@@ -29175,7 +29248,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1249-300",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.edp.pt"
+    "fonteUrl": "https://www.edp.pt",
+    "nome": "Edp"
   },
   {
     "aliases": [
@@ -29192,7 +29266,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "localidade": "Lisboa",
     "pais": "Portugal",
     "fonteUrl": "https://www.galp.com",
-    "direcao2": "Torre A"
+    "direcao2": "Torre A",
+    "nome": "Galp"
   },
   {
     "aliases": [
@@ -29209,7 +29284,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "localidade": "Lisboa",
     "pais": "Portugal",
     "fonteUrl": "https://www.flytap.com",
-    "direcao2": "Edifício 25"
+    "direcao2": "Edifício 25",
+    "nome": "Tap"
   },
   {
     "aliases": [
@@ -29225,7 +29301,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1999-001",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.ctt.pt"
+    "fonteUrl": "https://www.ctt.pt",
+    "nome": "Ctt"
   },
   {
     "aliases": [
@@ -29241,7 +29318,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "2720-090",
     "localidade": "Amadora",
     "pais": "Portugal",
-    "fonteUrl": "https://www.nos.pt"
+    "fonteUrl": "https://www.nos.pt",
+    "nome": "Nos"
   },
   {
     "aliases": [
@@ -29259,7 +29337,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1069-300",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.meo.pt"
+    "fonteUrl": "https://www.meo.pt",
+    "nome": "Meo"
   },
   {
     "aliases": [
@@ -29274,7 +29353,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1998-017",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.vodafone.pt"
+    "fonteUrl": "https://www.vodafone.pt",
+    "nome": "Vodafone"
   },
   {
     "aliases": [
@@ -29290,7 +29370,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1000-300",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.cgd.pt"
+    "fonteUrl": "https://www.cgd.pt",
+    "nome": "Cgd"
   },
   {
     "aliases": [
@@ -29306,7 +29387,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "4000-295",
     "localidade": "Porto",
     "pais": "Portugal",
-    "fonteUrl": "https://www.millenniumbcp.pt"
+    "fonteUrl": "https://www.millenniumbcp.pt",
+    "nome": "Bcp"
   },
   {
     "aliases": [
@@ -29322,7 +29404,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "1100-063",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.santander.pt"
+    "fonteUrl": "https://www.santander.pt",
+    "nome": "Santander"
   },
   {
     "aliases": [
@@ -29339,7 +29422,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "28071",
     "localidade": "Madrid",
     "pais": "España",
-    "fonteUrl": "https://www.lamoncloa.gob.es"
+    "fonteUrl": "https://www.lamoncloa.gob.es",
+    "nome": "Gobierno De España"
   },
   {
     "aliases": [
@@ -29355,7 +29439,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "28014",
     "localidade": "Madrid",
     "pais": "España",
-    "fonteUrl": "https://www.hacienda.gob.es"
+    "fonteUrl": "https://www.hacienda.gob.es",
+    "nome": "Ministerio De Hacienda"
   },
   {
     "aliases": [
@@ -29371,7 +29456,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "28014",
     "localidade": "Madrid",
     "pais": "España",
-    "fonteUrl": "https://sede.agenciatributaria.gob.es"
+    "fonteUrl": "https://sede.agenciatributaria.gob.es",
+    "nome": "Agencia Tributaria"
   },
   {
     "aliases": [
@@ -29386,7 +29472,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "28071",
     "localidade": "Madrid",
     "pais": "España",
-    "fonteUrl": "https://www.interior.gob.es"
+    "fonteUrl": "https://www.interior.gob.es",
+    "nome": "Ministerio Del Interior"
   },
   {
     "aliases": [
@@ -29401,7 +29488,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "28015",
     "localidade": "Madrid",
     "pais": "España",
-    "fonteUrl": "https://www.mjusticia.gob.es"
+    "fonteUrl": "https://www.mjusticia.gob.es",
+    "nome": "Ministerio De Justicia"
   },
   {
     "aliases": [
@@ -29417,7 +29505,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "28006",
     "localidade": "Madrid",
     "pais": "España",
-    "fonteUrl": "https://www.exteriores.gob.es"
+    "fonteUrl": "https://www.exteriores.gob.es",
+    "nome": "Ministerio De Asuntos Exteriores"
   },
   {
     "aliases": [
@@ -29432,7 +29521,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "28046",
     "localidade": "Madrid",
     "pais": "España",
-    "fonteUrl": "https://www.defesa.gob.es"
+    "fonteUrl": "https://www.defesa.gob.es",
+    "nome": "Ministerio De Defensa España"
   },
   {
     "aliases": [
@@ -29447,7 +29537,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "28071",
     "localidade": "Madrid",
     "pais": "España",
-    "fonteUrl": "https://www.transportes.gob.es"
+    "fonteUrl": "https://www.transportes.gob.es",
+    "nome": "Ministerio De Transportes"
   },
   {
     "aliases": [
@@ -29462,7 +29553,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "28071",
     "localidade": "Madrid",
     "pais": "España",
-    "fonteUrl": "https://www.mites.gob.es"
+    "fonteUrl": "https://www.mites.gob.es",
+    "nome": "Ministerio De Trabajo Y Economía Social"
   },
   {
     "aliases": [
@@ -29477,7 +29569,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "28014",
     "localidade": "Madrid",
     "pais": "España",
-    "fonteUrl": "https://www.sanidad.gob.es"
+    "fonteUrl": "https://www.sanidad.gob.es",
+    "nome": "Ministerio De Sanidad"
   },
   {
     "aliases": [
@@ -29491,7 +29584,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "28014",
     "localidade": "Madrid",
     "pais": "España",
-    "fonteUrl": "https://www.madrid.es"
+    "fonteUrl": "https://www.madrid.es",
+    "nome": "Ayuntamiento De Madrid"
   },
   {
     "aliases": [
@@ -29506,7 +29600,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "08002",
     "localidade": "Barcelona",
     "pais": "España",
-    "fonteUrl": "https://www.barcelona.cat"
+    "fonteUrl": "https://www.barcelona.cat",
+    "nome": "Ajuntament De Barcelona"
   },
   {
     "aliases": [
@@ -29522,7 +29617,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "28013",
     "localidade": "Madrid",
     "pais": "España",
-    "fonteUrl": "https://www.telefonica.com"
+    "fonteUrl": "https://www.telefonica.com",
+    "nome": "Telefónica"
   },
   {
     "aliases": [
@@ -29536,7 +29632,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "46130",
     "localidade": "Tavernes Blanques (Valencia)",
     "pais": "España",
-    "fonteUrl": "https://www.mercadona.es"
+    "fonteUrl": "https://www.mercadona.es",
+    "nome": "Mercadona"
   },
   {
     "aliases": [
@@ -29551,7 +29648,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "15143",
     "localidade": "Arteixo (A Coruña)",
     "pais": "España",
-    "fonteUrl": "https://www.inditex.com"
+    "fonteUrl": "https://www.inditex.com",
+    "nome": "Inditex"
   },
   {
     "aliases": [
@@ -29565,7 +29663,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "48009",
     "localidade": "Bilbao",
     "pais": "España",
-    "fonteUrl": "https://www.iberdrola.com"
+    "fonteUrl": "https://www.iberdrola.com",
+    "nome": "Iberdrola"
   },
   {
     "aliases": [
@@ -29579,7 +29678,8 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "28045",
     "localidade": "Madrid",
     "pais": "España",
-    "fonteUrl": "https://www.repsol.com"
+    "fonteUrl": "https://www.repsol.com",
+    "nome": "Repsol"
   },
   {
     "aliases": [
@@ -29594,7 +29694,206 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "codigoPostal": "28009",
     "localidade": "Madrid",
     "pais": "España",
-    "fonteUrl": "https://www.elcorteingles.es"
+    "fonteUrl": "https://www.elcorteingles.es",
+    "nome": "El Corte Inglés"
+  },
+  {
+    "aliases": [
+      "portugal fresh",
+      "portugal fresh associacao",
+      "portugal fresh - associacao",
+      "associacao portugal fresh",
+      "portugalfresh",
+      "portugal fresh associacao para promocao das frutas legumes e flores de portugal"
+    ],
+    "website": "https://www.portugalfresh.org",
+    "telefone": "+351 219 927 236",
+    "email": "info@portugalfresh.org",
+    "direcao1": "Lugar do Quintanilho",
+    "direcao2": "MARL - Mercado Abastecedor da Região de Lisboa, NAC, N00 Z08",
+    "numero": "",
+    "andar": "",
+    "codigoPostal": "2660-421",
+    "localidade": "São Julião do Tojal",
+    "pais": "Portugal",
+    "fonteUrl": "https://www.portugalfresh.org",
+    "nome": "Portugal Fresh – Associação para a Promoção das Frutas, Legumes e Flores de Portugal"
+  },
+  {
+    "aliases": [
+      "portugal fresh sede social",
+      "portugal fresh mangualde",
+      "portugal fresh alcafache"
+    ],
+    "website": "https://www.portugalfresh.org",
+    "telefone": "+351 219 927 236",
+    "email": "info@portugalfresh.org",
+    "direcao1": "Estação Fruteira",
+    "direcao2": "Alcafache-Gare",
+    "numero": "",
+    "andar": "",
+    "codigoPostal": "3530-310",
+    "localidade": "Moimenta de Maceira Dão",
+    "pais": "Portugal",
+    "fonteUrl": "https://www.portugalfresh.org",
+    "nome": "Portugal Fresh (Sede Social - Mangualde)"
+  },
+  {
+    "aliases": [
+      "cip",
+      "confederação empresarial de portugal",
+      "confederacao empresarial de portugal",
+      "cip - confederação empresarial de portugal"
+    ],
+    "website": "https://cip.org.pt",
+    "telefone": "+351 213 164 700",
+    "email": "geral@cip.org.pt",
+    "direcao1": "Praça das Indústrias",
+    "direcao2": "Edifício CIP",
+    "numero": "",
+    "andar": "",
+    "codigoPostal": "1300-307",
+    "localidade": "Lisboa",
+    "pais": "Portugal",
+    "fonteUrl": "https://cip.org.pt",
+    "nome": "Cip"
+  },
+  {
+    "aliases": [
+      "ccp",
+      "confederação do comércio e serviços de portugal",
+      "confederacao do comercio e servicos de portugal",
+      "ccp - confederação do comércio e serviços de portugal"
+    ],
+    "website": "https://ccp.pt",
+    "telefone": "+351 213 544 610",
+    "email": "ccp@ccp.pt",
+    "direcao1": "Avenida Duque de Ávila",
+    "direcao2": "",
+    "numero": "142",
+    "andar": "4º",
+    "codigoPostal": "1050-084",
+    "localidade": "Lisboa",
+    "pais": "Portugal",
+    "fonteUrl": "https://ccp.pt",
+    "nome": "Ccp"
+  },
+  {
+    "aliases": [
+      "cap",
+      "confederação dos agricultores de portugal",
+      "confederacao dos agricultores de portugal",
+      "cap - confederação dos agricultores de portugal"
+    ],
+    "website": "https://www.cap.pt",
+    "telefone": "+351 217 100 000",
+    "email": "cap@cap.pt",
+    "direcao1": "Rua Mestre Lima de Freitas",
+    "direcao2": "",
+    "numero": "1",
+    "andar": "",
+    "codigoPostal": "1549-012",
+    "localidade": "Lisboa",
+    "pais": "Portugal",
+    "fonteUrl": "https://www.cap.pt",
+    "nome": "Cap"
+  },
+  {
+    "aliases": [
+      "ctp",
+      "confederação do turismo de portugal",
+      "confederacao do turismo de portugal",
+      "ctp - confederação do turismo de portugal"
+    ],
+    "website": "https://www.ctp.org.pt",
+    "telefone": "+351 213 158 064",
+    "email": "geral@ctp.org.pt",
+    "direcao1": "Avenida Dom João II",
+    "direcao2": "Parque das Nações, Lote 1.18.01",
+    "numero": "45",
+    "andar": "4º",
+    "codigoPostal": "1998-028",
+    "localidade": "Lisboa",
+    "pais": "Portugal",
+    "fonteUrl": "https://www.ctp.org.pt",
+    "nome": "Ctp"
+  },
+  {
+    "aliases": [
+      "aped",
+      "associação portuguesa de empresas de distribuição",
+      "associacao portuguesa de empresas de distribuicao"
+    ],
+    "website": "https://www.aped.pt",
+    "telefone": "+351 217 520 700",
+    "email": "aped@aped.pt",
+    "direcao1": "Rua Sacadura Cabral",
+    "direcao2": "",
+    "numero": "38",
+    "andar": "1º",
+    "codigoPostal": "1495-703",
+    "localidade": "Dafundo",
+    "pais": "Portugal",
+    "fonteUrl": "https://www.aped.pt",
+    "nome": "Aped"
+  },
+  {
+    "aliases": [
+      "aep",
+      "associação empresarial de portugal",
+      "associacao empresarial de portugal"
+    ],
+    "website": "https://www.aeportugal.pt",
+    "telefone": "+351 229 981 500",
+    "email": "aep@aeportugal.pt",
+    "direcao1": "Avenida Dr. António Macedo",
+    "direcao2": "",
+    "numero": "196",
+    "andar": "",
+    "codigoPostal": "4450-617",
+    "localidade": "Leça da Palmeira",
+    "pais": "Portugal",
+    "fonteUrl": "https://www.aeportugal.pt",
+    "nome": "Aep"
+  },
+  {
+    "aliases": [
+      "aip",
+      "associação industrial portuguesa",
+      "associacao industrial portuguesa",
+      "aip-cci"
+    ],
+    "website": "https://www.aip.pt",
+    "telefone": "+351 213 601 000",
+    "email": "geral@aip.pt",
+    "direcao1": "Praça das Indústrias",
+    "direcao2": "Edifício AIP",
+    "numero": "",
+    "andar": "",
+    "codigoPostal": "1300-307",
+    "localidade": "Lisboa",
+    "pais": "Portugal",
+    "fonteUrl": "https://www.aip.pt",
+    "nome": "Aip"
+  },
+  {
+    "aliases": [
+      "anje",
+      "associação nacional de jovens empresários",
+      "associacao nacional de jovens empresarios"
+    ],
+    "website": "https://www.anje.pt",
+    "telefone": "+351 220 108 000",
+    "email": "anje@anje.pt",
+    "direcao1": "Rua Paulo da Gama",
+    "direcao2": "Casa do Farol",
+    "numero": "",
+    "andar": "",
+    "codigoPostal": "4169-006",
+    "localidade": "Porto",
+    "pais": "Portugal",
+    "fonteUrl": "https://www.anje.pt",
+    "nome": "Anje"
   }
 ];
 
@@ -30071,6 +30370,24 @@ async function resolveEntityWebsiteFromDDG(query) {
   }
 }
 
+
+function isCurrentUserAdmin() {
+  try {
+    const activeUserId = (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('sigec_pro_active_user_id')) || 
+                         (typeof localStorage !== 'undefined' && localStorage.getItem('sigec_pro_active_user_id'));
+    if (!activeUserId) return false;
+    if (activeUserId === 'usr-admin-001') return true;
+    if (typeof db !== 'undefined' && db && Array.isArray(db.usuarios)) {
+      const u = db.usuarios.find(user => user && user.id === activeUserId);
+      if (u) {
+        return u.role === 'admin';
+      }
+    }
+  } catch (e) {}
+  return false;
+}
+window.isCurrentUserAdmin = isCurrentUserAdmin;
+
 function renderAiCandidateCards() {
   const container = document.getElementById('aiCandidatesCardsList');
   if (!container) return;
@@ -30084,57 +30401,63 @@ function renderAiCandidateCards() {
     const entityName = currentPendingContext?.entityName || 'a entidade';
     const entityQ = encodeURIComponent(entityName + ' sede morada contacto telefone');
 
+    const isAdmin = (typeof isCurrentUserAdmin === 'function') ? isCurrentUserAdmin() : false;
     let geminiDiagnosticHtml = '';
-    if (!hasKey) {
-      geminiDiagnosticHtml = `
-        <div style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 8px; padding: 12px; margin-top: 12px; text-align: left;">
-          <div style="font-weight: 700; color: #92400e; font-size: 0.85rem; display: flex; align-items: center; gap: 6px;">
-            <i class="fa-solid fa-key" style="color: #d97706;"></i>
-            <span>Ativar Pesquisa Inteligente Google (Gemini)</span>
-          </div>
-          <p style="font-size: 0.78rem; color: #78350f; margin: 5px 0 8px;">
-            Ainda não tem a chave da Google API inserida neste navegador. Ao inserir uma chave gratuita do Google AI Studio, o SIGEC-Pro pesquisa qualquer empresa na Google em tempo real.
-          </p>
-          <div style="display: flex; gap: 6px;">
-            <input type="password" id="aiModalApiKeyInput" placeholder="Cole aqui a sua chave (ex: AIzaSy...)" 
-                   style="flex: 1; padding: 6px 10px; font-size: 0.8rem; border: 1.5px solid #d97706; border-radius: 6px; outline: none;">
-            <button type="button" onclick="saveGeminiKeyFromModal()" 
-                    style="background: #d97706; color: #ffffff; border: none; border-radius: 6px; padding: 6px 12px; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap;">
-              <i class="fa-solid fa-bolt"></i> Guardar e Pesquisar
-            </button>
-          </div>
-          <div style="margin-top: 6px; font-size: 0.72rem;">
-            <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="color: #2563eb; text-decoration: underline;">
-              Obter chave de API gratuita no Google AI Studio &rarr;
-            </a>
-          </div>
-        </div>`;
-    } else {
-      geminiDiagnosticHtml = `
-        <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 10px 12px; margin-top: 12px; text-align: left;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-            <span style="font-size: 0.8rem; font-weight: 700; color: #1e293b;">
-              <i class="fa-solid fa-key" style="color: #6366f1;"></i> Chave Gemini Configurada:
-            </span>
-            <code style="background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-size: 0.76rem; color: #334155;">${maskedKey}</code>
-          </div>
-          ${lastGeminiError ? `
-            <div style="background: #fee2e2; border-left: 3px solid #ef4444; padding: 6px 8px; font-size: 0.75rem; color: #991b1b; margin-bottom: 8px; word-break: break-word;">
-              <strong>Diagnóstico Google:</strong> ${lastGeminiError}
-            </div>` : ''}
-          <div style="display: flex; gap: 6px;">
-            <input type="password" id="aiModalApiKeyInput" placeholder="Substituir por outra chave..." 
-                   style="flex: 1; padding: 5px 8px; font-size: 0.78rem; border: 1px solid #cbd5e1; border-radius: 6px; outline: none;">
-            <button type="button" onclick="saveGeminiKeyFromModal()" 
-                    style="background: #6366f1; color: #ffffff; border: none; border-radius: 6px; padding: 5px 10px; font-size: 0.78rem; font-weight: 600; cursor: pointer;">
-              Atualizar
-            </button>
-            <button type="button" onclick="removeGeminiKeyFromModal()" 
-                    style="background: #ef4444; color: #ffffff; border: none; border-radius: 6px; padding: 5px 8px; font-size: 0.78rem; cursor: pointer;" title="Remover chave">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-        </div>`;
+    let instructionText = 'Pode consultar diretamente o Google para verificar os dados desta entidade:';
+
+    if (isAdmin) {
+      instructionText = 'Pode consultar diretamente o Google ou gerir o motor de IA Gemini abaixo:';
+      if (!hasKey) {
+        geminiDiagnosticHtml = `
+          <div style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 8px; padding: 12px; margin-top: 12px; text-align: left;">
+            <div style="font-weight: 700; color: #92400e; font-size: 0.85rem; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-key" style="color: #d97706;"></i>
+              <span>Ativar Pesquisa Inteligente Google (Gemini) [Admin]</span>
+            </div>
+            <p style="font-size: 0.78rem; color: #78350f; margin: 5px 0 8px;">
+              Ainda não tem a chave da Google API inserida neste navegador. Ao inserir uma chave gratuita do Google AI Studio, o SIGEC-Pro pesquisa qualquer empresa na Google em tempo real.
+            </p>
+            <div style="display: flex; gap: 6px;">
+              <input type="password" id="aiModalApiKeyInput" placeholder="Cole aqui a sua chave (ex: AIzaSy...)" 
+                     style="flex: 1; padding: 6px 10px; font-size: 0.8rem; border: 1.5px solid #d97706; border-radius: 6px; outline: none;">
+              <button type="button" onclick="saveGeminiKeyFromModal()" 
+                      style="background: #d97706; color: #ffffff; border: none; border-radius: 6px; padding: 6px 12px; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap;">
+                <i class="fa-solid fa-bolt"></i> Guardar e Pesquisar
+              </button>
+            </div>
+            <div style="margin-top: 6px; font-size: 0.72rem;">
+              <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="color: #2563eb; text-decoration: underline;">
+                Obter chave de API gratuita no Google AI Studio &rarr;
+              </a>
+            </div>
+          </div>`;
+      } else {
+        geminiDiagnosticHtml = `
+          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 10px 12px; margin-top: 12px; text-align: left;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span style="font-size: 0.8rem; font-weight: 700; color: #1e293b;">
+                <i class="fa-solid fa-key" style="color: #6366f1;"></i> Chave Gemini Configurada:
+              </span>
+              <code style="background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-size: 0.76rem; color: #334155;">${maskedKey}</code>
+            </div>
+            ${lastGeminiError ? `
+              <div style="background: #fee2e2; border-left: 3px solid #ef4444; padding: 6px 8px; font-size: 0.75rem; color: #991b1b; margin-bottom: 8px; word-break: break-word;">
+                <strong>Diagnóstico Google:</strong> ${lastGeminiError}
+              </div>` : ''}
+            <div style="display: flex; gap: 6px;">
+              <input type="password" id="aiModalApiKeyInput" placeholder="Substituir por outra chave..." 
+                     style="flex: 1; padding: 5px 8px; font-size: 0.78rem; border: 1px solid #cbd5e1; border-radius: 6px; outline: none;">
+              <button type="button" onclick="saveGeminiKeyFromModal()" 
+                      style="background: #6366f1; color: #ffffff; border: none; border-radius: 6px; padding: 5px 10px; font-size: 0.78rem; font-weight: 600; cursor: pointer;">
+                Atualizar
+              </button>
+              <button type="button" onclick="removeGeminiKeyFromModal()" 
+                      style="background: #ef4444; color: #ffffff; border: none; border-radius: 6px; padding: 5px 8px; font-size: 0.78rem; cursor: pointer;" title="Remover chave">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>`;
+      }
     }
 
     container.innerHTML = `
@@ -30146,7 +30469,7 @@ function renderAiCandidateCards() {
           Não foi possível identificar morada nas fontes públicas diretas
         </p>
         <p style="margin: 0 0 10px; font-size: 0.8rem; color: #64748b;">
-          Pode consultar diretamente o Google ou ativar o motor de IA Gemini abaixo:
+          ${instructionText}
         </p>
         <a href="https://www.google.com/search?q=${entityQ}" target="_blank" rel="noopener"
            style="display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; background: #2563eb; color: #ffffff; border-radius: 6px; text-decoration: none; font-size: 0.82rem; font-weight: 600;">
@@ -30603,6 +30926,20 @@ async function triggerAiAddressEnrichment() {
     targetSepIndex: activeEstatalSeparadorIndex
   };
 
+  // Limpeza preventiva de chaves inválidas (ex: chaves que não iniciam com AIza)
+  try {
+    const rawKeyCheck = localStorage.getItem('sigec_gemini_api_key') || '';
+    if (rawKeyCheck && (!rawKeyCheck.trim().startsWith('AIza') || rawKeyCheck.includes('gen-lan'))) {
+      localStorage.removeItem('sigec_gemini_api_key');
+    }
+  } catch(e) {}
+
+  // Visibilidade do botão Chave Gemini: visível apenas para Administradores
+  const geminiKeyBtn = document.getElementById('aiBtnGeminiKeyOptional');
+  if (geminiKeyBtn) {
+    geminiKeyBtn.style.display = (typeof isCurrentUserAdmin === 'function' && isCurrentUserAdmin()) ? 'inline-flex' : 'none';
+  }
+
   // Abrir Modal no estado Loading
   const modal = document.getElementById('aiAddressConfirmationModal');
   const loadingState = document.getElementById('aiAddressLoadingState');
@@ -30675,6 +31012,44 @@ async function triggerAiAddressEnrichment() {
       seenKeys.add((curCountry + '|' + existingLocalidade + '|' + existingDirecao1).toLowerCase());
     }
 
+    // 0b. Procura na Base de Dados de Clientes Existente no SIGEC-Pro
+    if (typeof db !== 'undefined' && Array.isArray(db.clientes)) {
+      const normSearch = (typeof normalizeSearchTerm === 'function') ? normalizeSearchTerm(entityName) : entityName.toLowerCase().trim();
+      const dbMatch = db.clientes.find(c => {
+        if (!c) return false;
+        const cNorm = (typeof normalizeSearchTerm === 'function') ? normalizeSearchTerm(c.nome || '') : (c.nome || '').toLowerCase().trim();
+        if (cNorm && (cNorm === normSearch || cNorm.includes(normSearch) || normSearch.includes(cNorm))) return true;
+        if (contribuinte && c.contribuinte && c.contribuinte === contribuinte && c.contribuinte !== '000000000' && c.contribuinte !== '999999999') return true;
+        return false;
+      });
+      if (dbMatch && (dbMatch.direcao1 || dbMatch.localidade || dbMatch.website || dbMatch.telefone)) {
+        const matchCountry = dbMatch.pais || existingPais || 'Portugal';
+        const matchCc = matchCountry.toLowerCase().includes('esp') ? 'es' : 'pt';
+        const splitDb = (typeof smartSplitAddress === 'function') ? smartSplitAddress(dbMatch.direcao1, dbMatch.direcao2, dbMatch.numero, dbMatch.andar) : { direcao1: dbMatch.direcao1, direcao2: dbMatch.direcao2, numero: dbMatch.numero, andar: dbMatch.andar };
+        const dbKey = (matchCountry + '|' + (dbMatch.localidade || '') + '|' + (splitDb.direcao1 || '')).toLowerCase();
+        if (!seenKeys.has(dbKey)) {
+          seenKeys.add(dbKey);
+          availableAiCandidates.push({
+            nome: dbMatch.nome || entityName,
+            direcao1: splitDb.direcao1 || '',
+            direcao2: splitDb.direcao2 || '',
+            numero: splitDb.numero || '',
+            andar: splitDb.andar || '',
+            codigoPostal: dbMatch.codigoPostal || '',
+            localidade: dbMatch.localidade || '',
+            pais: matchCountry,
+            countryCode: matchCc,
+            flag: getCountryFlagEmoji(matchCc, matchCountry),
+            telefone: dbMatch.telefone || dbMatch.telemovel || existingTelefone || '',
+            email: dbMatch.email || existingEmail || '',
+            website: dbMatch.website || existingWebsite || '',
+            fonteUrl: dbMatch.website || '',
+            provider: '🏠 Registo na Base de Dados do SIGEC-Pro'
+          });
+        }
+      }
+    }
+
     // 1. Diretório Institucional Oficial (Sedes principais verificadas)
     const dirMatches = resolveAllEntitiesFromLocalDirectory(entityName, ministerio, existingPais);
     for (const d of dirMatches) {
@@ -30685,7 +31060,7 @@ async function triggerAiAddressEnrichment() {
         const dCc = (dCountry.toLowerCase() === 'espanha') ? 'es' : 'pt';
         const splitDir = splitSmartAddressLines(d.direcao1, d.direcao2, d.numero);
         availableAiCandidates.push({
-          nome: d.aliases?.[0] || entityName,
+          nome: d.nome || d.aliases?.[0] || entityName,
           direcao1: splitDir.direcao1,
           direcao2: splitDir.direcao2,
           numero: splitDir.numero,
@@ -31199,6 +31574,10 @@ function confirmAndApplyAiAddress() {
 window.confirmAndApplyAiAddress = confirmAndApplyAiAddress;
 
 function promptGeminiApiKey() {
+  if (typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()) {
+    showToast('Apenas administradores têm permissão para configurar chaves de API.', 'warning');
+    return;
+  }
   const currentKey = localStorage.getItem('sigec_gemini_api_key') || '';
   const newKey = prompt('Configuração da Chave da API Google Gemini:\n\nInsira a sua chave (Google AI Studio) para usar IA Gemini com pesquisa Google em tempo real.\nDeixe em branco para usar o motor de pesquisa web integrado:', currentKey);
   if (newKey !== null) {
@@ -31214,6 +31593,10 @@ function promptGeminiApiKey() {
 window.promptGeminiApiKey = promptGeminiApiKey;
 
 function saveGeminiKeyFromModal() {
+  if (typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()) {
+    showToast('Apenas administradores têm permissão para configurar chaves de API.', 'warning');
+    return;
+  }
   const inp = document.getElementById('aiModalApiKeyInput');
   if (!inp || !inp.value.trim()) {
     showToast('Por favor, insira a sua chave Google Gemini.', 'warning');
@@ -31229,6 +31612,10 @@ function saveGeminiKeyFromModal() {
 window.saveGeminiKeyFromModal = saveGeminiKeyFromModal;
 
 function removeGeminiKeyFromModal() {
+  if (typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()) {
+    showToast('Apenas administradores têm permissão para configurar chaves de API.', 'warning');
+    return;
+  }
   localStorage.removeItem('sigec_gemini_api_key');
   showToast('Chave Google Gemini removida.', 'info');
   if (typeof renderAiCandidateCards === 'function') {

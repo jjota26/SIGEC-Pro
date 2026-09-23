@@ -1,3 +1,4 @@
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
@@ -648,7 +649,19 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
             }
           });
           if (nifResp.ok) {
-            const nifHtml = await nifResp.text();
+            let nifHtml = await nifResp.text();
+            // Se for página de resultados de pesquisa com link direto para o detalhe
+            const listMatch = nifHtml.match(/href='\/(5\d{8})\/'[^>]*>([^<]*)<\/a>/i) || nifHtml.match(/href='\/(5\d{8})\/'/i);
+            if (listMatch) {
+              try {
+                const detailResp = await fetch('https://www.nif.pt/' + listMatch[1] + '/', {
+                  headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' }
+                });
+                if (detailResp.ok) {
+                  nifHtml = await detailResp.text();
+                }
+              } catch(_) {}
+            }
             const cpMatch = nifHtml.match(/\b(\d{4}-\d{3})\b/);
             let nifCp = cpMatch ? cpMatch[1] : '';
             let nifLoc = '';
