@@ -4742,44 +4742,36 @@ function mergeCloudDatabaseSafely(cloudData) {
       }
     });
 
-    // C. Purgar itens locais que foram removidos na nuvem
-    // Se um item local já tem mais de 45 segundos e não consta na nuvem, foi eliminado noutro PC
-    const now = Date.now();
+    // C. Purgar APENAS itens que constem no Registo Oficial de Eliminados
+    // Nenhum cliente, contacto, projeto ou utilizador pode ser apagado automaticamente por tempo!
+    // Só é removido se o utilizador/administrador o tiver eliminado expressamente (constando em deletedRegistry).
     const finalClean = localArr.filter(localItem => {
       if (!localItem || !localItem[idProp]) return false;
       const id = String(localItem[idProp]).trim();
-      const inCloud = cloudArr.some(c => c && String(c[idProp]).trim() === id);
-      if (inCloud) return true;
 
-      // PROTEÇÃO CRÍTICA PARA UTILIZADORES:
-      // Contas de utilizador NUNCA podem ser eliminadas automaticamente por timeout de nuvem!
-      // Apenas são removidas se constarem expressamente no registo de eliminados (deletedRegistry).
-      if (localArrayName === 'usuarios') {
-        const isExplicitlyDeleted = (typeof isDeletedId === 'function' && (
-          isDeletedId('usuarios', id) || 
-          (localItem.email && isDeletedId('usuarios', localItem.email)) ||
-          (localItem.nome && isDeletedId('usuarios', localItem.nome))
-        ));
-        if (!isExplicitlyDeleted) {
-          hasLocalNewerChanges = true; // Forçar re-envio para a nuvem para o Administrador receber!
-          return true; // Manter o utilizador sempre!
-        }
-        return false;
-      }
-
-      const createdTs = new Date(localItem.createdAt || localItem.updatedAt || 0).getTime();
-      const isFreshLocalCreation = (now - createdTs) < 45000;
-
-      if (isFreshLocalCreation && (typeof isDeletedId !== 'function' || !isDeletedId(localArrayName, id))) {
-        hasLocalNewerChanges = true;
-        return true;
-      } else {
-        if (typeof addDeletedId === 'function') {
-          addDeletedId(localArrayName, id);
-        }
+      // 1. Se foi expressamente eliminado por um utilizador (consta no deletedRegistry), purgar
+      if (typeof isDeletedId === 'function' && isDeletedId(localArrayName, id)) {
         hasRemoteChangesApplied = true;
         return false;
       }
+      if (localArrayName === 'usuarios') {
+        const isUserDel = (typeof isDeletedId === 'function' && (
+          (localItem.email && isDeletedId('usuarios', localItem.email)) ||
+          (localItem.nome && isDeletedId('usuarios', localItem.nome))
+        ));
+        if (isUserDel) {
+          hasRemoteChangesApplied = true;
+          return false;
+        }
+      }
+
+      // 2. Se consta na nuvem, manter
+      const inCloud = cloudArr.some(c => c && String(c[idProp]).trim() === id);
+      if (inCloud) return true;
+
+      // 3. Se existe localmente mas não consta na nuvem e NÃO foi eliminado: PRESERVAR SEMPRE e re-sincronizar para a nuvem!
+      hasLocalNewerChanges = true;
+      return true;
     });
 
     db[localArrayName] = finalClean;
@@ -7391,6 +7383,12 @@ function isItemOwnedByTargetUser(item, targetUser) {
   var targetId = String(targetUser.id || '').trim();
   var targetNome = (targetUser.nome || '').toLowerCase().trim();
   var targetNorm = typeof normalizeText === 'function' ? normalizeText(targetUser.nome || '') : targetNome;
+
+  // 0. O Administrador do Sistema e Chefias têm acesso total e irrestrito a TODOS os clientes, contactos e projetos
+  var isTargetAdmin = (targetId === 'usr-admin-001') || (targetUser.role === 'admin') || (targetUser.chefia === true) || (targetNorm.indexOf('administrador') !== -1);
+  if (isTargetAdmin) {
+    return true;
+  }
 
   // 1. Identificadores explícitos no próprio item (Prioridade Estrita por ID)
   var cAtribId = String(item.comercialAtribuidoId || item.userId || item.criadoPorId || item.comercialId || item.comercial_id || '').trim();
