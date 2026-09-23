@@ -7776,10 +7776,7 @@ function isItemOwnedByTargetUser(item, targetUser) {
   var cAtribId = String(item.comercialAtribuidoId || item.userId || item.criadoPorId || item.comercialId || item.comercial_id || '').trim();
   if (cAtribId && targetId) {
     if (cAtribId === targetId) return true;
-    // Base de dados partilhada central: registos com atribuição ao Administrador/sistema padrão estão visíveis para todos os utilizadores ativos
-    if (cAtribId === 'usr-admin-001') {
-      return true;
-    }
+    // Registos atribuidos ao Admin do sistema: apenas Chefia e Administradores podem ver (ja filtrado acima)
     return false;
   }
 
