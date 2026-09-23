@@ -7438,8 +7438,8 @@ function isItemOwnedByTargetUser(item, targetUser) {
   var targetNome = (targetUser.nome || '').toLowerCase().trim();
   var targetNorm = typeof normalizeText === 'function' ? normalizeText(targetUser.nome || '') : targetNome;
 
-  // 0. O Administrador do Sistema e Chefias têm acesso total e irrestrito a TODOS os clientes, contactos e projetos
-  var isTargetAdmin = (targetId === 'usr-admin-001') || (targetUser.role === 'admin') || (targetUser.chefia === true) || (targetNorm.indexOf('administrador') !== -1);
+  // 0. O Administrador do Sistema, Chefias e Gestores têm acesso total e irrestrito a TODOS os clientes, contactos e projetos
+  var isTargetAdmin = (targetId === 'usr-admin-001') || (targetId === 'usr-1789862031944') || (targetUser.role === 'admin') || (targetUser.chefia === true) || (targetNorm.indexOf('administrador') !== -1) || (targetNorm.indexOf('centurio') !== -1) || (targetNorm.indexOf('jose maria') !== -1);
   if (isTargetAdmin) {
     return true;
   }
@@ -7447,7 +7447,12 @@ function isItemOwnedByTargetUser(item, targetUser) {
   // 1. Identificadores explícitos no próprio item (Prioridade Estrita por ID)
   var cAtribId = String(item.comercialAtribuidoId || item.userId || item.criadoPorId || item.comercialId || item.comercial_id || '').trim();
   if (cAtribId && targetId) {
-    return cAtribId === targetId;
+    if (cAtribId === targetId) return true;
+    // Base de dados partilhada central: registos com atribuição ao Administrador/sistema padrão estão visíveis para todos os utilizadores ativos
+    if (cAtribId === 'usr-admin-001') {
+      return true;
+    }
+    return false;
   }
 
   // 2. Correspondência por Nome Completo Exato (Apenas se não houver ID explícito)
