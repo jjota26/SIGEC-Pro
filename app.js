@@ -4224,23 +4224,34 @@ function _saveDatabaseInternal(triggerCloudSync = true) {
 
     if (typeof saveDeletedRegistry === 'function') saveDeletedRegistry();
 
-    // Gravação assíncrona imediata no ficheiro local data/db.json caso o servidor desktop esteja ativo
+    // Gravação e propagação imediata no Servidor Central e em todos os nós da rede
     try {
       if (typeof fetch === 'function') {
         const fullDbPayload = JSON.stringify({
-          clientes: db.clientes || [],
-          contactos: db.contactos || [],
-          projetos: db.projetos || [],
-          interacoes: db.interacoes || [],
-          interacoesProjetos: db.interacoesProjetos || [],
-          orcamentos: db.orcamentos || [],
-          usuarios: db.usuarios || []
+          ...db,
+          _deletedRegistry: (typeof deletedRegistry !== 'undefined' ? deletedRegistry : null),
+          _lastSavedAt: new Date().toISOString()
         }, null, 2);
-        fetch('http://127.0.0.1:59124/api/save-db-json', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: fullDbPayload
-        }).catch(() => {});
+
+        const serverOrigin = (typeof window !== 'undefined' && window.location && window.location.origin && !window.location.origin.startsWith('file:') && !window.location.origin.startsWith('null')) ? window.location.origin : '';
+        
+        // 1. Enviar imediatamente para o servidor atual de onde a aplicação foi carregada
+        if (serverOrigin) {
+          fetch(`${serverOrigin}/api/save-db-json`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: fullDbPayload
+          }).catch(() => {});
+        }
+
+        // 2. Enviar também para a porta local padrão da bridge C#/Node caso esteja a aceder por porta alternativa
+        if (!serverOrigin || !serverOrigin.includes(':59124')) {
+          fetch('http://127.0.0.1:59124/api/save-db-json', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: fullDbPayload
+          }).catch(() => {});
+        }
       }
     } catch(eDisk) {}
 
@@ -4887,12 +4898,21 @@ async function loadDatabaseFromHuggingFace(silent = false, force = false) {
   try {
     let rawText = null;
 
-    // Prioridade 1: Leitura da pasta exata do Dataset (Programa SIGEC-Pro/data/db.json)
-    const dbEndpoints = [
-      `https://huggingface.co/datasets/${space}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`,
-      `https://huggingface.co/spaces/${space}/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
-      `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}`
-    ];
+    // Prioridade 1: Leitura do Servidor Central (Instantâneo) e Fallback para a Nuvem Hugging Face
+    const serverOrigin = (typeof window !== 'undefined' && window.location && window.location.origin && !window.location.origin.startsWith('file:') && !window.location.origin.startsWith('null')) ? window.location.origin : '';
+    
+    const dbEndpoints = [];
+    if (serverOrigin) {
+      dbEndpoints.push(`${serverOrigin}/api/db-json?_t=${Date.now()}_${Math.random()}`);
+      dbEndpoints.push(`${serverOrigin}/data/db.json?_t=${Date.now()}_${Math.random()}`);
+    }
+    if (!serverOrigin || !serverOrigin.includes(':59124')) {
+      dbEndpoints.push(`http://127.0.0.1:59124/api/db-json?_t=${Date.now()}_${Math.random()}`);
+      dbEndpoints.push(`http://127.0.0.1:59124/data/db.json?_t=${Date.now()}_${Math.random()}`);
+    }
+    dbEndpoints.push(`https://huggingface.co/datasets/${space}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`);
+    dbEndpoints.push(`https://huggingface.co/spaces/${space}/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`);
+    dbEndpoints.push(`https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}`);
 
     const headers = { 'Cache-Control': 'no-cache, no-store' };
     if (token) headers['Authorization'] = `Bearer ${token}`;
@@ -4999,30 +5019,64 @@ async function autoSyncServerOnStartup() {
 window.autoSyncServerOnStartup = autoSyncServerOnStartup;
 
 function initPeriodicBackgroundSync() {
-  const SYNC_INTERVAL_MS = 10 * 1000; // Sincronização automática em nuvem a cada 10 segundos
+  const SYNC_INTERVAL_MS = 10 * 1000; // Sincronização abrangente na nuvem a cada 10 segundos
+  let _lastKnownServerVersion = 0;
+
+  // 1. Verificação ultra-rápida a cada 3.5 segundos no Servidor Central (Multi-Computador em tempo real)
+  const pollServerVersion = async () => {
+    try {
+      const serverOrigin = (typeof window !== 'undefined' && window.location && window.location.origin && !window.location.origin.startsWith('file:') && !window.location.origin.startsWith('null')) ? window.location.origin : '';
+      const versionUrls = [];
+      if (serverOrigin) versionUrls.push(`${serverOrigin}/api/db-version?_t=${Date.now()}`);
+      if (!serverOrigin || !serverOrigin.includes(':59124')) versionUrls.push(`http://127.0.0.1:59124/api/db-version?_t=${Date.now()}`);
+
+      for (const vUrl of versionUrls) {
+        try {
+          const res = await fetch(vUrl, { cache: 'no-store' }).catch(() => null);
+          if (res && res.ok) {
+            const data = await res.json().catch(() => null);
+            if (data && data.version) {
+              if (_lastKnownServerVersion && data.version > _lastKnownServerVersion) {
+                // Outro computador atualizou a base de dados no servidor!
+                _lastKnownServerVersion = data.version;
+                await loadDatabaseFromHuggingFace(true, true);
+              } else if (!_lastKnownServerVersion) {
+                _lastKnownServerVersion = data.version;
+              }
+              break;
+            }
+          }
+        } catch(e) {}
+      }
+    } catch(err) {}
+  };
+
+  setInterval(pollServerVersion, 3500);
+
+  // 2. Sincronização periódica standard
   setInterval(async () => {
     try {
       await loadDatabaseFromHuggingFace(true);
     } catch (e) {}
   }, SYNC_INTERVAL_MS);
 
-  // Sincronização imediata ao focar na janela do SIGEC-Pro
+  // 3. Sincronização imediata ao focar na janela do SIGEC-Pro ou alternar abas
   if (typeof window !== 'undefined' && window.addEventListener) {
     window.addEventListener('focus', async () => {
       try {
-        await loadDatabaseFromHuggingFace(true);
+        await loadDatabaseFromHuggingFace(true, true);
       } catch (e) {}
     });
     document.addEventListener('visibilitychange', async () => {
       if (document.visibilityState === 'visible') {
         try {
-          await loadDatabaseFromHuggingFace(true);
+          await loadDatabaseFromHuggingFace(true, true);
         } catch (e) {}
       }
     });
   }
 
-  console.info('[SIGEC-Pro] Sincronização Cloud-First ativa em tempo real (20s + Foco).');
+  console.info('[SIGEC-Pro] Sincronização Multi-Computador em tempo real ativa (Heartbeat 3.5s + Nuvem 10s + Foco).');
 }
 window.initPeriodicBackgroundSync = initPeriodicBackgroundSync;
 
