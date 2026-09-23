@@ -13,7 +13,7 @@ let _serverDbVersion = Date.now();
 let _cachedDbStats = { clientes: 0, contactos: 0, projetos: 0, usuarios: 0 };
 let _hfServerPushTimer = null;
 
-function triggerServerHuggingFacePush(payload) {
+function triggerServerHuggingFacePush(merged) {
   if (_hfServerPushTimer) clearTimeout(_hfServerPushTimer);
   _hfServerPushTimer = setTimeout(() => {
     try {
@@ -35,7 +35,8 @@ function triggerServerHuggingFacePush(payload) {
       });
       fs.writeFileSync(tmpPayloadPath, dsPayload, 'utf8');
 
-      const curlCmdDs = `curl.exe -s -X POST -H "Authorization: Bearer ${token}" -H "Content-Type: application/json" --data-binary @"${tmpPayloadPath.replace(/\\/g, '/')}" "https://huggingface.co/api/datasets/${space}/commit/main"`;
+      const curlBin = process.platform === 'win32' ? 'curl.exe' : 'curl';
+      const curlCmdDs = curlBin + ' -s -X POST -H "Authorization: Bearer ' + token + '" -H "Content-Type: application/json" --data-binary @"' + tmpPayloadPath.replace(/\\/g, '/') + '" "https://huggingface.co/api/datasets/' + space + '/commit/main"'
       exec(curlCmdDs, (err1) => {
         if (err1) console.warn('[Server HF Push Dataset Error]:', err1.message);
 
@@ -47,7 +48,7 @@ function triggerServerHuggingFacePush(payload) {
         });
         fs.writeFileSync(tmpPayloadPath, spPayload, 'utf8');
 
-        const curlCmdSp = `curl.exe -s -X POST -H "Authorization: Bearer ${token}" -H "Content-Type: application/json" --data-binary @"${tmpPayloadPath.replace(/\\/g, '/')}" "https://huggingface.co/api/spaces/${space}/commit/main"`;
+        const curlCmdSp = curlBin + ' -s -X POST -H "Authorization: Bearer ' + token + '" -H "Content-Type: application/json" --data-binary @"' + tmpPayloadPath.replace(/\\/g, '/') + '" "https://huggingface.co/api/spaces/' + space + '/commit/main"'
         exec(curlCmdSp, (err2) => {
           if (err2) console.warn('[Server HF Push Space Error]:', err2.message);
           try { if (fs.existsSync(tmpPayloadPath)) fs.unlinkSync(tmpPayloadPath); } catch(eU) {}
@@ -526,25 +527,47 @@ const server = http.createServer(async (req, res) => {
           fs.mkdirSync(dataDir, { recursive: true });
         }
         const dbPath = path.join(dataDir, 'db.json');
-        fs.writeFileSync(dbPath, JSON.stringify(payload, null, 2), 'utf8');
+        // Merge seguro: preservar registos existentes não presentes no payload
+        let existingDb = {};
+        if (fs.existsSync(dbPath)) {
+          try { existingDb = JSON.parse(fs.readFileSync(dbPath, 'utf8')); } catch(eRead) { existingDb = {}; }
+        }
+        const deletedRegistry = (payload._deletedRegistry && typeof payload._deletedRegistry === 'object') ? payload._deletedRegistry : {};
+        const MERGEABLE_ENTITIES = ['clientes', 'contactos', 'projetos', 'orcamentos', 'interacoes', 'interacoesProjetos', 'usuarios', 'userLogs', 'ignoredDuplicates'];
+        const merged = Object.assign({}, existingDb, payload);
+        MERGEABLE_ENTITIES.forEach(function(entity) {
+          const existingArr = Array.isArray(existingDb[entity]) ? existingDb[entity] : [];
+          const payloadArr = Array.isArray(payload[entity]) ? payload[entity] : null;
+          if (payloadArr === null) { merged[entity] = existingArr; return; }
+          const payloadMap = {};
+          payloadArr.forEach(function(item) { if (item && item.id) payloadMap[item.id] = item; });
+          const extraFromExisting = existingArr.filter(function(item) {
+            if (!item || !item.id) return false;
+            if (payloadMap[item.id]) return false; // already in payload (payload is newer)
+            if (deletedRegistry[item.id]) return false; // explicitly deleted
+            return true;
+          });
+          merged[entity] = extraFromExisting.concat(payloadArr);
+        });
+        fs.writeFileSync(dbPath, JSON.stringify(merged, null, 2), 'utf8');
 
         // Se existir a pasta alternativa 'Programa SIGEC-Pro/data', atualizar também
         const altDir = path.join(__dirname, 'Programa SIGEC-Pro', 'data');
         if (fs.existsSync(altDir)) {
-          fs.writeFileSync(path.join(altDir, 'db.json'), JSON.stringify(payload, null, 2), 'utf8');
+          fs.writeFileSync(path.join(altDir, 'db.json'), JSON.stringify(merged, null, 2), 'utf8');
         }
 
         _serverDbVersion = Date.now();
         _cachedDbStats = {
-          clientes: Array.isArray(payload.clientes) ? payload.clientes.length : 0,
-          contactos: Array.isArray(payload.contactos) ? payload.contactos.length : 0,
-          projetos: Array.isArray(payload.projetos) ? payload.projetos.length : 0,
-          usuarios: Array.isArray(payload.usuarios) ? payload.usuarios.length : 0
+          clientes: Array.isArray(merged.clientes) ? merged.clientes.length : 0,
+          contactos: Array.isArray(merged.contactos) ? merged.contactos.length : 0,
+          projetos: Array.isArray(merged.projetos) ? merged.projetos.length : 0,
+          usuarios: Array.isArray(merged.usuarios) ? merged.usuarios.length : 0
         };
 
         // Disparar sincronização com a Nuvem em segundo plano a partir do servidor
         if (typeof triggerServerHuggingFacePush === 'function') {
-          triggerServerHuggingFacePush(payload);
+          triggerServerHuggingFacePush(merged);
         }
 
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });

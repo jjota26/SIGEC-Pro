@@ -4185,7 +4185,7 @@ function loadDatabase() {
     // Eliminação permanente e irreversível de quaisquer projetos fictícios antigos
     purgeGeneratedMockData();
 
-    saveDatabase();
+    // CORRECCAO: Removido saveDatabase() do arranque para nao sobrescrever o servidor com dados locais
   } catch (err) {
     console.error('Erro ao carregar base de dados:', err);
     if (typeof INITIAL_EXCEL_DATABASE !== 'undefined') {
@@ -4194,7 +4194,7 @@ function loadDatabase() {
       db.projetos = filterDeletedProjects([...(INITIAL_EXCEL_DATABASE.projetos || [])]);
       db.interacoes = [];
       db.interacoesProjetos = [];
-      saveDatabase();
+      // CORRECCAO: Removido saveDatabase() do fallback para nao sobrescrever o servidor
     }
   }
 }
@@ -4504,22 +4504,31 @@ function _saveDatabaseInternal(triggerCloudSync = true) {
 
         const serverOrigin = (typeof window !== 'undefined' && window.location && window.location.origin && !window.location.origin.startsWith('file:') && !window.location.origin.startsWith('null')) ? window.location.origin : '';
         
-        // 1. Enviar imediatamente para o servidor atual de onde a aplicação foi carregada
-        if (serverOrigin) {
-          fetch(`${serverOrigin}/api/save-db-json`, {
+        const CENTRAL_SERVER_URL = 'https://sigec-pro-app.onrender.com';
+
+        // 1. Enviar SEMPRE para o servidor central (base de dados principal de todos os utilizadores)
+        fetch(CENTRAL_SERVER_URL + '/api/save-db-json', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: fullDbPayload
+        }).catch(function() {});
+
+        // 2. Enviar também para o servidor da janela atual (caso diferente do central)
+        if (serverOrigin && serverOrigin !== CENTRAL_SERVER_URL) {
+          fetch(serverOrigin + '/api/save-db-json', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: fullDbPayload
-          }).catch(() => {});
+          }).catch(function() {});
         }
 
-        // 2. Enviar também para a porta local padrão da bridge C#/Node caso esteja a aceder por porta alternativa
+        // 3. Enviar também para a porta local padrão da bridge C#/Node
         if (!serverOrigin || !serverOrigin.includes(':59124')) {
           fetch('http://127.0.0.1:59124/api/save-db-json', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: fullDbPayload
-          }).catch(() => {});
+          }).catch(function() {});
         }
       }
     } catch(eDisk) {}
@@ -7833,15 +7842,10 @@ function isChildOwnedByTargetUser(child, targetUser) {
 window.isChildOwnedByTargetUser = isChildOwnedByTargetUser;
 
 function getUserScopedItems(items) {
+  // CORRECCAO: Todos os utilizadores podem consultar todos os registos.
+  // O filtro por comercial foi removido para garantir visibilidade universal.
   if (!Array.isArray(items)) return [];
-  ensureUsersInitialized();
-  var activeUserId = sessionStorage.getItem('sigec_pro_active_user_id') || 'usr-admin-001';
-  var activeUser = (db.usuarios || []).find(function(u) { return u && u.id === activeUserId; }) || { id: activeUserId, nome: 'Utilizador', role: 'user' };
-
-  return items.filter(function(item) {
-    if (!item) return false;
-    return isItemOwnedByTargetUser(item, activeUser) || isChildOwnedByTargetUser(item, activeUser);
-  });
+  return items.filter(Boolean);
 }
 window.getUserScopedItems = getUserScopedItems;
 
