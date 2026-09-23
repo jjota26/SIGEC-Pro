@@ -10452,6 +10452,20 @@ function renderClientInteractionsGrid(interactions) {
   sorted.forEach(item => {
     const formattedDate = item.data ? new Date(item.data).toLocaleString('pt-PT', { dateStyle: 'short', timeStyle: 'short' }) : '-';
 
+    // Obter nome do contacto associado a este registo
+    var contactoNomeHtml = '';
+    if (item.contactoId) {
+      var con = (db.contactos || []).find(function(x) { return x && x.id === item.contactoId; });
+      if (con) {
+        var nomeCompleto = ((con.nome || '') + ' ' + (con.apelido || '')).trim();
+        if (nomeCompleto) {
+          contactoNomeHtml = '<div class="interaction-card-contact-name"><i class="fa-regular fa-user"></i> ' + escapeHtml(nomeCompleto) + '</div>';
+        }
+      }
+    } else if (item.contactoNome) {
+      contactoNomeHtml = '<div class="interaction-card-contact-name"><i class="fa-regular fa-user"></i> ' + escapeHtml(item.contactoNome) + '</div>';
+    }
+
     const card = document.createElement('div');
     card.className = 'interaction-card';
     card.innerHTML = `
@@ -10464,8 +10478,11 @@ function renderClientInteractionsGrid(interactions) {
         </button>
       </div>
       <div class="interaction-card-row">
-        <div class="interaction-card-date">
-          <i class="fa-regular fa-calendar-days"></i> ${formattedDate}
+        <div class="interaction-card-date-block">
+          <div class="interaction-card-date">
+            <i class="fa-regular fa-calendar-days"></i> ${formattedDate}
+          </div>
+          ${contactoNomeHtml}
         </div>
         <div class="interaction-card-content">${item.descricao}</div>
       </div>
