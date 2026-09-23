@@ -7849,12 +7849,11 @@ function getUserScopedItems(items) {
     }
   } catch(e) {}
 
-  // Chefia e Administradores veem tudo
+  // Sem utilizador ativo: devolve tudo (arranque da app)
   if (!activeUser) return items.filter(Boolean);
-  var isChefiaOrAdmin = (activeUser.role === 'admin') || (activeUser.chefia === true) || (activeUser.id === 'usr-admin-001');
-  if (isChefiaOrAdmin) return items.filter(Boolean);
 
-  // Utilizadores normais veem apenas os seus próprios registos
+  // Todos os utilizadores (incluindo Chefia e Administradores) veem apenas os seus proprios registos
+  // Para ver registos de outros utilizadores, usar o separador Consultas
   return items.filter(function(item) {
     if (!item) return false;
     return isItemOwnedByTargetUser(item, activeUser);
