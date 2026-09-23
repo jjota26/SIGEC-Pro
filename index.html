@@ -4871,11 +4871,11 @@
   <div id="toastContainer" class="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999999 !important;"></div>
 
   <!-- Internationalization & Translations Engine -->
-  <script src="i18n.js?v=202609232120"></script>
+  <script src="i18n.js?v=202609232155"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=202609232120"></script>
+  <script src="app.js?v=202609232155"></script>
   <!-- Duplicates Management Engine -->
-  <script src="duplicatesManager.js?v=202609232120"></script>
+  <script src="duplicatesManager.js?v=202609232155"></script>
 
   <!-- Auto-cura imediata de definições SMTP e Webhook no arranque de qualquer computador -->
   <script>
@@ -6430,7 +6430,7 @@
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js?v=202609232130')
+      navigator.serviceWorker.register('/sw.js?v=202609232155')
         .then(function (reg) {
           if (typeof reg.update === 'function') {
             reg.update();

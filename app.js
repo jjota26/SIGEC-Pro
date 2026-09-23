@@ -76,6 +76,107 @@ if (typeof window !== 'undefined') {
 
 const INITIAL_EXCEL_DATABASE = {
     "clientes":  [
+                      {
+          "id": "cli-1790076087901-132",
+          "tipoCliente": "Estatal",
+          "ministerio": "Ministério da Cultura, Juventude e Desporto",
+          "secretariaEstado": "Ministério, Secretaria de Estado da Cultura, Secretaria de Estado do Desporto, Secretaria de Estado Adjunta e da Juventude e da Igualdade",
+          "nome": "Ministério da Cultura, Juventude e Desporto",
+          "contribuinte": "500000697",
+          "direcao1": "Campus XXI, Avenida João XXI",
+          "direcao2": "",
+          "numero": "63",
+          "andar": "",
+          "codigoPostal": "1000-300",
+          "localidade": "LISBOA",
+          "pais": "Portugal",
+          "telefone": "+351 213 927 600",
+          "telemovel": "",
+          "email": "gabinete.mcjd@mcjd.gov.pt",
+          "website": "",
+          "notas": "",
+          "separadores": [
+                    {
+                              "id": "sep-1790076087902-677",
+                              "tipoSeparador": "Ministério",
+                              "nomePersonalizado": "Ministra",
+                              "nome": "Ministério da Cultura, Juventude e Desporto",
+                              "contribuinte": "500000697",
+                              "direcao1": "Campus XXI, Avenida João XXI",
+                              "direcao2": "",
+                              "numero": "63",
+                              "andar": "",
+                              "codigoPostal": "1000-300",
+                              "localidade": "LISBOA",
+                              "pais": "Portugal",
+                              "telefone": "+351 213 927 600",
+                              "telemovel": "",
+                              "email": "gabinete.mcjd@mcjd.gov.pt",
+                              "website": ""
+                    },
+                    {
+                              "id": "sep-1790076087902-246",
+                              "tipoSeparador": "Secretaria de Estado da Cultura",
+                              "nomePersonalizado": "Secretário de Estado da Cultura",
+                              "nome": "Secretaria de Estado da Cultura",
+                              "contribuinte": "000000000",
+                              "direcao1": "Campus XXI, Avenida João XXI",
+                              "direcao2": "",
+                              "numero": "63",
+                              "andar": "",
+                              "codigoPostal": "1000-300",
+                              "localidade": "LISBOA",
+                              "pais": "Portugal",
+                              "telefone": "+351 213 614 500",
+                              "telemovel": "",
+                              "email": "gabinete.secul@mcjd.gov.pt",
+                              "website": ""
+                    },
+                    {
+                              "id": "sep-1790076087902-886",
+                              "tipoSeparador": "Secretaria de Estado do Desporto",
+                              "nomePersonalizado": "Secretário de Estado do Desporto",
+                              "nome": "Secretaria de Estado do Desporto",
+                              "contribuinte": "000000000",
+                              "direcao1": "Rua Rodrigo da Fonseca",
+                              "direcao2": "",
+                              "numero": "55",
+                              "andar": "",
+                              "codigoPostal": "1250-190",
+                              "localidade": "Lisboa",
+                              "pais": "Portugal",
+                              "telefone": "+351 213 927 600",
+                              "telemovel": "",
+                              "email": "gabinete.sed@mcjd.gov.pt",
+                              "website": "https://ipdj.gov.pt"
+                    },
+                    {
+                              "id": "sep-1790076087902-417",
+                              "tipoSeparador": "Secretaria de Estado Adjunta e da Juventude e da Igualdade",
+                              "nomePersonalizado": "Secretária de estado adjunta e da juventude e da igualdade",
+                              "nome": "Secretaria de Estado Adjunta e da Juventude e da Igualdade",
+                              "contribuinte": "000000000",
+                              "direcao1": "Rua Rodrigo da Fonseca",
+                              "direcao2": "",
+                              "numero": "55",
+                              "andar": "",
+                              "codigoPostal": "1250-190",
+                              "localidade": "Lisboa",
+                              "pais": "Portugal",
+                              "telefone": "+351 213 927 600",
+                              "telemovel": "",
+                              "email": "gabinete.seaji@mcjd.gov.pt",
+                              "website": "https://ipdj.gov.pt"
+                    }
+          ],
+          "userId": "usr-admin-001",
+          "comercialAtribuidoId": "usr-admin-001",
+          "comercialAtribuidoNome": "José Centúrio",
+          "createdAt": "2026-09-22T11:21:27.902Z",
+          "updatedAt": "2026-09-23T19:47:41.018Z",
+          "comercial": "José Centúrio",
+          "createdById": "usr-admin-001"
+},
                      {
                          "id":  "cli-1786727373519-853",
                          "tipoCliente":  "Fundação",
@@ -3781,6 +3882,136 @@ function loadDatabase() {
 
     db.clientes = deduplicateAndFilter(rawClientes !== null ? JSON.parse(rawClientes) : (typeof INITIAL_EXCEL_DATABASE !== 'undefined' ? [...(INITIAL_EXCEL_DATABASE.clientes || [])] : []), 'clientes');
     db.contactos = deduplicateAndFilter(rawContactos !== null ? JSON.parse(rawContactos) : (typeof INITIAL_EXCEL_DATABASE !== 'undefined' ? [...(INITIAL_EXCEL_DATABASE.contactos || [])] : []), 'contactos');
+
+    // BLINDAGEM DE RESTAURAÇÃO: Garantir presença incondicional do Ministério da Cultura, Juventude e Desporto
+    if (typeof removeDeletedId === 'function') {
+      removeDeletedId('clientes', 'cli-1790076087901-132');
+      removeDeletedId('contactos', 'con-imp-066');
+      removeDeletedId('contactos', 'con-imp-067');
+      removeDeletedId('contactos', 'con-imp-068');
+      removeDeletedId('contactos', 'con-imp-069');
+    }
+    if (Array.isArray(db.clientes) && !db.clientes.some(c => c && c.id === 'cli-1790076087901-132')) {
+      const recoveredCulturaClient = {
+        id: "cli-1790076087901-132",
+        tipoCliente: "Estatal",
+        ministerio: "Ministério da Cultura, Juventude e Desporto",
+        secretariaEstado: "Ministério, Secretaria de Estado da Cultura, Secretaria de Estado do Desporto, Secretaria de Estado Adjunta e da Juventude e da Igualdade",
+        nome: "Ministério da Cultura, Juventude e Desporto",
+        contribuinte: "500000697",
+        direcao1: "Campus XXI, Avenida João XXI",
+        direcao2: "",
+        numero: "63",
+        andar: "",
+        codigoPostal: "1000-300",
+        localidade: "LISBOA",
+        pais: "Portugal",
+        telefone: "+351 213 927 600",
+        telemovel: "",
+        email: "gabinete.mcjd@mcjd.gov.pt",
+        website: "",
+        notas: "",
+        separadores: [
+          {
+            id: "sep-1790076087902-677",
+            tipoSeparador: "Ministério",
+            nomePersonalizado: "Ministra",
+            nome: "Ministério da Cultura, Juventude e Desporto",
+            contribuinte: "500000697",
+            direcao1: "Campus XXI, Avenida João XXI",
+            direcao2: "",
+            numero: "63",
+            andar: "",
+            codigoPostal: "1000-300",
+            localidade: "LISBOA",
+            pais: "Portugal",
+            telefone: "+351 213 927 600",
+            telemovel: "",
+            email: "gabinete.mcjd@mcjd.gov.pt",
+            website: ""
+          },
+          {
+            id: "sep-1790076087902-246",
+            tipoSeparador: "Secretaria de Estado da Cultura",
+            nomePersonalizado: "Secretário de Estado da Cultura",
+            nome: "Secretaria de Estado da Cultura",
+            contribuinte: "000000000",
+            direcao1: "Campus XXI, Avenida João XXI",
+            direcao2: "",
+            numero: "63",
+            andar: "",
+            codigoPostal: "1000-300",
+            localidade: "LISBOA",
+            pais: "Portugal",
+            telefone: "+351 213 614 500",
+            telemovel: "",
+            email: "gabinete.secul@mcjd.gov.pt",
+            website: ""
+          },
+          {
+            id: "sep-1790076087902-886",
+            tipoSeparador: "Secretaria de Estado do Desporto",
+            nomePersonalizado: "Secretário de Estado do Desporto",
+            nome: "Secretaria de Estado do Desporto",
+            contribuinte: "000000000",
+            direcao1: "Rua Rodrigo da Fonseca",
+            direcao2: "",
+            numero: "55",
+            andar: "",
+            codigoPostal: "1250-190",
+            localidade: "Lisboa",
+            pais: "Portugal",
+            telefone: "+351 213 927 600",
+            telemovel: "",
+            email: "gabinete.sed@mcjd.gov.pt",
+            website: "https://ipdj.gov.pt"
+          },
+          {
+            id: "sep-1790076087902-417",
+            tipoSeparador: "Secretaria de Estado Adjunta e da Juventude e da Igualdade",
+            nomePersonalizado: "Secretária de estado adjunta e da juventude e da igualdade",
+            nome: "Secretaria de Estado Adjunta e da Juventude e da Igualdade",
+            contribuinte: "000000000",
+            direcao1: "Rua Rodrigo da Fonseca",
+            direcao2: "",
+            numero: "55",
+            andar: "",
+            codigoPostal: "1250-190",
+            localidade: "Lisboa",
+            pais: "Portugal",
+            telefone: "+351 213 927 600",
+            telemovel: "",
+            email: "gabinete.seaji@mcjd.gov.pt",
+            website: "https://ipdj.gov.pt"
+          }
+        ],
+        userId: "usr-admin-001",
+        comercialAtribuidoId: "usr-admin-001",
+        comercialAtribuidoNome: "José Centúrio",
+        createdAt: "2026-09-22T11:21:27.902Z",
+        updatedAt: "2026-09-23T19:34:07.901Z",
+        comercial: "José Centúrio",
+        createdById: "usr-admin-001"
+      };
+      db.clientes.push(recoveredCulturaClient);
+      try { safeSetStorage(STORAGE_KEYS.CLIENTES, JSON.stringify(db.clientes)); } catch(e){}
+    }
+    const recoveredContactsList = [
+      { id: "con-imp-066", clienteId: "cli-1790076087901-132", nome: "Margarida", apelido: "Balseiro Lopes", cargo: "Ministra", telefone: "+351 213 927 600", telemovel: "", email: "gabinete.mcjd@mcjd.gov.pt", notas: "", createdAt: "2026-07-31T16:30:00.000Z", subTabIndex: 0, userId: "usr-admin-001", comercialAtribuidoId: "usr-admin-001" },
+      { id: "con-imp-067", clienteId: "cli-1790076087901-132", nome: "Alberto", apelido: "Santos", cargo: "Secretario de estado de cultura", telefone: "+351 213 614 500", telemovel: "", email: "gabinete.secul@mcjd.gov.pt", notas: "", createdAt: "2026-07-31T16:30:00.000Z", subTabIndex: 1, userId: "usr-admin-001", comercialAtribuidoId: "usr-admin-001" },
+      { id: "con-imp-068", clienteId: "cli-1790076087901-132", nome: "Pedro", apelido: "Dias", cargo: "Secretario de estado de deporte", telefone: "+351 213 927 600", telemovel: "", email: "gabinete.sed@mcjd.gov.pt", notas: "", createdAt: "2026-07-31T16:30:00.000Z", subTabIndex: 2, userId: "usr-admin-001", comercialAtribuidoId: "usr-admin-001", updatedAt: "2026-09-22T11:26:12.106Z" },
+      { id: "con-imp-069", clienteId: "cli-1790076087901-132", nome: "Carla", apelido: "Rodrigues", cargo: "Secretaria de estado adjunta e da juventude e da igualdade", telefone: "+351 213 927 600", telemovel: "", email: "gabinete.seaji@mcjd.gov.pt", notas: "", createdAt: "2026-07-31T16:30:00.000Z", userId: "usr-admin-001", comercialAtribuidoId: "usr-admin-001", subTabIndex: 3 }
+    ];
+    let anyContactAdded = false;
+    recoveredContactsList.forEach(rc => {
+      if (!db.contactos.some(c => c && c.id === rc.id)) {
+        db.contactos.push(rc);
+        anyContactAdded = true;
+      }
+    });
+    if (anyContactAdded) {
+      try { safeSetStorage(STORAGE_KEYS.CONTACTOS, JSON.stringify(db.contactos)); } catch(e){}
+    }
     let parsedProjs = rawProjetos !== null ? JSON.parse(rawProjetos) : [];
     if (typeof INITIAL_EXCEL_DATABASE !== 'undefined' && Array.isArray(INITIAL_EXCEL_DATABASE.projetos)) {
       INITIAL_EXCEL_DATABASE.projetos.forEach(pInit => {
@@ -4517,6 +4748,17 @@ window.handleFullServerSync = handleFullServerSync;
 let isSyncingToHuggingFace = false;
 
 async function syncDatabaseToHuggingFace(silent = false, force = false) {
+  // GUARDA ANTI-REGRESSÃO: Impedir envio de base local truncada com menos de 70 clientes
+  if (Array.isArray(db.clientes) && db.clientes.length < 70) {
+    console.warn('[SIGEC-Pro] Proteção anti-regressão: local tem apenas ' + db.clientes.length + ' clientes. Abortando envio para proteger base de dados remota.');
+    if (typeof loadDatabaseFromHuggingFace === 'function') {
+      await loadDatabaseFromHuggingFace(true, true);
+    }
+    if (Array.isArray(db.clientes) && db.clientes.length < 70) {
+      return false;
+    }
+  }
+
   const cfg = getHuggingFaceConfig();
   const token = (cfg.token || DEFAULT_SYSTEM_HF_TOKEN).trim();
   const space = (cfg.space || DEFAULT_SYSTEM_HF_SPACE || "josecenturio/SIGEC-Pro").trim();
@@ -5010,7 +5252,8 @@ window.syncRegisteredUsersFromHuggingFace = syncRegisteredUsersFromHuggingFace;
 
 async function autoSyncServerOnStartup() {
   try {
-    await loadDatabaseFromHuggingFace(true);
+    // FORCE = true: Carregar incondicionalmente a base de dados oficial no arranque
+    await loadDatabaseFromHuggingFace(true, true);
     await syncRegisteredUsersFromHuggingFace(true);
   } catch (e) {
     console.warn('[SIGEC-Pro] Aviso no autoSyncServerOnStartup:', e);
@@ -7439,7 +7682,7 @@ function isItemOwnedByTargetUser(item, targetUser) {
   var targetNorm = typeof normalizeText === 'function' ? normalizeText(targetUser.nome || '') : targetNome;
 
   // 0. O Administrador do Sistema, Chefias e Gestores têm acesso total e irrestrito a TODOS os clientes, contactos e projetos
-  var isTargetAdmin = (targetId === 'usr-admin-001') || (targetId === 'usr-1789862031944') || (targetUser.role === 'admin') || (targetUser.chefia === true) || (targetNorm.indexOf('administrador') !== -1) || (targetNorm.indexOf('centurio') !== -1) || (targetNorm.indexOf('jose maria') !== -1);
+  var isTargetAdmin = (targetId === 'usr-admin-001') || (targetUser.role === 'admin') || (targetUser.chefia === true) || (targetNorm.indexOf('administrador') !== -1) || (targetNorm.indexOf('centurio') !== -1);
   if (isTargetAdmin) {
     return true;
   }
