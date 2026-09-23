@@ -7842,10 +7842,26 @@ function isChildOwnedByTargetUser(child, targetUser) {
 window.isChildOwnedByTargetUser = isChildOwnedByTargetUser;
 
 function getUserScopedItems(items) {
-  // CORRECCAO: Todos os utilizadores podem consultar todos os registos.
-  // O filtro por comercial foi removido para garantir visibilidade universal.
   if (!Array.isArray(items)) return [];
-  return items.filter(Boolean);
+  // Determinar o utilizador ativo atual
+  var activeUser = null;
+  try {
+    if (typeof getActiveUser === 'function') activeUser = getActiveUser();
+    else if (typeof db !== 'undefined' && db._activeUserId && Array.isArray(db.usuarios)) {
+      activeUser = db.usuarios.find(function(u) { return u && u.id === db._activeUserId; }) || null;
+    }
+  } catch(e) {}
+
+  // Chefia e Administradores veem tudo
+  if (!activeUser) return items.filter(Boolean);
+  var isChefiaOrAdmin = (activeUser.role === 'admin') || (activeUser.chefia === true) || (activeUser.id === 'usr-admin-001');
+  if (isChefiaOrAdmin) return items.filter(Boolean);
+
+  // Utilizadores normais veem apenas os seus próprios registos
+  return items.filter(function(item) {
+    if (!item) return false;
+    return isItemOwnedByTargetUser(item, activeUser);
+  });
 }
 window.getUserScopedItems = getUserScopedItems;
 
