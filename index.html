@@ -3283,7 +3283,7 @@
               <!-- Direção / Morada -->
               <div class="form-group col-8">
                 <label for="clientDirecao1" data-i18n="client_address1_label">Direção (Linha 1)</label>
-                <input type="text" id="clientDirecao1" class="form-control" placeholder="Rua, Avenida, Praça..." data-i18n-placeholder="client_placeholder_address1">
+                <input type="text" id="clientDirecao1" class="form-control" placeholder="Rua, Avenida, Praça..." data-i18n-placeholder="client_placeholder_address1" onblur="handleClientDirecaoBlur()">
               </div>
 
               <div class="form-group col-4">
@@ -4871,11 +4871,11 @@
   <div id="toastContainer" class="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999999 !important;"></div>
 
   <!-- Internationalization & Translations Engine -->
-  <script src="i18n.js?v=202609232235"></script>
+  <script src="i18n.js?v=202609232250"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=202609232235"></script>
+  <script src="app.js?v=202609232250"></script>
   <!-- Duplicates Management Engine -->
-  <script src="duplicatesManager.js?v=202609232235"></script>
+  <script src="duplicatesManager.js?v=202609232250"></script>
 
   <!-- Auto-cura imediata de definições SMTP e Webhook no arranque de qualquer computador -->
   <script>

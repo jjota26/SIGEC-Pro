@@ -3833,6 +3833,43 @@ function cleanupResidualLocalStorage() {
 window.cleanupResidualLocalStorage = cleanupResidualLocalStorage;
 
 // Função para Carregar a Base de Dados (Garante persistência de alterações e eliminações permanentes)
+
+function normalizeAllClientAddresses() {
+  if (!db || !Array.isArray(db.clientes)) return false;
+  let modified = false;
+  db.clientes.forEach(c => {
+    if (!c) return;
+    const split = (typeof smartSplitAddress === 'function') ? smartSplitAddress(c.direcao1, c.direcao2, c.numero, c.andar) : null;
+    if (split) {
+      if (split.direcao1 !== (c.direcao1 || '') || split.direcao2 !== (c.direcao2 || '') || (split.numero && split.numero !== (c.numero || '')) || (split.andar && split.andar !== (c.andar || ''))) {
+        c.direcao1 = split.direcao1;
+        c.direcao2 = split.direcao2;
+        if (split.numero) c.numero = split.numero;
+        if (split.andar) c.andar = split.andar;
+        modified = true;
+      }
+    }
+    (c.separadores || []).forEach(s => {
+      if (!s) return;
+      const sSplit = (typeof smartSplitAddress === 'function') ? smartSplitAddress(s.direcao1, s.direcao2, s.numero, s.andar) : null;
+      if (sSplit) {
+        if (sSplit.direcao1 !== (s.direcao1 || '') || sSplit.direcao2 !== (s.direcao2 || '') || (sSplit.numero && sSplit.numero !== (s.numero || '')) || (sSplit.andar && sSplit.andar !== (s.andar || ''))) {
+          s.direcao1 = sSplit.direcao1;
+          s.direcao2 = sSplit.direcao2;
+          if (sSplit.numero) s.numero = sSplit.numero;
+          if (sSplit.andar) s.andar = sSplit.andar;
+          modified = true;
+        }
+      }
+    });
+  });
+  if (modified) {
+    try { safeSetStorage(STORAGE_KEYS.CLIENTES, JSON.stringify(db.clientes)); } catch(e){}
+  }
+  return modified;
+}
+window.normalizeAllClientAddresses = normalizeAllClientAddresses;
+
 function loadDatabase() {
   try {
     cleanupResidualLocalStorage();
@@ -4185,6 +4222,7 @@ function restoreInitialExcelDatabase() {
   if (confirm(`Tem a certeza que deseja carregar a Base de Dados inicial importada dos ficheiros Excel (${totalCli} Clientes e ${totalCon} Contactos)?`)) {
     clearDeletedRegistry();
     loadInitialExcelData();
+    normalizeAllClientAddresses();
     renderDatabaseOverview();
     if (db.clientes.length > 0) loadClientIntoForm(db.clientes[0].id);
   }
@@ -7522,7 +7560,7 @@ function renderEstatalSeparadores(targetLang = null) {
         <!-- Direção / Morada -->
         <div class="form-group col-8">
           <label data-i18n="client_address1_label">${t('client_address1_label', 'Direção (Linha 1)', currentLang)}</label>
-          <input type="text" class="form-control" value="${escapeHtmlAttr(activeSep.direcao1 || '')}" placeholder="${t('client_placeholder_address1', 'Rua, Avenida, Praça...', currentLang)}" oninput="syncSeparadorField(${activeEstatalSeparadorIndex}, 'direcao1', this.value)">
+          <input type="text" class="form-control" value="${escapeHtmlAttr(activeSep.direcao1 || '')}" placeholder="${t('client_placeholder_address1', 'Rua, Avenida, Praça...', currentLang)}" oninput="syncSeparadorField(${activeEstatalSeparadorIndex}, 'direcao1', this.value)" onblur="handleSeparadorDirecaoBlur(${activeEstatalSeparadorIndex})">
         </div>
 
         <div class="form-group col-4">
@@ -7617,6 +7655,44 @@ function handleSeparadorCustomNameChange(index, value) {
   markFormDirty();
   renderEstatalSeparadores();
 }
+
+
+function handleSeparadorDirecaoBlur(index) {
+  if (!currentEstatalSeparadores || !currentEstatalSeparadores[index]) return;
+  const sep = currentEstatalSeparadores[index];
+  if (!sep.direcao1) return;
+  if (typeof smartSplitAddress === 'function') {
+    const res = smartSplitAddress(sep.direcao1, sep.direcao2, sep.numero, sep.andar);
+    if (res.direcao1 !== sep.direcao1 || res.direcao2 !== (sep.direcao2 || '') || (res.numero && res.numero !== (sep.numero || ''))) {
+      sep.direcao1 = res.direcao1;
+      if (res.direcao2) sep.direcao2 = res.direcao2;
+      if (res.numero) sep.numero = res.numero;
+      if (res.andar) sep.andar = res.andar;
+      markFormDirty();
+      renderEstatalSeparadores();
+    }
+  }
+}
+window.handleSeparadorDirecaoBlur = handleSeparadorDirecaoBlur;
+
+function handleClientDirecaoBlur() {
+  const d1El = document.getElementById('clientDirecao1');
+  const d2El = document.getElementById('clientDirecao2');
+  const numEl = document.getElementById('clientNumero');
+  const andarEl = document.getElementById('clientAndar');
+  if (!d1El || !d1El.value) return;
+
+  if (typeof smartSplitAddress === 'function') {
+    const res = smartSplitAddress(d1El.value, d2El ? d2El.value : '', numEl ? numEl.value : '', andarEl ? andarEl.value : '');
+    if (res.direcao1 !== d1El.value || (res.direcao2 && (!d2El || res.direcao2 !== d2El.value))) {
+      d1El.value = res.direcao1;
+      if (d2El && res.direcao2) d2El.value = res.direcao2;
+      if (numEl && res.numero) numEl.value = res.numero;
+      if (andarEl && res.andar) andarEl.value = res.andar;
+    }
+  }
+}
+window.handleClientDirecaoBlur = handleClientDirecaoBlur;
 
 function syncSeparadorField(index, fieldName, value) {
   if (!currentEstatalSeparadores[index]) return;
@@ -9305,6 +9381,8 @@ function saveClient(e) {
       const comercialUser = (db.usuarios || []).find(u => u.id === comercialId);
       const comercialNome = comercialUser ? comercialUser.nome : '';
 
+      const primarySplit = (typeof smartSplitAddress === 'function') ? smartSplitAddress(primarySep.direcao1, primarySep.direcao2, primarySep.numero, primarySep.andar) : { direcao1: primarySep.direcao1, direcao2: primarySep.direcao2, numero: primarySep.numero, andar: primarySep.andar };
+
       clientObj = {
         id,
         tipoCliente: 'Estatal',
@@ -9312,10 +9390,10 @@ function saveClient(e) {
         secretariaEstado: currentEstatalSeparadores.map(s => s.tipoSeparador === 'Outro' ? (cleanStr(s.nomePersonalizado) || 'Outro') : s.tipoSeparador).join(', '),
         nome: cleanStr(primarySep.nome),
         contribuinte: cleanStr(primarySep.contribuinte),
-        direcao1: cleanStr(primarySep.direcao1),
-        direcao2: cleanStr(primarySep.direcao2),
-        numero: cleanStr(primarySep.numero),
-        andar: cleanStr(primarySep.andar),
+        direcao1: primarySplit.direcao1 || cleanStr(primarySep.direcao1),
+        direcao2: primarySplit.direcao2 || cleanStr(primarySep.direcao2),
+        numero: primarySplit.numero || cleanStr(primarySep.numero),
+        andar: primarySplit.andar || cleanStr(primarySep.andar),
         codigoPostal: cleanStr(primarySep.codigoPostal),
         localidade: cleanStr(primarySep.localidade),
         pais: (typeof translateSystemTerm === 'function' ? translateSystemTerm(cleanStr(primarySep.pais) || 'Portugal', 'Português') : (cleanStr(primarySep.pais) || 'Portugal')),
@@ -9324,22 +9402,26 @@ function saveClient(e) {
         email: cleanStr(primarySep.email),
         website: cleanStr(primarySep.website),
         notas: notasVal,
-        separadores: currentEstatalSeparadores.map(s => s ? {
-          ...s,
-          nome: cleanStr(s.nome),
-          contribuinte: cleanStr(s.contribuinte),
-          direcao1: cleanStr(s.direcao1),
-          direcao2: cleanStr(s.direcao2),
-          numero: cleanStr(s.numero),
-          andar: cleanStr(s.andar),
-          codigoPostal: cleanStr(s.codigoPostal),
-          localidade: cleanStr(s.localidade),
-          pais: (typeof translateSystemTerm === 'function' ? translateSystemTerm(cleanStr(s.pais) || 'Portugal', 'Português') : (cleanStr(s.pais) || 'Portugal')),
-          telefone: cleanStr(s.telefone),
-          telemovel: cleanStr(s.telemovel),
-          email: cleanStr(s.email),
-          website: cleanStr(s.website)
-        } : s),
+        separadores: currentEstatalSeparadores.map(s => {
+          if (!s) return s;
+          const sSplit = (typeof smartSplitAddress === 'function') ? smartSplitAddress(s.direcao1, s.direcao2, s.numero, s.andar) : { direcao1: s.direcao1, direcao2: s.direcao2, numero: s.numero, andar: s.andar };
+          return {
+            ...s,
+            nome: cleanStr(s.nome),
+            contribuinte: cleanStr(s.contribuinte),
+            direcao1: sSplit.direcao1 || cleanStr(s.direcao1),
+            direcao2: sSplit.direcao2 || cleanStr(s.direcao2),
+            numero: sSplit.numero || cleanStr(s.numero),
+            andar: sSplit.andar || cleanStr(s.andar),
+            codigoPostal: cleanStr(s.codigoPostal),
+            localidade: cleanStr(s.localidade),
+            pais: (typeof translateSystemTerm === 'function' ? translateSystemTerm(cleanStr(s.pais) || 'Portugal', 'Português') : (cleanStr(s.pais) || 'Portugal')),
+            telefone: cleanStr(s.telefone),
+            telemovel: cleanStr(s.telemovel),
+            email: cleanStr(s.email),
+            website: cleanStr(s.website)
+          };
+        }),
         userId: comercialId,
         comercialAtribuidoId: comercialId,
         comercialAtribuidoNome: comercialNome,
@@ -9357,10 +9439,15 @@ function saveClient(e) {
         showToast('Atenção: o campo Contribuinte (NIF) está vazio. O cliente foi guardado sem NIF.', 'warning');
       }
 
-      const direcao1 = document.getElementById('clientDirecao1') ? document.getElementById('clientDirecao1').value.trim() : '';
-      const direcao2 = document.getElementById('clientDirecao2') ? document.getElementById('clientDirecao2').value.trim() : '';
-      const numero = document.getElementById('clientNumero') ? document.getElementById('clientNumero').value.trim() : '';
-      const andar = document.getElementById('clientAndar') ? document.getElementById('clientAndar').value.trim() : '';
+      const _rawD1 = document.getElementById('clientDirecao1') ? document.getElementById('clientDirecao1').value.trim() : '';
+      const _rawD2 = document.getElementById('clientDirecao2') ? document.getElementById('clientDirecao2').value.trim() : '';
+      const _rawNum = document.getElementById('clientNumero') ? document.getElementById('clientNumero').value.trim() : '';
+      const _rawAndar = document.getElementById('clientAndar') ? document.getElementById('clientAndar').value.trim() : '';
+      const _splitAddr = (typeof smartSplitAddress === 'function') ? smartSplitAddress(_rawD1, _rawD2, _rawNum, _rawAndar) : { direcao1: _rawD1, direcao2: _rawD2, numero: _rawNum, andar: _rawAndar };
+      const direcao1 = _splitAddr.direcao1;
+      const direcao2 = _splitAddr.direcao2;
+      const numero = _splitAddr.numero || _rawNum;
+      const andar = _splitAddr.andar || _rawAndar;
       const codigoPostal = document.getElementById('clientCodigoPostal') ? document.getElementById('clientCodigoPostal').value.trim() : '';
       const localidade = document.getElementById('clientLocalidade') ? document.getElementById('clientLocalidade').value.trim() : '';
       const _paisRaw = document.getElementById('clientPais') ? document.getElementById('clientPais').value.trim() : '';
@@ -14743,6 +14830,15 @@ function smartParseAddress(raw) {
   }
 
   result.direcao1 = parts.join(', ').replace(/[\s,\-\.]+$/, '').replace(/^[\s,\-\.]+/, '').trim();
+
+  // Decomposição inteligente automática de Linha 1 e Linha 2
+  if (typeof smartSplitAddress === 'function') {
+    const splitRes = smartSplitAddress(result.direcao1, result.direcao2, result.numero, result.andar);
+    result.direcao1 = splitRes.direcao1;
+    result.direcao2 = splitRes.direcao2;
+    if (splitRes.numero) result.numero = splitRes.numero;
+    if (splitRes.andar) result.andar = splitRes.andar;
+  }
 
   return result;
 }
@@ -27610,26 +27706,142 @@ function getCountryFlagEmoji(cc, countryName) {
 }
 window.getCountryFlagEmoji = getCountryFlagEmoji;
 
-function splitSmartAddressLines(direcao1, direcao2, numero) {
-  let d1 = (direcao1 || '').trim();
-  let d2 = (direcao2 || '').trim();
-  let num = (numero || '').trim();
+function smartSplitAddress(rawD1, rawD2, rawNum, rawAndar) {
+  let d1 = (rawD1 || '').trim();
+  let d2 = (rawD2 || '').trim();
+  let num = (rawNum || '').trim();
+  let andar = (rawAndar || '').trim();
 
-  // Padrões de Zona Secundária (Polígonos, Parques, Edifícios, etc.)
-  const secondaryPatterns = [
-    /\(?\s*(Pol[íi]gono\s+Industrial\s+[^,\)\-]+)\s*\)?/i,
-    /\(?\s*(Zona\s+Industrial\s+[^,\)\-]+)\s*\)?/i,
-    /\(?\s*(Parque\s+(?:Empresarial|Tecnol[óo]gico|de\s+Neg[óo]cios|Industrial)\s+[^,\)\-]+)\s*\)?/i,
-    /\(?\s*(Centro\s+Empresarial\s+[^,\)\-]+)\s*\)?/i,
+  d1 = d1.replace(/Â[º°ª]/g, 'º').replace(/Â/g, '');
+  d2 = d2.replace(/Â[º°ª]/g, 'º').replace(/Â/g, '');
+
+  // 1. Limpar códigos postais e localidades residuais em d1 se existirem
+  const ptPostal = d1.match(/,\s*(\d{4}\s*-\s*\d{3})\s+([A-Za-zÀ-ÿ\s\-]+)$/i) || d1.match(/\s+(\d{4}\s*-\s*\d{3})\s+([A-Za-zÀ-ÿ\s\-]+)$/i);
+  if (ptPostal) {
+    d1 = d1.slice(0, ptPostal.index).trim();
+  }
+  d1 = d1.replace(/,\s*(?:Lisboa|Porto|Portugal)[\.\s]*$/i, '').trim();
+
+  // 2. Extrair andar / piso se presente em d1
+  const floorMatch = d1.match(/(?:,\s*|\s+)(\d+(?:\.?[º°ªa]|\.)?\s*(?:andar|piso|esq(?:uerdo)?|dto|direito|frente|recuado|trás|tras|d|e)\b|(?:r\/c|rés-do-chão|res-do-chao|cave|subcave|sobreloja))/i);
+  if (floorMatch) {
+    if (!andar) andar = floorMatch[1].trim();
+    d1 = d1.replace(floorMatch[0], ' ').trim();
+  }
+
+  // 3. Extrair número se presente em d1 e ainda vazio
+  if (!num) {
+    const explicitNum = d1.match(/(?:,\s*|\s+)(?:n[\.º°]+[o]?\s*|n[uú]mero\s*)(\d+[\s\-]?[A-Za-z]?)(?=[\,\s\.]|$)/i);
+    if (explicitNum) {
+      num = explicitNum[1].trim();
+      d1 = d1.slice(0, explicitNum.index).trim();
+    } else {
+      const numMatch = d1.match(/(?:,\s*|\s+n\.?[ºo]?\s*)(\d+[\s\-]?[A-Za-z]?)\s*$/i);
+      if (numMatch) {
+        num = numMatch[1].trim();
+        d1 = d1.slice(0, numMatch.index).trim();
+      }
+    }
+  }
+
+  // Se d2 for apenas número ou número + código postal residual
+  if (d2) {
+    const d2NumOnly = d2.match(/^(\d+[A-Za-z]?)(?:\s*,\s*|\s*-\s*|\s+|$)/);
+    if (d2NumOnly) {
+      if (!num) num = d2NumOnly[1];
+      const rest = d2.slice(d2NumOnly[0].length).replace(/\d{4}\s*-\s*\d{3}/, '').replace(/(?:Lisboa|Porto|Portugal)[\.\s]*/i, '').trim();
+      d2 = rest.replace(/^[\s,\-\/]+|[\s,\-\/]+$/g, '').trim();
+    }
+  }
+
+  const STREET_START_REGEX = /^(?:Avenida|Av\.?|Rua|R\.?|Praça|Praca|Praza|Plaza|Pl\.?|Largo|Lg\.?|Alameda|Al\.?|Calçada|Calcada|Travessa|Tv\.?|Estrada|Estr\.?|Carretera|Ctra\.?|Calle|C\/|C\.|Paseo|P\.º|Bulevar|Boulevard|Rambla|Rotunda|Caminho|Camino|Via|Vía)\b/i;
+
+  // Inversão óbvia: d1 não é rua, mas d2 é rua
+  if (d1 && d2 && !STREET_START_REGEX.test(d1) && STREET_START_REGEX.test(d2)) {
+    const tmp = d1;
+    d1 = d2;
+    d2 = tmp;
+  }
+
+  // Se d1 contém parêntesis com indicação de zona/edifício
+  const parenMatch = d1.match(/\(([^)]+)\)/);
+  if (parenMatch && !d2) {
+    d2 = parenMatch[1].trim();
+    d1 = d1.replace(parenMatch[0], '').replace(/^[\s,\-\/]+|[\s,\-\/]+$/g, '').trim();
+  }
+
+  const SECONDARY_PATTERNS = [
+    /\(?\s*(Campus\s+[^,\)\-]+)\s*\)?/i,
+    /\(?\s*((?:Pol[íi]gono|Zona)\s+(?:Industrial|Empresarial|de\s+Actividades\s+Econ[óo]micas)[^,\)\-]*)\s*\)?/i,
+    /\(?\s*(Parque\s+(?:Empresarial|Tecnol[óo]gico|Industrial|de\s+Neg[óo]cios|de\s+Sa[úu]de|das\s+Na[çc][õo]es)[^,\)\-]*)\s*\)?/i,
+    /\(?\s*(Centro\s+(?:Empresarial|Comercial|Ismaili|de\s+Neg[óo]cios|de\s+Congressos|Cient[íi]fico)[^,\)\-]*)\s*\)?/i,
+    /\(?\s*(Complexo\s+(?:da\s+Moncloa|Industrial|Desportivo|Empresarial|Hospitalar)[^,\)\-]*)\s*\)?/i,
     /\(?\s*(Edif[íi]cio\s+[^,\)\-]+)\s*\)?/i,
     /\(?\s*(Torre\s+[A-Za-z0-9\s]+)\s*\)?/i,
     /\(?\s*(Bloco\s+[A-Za-z0-9\s]+)\s*\)?/i,
     /\(?\s*(Lote\s+[A-Za-z0-9\s]+)\s*\)?/i,
-    /\(?\s*(Urbaniza[çc][ãa]o\s+[^,\)\-]+)\s*\)?/i
+    /\(?\s*(Pavilh[ãa]o\s+[^,\)\-]+)\s*\)?/i,
+    /\(?\s*(Central\s+Tejo)\s*\)?/i,
+    /\(?\s*(Urbaniza[çc][ãa]o\s+[^,\)\-]+)\s*\)?/i,
+    /\(?\s*((?:Quinta|Herdade)\s+d[eao][s]?\s+[^,\)\-]+)\s*\)?/i,
+    /\(?\s*(Doca\s+d[eao][s]?\s+[^,\)\-]+)\s*\)?/i
   ];
 
+  // Se d1 contém vírgula
+  if (d1.includes(',')) {
+    const parts = d1.split(',').map(p => p.trim()).filter(Boolean);
+    if (parts.length >= 2) {
+      if (!STREET_START_REGEX.test(parts[0]) && STREET_START_REGEX.test(parts[1])) {
+        if (!d2) d2 = parts[0];
+        d1 = parts.slice(1).join(', ').trim();
+      } else if (STREET_START_REGEX.test(parts[0])) {
+        const remaining = parts.slice(1);
+        const secondaryParts = [];
+        for (const rem of remaining) {
+          const pureNumMatch = rem.match(/^(\d+[A-Za-z]?)(?:\s*,\s*|\s*-\s*|\s+|$)/);
+          if (pureNumMatch && !num) {
+            num = pureNumMatch[1];
+            const afterNum = rem.slice(pureNumMatch[0].length).trim();
+            if (afterNum && !/^\d{4}/.test(afterNum) && !/^(?:Lisboa|Porto|Portugal)$/i.test(afterNum)) {
+              secondaryParts.push(afterNum);
+            }
+          } else if (/^\d{4}/.test(rem) || /^(?:Lisboa|Porto|Portugal)$/i.test(rem)) {
+            // Ignorar
+          } else {
+            secondaryParts.push(rem);
+          }
+        }
+        if (secondaryParts.length > 0 && !d2) {
+          d2 = secondaryParts.join(', ');
+        }
+        d1 = parts[0];
+      }
+    }
+  }
+
+  // Padrão: "Palácio ... Largo/Rua/Avenida ..." sem vírgula
+  const palStreetMatch = d1.match(/^(Pal[áa]cio\s+[^,]+?)\s+(Largo\s+.*|Rua\s+.*|Avenida\s+.*|Praça\s+.*)$/i);
+  if (palStreetMatch) {
+    if (!d2) d2 = palStreetMatch[1].trim();
+    d1 = palStreetMatch[2].trim();
+  }
+
+  // Padrão: "Campus ... Avenida/Rua/Largo ..." sem vírgula
+  const campusStreetMatch = d1.match(/^(Campus\s+[A-Za-z0-9]+)\s+(Largo\s+.*|Rua\s+.*|Avenida\s+.*|Praça\s+.*)$/i);
+  if (campusStreetMatch) {
+    if (!d2) d2 = campusStreetMatch[1].trim();
+    d1 = campusStreetMatch[2].trim();
+  }
+
+  // Padrão: "Edifício ... Rua/Avenida/Praça/Largo ..." sem vírgula
+  const edifStreetMatch = d1.match(/^(Edif[íi]cio\s+[^,]+?)\s+(Largo\s+.*|Rua\s+.*|Avenida\s+.*|Praça\s+.*)$/i);
+  if (edifStreetMatch) {
+    if (!d2) d2 = edifStreetMatch[1].trim();
+    d1 = edifStreetMatch[2].trim();
+  }
+
   if (!d2) {
-    for (const pat of secondaryPatterns) {
+    for (const pat of SECONDARY_PATTERNS) {
       const match = d1.match(pat);
       if (match) {
         d2 = match[1].trim();
@@ -27639,16 +27851,16 @@ function splitSmartAddressLines(direcao1, direcao2, numero) {
     }
   }
 
-  // Extrair número se não foi fornecido
-  if (!num) {
-    const numMatch = d1.match(/,\s*(?:n\.?[ºo]?\s*)?(\d+[A-Za-z]?)\s*$/i) || d1.match(/\s+n\.?[ºo]?\s*(\d+[A-Za-z]?)\s*$/i);
-    if (numMatch) {
-      num = numMatch[1];
-      d1 = d1.slice(0, numMatch.index).trim();
-    }
-  }
+  d1 = d1.replace(/^[\s,\-\/]+|[\s,\-\/]+$/g, '').trim();
+  d2 = d2.replace(/^[\s,\-\/]+|[\s,\-\/]+$/g, '').trim();
+  num = num.replace(/^[\s,\-\/n\.º°]+|[\s,\-\/]+$/gi, '').trim();
 
-  return { direcao1: d1, direcao2: d2, numero: num };
+  return { direcao1: d1, direcao2: d2, numero: num, andar: andar };
+}
+window.smartSplitAddress = smartSplitAddress;
+
+function splitSmartAddressLines(direcao1, direcao2, numero, andar) {
+  return smartSplitAddress(direcao1, direcao2, numero, andar);
 }
 window.splitSmartAddressLines = splitSmartAddressLines;
 
@@ -27686,13 +27898,14 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "website": "https://www.iapmei.pt",
     "telefone": "+351 213 836 000",
     "email": "info@iapmei.pt",
-    "direcao1": "Estrada do Paço do Lumiar, Campus do Lumiar",
+    "direcao1": "Estrada do Paço do Lumiar",
     "numero": "Edifício A",
     "andar": "",
     "codigoPostal": "1649-038",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.iapmei.pt"
+    "fonteUrl": "https://www.iapmei.pt",
+    "direcao2": "Campus do Lumiar"
   },
   {
     "aliases": [
@@ -27925,13 +28138,14 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "website": "https://alegria-activity.com",
     "email": "info@alegria-activity.com",
     "telefone": "+34 945 128 415",
-    "direcao1": "Calle Landaluzea (Polígono Industrial Júndiz)",
+    "direcao1": "Calle Landaluzea",
     "numero": "24",
     "andar": "",
     "codigoPostal": "01015",
     "localidade": "Vitoria-Gasteiz (Álava)",
     "pais": "Espanha",
-    "fonteUrl": "https://alegria-activity.com"
+    "fonteUrl": "https://alegria-activity.com",
+    "direcao2": "Polígono Industrial Júndiz"
   },
   {
     "aliases": [
@@ -27942,13 +28156,14 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "website": "https://alegria-activity.com",
     "email": "info@alegria-activity.com",
     "telefone": "+34 876 26 20 97",
-    "direcao1": "Polígono Industrial Malpica, Calle E",
+    "direcao1": "Calle E",
     "numero": "9",
     "andar": "",
     "codigoPostal": "50016",
     "localidade": "Zaragoza",
     "pais": "Espanha",
-    "fonteUrl": "https://alegria-activity.com"
+    "fonteUrl": "https://alegria-activity.com",
+    "direcao2": "Polígono Industrial Malpica"
   },
   {
     "aliases": [
@@ -28017,13 +28232,14 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     ],
     "website": "https://www.portaldiplomatico.mne.gov.pt",
     "telefone": "+351 213 946 000",
-    "direcao1": "Largo do Rilvas (Palácio das Necessidades)",
+    "direcao1": "Largo do Rilvas",
     "numero": "",
     "andar": "",
     "codigoPostal": "1399-030",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.portaldiplomatico.mne.gov.pt"
+    "fonteUrl": "https://www.portaldiplomatico.mne.gov.pt",
+    "direcao2": "Palácio das Necessidades"
   },
   {
     "aliases": [
@@ -28229,13 +28445,14 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     ],
     "website": "https://irn.justica.gov.pt",
     "telefone": "+351 211 950 500",
-    "direcao1": "Avenida Dom João II, Campus de Justiça, Edifício H",
+    "direcao1": "Avenida Dom João II",
     "numero": "Lote 1.06.2.1",
     "andar": "",
     "codigoPostal": "1990-097",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://irn.justica.gov.pt"
+    "fonteUrl": "https://irn.justica.gov.pt",
+    "direcao2": "Campus de Justiça, Edifício H"
   },
   {
     "aliases": [
@@ -28312,13 +28529,14 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     ],
     "website": "https://www.iapmei.pt",
     "telefone": "+351 213 836 000",
-    "direcao1": "Estrada do Paço do Lumiar, Campus do Lumiar, Edifício A",
+    "direcao1": "Estrada do Paço do Lumiar",
     "numero": "",
     "andar": "",
     "codigoPostal": "1649-038",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.iapmei.pt"
+    "fonteUrl": "https://www.iapmei.pt",
+    "direcao2": "Campus do Lumiar, Edifício A"
   },
   {
     "aliases": [
@@ -28368,13 +28586,14 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "website": "https://www.portugal.gov.pt",
     "telefone": "+351 213 927 600",
     "email": "gabinete.mcjd@mcjd.gov.pt",
-    "direcao1": "Campus XXI, Avenida João XXI",
+    "direcao1": "Avenida João XXI",
     "numero": "63",
     "andar": "",
     "codigoPostal": "1000-300",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt"
+    "fonteUrl": "https://www.portugal.gov.pt",
+    "direcao2": "Campus XXI"
   },
   {
     "aliases": [
@@ -28386,7 +28605,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     "website": "https://www.portugal.gov.pt",
     "telefone": "+351 213 614 500",
     "email": "gabinete.secul@mcjd.gov.pt",
-    "direcao1": "Campus XXI, Avenida João XXI",
+    "direcao1": "Avenida João XXI",
     "direcao2": "Palácio Nacional da Ajuda, 1349-021",
     "numero": "63",
     "andar": "",
@@ -28621,13 +28840,14 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     ],
     "website": "https://www.infarmed.pt",
     "telefone": "+351 217 987 100",
-    "direcao1": "Parque de Saúde de Lisboa, Avenida do Brasil",
+    "direcao1": "Avenida do Brasil",
     "numero": "53",
     "andar": "",
     "codigoPostal": "1749-004",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.infarmed.pt"
+    "fonteUrl": "https://www.infarmed.pt",
+    "direcao2": "Parque de Saúde de Lisboa"
   },
   {
     "aliases": [
@@ -28720,13 +28940,14 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     ],
     "website": "https://www.foriente.pt",
     "telefone": "+351 213 585 200",
-    "direcao1": "Avenida Brasília, Doca de Alcântara Norte",
+    "direcao1": "Avenida Brasília",
     "numero": "",
     "andar": "",
     "codigoPostal": "1350-352",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.foriente.pt"
+    "fonteUrl": "https://www.foriente.pt",
+    "direcao2": "Doca de Alcântara Norte"
   },
   {
     "aliases": [
@@ -28751,13 +28972,14 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     ],
     "website": "https://www.akdn.org",
     "telefone": "+351 217 229 000",
-    "direcao1": "Centro Ismaili, Avenida Lusíada",
+    "direcao1": "Avenida Lusíada",
     "numero": "",
     "andar": "",
     "codigoPostal": "1600-001",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.akdn.org"
+    "fonteUrl": "https://www.akdn.org",
+    "direcao2": "Centro Ismaili"
   },
   {
     "aliases": [
@@ -28963,13 +29185,14 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     ],
     "website": "https://www.galp.com",
     "telefone": "+351 217 242 500",
-    "direcao1": "Rua Tomás da Fonseca, Torre A",
+    "direcao1": "Rua Tomás da Fonseca",
     "numero": "",
     "andar": "",
     "codigoPostal": "1600-209",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.galp.com"
+    "fonteUrl": "https://www.galp.com",
+    "direcao2": "Torre A"
   },
   {
     "aliases": [
@@ -28979,13 +29202,14 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     ],
     "website": "https://www.flytap.com",
     "telefone": "+351 218 415 000",
-    "direcao1": "Edifício 25, Aeroporto de Lisboa",
+    "direcao1": "Aeroporto de Lisboa",
     "numero": "",
     "andar": "",
     "codigoPostal": "1704-801",
     "localidade": "Lisboa",
     "pais": "Portugal",
-    "fonteUrl": "https://www.flytap.com"
+    "fonteUrl": "https://www.flytap.com",
+    "direcao2": "Edifício 25"
   },
   {
     "aliases": [
