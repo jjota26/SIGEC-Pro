@@ -31293,32 +31293,71 @@ function parseSmartAddress(text) {
     workingText = workingText.replace(webMatch[0], " ");
   }
 
-  // 3. Extração de Contribuinte (NIF / NIPC / CIF / VAT)
-  const nifPrefixMatch = workingText.match(/\b(?:NIF|NIPC|Contribuinte|CIF|VAT|IVA)[\s:.-]*([A-Z0-9]{8,11})\b/i);
+  // 3. Extração Explícita de Telefone quando tem rótulo (ex: Tel:, Telefone:, Tlm:, Mobile:, Fixo:)
+  const labeledTelMatch = workingText.match(/\b(?:Tel(?:efone)?|Tlm|Telemóvel|Phone|Mobile|Fixo)[\s:.-]*(?:(?:\+|00)351[\s.-]*)?((?:2\d{2}|9[1236]\d)[\s.-]*\d{3}[\s.-]*\d{3}|\d{9})\b/i);
+  if (labeledTelMatch) {
+    telefone = labeledTelMatch[0].replace(/^[^\d+]+/, '').trim();
+    workingText = workingText.replace(labeledTelMatch[0], " ");
+  }
+
+  // 4. Extração de Contribuinte (NIF / NIPC / CIF / VAT / Identificação Fiscal)
+  // 4a. Com rótulo explícito (ex: NIF: 502 123 456, NIPC: 502123456, Contribuinte: 502123456, CIF: B-12345678, PT502123456)
+  const nifPrefixMatch = workingText.match(/\b(?:NIF|NIPC|Contribuinte|Identifica[çc][ãa]o\s*Fiscal|CIF|VAT|IVA)[\s:.-]*(?:PT|ES)?[\s:.-]*([A-Z0-9][A-Z0-9\s.-]{7,11}[A-Z0-9])\b/i);
   if (nifPrefixMatch) {
-    contribuinte = nifPrefixMatch[1].trim();
-    workingText = workingText.replace(nifPrefixMatch[0], " ");
-  } else {
-    const nifPtAvulso = workingText.match(/\b([125689]\d{8})\b/);
+    const rawVal = nifPrefixMatch[1].replace(/[\s.-]/g, "").toUpperCase();
+    if (/^\d{9}$/.test(rawVal) || /^[A-HJ-NP-SUVW]\d{7}[0-9A-J]$/.test(rawVal)) {
+      contribuinte = rawVal;
+      workingText = workingText.replace(nifPrefixMatch[0], " ");
+    }
+  }
+
+  // 4b. Formato com prefixo internacional avulso (ex: PT502123456 ou ESB12345678)
+  if (!contribuinte) {
+    const vatEuMatch = workingText.match(/\b(?:PT\s*([125689]\d{8})|ES\s*([A-HJ-NP-SUVW]\d{7}[0-9A-J]))\b/i);
+    if (vatEuMatch) {
+      contribuinte = (vatEuMatch[1] || vatEuMatch[2]).replace(/\s+/g, "").toUpperCase();
+      workingText = workingText.replace(vatEuMatch[0], " ");
+    }
+  }
+
+  // 4c. NIF Coletivo Português (NIPC) avulso: inicia sempre por 5 ou 6 (nunca é telefone!)
+  if (!contribuinte) {
+    const nifPtNipc = workingText.match(/\b([56]\d{8})\b/);
+    if (nifPtNipc) {
+      contribuinte = nifPtNipc[1];
+      workingText = workingText.replace(nifPtNipc[0], " ");
+    }
+  }
+
+  // 4d. CIF Espanhol avulso (Letra + 7 dígitos + Letra/Dígito)
+  if (!contribuinte) {
     const cifEsAvulso = workingText.match(/\b([A-HJ-NP-SUVW]\d{7}[0-9A-J])\b/i);
-    if (nifPtAvulso) {
-      contribuinte = nifPtAvulso[1];
-      workingText = workingText.replace(nifPtAvulso[0], " ");
-    } else if (cifEsAvulso) {
+    if (cifEsAvulso) {
       contribuinte = cifEsAvulso[1].toUpperCase();
       workingText = workingText.replace(cifEsAvulso[0], " ");
     }
   }
 
-  // 4. Extração de Telefone
-  const telMatch = workingText.match(/(?:(?:\+|00)351[\s.-]*)?(?:2\d{2}|9[1236]\d)[\s.-]*\d{3}[\s.-]*\d{3}\b/) ||
-                   workingText.match(/(?:(?:\+|00)34[\s.-]*)?(?:[689]\d{2})[\s.-]*\d{3}[\s.-]*\d{3}\b/);
-  if (telMatch) {
-    telefone = telMatch[0].trim();
-    workingText = workingText.replace(telMatch[0], " ");
+  // 5. Extração de Telefone Avulso (se ainda não extraído no passo 3)
+  if (!telefone) {
+    const telMatch = workingText.match(/(?:(?:\+|00)351[\s.-]*)?(?:2\d{2}|9[1236]\d)[\s.-]*\d{3}[\s.-]*\d{3}\b/) ||
+                     workingText.match(/(?:(?:\+|00)34[\s.-]*)?(?:[689]\d{2})[\s.-]*\d{3}[\s.-]*\d{3}\b/);
+    if (telMatch) {
+      telefone = telMatch[0].trim();
+      workingText = workingText.replace(telMatch[0], " ");
+    }
   }
 
-  // 5. Código Postal e País
+  // 4e. NIF Singular Português avulso (1, 2, 8, 9) caso sobre após telefone e CP
+  if (!contribuinte) {
+    const nifPtSingular = workingText.match(/\b([128]\d{8})\b/);
+    if (nifPtSingular) {
+      contribuinte = nifPtSingular[1];
+      workingText = workingText.replace(nifPtSingular[0], " ");
+    }
+  }
+
+  // 6. Código Postal e País
   const cpPtMatch = workingText.match(/\b(\d{4}-\d{3})\b/);
   const cpEsMatch = workingText.match(/\b(\d{5})\b/);
   if (cpPtMatch) {
@@ -31896,7 +31935,7 @@ async function triggerAiAddressEnrichment() {
 
         // ── TENTATIVA 6a: Gemini 2.0 com Google Search Grounding ──
         try {
-          const promptGrounding = `Pesquisa na web e encontra a morada oficial e exata da sede social/fiscal (rua exata com número de porta, código postal e cidade oficial), website oficial, email oficial de atendimento e telefone da empresa/organização: "${entityName}"${existingPais ? ' (país: ' + existingPais + ')' : ''}. Responde em português.`;
+          const promptGrounding = `Pesquisa na web e encontra o número de contribuinte (NIF/NIPC em Portugal ou CIF em Espanha), a morada oficial e exata da sede social/fiscal (rua exata com número de porta, código postal e cidade oficial), website oficial, email oficial de atendimento e telefone da empresa/organização: "${entityName}"${existingPais ? ' (país: ' + existingPais + ')' : ''}. Responde em português.`;
           console.log('[SIGEC-Gemini 6a] A enviar com Google Search Grounding...');
           const gRespGrounding = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
             method: 'POST',
@@ -31929,7 +31968,7 @@ async function triggerAiAddressEnrichment() {
         if (!aiTextResponse) {
           console.log('[SIGEC-Gemini] A tentar modo conhecimento direto (sem tools)...');
           try {
-            const directPrompt = `Indica a morada oficial e exata da sede fiscal/social registada (rua e número de porta exatos, código postal, cidade/município e país), website oficial, email de contacto oficial e telefone da empresa ou organização "${entityName}"${existingPais ? ' (' + existingPais + ')' : ''}. Fornece todos os detalhes conhecidos.`;
+            const directPrompt = `Indica o número de contribuinte (NIF/NIPC em Portugal ou CIF em Espanha), a morada oficial e exata da sede fiscal/social registada (rua e número de porta exatos, código postal, cidade/município e país), website oficial, email de contacto oficial e telefone da empresa ou organização "${entityName}"${existingPais ? ' (' + existingPais + ')' : ''}. Fornece todos os detalhes conhecidos.`;
             const gRespDirect = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -31969,12 +32008,12 @@ async function triggerAiAddressEnrichment() {
 
         // ── PASSO 6b: Extrair dados estruturados em JSON ──
         if (aiTextResponse) {
-          const promptJson = `Com base neste texto sobre "${entityName}", extrai APENAS os dados de contacto em JSON:
+          const promptJson = `Com base neste texto sobre "${entityName}", extrai APENAS os dados de contacto e identificação fiscal em JSON:
 
 TEXTO: ${aiTextResponse}
 
 Devolve APENAS este JSON exato (sem texto extra, sem markdown):
-{"website":"","email":"","telefone":"","direcao1":"","codigoPostal":"","localidade":"","pais":""}`;
+{"website":"","email":"","telefone":"","contribuinte":"","direcao1":"","codigoPostal":"","localidade":"","pais":""}`;
 
           let parsed = null;
           try {
@@ -32007,7 +32046,7 @@ Devolve APENAS este JSON exato (sem texto extra, sem markdown):
           if (parsed) {
             const gCountry = parsed.pais || existingPais || 'Espanha';
             const gCc = gCountry.toLowerCase().includes('port') ? 'pt' : (gCountry.toLowerCase().includes('esp') ? 'es' : '');
-            if (parsed.website || parsed.email || parsed.localidade || parsed.direcao1 || parsed.telefone) {
+            if (parsed.website || parsed.email || parsed.localidade || parsed.direcao1 || parsed.telefone || parsed.contribuinte) {
               const gSplit = splitSmartAddressLines(parsed.direcao1 || '', parsed.direcao2 || '', parsed.numero || '');
               availableAiCandidates.push({
                 nome:        entityName,
@@ -32023,6 +32062,7 @@ Devolve APENAS este JSON exato (sem texto extra, sem markdown):
                 telefone:    parsed.telefone || existingTelefone || '',
                 email:       parsed.email || existingEmail || '',
                 website:     parsed.website || existingWebsite || '',
+                contribuinte:parsed.contribuinte || '',
                 fonteUrl:    aiSourceUrl || parsed.website || 'https://www.google.com',
                 provider:    '🔎 Google (via Gemini AI)'
               });
@@ -32192,7 +32232,7 @@ function confirmAndApplyAiAddress() {
       if (d.codigoPostal) sep.codigoPostal = d.codigoPostal;
       if (d.localidade) sep.localidade = d.localidade;
       if (d.pais) sep.pais = d.pais;
-      if (d.contribuinte && d.contribuinte.trim() && d.contribuinte.trim() !== '000000000' && (!sep.contribuinte || sep.contribuinte.trim() === '' || sep.contribuinte.trim() === '000000000')) {
+      if (d.contribuinte && d.contribuinte.trim() && d.contribuinte.trim() !== '000000000') {
         sep.contribuinte = d.contribuinte.trim();
       }
       if (d.website && (!sep.website || sep.website.trim() === '')) {
@@ -32266,8 +32306,12 @@ function confirmAndApplyAiAddress() {
     }
     if (d.contribuinte && d.contribuinte.trim() && d.contribuinte.trim() !== '000000000') {
       const el = document.getElementById('clientContribuinte');
-      if (el && (!el.value || el.value.trim() === '' || el.value.trim() === '000000000')) {
+      if (el) {
         el.value = d.contribuinte.trim();
+        try {
+          el.dispatchEvent(new Event('input', { bubbles: true }));
+          el.dispatchEvent(new Event('change', { bubbles: true }));
+        } catch(_) {}
       }
     }
     const labelTipo = d.tipoCliente === 'Fundação' ? 'da Fundação' : 'da Empresa';
