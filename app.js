@@ -20478,6 +20478,20 @@ function ensureUsersInitialized() {
   }
 
   if (Array.isArray(db.usuarios)) {
+    const seenUserIds = new Set();
+    const seenUserEmails = new Set();
+    db.usuarios = db.usuarios.filter(u => {
+      if (!u || !u.id) return false;
+      const uId = String(u.id).trim();
+      const uEmail = String(u.email || '').toLowerCase().trim();
+      if (seenUserIds.has(uId)) return false;
+      if (uEmail && seenUserEmails.has(uEmail)) return false;
+      seenUserIds.add(uId);
+      if (uEmail) seenUserEmails.add(uEmail);
+      if (u.role === 'admin' || u.id === 'usr-admin-001') return true;
+      return !isDeletedId('usuarios', u.id);
+    });
+
     let needsSave = false;
 
     // Garantir integridade de Administradores e normalização de idiomas de todos os utilizadores
@@ -20501,6 +20515,21 @@ function ensureUsersInitialized() {
         u.nome = 'José Centúrio';
         u.cargo = 'Administrador do Sistema';
         u.role = 'admin';
+        u.chefia = true;
+        u.active = true;
+      }
+
+      // Garantir integridade da utilizadora Victoria Schwab Vilte (Ativa e com Chefia para Consultas)
+      if (u.id === 'usr-1789972905110' || uEmail === 'victoria@alegria-activity.com' || (uName.includes('victoria') && uName.includes('schwab'))) {
+        u.id = 'usr-1789972905110';
+        u.nome = 'Victoria Schwab Vilte';
+        u.primeiroNome = 'Victoria';
+        u.apelido = 'Schwab Vilte';
+        u.email = 'victoria@alegria-activity.com';
+        u.cargo = 'Gestora de proyectos';
+        u.idioma = 'Español';
+        if (!u.pin) u.pin = 'Victoria_202';
+        u.role = 'user';
         u.chefia = true;
         u.active = true;
       }
@@ -20539,7 +20568,7 @@ function ensureUsersInitialized() {
         idioma: "Español",
         pin: "Victoria_202",
         role: "user",
-        chefia: false,
+        chefia: true,
         active: true,
         createdAt: "2026-09-21T06:41:45.110Z",
         updatedAt: "2026-09-24T05:54:00.000Z"
