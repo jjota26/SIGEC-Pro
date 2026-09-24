@@ -31272,15 +31272,63 @@ function parseSmartAddress(text) {
   let codigoPostal = "";
   let localidade = "";
   let pais = "";
+  let contribuinte = "";
+  let telefone = "";
+  let email = "";
+  let website = "";
 
-  const cpPtMatch = raw.match(/\b(\d{4}-\d{3})\b/);
-  const cpEsMatch = raw.match(/\b(\d{5})\b/);
+  let workingText = raw;
+
+  // 1. Extração de Email
+  const emailMatch = workingText.match(/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/);
+  if (emailMatch) {
+    email = emailMatch[0].trim();
+    workingText = workingText.replace(emailMatch[0], " ");
+  }
+
+  // 2. Extração de Website
+  const webMatch = workingText.match(/\b(?:https?:\/\/|www\.)[^\s,;]+\b/i);
+  if (webMatch) {
+    website = webMatch[0].trim();
+    workingText = workingText.replace(webMatch[0], " ");
+  }
+
+  // 3. Extração de Contribuinte (NIF / NIPC / CIF / VAT)
+  const nifPrefixMatch = workingText.match(/\b(?:NIF|NIPC|Contribuinte|CIF|VAT|IVA)[\s:.-]*([A-Z0-9]{8,11})\b/i);
+  if (nifPrefixMatch) {
+    contribuinte = nifPrefixMatch[1].trim();
+    workingText = workingText.replace(nifPrefixMatch[0], " ");
+  } else {
+    const nifPtAvulso = workingText.match(/\b([125689]\d{8})\b/);
+    const cifEsAvulso = workingText.match(/\b([A-HJ-NP-SUVW]\d{7}[0-9A-J])\b/i);
+    if (nifPtAvulso) {
+      contribuinte = nifPtAvulso[1];
+      workingText = workingText.replace(nifPtAvulso[0], " ");
+    } else if (cifEsAvulso) {
+      contribuinte = cifEsAvulso[1].toUpperCase();
+      workingText = workingText.replace(cifEsAvulso[0], " ");
+    }
+  }
+
+  // 4. Extração de Telefone
+  const telMatch = workingText.match(/(?:(?:\+|00)351[\s.-]*)?(?:2\d{2}|9[1236]\d)[\s.-]*\d{3}[\s.-]*\d{3}\b/) ||
+                   workingText.match(/(?:(?:\+|00)34[\s.-]*)?(?:[689]\d{2})[\s.-]*\d{3}[\s.-]*\d{3}\b/);
+  if (telMatch) {
+    telefone = telMatch[0].trim();
+    workingText = workingText.replace(telMatch[0], " ");
+  }
+
+  // 5. Código Postal e País
+  const cpPtMatch = workingText.match(/\b(\d{4}-\d{3})\b/);
+  const cpEsMatch = workingText.match(/\b(\d{5})\b/);
   if (cpPtMatch) {
     codigoPostal = cpPtMatch[1];
     pais = "Portugal";
+    workingText = workingText.replace(cpPtMatch[0], " ");
   } else if (cpEsMatch) {
     codigoPostal = cpEsMatch[1];
     pais = "Espanha";
+    workingText = workingText.replace(cpEsMatch[0], " ");
   }
 
   const paises = [
@@ -31290,70 +31338,72 @@ function parseSmartAddress(text) {
     { name: "Reino Unido", regex: /\b(?:Reino Unido|United Kingdom)\b/i }
   ];
   for (const p of paises) {
-    if (p.regex.test(raw)) {
+    if (p.regex.test(workingText)) {
       pais = p.name;
+      workingText = workingText.replace(p.regex, " ");
       break;
     }
   }
 
-  const andarMatch = raw.match(/\b(\d+[ºªo]\s*(?:andar|Dto|Esq|Frt|frente|piso)?|R\/C|rés-do-chão|Planta\s*\d+|Piso\s*\d+)\b/i);
-  if (andarMatch) {
-    andar = andarMatch[1].trim();
-  }
-
+  // 6. Localidade a seguir ao código postal
   if (codigoPostal) {
-    const afterCpRegex = new RegExp(codigoPostal + "\\s*,?\\s*([^,\\n]+)", "i");
+    const afterCpRegex = new RegExp(codigoPostal + "\\s*[-–,]?\\s*([A-Za-zÀ-Úà-ú\\-\\s]+?)(?=[,\\-–;.\\n\\|]|$)", "i");
     const afterCpMatch = raw.match(afterCpRegex);
     if (afterCpMatch && afterCpMatch[1]) {
-      let loc = afterCpMatch[1].replace(/\b(?:Portugal|Espanha|España|Spain|França|France)\b/i, "").trim();
-      if (loc) localidade = loc.replace(/^[,\s\-]+/, "").trim();
-    }
-  }
-
-  let streetPart = raw;
-  if (codigoPostal) {
-    streetPart = raw.split(codigoPostal)[0];
-  }
-  if (andar) {
-    streetPart = streetPart.replace(andar, "");
-  }
-
-  const numMatch = streetPart.match(/\b(?:n\.?[ºo]?\s*|nº\s*)?(\d+[A-Za-z]?)\b/i);
-  if (numMatch) {
-    numero = numMatch[1];
-  }
-
-  const parts = streetPart.split(",").map(s => s.trim()).filter(Boolean);
-  if (parts.length > 0) {
-    direcao1 = parts[0];
-    if (parts.length > 1) {
-      const p2 = parts[1];
-      if (p2 !== numero && !p2.includes(numero) && p2 !== andar) {
-        direcao2 = p2;
+      let loc = afterCpMatch[1].replace(/\b(?:Portugal|Espanha|España|Spain|França|France|Tel|NIF|CIF|Email|Website|Contribuinte)\b/gi, "").trim();
+      if (loc && loc.length > 1) {
+        localidade = loc;
       }
     }
   }
 
-  if (numero) {
-    const numEndRegex = new RegExp("\\s*,?\\s*(?:n\\.?[ºo]?\\s*)?" + numero + "\\s*$", "i");
-    direcao1 = direcao1.replace(numEndRegex, "").trim();
+  // 7. Andar / Fração
+  const andarMatch = workingText.match(/\b(\d+[ºªo]\s*(?:andar|Dto|Esq|Frt|frente|piso)?|R\/C|rés-do-chão|Planta\s*\d+|Piso\s*\d+)\b/i);
+  if (andarMatch) {
+    andar = andarMatch[1].trim();
+    workingText = workingText.replace(andarMatch[0], " ");
   }
 
-  if (!localidade) {
-    const allParts = raw.split(",").map(s => s.trim()).filter(Boolean);
-    if (allParts.length >= 2) {
-      localidade = allParts[allParts.length - 1].replace(/\b(?:Portugal|Espanha|España|Spain)\b/i, "").trim();
+  // 8. Direção 2 (Polígono Industrial, Edifício, Zona, etc.)
+  const d2Match = raw.match(/\b((?:Polígono|Poligono|Parque|Edifício|Edificio|Bloco|Torre|Urbanização|Urbanizacao|Centro Empresarial|Zona Industrial)[\s\wÀ-Úà-ú\-\–ºª]+?)(?=[,;\n]|$)/i);
+  if (d2Match) {
+    direcao2 = d2Match[1].trim();
+    workingText = workingText.replace(d2Match[0], " ");
+  }
+
+  // 9. Número da porta
+  const numMatch = workingText.match(/\b(?:n\.?[ºo]?\s*|nº\s*)?(\d+[A-Za-z]?)\b/i);
+  if (numMatch) {
+    numero = numMatch[1];
+  }
+
+  // 10. Limpar rótulos comuns (Tel:, Email:, etc.)
+  workingText = workingText.replace(/\b(?:Tel|Telefone|Email|Web|Website|NIF|CIF|NIPC|Contribuinte|Morada|Direção)[\s:.-]*/gi, " ");
+  if (codigoPostal) workingText = workingText.replace(codigoPostal, " ");
+  if (localidade) workingText = workingText.replace(new RegExp("\\b" + localidade + "\\b", "gi"), " ");
+
+  // 11. Linha da Rua (Direção 1)
+  const parts = workingText.split(/[,;\n]+/).map(s => s.trim().replace(/^[,;\s\-.:]+|[,;\s\-.:]+$/g, "")).filter(s => s.length > 2);
+  if (parts.length > 0) {
+    direcao1 = parts[0];
+    if (numero) {
+      const numEndRegex = new RegExp("\\s*,?\\s*(?:n\\.?[ºo]?\\s*)?" + numero + "\\s*$", "i");
+      direcao1 = direcao1.replace(numEndRegex, "").trim();
     }
   }
 
   return {
     direcao1: direcao1 || raw,
-    direcao2: direcao2 || "",
-    numero: numero || "",
-    andar: andar || "",
-    codigoPostal: codigoPostal || "",
-    localidade: localidade || "",
+    direcao2,
+    numero,
+    andar,
+    codigoPostal,
+    localidade,
     pais: pais || "Portugal",
+    contribuinte,
+    telefone,
+    email,
+    website,
     provider: "Colagem Inteligente (Google Search)"
   };
 }
@@ -31377,9 +31427,10 @@ function handleSmartPasteInput(text, showNotification = false) {
   const currentEntity = (currentPendingContext && currentPendingContext.entityName) ? currentPendingContext.entityName : "Entidade";
   pendingAiAddressData = Object.assign({}, pendingAiAddressData || {}, parsed, {
     nome: currentEntity,
-    website: pendingAiAddressData?.website || "",
-    email: pendingAiAddressData?.email || "",
-    telefone: pendingAiAddressData?.telefone || "",
+    website: parsed.website || pendingAiAddressData?.website || "",
+    email: parsed.email || pendingAiAddressData?.email || "",
+    telefone: parsed.telefone || pendingAiAddressData?.telefone || "",
+    contribuinte: parsed.contribuinte || pendingAiAddressData?.contribuinte || "",
     fonteUrl: "https://www.google.com/search?q=" + encodeURIComponent(currentEntity + " morada")
   });
 
@@ -31387,14 +31438,21 @@ function handleSmartPasteInput(text, showNotification = false) {
 
   const successEl = document.getElementById("aiSmartPasteSuccessMsg");
   if (successEl) {
+    let msg = "Morada preenchida com sucesso!";
+    if (parsed.contribuinte) {
+      msg = "Morada e Contribuinte (" + parsed.contribuinte + ") preenchidos com sucesso!";
+    }
+    successEl.innerHTML = "<i class=\"fa-solid fa-circle-check\"></i> " + msg + " Pode rever e confirmar.";
     successEl.style.display = "block";
   }
   if (showNotification && typeof showToast === "function") {
-    showToast("Morada preenchida com sucesso! Pode rever e confirmar.", "success");
+    const toastMsg = parsed.contribuinte
+      ? "Morada e Contribuinte (" + parsed.contribuinte + ") decompostos com sucesso!"
+      : "Morada decomposta com sucesso! Pode rever e aplicar.";
+    showToast(toastMsg, "success");
   }
 }
 window.handleSmartPasteInput = handleSmartPasteInput;
-
 function renderAiCandidateCards() {
   const container = document.getElementById("aiCandidatesCardsList");
   if (!container) return;
