@@ -2391,7 +2391,7 @@ const INITIAL_EXCEL_DATABASE = {
                                                  "nomePersonalizado":  "",
                                                  "nome":  "CCDR-N (Comissão de Coordenação e Desenvolvimento Regional do Norte)",
                                                  "contribuinte":  "501227181",
-                                                 "direcao1":  "Rua Rainha Dona Estefânia, n.Âº 251",
+                                                 "direcao1":  "Rua Rainha Dona Estefânia, n.º 251",
                                                  "direcao2":  "",
                                                  "numero":  "",
                                                  "andar":  "",
@@ -14458,14 +14458,14 @@ function openPdfInNewTab(item) {
     <body>
       <div class="viewer-header">
         <div class="viewer-title">
-          <span>ðŸ“„</span>
+          <span>📄</span>
           <span>${escapeHtml(item.name)}</span>
           <span style="font-size: 12px; color: #94a3b8; font-weight: normal;">(${(item.size/1024).toFixed(1)} KB)</span>
         </div>
         <div class="viewer-actions">
-          <button id="btnDown" class="btn btn-primary">â¬‡ Descarregar PDF</button>
-          <button onclick="window.print()" class="btn btn-secondary">ðŸ–¨ Imprimir</button>
-          <button onclick="window.close()" class="btn btn-secondary">âœ• Fechar</button>
+          <button id="btnDown" class="btn btn-primary">⬇ Descarregar PDF</button>
+          <button onclick="window.print()" class="btn btn-secondary">🖨 Imprimir</button>
+          <button onclick="window.close()" class="btn btn-secondary">✖ Fechar</button>
         </div>
       </div>
       <iframe src="${pdfUrl}#toolbar=1&navpanes=1"></iframe>
@@ -14534,9 +14534,9 @@ function openWordDocInNewTab(item) {
           <span style="font-size: 12px; color: #94a3b8; font-weight: normal;">(${(item.size/1024).toFixed(1)} KB)</span>
         </div>
         <div class="viewer-actions">
-          <button id="btnDownload" class="btn btn-primary">â¬‡ Descarregar DOCX</button>
-          <button onclick="window.print()" class="btn btn-secondary">ðŸ–¨ Imprimir</button>
-          <button onclick="window.close()" class="btn btn-secondary">âœ• Fechar</button>
+          <button id="btnDownload" class="btn btn-primary">⬇ Descarregar DOCX</button>
+          <button onclick="window.print()" class="btn btn-secondary">🖨 Imprimir</button>
+          <button onclick="window.close()" class="btn btn-secondary">✖ Fechar</button>
         </div>
       </div>
       <div class="page-container">
@@ -14656,9 +14656,9 @@ function openExcelDocInNewTab(item) {
           <span style="font-size: 12px; color: #a7f3d0; font-weight: normal;">(${(item.size/1024).toFixed(1)} KB)</span>
         </div>
         <div class="viewer-actions">
-          <button id="btnDownload" class="btn btn-primary">â¬‡ Descarregar Excel</button>
-          <button onclick="window.print()" class="btn btn-secondary">ðŸ–¨ Imprimir</button>
-          <button onclick="window.close()" class="btn btn-secondary">âœ• Fechar</button>
+          <button id="btnDownload" class="btn btn-primary">⬇ Descarregar Excel</button>
+          <button onclick="window.print()" class="btn btn-secondary">🖨 Imprimir</button>
+          <button onclick="window.close()" class="btn btn-secondary">✖ Fechar</button>
         </div>
       </div>
       <div class="controls-bar">
@@ -14773,7 +14773,7 @@ function openImageInNewTab(item) {
     <body>
       <div class="viewer-header">
         <div class="viewer-title">
-          <span>ðŸ–¼</span>
+          <span>🖼</span>
           <span>${escapeHtml(item.name)}</span>
           <span style="font-size: 12px; color: #94a3b8; font-weight: normal;">(${(item.size/1024).toFixed(1)} KB)</span>
         </div>
@@ -14781,9 +14781,9 @@ function openImageInNewTab(item) {
           <button id="btnZoomIn" class="btn btn-secondary">ðŸ” +</button>
           <button id="btnZoomOut" class="btn btn-secondary">ðŸ” -</button>
           <button id="btnZoomReset" class="btn btn-secondary">100%</button>
-          <button id="btnDownload" class="btn btn-primary">â¬‡ Descarregar Imagem</button>
-          <button onclick="window.print()" class="btn btn-secondary">ðŸ–¨ Imprimir</button>
-          <button onclick="window.close()" class="btn btn-secondary">âœ• Fechar</button>
+          <button id="btnDownload" class="btn btn-primary">⬇ Descarregar Imagem</button>
+          <button onclick="window.print()" class="btn btn-secondary">🖨 Imprimir</button>
+          <button onclick="window.close()" class="btn btn-secondary">✖ Fechar</button>
         </div>
       </div>
       <div class="img-container">
@@ -14852,8 +14852,8 @@ function openMediaInNewTab(item) {
           <span style="font-size: 12px; color: #94a3b8; font-weight: normal;">(${(item.size/1024).toFixed(1)} KB)</span>
         </div>
         <div class="viewer-actions">
-          <button id="btnDownload" class="btn btn-primary">â¬‡ Descarregar Média</button>
-          <button onclick="window.close()" class="btn btn-secondary">âœ• Fechar</button>
+          <button id="btnDownload" class="btn btn-primary">⬇ Descarregar Média</button>
+          <button onclick="window.close()" class="btn btn-secondary">✖ Fechar</button>
         </div>
       </div>
       <div class="media-container">
@@ -14934,15 +14934,15 @@ function openTextInNewTab(item) {
     <body>
       <div class="viewer-header">
         <div class="viewer-title">
-          <span>ðŸ“„</span>
+          <span>📄</span>
           <span>${escapeHtml(item.name)}</span>
           <span style="font-size: 12px; color: #94a3b8; font-weight: normal;">(${(item.size/1024).toFixed(1)} KB)</span>
         </div>
         <div class="viewer-actions">
           <button id="btnCopy" class="btn btn-secondary">ðŸ“‹ Copiar Texto</button>
-          <button id="btnDownload" class="btn btn-primary">â¬‡ Descarregar Ficheiro</button>
-          <button onclick="window.print()" class="btn btn-secondary">ðŸ–¨ Imprimir</button>
-          <button onclick="window.close()" class="btn btn-secondary">âœ• Fechar</button>
+          <button id="btnDownload" class="btn btn-primary">⬇ Descarregar Ficheiro</button>
+          <button onclick="window.print()" class="btn btn-secondary">🖨 Imprimir</button>
+          <button onclick="window.close()" class="btn btn-secondary">✖ Fechar</button>
         </div>
       </div>
       <div class="content-container">
@@ -14958,7 +14958,7 @@ function openTextInNewTab(item) {
   if (btnCopy) {
     btnCopy.onclick = function() {
       navigator.clipboard.writeText(rawText).then(() => {
-        btnCopy.textContent = 'âœ“ Copiado!';
+        btnCopy.textContent = '✓ Copiado!';
         setTimeout(() => { btnCopy.textContent = 'ðŸ“‹ Copiar Texto'; }, 2000);
       });
     };
@@ -15008,7 +15008,7 @@ function openGenericInNewTab(item) {
           <span>${escapeHtml(item.name)}</span>
         </div>
         <div class="viewer-actions">
-          <button onclick="window.close()" class="btn btn-secondary">âœ• Fechar</button>
+          <button onclick="window.close()" class="btn btn-secondary">✖ Fechar</button>
         </div>
       </div>
       <div class="card">
@@ -15018,7 +15018,7 @@ function openGenericInNewTab(item) {
         <p style="color: #cbd5e1; font-size: 14px; line-height: 1.5; margin-bottom: 25px;">
           Este ficheiro está protegido e guardado no sistema SIGEC-Pro. Clique no botão abaixo para transferir o ficheiro diretamente para o seu computador.
         </p>
-        <button id="btnDownload" class="btn btn-primary" style="font-size: 14px; padding: 10px 22px;">â¬‡ Descarregar Ficheiro Original</button>
+        <button id="btnDownload" class="btn btn-primary" style="font-size: 14px; padding: 10px 22px;">⬇ Descarregar Ficheiro Original</button>
       </div>
     </body>
     </html>
@@ -16440,7 +16440,7 @@ function smartParseAddress(raw) {
   let str = raw.trim();
   if (!str) return null;
 
-  // Sanitize common UTF-8 double-encoding artifacts like 'n.Âº' -> 'n.º'
+  // Sanitize common UTF-8 double-encoding artifacts like 'n.º' -> 'n.º'
   str = str.replace(/Â[º°ª]/g, 'º').replace(/Â/g, '');
 
   const result = {
@@ -29428,9 +29428,9 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Espanha',
     fonteUrl: 'https://alegria-activity.com'
   },
-  // --- PORTUGAL: Presid??ncia, Governo Central e Minist??rios ---
+  // --- PORTUGAL: Presidência, Governo Central e Ministérios ---
   {
-    aliases: ['presid??ncia', 'presidencia', 'minist??rio da presid??ncia', 'ministerio da presidencia', 'presid??ncia do conselho de ministros', 'secretaria-geral da presid??ncia'],
+    aliases: ['presidência', 'presidencia', 'ministério da presidência', 'ministerio da presidencia', 'presidência do conselho de ministros', 'secretaria-geral da presidência'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 213 927 600',
     direcao1: 'Rua Professor Gomes Teixeira',
@@ -29442,10 +29442,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['assembleia da rep??blica', 'assembleia da republica', 'parlamento', 'assuntos parlamentares', 'minist??rio dos assuntos parlamentares', 'ministerio dos assuntos parlamentares'],
+    aliases: ['assembleia da república', 'assembleia da republica', 'parlamento', 'assuntos parlamentares', 'ministério dos assuntos parlamentares', 'ministerio dos assuntos parlamentares'],
     website: 'https://www.parlamento.pt',
     telefone: '+351 213 919 000',
-    direcao1: 'Pal??cio de S??o Bento',
+    direcao1: 'Palácio de São Bento',
     numero: '',
     andar: '',
     codigoPostal: '1249-068',
@@ -29454,10 +29454,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.parlamento.pt'
   },
   {
-    aliases: ['presid??ncia da rep??blica', 'presidencia da republica', 'pal??cio de bel??m', 'palacio de belem'],
+    aliases: ['presidência da república', 'presidencia da republica', 'palácio de belém', 'palacio de belem'],
     website: 'https://www.presidencia.pt',
     telefone: '+351 213 614 600',
-    direcao1: 'Cal??ada da Ajuda',
+    direcao1: 'Calçada da Ajuda',
     numero: '',
     andar: '',
     codigoPostal: '1349-022',
@@ -29466,10 +29466,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.presidencia.pt'
   },
   {
-    aliases: ['neg??cios estrangeiros', 'negocios estrangeiros', 'mne', 'minist??rio dos neg??cios estrangeiros', 'ministerio de estado e dos neg??cios estrangeiros', 'secretaria de estado dos neg??cios estrangeiros', 'secretaria de estado de negocios extrangeiros e coopera????o'],
+    aliases: ['negócios estrangeiros', 'negocios estrangeiros', 'mne', 'ministério dos negócios estrangeiros', 'ministerio de estado e dos negócios estrangeiros', 'secretaria de estado dos negócios estrangeiros', 'secretaria de estado de negocios extrangeiros e cooperação'],
     website: 'https://www.portaldiplomatico.mne.gov.pt',
     telefone: '+351 213 946 000',
-    direcao1: 'Largo do Rilvas (Pal??cio das Necessidades)',
+    direcao1: 'Largo do Rilvas (Palácio das Necessidades)',
     numero: '',
     andar: '',
     codigoPostal: '1399-030',
@@ -29478,19 +29478,19 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portaldiplomatico.mne.gov.pt'
   },
   {
-    aliases: ['tesouro e finan??as', 'tesouro e financas', 'dgtf', 'dire????o-geral do tesouro', 'direccao-geral do tesouro', 'dire????o geral do tesouro', 'dire????o-geral do tesouro e finan??as'],
+    aliases: ['tesouro e finanças', 'tesouro e financas', 'dgtf', 'direção-geral do tesouro', 'direccao-geral do tesouro', 'direção geral do tesouro', 'direção-geral do tesouro e finanças'],
     website: 'https://www.dgtf.gov.pt',
     telefone: '+351 218 812 000',
-    direcao1: 'Rua da Alf??ndega',
+    direcao1: 'Rua da Alfândega',
     numero: '5',
-    andar: '1.?? andar',
+    andar: '1.º andar',
     codigoPostal: '1149-008',
     localidade: 'Lisboa',
     pais: 'Portugal',
     fonteUrl: 'https://www.gov.pt/entidades/direcao-geral-do-tesouro-e-financas'
   },
   {
-    aliases: ['minist??rio das finan??as', 'ministerio das financas', 'finan??as', 'financas', 'gabinete do ministro das finan??as', 'ministerio finanzas'],
+    aliases: ['ministério das finanças', 'ministerio das financas', 'finanças', 'financas', 'gabinete do ministro das finanças', 'ministerio finanzas'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 218 816 800',
     direcao1: 'Avenida Infante Dom Henrique',
@@ -29502,7 +29502,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['autoridade tribut??ria', 'autoridade tributaria', 'at', 'dire????o-geral dos impostos', 'alf??ndega', 'alfandega'],
+    aliases: ['autoridade tributária', 'autoridade tributaria', 'at', 'direção-geral dos impostos', 'alfândega', 'alfandega'],
     website: 'https://www.portaldasfinancas.gov.pt',
     telefone: '+351 217 206 707',
     direcao1: 'Rua da Prata',
@@ -29514,7 +29514,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portaldasfinancas.gov.pt'
   },
   {
-    aliases: ['dire????o-geral do or??amento', 'direccao-geral do orcamento', 'dgo'],
+    aliases: ['direção-geral do orçamento', 'direccao-geral do orcamento', 'dgo'],
     website: 'https://www.dgo.gov.pt',
     telefone: '+351 218 817 000',
     direcao1: 'Avenida Infante Dom Henrique',
@@ -29526,7 +29526,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.dgo.gov.pt'
   },
   {
-    aliases: ['minist??rio da defesa', 'ministerio da defesa', 'minist??rio da defesa nacional', 'ministerio de defensa nacional', 'ministerio da defesa nacional', 'secretaria de estado da defesa nacional'],
+    aliases: ['ministério da defesa', 'ministerio da defesa', 'ministério da defesa nacional', 'ministerio de defensa nacional', 'ministerio da defesa nacional', 'secretaria de estado da defesa nacional'],
     website: 'https://www.defesa.gov.pt',
     telefone: '+351 213 034 500',
     direcao1: 'Avenida da Ilha da Madeira',
@@ -29538,22 +29538,22 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.defesa.gov.pt'
   },
   {
-    aliases: ['dire????o-geral de recursos da defesa nacional', 'dire????o geral de recursos de defesa nacional', 'dgrdn'],
+    aliases: ['direção-geral de recursos da defesa nacional', 'direção geral de recursos de defesa nacional', 'dgrdn'],
     website: 'https://www.defesa.gov.pt/pt/dgrdn',
     telefone: '+351 213 038 500',
     direcao1: 'Avenida da Ilha da Madeira',
     numero: '1',
-    andar: 'Edif??cio Defesa',
+    andar: 'Edifício Defesa',
     codigoPostal: '1400-204',
     localidade: 'Lisboa',
     pais: 'Portugal',
     fonteUrl: 'https://www.defesa.gov.pt'
   },
   {
-    aliases: ['administra????o interna', 'administracao interna', 'mai', 'minist??rio da administra????o interna', 'ministerio da administracion interna', 'secretaria de estado da administra????o interna', 'secretaria del estado de administraci??n interna'],
+    aliases: ['administração interna', 'administracao interna', 'mai', 'ministério da administração interna', 'ministerio da administracion interna', 'secretaria de estado da administração interna', 'secretaria del estado de administración interna'],
     website: 'https://www.mai.gov.pt',
     telefone: '+351 213 233 000',
-    direcao1: 'Pra??a do Com??rcio',
+    direcao1: 'Praça do Comércio',
     numero: '',
     andar: '',
     codigoPostal: '1149-015',
@@ -29562,10 +29562,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.mai.gov.pt'
   },
   {
-    aliases: ['pol??cia de seguran??a p??blica', 'policia de seguranca publica', 'psp', 'dire????o nacional da psp'],
+    aliases: ['polícia de segurança pública', 'policia de seguranca publica', 'psp', 'direção nacional da psp'],
     website: 'https://www.psp.pt',
     telefone: '+351 213 466 141',
-    direcao1: 'Largo da Penha de Fran??a',
+    direcao1: 'Largo da Penha de França',
     numero: '1',
     andar: '',
     codigoPostal: '1199-010',
@@ -29586,7 +29586,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.gnr.pt'
   },
   {
-    aliases: ['prote????o civil', 'protecao civil', 'anepc'],
+    aliases: ['proteção civil', 'protecao civil', 'anepc'],
     website: 'https://prociv.gov.pt',
     telefone: '+351 214 247 100',
     direcao1: 'Avenida do Forte em Carnaxide',
@@ -29598,10 +29598,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://prociv.gov.pt'
   },
   {
-    aliases: ['minist??rio da justi??a', 'ministerio da justica', 'ministerio de justicia', 'secretaria de estado da justi??a', 'secretar??a del estado de justicia'],
+    aliases: ['ministério da justiça', 'ministerio da justica', 'ministerio de justicia', 'secretaria de estado da justiça', 'secretaría del estado de justicia'],
     website: 'https://www.justica.gov.pt',
     telefone: '+351 213 222 300',
-    direcao1: 'Pra??a do Com??rcio',
+    direcao1: 'Praça do Comércio',
     numero: '',
     andar: '',
     codigoPostal: '1149-019',
@@ -29613,7 +29613,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     aliases: ['instituto dos registos e do notariado', 'irn', 'registos e notariado'],
     website: 'https://irn.justica.gov.pt',
     telefone: '+351 211 950 500',
-    direcao1: 'Avenida Dom Jo??o II, Campus de Justi??a, Edif??cio H',
+    direcao1: 'Avenida Dom João II, Campus de Justiça, Edifício H',
     numero: 'Lote 1.06.2.1',
     andar: '',
     codigoPostal: '1990-097',
@@ -29622,7 +29622,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://irn.justica.gov.pt'
   },
   {
-    aliases: ['pol??cia judici??ria', 'policia judiciaria', 'pj'],
+    aliases: ['polícia judiciária', 'policia judiciaria', 'pj'],
     website: 'https://www.policiajudiciaria.pt',
     telefone: '+351 211 967 000',
     direcao1: 'Rua Gomes Freire',
@@ -29634,10 +29634,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.policiajudiciaria.pt'
   },
   {
-    aliases: ['minist??rio da economia', 'ministerio da economia', 'minist??rio da economia e da coes??o territorial', 'economia e coes??o territorial', 'secretaria de estado do turismo, com??rcio e servi??os'],
+    aliases: ['ministério da economia', 'ministerio da economia', 'ministério da economia e da coesão territorial', 'economia e coesão territorial', 'secretaria de estado do turismo, comércio e serviços'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 217 911 600',
-    direcao1: 'Avenida da Rep??blica',
+    direcao1: 'Avenida da República',
     numero: '79',
     andar: '',
     codigoPostal: '1050-243',
@@ -29646,7 +29646,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['coes??o territorial', 'coesao territorial', 'minist??rio da coes??o territorial'],
+    aliases: ['coesão territorial', 'coesao territorial', 'ministério da coesão territorial'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 217 923 500',
     direcao1: 'Avenida Columbano Bordalo Pinheiro',
@@ -29658,7 +29658,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['atividades econ??micas', 'actividades economicas', 'dgae', 'dire????o-geral das atividades econ??micas', 'direccao-geral das actividades economicas'],
+    aliases: ['atividades económicas', 'actividades economicas', 'dgae', 'direção-geral das atividades económicas', 'direccao-geral das actividades economicas'],
     website: 'https://www.dgae.gov.pt',
     telefone: '+351 217 919 100',
     direcao1: 'Avenida Visconde de Valmor',
@@ -29670,10 +29670,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.dgae.gov.pt'
   },
   {
-    aliases: ['iapmei', 'competitividade e inova????o'],
+    aliases: ['iapmei', 'competitividade e inovação'],
     website: 'https://www.iapmei.pt',
     telefone: '+351 213 836 000',
-    direcao1: 'Estrada do Pa??o do Lumiar, Campus do Lumiar, Edif??cio A',
+    direcao1: 'Estrada do Pação do Lumiar, Campus do Lumiar, Edifício A',
     numero: '',
     andar: '',
     codigoPostal: '1649-038',
@@ -29682,10 +29682,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.iapmei.pt'
   },
   {
-    aliases: ['minist??rio da agricultura', 'ministerio da agricultura', 'minist??rio da agricultura e do mar', 'ministerio de agricultura y mar', 'secretaria de estado da agricultura', 'secretario de estado de agricultura'],
+    aliases: ['ministério da agricultura', 'ministerio da agricultura', 'ministério da agricultura e do mar', 'ministerio de agricultura y mar', 'secretaria de estado da agricultura', 'secretario de estado de agricultura'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 213 234 600',
-    direcao1: 'Pra??a do Com??rcio',
+    direcao1: 'Praça do Comércio',
     numero: '',
     andar: '',
     codigoPostal: '1149-010',
@@ -29694,7 +29694,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['dgadr', 'agricultura e desenvolvimento rural', 'dire????o-geral de agricultura e desenvolvimento rural', 'direccao-geral de agricultura e desenvolvimento rural', 'direcci??n general agricultura y desenvolvimiento rural'],
+    aliases: ['dgadr', 'agricultura e desenvolvimento rural', 'direção-geral de agricultura e desenvolvimento rural', 'direccao-geral de agricultura e desenvolvimento rural', 'dirección general agricultura y desenvolvimiento rural'],
     website: 'https://www.dgadr.gov.pt',
     telefone: '+351 218 442 200',
     direcao1: 'Avenida Afonso Costa',
@@ -29706,10 +29706,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.dgadr.gov.pt'
   },
   {
-    aliases: ['minist??rio da cultura', 'ministerio da cultura', 'minist??rio da cultura, juventude e desporto', 'ministerio de cultura, juventud y deporte', 'secretaria de estado da cultura', 'secretario de estado de cultura'],
+    aliases: ['ministério da cultura', 'ministerio da cultura', 'ministério da cultura, juventude e desporto', 'ministerio de cultura, juventud y deporte', 'secretaria de estado da cultura', 'secretario de estado de cultura'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 213 614 500',
-    direcao1: 'Pal??cio Nacional da Ajuda',
+    direcao1: 'Palácio Nacional da Ajuda',
     numero: '',
     andar: '',
     codigoPostal: '1349-021',
@@ -29718,7 +29718,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['secretaria de estado do desporto', 'secretario de estado de deporte', 'secretaria de estado adjunta e da juventude', 'secretaria de estado adjunta e da juventude e da igualdade', 'ipdj', 'instituto portugu??s do desporto e juventude'],
+    aliases: ['secretaria de estado do desporto', 'secretario de estado de deporte', 'secretaria de estado adjunta e da juventude', 'secretaria de estado adjunta e da juventude e da igualdade', 'ipdj', 'instituto português do desporto e juventude'],
     website: 'https://ipdj.gov.pt',
     telefone: '+351 210 470 000',
     direcao1: 'Rua Rodrigo da Fonseca',
@@ -29730,7 +29730,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://ipdj.gov.pt'
   },
   {
-    aliases: ['minist??rio da educa????o', 'ministerio da educacao', 'minist??rio da educa????o, ci??ncia e inova????o', 'ministerio de educaci??n, ciencia e innovacion', 'secret??rio de estado adjunto e de educa????o', 'secretario de estado adjunto e de educacao', 'secretaria de estado da educa????o'],
+    aliases: ['ministério da educação', 'ministerio da educacao', 'ministério da educação, ciência e inovação', 'ministerio de educación, ciencia e innovacion', 'secretário de estado adjunto e de educação', 'secretario de estado adjunto e de educacao', 'secretaria de estado da educação'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 213 934 500',
     direcao1: 'Avenida 24 de Julho',
@@ -29742,10 +29742,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['dge', 'dire????o-geral da educa????o', 'direccao-geral da educacao', 'direcci??n general de educaci??n'],
+    aliases: ['dge', 'direção-geral da educação', 'direccao-geral da educacao', 'dirección general de educación'],
     website: 'https://www.dge.mec.pt',
     telefone: '+351 217 901 100',
-    direcao1: 'Pra??a de Alvalade',
+    direcao1: 'Praça de Alvalade',
     numero: '12',
     andar: '',
     codigoPostal: '1749-070',
@@ -29754,10 +29754,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.dge.mec.pt'
   },
   {
-    aliases: ['minist??rio do trabalho', 'ministerio do trabalho', 'minist??rio do trabalho, solidariedade e seguran??a social', 'ministerio de trabajo, solidaridad y seguridad social', 'secretaria de estado da a????o social e da inclus??o', 'secretaria de estado de acci??n social y de inclusi??n', 'secretaria de estado do trabalho'],
+    aliases: ['ministério do trabalho', 'ministerio do trabalho', 'ministério do trabalho, solidariedade e segurança social', 'ministerio de trabajo, solidaridad y seguridad social', 'secretaria de estado da ação social e da inclusão', 'secretaria de estado de acción social y de inclusión', 'secretaria de estado do trabalho'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 215 953 000',
-    direcao1: 'Pra??a de Londres',
+    direcao1: 'Praça de Londres',
     numero: '2',
     andar: '',
     codigoPostal: '1049-056',
@@ -29766,7 +29766,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['dire????o-geral da seguran??a social', 'direccao-geral da seguranca social', 'direcci??n general de seguridad social', 'dgss'],
+    aliases: ['direção-geral da segurança social', 'direccao-geral da seguranca social', 'dirección general de seguridad social', 'dgss'],
     website: 'https://www.seg-social.pt',
     telefone: '+351 215 953 300',
     direcao1: 'Largo do Rato',
@@ -29778,7 +29778,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.seg-social.pt'
   },
   {
-    aliases: ['instituto da seguran??a social', 'instituto da seguranca social', 'seguran??a social', 'seguranca social', 'iss'],
+    aliases: ['instituto da segurança social', 'instituto da seguranca social', 'segurança social', 'seguranca social', 'iss'],
     website: 'https://www.seg-social.pt',
     telefone: '+351 300 502 502',
     direcao1: 'Avenida 5 de Outubro',
@@ -29790,7 +29790,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.seg-social.pt'
   },
   {
-    aliases: ['minist??rio das infraestruturas', 'ministerio das infraestruturas', 'minist??rio das infraestruturas e habita????o', 'ministerio infraestructuras e habita??ao', 'secretaria de estado das infraestruturas', 'secretaria del estado de infraestructura', 'secretaria de estado da habita????o', 'pal??cio das infraestruturas e habita????o'],
+    aliases: ['ministério das infraestruturas', 'ministerio das infraestruturas', 'ministério das infraestruturas e habitação', 'ministerio infraestructuras e habitação', 'secretaria de estado das infraestruturas', 'secretaria del estado de infraestructura', 'secretaria de estado da habitação', 'palácio das infraestruturas e habitação'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 210 426 200',
     direcao1: 'Avenida Barbosa du Bocage',
@@ -29802,7 +29802,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['ihru', 'instituto da habita????o e da reabilita????o urbana'],
+    aliases: ['ihru', 'instituto da habitação e da reabilitação urbana'],
     website: 'https://www.ihru.pt',
     telefone: '+351 217 231 500',
     direcao1: 'Avenida Columbano Bordalo Pinheiro',
@@ -29817,7 +29817,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     aliases: ['infraestruturas de portugal'],
     website: 'https://www.infraestruturasdeportugal.pt',
     telefone: '+351 212 879 000',
-    direcao1: 'Pra??a da Portagem',
+    direcao1: 'Praça da Portagem',
     numero: '',
     andar: '',
     codigoPostal: '2809-013',
@@ -29826,22 +29826,22 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.infraestruturasdeportugal.pt'
   },
   {
-    aliases: ['reforma do estado', 'moderniza????o administrativa', 'minist??rio da reforma do estado', 'ministerio de reforma de estado', 'secretaria de estado para a digitaliza????o', 'secretar??a del estado para la digitalizaci??n', 'secretaria de estado para a simplifica????o', 'secretar??a del estado para la simplificaci??n', 'ama', 'ag??ncia para a moderniza????o administrativa'],
+    aliases: ['reforma do estado', 'modernização administrativa', 'ministério da reforma do estado', 'ministerio de reforma de estado', 'secretaria de estado para a digitalização', 'secretaría del estado para la digitalización', 'secretaria de estado para a simplificação', 'secretaría del estado para la simplificación', 'ama', 'agência para a modernização administrativa'],
     website: 'https://www.ama.gov.pt',
     telefone: '+351 217 231 200',
-    direcao1: 'Rua Abranches Ferr??o',
+    direcao1: 'Rua Abranches Ferrão',
     numero: '10',
-    andar: '3.?? F',
+    andar: '3.º F',
     codigoPostal: '1600-001',
     localidade: 'Lisboa',
     pais: 'Portugal',
     fonteUrl: 'https://www.ama.gov.pt'
   },
   {
-    aliases: ['minist??rio da sa??de', 'ministerio da saude', 'sns', 'servi??o nacional de sa??de'],
+    aliases: ['ministério da saúde', 'ministerio da saude', 'sns', 'serviço nacional de saúde'],
     website: 'https://www.sns.gov.pt',
     telefone: '+351 213 305 000',
-    direcao1: 'Avenida Jo??o Cris??stomo',
+    direcao1: 'Avenida João Crisóstomo',
     numero: '9',
     andar: '',
     codigoPostal: '1049-062',
@@ -29850,7 +29850,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.sns.gov.pt'
   },
   {
-    aliases: ['dire????o-geral da sa??de', 'direccao-geral da saude', 'dgs'],
+    aliases: ['direção-geral da saúde', 'direccao-geral da saude', 'dgs'],
     website: 'https://www.dgs.pt',
     telefone: '+351 218 430 500',
     direcao1: 'Alameda Dom Afonso Henriques',
@@ -29862,10 +29862,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.dgs.pt'
   },
   {
-    aliases: ['infarmed', 'medicamento e produtos de sa??de'],
+    aliases: ['infarmed', 'medicamento e produtos de saúde'],
     website: 'https://www.infarmed.pt',
     telefone: '+351 217 987 100',
-    direcao1: 'Parque de Sa??de de Lisboa, Avenida do Brasil',
+    direcao1: 'Parque de Saúde de Lisboa, Avenida do Brasil',
     numero: '53',
     andar: '',
     codigoPostal: '1749-004',
@@ -29874,10 +29874,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.infarmed.pt'
   },
   {
-    aliases: ['ambiente e energia', 'minist??rio do ambiente', 'ministerio do ambiente', 'minist??rio do ambiente e energia', 'secretaria de estado do ambiente', 'secretaria de estado da energia'],
+    aliases: ['ambiente e energia', 'ministério do ambiente', 'ministerio do ambiente', 'ministério do ambiente e energia', 'secretaria de estado do ambiente', 'secretaria de estado da energia'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 213 232 500',
-    direcao1: 'Rua de O S??culo',
+    direcao1: 'Rua de O Século',
     numero: '51',
     andar: '',
     codigoPostal: '1200-433',
@@ -29886,7 +29886,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['ag??ncia portuguesa do ambiente', 'agencia portuguesa do ambiente', 'apa'],
+    aliases: ['agência portuguesa do ambiente', 'agencia portuguesa do ambiente', 'apa'],
     website: 'https://apambiente.pt',
     telefone: '+351 214 728 200',
     direcao1: 'Rua da Murgueira',
@@ -29898,9 +29898,9 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://apambiente.pt'
   },
 
-  // --- FUNDA????ES (Portugal e Espanha) ---
+  // --- fundações (Portugal e Espanha) ---
   {
-    aliases: ['funda????o calouste gulbenkian', 'fundacao calouste gulbenkian', 'gulbenkian'],
+    aliases: ['fundação calouste gulbenkian', 'fundacao calouste gulbenkian', 'gulbenkian'],
     website: 'https://gulbenkian.pt',
     telefone: '+351 217 823 000',
     direcao1: 'Avenida de Berna',
@@ -29912,10 +29912,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://gulbenkian.pt'
   },
   {
-    aliases: ['funda????o champalimaud', 'fundacao champalimaud', 'champalimaud'],
+    aliases: ['fundação champalimaud', 'fundacao champalimaud', 'champalimaud'],
     website: 'https://fchampalimaud.org',
     telefone: '+351 210 480 000',
-    direcao1: 'Avenida Bras??lia',
+    direcao1: 'Avenida Brasília',
     numero: '',
     andar: '',
     codigoPostal: '1400-038',
@@ -29924,10 +29924,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://fchampalimaud.org'
   },
   {
-    aliases: ['funda????o de serralves', 'fundacao de serralves', 'serralves'],
+    aliases: ['fundação de serralves', 'fundacao de serralves', 'serralves'],
     website: 'https://www.serralves.pt',
     telefone: '+351 226 156 500',
-    direcao1: 'Rua Dom Jo??o de Castro',
+    direcao1: 'Rua Dom João de Castro',
     numero: '210',
     andar: '',
     codigoPostal: '4150-417',
@@ -29936,10 +29936,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.serralves.pt'
   },
   {
-    aliases: ['funda????o oriente', 'fundacao oriente', 'museu do oriente'],
+    aliases: ['fundação oriente', 'fundacao oriente', 'museu do oriente'],
     website: 'https://www.foriente.pt',
     telefone: '+351 213 585 200',
-    direcao1: 'Avenida Bras??lia, Doca de Alc??ntara Norte',
+    direcao1: 'Avenida Brasília, Doca de Alcântara Norte',
     numero: '',
     andar: '',
     codigoPostal: '1350-352',
@@ -29948,7 +29948,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.foriente.pt'
   },
   {
-    aliases: ['funda????o edp', 'fundacao edp', 'maat'],
+    aliases: ['fundação edp', 'fundacao edp', 'maat'],
     website: 'https://www.fundacaoedp.pt',
     telefone: '+351 210 028 130',
     direcao1: 'Avenida 24 de Julho',
@@ -29960,10 +29960,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.fundacaoedp.pt'
   },
   {
-    aliases: ['funda????o aga khan', 'fundacao aga khan'],
+    aliases: ['fundação aga khan', 'fundacao aga khan'],
     website: 'https://www.akdn.org',
     telefone: '+351 217 229 000',
-    direcao1: 'Centro Ismaili, Avenida Lus??ada',
+    direcao1: 'Centro Ismaili, Avenida Lusíada',
     numero: '',
     andar: '',
     codigoPostal: '1600-001',
@@ -29972,7 +29972,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.akdn.org'
   },
   {
-    aliases: ['funda????o millennium bcp', 'fundacao millennium bcp'],
+    aliases: ['fundação millennium bcp', 'fundacao millennium bcp'],
     website: 'https://fundacaomillenniumbcp.pt',
     telefone: '+351 211 131 000',
     direcao1: 'Rua Augusta',
@@ -29984,7 +29984,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://fundacaomillenniumbcp.pt'
   },
   {
-    aliases: ['fundaci??n la caixa', 'fundacion la caixa', 'fundaci??n bancaria la caixa', 'caixaforum'],
+    aliases: ['fundación la caixa', 'fundacion la caixa', 'fundación bancaria la caixa', 'caixaforum'],
     website: 'https://fundacionlacaixa.org',
     telefone: '+34 934 046 000',
     direcao1: 'Avenida Diagonal',
@@ -29992,11 +29992,11 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '08028',
     localidade: 'Barcelona',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://fundacionlacaixa.org'
   },
   {
-    aliases: ['fundaci??n mapfre', 'fundacion mapfre'],
+    aliases: ['fundación mapfre', 'fundacion mapfre'],
     website: 'https://www.fundacionmapfre.org',
     telefone: '+34 915 811 600',
     direcao1: 'Paseo de Recoletos',
@@ -30004,23 +30004,23 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28004',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.fundacionmapfre.org'
   },
   {
-    aliases: ['fundaci??n telef??nica', 'fundacion telefonica', 'espacio fundaci??n telef??nica'],
+    aliases: ['fundación telefónica', 'fundacion telefonica', 'espacio fundación telefónica'],
     website: 'https://fundaciontelefonica.com',
     telefone: '+34 915 226 645',
-    direcao1: 'Gran V??a',
+    direcao1: 'Gran Vía',
     numero: '28',
     andar: '',
     codigoPostal: '28013',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://fundaciontelefonica.com'
   },
   {
-    aliases: ['fundaci??n bbva', 'fundacion bbva'],
+    aliases: ['fundación bbva', 'fundacion bbva'],
     website: 'https://www.fbbva.es',
     telefone: '+34 913 745 400',
     direcao1: 'Paseo de Recoletos',
@@ -30028,16 +30028,16 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28001',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.fbbva.es'
   },
 
   // --- AUTARQUIAS ---
   {
-    aliases: ['c??mara municipal de lisboa', 'camara municipal de lisboa', 'cml', 'munic??pio de lisboa'],
+    aliases: ['câmara municipal de lisboa', 'camara municipal de lisboa', 'cml', 'município de lisboa'],
     website: 'https://www.lisboa.pt',
     telefone: '+351 217 988 000',
-    direcao1: 'Pra??a do Munic??pio',
+    direcao1: 'Praça do Município',
     numero: '',
     andar: '',
     codigoPostal: '1100-038',
@@ -30046,10 +30046,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.lisboa.pt'
   },
   {
-    aliases: ['c??mara municipal do porto', 'camara municipal do porto', 'cmp', 'munic??pio do porto'],
+    aliases: ['câmara municipal do porto', 'camara municipal do porto', 'cmp', 'município do porto'],
     website: 'https://www.cm-porto.pt',
     telefone: '+351 222 090 400',
-    direcao1: 'Pra??a General Humberto Delgado',
+    direcao1: 'Praça General Humberto Delgado',
     numero: '',
     andar: '',
     codigoPostal: '4049-001',
@@ -30058,10 +30058,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.cm-porto.pt'
   },
   {
-    aliases: ['c??mara municipal de cascais', 'camara municipal de cascais', 'cmc', 'munic??pio de cascais'],
+    aliases: ['câmara municipal de cascais', 'camara municipal de cascais', 'cmc', 'município de cascais'],
     website: 'https://www.cascais.pt',
     telefone: '+351 214 815 000',
-    direcao1: 'Pra??a 5 de Outubro',
+    direcao1: 'Praça 5 de Outubro',
     numero: '',
     andar: '',
     codigoPostal: '2754-501',
@@ -30070,10 +30070,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.cascais.pt'
   },
   {
-    aliases: ['c??mara municipal de sintra', 'camara municipal de sintra', 'cms', 'munic??pio de sintra'],
+    aliases: ['câmara municipal de sintra', 'camara municipal de sintra', 'cms', 'município de sintra'],
     website: 'https://cm-sintra.pt',
     telefone: '+351 219 238 500',
-    direcao1: 'Largo Dr. Virg??lio Horta',
+    direcao1: 'Largo Dr. Virgílio Horta',
     numero: '',
     andar: '',
     codigoPostal: '2714-501',
@@ -30082,10 +30082,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://cm-sintra.pt'
   },
   {
-    aliases: ['c??mara municipal de braga', 'camara municipal de braga', 'cmb', 'munic??pio de braga'],
+    aliases: ['câmara municipal de braga', 'camara municipal de braga', 'cmb', 'município de braga'],
     website: 'https://www.cm-braga.pt',
     telefone: '+351 253 616 060',
-    direcao1: 'Pra??a do Munic??pio',
+    direcao1: 'Praça do Município',
     numero: '',
     andar: '',
     codigoPostal: '4700-435',
@@ -30094,10 +30094,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.cm-braga.pt'
   },
   {
-    aliases: ['c??mara municipal de coimbra', 'camara municipal de coimbra', 'munic??pio de coimbra'],
+    aliases: ['câmara municipal de coimbra', 'camara municipal de coimbra', 'município de coimbra'],
     website: 'https://www.cm-coimbra.pt',
     telefone: '+351 239 857 500',
-    direcao1: 'Pra??a 8 de Maio',
+    direcao1: 'Praça 8 de Maio',
     numero: '',
     andar: '',
     codigoPostal: '3000-300',
@@ -30108,7 +30108,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
 
   // --- GRANDES EMPRESAS (Portugal) ---
   {
-    aliases: ['edp', 'edp comercial', 'edp distribui????o', 'e-redes'],
+    aliases: ['edp', 'edp comercial', 'edp distribuição', 'e-redes'],
     website: 'https://www.edp.pt',
     telefone: '+351 210 012 000',
     direcao1: 'Avenida 24 de Julho',
@@ -30120,10 +30120,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.edp.pt'
   },
   {
-    aliases: ['galp', 'galp energia', 'petr??leos de portugal'],
+    aliases: ['galp', 'galp energia', 'petróleos de portugal'],
     website: 'https://www.galp.com',
     telefone: '+351 217 242 500',
-    direcao1: 'Rua Tom??s da Fonseca, Torre A',
+    direcao1: 'Rua Tomás da Fonseca, Torre A',
     numero: '',
     andar: '',
     codigoPostal: '1600-209',
@@ -30132,10 +30132,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.galp.com'
   },
   {
-    aliases: ['tap', 'tap air portugal', 'transportes a??reos portugueses'],
+    aliases: ['tap', 'tap air portugal', 'transportes aéreos portugueses'],
     website: 'https://www.flytap.com',
     telefone: '+351 218 415 000',
-    direcao1: 'Edif??cio 25, Aeroporto de Lisboa',
+    direcao1: 'Edifício 25, Aeroporto de Lisboa',
     numero: '',
     andar: '',
     codigoPostal: '1704-801',
@@ -30147,7 +30147,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     aliases: ['ctt', 'ctt correios de portugal', 'correios de portugal'],
     website: 'https://www.ctt.pt',
     telefone: '+351 210 471 010',
-    direcao1: 'Avenida Dom Jo??o II',
+    direcao1: 'Avenida Dom João II',
     numero: '13',
     andar: '',
     codigoPostal: '1999-001',
@@ -30156,10 +30156,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.ctt.pt'
   },
   {
-    aliases: ['nos', 'nos comunica????es', 'zon optimus'],
+    aliases: ['nos', 'nos comunicações', 'zon optimus'],
     website: 'https://www.nos.pt',
     telefone: '+351 217 824 700',
-    direcao1: 'Rua Cec??lia Meireles',
+    direcao1: 'Rua Cecília Meireles',
     numero: '7',
     andar: '',
     codigoPostal: '2720-090',
@@ -30183,7 +30183,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     aliases: ['vodafone', 'vodafone portugal'],
     website: 'https://www.vodafone.pt',
     telefone: '+351 210 915 000',
-    direcao1: 'Avenida Dom Jo??o II',
+    direcao1: 'Avenida Dom João II',
     numero: '36',
     andar: '',
     codigoPostal: '1998-017',
@@ -30192,10 +30192,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.vodafone.pt'
   },
   {
-    aliases: ['cgd', 'caixa geral de dep??sitos', 'caixa geral de depositos'],
+    aliases: ['cgd', 'caixa geral de depósitos', 'caixa geral de depositos'],
     website: 'https://www.cgd.pt',
     telefone: '+351 217 953 000',
-    direcao1: 'Avenida Jo??o XXI',
+    direcao1: 'Avenida João XXI',
     numero: '63',
     andar: '',
     codigoPostal: '1000-300',
@@ -30204,10 +30204,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.cgd.pt'
   },
   {
-    aliases: ['bcp', 'millennium bcp', 'banco comercial portugu??s'],
+    aliases: ['bcp', 'millennium bcp', 'banco comercial português'],
     website: 'https://www.millenniumbcp.pt',
     telefone: '+351 211 131 000',
-    direcao1: 'Pra??a Dom Jo??o I',
+    direcao1: 'Praça Dom João I',
     numero: '28',
     andar: '',
     codigoPostal: '4000-295',
@@ -30228,9 +30228,9 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.santander.pt'
   },
 
-  // --- ESPANHA: Governo, Minist??rios, Autarquias e Empresas ---
+  // --- ESPANHA: Governo, Ministérios, Autarquias e Empresas ---
   {
-    aliases: ['gobierno de espa??a', 'presidencia del gobierno de espa??a', 'la moncloa', 'palacio de la moncloa'],
+    aliases: ['gobierno de españa', 'presidencia del gobierno de españa', 'la moncloa', 'palacio de la moncloa'],
     website: 'https://www.lamoncloa.gob.es',
     telefone: '+34 913 353 535',
     direcao1: 'Avenida Puerta de Hierro',
@@ -30238,35 +30238,35 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: 'Complejo de la Moncloa',
     codigoPostal: '28071',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.lamoncloa.gob.es'
   },
   {
-    aliases: ['ministerio de hacienda', 'hacienda espa??a', 'hacienda y funci??n p??blica'],
+    aliases: ['ministerio de hacienda', 'hacienda españa', 'hacienda y función pública'],
     website: 'https://www.hacienda.gob.es',
     telefone: '+34 915 958 000',
-    direcao1: 'Calle de Alcal??',
+    direcao1: 'Calle de Alcalá',
     numero: '9',
     andar: '',
     codigoPostal: '28014',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.hacienda.gob.es'
   },
   {
-    aliases: ['agencia tributaria', 'aeat', 'agencia estatal de administraci??n tributaria'],
+    aliases: ['agencia tributaria', 'aeat', 'agencia estatal de administración tributaria'],
     website: 'https://sede.agenciatributaria.gob.es',
     telefone: '+34 915 548 770',
-    direcao1: 'Calle de Alcal??',
+    direcao1: 'Calle de Alcalá',
     numero: '5',
     andar: '',
     codigoPostal: '28014',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://sede.agenciatributaria.gob.es'
   },
   {
-    aliases: ['ministerio del interior', 'interior espa??a'],
+    aliases: ['ministerio del interior', 'interior españa'],
     website: 'https://www.interior.gob.es',
     telefone: '+34 915 371 000',
     direcao1: 'Paseo de la Castellana',
@@ -30274,11 +30274,11 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28071',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.interior.gob.es'
   },
   {
-    aliases: ['ministerio de justicia', 'justicia espa??a'],
+    aliases: ['ministerio de justicia', 'justicia españa'],
     website: 'https://www.mjusticia.gob.es',
     telefone: '+34 913 904 500',
     direcao1: 'Calle de San Bernardo',
@@ -30286,23 +30286,23 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28015',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.mjusticia.gob.es'
   },
   {
-    aliases: ['ministerio de asuntos exteriores', 'exteriores espa??a', 'asuntos exteriores, uni??n europea y cooperaci??n'],
+    aliases: ['ministerio de asuntos exteriores', 'exteriores españa', 'asuntos exteriores, unión europea y cooperación'],
     website: 'https://www.exteriores.gob.es',
     telefone: '+34 913 799 700',
-    direcao1: 'Plaza del Marqu??s de Salamanca',
+    direcao1: 'Plaza del Marqués de Salamanca',
     numero: '8',
     andar: '',
     codigoPostal: '28006',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.exteriores.gob.es'
   },
   {
-    aliases: ['ministerio de defensa espa??a', 'defensa espa??a'],
+    aliases: ['ministerio de defensa españa', 'defensa españa'],
     website: 'https://www.defensa.gob.es',
     telefone: '+34 913 955 000',
     direcao1: 'Paseo de la Castellana',
@@ -30310,7 +30310,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28046',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.defensa.gob.es'
   },
   {
@@ -30322,11 +30322,11 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28071',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.transportes.gob.es'
   },
   {
-    aliases: ['ministerio de trabajo y econom??a social', 'trabajo espa??a'],
+    aliases: ['ministerio de trabajo y economía social', 'trabajo españa'],
     website: 'https://www.mites.gob.es',
     telefone: '+34 913 630 000',
     direcao1: 'Paseo de la Castellana',
@@ -30334,11 +30334,11 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28071',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.mites.gob.es'
   },
   {
-    aliases: ['ministerio de sanidad', 'sanidad espa??a'],
+    aliases: ['ministerio de sanidad', 'sanidad españa'],
     website: 'https://www.sanidad.gob.es',
     telefone: '+34 915 961 000',
     direcao1: 'Paseo del Prado',
@@ -30346,7 +30346,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28014',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.sanidad.gob.es'
   },
   {
@@ -30358,31 +30358,31 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28014',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.madrid.es'
   },
   {
     aliases: ['ajuntament de barcelona', 'ayuntamiento de barcelona'],
     website: 'https://www.barcelona.cat',
     telefone: '+34 934 027 000',
-    direcao1: 'Pla??a de Sant Jaume',
+    direcao1: 'Plaça de Sant Jaume',
     numero: '1',
     andar: '',
     codigoPostal: '08002',
     localidade: 'Barcelona',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.barcelona.cat'
   },
   {
-    aliases: ['telef??nica', 'telefonica espa??a', 'telef??nica s.a.'],
+    aliases: ['telefónica', 'telefonica españa', 'telefónica s.a.'],
     website: 'https://www.telefonica.com',
     telefone: '+34 914 828 700',
-    direcao1: 'Gran V??a',
+    direcao1: 'Gran Vía',
     numero: '28',
     andar: '',
     codigoPostal: '28013',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.telefonica.com'
   },
   {
@@ -30394,19 +30394,19 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '46130',
     localidade: 'Tavernes Blanques (Valencia)',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.mercadona.es'
   },
   {
-    aliases: ['inditex', 'zara espa??a'],
+    aliases: ['inditex', 'zara españa'],
     website: 'https://www.inditex.com',
     telefone: '+34 981 185 400',
-    direcao1: 'Avenida de la Diputaci??n',
+    direcao1: 'Avenida de la Diputación',
     numero: 's/n',
     andar: '',
     codigoPostal: '15143',
-    localidade: 'Arteixo (A Coru??a)',
-    pais: 'Espa??a',
+    localidade: 'Arteixo (A Coruña)',
+    pais: 'España',
     fonteUrl: 'https://www.inditex.com'
   },
   {
@@ -30418,23 +30418,23 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '48009',
     localidade: 'Bilbao',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.iberdrola.com'
   },
   {
     aliases: ['repsol'],
     website: 'https://www.repsol.com',
     telefone: '+34 917 538 000',
-    direcao1: 'Calle M??ndez ??lvaro',
+    direcao1: 'Calle Méndez Álvaro',
     numero: '44',
     andar: '',
     codigoPostal: '28045',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.repsol.com'
   },
   {
-    aliases: ['el corte ingl??s', 'el corte ingles'],
+    aliases: ['el corte inglés', 'el corte ingles'],
     website: 'https://www.elcorteingles.es',
     telefone: '+34 901 122 122',
     direcao1: 'Calle Hermosilla',
@@ -30442,7 +30442,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28009',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.elcorteingles.es'
   }
 ];
@@ -30461,7 +30461,7 @@ function normalizeSearchTerm(str) {
 function cleanCompanySearchName(str) {
   if (!str) return '';
   return str
-    .replace(/\b(s\.?l\.?u?\.?|s\.?a\.?u?\.?|lda\.?|unipessoal|limitada|sociedad an[o??]nima|sociedad limitada|ltd\.?|gmbh|inc\.?|llc|corp\.?)\b/gi, ' ')
+    .replace(/\b(s\.?l\.?u?\.?|s\.?a\.?u?\.?|lda\.?|unipessoal|limitada|sociedad an[oó]nima|sociedad limitada|ltd\.?|gmbh|inc\.?|llc|corp\.?)\b/gi, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -30505,7 +30505,7 @@ function resolveEntityFromLocalDirectory(entityName, ministerio, targetPais) {
     }
   }
 
-  // Pass 2: Busca no minist??rio
+  // Pass 2: Busca no ministério
   if (normMin && normMin.length >= 3) {
     for (const item of SIGEC_PT_INSTITUTIONAL_DIRECTORY) {
       for (const alias of item.aliases) {
