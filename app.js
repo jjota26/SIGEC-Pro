@@ -11562,12 +11562,18 @@ function saveContact(e) {
     const finalQuickDate = quickDateVal || nowQuick.toISOString().slice(0, 16);
     const newQuickId = generateId('cpi');
     
+    const activeUser = typeof getActiveLoggedInUser === 'function' ? getActiveLoggedInUser() : null;
+    const authorId = activeUser ? activeUser.id : (contactObj?.comercialAtribuidoId || contactObj?.userId || 'usr-admin-001');
+    const authorName = activeUser ? (activeUser.nome || activeUser.email) : (contactObj?.comercialAtribuidoNome || 'José Centúrio');
+
     const newIntObj = {
       id: newQuickId,
       contactoId: String(id).trim(),
       clienteId: selectedClienteId || null,
       separadorId: assignedSeparadorId || null,
       subTabIndex: selectedClienteId ? finalSubTabIndex : null,
+      userId: authorId,
+      userName: authorName,
       data: finalQuickDate,
       descricao: pendingQuickText,
       createdAt: new Date().toISOString()
@@ -11671,6 +11677,10 @@ function addQuickInteraction() {
   const currentActiveIdx = Number(activeEstatalSeparadorIndex || 0);
   const currentSep = (client && Array.isArray(client.separadores) && client.separadores[currentActiveIdx]) ? client.separadores[currentActiveIdx] : null;
 
+  const activeUser = typeof getActiveLoggedInUser === 'function' ? getActiveLoggedInUser() : null;
+  const authorId = activeUser ? activeUser.id : (client?.comercialAtribuidoId || client?.userId || 'usr-admin-001');
+  const authorName = activeUser ? (activeUser.nome || activeUser.email) : (client?.comercialAtribuidoNome || 'José Centúrio');
+
   const intObj = {
     id,
     clienteId: currentClientId,
@@ -11678,6 +11688,8 @@ function addQuickInteraction() {
     subTabIndex: isEstatal ? currentActiveIdx : null,
     data: finalDate,
     descricao: textVal,
+    userId: authorId,
+    userName: authorName,
     createdAt: new Date().toISOString()
   };
 
@@ -11745,11 +11757,20 @@ function saveInteraction(e) {
   if (!db.interacoes) db.interacoes = [];
 
   const existingIndex = db.interacoes.findIndex(i => i.id === id);
+  const existingItem = existingIndex >= 0 ? db.interacoes[existingIndex] : null;
+
+  const activeUser = typeof getActiveLoggedInUser === 'function' ? getActiveLoggedInUser() : null;
+  const clientObj = (db.clientes || []).find(c => c && c.id === currentClientId);
+  const authorId = existingItem?.userId || (activeUser ? activeUser.id : (clientObj?.comercialAtribuidoId || 'usr-admin-001'));
+  const authorName = existingItem?.userName || (activeUser ? (activeUser.nome || activeUser.email) : (clientObj?.comercialAtribuidoNome || 'José Centúrio'));
+
   const intObj = {
     id,
     clienteId: currentClientId,
     data,
     descricao,
+    userId: authorId,
+    userName: authorName,
     createdAt: existingIndex >= 0 ? db.interacoes[existingIndex].createdAt : new Date().toISOString(),
     updatedAt: new Date().toISOString()
   };
@@ -11873,6 +11894,88 @@ function toggleContactPersonInteractionsSort() {
 }
 window.toggleContactPersonInteractionsSort = toggleContactPersonInteractionsSort;
 
+function getInteractionAuthorName(item) {
+  if (!item) return 'José Centúrio';
+
+  // 1. Nome explícito guardado no objeto
+  if (item.userName && typeof item.userName === 'string' && item.userName.trim()) {
+    return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(item.userName.trim()) : item.userName.trim();
+  }
+  if (item.userNome && typeof item.userNome === 'string' && item.userNome.trim()) {
+    return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(item.userNome.trim()) : item.userNome.trim();
+  }
+  if (item.autor && typeof item.autor === 'string' && item.autor.trim()) {
+    return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(item.autor.trim()) : item.autor.trim();
+  }
+  if (item.autorNome && typeof item.autorNome === 'string' && item.autorNome.trim()) {
+    return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(item.autorNome.trim()) : item.autorNome.trim();
+  }
+  if (item.comercialNome && typeof item.comercialNome === 'string' && item.comercialNome.trim()) {
+    return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(item.comercialNome.trim()) : item.comercialNome.trim();
+  }
+  if (item.comercial && typeof item.comercial === 'string' && item.comercial.trim()) {
+    return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(item.comercial.trim()) : item.comercial.trim();
+  }
+
+  // 2. Resolver por ID de utilizador (userId ou createdById)
+  const activeDb = (typeof db !== 'undefined' && db && typeof db === 'object') ? db : ((typeof window !== 'undefined' && window.db && typeof window.db === 'object') ? window.db : {});
+  const uId = item.userId || item.createdById || item.usuarioId;
+  if (uId && Array.isArray(activeDb.usuarios)) {
+    const u = activeDb.usuarios.find(x => x && (x.id === uId || (x.email && x.email.toLowerCase() === String(uId).toLowerCase())));
+    if (u && u.nome) {
+      return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(u.nome) : u.nome;
+    }
+  }
+
+  // 3. Resolver pelo contacto associado
+  if (item.contactoId && Array.isArray(activeDb.contactos)) {
+    const con = activeDb.contactos.find(c => c && String(c.id).trim() === String(item.contactoId).trim());
+    if (con) {
+      if (con.comercialAtribuidoNome) {
+        return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(con.comercialAtribuidoNome) : con.comercialAtribuidoNome;
+      }
+      if (con.comercialAtribuidoId) {
+        const u = (activeDb.usuarios || []).find(x => x && x.id === con.comercialAtribuidoId);
+        if (u && u.nome) return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(u.nome) : u.nome;
+      }
+      if (con.userId) {
+        const u = (activeDb.usuarios || []).find(x => x && x.id === con.userId);
+        if (u && u.nome) return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(u.nome) : u.nome;
+      }
+    }
+  }
+
+  // 4. Resolver pelo cliente associado
+  const cliId = item.clienteId || (typeof currentClientId !== 'undefined' ? currentClientId : null);
+  if (cliId && Array.isArray(activeDb.clientes)) {
+    const cli = activeDb.clientes.find(c => c && String(c.id).trim() === String(cliId).trim());
+    if (cli) {
+      if (cli.comercialAtribuidoNome) {
+        return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(cli.comercialAtribuidoNome) : cli.comercialAtribuidoNome;
+      }
+      if (cli.comercialAtribuidoId) {
+        const u = (activeDb.usuarios || []).find(x => x && x.id === cli.comercialAtribuidoId);
+        if (u && u.nome) return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(u.nome) : u.nome;
+      }
+      if (cli.userId) {
+        const u = (activeDb.usuarios || []).find(x => x && x.id === cli.userId);
+        if (u && u.nome) return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(u.nome) : u.nome;
+      }
+    }
+  }
+
+  // 5. Utilizador com sessão iniciada atualmente
+  if (typeof getActiveLoggedInUser === 'function') {
+    const curU = getActiveLoggedInUser();
+    if (curU && curU.nome) {
+      return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(curU.nome) : curU.nome;
+    }
+  }
+
+  return 'José Centúrio';
+}
+window.getInteractionAuthorName = getInteractionAuthorName;
+
 function renderContactPersonInteractionsGrid(interactions) {
   const grid = document.getElementById('contactPersonInteractionsGrid');
   if (!grid) return;
@@ -11895,6 +11998,7 @@ function renderContactPersonInteractionsGrid(interactions) {
 
   sorted.forEach(item => {
     const formattedDate = item.data ? new Date(item.data).toLocaleString('pt-PT', { dateStyle: 'short', timeStyle: 'short' }) : '-';
+    const authorName = getInteractionAuthorName(item);
 
     const card = document.createElement('div');
     card.className = 'interaction-card';
@@ -11909,7 +12013,8 @@ function renderContactPersonInteractionsGrid(interactions) {
       </div>
       <div class="interaction-card-row">
         <div class="interaction-card-date">
-          <i class="fa-regular fa-calendar-days"></i> ${formattedDate}
+          <span class="interaction-date-text"><i class="fa-regular fa-calendar-days"></i> ${formattedDate}</span>
+          <span class="interaction-author-name" title="${escapeHtml(authorName)}"><i class="fa-solid fa-user"></i> ${escapeHtml(authorName)}</span>
         </div>
         <div class="interaction-card-content">${escapeHtml(item.descricao || '')}</div>
       </div>
@@ -11952,6 +12057,10 @@ function addQuickContactInteraction() {
   const subTabIndex = (contact && contact.subTabIndex !== undefined && contact.subTabIndex !== null) ? Number(contact.subTabIndex) : null;
   const separadorId = (contact && contact.separadorId) ? contact.separadorId : ((clientObj && Array.isArray(clientObj.separadores) && subTabIndex !== null && clientObj.separadores[subTabIndex]) ? clientObj.separadores[subTabIndex].id : null);
 
+  const activeUser = typeof getActiveLoggedInUser === 'function' ? getActiveLoggedInUser() : null;
+  const authorId = activeUser ? activeUser.id : (contact?.comercialAtribuidoId || contact?.userId || clientObj?.comercialAtribuidoId || clientObj?.userId || 'usr-admin-001');
+  const authorName = activeUser ? activeUser.nome : (contact?.comercialAtribuidoNome || clientObj?.comercialAtribuidoNome || 'José Centúrio');
+
   const intObj = {
     id,
     contactoId: targetCIdStr,
@@ -11960,6 +12069,8 @@ function addQuickContactInteraction() {
     subTabIndex: subTabIndex,
     data: finalDate,
     descricao: textVal,
+    userId: authorId,
+    userName: authorName,
     createdAt: new Date().toISOString()
   };
 
@@ -12054,6 +12165,7 @@ function renderClientInteractionsGrid(interactions) {
 
   sorted.forEach(item => {
     const formattedDate = item.data ? new Date(item.data).toLocaleString('pt-PT', { dateStyle: 'short', timeStyle: 'short' }) : '-';
+    const authorName = getInteractionAuthorName(item);
 
     const card = document.createElement('div');
     card.className = 'interaction-card';
@@ -12068,7 +12180,8 @@ function renderClientInteractionsGrid(interactions) {
       </div>
       <div class="interaction-card-row">
         <div class="interaction-card-date">
-          <i class="fa-regular fa-calendar-days"></i> ${formattedDate}
+          <span class="interaction-date-text"><i class="fa-regular fa-calendar-days"></i> ${formattedDate}</span>
+          <span class="interaction-author-name" title="${escapeHtml(authorName)}"><i class="fa-solid fa-user"></i> ${escapeHtml(authorName)}</span>
         </div>
         <div class="interaction-card-content">${item.descricao}</div>
       </div>
@@ -12609,11 +12722,18 @@ function addQuickProjectInteraction() {
 
   if (!db.interacoesProjetos) db.interacoesProjetos = [];
 
+  const proj = (db.projetos || []).find(p => p.id === currentProjectId);
+  const activeUser = typeof getActiveLoggedInUser === 'function' ? getActiveLoggedInUser() : null;
+  const authorId = activeUser ? activeUser.id : (proj?.responsavelId || proj?.userId || 'usr-admin-001');
+  const authorName = activeUser ? (activeUser.nome || activeUser.email) : (proj?.responsavelNome || proj?.responsavel || 'José Centúrio');
+
   const intObj = {
     id,
     projectId: currentProjectId,
     data: finalDate,
     descricao: textVal,
+    userId: authorId,
+    userName: authorName,
     createdAt: new Date().toISOString()
   };
 
@@ -12679,11 +12799,20 @@ function saveProjectInteraction(e) {
   if (!db.interacoesProjetos) db.interacoesProjetos = [];
 
   const existingIndex = db.interacoesProjetos.findIndex(i => i.id === id);
+  const existingItem = existingIndex >= 0 ? db.interacoesProjetos[existingIndex] : null;
+
+  const proj = (db.projetos || []).find(p => p.id === currentProjectId);
+  const activeUser = typeof getActiveLoggedInUser === 'function' ? getActiveLoggedInUser() : null;
+  const authorId = existingItem?.userId || (activeUser ? activeUser.id : (proj?.responsavelId || proj?.userId || 'usr-admin-001'));
+  const authorName = existingItem?.userName || (activeUser ? (activeUser.nome || activeUser.email) : (proj?.responsavelNome || proj?.responsavel || 'José Centúrio'));
+
   const intObj = {
     id,
     projectId: currentProjectId,
     data,
     descricao,
+    userId: authorId,
+    userName: authorName,
     createdAt: existingIndex >= 0 ? db.interacoesProjetos[existingIndex].createdAt : new Date().toISOString(),
     updatedAt: new Date().toISOString()
   };
@@ -12751,6 +12880,7 @@ function renderProjectInteractionsGrid(interactions) {
 
   sorted.forEach(item => {
     const formattedDate = item.data ? new Date(item.data).toLocaleString('pt-PT', { dateStyle: 'short', timeStyle: 'short' }) : '-';
+    const authorName = getInteractionAuthorName(item);
 
     const card = document.createElement('div');
     card.className = 'interaction-card';
@@ -12766,7 +12896,8 @@ function renderProjectInteractionsGrid(interactions) {
       </div>
       <div class="interaction-card-row">
         <div class="interaction-card-date">
-          <i class="fa-regular fa-calendar-days"></i> ${formattedDate}
+          <span class="interaction-date-text"><i class="fa-regular fa-calendar-days"></i> ${formattedDate}</span>
+          <span class="interaction-author-name" title="${escapeHtml(authorName)}"><i class="fa-solid fa-user"></i> ${escapeHtml(authorName)}</span>
         </div>
         <div class="interaction-card-content">${item.descricao}</div>
       </div>
@@ -29195,11 +29326,16 @@ function saveContactPersonInteraction(e) {
   const targetCIdStr = String(targetContactId).trim();
   const cleanIdStr = String(id).trim();
   const existingIndex = db.interacoes.findIndex(i => i && String(i.id).trim() === cleanIdStr);
+  const existingItem = existingIndex >= 0 ? db.interacoes[existingIndex] : null;
   const targetContact = (db.contactos || []).find(c => c && String(c.id).trim() === targetCIdStr);
   const targetClientId = targetContact ? targetContact.clienteId : currentClientId;
   const clientObj = targetClientId ? (db.clientes || []).find(c => c && String(c.id).trim() === String(targetClientId).trim()) : null;
   const subTabIndex = (targetContact && targetContact.subTabIndex !== undefined && targetContact.subTabIndex !== null) ? Number(targetContact.subTabIndex) : null;
   const separadorId = (targetContact && targetContact.separadorId) ? targetContact.separadorId : ((clientObj && Array.isArray(clientObj.separadores) && subTabIndex !== null && clientObj.separadores[subTabIndex]) ? clientObj.separadores[subTabIndex].id : null);
+
+  const activeUser = typeof getActiveLoggedInUser === 'function' ? getActiveLoggedInUser() : null;
+  const authorId = existingItem?.userId || (activeUser ? activeUser.id : (targetContact?.comercialAtribuidoId || targetContact?.userId || clientObj?.comercialAtribuidoId || 'usr-admin-001'));
+  const authorName = existingItem?.userName || (activeUser ? (activeUser.nome || activeUser.email) : (targetContact?.comercialAtribuidoNome || clientObj?.comercialAtribuidoNome || 'José Centúrio'));
 
   const intObj = {
     id: cleanIdStr,
@@ -29209,6 +29345,8 @@ function saveContactPersonInteraction(e) {
     subTabIndex: subTabIndex,
     data,
     descricao,
+    userId: authorId,
+    userName: authorName,
     createdAt: existingIndex >= 0 ? db.interacoes[existingIndex].createdAt : new Date().toISOString(),
     updatedAt: new Date().toISOString()
   };

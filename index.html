@@ -221,7 +221,7 @@
   </script>
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=1789753100000">
+  <link rel="stylesheet" href="styles.css?v=202609241400">
 
   <!-- Critical Login Screen Styles (Guarantees perfect rendering even before external CSS loads) -->
   <style>
@@ -4871,11 +4871,11 @@
   <div id="toastContainer" class="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999999 !important;"></div>
 
   <!-- Internationalization & Translations Engine -->
-  <script src="i18n.js?v=202609240815"></script>
+  <script src="i18n.js?v=202609241400"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=202609240815"></script>
+  <script src="app.js?v=202609241400"></script>
   <!-- Duplicates Management Engine -->
-  <script src="duplicatesManager.js?v=202609240815"></script>
+  <script src="duplicatesManager.js?v=202609241400"></script>
 
   <!-- Inicialização segura de definições de email no arranque -->
   <script>
@@ -5075,6 +5075,49 @@
       } else {
         db.contactos.push(contactObj);
         if (typeof showToast === 'function') showToast('Novo contacto adicionado!');
+      }
+
+      // Gravação automática de registo de contacto pendente
+      var pendingQuickTextEl = document.getElementById('quickContactInteractionText');
+      var pendingQuickText = pendingQuickTextEl ? pendingQuickTextEl.value.trim() : '';
+      if (pendingQuickText) {
+        if (!db.interacoes) db.interacoes = [];
+        var quickDateVal = document.getElementById('quickContactInteractionData') ? document.getElementById('quickContactInteractionData').value : '';
+        var nowQuick = new Date();
+        nowQuick.setMinutes(nowQuick.getMinutes() - nowQuick.getTimezoneOffset());
+        var finalQuickDate = quickDateVal || nowQuick.toISOString().slice(0, 16);
+        var newQuickId = (typeof generateId === 'function') ? generateId('cpi') : ('cpi-' + Date.now());
+
+        var activeUser = (typeof getActiveLoggedInUser === 'function') ? getActiveLoggedInUser() : null;
+        var authorId = activeUser ? activeUser.id : (contactObj.comercialAtribuidoId || contactObj.userId || 'usr-admin-001');
+        var authorName = activeUser ? (activeUser.nome || activeUser.email) : (contactObj.comercialAtribuidoNome || 'José Centúrio');
+
+        var newIntObj = {
+          id: newQuickId,
+          contactoId: String(id).trim(),
+          clienteId: selectedClienteId || null,
+          subTabIndex: selectedClienteId ? finalSubTabIndex : null,
+          userId: authorId,
+          userName: authorName,
+          data: finalQuickDate,
+          descricao: pendingQuickText,
+          createdAt: new Date().toISOString()
+        };
+        db.interacoes.push(newIntObj);
+
+        pendingQuickTextEl.value = '';
+        pendingQuickTextEl.style.height = 'auto';
+      }
+
+      // Sincronização em cascata: garantir clienteId e subTabIndex atualizados
+      if (Array.isArray(db.interacoes)) {
+        var targetCIdStr = String(id).trim();
+        db.interacoes.forEach(function(intr) {
+          if (intr && String(intr.contactoId || '').trim() === targetCIdStr) {
+            intr.clienteId = selectedClienteId || null;
+            intr.subTabIndex = selectedClienteId ? finalSubTabIndex : null;
+          }
+        });
       }
 
       if (typeof clearFormDirty === 'function') clearFormDirty();

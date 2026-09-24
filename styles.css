@@ -1,4 +1,4 @@
-/* 
+﻿/* 
   SIGEC-Pro - Sistema de Gestão
   Estilos CSS - Palette Soft Blue / Design Moderno
 */
@@ -800,30 +800,41 @@ textarea.form-control {
 }
 
 .interaction-card-date {
-  font-weight: 600;
-  color: #1e3a8a;
-  font-size: 0.85rem;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.interaction-card-date-block {
-  width: 160px;
+  width: 175px;
+  min-width: 160px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 0.25rem;
 }
 
-.interaction-card-contact-name {
-  font-size: 0.78rem;
-  color: #64748b;
-  display: flex;
+.interaction-date-text {
+  font-weight: 600;
+  color: #1e3a8a;
+  font-size: 0.85rem;
+  display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-style: italic;
+  white-space: nowrap;
+}
+
+.interaction-author-name {
+  font-weight: 500;
+  color: #475569;
+  font-size: 0.80rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.interaction-author-name i {
+  color: #64748b;
+  font-size: 0.75rem;
 }
 
 .interaction-card-content {
@@ -3041,6 +3052,9 @@ img, video, canvas, svg {
 
   .interaction-card-date {
     width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
   }
 
   /* Separadores Estatais Dinamicos */
