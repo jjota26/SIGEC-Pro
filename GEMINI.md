@@ -1,4 +1,4 @@
-# AGENTS.md — DIRETRIZES E REGRAS PERMANENTES DO PROJETO SIGEC-Pro
+# GEMINI.md — DIRETRIZES E REGRAS PERMANENTES DO PROJETO SIGEC-Pro
 
 Este repositório contém o código-fonte, a interface web PWA, a lógica de negócio e os módulos de dados do **SIGEC-Pro**.
 
