@@ -335,6 +335,34 @@ const SIGEC_I18N = {
     "Français": "Sécurisé",
     "Polski": "Bezpieczny"
   },
+  cfg_storage_local_usage: {
+    "Português": "Uso Local:",
+    "Español": "Uso Local:",
+    "English": "Local Storage:",
+    "Français": "Stockage Local :",
+    "Polski": "Pamięć Lokalna:"
+  },
+  cfg_storage_status_high: {
+    "Português": "Ocupação Elevada (Recomenda-se Limpeza)",
+    "Español": "Ocupación Alta (Se recomienda limpieza)",
+    "English": "High Usage (Cleanup Recommended)",
+    "Français": "Utilisation Élevée (Nettoyage Recommandé)",
+    "Polski": "Wysokie Użycie (Zalecane Czyszczenie)"
+  },
+  cfg_storage_status_mod: {
+    "Português": "Ocupação Moderada",
+    "Español": "Ocupación Moderada",
+    "English": "Moderate Usage",
+    "Français": "Utilisation Modérée",
+    "Polski": "Umiarkowane Użycie"
+  },
+  cfg_storage_status_good: {
+    "Português": "Excelente (Espaço Livre Amplo)",
+    "Español": "Excelente (Amplio espacio libre)",
+    "English": "Excellent (Ample Free Space)",
+    "Français": "Excellent (Grand Espace Libre)",
+    "Polski": "Doskonałe (Dużo Wolnego Miejsca)"
+  },
   cfg_card_cleanup_desc: {
     "Português": "Elimina resíduos e ficheiros temporários do navegador sem afetar nenhum registo de Clientes ou Projetos.",
     "Español": "Elimina residuos y archivos temporales del navegador sin afectar ningún registro de Clientes o Proyectos.",

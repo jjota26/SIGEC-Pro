@@ -5917,8 +5917,10 @@ function deepCleanTemporaryStorage(manualTrigger = false) {
 
     if (manualTrigger) {
       const msg = `🧹 Limpeza de Temporários Concluída!\n\n• Espaço libertado: ${freedKB} KB\n• Espaço atual em uso: ${usedKB} KB\n• Ficheiros e dados de clientes/projetos: 100% preservados.\n\nO armazenamento local do programa está agora perfeitamente otimizado.`;
-      alert(msg);
-      showToast(`Limpeza concluída! ${freedKB} KB libertados com sucesso.`, 'success');
+      if (typeof showToast === 'function') {
+        showToast(`Limpeza concluída! ${freedKB} KB libertados com sucesso.`, 'success');
+      }
+      try { alert(msg); } catch(e) {}
     }
 
     return { freedKB, usedKB, initialBytes, finalBytes };
@@ -5942,6 +5944,7 @@ function renderStorageUsageStats() {
 
   const statusColor = percentUsed > 75 ? '#dc2626' : (percentUsed > 45 ? '#d97706' : '#16a34a');
   const statusBg = percentUsed > 75 ? '#fef2f2' : (percentUsed > 45 ? '#fffbeb' : '#f0fdf4');
+  const statusBorder = percentUsed > 75 ? '#fecaca' : (percentUsed > 45 ? '#fde68a' : '#bbf7d0');
   const statusHigh = typeof t === 'function' ? t('cfg_storage_status_high', 'Ocupação Elevada (Recomenda-se Limpeza)') : 'Ocupação Elevada (Recomenda-se Limpeza)';
   const statusMod = typeof t === 'function' ? t('cfg_storage_status_mod', 'Ocupação Moderada') : 'Ocupação Moderada';
   const statusGood = typeof t === 'function' ? t('cfg_storage_status_good', 'Excelente (Espaço Livre Amplo)') : 'Excelente (Espaço Livre Amplo)';
