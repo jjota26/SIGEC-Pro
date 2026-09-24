@@ -76,107 +76,6 @@ if (typeof window !== 'undefined') {
 
 const INITIAL_EXCEL_DATABASE = {
     "clientes":  [
-                      {
-          "id": "cli-1790076087901-132",
-          "tipoCliente": "Estatal",
-          "ministerio": "Ministério da Cultura, Juventude e Desporto",
-          "secretariaEstado": "Ministério, Secretaria de Estado da Cultura, Secretaria de Estado do Desporto, Secretaria de Estado Adjunta e da Juventude e da Igualdade",
-          "nome": "Ministério da Cultura, Juventude e Desporto",
-          "contribuinte": "500000697",
-          "direcao1": "Campus XXI, Avenida João XXI",
-          "direcao2": "",
-          "numero": "63",
-          "andar": "",
-          "codigoPostal": "1000-300",
-          "localidade": "LISBOA",
-          "pais": "Portugal",
-          "telefone": "+351 213 927 600",
-          "telemovel": "",
-          "email": "gabinete.mcjd@mcjd.gov.pt",
-          "website": "",
-          "notas": "",
-          "separadores": [
-                    {
-                              "id": "sep-1790076087902-677",
-                              "tipoSeparador": "Ministério",
-                              "nomePersonalizado": "Ministra",
-                              "nome": "Ministério da Cultura, Juventude e Desporto",
-                              "contribuinte": "500000697",
-                              "direcao1": "Campus XXI, Avenida João XXI",
-                              "direcao2": "",
-                              "numero": "63",
-                              "andar": "",
-                              "codigoPostal": "1000-300",
-                              "localidade": "LISBOA",
-                              "pais": "Portugal",
-                              "telefone": "+351 213 927 600",
-                              "telemovel": "",
-                              "email": "gabinete.mcjd@mcjd.gov.pt",
-                              "website": ""
-                    },
-                    {
-                              "id": "sep-1790076087902-246",
-                              "tipoSeparador": "Secretaria de Estado da Cultura",
-                              "nomePersonalizado": "Secretário de Estado da Cultura",
-                              "nome": "Secretaria de Estado da Cultura",
-                              "contribuinte": "000000000",
-                              "direcao1": "Campus XXI, Avenida João XXI",
-                              "direcao2": "",
-                              "numero": "63",
-                              "andar": "",
-                              "codigoPostal": "1000-300",
-                              "localidade": "LISBOA",
-                              "pais": "Portugal",
-                              "telefone": "+351 213 614 500",
-                              "telemovel": "",
-                              "email": "gabinete.secul@mcjd.gov.pt",
-                              "website": ""
-                    },
-                    {
-                              "id": "sep-1790076087902-886",
-                              "tipoSeparador": "Secretaria de Estado do Desporto",
-                              "nomePersonalizado": "Secretário de Estado do Desporto",
-                              "nome": "Secretaria de Estado do Desporto",
-                              "contribuinte": "000000000",
-                              "direcao1": "Rua Rodrigo da Fonseca",
-                              "direcao2": "",
-                              "numero": "55",
-                              "andar": "",
-                              "codigoPostal": "1250-190",
-                              "localidade": "Lisboa",
-                              "pais": "Portugal",
-                              "telefone": "+351 213 927 600",
-                              "telemovel": "",
-                              "email": "gabinete.sed@mcjd.gov.pt",
-                              "website": "https://ipdj.gov.pt"
-                    },
-                    {
-                              "id": "sep-1790076087902-417",
-                              "tipoSeparador": "Secretaria de Estado Adjunta e da Juventude e da Igualdade",
-                              "nomePersonalizado": "Secretária de estado adjunta e da juventude e da igualdade",
-                              "nome": "Secretaria de Estado Adjunta e da Juventude e da Igualdade",
-                              "contribuinte": "000000000",
-                              "direcao1": "Rua Rodrigo da Fonseca",
-                              "direcao2": "",
-                              "numero": "55",
-                              "andar": "",
-                              "codigoPostal": "1250-190",
-                              "localidade": "Lisboa",
-                              "pais": "Portugal",
-                              "telefone": "+351 213 927 600",
-                              "telemovel": "",
-                              "email": "gabinete.seaji@mcjd.gov.pt",
-                              "website": "https://ipdj.gov.pt"
-                    }
-          ],
-          "userId": "usr-admin-001",
-          "comercialAtribuidoId": "usr-admin-001",
-          "comercialAtribuidoNome": "José Centúrio",
-          "createdAt": "2026-09-22T11:21:27.902Z",
-          "updatedAt": "2026-09-23T19:47:41.018Z",
-          "comercial": "José Centúrio",
-          "createdById": "usr-admin-001"
-},
                      {
                          "id":  "cli-1786727373519-853",
                          "tipoCliente":  "Fundação",
@@ -193,14 +92,18 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 217 242 500",
                          "telemovel":  "",
                          "email":  "fundacao@galp.com",
-                         "createdAt":  "2026-08-14T17:09:33.519Z"
+                         "createdAt":  "2026-08-14T17:09:33.519Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-003",
                          "tipoCliente":  "Privado",
                          "ministerio":  "",
                          "secretariaEstado":  "",
-                         "nome":  "Jerónimo Martins, SGPS, S.A.",
+                         "nome":  "Jerónimo Martins",
                          "contribuinte":  "500000068",
                          "direcao1":  "Rua Actor António Silva",
                          "direcao2":  "",
@@ -211,7 +114,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 217 532 000",
                          "telemovel":  "",
                          "email":  "comunicacao@jeronimo-martins.com",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T18:53:56.743Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-004",
@@ -229,7 +140,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 217 526 100",
                          "telemovel":  "",
                          "email":  "miguel.herdade@fundacao-jeronimomartins.com",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T18:53:36.784Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-005",
@@ -247,7 +166,11 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 215 002 000",
                          "telemovel":  "",
                          "email":  "sara.s.cosme@meo.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-006",
@@ -265,7 +188,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 265 709 000",
                          "telemovel":  "",
                          "email":  "carla.porto@thenavigatorcompany.com",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T20:23:58.509Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-007",
@@ -283,14 +214,18 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 210 013 500",
                          "telemovel":  "",
                          "email":  "comunicacao@ren.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-008",
                          "tipoCliente":  "Privado",
                          "ministerio":  "",
                          "secretariaEstado":  "",
-                         "nome":  "Mota Eengil",
+                         "nome":  "Mota Engil",
                          "contribuinte":  "500000153",
                          "direcao1":  "Rua do Rego Lameiro",
                          "direcao2":  "",
@@ -301,7 +236,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 225 190 300",
                          "telemovel":  "",
                          "email":  "mota-engil@mota-engil.com",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T20:24:15.245Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-011",
@@ -319,7 +262,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 217 823 000",
                          "telemovel":  "",
                          "email":  "info@gulbenkian.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T17:43:25.224Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-012",
@@ -337,7 +288,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 210 915 000",
                          "telemovel":  "",
                          "email":  "fundacao@vodafone.com",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T17:44:33.417Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-014",
@@ -355,7 +314,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "351226101189",
                          "telemovel":  "",
                          "email":  "geral@facm.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T17:43:01.017Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-016",
@@ -373,7 +340,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "210028130",
                          "telemovel":  "",
                          "email":  "fundacaoedp@edp.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T17:42:39.409Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-017",
@@ -391,7 +366,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 217 943 000",
                          "telemovel":  "",
                          "email":  "fundacao@ageas.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T17:42:50.627Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-018",
@@ -409,7 +392,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 226 075 560",
                          "telemovel":  "",
                          "email":  "fundacaoip@fundacaoip.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T17:43:44.649Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-019",
@@ -423,11 +414,19 @@ const INITIAL_EXCEL_DATABASE = {
                          "numero":  "",
                          "andar":  "",
                          "codigoPostal":  "7001-901",
-                         "localidade":  "Ã‰vora",
+                         "localidade":  "Évora",
                          "telefone":  "+351 266 748 300",
                          "telemovel":  "",
                          "email":  "geral@fea.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T17:43:39.457Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-020",
@@ -445,7 +444,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 215 003 500",
                          "telemovel":  "",
                          "email":  "fundacao@altice.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T17:42:55.936Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-021",
@@ -454,7 +461,7 @@ const INITIAL_EXCEL_DATABASE = {
                          "secretariaEstado":  "",
                          "nome":  "Fundação Belmiro de Azevedo",
                          "contribuinte":  "500000374",
-                         "direcao1":  "Praça de Liège",
+                         "direcao1":  "Praça de Liege",
                          "direcao2":  "",
                          "numero":  "146",
                          "andar":  "",
@@ -463,7 +470,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 22 607 77 40",
                          "telemovel":  "",
                          "email":  "geral@fba.org.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T17:43:19.984Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-022",
@@ -481,7 +496,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 226 079 100",
                          "telemovel":  "",
                          "email":  "geral@fmam.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T17:44:09.880Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-023",
@@ -499,16 +522,24 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "",
                          "telemovel":  "",
                          "email":  "hello@joseneves.org",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T17:43:50.728Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-024",
                          "tipoCliente":  "Fundação",
                          "ministerio":  "",
                          "secretariaEstado":  "",
-                         "nome":  "Fundação de Serralves",
+                         "nome":  "Fundação Serralves",
                          "contribuinte":  "500001173",
-                         "direcao1":  "Rua Dom João de Castro, 210, 4150-417 Porto",
+                         "direcao1":  "Rua Dom João de Castro",
                          "direcao2":  "",
                          "numero":  "210",
                          "andar":  "",
@@ -517,7 +548,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "226156500",
                          "telemovel":  "",
                          "email":  "serralves@serralves.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T17:44:29.456Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-025",
@@ -535,7 +574,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "231 937 401 / 231 937 / 929",
                          "telemovel":  "",
                          "email":  "geral@fundacaoluso.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T17:44:01.192Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-026",
@@ -553,7 +600,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 217 229 000",
                          "telemovel":  "",
                          "email":  "akfportugal@akdn.org",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T17:42:45.729Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-027",
@@ -571,7 +626,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 213 249 290",
                          "telemovel":  "",
                          "email":  "fundacaomontepio@montepio.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T17:44:19.272Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-028",
@@ -589,7 +652,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 213 585 200",
                          "telemovel":  "",
                          "email":  "info@foriente.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T17:44:14.449Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-029",
@@ -607,7 +678,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "",
                          "telemovel":  "",
                          "email":  "fundacao@fmestrecasais.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T17:44:24.410Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-030",
@@ -659,7 +738,11 @@ const INITIAL_EXCEL_DATABASE = {
                                                  "email":  ""
                                              }
                                          ],
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-033",
@@ -692,7 +775,8 @@ const INITIAL_EXCEL_DATABASE = {
                                                  "localidade":  "Lisboa",
                                                  "telefone":  "+351 213 927 600",
                                                  "telemovel":  "",
-                                                 "email":  "gabinete.maen@maen.gov.pt"
+                                                 "email":  "gabinete.maen@maen.gov.pt",
+                                                 "pais":  "Portugal"
                                              },
                                              {
                                                  "id":  "sep-1786102823679-663",
@@ -708,7 +792,8 @@ const INITIAL_EXCEL_DATABASE = {
                                                  "localidade":  "Lisboa",
                                                  "telefone":  "+351 213 927 600",
                                                  "telemovel":  "",
-                                                 "email":  "gabinete.seamb@maen.gov.pt"
+                                                 "email":  "gabinete.seamb@maen.gov.pt",
+                                                 "pais":  "Portugal"
                                              },
                                              {
                                                  "id":  "sep-1786699431254-562",
@@ -724,7 +809,8 @@ const INITIAL_EXCEL_DATABASE = {
                                                  "localidade":  "Lisboa",
                                                  "telefone":  "",
                                                  "telemovel":  "",
-                                                 "email":  "gabinete.seen@maen.gov.pt"
+                                                 "email":  "gabinete.seen@maen.gov.pt",
+                                                 "pais":  "Portugal"
                                              },
                                              {
                                                  "id":  "sep-1786102046251-870",
@@ -740,28 +826,81 @@ const INITIAL_EXCEL_DATABASE = {
                                                  "localidade":  "Lisboa",
                                                  "telefone":  "+351 217 922 700 / 800",
                                                  "telemovel":  "",
-                                                 "email":  "geral@dgeg.gov.pt"
+                                                 "email":  "geral@dgeg.gov.pt",
+                                                 "pais":  "Portugal"
                                              }
                                          ],
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-16T19:00:15.021Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-037",
                          "tipoCliente":  "Estatal",
-                         "ministerio":  "MINISTERIO DE AGRICULTURA Y MAR",
-                         "secretariaEstado":  "Ministro",
-                         "nome":  "MINISTERIO DE AGRICULTURA Y MAR",
+                         "ministerio":  "Ministério da Agricultura e Mar",
+                         "secretariaEstado":  "Ministério, Secretaria de Estado da Agricultura",
+                         "nome":  "Ministério da Agricultura e Mar",
                          "contribuinte":  "500000646",
-                         "direcao1":  "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
+                         "direcao1":  "Campus XXI, Avenida João XXI",
                          "direcao2":  "",
-                         "numero":  "",
+                         "numero":  "63",
                          "andar":  "",
                          "codigoPostal":  "1000-300",
                          "localidade":  "Lisboa",
                          "telefone":  "+351 213 234 600",
                          "telemovel":  "",
                          "email":  "gabinete.magrim@magrim.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "separadores":  [
+                                             {
+                                                 "id":  "sep-1789588223012-0",
+                                                 "tipoSeparador":  "Ministério",
+                                                 "nomePersonalizado":  "Ministro",
+                                                 "nome":  "Ministério da Agricultura e Mar",
+                                                 "contribuinte":  "500000646",
+                                                 "direcao1":  "Campus XXI, Avenida João XXI",
+                                                 "direcao2":  "",
+                                                 "numero":  "63",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1000-300",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 213 234 600",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.magrim@magrim.gov.pt"
+                                             },
+                                             {
+                                                 "id":  "sep-1789588145147-99",
+                                                 "tipoSeparador":  "Secretaria de Estado da Agricultura",
+                                                 "nomePersonalizado":  "Secretário de Estado da Agricultura",
+                                                 "nome":  "Secretaria de Estado da Agricultura",
+                                                 "contribuinte":  "500000663",
+                                                 "direcao1":  "Campus XXI, Avenida João XXI",
+                                                 "direcao2":  "",
+                                                 "numero":  "63",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1000-300",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 213 234 600",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.seagri@magrim.gov.pt"
+                                             }
+                                         ],
+                         "updatedAt":  "2026-09-16T19:51:32.538Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-038",
@@ -770,16 +909,20 @@ const INITIAL_EXCEL_DATABASE = {
                          "secretariaEstado":  "Secretario de estado de agricultura",
                          "nome":  "MINISTERIO DE AGRICULTURA Y MAR / Secretario de estado de agricultura",
                          "contribuinte":  "500000663",
-                         "direcao1":  "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
+                         "direcao1":  "Campus XXI, Avenida João XXI",
                          "direcao2":  "",
-                         "numero":  "",
+                         "numero":  "63",
                          "andar":  "",
                          "codigoPostal":  "1000-300",
                          "localidade":  "Lisboa",
                          "telefone":  "+351 213 234 600",
                          "telemovel":  "",
                          "email":  "gabinete.seagri@magrim.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-039",
@@ -788,9 +931,9 @@ const INITIAL_EXCEL_DATABASE = {
                          "secretariaEstado":  "Dirección general agricultura y desenvolvimiento rural",
                          "nome":  "MINISTERIO DE AGRICULTURA Y MAR / Dirección general agricultura y desenvolvimiento rural",
                          "contribuinte":  "500000680",
-                         "direcao1":  "Avenida Afonso Costa, 3, 1949-002 Lisboa, Portugal",
+                         "direcao1":  "Avenida Afonso Costa",
                          "direcao2":  "",
-                         "numero":  "",
+                         "numero":  "3",
                          "andar":  "",
                          "codigoPostal":  "1949-002",
                          "localidade":  "Lisboa",
@@ -815,7 +958,11 @@ const INITIAL_EXCEL_DATABASE = {
                                                  "telemovel":  "",
                                                  "email":  "dgadr@dgadr.pt"
                                              }
-                                         ]
+                                         ],
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-041",
@@ -824,16 +971,20 @@ const INITIAL_EXCEL_DATABASE = {
                          "secretariaEstado":  "Secretario de estado de cultura",
                          "nome":  "MINISTERIO DE CULTURA, JUVENTUD Y DEPORTE / Secretario de estado de cultura",
                          "contribuinte":  "500000714",
-                         "direcao1":  "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
+                         "direcao1":  "Campus XXI, Avenida João XXI",
                          "direcao2":  "",
-                         "numero":  "",
+                         "numero":  "63",
                          "andar":  "",
                          "codigoPostal":  "1000-300",
                          "localidade":  "Lisboa",
                          "telefone":  "+351 213 614 500",
                          "telemovel":  "",
                          "email":  "gabinete.secul@mcjd.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-043",
@@ -901,25 +1052,90 @@ const INITIAL_EXCEL_DATABASE = {
                                                  "telemovel":  "",
                                                  "email":  "gabinete.sed@mcjd.gov.pt"
                                              }
-                                         ]
+                                         ],
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-044",
                          "tipoCliente":  "Estatal",
-                         "ministerio":  "MINISTERIO DE EDUCACIÃ“N, CIENCIA E INNOVACION",
-                         "secretariaEstado":  "Ministro",
-                         "nome":  "MINISTERIO DE EDUCACIÃ“N, CIENCIA E INNOVACION",
+                         "ministerio":  "Ministério da Educação, Ciência e Inovação",
+                         "secretariaEstado":  "Ministério, Secretário de Estado Adjunto e da Educação, Direção Geral",
+                         "nome":  "Ministério da Educação, Ciência e Inovação",
                          "contribuinte":  "500000765",
-                         "direcao1":  "Avenida Infante Santo, 2 1350-178 LISBOA",
+                         "direcao1":  "Avenida Infante Santo",
                          "direcao2":  "",
-                         "numero":  "",
+                         "numero":  "2",
                          "andar":  "",
                          "codigoPostal":  "1350-178",
                          "localidade":  "Lisboa",
                          "telefone":  "+351 217 811 800",
                          "telemovel":  "",
                          "email":  "gabinete.meci@meci.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "separadores":  [
+                                             {
+                                                 "id":  "sep-1789585245853-983",
+                                                 "tipoSeparador":  "Ministério",
+                                                 "nomePersonalizado":  "Ministro",
+                                                 "nome":  "Ministério da Educação, Ciência e Inovação",
+                                                 "contribuinte":  "500000765",
+                                                 "direcao1":  "Avenida Infante Santo, 2 1350-178 LISBOA",
+                                                 "direcao2":  "",
+                                                 "numero":  "",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1350-178",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 217 811 800",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.meci@meci.gov.pt"
+                                             },
+                                             {
+                                                 "id":  "sep-1789585300557-246",
+                                                 "tipoSeparador":  "Secretário de Estado Adjunto e da Educação",
+                                                 "nomePersonalizado":  "Secretário de Estado Adjunto e da Educação",
+                                                 "nome":  "Secretário de Estado Adjunto e da Educação",
+                                                 "contribuinte":  "500000782",
+                                                 "direcao1":  "Avenida Infante Santo, 2 1350-178 LISBOA",
+                                                 "direcao2":  "",
+                                                 "numero":  "",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1350-178",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 217 811 800",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.seaedu@meci.gov.pt"
+                                             },
+                                             {
+                                                 "id":  "sep-1789585347138-201",
+                                                 "tipoSeparador":  "Direção Geral",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "Direção-Geral da Educação",
+                                                 "contribuinte":  "500000799",
+                                                 "direcao1":  "Avenida 24 de Julho, 140, 1399-025 Lisboa, Portugal.",
+                                                 "direcao2":  "",
+                                                 "numero":  "140",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1399-025",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 218 430 500",
+                                                 "telemovel":  "",
+                                                 "email":  "dge@dge.mec.pt"
+                                             }
+                                         ],
+                         "updatedAt":  "2026-09-16T19:07:33.762Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-045",
@@ -928,16 +1144,20 @@ const INITIAL_EXCEL_DATABASE = {
                          "secretariaEstado":  "Secretário de estado adjunto e de educação",
                          "nome":  "MINISTERIO DE EDUCACIÃ“N, CIENCIA E INNOVACION / Secretário de estado adjunto e de educação",
                          "contribuinte":  "500000782",
-                         "direcao1":  "Avenida Infante Santo, 2 1350-178 LISBOA",
+                         "direcao1":  "Avenida Infante Santo",
                          "direcao2":  "",
-                         "numero":  "",
+                         "numero":  "2",
                          "andar":  "",
                          "codigoPostal":  "1350-178",
                          "localidade":  "Lisboa",
                          "telefone":  "+351 217 811 800",
                          "telemovel":  "",
                          "email":  "gabinete.seaedu@meci.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-046",
@@ -946,34 +1166,99 @@ const INITIAL_EXCEL_DATABASE = {
                          "secretariaEstado":  "Dirección general de educación",
                          "nome":  "MINISTERIO DE EDUCACIÃ“N, CIENCIA E INNOVACION / Dirección general de educación",
                          "contribuinte":  "500000799",
-                         "direcao1":  "Avenida 24 de Julho, 140, 1399-025 Lisboa, Portugal.",
+                         "direcao1":  "Avenida 24 de Julho",
                          "direcao2":  "",
-                         "numero":  "",
+                         "numero":  "140",
                          "andar":  "",
                          "codigoPostal":  "1399-025",
                          "localidade":  "Lisboa",
                          "telefone":  "+351 218 430 500",
                          "telemovel":  "",
                          "email":  "dge@dge.mec.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-047",
                          "tipoCliente":  "Estatal",
-                         "ministerio":  "MINISTERIO DE TRABAJO, SOLIDARIDAD Y SEGURIDAD SOCIAL",
-                         "secretariaEstado":  "Ministra",
-                         "nome":  "MINISTERIO DE TRABAJO, SOLIDARIDAD Y SEGURIDAD SOCIAL",
+                         "ministerio":  "Ministério do Trabalho, Solidariedade e Segurança Social",
+                         "secretariaEstado":  "Ministério, Secretaria de Estado da Ação Social e da Inclusão, Direção Geral",
+                         "nome":  "Ministério do Trabalho, Solidariedade e Segurança Social",
                          "contribuinte":  "500000816",
-                         "direcao1":  "Praça de Londres, 2 1049-056 LISBOA",
+                         "direcao1":  "Praça de Londres",
                          "direcao2":  "",
-                         "numero":  "",
+                         "numero":  "2",
                          "andar":  "",
                          "codigoPostal":  "1049-056",
                          "localidade":  "Lisboa",
                          "telefone":  "+351 215 963 800",
                          "telemovel":  "",
                          "email":  "gabinete.mtsss@mtsss.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "separadores":  [
+                                             {
+                                                 "id":  "sep-1789588509369-3",
+                                                 "tipoSeparador":  "Ministério",
+                                                 "nomePersonalizado":  "Ministra",
+                                                 "nome":  "Ministério do Trabalho, Solidariedade e Segurança Social",
+                                                 "contribuinte":  "500000816",
+                                                 "direcao1":  "Praça de Londres",
+                                                 "direcao2":  "",
+                                                 "numero":  "2",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1049-056",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 215 963 800",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.mtsss@mtsss.gov.pt"
+                                             },
+                                             {
+                                                 "id":  "sep-1789588506546-567",
+                                                 "tipoSeparador":  "Secretaria de Estado da Ação Social e da Inclusão",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "Secretaria de Estado da Ação Social e da Inclusão",
+                                                 "contribuinte":  "500000833",
+                                                 "direcao1":  "Praça de Londres",
+                                                 "direcao2":  "",
+                                                 "numero":  "2",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1049-056",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 215 963 800",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.seasi@mtsss.gov.pt"
+                                             },
+                                             {
+                                                 "id":  "sep-1789588328896-988",
+                                                 "tipoSeparador":  "Direção Geral",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "Direção-Geral da Segurança Social",
+                                                 "contribuinte":  "500000850",
+                                                 "direcao1":  "Largo do Rato",
+                                                 "direcao2":  "",
+                                                 "numero":  "1",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1269-144",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 215 952 990",
+                                                 "telemovel":  "",
+                                                 "email":  "dgss@seg-social.pt"
+                                             }
+                                         ],
+                         "updatedAt":  "2026-09-17T20:13:26.289Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-048",
@@ -982,16 +1267,20 @@ const INITIAL_EXCEL_DATABASE = {
                          "secretariaEstado":  "Secretaria de estado de acción social y de inclusión",
                          "nome":  "MINISTERIO DE TRABAJO, SOLIDARIDAD Y SEGURIDAD SOCIAL / Secretaria de estado de acción social y de inclusión",
                          "contribuinte":  "500000833",
-                         "direcao1":  "Praça de Londres, 2 1049-056 LISBOA",
+                         "direcao1":  "Praça de Londres",
                          "direcao2":  "",
-                         "numero":  "",
+                         "numero":  "2",
                          "andar":  "",
                          "codigoPostal":  "1049-056",
                          "localidade":  "Lisboa",
                          "telefone":  "+351 215 963 800",
                          "telemovel":  "",
                          "email":  "gabinete.seasi@mtsss.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-049",
@@ -1000,16 +1289,20 @@ const INITIAL_EXCEL_DATABASE = {
                          "secretariaEstado":  "Dirección general de seguridad social",
                          "nome":  "MINISTERIO DE TRABAJO, SOLIDARIDAD Y SEGURIDAD SOCIAL / Dirección general de seguridad social",
                          "contribuinte":  "500000850",
-                         "direcao1":  "Largo do Rato, n.º 1, 1269-144 Lisboa, Portugal",
+                         "direcao1":  "Largo do Rato",
                          "direcao2":  "",
-                         "numero":  "",
+                         "numero":  "1",
                          "andar":  "",
                          "codigoPostal":  "1269-144",
                          "localidade":  "Lisboa",
                          "telefone":  "+351 215 952 990",
                          "telemovel":  "",
                          "email":  "dgss@seg-social.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-051",
@@ -1061,25 +1354,90 @@ const INITIAL_EXCEL_DATABASE = {
                                                  "telemovel":  "",
                                                  "email":  ""
                                              }
-                                         ]
+                                         ],
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-052",
                          "tipoCliente":  "Estatal",
-                         "ministerio":  "MINISTERIO INFRAESTRUCTURAS E HABITAÃ‡AO",
-                         "secretariaEstado":  "Ministro",
-                         "nome":  "MINISTERIO INFRAESTRUCTURAS E HABITAÃ‡AO",
+                         "ministerio":  "MINISTÉRIO DAS INFRAESTRUTURAS E HABITAÇÁO",
+                         "secretariaEstado":  "Ministério, Secretaria de Estado das Infraestruturas, Instituto da Habitação e Reabilitação Urbana",
+                         "nome":  "Ministério das Infraestruturas e Habitação",
                          "contribuinte":  "500000901",
-                         "direcao1":  "Palácio MINISTERIO INFRAESTRUCTURAS E HABITAÃ‡AO",
-                         "direcao2":  "",
-                         "numero":  "",
+                         "direcao1":  "Avenida João XXI",
+                         "direcao2":  "Campus XXI",
+                         "numero":  "63",
                          "andar":  "",
-                         "codigoPostal":  "1000-001",
+                         "codigoPostal":  "1000-300",
                          "localidade":  "Lisboa",
                          "telefone":  "gabinete.mih@mih.gov.pt",
                          "telemovel":  "",
-                         "email":  "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "email":  ", , 63 1000-300 LISBOA",
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "separadores":  [
+                                             {
+                                                 "id":  "sep-1789674397433-595",
+                                                 "tipoSeparador":  "Ministério",
+                                                 "nomePersonalizado":  "Ministro",
+                                                 "nome":  "Ministério das Infraestruturas e Habitação",
+                                                 "contribuinte":  "500000901",
+                                                 "direcao1":  "Avenida João XXI",
+                                                 "direcao2":  "Campus XXI",
+                                                 "numero":  "63",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1000-300",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "gabinete.mih@mih.gov.pt",
+                                                 "telemovel":  "",
+                                                 "email":  ", , 63 1000-300 LISBOA"
+                                             },
+                                             {
+                                                 "id":  "sep-1789674869118-828",
+                                                 "tipoSeparador":  "Secretaria de Estado das Infraestruturas",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "Secretaria de Estado das Infraestruturas",
+                                                 "contribuinte":  "000000000",
+                                                 "direcao1":  "Avenida João XXI",
+                                                 "direcao2":  "Campus XX1",
+                                                 "numero":  "63",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1000-300",
+                                                 "localidade":  "Lisboa",
+                                                 "telefone":  "+351 217 231 500",
+                                                 "telemovel":  "",
+                                                 "email":  "geral@ihru.pt",
+                                                 "pais":  "Portugal"
+                                             },
+                                             {
+                                                 "id":  "sep-1789674453552-479",
+                                                 "tipoSeparador":  "Instituto da Habitação e Reabilitação Urbana",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "Instituto da Habitação e Reabilitação Urbana",
+                                                 "contribuinte":  "000000000",
+                                                 "direcao1":  "",
+                                                 "direcao2":  "",
+                                                 "numero":  "63",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1000-300",
+                                                 "localidade":  "Lisboa",
+                                                 "telefone":  "+351 217 231 500",
+                                                 "telemovel":  "",
+                                                 "email":  "geral@ihru.pt",
+                                                 "pais":  "Portugal"
+                                             }
+                                         ],
+                         "updatedAt":  "2026-09-17T20:26:28.958Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-053",
@@ -1097,16 +1455,20 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "gabinete.seinf@mih.gov.pt",
                          "telemovel":  "",
                          "email":  "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-054",
                          "tipoCliente":  "Estatal",
-                         "ministerio":  "MINISTERIO DE JUSTICIA",
-                         "secretariaEstado":  "Ministra",
-                         "nome":  "MINISTERIO DE JUSTICIA",
+                         "ministerio":  "Ministério da Justiça",
+                         "secretariaEstado":  "Ministério, Secretaria de Estado",
+                         "nome":  "Ministério da Justiça",
                          "contribuinte":  "500000935",
-                         "direcao1":  "Praça do Comércio 1149-019 LISBOA",
+                         "direcao1":  "Praça do Comércio",
                          "direcao2":  "",
                          "numero":  "",
                          "andar":  "",
@@ -1115,7 +1477,51 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 213 222 300",
                          "telemovel":  "",
                          "email":  "gabinete.mj@mj.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "separadores":  [
+                                             {
+                                                 "id":  "sep-1789672886066-21",
+                                                 "tipoSeparador":  "Ministério",
+                                                 "nomePersonalizado":  "Ministra",
+                                                 "nome":  "Ministério da Justiça",
+                                                 "contribuinte":  "500000935",
+                                                 "direcao1":  "Praça do Comércio 1149-019 LISBOA",
+                                                 "direcao2":  "",
+                                                 "numero":  "",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1149-019",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 213 222 300",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.mj@mj.gov.pt"
+                                             },
+                                             {
+                                                 "id":  "sep-1789672471634-529",
+                                                 "tipoSeparador":  "Secretaria de Estado",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "MINISTÉRIO DA JUSTIÇA / Secretaria de Estado da Justiça",
+                                                 "contribuinte":  "500000952",
+                                                 "direcao1":  "Praça do Comércio 1149-019 LISBOA",
+                                                 "direcao2":  "",
+                                                 "numero":  "",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1149-019",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 213 222 300",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.sej@mj.gov.pt"
+                                             }
+                                         ],
+                         "updatedAt":  "2026-09-17T19:25:25.739Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-055",
@@ -1124,7 +1530,7 @@ const INITIAL_EXCEL_DATABASE = {
                          "secretariaEstado":  "Secretaría del estado de justicia",
                          "nome":  "MINISTERIO DE JUSTICIA / Secretaría del estado de justicia",
                          "contribuinte":  "500000952",
-                         "direcao1":  "Praça do Comércio 1149-019 LISBOA",
+                         "direcao1":  "Praça do Comércio",
                          "direcao2":  "",
                          "numero":  "",
                          "andar":  "",
@@ -1133,16 +1539,20 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 213 222 300",
                          "telemovel":  "",
                          "email":  "gabinete.sej@mj.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-056",
                          "tipoCliente":  "Estatal",
-                         "ministerio":  "MINISTERIO DE DEFENSA NACIONAL",
-                         "secretariaEstado":  "Ministro",
-                         "nome":  "MINISTERIO DE DEFENSA NACIONAL",
+                         "ministerio":  "Ministério da Defesa Nacional",
+                         "secretariaEstado":  "Ministério",
+                         "nome":  "Ministério da Defesa Nacional",
                          "contribuinte":  "500000969",
-                         "direcao1":  "Avenida da Ilha da Madeira 1400-204 LISBOA",
+                         "direcao1":  "Avenida da Ilha da Madeira",
                          "direcao2":  "",
                          "numero":  "",
                          "andar":  "",
@@ -1151,34 +1561,88 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 213 034 500",
                          "telemovel":  "",
                          "email":  "gabinete.ministro@mdn.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "separadores":  [
+                                             {
+                                                 "id":  "sep-1789671712417-83",
+                                                 "tipoSeparador":  "Ministério",
+                                                 "nomePersonalizado":  "Ministro",
+                                                 "nome":  "Ministério da Defesa Nacional",
+                                                 "contribuinte":  "500000969",
+                                                 "direcao1":  "Avenida da Ilha da Madeira 1400-204 LISBOA",
+                                                 "direcao2":  "",
+                                                 "numero":  "",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1400-204",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 213 034 500",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.ministro@mdn.gov.pt"
+                                             }
+                                         ],
+                         "updatedAt":  "2026-09-17T19:03:15.243Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-057",
                          "tipoCliente":  "Estatal",
-                         "ministerio":  "MINISTERIO DE DEFENSA NACIONAL / Dirección general de recursos de defensa nacional",
-                         "secretariaEstado":  "Dirección general de recursos de defensa nacional",
-                         "nome":  "MINISTERIO DE DEFENSA NACIONAL / Dirección general de recursos de defensa nacional",
+                         "ministerio":  "Ministério da Defesa Nacional",
+                         "secretariaEstado":  "Direção Geral dos recursos da Defesa Nacional",
+                         "nome":  "Direção Geral dos recursos da Defesa Nacional",
                          "contribuinte":  "500000986",
-                         "direcao1":  "Avenida Ilha da Madeira n.º 1, 2.º Piso, 1400-204 Lisboa, Portugal.",
+                         "direcao1":  "Avenida Ilha da Madeira",
                          "direcao2":  "",
-                         "numero":  "",
-                         "andar":  "",
+                         "numero":  "1",
+                         "andar":  "2.º Piso",
                          "codigoPostal":  "1400-204",
                          "localidade":  "Lisboa",
                          "telefone":  "+351 21 303 85 00",
                          "telemovel":  "",
                          "email":  "dgrdn@defesa.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "separadores":  [
+                                             {
+                                                 "id":  "sep-1789671801625-208",
+                                                 "tipoSeparador":  "Direção Geral dos recursos da Defesa Nacional",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "Direção Geral dos recursos da Defesa Nacional",
+                                                 "contribuinte":  "500000986",
+                                                 "direcao1":  "Avenida Ilha da Madeira n.º 1, 2.º Piso, 1400-204 Lisboa, Portugal.",
+                                                 "direcao2":  "",
+                                                 "numero":  "",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1400-204",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 21 303 85 00",
+                                                 "telemovel":  "",
+                                                 "email":  "dgrdn@defesa.pt"
+                                             }
+                                         ],
+                         "updatedAt":  "2026-09-17T19:05:06.875Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-058",
                          "tipoCliente":  "Estatal",
-                         "ministerio":  "MINISTERIO DE ASUNTOS PARLAMENTARIOS",
-                         "secretariaEstado":  "Ministro",
-                         "nome":  "MINISTERIO DE ASUNTOS PARLAMENTARIOS",
+                         "ministerio":  "Ministério dos Assuntos Parlamentares",
+                         "secretariaEstado":  "Ministério",
+                         "nome":  "Ministério dos Assuntos Parlamentares",
                          "contribuinte":  "500001003",
-                         "direcao1":  "Palácio de São Bento 1249-068 LISBOA",
+                         "direcao1":  "Palácio de São Bento",
                          "direcao2":  "",
                          "numero":  "",
                          "andar":  "",
@@ -1187,25 +1651,130 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 213 920 500",
                          "telemovel":  "",
                          "email":  "gabinete.map@map.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "separadores":  [
+                                             {
+                                                 "id":  "sep-1789675752376-937",
+                                                 "tipoSeparador":  "Ministério",
+                                                 "nomePersonalizado":  "Ministro",
+                                                 "nome":  "Ministério dos Assuntos Parlamentares",
+                                                 "contribuinte":  "500001003",
+                                                 "direcao1":  "Palácio de São Bento 1249-068 LISBOA",
+                                                 "direcao2":  "",
+                                                 "numero":  "",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1249-068",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 213 920 500",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.map@map.gov.pt"
+                                             }
+                                         ],
+                         "updatedAt":  "2026-09-17T20:12:51.130Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-059",
                          "tipoCliente":  "Estatal",
-                         "ministerio":  "MINISTERIO DE REFORMA DE ESTADO",
-                         "secretariaEstado":  "Ministro",
-                         "nome":  "MINISTERIO DE REFORMA DE ESTADO",
+                         "ministerio":  "Ministério da Reforma do Estado",
+                         "secretariaEstado":  "Ministério, Secretaria de Estado para a Digitalização, Secretaria de Estado para a Simplificação, Agencia para modernización administrativa (AMA)",
+                         "nome":  "Ministério da Reforma do Estado",
                          "contribuinte":  "500001020",
-                         "direcao1":  "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
-                         "direcao2":  "",
-                         "numero":  "",
+                         "direcao1":  "Avenida João XXI",
+                         "direcao2":  "Campus XXI",
+                         "numero":  "63",
                          "andar":  "",
                          "codigoPostal":  "1000-300",
                          "localidade":  "Lisboa",
                          "telefone":  "+351 213 245 400",
                          "telemovel":  "",
                          "email":  "gabinete.ministro@mare.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "separadores":  [
+                                             {
+                                                 "id":  "sep-1789673366279-374",
+                                                 "tipoSeparador":  "Ministério",
+                                                 "nomePersonalizado":  "Ministro",
+                                                 "nome":  "Ministério da Reforma do Estado",
+                                                 "contribuinte":  "500001020",
+                                                 "direcao1":  "Avenida João XXI",
+                                                 "direcao2":  "Campus XXI",
+                                                 "numero":  "63",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1000-300",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 213 245 400",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.ministro@mare.gov.pt"
+                                             },
+                                             {
+                                                 "id":  "sep-1789673380919-176",
+                                                 "tipoSeparador":  "Secretaria de Estado para a Digitalização",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "Secretaria de Estado para a Digitalização",
+                                                 "contribuinte":  "500001037",
+                                                 "direcao1":  "Avenida João XXI",
+                                                 "direcao2":  "Campus XXI",
+                                                 "numero":  "63",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1000-300",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 213 927 600",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.digitalizacao@mare.gov.pt"
+                                             },
+                                             {
+                                                 "id":  "sep-1789673408015-478",
+                                                 "tipoSeparador":  "Secretaria de Estado para a Simplificação",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "Secretaria de Estado para a Simplificação",
+                                                 "contribuinte":  "500001054",
+                                                 "direcao1":  "Avenida João XXI",
+                                                 "direcao2":  "Campus XXI",
+                                                 "numero":  "63",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1000-300",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 213 927 600",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.simplificacao@mare.gov.pt"
+                                             },
+                                             {
+                                                 "id":  "sep-1789674106586-295",
+                                                 "tipoSeparador":  "Agencia para modernización administrativa (AMA)",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "Agência para Modernização Administrativa (AMA)",
+                                                 "contribuinte":  "000000000",
+                                                 "direcao1":  "",
+                                                 "direcao2":  "",
+                                                 "numero":  "",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "",
+                                                 "localidade":  "",
+                                                 "telefone":  "",
+                                                 "telemovel":  "",
+                                                 "email":  "",
+                                                 "pais":  "Portugal"
+                                             }
+                                         ],
+                         "updatedAt":  "2026-09-17T19:45:10.076Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-060",
@@ -1214,16 +1783,20 @@ const INITIAL_EXCEL_DATABASE = {
                          "secretariaEstado":  "Secretaría del estado para la digitalización",
                          "nome":  "MINISTERIO DE REFORMA DE ESTADO / Secretaría del estado para la digitalización",
                          "contribuinte":  "500001037",
-                         "direcao1":  "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
+                         "direcao1":  "Campus XXI, Avenida João XXI",
                          "direcao2":  "",
-                         "numero":  "",
+                         "numero":  "63",
                          "andar":  "",
                          "codigoPostal":  "1000-300",
                          "localidade":  "Lisboa",
                          "telefone":  "+351 213 927 600",
                          "telemovel":  "",
                          "email":  "gabinete.digitalizacao@mare.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-061",
@@ -1232,34 +1805,99 @@ const INITIAL_EXCEL_DATABASE = {
                          "secretariaEstado":  "Secretaría del estado para la simplificación",
                          "nome":  "MINISTERIO DE REFORMA DE ESTADO / Secretaría del estado para la simplificación",
                          "contribuinte":  "500001054",
-                         "direcao1":  "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
+                         "direcao1":  "Campus XXI, Avenida João XXI",
                          "direcao2":  "",
-                         "numero":  "",
+                         "numero":  "63",
                          "andar":  "",
                          "codigoPostal":  "1000-300",
                          "localidade":  "Lisboa",
                          "telefone":  "+351 213 927 600",
                          "telemovel":  "",
                          "email":  "gabinete.simplificacao@mare.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-062",
                          "tipoCliente":  "Estatal",
-                         "ministerio":  "MINISTERIO DE ECONOMIA E DA COESAO TERRITORIAL",
-                         "secretariaEstado":  "Ministro",
-                         "nome":  "MINISTERIO DE ECONOMIA E DA COESAO TERRITORIAL",
+                         "ministerio":  "Ministério da Economia e Coesão Territorial",
+                         "secretariaEstado":  "Ministério, Secretaria de Estado, CCDR-N",
+                         "nome":  "Ministério da Economia e Coesão Territorial",
                          "contribuinte":  "500001071",
-                         "direcao1":  "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
-                         "direcao2":  "",
-                         "numero":  "",
+                         "direcao1":  "Avenida João XXI",
+                         "direcao2":  "Campus XXI",
+                         "numero":  "63",
                          "andar":  "",
                          "codigoPostal":  "1000-300",
                          "localidade":  "Lisboa",
                          "telefone":  "+351 213 927 600",
                          "telemovel":  "",
                          "email":  "gabinete.mect@mect.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "separadores":  [
+                                             {
+                                                 "id":  "sep-1789672393565-166",
+                                                 "tipoSeparador":  "Ministério",
+                                                 "nomePersonalizado":  "Ministro",
+                                                 "nome":  "Ministério da Economia e Coesão Territorial",
+                                                 "contribuinte":  "500001071",
+                                                 "direcao1":  "Avenida João XXI",
+                                                 "direcao2":  "Campus XXI",
+                                                 "numero":  "63",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1000-300",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 213 927 600",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.mect@mect.gov.pt"
+                                             },
+                                             {
+                                                 "id":  "sep-1789672673155-208",
+                                                 "tipoSeparador":  "Secretaria de Estado",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "MINISTÉRIO DA ECONOMIA E DA COESÁO TERRITORIAL / Secretaria de Estado do Turismo, Comércio e Serviços",
+                                                 "contribuinte":  "500001088",
+                                                 "direcao1":  "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
+                                                 "direcao2":  "",
+                                                 "numero":  "",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1000-300",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 213 245 400",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.setcs@mect.gov.pt"
+                                             },
+                                             {
+                                                 "id":  "sep-1786701644893-214",
+                                                 "tipoSeparador":  "CCDR-N",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "CCDR-N (Comissão de Coordenação e Desenvolvimento Regional do Norte)",
+                                                 "contribuinte":  "501227181",
+                                                 "direcao1":  "Rua Rainha Dona Estefânia, n.º 251",
+                                                 "direcao2":  "",
+                                                 "numero":  "",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "4150-304",
+                                                 "localidade":  "Porto",
+                                                 "telefone":  "226086300",
+                                                 "telemovel":  "",
+                                                 "email":  "geral@ccdr-n.pt",
+                                                 "pais":  "Portugal"
+                                             }
+                                         ],
+                         "updatedAt":  "2026-09-17T19:21:22.558Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-063",
@@ -1268,34 +1906,65 @@ const INITIAL_EXCEL_DATABASE = {
                          "secretariaEstado":  "Secretaría del estado de turismo, comercio y servicios",
                          "nome":  "MINISTERIO DE ECONOMIA E DA COESAO TERRITORIAL / Secretaría del estado de turismo, comercio y servicios",
                          "contribuinte":  "500001088",
-                         "direcao1":  "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
+                         "direcao1":  "Campus XXI, Avenida João XXI",
                          "direcao2":  "",
-                         "numero":  "",
+                         "numero":  "63",
                          "andar":  "",
                          "codigoPostal":  "1000-300",
                          "localidade":  "Lisboa",
                          "telefone":  "+351 213 245 400",
                          "telemovel":  "",
                          "email":  "gabinete.setcs@mect.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-064",
                          "tipoCliente":  "Estatal",
-                         "ministerio":  "MINISTERIO DE PRESIDENCIA",
-                         "secretariaEstado":  "Ministro",
-                         "nome":  "MINISTERIO DE PRESIDENCIA",
+                         "ministerio":  "Ministério da Presidência",
+                         "secretariaEstado":  "Ministério",
+                         "nome":  "Ministério da Presidência",
                          "contribuinte":  "500001105",
-                         "direcao1":  "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
-                         "direcao2":  "",
-                         "numero":  "",
+                         "direcao1":  "Avenida João XXI",
+                         "direcao2":  "Campus XXI",
+                         "numero":  "63",
                          "andar":  "",
                          "codigoPostal":  "1000-300",
                          "localidade":  "Lisboa",
                          "telefone":  "+351 213 927 600",
                          "telemovel":  "",
                          "email":  "gabinete.mp@mp.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "separadores":  [
+                                             {
+                                                 "id":  "sep-1789673129009-272",
+                                                 "tipoSeparador":  "Ministério",
+                                                 "nomePersonalizado":  "Ministro",
+                                                 "nome":  "Ministério da Presidência",
+                                                 "contribuinte":  "500001105",
+                                                 "direcao1":  "Avenida João XXI",
+                                                 "direcao2":  "Campus XXI",
+                                                 "numero":  "63",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1000-300",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 213 927 600",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.mp@mp.gov.pt"
+                                             }
+                                         ],
+                         "updatedAt":  "2026-09-17T19:27:54.091Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-065",
@@ -1304,7 +1973,7 @@ const INITIAL_EXCEL_DATABASE = {
                          "secretariaEstado":  "Ministro",
                          "nome":  "MINISTERIO DE ESTADO E DOS NEGÃ“CIOS ESTRANGEIROS",
                          "contribuinte":  "500001122",
-                         "direcao1":  "Palácio das Necessidades Largo do Rilvas 1399-030 LISBOA",
+                         "direcao1":  "Palácio das Necessidades Largo do Rilvas",
                          "direcao2":  "",
                          "numero":  "",
                          "andar":  "",
@@ -1313,16 +1982,20 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 213 946 000",
                          "telemovel":  "",
                          "email":  "gabinete.ministro@mne.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-066",
                          "tipoCliente":  "Estatal",
-                         "ministerio":  "MINISTERIO DE ESTADO E DOS NEGÃ“CIOS ESTRANGEIROS",
-                         "secretariaEstado":  "Secretaria de estado de negocios extrangeiros e cooperação",
-                         "nome":  "MINISTERIO DE ESTADO E DOS NEGÃ“CIOS ESTRANGEIROS",
-                         "contribuinte":  "500001139",
-                         "direcao1":  "Palácio das Necessidades Largo do Rilvas 1399-030 LISBOA",
+                         "ministerio":  "Ministério Negócios Estrangeiros",
+                         "secretariaEstado":  "Ministério, Secretaria de Estado dos Negócios Estrangeiros e Cooperação",
+                         "nome":  "Ministério Negócios Estrangeiros e Cooperação",
+                         "contribuinte":  "500001122",
+                         "direcao1":  "Palácio das Necessidades Largo do Rilvas",
                          "direcao2":  "",
                          "numero":  "",
                          "andar":  "",
@@ -1330,26 +2003,97 @@ const INITIAL_EXCEL_DATABASE = {
                          "localidade":  "Lisboa",
                          "telefone":  "+351 213 946 000",
                          "telemovel":  "",
-                         "email":  "gabinete.senec@mne.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "email":  "gabinete.ministro@mne.gov.pt",
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "separadores":  [
+                                             {
+                                                 "id":  "sep-1789675033477-239",
+                                                 "tipoSeparador":  "Ministério",
+                                                 "nomePersonalizado":  "Ministro",
+                                                 "nome":  "Ministério Negócios Estrangeiros e Cooperação",
+                                                 "contribuinte":  "500001122",
+                                                 "direcao1":  "Palácio das Necessidades Largo do Rilvas 1399-030 LISBOA",
+                                                 "direcao2":  "",
+                                                 "numero":  "",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1399-030",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 213 946 000",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.ministro@mne.gov.pt"
+                                             },
+                                             {
+                                                 "id":  "sep-1789675065173-202",
+                                                 "tipoSeparador":  "Secretaria de Estado dos Negócios Estrangeiros e Cooperação",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "Secretaria de Estado dos Negócios Estrangeiros e Cooperação",
+                                                 "contribuinte":  "500001139",
+                                                 "direcao1":  "Palácio das Necessidades Largo do Rilvas 1399-030 LISBOA",
+                                                 "direcao2":  "",
+                                                 "numero":  "",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1399-030",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 213 946 000",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.senec@mne.gov.pt"
+                                             }
+                                         ],
+                         "updatedAt":  "2026-09-17T20:09:09.147Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-067",
                          "tipoCliente":  "Estatal",
-                         "ministerio":  "MINISTERIO FINANZAS",
-                         "secretariaEstado":  "Ministro",
-                         "nome":  "MINISTERIO FINANZAS",
+                         "ministerio":  "Ministério das Finanças",
+                         "secretariaEstado":  "Ministério",
+                         "nome":  "Ministério das Finanças",
                          "contribuinte":  "500001156",
-                         "direcao1":  "Avenida Infante Dom Henrique, 1 1149-009 LISBOA",
+                         "direcao1":  "Avenida Infante Dom Henrique",
                          "direcao2":  "",
-                         "numero":  "",
+                         "numero":  "1",
                          "andar":  "",
                          "codigoPostal":  "1149-009",
                          "localidade":  "Lisboa",
                          "telefone":  "+351 218 816 800",
                          "telemovel":  "",
                          "email":  "gabinete.ministro@mf.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "separadores":  [
+                                             {
+                                                 "id":  "sep-1789674313633-535",
+                                                 "tipoSeparador":  "Ministério",
+                                                 "nomePersonalizado":  "Ministro",
+                                                 "nome":  "Ministério das Finanças",
+                                                 "contribuinte":  "500001156",
+                                                 "direcao1":  "Avenida Infante Dom Henrique",
+                                                 "direcao2":  "",
+                                                 "numero":  "1",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1149-009",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 218 816 800",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.ministro@mf.gov.pt"
+                                             }
+                                         ],
+                         "updatedAt":  "2026-09-17T19:46:32.427Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-069",
@@ -1367,7 +2111,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "210480200",
                          "telemovel":  "",
                          "email":  "info@fundacaochampalimaud.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T17:43:29.624Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-070",
@@ -1379,13 +2131,17 @@ const INITIAL_EXCEL_DATABASE = {
                          "direcao1":  "Rua Augusta",
                          "direcao2":  "",
                          "numero":  "84",
-                         "andar":  "2º",
+                         "andar":  "2Âº",
                          "codigoPostal":  "1100-053",
                          "localidade":  "Lisboa",
                          "telefone":  "+ 351 211 131 682",
                          "telemovel":  "",
                          "email":  "fundacao@millenniumbcp.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-071",
@@ -1397,13 +2153,17 @@ const INITIAL_EXCEL_DATABASE = {
                          "direcao1":  "Largo Monterroio Mascarenhas",
                          "direcao2":  "",
                          "numero":  "1",
-                         "andar":  "7º",
+                         "andar":  "7Âº",
                          "codigoPostal":  "1099-081",
                          "localidade":  "Lisboa",
                          "telefone":  "210015800",
                          "telemovel":  "",
                          "email":  "ffms@ffms.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-072",
@@ -1421,7 +2181,11 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "210012500",
                          "telemovel":  "",
                          "email":  "edponservices@edp.com",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-073",
@@ -1430,7 +2194,7 @@ const INITIAL_EXCEL_DATABASE = {
                          "secretariaEstado":  "",
                          "nome":  "Galp Energia, SGPS, S.A.",
                          "contribuinte":  "500001258",
-                         "direcao1":  "Avenida da Índia",
+                         "direcao1":  "Avenida da Ãndia",
                          "direcao2":  "",
                          "numero":  "8",
                          "andar":  "",
@@ -1439,7 +2203,11 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "217242500",
                          "telemovel":  "",
                          "email":  "galp@galp.com",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-076",
@@ -1457,7 +2225,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "215003500",
                          "telemovel":  "",
                          "email":  "media@altice.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "updatedAt":  "2026-09-17T20:57:25.394Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-077",
@@ -1475,7 +2251,11 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 21 782 47 00",
                          "telemovel":  "",
                          "email":  "ines.s.pina@nos.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-078",
@@ -1487,13 +2267,17 @@ const INITIAL_EXCEL_DATABASE = {
                          "direcao1":  "Avenida dos Combatentes",
                          "direcao2":  "",
                          "numero":  "43",
-                         "andar":  "14º",
+                         "andar":  "14Âº",
                          "codigoPostal":  "1643-001",
                          "localidade":  "Lisboa",
                          "telefone":  "210471616",
                          "telemovel":  "",
                          "email":  "informacao@ctt.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-079",
@@ -1511,7 +2295,11 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "217948800",
                          "telemovel":  "",
                          "email":  "apoiocliente@fidelidade.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-080",
@@ -1529,7 +2317,11 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "234403200",
                          "telemovel":  "",
                          "email":  "contact@alticelabs.com",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-081",
@@ -1547,7 +2339,11 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "219737000",
                          "telemovel":  "",
                          "email":  "geral.pt@omexom.com",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-082",
@@ -1565,7 +2361,11 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 21 782 47 00",
                          "telemovel":  "",
                          "email":  "ines.s.pina@nos.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-084",
@@ -1574,9 +2374,9 @@ const INITIAL_EXCEL_DATABASE = {
                          "secretariaEstado":  "Secretaria de Estado",
                          "nome":  "CCDR-N (Comissão de Coordenação e Desenvolvimento Regional do Norte)",
                          "contribuinte":  "501227181",
-                         "direcao1":  "Rua Rainha Dona Estefânia, n.º 251",
+                         "direcao1":  "Rua Rainha Dona Estefânia",
                          "direcao2":  "",
-                         "numero":  "",
+                         "numero":  "251",
                          "andar":  "",
                          "codigoPostal":  "4150-304",
                          "localidade":  "Porto",
@@ -1591,7 +2391,7 @@ const INITIAL_EXCEL_DATABASE = {
                                                  "nomePersonalizado":  "",
                                                  "nome":  "CCDR-N (Comissão de Coordenação e Desenvolvimento Regional do Norte)",
                                                  "contribuinte":  "501227181",
-                                                 "direcao1":  "Rua Rainha Dona Estefânia, n.º 251",
+                                                 "direcao1":  "Rua Rainha Dona Estefânia, n.Âº 251",
                                                  "direcao2":  "",
                                                  "numero":  "",
                                                  "andar":  "",
@@ -1601,7 +2401,11 @@ const INITIAL_EXCEL_DATABASE = {
                                                  "telemovel":  "",
                                                  "email":  "geral@ccdr-n.pt"
                                              }
-                                         ]
+                                         ],
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-imp-085",
@@ -1610,16 +2414,20 @@ const INITIAL_EXCEL_DATABASE = {
                          "secretariaEstado":  "",
                          "nome":  "Banco Caboverdiano de Negócios - BCN",
                          "contribuinte":  "500001462",
-                         "direcao1":  "Avenida Amílcar Cabral, n.º 44",
+                         "direcao1":  "Avenida Amílcar Cabral",
                          "direcao2":  "",
-                         "numero":  "",
+                         "numero":  "44",
                          "andar":  "",
                          "codigoPostal":  "1000-001",
                          "localidade":  "Lisboa",
                          "telefone":  "213456789",
                          "telemovel":  "",
                          "email":  "contacto@bcn.cv",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Cabo Verde"
                      },
                      {
                          "id":  "cli-1785514129444-833",
@@ -1631,13 +2439,17 @@ const INITIAL_EXCEL_DATABASE = {
                          "direcao1":  "Avenida D. João II",
                          "direcao2":  "Edifício ART\u0027S Business Center",
                          "numero":  "51B",
-                         "andar":  "11ºA",
+                         "andar":  "11ÂºA",
                          "codigoPostal":  "1950-085",
                          "localidade":  "Parque das Nações - Lisboa",
                          "telefone":  "+351 217 828 400",
                          "telemovel":  "",
                          "email":  "",
-                         "createdAt":  "2026-07-31T16:08:49.444Z"
+                         "createdAt":  "2026-07-31T16:08:49.444Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
                      },
                      {
                          "id":  "cli-1786604620361-357",
@@ -1655,16 +2467,20 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "(+238) 260 46 60",
                          "telemovel":  "",
                          "email":  "bca@bca.cv",
-                         "createdAt":  "2026-08-13T07:03:40.361Z"
+                         "createdAt":  "2026-08-13T07:03:40.361Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Cabo Verde"
                      },
                      {
                          "id":  "cli-imp-050",
                          "tipoCliente":  "Estatal",
-                         "ministerio":  "MINISTERIO DE ADMINISTRACION INTERNA",
-                         "secretariaEstado":  "Ministro",
-                         "nome":  "MINISTERIO DE ADMINISTRACION INTERNA",
+                         "ministerio":  "Ministério da Administração Interna",
+                         "secretariaEstado":  "Ministério, Secretaria de Estado",
+                         "nome":  "Ministério da Administração Interna",
                          "contribuinte":  "500000867",
-                         "direcao1":  "Praça do Comércio - Ala Oriental 1149-015 LISBOA",
+                         "direcao1":  "Praça do Comércio - Ala Oriental",
                          "direcao2":  "",
                          "numero":  "",
                          "andar":  "",
@@ -1673,25 +2489,147 @@ const INITIAL_EXCEL_DATABASE = {
                          "telefone":  "+351 213 232 000",
                          "telemovel":  "",
                          "email":  "gabinete.mai@mai.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "separadores":  [
+                                             {
+                                                 "id":  "sep-1789671246532-985",
+                                                 "tipoSeparador":  "Ministério",
+                                                 "nomePersonalizado":  "Ministro",
+                                                 "nome":  "Ministério da Administração Interna",
+                                                 "contribuinte":  "500000867",
+                                                 "direcao1":  "Praça do Comércio - Ala Oriental 1149-015 LISBOA",
+                                                 "direcao2":  "",
+                                                 "numero":  "",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1149-015",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "+351 213 232 000",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.mai@mai.gov.pt"
+                                             },
+                                             {
+                                                 "id":  "sep-1786699720726-421",
+                                                 "tipoSeparador":  "Secretaria de Estado",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "Secretaria de Estado da Administração Interna",
+                                                 "contribuinte":  "000000000",
+                                                 "direcao1":  "",
+                                                 "direcao2":  "",
+                                                 "numero":  "",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "",
+                                                 "localidade":  "",
+                                                 "telefone":  "",
+                                                 "telemovel":  "",
+                                                 "email":  "",
+                                                 "pais":  "Portugal"
+                                             }
+                                         ],
+                         "updatedAt":  "2026-09-17T20:22:41.846Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-040",
                          "tipoCliente":  "Estatal",
-                         "ministerio":  "MINISTERIO DE CULTURA, JUVENTUD Y DEPORTE",
-                         "secretariaEstado":  "Ministra",
-                         "nome":  "MINISTERIO DE CULTURA, JUVENTUD Y DEPORTE",
+                         "ministerio":  "MINISTÉRIO DA CULTURA, JUVENTUDE E DESPORTO",
+                         "secretariaEstado":  "Ministério, Secretaria de Estado Adjunta da Juventude e da Igualdade, Secretaria de Estado do Desporto, Secretaria de Estado da Cultura",
+                         "nome":  "Ministério da Cultura, Juventude e Desporto",
                          "contribuinte":  "500000697",
-                         "direcao1":  "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
+                         "direcao1":  "Campus XXI, Avenida João XXI",
                          "direcao2":  "",
-                         "numero":  "",
+                         "numero":  "63",
                          "andar":  "",
                          "codigoPostal":  "1000-300",
                          "localidade":  "Lisboa",
                          "telefone":  "+351 213 927 600",
                          "telemovel":  "",
                          "email":  "gabinete.mcjd@mcjd.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal",
+                         "notas":  "",
+                         "separadores":  [
+                                             {
+                                                 "id":  "sep-1789586730764-844",
+                                                 "tipoSeparador":  "Ministério",
+                                                 "nomePersonalizado":  "Ministra",
+                                                 "nome":  "Ministério da Cultura, Juventude e Desporto",
+                                                 "contribuinte":  "500000697",
+                                                 "direcao1":  "Campus XXI, Avenida João XXI",
+                                                 "direcao2":  "",
+                                                 "numero":  "63",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1000-300",
+                                                 "localidade":  "Lisboa",
+                                                 "telefone":  "+351 213 927 600",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.mcjd@mcjd.gov.pt",
+                                                 "pais":  "Portugal"
+                                             },
+                                             {
+                                                 "id":  "sep-1789586730764-633",
+                                                 "tipoSeparador":  "Secretaria de Estado Adjunta da Juventude e da Igualdade",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "Secretaria de Estado Adjunta da Juventude e da Igualdade",
+                                                 "contribuinte":  "500000748",
+                                                 "direcao1":  "Campus XXI, Avenida João XXI",
+                                                 "direcao2":  "",
+                                                 "numero":  "63",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1000-300",
+                                                 "localidade":  "Lisboa",
+                                                 "telefone":  "+351 213 927 600",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.seaji@mcjd.gov.pt",
+                                                 "pais":  "Portugal"
+                                             },
+                                             {
+                                                 "id":  "sep-1789586730764-120",
+                                                 "tipoSeparador":  "Secretaria de Estado do Desporto",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "Secretaria de Estado do Desporto",
+                                                 "contribuinte":  "500000731",
+                                                 "direcao1":  "Avenida João XXI",
+                                                 "direcao2":  "Campus XXI",
+                                                 "numero":  "63",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1000-300",
+                                                 "localidade":  "Lisboa",
+                                                 "telefone":  "+351 213 927 600",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.sed@mcjd.gov.pt",
+                                                 "pais":  "Portugal"
+                                             },
+                                             {
+                                                 "id":  "sep-1789672055639-553",
+                                                 "tipoSeparador":  "Secretaria de Estado da Cultura",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "Secretaria de Estado da Cultura",
+                                                 "contribuinte":  "000000000",
+                                                 "direcao1":  "",
+                                                 "direcao2":  "",
+                                                 "numero":  "",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "",
+                                                 "localidade":  "",
+                                                 "telefone":  "",
+                                                 "telemovel":  "",
+                                                 "email":  "",
+                                                 "pais":  "Portugal"
+                                             }
+                                         ],
+                         "updatedAt":  "2026-09-17T19:13:08.768Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      },
                      {
                          "id":  "cli-imp-042",
@@ -1700,16 +2638,99 @@ const INITIAL_EXCEL_DATABASE = {
                          "secretariaEstado":  "Secretario de estado de deporte",
                          "nome":  "MINISTERIO DE CULTURA, JUVENTUD Y DEPORTE / Secretario de estado de deporte",
                          "contribuinte":  "500000731",
-                         "direcao1":  "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
+                         "direcao1":  "Campus XXI, Avenida João XXI",
                          "direcao2":  "",
-                         "numero":  "",
+                         "numero":  "63",
                          "andar":  "",
                          "codigoPostal":  "1000-300",
                          "localidade":  "Lisboa",
                          "telefone":  "+351 213 927 600",
                          "telemovel":  "",
                          "email":  "gabinete.sed@mcjd.gov.pt",
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "pais":  "Portugal"
+                     },
+                     {
+                         "id":  "cli-1789584673991-289",
+                         "tipoCliente":  "Estatal",
+                         "ministerio":  "Ministério da Saúde",
+                         "secretariaEstado":  "Ministério, Direção Geral, Secretaria de Estado",
+                         "nome":  "Ministério da Saúde",
+                         "contribuinte":  "000000000",
+                         "direcao1":  "Avenida João Crisóstomo",
+                         "direcao2":  "",
+                         "numero":  "9",
+                         "andar":  "",
+                         "codigoPostal":  "1049-062",
+                         "localidade":  "Lisboa",
+                         "pais":  "Portugal",
+                         "telefone":  "",
+                         "telemovel":  "",
+                         "email":  "gabinete.ms@ms.gov.pt",
+                         "notas":  "",
+                         "separadores":  [
+                                             {
+                                                 "id":  "sep-1789584749864-258",
+                                                 "tipoSeparador":  "Ministério",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "Ministério da Saúde",
+                                                 "contribuinte":  "000000000",
+                                                 "direcao1":  "Avenida João Crisóstomo",
+                                                 "direcao2":  "",
+                                                 "numero":  "9",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1049-062",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "",
+                                                 "telemovel":  "",
+                                                 "email":  "gabinete.ms@ms.gov.pt"
+                                             },
+                                             {
+                                                 "id":  "sep-1789584796200-31",
+                                                 "tipoSeparador":  "Direção Geral",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "Direção Geral da Saúde",
+                                                 "contribuinte":  "",
+                                                 "direcao1":  "Alameda D. Afonso Henriques",
+                                                 "direcao2":  "",
+                                                 "numero":  "45",
+                                                 "andar":  "",
+                                                 "codigoPostal":  "1049-005",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "",
+                                                 "telemovel":  "",
+                                                 "email":  ""
+                                             },
+                                             {
+                                                 "id":  "sep-1789584942999-996",
+                                                 "tipoSeparador":  "Secretaria de Estado",
+                                                 "nomePersonalizado":  "",
+                                                 "nome":  "Secretaria de Estado",
+                                                 "contribuinte":  "",
+                                                 "direcao1":  "Avenida João Crisóstomo",
+                                                 "direcao2":  "",
+                                                 "numero":  "9",
+                                                 "andar":  "1º",
+                                                 "codigoPostal":  "1049-062",
+                                                 "localidade":  "Lisboa",
+                                                 "pais":  "Portugal",
+                                                 "telefone":  "",
+                                                 "telemovel":  "",
+                                                 "email":  ""
+                                             }
+                                         ],
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "comercialAtribuidoNome":  "José Centúrio",
+                         "createdAt":  "2026-09-16T18:51:13.991Z",
+                         "updatedAt":  "2026-09-16T18:58:19.343Z",
+                         "comercial":  "José Centúrio",
+                         "createdById":  "usr-admin-001"
                      }
                  ],
     "contactos":  [
@@ -1723,7 +2744,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "rui.cabrita@edp.com",
                           "notas":  "Temas: energía, electricidad, gas natural, energías renovables, descarbonización",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-002",
@@ -1735,7 +2758,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "joao.parreira@edp.com",
                           "notas":  "Temas: energía, electricidad, gas natural, energías renovables, descarbonización",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-003",
@@ -1747,7 +2772,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "catarina.barradas@edp.com",
                           "notas":  "Temas: energía, electricidad, gas natural, energías renovables, descarbonización",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-004",
@@ -1760,7 +2787,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "diogo.sousa@galp.com",
                           "notas":  "Temas: energía, petróleo, gas natural, electricidad, biocombustibles, transición energética, descarbonización",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  0
+                          "subTabIndex":  0,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-005",
@@ -1773,7 +2802,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "pedromp@galp.com",
                           "notas":  "Temas: energía, petróleo, gas natural, electricidad, biocombustibles, transición energética, descarbonización",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  0
+                          "subTabIndex":  0,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-006",
@@ -1786,7 +2817,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "goncalo.venancio@galp.com",
                           "notas":  "Temas: energía, petróleo, gas natural, electricidad, biocombustibles, transición energética, descarbonización",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  0
+                          "subTabIndex":  0,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-007",
@@ -1799,7 +2832,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "carlos.relancio@galp.com",
                           "notas":  "Temas: energía, petróleo, gas natural, electricidad, biocombustibles, transición energética, descarbonización",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  0
+                          "subTabIndex":  0,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-008",
@@ -1812,7 +2847,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "gustavo.sa@galp.com",
                           "notas":  "Temas: energía, petróleo, gas natural, electricidad, biocombustibles, transición energética, descarbonización",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  0
+                          "subTabIndex":  0,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-009",
@@ -1824,7 +2861,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "comunicacao@jeronimo-martins.com",
                           "notas":  "Temas: distribución alimentaria, supermercados, comercio minorista, agroalimentación",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-010",
@@ -1836,7 +2875,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "duarte.gaspar@jeronimo-martins.pt",
                           "notas":  "Temas: distribución alimentaria, supermercados, comercio minorista, agroalimentación",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-011",
@@ -1848,7 +2889,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "miguel.herdade@fundacao-jeronimomartins.com",
                           "notas":  "Temas: Salud y bienestar. Educación y desarrollo. Protección social y financiera. Respuesta a situaciones de emergencia y apoyo a personas en situación de vulnerabilidad.",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-012",
@@ -1860,7 +2903,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "sara.s.cosme@meo.pt",
                           "notas":  "Temas: telecomunicaciones, internet, televisión, telefonía móvil, tecnología",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-013",
@@ -1872,7 +2917,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "marcelo.c.prazeres@meo.pt",
                           "notas":  "Temas: telecomunicaciones, internet, televisión, telefonía móvil, tecnología",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-014",
@@ -1884,7 +2931,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "francisco.m.chaves@meo.pt",
                           "notas":  "Temas: telecomunicaciones, internet, televisión, telefonía móvil, tecnología",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-015",
@@ -1896,7 +2945,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "ana-v-guimaraes@telecom.pt",
                           "notas":  "Temas: telecomunicaciones, internet, televisión, telefonía móvil, tecnología",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-016",
@@ -1908,7 +2959,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "luis.s.martins@meo.pt",
                           "notas":  "Temas: telecomunicaciones, internet, televisión, telefonía móvil, tecnología",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-017",
@@ -1920,7 +2973,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "carla.porto@thenavigatorcompany.com",
                           "notas":  "Temas: pasta de celulosa, papel, silvicultura, sostenibilidad, bioindustria",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-018",
@@ -1932,7 +2987,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "catarina.alvarez@thenavigatorcompany.com",
                           "notas":  "Temas: pasta de celulosa, papel, silvicultura, sostenibilidad, bioindustria",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-019",
@@ -1944,7 +3001,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "antonio.soares@thenavigatorcompany.com",
                           "notas":  "Temas: pasta de celulosa, papel, silvicultura, sostenibilidad, bioindustria",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-020",
@@ -1956,7 +3015,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "antonio.redondo@thenavigatorcompany.com",
                           "notas":  "Temas: pasta de celulosa, papel, silvicultura, sostenibilidad, bioindustria",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-021",
@@ -1968,7 +3029,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "bruno.silva@ren.pt",
                           "notas":  "Temas: energía, electricidad, gas natural, transmisión de energía, sostenibilidad",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-022",
@@ -1980,7 +3043,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "margarida.ferreirinha@ren.pt",
                           "notas":  "Temas: energía, electricidad, gas natural, transmisión de energía, sostenibilidad",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-023",
@@ -1992,7 +3057,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "ronaldo.bernardo@ren.pt",
                           "notas":  "Temas: energía, electricidad, gas natural, transmisión de energía, sostenibilidad",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-024",
@@ -2004,7 +3071,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "pedro.calisto@ren.pt",
                           "notas":  "Temas: energía, electricidad, gas natural, transmisión de energía, sostenibilidad",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-025",
@@ -2016,7 +3085,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "raquel.costa@ren.pt",
                           "notas":  "Temas: energía, electricidad, gas natural, transmisión de energía, sostenibilidad",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-028",
@@ -2028,7 +3099,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "luissilva@mota-engil.pt",
                           "notas":  "Temas: construcción, infraestructuras, ingeniería, gestión de residuos, concesiones de transporte",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-029",
@@ -2040,7 +3113,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "ana.loureiro@mota-engil.pt",
                           "notas":  "Temas: construcción, infraestructuras, ingeniería, gestión de residuos, concesiones de transporte",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-030",
@@ -2052,7 +3127,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "pedro.calem@mota-engil.pt",
                           "notas":  "Temas: construcción, infraestructuras, ingeniería, gestión de residuos, concesiones de transporte",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-031",
@@ -2064,7 +3141,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "jose.araujo@mota-engil.pt",
                           "notas":  "Temas: construcción, infraestructuras, ingeniería, gestión de residuos, concesiones de transporte",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-032",
@@ -2077,7 +3156,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "ines.s.pina@nos.pt",
                           "notas":  "Temas: telecomunicaciones, televisión, internet, telefonía móvil, entretenimiento",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  1
+                          "subTabIndex":  1,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-033",
@@ -2090,7 +3171,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "joao.ceriz@nos.pt",
                           "notas":  "Temas: telecomunicaciones, televisión, internet, telefonía móvil, entretenimiento",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  1
+                          "subTabIndex":  1,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-034",
@@ -2103,7 +3186,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "goncalo.soliveira@nos.pt",
                           "notas":  "Temas: telecomunicaciones, televisión, internet, telefonía móvil, entretenimiento",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  1
+                          "subTabIndex":  1,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-035",
@@ -2116,7 +3201,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "joao.ceriz@nos.pt",
                           "notas":  "Temas: telecomunicaciones, televisión, internet, telefonía móvil, entretenimiento",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  1
+                          "subTabIndex":  1,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-037",
@@ -2128,7 +3215,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "info@gulbenkian.pt",
                           "notas":  "Temas: educación, cultura, salud, ciencia, innovación social, sostenibilidad, acción climática y cooperación internacional",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-038",
@@ -2140,7 +3229,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "fundacao@vodafone.com",
                           "notas":  "Temas: educación digital, inclusión social, innovación tecnológica, salud, accesibilidad, respuesta a emergencias y sostenibilidad,",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-039",
@@ -2153,32 +3244,38 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "fundacao@galp.com",
                           "notas":  "Temas: Transición energética, acción climática, sostenibilidad, educación, innovación social, biodiversidad y apoyo a comunidades vulnerables",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  0
+                          "subTabIndex":  0,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-040",
                           "clienteId":  "cli-imp-014",
-                          "nome":  "Maria",
-                          "apelido":  "Amélia Cupertino de Miranda",
+                          "nome":  "Maria Amélia",
+                          "apelido":  "Cupertino de Miranda",
                           "cargo":  "Presidente",
                           "telefone":  "351226101189",
                           "telemovel":  "",
                           "email":  "geral@facm.pt",
                           "notas":  "Temas: educación financiera",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-041",
                           "clienteId":  "cli-imp-070",
-                          "nome":  "António",
-                          "apelido":  "Vítor Martins Monteiro",
+                          "nome":  "António Vítor",
+                          "apelido":  "Martins Monteiro",
                           "cargo":  "Presidente",
                           "telefone":  "+ 351 211 131 682",
                           "telemovel":  "",
                           "email":  "fundacao@millenniumbcp.pt",
                           "notas":  "Temas: apoyo a iniciativas de interés cultural, científico y social",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  0
+                          "subTabIndex":  0,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-042",
@@ -2190,7 +3287,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "fundacaoedp@edp.pt",
                           "notas":  "Temas: Culture, social innovation, and science related to energy",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-043",
@@ -2202,7 +3301,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "fundacao@ageas.pt",
                           "notas":  "Temas: salud, envejecimiento, exclusion social",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-044",
@@ -2214,7 +3315,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "fundacaoip@fundacaoip.pt",
                           "notas":  "Temas: ciencia, la tecnología, la educación, la cultura y el desarrollo humano",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-045",
@@ -2226,7 +3329,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "geral@fea.pt",
                           "notas":  "Temas: cultura, educación, acción social, voluntariado y desarrollo regional",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-046",
@@ -2238,7 +3343,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "fundacao@altice.pt",
                           "notas":  "Temas: innovación, la inclusión social y el acceso al conocimiento mediante la tecnología",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-047",
@@ -2250,19 +3357,23 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "geral@fba.org.pt",
                           "notas":  "Temas: education, social solidarity, and environmental sustainability",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-048",
                           "clienteId":  "cli-imp-022",
-                          "nome":  "Maria",
-                          "apelido":  "Manuela Queirós Vasconcelos Mota dos Santos",
+                          "nome":  "Maria Manuela",
+                          "apelido":  "Queirós Vasconcelos Mota dos Santos",
                           "cargo":  "Presidente",
                           "telefone":  "+351 226 079 100",
                           "telemovel":  "",
                           "email":  "geral@fmam.pt",
                           "notas":  "Temas: integrated development of communities through initiatives in social development, education, culture, and environmental sustainability",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-049",
@@ -2274,7 +3385,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "hello@joseneves.org",
                           "notas":  "Temas: ampliar el acceso a la educación, promover las competencias para el futuro y facilitar decisiones informadas sobre formación y empleo",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-050",
@@ -2286,7 +3399,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "serralves@serralves.pt",
                           "notas":  "Temas: culture, fostering environmental awareness a través del arte",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-051",
@@ -2298,7 +3413,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "geral@fundacaoluso.pt",
                           "notas":  "Temas: Promoción de estilos de vida saludables. Educación sobre hidratación. Alimentación equilibrada. Salud pública. Educación ambiental.",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-052",
@@ -2310,7 +3427,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "akfportugal@akdn.org",
                           "notas":  "Temas: Nutrición infantil. Salud maternoinfantil. Educación para familias. Bienestar comunitario.",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-053",
@@ -2322,19 +3441,23 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "fundacaomontepio@montepio.pt",
                           "notas":  "Temas: educación económica y financiera a través de programas de ciudadanía, ahorro y consumo responsable.",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-054",
                           "clienteId":  "cli-imp-028",
-                          "nome":  "Carlos",
-                          "apelido":  "Augusto Pulido Valente Monjardino",
+                          "nome":  "Carlos Augusto",
+                          "apelido":  "Pulido Valente Monjardino",
                           "cargo":  "Presidente",
                           "telefone":  "+351 213 585 200",
                           "telemovel":  "",
                           "email":  "info@foriente.pt",
                           "notas":  "Temas: Cultura, educación, cooperación internacional",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-055",
@@ -2346,7 +3469,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "fundacao@fmestrecasais.pt",
                           "notas":  "Temas: Educación, sostenibilidad, acción social",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-056",
@@ -2358,7 +3483,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.ms@ms.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-057",
@@ -2370,7 +3497,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "geral@dgs.min-saude.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-058",
@@ -2382,20 +3511,24 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "sg@sg.min-saude.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-059",
                           "clienteId":  "cli-imp-033",
-                          "nome":  "Maria",
-                          "apelido":  "da Graça Carvalho",
+                          "nome":  "Maria da Graça",
+                          "apelido":  "Carvalho",
                           "cargo":  "Ministra",
                           "telefone":  "+351 213 927 600",
                           "telemovel":  "",
                           "email":  "gabinete.maen@maen.gov.pt",
                           "notas":  "",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  0
+                          "subTabIndex":  0,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-061",
@@ -2408,7 +3541,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "gabinete.seen@maen.gov.pt",
                           "notas":  "",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  2
+                          "subTabIndex":  2,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-062",
@@ -2421,19 +3556,23 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "gabinete.seamb@maen.gov.pt",
                           "notas":  "",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  1
+                          "subTabIndex":  1,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-063",
                           "clienteId":  "cli-imp-037",
-                          "nome":  "Jose",
-                          "apelido":  "Manuel Fernandes",
+                          "nome":  "Jose Manuel",
+                          "apelido":  "Fernandes",
                           "cargo":  "Ministro",
                           "telefone":  "+351 213 234 600",
                           "telemovel":  "",
                           "email":  "gabinete.magrim@magrim.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-064",
@@ -2445,7 +3584,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.seagri@magrim.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-065",
@@ -2457,7 +3598,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "dgadr@dgadr.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-066",
@@ -2470,7 +3613,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "gabinete.mcjd@mcjd.gov.pt",
                           "notas":  "",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  0
+                          "subTabIndex":  0,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-067",
@@ -2483,7 +3628,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "gabinete.secul@mcjd.gov.pt",
                           "notas":  "",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  0
+                          "subTabIndex":  0,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-068",
@@ -2496,7 +3643,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "gabinete.sed@mcjd.gov.pt",
                           "notas":  "",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  0
+                          "subTabIndex":  0,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-069",
@@ -2508,7 +3657,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.seaji@mcjd.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-070",
@@ -2520,7 +3671,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.meci@meci.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-071",
@@ -2532,31 +3685,37 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.seaedu@meci.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-072",
                           "clienteId":  "cli-imp-046",
-                          "nome":  "David",
-                          "apelido":  "Carlos da Rocha Sousa",
+                          "nome":  "David Carlos",
+                          "apelido":  "da Rocha Sousa",
                           "cargo":  "Dirección general de educación",
                           "telefone":  "+351 218 430 500",
                           "telemovel":  "",
                           "email":  "dge@dge.mec.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-073",
                           "clienteId":  "cli-imp-047",
-                          "nome":  "Maria",
-                          "apelido":  "do Rosário Palma Ramalho",
+                          "nome":  "Maria do Rosário",
+                          "apelido":  "Palma Ramalho",
                           "cargo":  "Ministra",
                           "telefone":  "+351 215 963 800",
                           "telemovel":  "",
                           "email":  "gabinete.mtsss@mtsss.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-074",
@@ -2568,7 +3727,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.seasi@mtsss.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-075",
@@ -2580,19 +3741,23 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.seasi@mtsss.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-076",
                           "clienteId":  "cli-imp-049",
-                          "nome":  "João",
-                          "apelido":  "Manuel Grossinho Gonçalves",
+                          "nome":  "João Manuel",
+                          "apelido":  "Grossinho Gonçalves",
                           "cargo":  "Dirección general de seguridad social",
                           "telefone":  "+351 215 952 990",
                           "telemovel":  "",
                           "email":  "dgss@seg-social.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-077",
@@ -2604,7 +3769,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.mai@mai.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-078",
@@ -2616,7 +3783,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.mai@mai.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-079",
@@ -2628,7 +3797,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.seai@mai.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-080",
@@ -2640,7 +3811,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.seai@mai.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-081",
@@ -2652,7 +3825,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-082",
@@ -2664,7 +3839,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-083",
@@ -2676,19 +3853,23 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-084",
                           "clienteId":  "cli-imp-053",
-                          "nome":  "Joao",
-                          "apelido":  "Pedro Coutinho",
+                          "nome":  "Joao Pedro",
+                          "apelido":  "Coutinho",
                           "cargo":  "Chefe de Gabinete - Secretaria del estado de infraestructura",
                           "telefone":  "gabinete.seinf@mih.gov.pt",
                           "telemovel":  "",
                           "email":  "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-085",
@@ -2700,7 +3881,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "geral@ihru.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-086",
@@ -2712,7 +3895,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.mj@mj.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-087",
@@ -2724,19 +3909,23 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.mj@mj.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-088",
                           "clienteId":  "cli-imp-055",
-                          "nome":  "Ana",
-                          "apelido":  "Luísa Machado",
+                          "nome":  "Ana Luísa",
+                          "apelido":  "Machado",
                           "cargo":  "Secretaría del estado de justicia",
                           "telefone":  "+351 213 222 300",
                           "telemovel":  "",
                           "email":  "gabinete.sej@mj.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-089",
@@ -2748,7 +3937,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.sej@mj.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-090",
@@ -2760,7 +3951,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.ministro@mdn.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-091",
@@ -2772,7 +3965,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.ministro@mdn.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-092",
@@ -2784,7 +3979,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "dgrdn@defesa.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-093",
@@ -2796,7 +3993,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.map@map.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-094",
@@ -2808,7 +4007,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.map@map.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-095",
@@ -2820,7 +4021,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.ministro@mare.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-096",
@@ -2832,7 +4035,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.ministro@mare.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-097",
@@ -2844,7 +4049,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.digitalizacao@mare.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-098",
@@ -2856,7 +4063,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.digitalizacao@mare.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-099",
@@ -2868,19 +4077,23 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.simplificacao@mare.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-100",
                           "clienteId":  "cli-imp-061",
-                          "nome":  "Maria",
-                          "apelido":  "Joao Santos",
+                          "nome":  "Maria Joao",
+                          "apelido":  "Santos",
                           "cargo":  "Chefe de Gabinete - Secretaría del estado para la simplificación",
                           "telefone":  "+351 213 927 600",
                           "telemovel":  "",
                           "email":  "gabinete.simplificacao@mare.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-101",
@@ -2892,7 +4105,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "ama@ama.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-102",
@@ -2904,7 +4119,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.mect@mect.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-103",
@@ -2916,7 +4133,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.mect@mect.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-104",
@@ -2928,7 +4147,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.setcs@mect.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-105",
@@ -2940,7 +4161,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.setcs@mect.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-106",
@@ -2952,7 +4175,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.mp@mp.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-107",
@@ -2964,7 +4189,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.mp@mp.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-108",
@@ -2976,19 +4203,23 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.ministro@mne.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-109",
                           "clienteId":  "cli-imp-066",
-                          "nome":  "Ana",
-                          "apelido":  "Isabel Xavier",
+                          "nome":  "Ana Isabel",
+                          "apelido":  "Xavier",
                           "cargo":  "Secretaria de estado de negocios extranjeros y cooperación",
                           "telefone":  "+351 213 946 000",
                           "telemovel":  "",
                           "email":  "gabinete.senec@mne.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-110",
@@ -3000,7 +4231,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabinete.ministro@mf.gov.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-111",
@@ -3012,7 +4245,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "ecaramelo@gulbenkian.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-112",
@@ -3024,7 +4259,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "fundacaoedp@edp.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-113",
@@ -3037,7 +4274,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "serralves@serralves.pt",
                           "notas":  "",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  0
+                          "subTabIndex":  0,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-114",
@@ -3049,19 +4288,23 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "info@fundacaochampalimaud.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-115",
                           "clienteId":  "cli-imp-070",
-                          "nome":  "Maria",
-                          "apelido":  "de Fátima Coelho Dias",
+                          "nome":  "Maria de Fátima",
+                          "apelido":  "Coelho Dias",
                           "cargo":  "Secretária-Geral / Administradora Executiva",
                           "telefone":  "211131682",
                           "telemovel":  "",
                           "email":  "fundacao@millenniumbcp.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-116",
@@ -3074,7 +4317,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "fundacaogalp@galp.com",
                           "notas":  "",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  0
+                          "subTabIndex":  0,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-117",
@@ -3086,7 +4331,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "ffms@ffms.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-119",
@@ -3098,7 +4345,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "galp@galp.com",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-120",
@@ -3111,7 +4360,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "comunicacao@sonae.pt",
                           "notas":  "",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  0
+                          "subTabIndex":  0,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-122",
@@ -3123,7 +4374,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "media@altice.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-123",
@@ -3136,7 +4389,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "secretaria.geral@nos.pt",
                           "notas":  "",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  1
+                          "subTabIndex":  1,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-124",
@@ -3148,7 +4403,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "informacao@ctt.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-125",
@@ -3160,19 +4417,23 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "apoiocliente@fidelidade.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-126",
                           "clienteId":  "cli-imp-072",
-                          "nome":  "Maria",
-                          "apelido":  "Inês Marques",
+                          "nome":  "Maria Inês",
+                          "apelido":  "Marques",
                           "cargo":  "R\u0026D Senior Project Manager",
                           "telefone":  "210012500",
                           "telemovel":  "",
                           "email":  "edponservices@edp.com",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-127",
@@ -3184,7 +4445,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "contact@alticelabs.com",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-128",
@@ -3196,7 +4459,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "contact@alticelabs.com",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-129",
@@ -3208,7 +4473,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "geral.pt@omexom.com",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-130",
@@ -3220,7 +4487,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "galp@galp.com",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-131",
@@ -3233,7 +4502,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "comunicacao@sonae.pt",
                           "notas":  "",
                           "createdAt":  "2026-07-31T16:30:00.000Z",
-                          "subTabIndex":  0
+                          "subTabIndex":  0,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-132",
@@ -3245,7 +4516,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "edponservices@edp.com",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-133",
@@ -3257,7 +4530,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "edponservices@edp.com",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-134",
@@ -3269,19 +4544,23 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "edponservices@edp.com",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-135",
                           "clienteId":  "cli-imp-072",
                           "nome":  "Filipa",
                           "apelido":  "Roquette",
-                          "cargo":  "Coordenadora de Área de Gestão de Marca",
+                          "cargo":  "Coordenadora de Ãrea de Gestão de Marca",
                           "telefone":  "+351 210 012 500",
                           "telemovel":  "",
                           "email":  "edponservices@edp.com",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-136",
@@ -3293,7 +4572,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "gabriela.leite@ccdr-n.pt",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-imp-137",
@@ -3305,7 +4586,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "+ 238 985 51 14",
                           "email":  "acoimbra@bcn.cv",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:30:00.000Z"
+                          "createdAt":  "2026-07-31T16:30:00.000Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-1785514369861-598",
@@ -3317,7 +4600,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "diogo.madeira@huawei.com",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:12:49.863Z"
+                          "createdAt":  "2026-07-31T16:12:49.863Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-1785515106421-857",
@@ -3329,7 +4614,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "paulo.lima@bcn.cv",
                           "notas":  "",
-                          "createdAt":  "2026-07-31T16:25:06.422Z"
+                          "createdAt":  "2026-07-31T16:25:06.422Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-1785515478798-243",
@@ -3342,7 +4629,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "email":  "isaura.costa@ccdn-n.pt",
                           "notas":  "",
                           "createdAt":  "2026-07-31T16:31:18.798Z",
-                          "subTabIndex":  0
+                          "subTabIndex":  0,
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-1785755195297-108",
@@ -3354,7 +4643,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "ines.alberto@fundacao-jeronimomartins.com",
                           "notas":  "",
-                          "createdAt":  "2026-08-03T11:06:35.298Z"
+                          "createdAt":  "2026-08-03T11:06:35.298Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-1785825214404-496",
@@ -3366,7 +4657,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "+351 910 016 837",
                           "email":  "henrique.street@huawei.com",
                           "notas":  "",
-                          "createdAt":  "2026-08-04T06:33:34.405Z"
+                          "createdAt":  "2026-08-04T06:33:34.405Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-1785826295654-612",
@@ -3378,7 +4671,9 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "+351 964 354 106",
                           "email":  "daniel.paiva@huawei.com",
                           "notas":  "",
-                          "createdAt":  "2026-08-04T06:51:35.654Z"
+                          "createdAt":  "2026-08-04T06:51:35.654Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
                       },
                       {
                           "id":  "con-1786605035080-194",
@@ -3391,7 +4686,66 @@ const INITIAL_EXCEL_DATABASE = {
                           "telemovel":  "",
                           "email":  "msanches@bca.cv",
                           "notas":  "",
-                          "createdAt":  "2026-08-13T07:10:35.080Z"
+                          "createdAt":  "2026-08-13T07:10:35.080Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001"
+                      },
+                      {
+                          "id":  "con-1789673981691-405",
+                          "clienteId":  "cli-imp-059",
+                          "subTabIndex":  1,
+                          "nome":  "Pedro",
+                          "apelido":  "Correia",
+                          "cargo":  "Secretário de Estado para a Digitalização",
+                          "telefone":  "+351 213 927 600",
+                          "telemovel":  "",
+                          "email":  "gabinete.digitalizacao@mare.gov.pt",
+                          "proximoContacto":  null,
+                          "inativo":  false,
+                          "notas":  "",
+                          "createdAt":  "2026-09-17T19:39:41.691Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001",
+                          "comercialAtribuidoNome":  "José Centúrio",
+                          "createdById":  "usr-admin-001"
+                      },
+                      {
+                          "id":  "con-1789674192313-904",
+                          "clienteId":  "cli-imp-059",
+                          "subTabIndex":  3,
+                          "nome":  "Maria João",
+                          "apelido":  "Santos",
+                          "cargo":  "",
+                          "telefone":  "+351 217 231 200",
+                          "telemovel":  "",
+                          "email":  "ama@ama.gov.pt",
+                          "proximoContacto":  null,
+                          "inativo":  false,
+                          "notas":  "",
+                          "createdAt":  "2026-09-17T19:43:12.314Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001",
+                          "comercialAtribuidoNome":  "José Centúrio",
+                          "createdById":  "usr-admin-001"
+                      },
+                      {
+                          "id":  "con-1789675675222-909",
+                          "clienteId":  "cli-imp-066",
+                          "subTabIndex":  1,
+                          "nome":  "Ana Isabel",
+                          "apelido":  "Xavier",
+                          "cargo":  "Secretária de estado de Negócios Estrangeiros e Cooperação",
+                          "telefone":  "+351 213 946 000",
+                          "telemovel":  "",
+                          "email":  "gabinete.senec@mne.gov.pt",
+                          "proximoContacto":  null,
+                          "inativo":  false,
+                          "notas":  "",
+                          "createdAt":  "2026-09-17T20:07:55.222Z",
+                          "userId":  "usr-admin-001",
+                          "comercialAtribuidoId":  "usr-admin-001",
+                          "comercialAtribuidoNome":  "José Centúrio",
+                          "createdById":  "usr-admin-001"
                       }
                   ],
     "projetos":  [
@@ -3413,7 +4767,9 @@ const INITIAL_EXCEL_DATABASE = {
                          "media":  [
 
                                    ],
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001"
                      },
                      {
                          "id":  "proj-rec-bcn",
@@ -3441,7 +4797,15 @@ const INITIAL_EXCEL_DATABASE = {
                          "media":  [
 
                                    ],
-                         "createdAt":  "2026-07-31T16:30:00.000Z"
+                         "createdAt":  "2026-07-31T16:30:00.000Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001",
+                         "separadorId":  null,
+                         "subTabIndex":  null,
+                         "orcamentos":  [
+
+                                        ],
+                         "updatedAt":  "2026-09-17T21:08:28.630Z"
                      },
                      {
                          "id":  "proj-camp-001",
@@ -3462,7 +4826,9 @@ const INITIAL_EXCEL_DATABASE = {
                                        ],
                          "media":  [
 
-                                   ]
+                                   ],
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001"
                      },
                      {
                          "id":  "proj-1786607404702-798",
@@ -3490,7 +4856,9 @@ const INITIAL_EXCEL_DATABASE = {
                          "media":  [
 
                                    ],
-                         "createdAt":  "2026-08-13T07:50:04.702Z"
+                         "createdAt":  "2026-08-13T07:50:04.702Z",
+                         "userId":  "usr-admin-001",
+                         "comercialAtribuidoId":  "usr-admin-001"
                      }
                  ],
     "interacoes":  [
@@ -3584,24 +4952,55 @@ const INITIAL_EXCEL_DATABASE = {
                            "data":  "2026-08-11T12:01",
                            "descricao":  "Tentei o contacto por telefone, mas não atendeu.",
                            "createdAt":  "2026-08-14T10:01:33.965Z"
+                       },
+                       {
+                           "id":  "cpi-1789679485761-980",
+                           "contactoId":  "con-imp-137",
+                           "clienteId":  "cli-imp-085",
+                           "subTabIndex":  0,
+                           "data":  "2026-09-17T23:09",
+                           "descricao":  "Contactei por telefone para saber mais informação sobre a decisão. Disse que já passou a decisão para a administração. Aguardar",
+                           "createdAt":  "2026-09-17T21:11:25.761Z"
+                       },
+                       {
+                           "id":  "cpi-1789679617680-650",
+                           "contactoId":  "con-imp-136",
+                           "clienteId":  "cli-imp-062",
+                           "subTabIndex":  2,
+                           "data":  "2026-09-17T23:09",
+                           "descricao":  "Contactei para que me pudesse informar sobre algum negocio com as CIM. Comentou-me que falaria com o vogal da CCDR-N e que me enviaria informação. Aguardar e contactar, caso não haja resposta.",
+                           "createdAt":  "2026-09-17T21:13:37.680Z"
+                       },
+                       {
+                           "id":  "cpi-1789679697456-812",
+                           "contactoId":  "con-1785515478798-243",
+                           "clienteId":  "cli-imp-062",
+                           "subTabIndex":  2,
+                           "data":  "2026-09-17T23:09",
+                           "descricao":  "Tentei novamente o contacto, mas sem sucesso. Recebi mensagem a dizer que me contactaria mais tarde.",
+                           "createdAt":  "2026-09-17T21:14:57.456Z"
                        }
                    ],
-    "interacoesProjetos":  {
-
-                           },
-    "deletedProjectIds":  {
-
-                          },
+    "interacoesProjetos":  [
+                               {
+                                   "id":  "pint-1789679299755-545",
+                                   "projectId":  "proj-rec-bcn",
+                                   "data":  "2026-08-11T23:07",
+                                   "descricao":  "Apresentação do orçamento ao cliente",
+                                   "createdAt":  "2026-09-17T21:08:19.755Z"
+                               }
+                           ],
     "usuarios":  [
                      {
                          "id":  "usr-admin-001",
                          "nome":  "José Centúrio",
                          "email":  "jmcenturio@alegria-activity.com",
                          "cargo":  "Administrador do Sistema",
-                         "idioma": "Português",
                          "pin":  "J*cen*1971",
                          "role":  "admin",
-                         "createdAt":  "2026-08-10T09:45:00.000Z"
+                         "createdAt":  "2026-08-10T09:45:00.000Z",
+                         "chefia":  true,
+                         "active":  true
                      },
                      {
                          "id":  "usr-1789862031944",
@@ -3613,11 +5012,354 @@ const INITIAL_EXCEL_DATABASE = {
                          "idioma":  "Español",
                          "pin":  "J*cen*1971",
                          "role":  "user",
-                         "chefia": false,
-                         "active": true,
-                         "createdAt":  "2026-09-19T23:53:51.944Z"
+                         "chefia":  false,
+                         "active":  true,
+                         "createdAt":  "2026-09-19T23:53:51.944Z",
+                         "updatedAt":  "2026-09-20T00:02:18.514Z"
+                     },
+                     {
+                         "id":  "usr-1789972905110",
+                         "nome":  "Victoria Schwab Vilte",
+                         "primeiroNome":  "Victoria",
+                         "apelido":  "Schwab Vilte",
+                         "email":  "victoria@alegria-activity.com",
+                         "cargo":  "Gestora de proyectos",
+                         "idioma":  "Español",
+                         "pin":  "Victoria_202",
+                         "role":  "user",
+                         "chefia":  false,
+                         "active":  true,
+                         "createdAt":  "2026-09-21T06:41:45.110Z",
+                         "updatedAt":  "2026-09-21T07:18:12.470Z"
                      }
-                 ]
+                 ],
+    "userLogs":  [
+                     {
+                         "id":  "log-1789975092509-23576",
+                         "usuarioId":  "usr-admin-001",
+                         "usuarioNome":  "José Centúrio",
+                         "usuarioEmail":  "jmcenturio@alegria-activity.com",
+                         "acao":  "Gestão de Utilizadores",
+                         "tipoAcao":  "Gestão de Utilizadores",
+                         "descricao":  "Estado da utilizadora Victoria Schwab Vilte (victoria@alegria-activity.com) alterado para Ativo / Aprovado pelo Administrador.",
+                         "detalhes":  {
+                                          "utilizador":  "Victoria Schwab Vilte",
+                                          "email":  "victoria@alegria-activity.com",
+                                          "estado":  "Ativo"
+                                      },
+                         "extra":  {
+
+                                   },
+                         "timestamp":  "2026-09-21T07:18:12.470Z"
+                     },
+                     {
+                         "id":  "log-1789746233598-84623",
+                         "usuarioId":  "usr-admin-001",
+                         "usuarioNome":  "José Centúrio",
+                         "usuarioEmail":  "jmcenturio@alegria-activity.com",
+                         "acao":  "Início de Sessão",
+                         "tipoAcao":  "Início de Sessão",
+                         "descricao":  "Acesso autorizado efetuado por José Centúrio (jmcenturio@alegria-activity.com).",
+                         "detalhes":  {
+                                          "utilizador":  "José Centúrio",
+                                          "email":  "jmcenturio@alegria-activity.com",
+                                          "cargo":  "Administrador do Sistema",
+                                          "dispositivo":  "Computador"
+                                      },
+                         "extra":  {
+                                       "utilizador":  "José Centúrio",
+                                       "email":  "jmcenturio@alegria-activity.com",
+                                       "cargo":  "Administrador do Sistema",
+                                       "dispositivo":  "Computador"
+                                   },
+                         "timestamp":  "2026-09-18T15:43:53.598Z"
+                     },
+                     {
+                         "id":  "log-1789746090570-86511",
+                         "usuarioId":  "usr-admin-001",
+                         "usuarioNome":  "José Centúrio",
+                         "usuarioEmail":  "jmcenturio@alegria-activity.com",
+                         "acao":  "Notificação por Email",
+                         "tipoAcao":  "Notificação por Email",
+                         "descricao":  "Alerta de registo emitido para jmcenturio@alegria-activity.com (josé maria).",
+                         "detalhes":  {
+
+                                      },
+                         "extra":  {
+
+                                   },
+                         "timestamp":  "2026-09-18T15:41:30.570Z"
+                     },
+                     {
+                         "id":  "log-1789746090570-2492",
+                         "timestamp":  "2026-09-18T15:41:30.570Z",
+                         "categoria":  "Email / Notificação",
+                         "acao":  "Notificação por Email",
+                         "tipoAcao":  "Notificação por Email",
+                         "descricao":  "Notificação para jmcenturio@alegria-activity.com (\"[SIGEC-Pro Alerta] Novo Utilizador Registado: josé maria (Pendente de Aprovação)\"). Estado: Falha",
+                         "detalhes":  {
+                                          "destinatario":  "jmcenturio@alegria-activity.com",
+                                          "assunto":  "[SIGEC-Pro Alerta] Novo Utilizador Registado: josé maria (Pendente de Aprovação)",
+                                          "estado":  "Falha SMTP",
+                                          "mensagem":  "O serviço de envio SMTP local não está em execução. Certifique-se de que abriu o SIGEC-Pro através do executável SIGEC-Pro.exe.",
+                                          "resumo":  "Assunto: [SIGEC-Pro Alerta] Novo Utilizador Registado: josé maria (Pendente de Aprovação)\nNome do Utilizador: josé maria\nEmail: jjota26@gmail.com\nCargo / Função: comercial\nIdioma: Português\nPalavra-Passe / PIN: ••••••••\nPerfil Atribuído: Utilizador Padrão\nEstado da Conta: Pendente de Ativação pelo Administrador\nData e Hora do Registo: 18/09/2026, 17:41:27\nDispositivo: Computador\nInstruções para o Administrador: Aceda ao separador Configuração \u003e Gestão de Utilizadores no programa SIGEC-Pro para aprovar e ativar o acesso deste utilizador.\nSistema: SIGEC-Pro | José Centúrio\nempresa: SIGEC-Pro \u0026bull; Sistema Integrado de Gestão Empresarial e Contactos \u0026bull; Propriedade de José Centúrio"
+                                      }
+                     },
+                     {
+                         "id":  "log-1789746090567-6625",
+                         "timestamp":  "2026-09-18T15:41:30.567Z",
+                         "categoria":  "Email / Notificação",
+                         "acao":  "Notificação por Email",
+                         "tipoAcao":  "Notificação por Email",
+                         "descricao":  "Notificação para jjota26@gmail.com (\"[SIGEC-Pro] Confirmação do seu Registo de Utilizador\"). Estado: Falha",
+                         "detalhes":  {
+                                          "destinatario":  "jjota26@gmail.com",
+                                          "assunto":  "[SIGEC-Pro] Confirmação do seu Registo de Utilizador",
+                                          "estado":  "Falha SMTP",
+                                          "mensagem":  "O serviço de envio SMTP local não está em execução. Certifique-se de que abriu o SIGEC-Pro através do executável SIGEC-Pro.exe.",
+                                          "resumo":  "mensagem_titulo: Confirmação de Registo no Sistema SIGEC-Pro\nsaudacao: Estimado(a) josé maria,\nmensagem: O seu registo no sistema SIGEC-Pro foi submetido com sucesso. Seguem abaixo os dados da sua conta:\nNome Completo: josé maria\nEmail de Acesso / Utilizador: jjota26@gmail.com\nCargo / Função: comercial\nIdioma Configurado: Português\nPalavra-Passe / PIN de Acesso: ••••••••\nEstado da Conta: Pendente de Ativação pelo Administrador\nData e Hora do Registo: 18/09/2026, 17:41:27\ninstrucoes: O seu acesso está condicionado à aceitação do administrador do programa. Receberá um novo email assim que a sua conta for ativada.\nempresa: SIGEC-Pro - Sistema Integrado de Gestão Empresarial e Contactos | Propriedade Exclusiva de José Centúrio\nuser_lang: Português"
+                                      }
+                     },
+                     {
+                         "id":  "log-1789746087174-20428",
+                         "usuarioId":  "usr-admin-001",
+                         "usuarioNome":  "José Centúrio",
+                         "usuarioEmail":  "jmcenturio@alegria-activity.com",
+                         "acao":  "Registo de Utilizador",
+                         "tipoAcao":  "Registo de Utilizador",
+                         "descricao":  "Novo utilizador josé maria (jjota26@gmail.com) registado no sistema com idioma Português (Acesso pendente de ativação pelo Administrador).",
+                         "detalhes":  {
+
+                                      },
+                         "extra":  {
+
+                                   },
+                         "timestamp":  "2026-09-18T15:41:27.174Z"
+                     },
+                     {
+                         "id":  "log-1789746019035-27171",
+                         "usuarioId":  "usr-admin-001",
+                         "usuarioNome":  "José Centúrio",
+                         "usuarioEmail":  "jmcenturio@alegria-activity.com",
+                         "acao":  "Encerramento",
+                         "tipoAcao":  "Encerramento",
+                         "descricao":  "Sessão encerrada com gravação segura de todos os dados do perfil de José Centúrio.",
+                         "detalhes":  {
+                                          "utilizador":  "José Centúrio",
+                                          "userId":  "usr-admin-001"
+                                      },
+                         "extra":  {
+                                       "utilizador":  "José Centúrio",
+                                       "userId":  "usr-admin-001"
+                                   },
+                         "timestamp":  "2026-09-18T15:40:19.035Z"
+                     },
+                     {
+                         "id":  "log-1789745938025-56322",
+                         "usuarioId":  "usr-admin-001",
+                         "usuarioNome":  "José Centúrio",
+                         "usuarioEmail":  "jmcenturio@alegria-activity.com",
+                         "acao":  "Início de Sessão",
+                         "tipoAcao":  "Início de Sessão",
+                         "descricao":  "Acesso autorizado efetuado por José Centúrio (jmcenturio@alegria-activity.com).",
+                         "detalhes":  {
+                                          "utilizador":  "José Centúrio",
+                                          "email":  "jmcenturio@alegria-activity.com",
+                                          "cargo":  "Administrador do Sistema",
+                                          "dispositivo":  "Computador"
+                                      },
+                         "extra":  {
+                                       "utilizador":  "José Centúrio",
+                                       "email":  "jmcenturio@alegria-activity.com",
+                                       "cargo":  "Administrador do Sistema",
+                                       "dispositivo":  "Computador"
+                                   },
+                         "timestamp":  "2026-09-18T15:38:58.025Z"
+                     },
+                     {
+                         "id":  "log-1789745918821-80909",
+                         "usuarioId":  "usr-admin-001",
+                         "usuarioNome":  "José Centúrio",
+                         "usuarioEmail":  "jmcenturio@alegria-activity.com",
+                         "acao":  "Atualização de Software",
+                         "tipoAcao":  "Atualização de Software",
+                         "descricao":  "SIGEC-Pro atualizado com sucesso para a versão SIGEC_V1.7.28.",
+                         "detalhes":  {
+
+                                      },
+                         "extra":  {
+
+                                   },
+                         "timestamp":  "2026-09-18T15:38:38.821Z"
+                     }
+                 ],
+    "orcamentos":  [
+
+                   ],
+    "ignoredDuplicates":  [
+
+                          ],
+    "_spcfg":  "Oy8YIjNnAhQeYisIFV9ZVHlHfwgUDQY5HQU5ODMLES1bIz0naQ==",
+    "_deletedRegistry":  {
+                             "clientes":  [
+
+                                          ],
+                             "contactos":  [
+                                               "con-1789667264257-169",
+                                               "con-1789667264257-854",
+                                               "con-1789667264257-81",
+                                               "con-1789667264257-161",
+                                               "con-1789667264257-418",
+                                               "con-1789667264257-143",
+                                               "con-1789667264257-110",
+                                               "con-1789667264257-87",
+                                               "con-1789667264257-313",
+                                               "con-1789667264257-891",
+                                               "con-1789667264257-577",
+                                               "con-1789667264257-679",
+                                               "con-1789667264257-41",
+                                               "con-1789667264257-264",
+                                               "con-1789667264257-105",
+                                               "con-1789667264257-311",
+                                               "con-1789667264257-994",
+                                               "con-1789667264257-92",
+                                               "con-1789667264257-929",
+                                               "con-1789667264257-495",
+                                               "con-1789667264257-118",
+                                               "con-1789667264257-649",
+                                               "con-1789667264257-584",
+                                               "con-1789667264257-466",
+                                               "con-1789667264257-759",
+                                               "con-1789667264257-1",
+                                               "con-1789667264257-884",
+                                               "con-1789667264257-919",
+                                               "con-1789667264257-66",
+                                               "con-1789667264257-507",
+                                               "con-1789667264257-724",
+                                               "con-1789667264257-451",
+                                               "con-1789667264257-270",
+                                               "con-1789667264257-582",
+                                               "con-1789667264257-758",
+                                               "con-1789667264257-569",
+                                               "con-1789667264257-144",
+                                               "con-1789667264257-341",
+                                               "con-1789667264257-830",
+                                               "con-1789667264257-235",
+                                               "con-1789667264257-31",
+                                               "con-1789667264257-338",
+                                               "con-1789667264257-956",
+                                               "con-1789667264257-751",
+                                               "con-1789667264257-906",
+                                               "con-1789667264257-70",
+                                               "con-1789667264257-939",
+                                               "con-1789667264257-360",
+                                               "con-1789667264257-811",
+                                               "con-1789667264257-813",
+                                               "con-1789667264257-565",
+                                               "con-1789667264257-803",
+                                               "con-1789667264257-90",
+                                               "con-1789667264257-416",
+                                               "con-1789667264257-57",
+                                               "con-1789667264257-934",
+                                               "con-1789667264257-953",
+                                               "con-1789667264257-21",
+                                               "con-1789667264257-712",
+                                               "con-1789667264257-683",
+                                               "con-1789667264257-7",
+                                               "con-1789667264257-139",
+                                               "con-1789667264257-787",
+                                               "con-1789667264257-984",
+                                               "con-1789667264257-382",
+                                               "con-1789667264257-206",
+                                               "con-1789667264258-732",
+                                               "con-1789667264258-969",
+                                               "con-1789667264258-149",
+                                               "con-1789667264258-947",
+                                               "con-1789667264258-145",
+                                               "con-1789667264258-137",
+                                               "con-1789667264258-412",
+                                               "con-1789667264258-603",
+                                               "con-1789667264258-575",
+                                               "con-1789667264258-510",
+                                               "con-1789667264258-707",
+                                               "con-1789667264258-854",
+                                               "con-1789667264258-374",
+                                               "con-1789667264258-839",
+                                               "con-1789667264258-5",
+                                               "con-1789667264258-903",
+                                               "con-1789667264258-771",
+                                               "con-1789667264258-372",
+                                               "con-1789667264258-987",
+                                               "con-1789667264258-880",
+                                               "con-1789667264258-847",
+                                               "con-1789667264258-41",
+                                               "con-1789667264258-831",
+                                               "con-1789667264258-195",
+                                               "con-1789667264258-356",
+                                               "con-1789667264258-747",
+                                               "con-1789667264258-651",
+                                               "con-1789667264258-460",
+                                               "con-1789667264258-648",
+                                               "con-1789667264258-704",
+                                               "con-1789667264258-279",
+                                               "con-1789667264258-686",
+                                               "con-1789667264258-594",
+                                               "con-1789667264258-712",
+                                               "con-1789667264258-499",
+                                               "con-1789667264258-613",
+                                               "con-1789667264258-314",
+                                               "con-1789667264258-653",
+                                               "con-1789667264258-59",
+                                               "con-1789667264258-874",
+                                               "con-1789667264258-772",
+                                               "con-1789667264258-394",
+                                               "con-1789667264258-75",
+                                               "con-1789667264258-188",
+                                               "con-1789667264258-766",
+                                               "con-1789667264258-760",
+                                               "con-1789667264258-73",
+                                               "con-1789667264258-141",
+                                               "con-1789667264258-259",
+                                               "con-1789667264258-191",
+                                               "con-1789667264258-630",
+                                               "con-1789667264258-52",
+                                               "con-1789667264258-706",
+                                               "con-1789667264258-353",
+                                               "con-1789667264258-109",
+                                               "con-1789667264258-873",
+                                               "con-1789667264258-886",
+                                               "con-1789667264258-303",
+                                               "con-1789667264258-852",
+                                               "con-1789667264258-272",
+                                               "con-1789667264258-782",
+                                               "con-1789667264257-62",
+                                               "con-1789667264257-859"
+                                           ],
+                             "projetos":  [
+
+                                          ],
+                             "interacoes":  [
+
+                                            ],
+                             "interacoesProjetos":  [
+
+                                                    ],
+                             "orcamentos":  [
+
+                                            ],
+                             "usuarios":  [
+
+                                          ]
+                         },
+    "config":  {
+                   "emailNotifyAddress":  "jmcenturio@alegria-activity.com",
+                   "emailNotifyEnabled":  true,
+                   "smtpHost":  "smtp.gmail.com",
+                   "smtpPort":  "587",
+                   "smtpUser":  "jjota26@gmail.com",
+                   "smtpPass":  "",
+                   "emailWebhookUrl":  "https://script.google.com/macros/s/AKfycbxV-5cjwpuC-BLJpHaZk8g0234D9apiu5SlTX9VjdeHQG2L0DyoMBWHDbf0_Jo9Kr1LnA/exec"
+               }
 };
 
 /*
@@ -3833,43 +5575,6 @@ function cleanupResidualLocalStorage() {
 window.cleanupResidualLocalStorage = cleanupResidualLocalStorage;
 
 // Função para Carregar a Base de Dados (Garante persistência de alterações e eliminações permanentes)
-
-function normalizeAllClientAddresses() {
-  if (!db || !Array.isArray(db.clientes)) return false;
-  let modified = false;
-  db.clientes.forEach(c => {
-    if (!c) return;
-    const split = (typeof smartSplitAddress === 'function') ? smartSplitAddress(c.direcao1, c.direcao2, c.numero, c.andar) : null;
-    if (split) {
-      if (split.direcao1 !== (c.direcao1 || '') || split.direcao2 !== (c.direcao2 || '') || (split.numero && split.numero !== (c.numero || '')) || (split.andar && split.andar !== (c.andar || ''))) {
-        c.direcao1 = split.direcao1;
-        c.direcao2 = split.direcao2;
-        if (split.numero) c.numero = split.numero;
-        if (split.andar) c.andar = split.andar;
-        modified = true;
-      }
-    }
-    (c.separadores || []).forEach(s => {
-      if (!s) return;
-      const sSplit = (typeof smartSplitAddress === 'function') ? smartSplitAddress(s.direcao1, s.direcao2, s.numero, s.andar) : null;
-      if (sSplit) {
-        if (sSplit.direcao1 !== (s.direcao1 || '') || sSplit.direcao2 !== (s.direcao2 || '') || (sSplit.numero && sSplit.numero !== (s.numero || '')) || (sSplit.andar && sSplit.andar !== (s.andar || ''))) {
-          s.direcao1 = sSplit.direcao1;
-          s.direcao2 = sSplit.direcao2;
-          if (sSplit.numero) s.numero = sSplit.numero;
-          if (sSplit.andar) s.andar = sSplit.andar;
-          modified = true;
-        }
-      }
-    });
-  });
-  if (modified) {
-    try { safeSetStorage(STORAGE_KEYS.CLIENTES, JSON.stringify(db.clientes)); } catch(e){}
-  }
-  return modified;
-}
-window.normalizeAllClientAddresses = normalizeAllClientAddresses;
-
 function loadDatabase() {
   try {
     cleanupResidualLocalStorage();
@@ -3919,136 +5624,6 @@ function loadDatabase() {
 
     db.clientes = deduplicateAndFilter(rawClientes !== null ? JSON.parse(rawClientes) : (typeof INITIAL_EXCEL_DATABASE !== 'undefined' ? [...(INITIAL_EXCEL_DATABASE.clientes || [])] : []), 'clientes');
     db.contactos = deduplicateAndFilter(rawContactos !== null ? JSON.parse(rawContactos) : (typeof INITIAL_EXCEL_DATABASE !== 'undefined' ? [...(INITIAL_EXCEL_DATABASE.contactos || [])] : []), 'contactos');
-
-    // BLINDAGEM DE RESTAURAÇÃO: Garantir presença incondicional do Ministério da Cultura, Juventude e Desporto
-    if (typeof removeDeletedId === 'function') {
-      removeDeletedId('clientes', 'cli-1790076087901-132');
-      removeDeletedId('contactos', 'con-imp-066');
-      removeDeletedId('contactos', 'con-imp-067');
-      removeDeletedId('contactos', 'con-imp-068');
-      removeDeletedId('contactos', 'con-imp-069');
-    }
-    if (Array.isArray(db.clientes) && !db.clientes.some(c => c && c.id === 'cli-1790076087901-132')) {
-      const recoveredCulturaClient = {
-        id: "cli-1790076087901-132",
-        tipoCliente: "Estatal",
-        ministerio: "Ministério da Cultura, Juventude e Desporto",
-        secretariaEstado: "Ministério, Secretaria de Estado da Cultura, Secretaria de Estado do Desporto, Secretaria de Estado Adjunta e da Juventude e da Igualdade",
-        nome: "Ministério da Cultura, Juventude e Desporto",
-        contribuinte: "500000697",
-        direcao1: "Campus XXI, Avenida João XXI",
-        direcao2: "",
-        numero: "63",
-        andar: "",
-        codigoPostal: "1000-300",
-        localidade: "LISBOA",
-        pais: "Portugal",
-        telefone: "+351 213 927 600",
-        telemovel: "",
-        email: "gabinete.mcjd@mcjd.gov.pt",
-        website: "",
-        notas: "",
-        separadores: [
-          {
-            id: "sep-1790076087902-677",
-            tipoSeparador: "Ministério",
-            nomePersonalizado: "Ministra",
-            nome: "Ministério da Cultura, Juventude e Desporto",
-            contribuinte: "500000697",
-            direcao1: "Campus XXI, Avenida João XXI",
-            direcao2: "",
-            numero: "63",
-            andar: "",
-            codigoPostal: "1000-300",
-            localidade: "LISBOA",
-            pais: "Portugal",
-            telefone: "+351 213 927 600",
-            telemovel: "",
-            email: "gabinete.mcjd@mcjd.gov.pt",
-            website: ""
-          },
-          {
-            id: "sep-1790076087902-246",
-            tipoSeparador: "Secretaria de Estado da Cultura",
-            nomePersonalizado: "Secretário de Estado da Cultura",
-            nome: "Secretaria de Estado da Cultura",
-            contribuinte: "000000000",
-            direcao1: "Campus XXI, Avenida João XXI",
-            direcao2: "",
-            numero: "63",
-            andar: "",
-            codigoPostal: "1000-300",
-            localidade: "LISBOA",
-            pais: "Portugal",
-            telefone: "+351 213 614 500",
-            telemovel: "",
-            email: "gabinete.secul@mcjd.gov.pt",
-            website: ""
-          },
-          {
-            id: "sep-1790076087902-886",
-            tipoSeparador: "Secretaria de Estado do Desporto",
-            nomePersonalizado: "Secretário de Estado do Desporto",
-            nome: "Secretaria de Estado do Desporto",
-            contribuinte: "000000000",
-            direcao1: "Rua Rodrigo da Fonseca",
-            direcao2: "",
-            numero: "55",
-            andar: "",
-            codigoPostal: "1250-190",
-            localidade: "Lisboa",
-            pais: "Portugal",
-            telefone: "+351 213 927 600",
-            telemovel: "",
-            email: "gabinete.sed@mcjd.gov.pt",
-            website: "https://ipdj.gov.pt"
-          },
-          {
-            id: "sep-1790076087902-417",
-            tipoSeparador: "Secretaria de Estado Adjunta e da Juventude e da Igualdade",
-            nomePersonalizado: "Secretária de estado adjunta e da juventude e da igualdade",
-            nome: "Secretaria de Estado Adjunta e da Juventude e da Igualdade",
-            contribuinte: "000000000",
-            direcao1: "Rua Rodrigo da Fonseca",
-            direcao2: "",
-            numero: "55",
-            andar: "",
-            codigoPostal: "1250-190",
-            localidade: "Lisboa",
-            pais: "Portugal",
-            telefone: "+351 213 927 600",
-            telemovel: "",
-            email: "gabinete.seaji@mcjd.gov.pt",
-            website: "https://ipdj.gov.pt"
-          }
-        ],
-        userId: "usr-admin-001",
-        comercialAtribuidoId: "usr-admin-001",
-        comercialAtribuidoNome: "José Centúrio",
-        createdAt: "2026-09-22T11:21:27.902Z",
-        updatedAt: "2026-09-23T19:34:07.901Z",
-        comercial: "José Centúrio",
-        createdById: "usr-admin-001"
-      };
-      db.clientes.push(recoveredCulturaClient);
-      try { safeSetStorage(STORAGE_KEYS.CLIENTES, JSON.stringify(db.clientes)); } catch(e){}
-    }
-    const recoveredContactsList = [
-      { id: "con-imp-066", clienteId: "cli-1790076087901-132", nome: "Margarida", apelido: "Balseiro Lopes", cargo: "Ministra", telefone: "+351 213 927 600", telemovel: "", email: "gabinete.mcjd@mcjd.gov.pt", notas: "", createdAt: "2026-07-31T16:30:00.000Z", subTabIndex: 0, userId: "usr-admin-001", comercialAtribuidoId: "usr-admin-001" },
-      { id: "con-imp-067", clienteId: "cli-1790076087901-132", nome: "Alberto", apelido: "Santos", cargo: "Secretario de estado de cultura", telefone: "+351 213 614 500", telemovel: "", email: "gabinete.secul@mcjd.gov.pt", notas: "", createdAt: "2026-07-31T16:30:00.000Z", subTabIndex: 1, userId: "usr-admin-001", comercialAtribuidoId: "usr-admin-001" },
-      { id: "con-imp-068", clienteId: "cli-1790076087901-132", nome: "Pedro", apelido: "Dias", cargo: "Secretario de estado de deporte", telefone: "+351 213 927 600", telemovel: "", email: "gabinete.sed@mcjd.gov.pt", notas: "", createdAt: "2026-07-31T16:30:00.000Z", subTabIndex: 2, userId: "usr-admin-001", comercialAtribuidoId: "usr-admin-001", updatedAt: "2026-09-22T11:26:12.106Z" },
-      { id: "con-imp-069", clienteId: "cli-1790076087901-132", nome: "Carla", apelido: "Rodrigues", cargo: "Secretaria de estado adjunta e da juventude e da igualdade", telefone: "+351 213 927 600", telemovel: "", email: "gabinete.seaji@mcjd.gov.pt", notas: "", createdAt: "2026-07-31T16:30:00.000Z", userId: "usr-admin-001", comercialAtribuidoId: "usr-admin-001", subTabIndex: 3 }
-    ];
-    let anyContactAdded = false;
-    recoveredContactsList.forEach(rc => {
-      if (!db.contactos.some(c => c && c.id === rc.id)) {
-        db.contactos.push(rc);
-        anyContactAdded = true;
-      }
-    });
-    if (anyContactAdded) {
-      try { safeSetStorage(STORAGE_KEYS.CONTACTOS, JSON.stringify(db.contactos)); } catch(e){}
-    }
     let parsedProjs = rawProjetos !== null ? JSON.parse(rawProjetos) : [];
     if (typeof INITIAL_EXCEL_DATABASE !== 'undefined' && Array.isArray(INITIAL_EXCEL_DATABASE.projetos)) {
       INITIAL_EXCEL_DATABASE.projetos.forEach(pInit => {
@@ -4185,7 +5760,7 @@ function loadDatabase() {
     // Eliminação permanente e irreversível de quaisquer projetos fictícios antigos
     purgeGeneratedMockData();
 
-    // CORRECCAO: Removido saveDatabase() do arranque para nao sobrescrever o servidor com dados locais
+    saveDatabase();
   } catch (err) {
     console.error('Erro ao carregar base de dados:', err);
     if (typeof INITIAL_EXCEL_DATABASE !== 'undefined') {
@@ -4194,7 +5769,7 @@ function loadDatabase() {
       db.projetos = filterDeletedProjects([...(INITIAL_EXCEL_DATABASE.projetos || [])]);
       db.interacoes = [];
       db.interacoesProjetos = [];
-      // CORRECCAO: Removido saveDatabase() do fallback para nao sobrescrever o servidor
+      saveDatabase();
     }
   }
 }
@@ -4222,7 +5797,6 @@ function restoreInitialExcelDatabase() {
   if (confirm(`Tem a certeza que deseja carregar a Base de Dados inicial importada dos ficheiros Excel (${totalCli} Clientes e ${totalCon} Contactos)?`)) {
     clearDeletedRegistry();
     loadInitialExcelData();
-    normalizeAllClientAddresses();
     renderDatabaseOverview();
     if (db.clientes.length > 0) loadClientIntoForm(db.clientes[0].id);
   }
@@ -4493,43 +6067,23 @@ function _saveDatabaseInternal(triggerCloudSync = true) {
 
     if (typeof saveDeletedRegistry === 'function') saveDeletedRegistry();
 
-    // Gravação e propagação imediata no Servidor Central e em todos os nós da rede
+    // Gravação assíncrona imediata no ficheiro local data/db.json caso o servidor desktop esteja ativo
     try {
       if (typeof fetch === 'function') {
         const fullDbPayload = JSON.stringify({
-          ...db,
-          _deletedRegistry: (typeof deletedRegistry !== 'undefined' ? deletedRegistry : null),
-          _lastSavedAt: new Date().toISOString()
+          clientes: db.clientes || [],
+          contactos: db.contactos || [],
+          projetos: db.projetos || [],
+          interacoes: db.interacoes || [],
+          interacoesProjetos: db.interacoesProjetos || [],
+          orcamentos: db.orcamentos || [],
+          usuarios: db.usuarios || []
         }, null, 2);
-
-        const serverOrigin = (typeof window !== 'undefined' && window.location && window.location.origin && !window.location.origin.startsWith('file:') && !window.location.origin.startsWith('null')) ? window.location.origin : '';
-        
-        const CENTRAL_SERVER_URL = 'https://sigec-pro-app.onrender.com';
-
-        // 1. Enviar SEMPRE para o servidor central (base de dados principal de todos os utilizadores)
-        fetch(CENTRAL_SERVER_URL + '/api/save-db-json', {
+        fetch('http://127.0.0.1:59124/api/save-db-json', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: fullDbPayload
-        }).catch(function() {});
-
-        // 2. Enviar também para o servidor da janela atual (caso diferente do central)
-        if (serverOrigin && serverOrigin !== CENTRAL_SERVER_URL) {
-          fetch(serverOrigin + '/api/save-db-json', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: fullDbPayload
-          }).catch(function() {});
-        }
-
-        // 3. Enviar também para a porta local padrão da bridge C#/Node
-        if (!serverOrigin || !serverOrigin.includes(':59124')) {
-          fetch('http://127.0.0.1:59124/api/save-db-json', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: fullDbPayload
-          }).catch(function() {});
-        }
+        }).catch(() => {});
       }
     } catch(eDisk) {}
 
@@ -4795,17 +6349,6 @@ window.handleFullServerSync = handleFullServerSync;
 let isSyncingToHuggingFace = false;
 
 async function syncDatabaseToHuggingFace(silent = false, force = false) {
-  // GUARDA ANTI-REGRESSÃO: Impedir envio de base local truncada com menos de 70 clientes
-  if (Array.isArray(db.clientes) && db.clientes.length < 70) {
-    console.warn('[SIGEC-Pro] Proteção anti-regressão: local tem apenas ' + db.clientes.length + ' clientes. Abortando envio para proteger base de dados remota.');
-    if (typeof loadDatabaseFromHuggingFace === 'function') {
-      await loadDatabaseFromHuggingFace(true, true);
-    }
-    if (Array.isArray(db.clientes) && db.clientes.length < 70) {
-      return false;
-    }
-  }
-
   const cfg = getHuggingFaceConfig();
   const token = (cfg.token || DEFAULT_SYSTEM_HF_TOKEN).trim();
   const space = (cfg.space || DEFAULT_SYSTEM_HF_SPACE || "josecenturio/SIGEC-Pro").trim();
@@ -4817,6 +6360,15 @@ async function syncDatabaseToHuggingFace(silent = false, force = false) {
       await new Promise(r => setTimeout(r, 200));
       waitCount++;
     }
+  }
+
+  // BLINDAGEM CONTRA REGRESSÃO DE DADOS:
+  // Nunca enviar à nuvem se a base local estiver incompleta (mínimo 50 clientes e 3 utilizadores)
+  const numClientes = (typeof db !== 'undefined' && Array.isArray(db.clientes)) ? db.clientes.length : 0;
+  const numUsuarios = (typeof db !== 'undefined' && Array.isArray(db.usuarios)) ? db.usuarios.length : 0;
+  if (numClientes < 50 || numUsuarios < 3) {
+    console.warn(`[SIGEC-Pro Sync Shield] Envio para Hugging Face bloqueado para proteção: base local incompleta (${numClientes} clientes, ${numUsuarios} utilizadores).`);
+    return false;
   }
 
   isSyncingToHuggingFace = true;
@@ -4831,22 +6383,7 @@ async function syncDatabaseToHuggingFace(silent = false, force = false) {
 
     let pushSuccess = false;
 
-    // PRIORIDADE 1: Servidor Web/Node local ou de rede da aplicação
-    try {
-      const serverOrigin = (typeof window !== 'undefined' && window.location && window.location.origin && !window.location.origin.startsWith('file:')) ? window.location.origin : '';
-      if (serverOrigin) {
-        const srvPushRes = await fetch(`${serverOrigin}/api/save-db-json`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: dbString
-        }).catch(() => null);
-        if (srvPushRes && srvPushRes.ok) {
-          pushSuccess = true;
-        }
-      }
-    } catch(eSrv) {}
-
-    // PRIORIDADE 1B: Bridge local nativo C# (grava localmente e envia para Nuvem)
+    // PRIORIDADE 1: Bridge local nativo C# (grava localmente e envia para Nuvem)
     try {
       const bridgePushRes = await fetch('http://127.0.0.1:59124/api/push-cloud-db', {
         method: 'POST',
@@ -4891,7 +6428,8 @@ async function syncDatabaseToHuggingFace(silent = false, force = false) {
         const spacePayload = {
           summary: `[SIGEC-Pro] Sincronização de dados Space - ${new Date().toISOString()}`,
           files: [
-            { path: pathInSpace, content: contentBase64, encoding: 'base64' }
+            { path: 'data/db.json', content: contentBase64, encoding: 'base64' },
+            { path: 'Programa SIGEC-Pro/data/db.json', content: contentBase64, encoding: 'base64' }
           ]
         };
 
@@ -5024,16 +6562,21 @@ function mergeCloudDatabaseSafely(cloudData) {
         const localTs = new Date(localItem.updatedAt || localItem.createdAt || 0).getTime();
         const cloudTs = new Date(cloudItem.updatedAt || cloudItem.createdAt || 0).getTime();
 
-        // Para utilizadores: se a nuvem indicar active === true e localmente estiver inativo, a aprovação do Administrador prevalece sempre
-        const isUserActivation = (localArrayName === 'usuarios' && cloudItem.active === true && localItem.active !== true);
-
-        if (isUserActivation || cloudTs >= localTs) {
-          // Versão da nuvem é mais recente ou confirma ativação pelo Administrador
-          localArr[index] = { ...localItem, ...cloudItem };
-          if (isUserActivation) {
-            localArr[index].active = true;
-            localArr[index].updatedAt = cloudItem.updatedAt || new Date().toISOString();
+        // Regra especial e prioritária para Utilizadores: Se a nuvem tem a conta Ativa, prevalece sempre!
+        if (localArrayName === 'usuarios') {
+          if (cloudItem.active === true && localItem.active === false) {
+            localArr[index] = { ...localItem, ...cloudItem, active: true };
+            hasRemoteChangesApplied = true;
+            return;
+          } else if (localItem.active === true && cloudItem.active === false) {
+            hasLocalNewerChanges = true;
+            return;
           }
+        }
+
+        if (cloudTs > localTs) {
+          // Versão da nuvem é mais recente
+          localArr[index] = { ...localItem, ...cloudItem };
           hasRemoteChangesApplied = true;
         } else if (localTs > cloudTs) {
           // Versão local é mais recente: marcar para envio à nuvem
@@ -5042,34 +6585,22 @@ function mergeCloudDatabaseSafely(cloudData) {
       }
     });
 
-    // C. Purgar APENAS itens que constem no Registo Oficial de Eliminados
-    // Nenhum cliente, contacto, projeto ou utilizador pode ser apagado automaticamente por tempo!
-    // Só é removido se o utilizador/administrador o tiver eliminado expressamente (constando em deletedRegistry).
+    // C. Purgar itens locais que foram removidos na nuvem com blindagem absoluta
+    const now = Date.now();
     const finalClean = localArr.filter(localItem => {
       if (!localItem || !localItem[idProp]) return false;
       const id = String(localItem[idProp]).trim();
-
-      // 1. Se foi expressamente eliminado por um utilizador (consta no deletedRegistry), purgar
-      if (typeof isDeletedId === 'function' && isDeletedId(localArrayName, id)) {
-        hasRemoteChangesApplied = true;
-        return false;
-      }
-      if (localArrayName === 'usuarios') {
-        const isUserDel = (typeof isDeletedId === 'function' && (
-          (localItem.email && isDeletedId('usuarios', localItem.email)) ||
-          (localItem.nome && isDeletedId('usuarios', localItem.nome))
-        ));
-        if (isUserDel) {
-          hasRemoteChangesApplied = true;
-          return false;
-        }
-      }
-
-      // 2. Se consta na nuvem, manter
       const inCloud = cloudArr.some(c => c && String(c[idProp]).trim() === id);
       if (inCloud) return true;
 
-      // 3. Se existe localmente mas não consta na nuvem e NÃO foi eliminado: PRESERVAR SEMPRE e re-sincronizar para a nuvem!
+      // REGRA DE OURO DA PRESERVAÇÃO ABSOLUTA DE DADOS:
+      // Um item local NUNCA é purgado automaticamente por mera ausência na nuvem!
+      // Só é descartado se constar explicitamente no registo de eliminados (ação humana deliberada).
+      if (typeof isDeletedId === 'function' && isDeletedId(localArrayName, id)) {
+        return false;
+      }
+
+      // Se não consta na nuvem e não foi apagado pelo utilizador, é um registo local legítimo: preservar e marcar para envio
       hasLocalNewerChanges = true;
       return true;
     });
@@ -5086,22 +6617,6 @@ function mergeCloudDatabaseSafely(cloudData) {
   
   if (Array.isArray(cloudData.usuarios) && cloudData.usuarios.length > 0) {
     mergeEntityArray('usuarios');
-
-    // Harmonização incondicional por email para utilizadores ativados na nuvem
-    const cloudActiveEmails = new Set(
-      cloudData.usuarios
-        .filter(u => u && u.active === true && u.email)
-        .map(u => u.email.trim().toLowerCase())
-    );
-    if (cloudActiveEmails.size > 0 && Array.isArray(db.usuarios)) {
-      db.usuarios.forEach(u => {
-        if (u && u.email && cloudActiveEmails.has(u.email.trim().toLowerCase()) && u.active !== true) {
-          u.active = true;
-          u.updatedAt = new Date().toISOString();
-          hasRemoteChangesApplied = true;
-        }
-      });
-    }
   }
 
   // Sincronização e propagação automática de configurações centrais (SMTP, alertas, app password)
@@ -5187,21 +6702,13 @@ async function loadDatabaseFromHuggingFace(silent = false, force = false) {
   try {
     let rawText = null;
 
-    // Prioridade 1: Leitura do Servidor Central (Instantâneo) e Fallback para a Nuvem Hugging Face
-    const serverOrigin = (typeof window !== 'undefined' && window.location && window.location.origin && !window.location.origin.startsWith('file:') && !window.location.origin.startsWith('null')) ? window.location.origin : '';
-    
-    const dbEndpoints = [];
-    if (serverOrigin) {
-      dbEndpoints.push(`${serverOrigin}/api/db-json?_t=${Date.now()}_${Math.random()}`);
-      dbEndpoints.push(`${serverOrigin}/data/db.json?_t=${Date.now()}_${Math.random()}`);
-    }
-    if (!serverOrigin || !serverOrigin.includes(':59124')) {
-      dbEndpoints.push(`http://127.0.0.1:59124/api/db-json?_t=${Date.now()}_${Math.random()}`);
-      dbEndpoints.push(`http://127.0.0.1:59124/data/db.json?_t=${Date.now()}_${Math.random()}`);
-    }
-    dbEndpoints.push(`https://huggingface.co/datasets/${space}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`);
-    dbEndpoints.push(`https://huggingface.co/spaces/${space}/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`);
-    dbEndpoints.push(`https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}`);
+    // Prioridade de leitura: Space Estático público (CORS livre) -> Raw Space -> Raw Dataset
+    const dbEndpoints = [
+      `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`,
+      `https://huggingface.co/spaces/${space}/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
+      `https://huggingface.co/spaces/${space}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`,
+      `https://huggingface.co/datasets/${space}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`
+    ];
 
     const headers = { 'Cache-Control': 'no-cache, no-store' };
     if (token) headers['Authorization'] = `Bearer ${token}`;
@@ -5299,8 +6806,7 @@ window.syncRegisteredUsersFromHuggingFace = syncRegisteredUsersFromHuggingFace;
 
 async function autoSyncServerOnStartup() {
   try {
-    // FORCE = true: Carregar incondicionalmente a base de dados oficial no arranque
-    await loadDatabaseFromHuggingFace(true, true);
+    await loadDatabaseFromHuggingFace(true);
     await syncRegisteredUsersFromHuggingFace(true);
   } catch (e) {
     console.warn('[SIGEC-Pro] Aviso no autoSyncServerOnStartup:', e);
@@ -5309,64 +6815,30 @@ async function autoSyncServerOnStartup() {
 window.autoSyncServerOnStartup = autoSyncServerOnStartup;
 
 function initPeriodicBackgroundSync() {
-  const SYNC_INTERVAL_MS = 10 * 1000; // Sincronização abrangente na nuvem a cada 10 segundos
-  let _lastKnownServerVersion = 0;
-
-  // 1. Verificação ultra-rápida a cada 3.5 segundos no Servidor Central (Multi-Computador em tempo real)
-  const pollServerVersion = async () => {
-    try {
-      const serverOrigin = (typeof window !== 'undefined' && window.location && window.location.origin && !window.location.origin.startsWith('file:') && !window.location.origin.startsWith('null')) ? window.location.origin : '';
-      const versionUrls = [];
-      if (serverOrigin) versionUrls.push(`${serverOrigin}/api/db-version?_t=${Date.now()}`);
-      if (!serverOrigin || !serverOrigin.includes(':59124')) versionUrls.push(`http://127.0.0.1:59124/api/db-version?_t=${Date.now()}`);
-
-      for (const vUrl of versionUrls) {
-        try {
-          const res = await fetch(vUrl, { cache: 'no-store' }).catch(() => null);
-          if (res && res.ok) {
-            const data = await res.json().catch(() => null);
-            if (data && data.version) {
-              if (_lastKnownServerVersion && data.version > _lastKnownServerVersion) {
-                // Outro computador atualizou a base de dados no servidor!
-                _lastKnownServerVersion = data.version;
-                await loadDatabaseFromHuggingFace(true, true);
-              } else if (!_lastKnownServerVersion) {
-                _lastKnownServerVersion = data.version;
-              }
-              break;
-            }
-          }
-        } catch(e) {}
-      }
-    } catch(err) {}
-  };
-
-  setInterval(pollServerVersion, 3500);
-
-  // 2. Sincronização periódica standard
+  const SYNC_INTERVAL_MS = 10 * 1000; // Sincronização automática em nuvem a cada 10 segundos
   setInterval(async () => {
     try {
       await loadDatabaseFromHuggingFace(true);
     } catch (e) {}
   }, SYNC_INTERVAL_MS);
 
-  // 3. Sincronização imediata ao focar na janela do SIGEC-Pro ou alternar abas
+  // Sincronização imediata ao focar na janela do SIGEC-Pro
   if (typeof window !== 'undefined' && window.addEventListener) {
     window.addEventListener('focus', async () => {
       try {
-        await loadDatabaseFromHuggingFace(true, true);
+        await loadDatabaseFromHuggingFace(true);
       } catch (e) {}
     });
     document.addEventListener('visibilitychange', async () => {
       if (document.visibilityState === 'visible') {
         try {
-          await loadDatabaseFromHuggingFace(true, true);
+          await loadDatabaseFromHuggingFace(true);
         } catch (e) {}
       }
     });
   }
 
-  console.info('[SIGEC-Pro] Sincronização Multi-Computador em tempo real ativa (Heartbeat 3.5s + Nuvem 10s + Foco).');
+  console.info('[SIGEC-Pro] Sincronização Cloud-First ativa em tempo real (20s + Foco).');
 }
 window.initPeriodicBackgroundSync = initPeriodicBackgroundSync;
 
@@ -5612,20 +7084,37 @@ let currentUserCustomHex = '#0284c7';
 
 function getActiveLoggedInUser() {
   ensureUsersInitialized();
-  const activeUserId = (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('sigec_pro_active_user_id')) || 
-                       (typeof localStorage !== 'undefined' && localStorage.getItem('sigec_pro_active_user_id')) || 
-                       'usr-admin-001';
-  return (Array.isArray(db.usuarios) ? db.usuarios.find(u => u && u.id === activeUserId) : null) ||
-         (Array.isArray(db.usuarios) ? db.usuarios.find(u => u && (u.role === 'admin' || u.id === 'usr-admin-001')) : null);
+  const isAuth = (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('sigec_pro_authenticated') === 'true');
+  if (!isAuth) return null;
+
+  const activeUserId = sessionStorage.getItem('sigec_pro_active_user_id');
+  const activeUserEmail = sessionStorage.getItem('sigec_pro_active_user_email');
+  const users = (typeof db !== 'undefined' && Array.isArray(db.usuarios)) ? db.usuarios : [];
+
+  let user = null;
+  if (activeUserId) {
+    user = users.find(u => u && u.id === activeUserId);
+  }
+  if (!user && activeUserEmail) {
+    user = users.find(u => u && u.email && u.email.trim().toLowerCase() === activeUserEmail.trim().toLowerCase());
+  }
+
+  // NUNCA fazer fallback para administrador se o utilizador logado for outro
+  return user;
 }
 
 function updateHeaderActiveUserBadge() {
-  if (typeof updateAdminNavButtons === 'function') updateAdminNavButtons();
   const user = getActiveLoggedInUser();
-  if (!user) return;
-
   const nameEl = document.getElementById('headerActiveUserDisplayName');
   const roleEl = document.getElementById('headerActiveUserRoleName');
+
+  if (!user) {
+    if (nameEl) nameEl.textContent = 'SIGEC-Pro';
+    if (roleEl) roleEl.textContent = 'Não autenticado';
+    if (typeof updateAdminNavButtons === 'function') updateAdminNavButtons();
+    return;
+  }
+
   if (nameEl) nameEl.textContent = user.nome || 'Utilizador';
   if (roleEl) {
     if (user.role === 'admin' || user.id === 'usr-admin-001') {
@@ -5634,6 +7123,8 @@ function updateHeaderActiveUserBadge() {
       roleEl.textContent = user.cargo || (typeof t === 'function' ? t('profile_badge_user') : 'Utilizador');
     }
   }
+
+  if (typeof updateAdminNavButtons === 'function') updateAdminNavButtons();
 
   // Carregar tema personalizado do utilizador
   const savedTheme = user.theme || localStorage.getItem('sigec_pro_user_theme_' + user.id) || 'default_blue';
@@ -7229,6 +8720,7 @@ function initFormListeners() {
 
 function handleTipoClienteChange() {
   const tipoSelect = document.getElementById('tipoCliente');
+  if (!tipoSelect) return;
   const estatalContainer = document.getElementById('estatalFieldsContainer');
   const ministerioInput = document.getElementById('ministerio');
   const estatalWrapper = document.getElementById('estatalSeparadoresWrapper');
@@ -7569,7 +9061,7 @@ function renderEstatalSeparadores(targetLang = null) {
         <!-- Direção / Morada -->
         <div class="form-group col-8">
           <label data-i18n="client_address1_label">${t('client_address1_label', 'Direção (Linha 1)', currentLang)}</label>
-          <input type="text" class="form-control" value="${escapeHtmlAttr(activeSep.direcao1 || '')}" placeholder="${t('client_placeholder_address1', 'Rua, Avenida, Praça...', currentLang)}" oninput="syncSeparadorField(${activeEstatalSeparadorIndex}, 'direcao1', this.value)" onblur="handleSeparadorDirecaoBlur(${activeEstatalSeparadorIndex})">
+          <input type="text" class="form-control" value="${escapeHtmlAttr(activeSep.direcao1 || '')}" placeholder="${t('client_placeholder_address1', 'Rua, Avenida, Praça...', currentLang)}" oninput="syncSeparadorField(${activeEstatalSeparadorIndex}, 'direcao1', this.value)">
         </div>
 
         <div class="form-group col-4">
@@ -7665,44 +9157,6 @@ function handleSeparadorCustomNameChange(index, value) {
   renderEstatalSeparadores();
 }
 
-
-function handleSeparadorDirecaoBlur(index) {
-  if (!currentEstatalSeparadores || !currentEstatalSeparadores[index]) return;
-  const sep = currentEstatalSeparadores[index];
-  if (!sep.direcao1) return;
-  if (typeof smartSplitAddress === 'function') {
-    const res = smartSplitAddress(sep.direcao1, sep.direcao2, sep.numero, sep.andar);
-    if (res.direcao1 !== sep.direcao1 || res.direcao2 !== (sep.direcao2 || '') || (res.numero && res.numero !== (sep.numero || ''))) {
-      sep.direcao1 = res.direcao1;
-      if (res.direcao2) sep.direcao2 = res.direcao2;
-      if (res.numero) sep.numero = res.numero;
-      if (res.andar) sep.andar = res.andar;
-      markFormDirty();
-      renderEstatalSeparadores();
-    }
-  }
-}
-window.handleSeparadorDirecaoBlur = handleSeparadorDirecaoBlur;
-
-function handleClientDirecaoBlur() {
-  const d1El = document.getElementById('clientDirecao1');
-  const d2El = document.getElementById('clientDirecao2');
-  const numEl = document.getElementById('clientNumero');
-  const andarEl = document.getElementById('clientAndar');
-  if (!d1El || !d1El.value) return;
-
-  if (typeof smartSplitAddress === 'function') {
-    const res = smartSplitAddress(d1El.value, d2El ? d2El.value : '', numEl ? numEl.value : '', andarEl ? andarEl.value : '');
-    if (res.direcao1 !== d1El.value || (res.direcao2 && (!d2El || res.direcao2 !== d2El.value))) {
-      d1El.value = res.direcao1;
-      if (d2El && res.direcao2) d2El.value = res.direcao2;
-      if (numEl && res.numero) numEl.value = res.numero;
-      if (andarEl && res.andar) andarEl.value = res.andar;
-    }
-  }
-}
-window.handleClientDirecaoBlur = handleClientDirecaoBlur;
-
 function syncSeparadorField(index, fieldName, value) {
   if (!currentEstatalSeparadores[index]) return;
   currentEstatalSeparadores[index][fieldName] = value;
@@ -7766,14 +9220,10 @@ function isItemOwnedByTargetUser(item, targetUser) {
   var targetNome = (targetUser.nome || '').toLowerCase().trim();
   var targetNorm = typeof normalizeText === 'function' ? normalizeText(targetUser.nome || '') : targetNome;
 
-  // Cada utilizador (incluindo Chefias e Administradores) ve apenas os seus proprios registos no seu perfil.
-  // Consultas de outros utilizadores sao feitas exclusivamente atraves do separador Consultas.
   // 1. Identificadores explícitos no próprio item (Prioridade Estrita por ID)
   var cAtribId = String(item.comercialAtribuidoId || item.userId || item.criadoPorId || item.comercialId || item.comercial_id || '').trim();
   if (cAtribId && targetId) {
-    if (cAtribId === targetId) return true;
-    // Registos atribuidos ao Admin do sistema: apenas Chefia e Administradores podem ver (ja filtrado acima)
-    return false;
+    return cAtribId === targetId;
   }
 
   // 2. Correspondência por Nome Completo Exato (Apenas se não houver ID explícito)
@@ -7836,23 +9286,13 @@ window.isChildOwnedByTargetUser = isChildOwnedByTargetUser;
 
 function getUserScopedItems(items) {
   if (!Array.isArray(items)) return [];
-  // Determinar o utilizador ativo atual
-  var activeUser = null;
-  try {
-    if (typeof getActiveUser === 'function') activeUser = getActiveUser();
-    else if (typeof db !== 'undefined' && db._activeUserId && Array.isArray(db.usuarios)) {
-      activeUser = db.usuarios.find(function(u) { return u && u.id === db._activeUserId; }) || null;
-    }
-  } catch(e) {}
+  ensureUsersInitialized();
+  var activeUserId = sessionStorage.getItem('sigec_pro_active_user_id') || 'usr-admin-001';
+  var activeUser = (db.usuarios || []).find(function(u) { return u && u.id === activeUserId; }) || { id: activeUserId, nome: 'Utilizador', role: 'user' };
 
-  // Sem utilizador ativo: devolve tudo (arranque da app)
-  if (!activeUser) return items.filter(Boolean);
-
-  // Todos os utilizadores (incluindo Chefia e Administradores) veem apenas os seus proprios registos
-  // Para ver registos de outros utilizadores, usar o separador Consultas
   return items.filter(function(item) {
     if (!item) return false;
-    return isItemOwnedByTargetUser(item, activeUser);
+    return isItemOwnedByTargetUser(item, activeUser) || isChildOwnedByTargetUser(item, activeUser);
   });
 }
 window.getUserScopedItems = getUserScopedItems;
@@ -7973,16 +9413,19 @@ function resetClientForm(skipConfirm = false) {
   activeEstatalSeparadorIndex = 0;
 
   localStorage.removeItem('sigec_pro_last_client_id');
-  document.getElementById('clientForm').reset();
+  const cForm = document.getElementById('clientForm');
+  if (cForm) cForm.reset();
   if (document.getElementById('clientWebsite')) document.getElementById('clientWebsite').value = '';
   const locEl = document.getElementById('clientLocalidade');
   if (locEl) { locEl.value = ''; locEl.style.minWidth = ''; }
   const paisEl = document.getElementById('clientPais');
   if (paisEl) { paisEl.value = ''; paisEl.style.minWidth = ''; }
-  document.getElementById('clientId').value = '';
+  const cIdEl = document.getElementById('clientId');
+  if (cIdEl) cIdEl.value = '';
   const proxElReset = document.getElementById('clientProximoContacto');
   if (proxElReset) proxElReset.value = '';
-  document.getElementById('btnDeleteClient').style.display = 'none';
+  const delBtn = document.getElementById('btnDeleteClient');
+  if (delBtn) delBtn.style.display = 'none';
 
   const activeUserId = sessionStorage.getItem('sigec_pro_active_user_id') || 'usr-admin-001';
   populateClientComercialOptions(activeUserId);
@@ -8206,7 +9649,7 @@ function refreshClientSubLists(clientId) {
   const key = getInactiveVisibilityKey(targetId, isEstatal ? currentActiveIdx : null);
   const showInactive = !!clientInactiveVisibilityState[key];
 
-  // Atualizar botão de ver/ocultar inativos
+  // Atualizar botÃ£o de ver/ocultar inativos
   const btnToggleInactive = document.getElementById('btnToggleInactiveContacts');
   const textToggleInactive = document.getElementById('textToggleInactiveContacts');
   const iconToggleInactive = document.getElementById('iconToggleInactiveContacts');
@@ -8973,7 +10416,7 @@ function renderAttachExistingContactList() {
   });
 
   if (filtered.length === 0) {
-    container.innerHTML = '<div style="text-align: center; color: #64748b; padding: 2rem;">Nenhum contacto corresponde à pesquisa.</div>';
+    container.innerHTML = '<div style="text-align: center; color: #64748b; padding: 2rem;">Nenhum contacto corresponde Ã  pesquisa.</div>';
     return;
   }
 
@@ -8995,7 +10438,7 @@ function renderAttachExistingContactList() {
       <div style="flex: 1; min-width: 220px;">
         <div style="font-weight: 700; color: #1e3a8a; font-size: 0.95rem;">
           ${escapeHtml(con.nome || '')} ${escapeHtml(con.apelido || '')}
-          ${isCurrentClient ? '<span class="badge badge-success" style="font-size: 0.7rem; margin-left: 6px;">Já neste Cliente</span>' : ''}
+          ${isCurrentClient ? '<span class="badge badge-success" style="font-size: 0.7rem; margin-left: 6px;">JÃ¡ neste Cliente</span>' : ''}
         </div>
         ${con.cargo ? `<div style="font-size: 0.8rem; color: #64748b;"><i class="fa-solid fa-briefcase"></i> ${escapeHtml(con.cargo)}</div>` : ''}
         <div style="font-size: 0.8rem; color: #475569; margin-top: 0.25rem; display: flex; gap: 0.8rem; flex-wrap: wrap;">
@@ -9022,13 +10465,13 @@ function executeAttachExistingContact(contactId) {
     : (document.getElementById('clientId')?.value || '');
 
   if (!targetClientId) {
-    showToast('Cliente não identificado.', 'danger');
+    showToast('Cliente nÃ£o identificado.', 'danger');
     alert('Por favor, selecione ou guarde primeiro o Cliente antes de associar contactos.');
     return;
   }
   const con = (db.contactos || []).find(c => c.id === contactId);
   if (!con) {
-    showToast('Contacto não encontrado.', 'danger');
+    showToast('Contacto nÃ£o encontrado.', 'danger');
     return;
   }
 
@@ -9393,8 +10836,6 @@ function saveClient(e) {
       const comercialUser = (db.usuarios || []).find(u => u.id === comercialId);
       const comercialNome = comercialUser ? comercialUser.nome : '';
 
-      const primarySplit = (typeof smartSplitAddress === 'function') ? smartSplitAddress(primarySep.direcao1, primarySep.direcao2, primarySep.numero, primarySep.andar) : { direcao1: primarySep.direcao1, direcao2: primarySep.direcao2, numero: primarySep.numero, andar: primarySep.andar };
-
       clientObj = {
         id,
         tipoCliente: 'Estatal',
@@ -9402,10 +10843,10 @@ function saveClient(e) {
         secretariaEstado: currentEstatalSeparadores.map(s => s.tipoSeparador === 'Outro' ? (cleanStr(s.nomePersonalizado) || 'Outro') : s.tipoSeparador).join(', '),
         nome: cleanStr(primarySep.nome),
         contribuinte: cleanStr(primarySep.contribuinte),
-        direcao1: primarySplit.direcao1 || cleanStr(primarySep.direcao1),
-        direcao2: primarySplit.direcao2 || cleanStr(primarySep.direcao2),
-        numero: primarySplit.numero || cleanStr(primarySep.numero),
-        andar: primarySplit.andar || cleanStr(primarySep.andar),
+        direcao1: cleanStr(primarySep.direcao1),
+        direcao2: cleanStr(primarySep.direcao2),
+        numero: cleanStr(primarySep.numero),
+        andar: cleanStr(primarySep.andar),
         codigoPostal: cleanStr(primarySep.codigoPostal),
         localidade: cleanStr(primarySep.localidade),
         pais: (typeof translateSystemTerm === 'function' ? translateSystemTerm(cleanStr(primarySep.pais) || 'Portugal', 'Português') : (cleanStr(primarySep.pais) || 'Portugal')),
@@ -9414,26 +10855,22 @@ function saveClient(e) {
         email: cleanStr(primarySep.email),
         website: cleanStr(primarySep.website),
         notas: notasVal,
-        separadores: currentEstatalSeparadores.map(s => {
-          if (!s) return s;
-          const sSplit = (typeof smartSplitAddress === 'function') ? smartSplitAddress(s.direcao1, s.direcao2, s.numero, s.andar) : { direcao1: s.direcao1, direcao2: s.direcao2, numero: s.numero, andar: s.andar };
-          return {
-            ...s,
-            nome: cleanStr(s.nome),
-            contribuinte: cleanStr(s.contribuinte),
-            direcao1: sSplit.direcao1 || cleanStr(s.direcao1),
-            direcao2: sSplit.direcao2 || cleanStr(s.direcao2),
-            numero: sSplit.numero || cleanStr(s.numero),
-            andar: sSplit.andar || cleanStr(s.andar),
-            codigoPostal: cleanStr(s.codigoPostal),
-            localidade: cleanStr(s.localidade),
-            pais: (typeof translateSystemTerm === 'function' ? translateSystemTerm(cleanStr(s.pais) || 'Portugal', 'Português') : (cleanStr(s.pais) || 'Portugal')),
-            telefone: cleanStr(s.telefone),
-            telemovel: cleanStr(s.telemovel),
-            email: cleanStr(s.email),
-            website: cleanStr(s.website)
-          };
-        }),
+        separadores: currentEstatalSeparadores.map(s => s ? {
+          ...s,
+          nome: cleanStr(s.nome),
+          contribuinte: cleanStr(s.contribuinte),
+          direcao1: cleanStr(s.direcao1),
+          direcao2: cleanStr(s.direcao2),
+          numero: cleanStr(s.numero),
+          andar: cleanStr(s.andar),
+          codigoPostal: cleanStr(s.codigoPostal),
+          localidade: cleanStr(s.localidade),
+          pais: (typeof translateSystemTerm === 'function' ? translateSystemTerm(cleanStr(s.pais) || 'Portugal', 'Português') : (cleanStr(s.pais) || 'Portugal')),
+          telefone: cleanStr(s.telefone),
+          telemovel: cleanStr(s.telemovel),
+          email: cleanStr(s.email),
+          website: cleanStr(s.website)
+        } : s),
         userId: comercialId,
         comercialAtribuidoId: comercialId,
         comercialAtribuidoNome: comercialNome,
@@ -9451,15 +10888,10 @@ function saveClient(e) {
         showToast('Atenção: o campo Contribuinte (NIF) está vazio. O cliente foi guardado sem NIF.', 'warning');
       }
 
-      const _rawD1 = document.getElementById('clientDirecao1') ? document.getElementById('clientDirecao1').value.trim() : '';
-      const _rawD2 = document.getElementById('clientDirecao2') ? document.getElementById('clientDirecao2').value.trim() : '';
-      const _rawNum = document.getElementById('clientNumero') ? document.getElementById('clientNumero').value.trim() : '';
-      const _rawAndar = document.getElementById('clientAndar') ? document.getElementById('clientAndar').value.trim() : '';
-      const _splitAddr = (typeof smartSplitAddress === 'function') ? smartSplitAddress(_rawD1, _rawD2, _rawNum, _rawAndar) : { direcao1: _rawD1, direcao2: _rawD2, numero: _rawNum, andar: _rawAndar };
-      const direcao1 = _splitAddr.direcao1;
-      const direcao2 = _splitAddr.direcao2;
-      const numero = _splitAddr.numero || _rawNum;
-      const andar = _splitAddr.andar || _rawAndar;
+      const direcao1 = document.getElementById('clientDirecao1') ? document.getElementById('clientDirecao1').value.trim() : '';
+      const direcao2 = document.getElementById('clientDirecao2') ? document.getElementById('clientDirecao2').value.trim() : '';
+      const numero = document.getElementById('clientNumero') ? document.getElementById('clientNumero').value.trim() : '';
+      const andar = document.getElementById('clientAndar') ? document.getElementById('clientAndar').value.trim() : '';
       const codigoPostal = document.getElementById('clientCodigoPostal') ? document.getElementById('clientCodigoPostal').value.trim() : '';
       const localidade = document.getElementById('clientLocalidade') ? document.getElementById('clientLocalidade').value.trim() : '';
       const _paisRaw = document.getElementById('clientPais') ? document.getElementById('clientPais').value.trim() : '';
@@ -9570,7 +11002,7 @@ function saveClient(e) {
     const targetUserObj = (db.usuarios || []).find(u => u.id === targetUserId);
     const targetUserName = targetUserObj ? targetUserObj.nome : '';
 
-    // Se for transferência de utilizador (ou nova atribuição comercial), traduzir o cliente e todos os dados vinculados para o idioma do novo utilizador
+    // Se for transferÃªncia de utilizador (ou nova atribuiÃ§Ã£o comercial), traduzir o cliente e todos os dados vinculados para o idioma do novo utilizador
     if (isTransfer || (existingIndex < 0 && targetUserId)) {
       if (typeof translateClientAndLinkedDataForUser === 'function') {
         translateClientAndLinkedDataForUser(clientObj, targetUserId);
@@ -9583,7 +11015,7 @@ function saveClient(e) {
     clientObj.comercial = targetUserName;
     clientObj.createdById = targetUserId;
 
-    // Atualizar no array db.clientes para garantir consistência e integridade
+    // Atualizar no array db.clientes para garantir consistÃªncia e integridade
     if (existingIndex >= 0) {
       db.clientes[existingIndex] = clientObj;
     }
@@ -9616,7 +11048,7 @@ function saveClient(e) {
       });
     }
 
-    // 3. Atualizar todos os Orçamentos do cliente
+    // 3. Atualizar todos os OrÃ§amentos do cliente
     if (Array.isArray(db.orcamentos)) {
       db.orcamentos.forEach(b => {
         if (b.clienteId === id || (b.cliente && clientObj.nome && b.cliente.toLowerCase().trim() === clientObj.nome.toLowerCase().trim())) {
@@ -9628,7 +11060,7 @@ function saveClient(e) {
       });
     }
 
-    // 4. Atualizar e MANTER integralmente todas as Interações do cliente e dos seus contactos
+    // 4. Atualizar e MANTER integralmente todas as InteraÃ§Ãµes do cliente e dos seus contactos
     if (Array.isArray(db.interacoes)) {
       db.interacoes.forEach(it => {
         if (it.clienteId === id || it.entidadeId === id || (it.contactoId && contactIds.has(it.contactoId))) {
@@ -9638,7 +11070,7 @@ function saveClient(e) {
       });
     }
 
-    // 5. Atualizar e MANTER integralmente todas as Interações de Projetos vinculados
+    // 5. Atualizar e MANTER integralmente todas as InteraÃ§Ãµes de Projetos vinculados
     if (Array.isArray(db.interacoesProjetos)) {
       db.interacoesProjetos.forEach(it => {
         if (it.clienteId === id || (it.projetoId && projectIds.has(it.projetoId))) {
@@ -9648,11 +11080,11 @@ function saveClient(e) {
       });
     }
 
-    // Se houve mudança de utilizador comercial, registar no histórico
+    // Se houve mudanÃ§a de utilizador comercial, registar no histÃ³rico
     if (isTransfer) {
       const oldUser = (db.usuarios || []).find(u => u.id === oldUserId);
       const oldName = oldUser ? oldUser.nome : oldUserId;
-      logUserActivity('Transferência de Cliente', `Cliente "${clientObj.nome}" transferido de ${oldName} para ${targetUserName || targetUserId} com todos os seus contactos, projetos, orçamentos e interaçÃµes.`);
+      logUserActivity('TransferÃªncia de Cliente', `Cliente "${clientObj.nome}" transferido de ${oldName} para ${targetUserName || targetUserId} com todos os seus contactos, projetos, orÃ§amentos e interaÃ§Ãµes.`);
     }
   }
   currentClientId = id;
@@ -9840,6 +11272,24 @@ function openContactModalForNew(forcedSubIndex = null) {
   if (extElReset) extElReset.value = '';
   document.getElementById('btnDeleteContact').style.display = 'none';
 
+  // Gerar ID antecipado para novo contacto para que contactos realizados adicionados fiquem 100% vinculados
+  const newContactId = generateId('con');
+  currentContactIdForModal = newContactId;
+  const cIdInput = document.getElementById('contactId');
+  if (cIdInput) cIdInput.value = newContactId;
+
+  const quickTextReset = document.getElementById('quickContactInteractionText');
+  if (quickTextReset) {
+    quickTextReset.value = '';
+    quickTextReset.style.height = 'auto';
+  }
+  const quickDateReset = document.getElementById('quickContactInteractionData');
+  if (quickDateReset) {
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    quickDateReset.value = now.toISOString().slice(0, 16);
+  }
+
   document.getElementById('contactModalTitle').innerHTML = currentClientId 
     ? '<i class="fa-solid fa-user-plus"></i> Novo Contacto do Cliente' 
     : '<i class="fa-solid fa-user-plus"></i> Novo Contacto';
@@ -9850,11 +11300,13 @@ function openContactModalForNew(forcedSubIndex = null) {
 }
 
 function openContactModalForEdit(contactId) {
-  const contact = db.contactos.find(c => c.id === contactId);
+  const contact = db.contactos.find(c => String(c.id).trim() === String(contactId).trim());
   if (!contact) return;
 
   currentContactIdForModal = contact.id;
-  document.getElementById('contactId').value = contact.id;
+  const cIdInput = document.getElementById('contactId');
+  if (cIdInput) cIdInput.value = contact.id;
+
   populateContactModalClientSelect(contact.clienteId || '');
   document.getElementById('contactNome').value = contact.nome || '';
   document.getElementById('contactApelido').value = contact.apelido || '';
@@ -9870,12 +11322,25 @@ function openContactModalForEdit(contactId) {
   const inativoLoad = document.getElementById('contactInativo');
   if (inativoLoad) inativoLoad.checked = !!contact.inativo;
 
+  const quickTextReset = document.getElementById('quickContactInteractionText');
+  if (quickTextReset) {
+    quickTextReset.value = '';
+    quickTextReset.style.height = 'auto';
+  }
+  const quickDateReset = document.getElementById('quickContactInteractionData');
+  if (quickDateReset) {
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    quickDateReset.value = now.toISOString().slice(0, 16);
+  }
+
   document.getElementById('btnDeleteContact').style.display = 'inline-flex';
   document.getElementById('contactModalTitle').innerHTML = '<i class="fa-solid fa-user-pen"></i> Editar Ficha de Contacto';
   document.getElementById('contactModal').classList.add('active');
 
-  // Renderizar interações deste contacto
-  const contactInteractions = (db.interacoes || []).filter(i => i.contactoId === contact.id);
+  // Renderizar interações deste contacto com correspondência exata
+  const targetCId = String(contact.id).trim();
+  const contactInteractions = (db.interacoes || []).filter(i => i && String(i.contactoId || '').trim() === targetCId);
   renderContactPersonInteractionsGrid(contactInteractions);
 }
 
@@ -9974,7 +11439,7 @@ function saveContact(e) {
 
   if (existingContactIndex >= 0) {
     const camposAlterados = [];
-    const camposLabel = { nome: 'Nome', apelido: 'Apelido', cargo: 'Cargo', email: 'Email', telefone: 'Telefone', telemovel: 'Telemóvel', notas: 'Notas', inativo: 'Inativo' };
+    const camposLabel = { nome: 'Nome', apelido: 'Apelido', cargo: 'Cargo', email: 'Email', telefone: 'Telefone', telemovel: 'TelemÃ³vel', notas: 'Notas', inativo: 'Inativo' };
     Object.keys(camposLabel).forEach(campo => {
       const valAnterior = (contactoAnterior[campo] || '').toString().trim();
       const valNovo = (contactObj[campo] || '').toString().trim();
@@ -9985,23 +11450,64 @@ function saveContact(e) {
 
     db.contactos[existingContactIndex] = contactObj;
     showToast('Contacto atualizado com sucesso!');
-    logUserActivity('Edição de Contacto', `Ficha do contacto "${contactObj.nome} ${contactObj.apelido || ''}" atualizada.`, {
-      acao: 'Edição',
+    logUserActivity('EdiÃ§Ã£o de Contacto', `Ficha do contacto "${contactObj.nome} ${contactObj.apelido || ''}" atualizada.`, {
+      acao: 'EdiÃ§Ã£o',
       ficha: 'Contacto',
       nome: `${contactObj.nome} ${contactObj.apelido || ''}`.trim(),
       email: contactObj.email || '',
       cargo: contactObj.cargo || '',
-      camposAlterados: camposAlterados.length > 0 ? camposAlterados : [{ campo: 'Ficheiro guardado', anterior: '', novo: 'Sem alteraçÃµes detetadas' }]
+      camposAlterados: camposAlterados.length > 0 ? camposAlterados : [{ campo: 'Ficheiro guardado', anterior: '', novo: 'Sem alteraÃ§Ãµes detetadas' }]
     });
   } else {
     db.contactos.push(contactObj);
     showToast('Contacto adicionado com sucesso!');
-    logUserActivity('Criação de Contacto', `Novo contacto "${contactObj.nome} ${contactObj.apelido || ''}" associado ao cliente.`, {
-      acao: 'Criação',
+    logUserActivity('CriaÃ§Ã£o de Contacto', `Novo contacto "${contactObj.nome} ${contactObj.apelido || ''}" associado ao cliente.`, {
+      acao: 'CriaÃ§Ã£o',
       ficha: 'Contacto',
       nome: `${contactObj.nome} ${contactObj.apelido || ''}`.trim(),
       email: contactObj.email || '',
       cargo: contactObj.cargo || ''
+    });
+  }
+
+  // Gravação automática de registo de contacto pendente (caso o utilizador tenha escrito texto e clicado diretamente em 'Guardar Alterações')
+  const pendingQuickTextEl = document.getElementById('quickContactInteractionText');
+  const pendingQuickText = pendingQuickTextEl ? pendingQuickTextEl.value.trim() : '';
+  if (pendingQuickText) {
+    if (!db.interacoes) db.interacoes = [];
+    const quickDateVal = document.getElementById('quickContactInteractionData')?.value;
+    const nowQuick = new Date();
+    nowQuick.setMinutes(nowQuick.getMinutes() - nowQuick.getTimezoneOffset());
+    const finalQuickDate = quickDateVal || nowQuick.toISOString().slice(0, 16);
+    const newQuickId = generateId('cpi');
+    
+    const newIntObj = {
+      id: newQuickId,
+      contactoId: String(id).trim(),
+      clienteId: selectedClienteId || null,
+      separadorId: assignedSeparadorId || null,
+      subTabIndex: selectedClienteId ? finalSubTabIndex : null,
+      data: finalQuickDate,
+      descricao: pendingQuickText,
+      createdAt: new Date().toISOString()
+    };
+    db.interacoes.push(newIntObj);
+
+    pendingQuickTextEl.value = '';
+    pendingQuickTextEl.style.height = 'auto';
+  }
+
+  // Sincronização em cascata: garantir que todas as interações deste contacto têm clienteId, subTabIndex e separadorId atualizados
+  if (Array.isArray(db.interacoes)) {
+    const targetCIdStr = String(id).trim();
+    db.interacoes.forEach(intr => {
+      if (intr && String(intr.contactoId || '').trim() === targetCIdStr) {
+        intr.clienteId = selectedClienteId || null;
+        intr.subTabIndex = selectedClienteId ? finalSubTabIndex : null;
+        if (assignedSeparadorId) {
+          intr.separadorId = assignedSeparadorId;
+        }
+      }
     });
   }
 
@@ -10025,14 +11531,15 @@ function saveContact(e) {
 window.saveContact = saveContact;
 function deleteContactInline(contactId) {
   if (confirm('Tem a certeza que deseja apagar este contacto?')) {
-    addDeletedId('contactos', contactId);
-    const contactInteractions = (db.interacoes || []).filter(i => i.contactoId === contactId);
+    const targetCId = String(contactId).trim();
+    addDeletedId('contactos', targetCId);
+    const contactInteractions = (db.interacoes || []).filter(i => i && String(i.contactoId || '').trim() === targetCId);
     contactInteractions.forEach(i => addDeletedId('interacoes', i.id));
 
-    const targetContact = (db.contactos || []).find(c => c.id === contactId);
+    const targetContact = (db.contactos || []).find(c => c && String(c.id).trim() === targetCId);
     const affectedClientId = targetContact ? targetContact.clienteId : null;
-    db.contactos = (db.contactos || []).filter(c => c.id !== contactId);
-    db.interacoes = (db.interacoes || []).filter(i => i.contactoId !== contactId);
+    db.contactos = (db.contactos || []).filter(c => c && String(c.id).trim() !== targetCId);
+    db.interacoes = (db.interacoes || []).filter(i => !i || String(i.contactoId || '').trim() !== targetCId);
     saveDatabase();
     if (currentClientId) refreshClientSubLists(currentClientId);
     if (affectedClientId && affectedClientId !== currentClientId) refreshClientSubLists(affectedClientId);
@@ -10226,7 +11733,7 @@ function saveContactNextContactDate(newDate) {
     if (typeof syncDatabaseToHuggingFace === 'function') {
       syncDatabaseToHuggingFace(true, true).catch(() => {});
     }
-    showToast(t('Data de próximo contacto atualizada com sucesso!'));
+    showToast(t('Data de prÃ³ximo contacto atualizada com sucesso!'));
   }
 }
 window.saveContactNextContactDate = saveContactNextContactDate;
@@ -10273,8 +11780,13 @@ function toggleContactPersonInteractionsSort() {
   const iconEl = document.getElementById('iconSortContactInteractions');
   if (textEl) textEl.textContent = (contactPersonInteractionsSortOrder === 'desc' ? 'Mais recente' : 'Mais antigo');
   if (iconEl) iconEl.className = (contactPersonInteractionsSortOrder === 'desc' ? 'fa-solid fa-arrow-down-wide-short' : 'fa-solid fa-arrow-up-wide-short');
-  if (typeof currentContactIdForModal !== 'undefined' && currentContactIdForModal) {
-    const inters = (db.interacoes || []).filter(i => i.contactoId === currentContactIdForModal);
+  
+  const targetContactId = (typeof currentContactIdForModal !== 'undefined' && currentContactIdForModal) 
+    ? currentContactIdForModal 
+    : document.getElementById('contactId')?.value;
+  if (targetContactId) {
+    const targetCIdStr = String(targetContactId).trim();
+    const inters = (db.interacoes || []).filter(i => i && String(i.contactoId || '').trim() === targetCIdStr);
     renderContactPersonInteractionsGrid(inters);
   }
 }
@@ -10327,7 +11839,11 @@ function renderContactPersonInteractionsGrid(interactions) {
 window.renderContactPersonInteractionsGrid = renderContactPersonInteractionsGrid;
 
 function addQuickContactInteraction() {
-  if (!currentContactIdForModal) {
+  const targetContactId = (typeof currentContactIdForModal !== 'undefined' && currentContactIdForModal) 
+    ? currentContactIdForModal 
+    : document.getElementById('contactId')?.value;
+
+  if (!targetContactId) {
     showToast('Guarde ou selecione um Contacto primeiro!', 'danger');
     return;
   }
@@ -10348,14 +11864,19 @@ function addQuickContactInteraction() {
 
   if (!db.interacoes) db.interacoes = [];
 
-  const contact = (db.contactos || []).find(c => c.id === currentContactIdForModal);
+  const targetCIdStr = String(targetContactId).trim();
+  const contact = (db.contactos || []).find(c => c && String(c.id).trim() === targetCIdStr);
   const clienteId = contact ? contact.clienteId : currentClientId;
+  const clientObj = clienteId ? (db.clientes || []).find(c => c && String(c.id).trim() === String(clienteId).trim()) : null;
+  const subTabIndex = (contact && contact.subTabIndex !== undefined && contact.subTabIndex !== null) ? Number(contact.subTabIndex) : null;
+  const separadorId = (contact && contact.separadorId) ? contact.separadorId : ((clientObj && Array.isArray(clientObj.separadores) && subTabIndex !== null && clientObj.separadores[subTabIndex]) ? clientObj.separadores[subTabIndex].id : null);
 
   const intObj = {
     id,
-    contactoId: currentContactIdForModal,
+    contactoId: targetCIdStr,
     clienteId: clienteId || null,
-    subTabIndex: (contact && contact.subTabIndex !== undefined) ? contact.subTabIndex : null,
+    separadorId: separadorId || null,
+    subTabIndex: subTabIndex,
     data: finalDate,
     descricao: textVal,
     createdAt: new Date().toISOString()
@@ -10369,11 +11890,12 @@ function addQuickContactInteraction() {
     textEl.style.height = 'auto';
   }
 
-  const inters = (db.interacoes || []).filter(i => i.contactoId === currentContactIdForModal);
+  const inters = (db.interacoes || []).filter(i => i && String(i.contactoId || '').trim() === targetCIdStr);
   renderContactPersonInteractionsGrid(inters);
   if (typeof renderContactPageMainGrid === 'function') renderContactPageMainGrid();
   if (typeof renderHomeDashboard === 'function') renderHomeDashboard();
   if (typeof renderConsultasUserData === 'function') renderConsultasUserData();
+  if (clienteId && typeof refreshClientSubLists === 'function') refreshClientSubLists(clienteId);
   if (typeof syncDatabaseToHuggingFace === 'function') {
     syncDatabaseToHuggingFace(true, true).catch(() => {});
   }
@@ -10383,11 +11905,18 @@ window.addQuickContactInteraction = addQuickContactInteraction;
 
 function deleteContactPersonInteractionInline(id) {
   if (confirm('Tem a certeza que deseja apagar este registo de contacto?')) {
-    addDeletedId('interacoes', id);
-    db.interacoes = (db.interacoes || []).filter(i => i.id !== id);
+    const cleanId = String(id).trim();
+    addDeletedId('interacoes', cleanId);
+    db.interacoes = (db.interacoes || []).filter(i => i && String(i.id).trim() !== cleanId);
     saveDatabase();
-    if (typeof currentContactIdForModal !== 'undefined' && currentContactIdForModal) {
-      const inters = (db.interacoes || []).filter(i => i.contactoId === currentContactIdForModal);
+    
+    const targetContactId = (typeof currentContactIdForModal !== 'undefined' && currentContactIdForModal) 
+      ? currentContactIdForModal 
+      : document.getElementById('contactId')?.value;
+      
+    if (targetContactId) {
+      const targetCIdStr = String(targetContactId).trim();
+      const inters = (db.interacoes || []).filter(i => i && String(i.contactoId || '').trim() === targetCIdStr);
       renderContactPersonInteractionsGrid(inters);
     }
     if (typeof renderContactPageMainGrid === 'function') renderContactPageMainGrid();
@@ -10417,6 +11946,7 @@ window.toggleProjectInteractionsSort = toggleProjectInteractionsSort;
 
 function renderClientInteractionsGrid(interactions) {
   const grid = document.getElementById('clientInteractionsGrid');
+  if (!grid) return;
   grid.innerHTML = '';
 
   const curClient = currentClientId ? (db.clientes || []).find(c => c.id === currentClientId) : null;
@@ -10444,20 +11974,6 @@ function renderClientInteractionsGrid(interactions) {
   sorted.forEach(item => {
     const formattedDate = item.data ? new Date(item.data).toLocaleString('pt-PT', { dateStyle: 'short', timeStyle: 'short' }) : '-';
 
-    // Obter nome do contacto associado a este registo
-    var contactoNomeHtml = '';
-    if (item.contactoId) {
-      var con = (db.contactos || []).find(function(x) { return x && x.id === item.contactoId; });
-      if (con) {
-        var nomeCompleto = ((con.nome || '') + ' ' + (con.apelido || '')).trim();
-        if (nomeCompleto) {
-          contactoNomeHtml = '<div class="interaction-card-contact-name"><i class="fa-regular fa-user"></i> ' + escapeHtml(nomeCompleto) + '</div>';
-        }
-      }
-    } else if (item.contactoNome) {
-      contactoNomeHtml = '<div class="interaction-card-contact-name"><i class="fa-regular fa-user"></i> ' + escapeHtml(item.contactoNome) + '</div>';
-    }
-
     const card = document.createElement('div');
     card.className = 'interaction-card';
     card.innerHTML = `
@@ -10470,11 +11986,8 @@ function renderClientInteractionsGrid(interactions) {
         </button>
       </div>
       <div class="interaction-card-row">
-        <div class="interaction-card-date-block">
-          <div class="interaction-card-date">
-            <i class="fa-regular fa-calendar-days"></i> ${formattedDate}
-          </div>
-          ${contactoNomeHtml}
+        <div class="interaction-card-date">
+          <i class="fa-regular fa-calendar-days"></i> ${formattedDate}
         </div>
         <div class="interaction-card-content">${item.descricao}</div>
       </div>
@@ -14729,7 +16242,7 @@ function smartParseAddress(raw) {
   let str = raw.trim();
   if (!str) return null;
 
-  // Sanitize common UTF-8 double-encoding artifacts like 'n.º' -> 'n.º'
+  // Sanitize common UTF-8 double-encoding artifacts like 'n.Âº' -> 'n.º'
   str = str.replace(/Â[º°ª]/g, 'º').replace(/Â/g, '');
 
   const result = {
@@ -14859,15 +16372,6 @@ function smartParseAddress(raw) {
   }
 
   result.direcao1 = parts.join(', ').replace(/[\s,\-\.]+$/, '').replace(/^[\s,\-\.]+/, '').trim();
-
-  // Decomposição inteligente automática de Linha 1 e Linha 2
-  if (typeof smartSplitAddress === 'function') {
-    const splitRes = smartSplitAddress(result.direcao1, result.direcao2, result.numero, result.andar);
-    result.direcao1 = splitRes.direcao1;
-    result.direcao2 = splitRes.direcao2;
-    if (splitRes.numero) result.numero = splitRes.numero;
-    if (splitRes.andar) result.andar = splitRes.andar;
-  }
 
   return result;
 }
@@ -15765,13 +17269,13 @@ function renderHomeDashboard() {
     window.dashProjectTableSort = { field: 'datas', dir: 'desc' };
   }
 
-  // 4.5. Tabela de Acompanhamento de Clientes (Ordenação Independente por Cabeçalho de Coluna)
+  // 4.5. Tabela de Acompanhamento de Clientes (OrdenaÃ§Ã£o Independente por CabeÃ§alho de Coluna)
   const clientTrackingContainer = document.getElementById('dashClientTrackingContainer');
   if (clientTrackingContainer) {
     const now = new Date();
     const todayMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
 
-    // Helper para data da última interação do cliente
+    // Helper para data da Ãºltima interaÃ§Ã£o do cliente
     const getLastIntTimeClient = (clientId) => {
       const ints = (db.interacoes || []).filter(i => String(i.clienteId || '').trim() === String(clientId).trim());
       if (ints.length === 0) return 0;
@@ -15944,13 +17448,13 @@ function renderHomeDashboard() {
     }
   }
 
-  // 4.6. Tabela de Acompanhamento de Contactos (Ordenação Independente por Cabeçalho de Coluna)
+  // 4.6. Tabela de Acompanhamento de Contactos (OrdenaÃ§Ã£o Independente por CabeÃ§alho de Coluna)
   const contactTrackingContainer = document.getElementById('dashContactTrackingContainer');
   if (contactTrackingContainer) {
     const now = new Date();
     const todayMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
 
-    // Helper para data da última interação do contacto
+    // Helper para data da Ãºltima interaÃ§Ã£o do contacto
     const getLastIntTimeContact = (contactId) => {
       const ints = (db.interacoes || []).filter(i => String(i.contactoId || '').trim() === String(contactId).trim());
       if (ints.length === 0) return 0;
@@ -16137,7 +17641,7 @@ function renderHomeDashboard() {
     }
   }
 
-  // 5. Tabela de Projetos em Acompanhamento (Ordenação Independente por Cabeçalho de Coluna)
+  // 5. Tabela de Projetos em Acompanhamento (OrdenaÃ§Ã£o Independente por CabeÃ§alho de Coluna)
   const recentProjContainer = document.getElementById('dashRecentProjectsContainer');
   if (recentProjContainer) {
     const isProjectInTrackingState = (estado) => {
@@ -18041,8 +19545,8 @@ window.exportSearchToExcel = exportSearchToExcel;
 window.exportSearchResultsToPDF = exportSearchResultsToPDF;
 window.exportSearchResultsToExcel = exportSearchResultsToExcel;
 
-var CURRENT_SYSTEM_VERSION = "SIGEC_V1.7.25";
-window.CURRENT_SYSTEM_VERSION = "SIGEC_V1.7.25";
+var CURRENT_SYSTEM_VERSION = "SIGEC_V1.7.27";
+window.CURRENT_SYSTEM_VERSION = "SIGEC_V1.7.27";
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
@@ -18107,7 +19611,7 @@ function getNextSequentialVersion(lastVersionStr) {
 window.getNextSequentialVersion = getNextSequentialVersion;
 
 function getInstalledVersion() {
-  let ver = 'SIGEC_V1.7.25';
+  let ver = 'SIGEC_V1.7.27';
   
   if (typeof localStorage !== 'undefined') {
     const saved = localStorage.getItem('sigec_pro_installed_version');
@@ -18640,21 +20144,21 @@ function sanitizeUtf8String(str) {
     .replace(/Jos[ÃÂ][©\u00A9]/g, 'José')
     .replace(/Cent[ÃÂ][º\u00BA]rio/g, 'Centúrio')
     .replace(/Funda[ÃÂ][§\u00A7][ÃÂ][£\u00A3]o/g, 'Fundação')
-    .replace(/José/g, 'José')
-    .replace(/Centúrio/g, 'Centúrio')
-    .replace(/Fundação/g, 'Fundação')
+    .replace(/JosÃ©/g, 'José')
+    .replace(/CentÃºrio/g, 'Centúrio')
+    .replace(/FundaÃ§Ã£o/g, 'Fundação')
     .replace(/Ã¡/g, 'á')
     .replace(/Ã /g, 'à')
-    .replace(/ã/g, 'ã')
+    .replace(/Ã£/g, 'ã')
     .replace(/Ã¢/g, 'â')
-    .replace(/é/g, 'é')
-    .replace(/ê/g, 'ê')
+    .replace(/Ã©/g, 'é')
+    .replace(/Ãª/g, 'ê')
     .replace(/Ã­/g, 'í')
-    .replace(/ó/g, 'ó')
+    .replace(/Ã³/g, 'ó')
     .replace(/Ãµ/g, 'õ')
     .replace(/Ã´/g, 'ô')
-    .replace(/ú/g, 'ú')
-    .replace(/ç/g, 'ç');
+    .replace(/Ãº/g, 'ú')
+    .replace(/Ã§/g, 'ç');
 }
 window.sanitizeUtf8String = sanitizeUtf8String;
 
@@ -18786,6 +20290,21 @@ function ensureUsersInitialized() {
         chefia: false,
         active: true,
         createdAt: "2026-09-19T23:53:51.944Z"
+      },
+      {
+        id: "usr-1789972905110",
+        nome: "Victoria Schwab Vilte",
+        primeiroNome: "Victoria",
+        apelido: "Schwab Vilte",
+        email: "victoria@alegria-activity.com",
+        cargo: "Gestora de proyectos",
+        idioma: "Español",
+        pin: "Victoria_202",
+        role: "user",
+        chefia: false,
+        active: true,
+        createdAt: "2026-09-21T06:41:45.110Z",
+        updatedAt: "2026-09-21T07:18:12.470Z"
       }
     ];
     safeSetStorage('sigec_pro_usuarios', JSON.stringify(db.usuarios));
@@ -18872,92 +20391,6 @@ function renderUserSelectOptions() {
 }
 window.renderUserSelectOptions = renderUserSelectOptions;
 
-// Consulta em tempo real e de latência zero do estado de ativação do utilizador no servidor
-async function checkUserLiveActivationStatus(enteredEmail) {
-  if (!enteredEmail) return null;
-  const targetEmail = enteredEmail.trim().toLowerCase();
-
-  const cfg = typeof getHuggingFaceConfig === 'function' ? getHuggingFaceConfig() : {};
-  const token = (cfg.token || (typeof DEFAULT_SYSTEM_HF_TOKEN !== 'undefined' ? DEFAULT_SYSTEM_HF_TOKEN : '')).trim();
-  const space = (cfg.space || (typeof DEFAULT_SYSTEM_HF_SPACE !== 'undefined' ? DEFAULT_SYSTEM_HF_SPACE : "josecenturio/SIGEC-Pro")).trim();
-  const serverOrigin = (typeof window !== 'undefined' && window.location && window.location.origin && !window.location.origin.startsWith('file:')) ? window.location.origin : '';
-
-  const sources = [];
-
-  // 1. Endpoint dedicado de consulta rápida do servidor Node
-  if (serverOrigin) {
-    sources.push({
-      url: `${serverOrigin}/api/user-status?email=${encodeURIComponent(targetEmail)}&_t=${Date.now()}`,
-      isStatusEndpoint: true
-    });
-    sources.push({
-      url: `${serverOrigin}/data/db.json?_t=${Date.now()}`,
-      isDbJson: true
-    });
-  }
-
-  // 2. Bridge nativo local (se aplicação desktop C#)
-  sources.push({
-    url: `http://127.0.0.1:59124/data/db.json?_t=${Date.now()}`,
-    isDbJson: true
-  });
-
-  // 3. Hugging Face Space raw (git commit imediato)
-  sources.push({
-    url: `https://huggingface.co/spaces/${space}/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
-    isDbJson: true,
-    auth: token
-  });
-
-  // 4. Hugging Face Dataset raw (git commit imediato)
-  sources.push({
-    url: `https://huggingface.co/datasets/${space}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`,
-    isDbJson: true,
-    auth: token
-  });
-
-  // 5. Hugging Face Static Space
-  sources.push({
-    url: `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}`,
-    isDbJson: true
-  });
-
-  for (const src of sources) {
-    try {
-      const headers = { 'Cache-Control': 'no-cache, no-store' };
-      if (src.auth) headers['Authorization'] = `Bearer ${src.auth}`;
-
-      const res = await fetch(src.url, {
-        headers: headers,
-        cache: 'no-store'
-      }).catch(() => null);
-
-      if (res && res.ok) {
-        const json = await res.json().catch(() => null);
-        if (!json) continue;
-
-        if (src.isStatusEndpoint) {
-          if (json.success && json.exists && json.active === true) {
-            return { active: true, user: json.user };
-          }
-        } else if (src.isDbJson && Array.isArray(json.usuarios)) {
-          const matching = json.usuarios.filter(u => u && u.email && u.email.trim().toLowerCase() === targetEmail);
-          const activeUser = matching.find(u => u.active === true);
-          if (activeUser) {
-            if (typeof mergeCloudDatabaseSafely === 'function') {
-              mergeCloudDatabaseSafely(json);
-            }
-            return { active: true, user: activeUser };
-          }
-        }
-      }
-    } catch (_) {}
-  }
-
-  return null;
-}
-window.checkUserLiveActivationStatus = checkUserLiveActivationStatus;
-
 async function verifyLoginPin() {
   ensureUsersInitialized();
   const userInput = document.getElementById('loginUserInput');
@@ -18995,47 +20428,41 @@ async function verifyLoginPin() {
   // Priorizar registo que já esteja Ativo
   let matchedUser = matchingUsers.find(u => u.active === true) || matchingUsers[matchingUsers.length - 1];
 
-  // Se o utilizador não constar localmente OU constar com active === false, consultar IMEDIATAMENTE o servidor central em direto
-  if (!matchedUser || (matchedUser.active === false && matchedUser.role !== 'admin')) {
-    if (errorMsg) {
-      errorMsg.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> A validar autorização no servidor central...';
-      errorMsg.style.display = 'block';
-      errorMsg.style.color = '#0284c7';
-    }
-
+  // Se o utilizador não constar localmente, tentar sincronizar imediatamente com a nuvem antes de rejeitar
+  if (!matchedUser) {
     try {
-      const liveCheck = await checkUserLiveActivationStatus(enteredEmail);
-      if (liveCheck && liveCheck.active === true) {
-        ensureUsersInitialized();
-        usersList = (typeof db !== 'undefined' && Array.isArray(db.usuarios)) ? db.usuarios : [];
-        matchingUsers = usersList.filter(u => u && u.email && u.email.trim().toLowerCase() === enteredEmail);
-        matchedUser = matchingUsers.find(u => u.active === true) || liveCheck.user;
-        if (matchedUser) {
-          matchedUser.active = true;
-          (db.usuarios || []).forEach(u => {
-            if (u && u.email && u.email.trim().toLowerCase() === enteredEmail) {
-              u.active = true;
-              u.updatedAt = new Date().toISOString();
-            }
-          });
-          safeSetStorage('sigec_pro_usuarios', JSON.stringify(db.usuarios || []));
-          saveDatabase();
-          console.log('[SIGEC-Pro Login] Utilizador ativado detetado de imediato no servidor central:', enteredEmail);
-        }
-        if (errorMsg) errorMsg.style.display = 'none';
-      } else if (typeof loadDatabaseFromHuggingFace === 'function') {
+      if (typeof loadDatabaseFromHuggingFace === 'function') {
         await loadDatabaseFromHuggingFace(true, true);
         usersList = (typeof db !== 'undefined' && Array.isArray(db.usuarios)) ? db.usuarios : [];
         matchingUsers = usersList.filter(u => u && u.email && u.email.trim().toLowerCase() === enteredEmail);
         matchedUser = matchingUsers.find(u => u.active === true) || matchingUsers[matchingUsers.length - 1];
-        if (matchedUser && matchedUser.active === true) {
-          saveDatabase();
-          if (errorMsg) errorMsg.style.display = 'none';
+      }
+      if (!matchedUser) {
+        const endpointsToCheck = [
+          `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`,
+          `https://huggingface.co/spaces/${DEFAULT_SYSTEM_HF_SPACE}/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
+          `https://huggingface.co/spaces/${DEFAULT_SYSTEM_HF_SPACE}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`
+        ];
+        for (const ep of endpointsToCheck) {
+          try {
+            const fetchRes = await fetch(ep, { cache: 'no-store' }).catch(() => null);
+            if (fetchRes && fetchRes.ok) {
+              const freshData = await fetchRes.json().catch(() => null);
+              if (freshData && Array.isArray(freshData.usuarios)) {
+                const cloudMatched = freshData.usuarios.find(u => u && u.email && u.email.trim().toLowerCase() === enteredEmail);
+                if (cloudMatched) {
+                  if (!Array.isArray(db.usuarios)) db.usuarios = [];
+                  db.usuarios.push(cloudMatched);
+                  saveDatabase();
+                  matchedUser = cloudMatched;
+                  break;
+                }
+              }
+            }
+          } catch (_) {}
         }
       }
-    } catch (eLiveCheck) {
-      console.warn('[SIGEC-Pro Login] Erro na verificação online:', eLiveCheck);
-    }
+    } catch (_) {}
   }
 
   // Se o email não constar dos utilizadores registados, o acesso é estritamente bloqueado
@@ -19072,21 +20499,42 @@ async function verifyLoginPin() {
     return;
   }
 
-  // Se mesmo assim a conta ainda constar como inativa, efetuar uma última consulta forçada com bypass total
+  // Se a conta local estiver marcada como inativa, consultar imediatamente o servidor para verificar se o administrador já a ativou
   if (matchedUser.active === false && matchedUser.role !== 'admin') {
     try {
-      const finalCheck = await checkUserLiveActivationStatus(enteredEmail);
-      if (finalCheck && finalCheck.active === true) {
-        matchedUser = finalCheck.user || matchedUser;
-        matchedUser.active = true;
-        (db.usuarios || []).forEach(u => {
-          if (u && u.email && u.email.trim().toLowerCase() === enteredEmail) {
-            u.active = true;
-            u.updatedAt = new Date().toISOString();
+      if (typeof loadDatabaseFromHuggingFace === 'function') {
+        await loadDatabaseFromHuggingFace(true, true);
+      }
+      // Consultar diretamente os endpoints em tempo real com cache buster
+      const endpointsToVerify = [
+        `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`,
+        `https://huggingface.co/spaces/josecenturio/SIGEC-Pro/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
+        `https://huggingface.co/spaces/josecenturio/SIGEC-Pro/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`
+      ];
+      for (const verifyUrl of endpointsToVerify) {
+        try {
+          const fetchRes = await fetch(verifyUrl, { cache: 'no-store' }).catch(() => null);
+          if (fetchRes && fetchRes.ok) {
+            const freshData = await fetchRes.json().catch(() => null);
+            if (freshData && Array.isArray(freshData.usuarios)) {
+              const cloudMatched = freshData.usuarios.find(u => u && u.email && u.email.trim().toLowerCase() === enteredEmail);
+              if (cloudMatched && cloudMatched.active === true) {
+                if (!Array.isArray(db.usuarios)) db.usuarios = [];
+                const localIdx = db.usuarios.findIndex(u => u && u.email && u.email.trim().toLowerCase() === enteredEmail);
+                if (localIdx >= 0) {
+                  db.usuarios[localIdx] = { ...db.usuarios[localIdx], ...cloudMatched, active: true };
+                  matchedUser = db.usuarios[localIdx];
+                } else {
+                  db.usuarios.push({ ...cloudMatched, active: true });
+                  matchedUser = cloudMatched;
+                }
+                saveDatabase();
+                console.log('[SIGEC-Pro Login] Conta ativada detetada com sucesso no servidor para:', enteredEmail);
+                break;
+              }
+            }
           }
-        });
-        saveDatabase();
-        console.log('[SIGEC-Pro Login] Conta ativada confirmada na verificação final:', enteredEmail);
+        } catch (_) {}
       }
     } catch (_) {}
   }
@@ -19109,10 +20557,25 @@ async function verifyLoginPin() {
   }
 
   // Autenticação autorizada estritamente em sessionStorage (memória volátil da sessão)
-  sessionStorage.setItem('sigec_pro_authenticated', 'true');  sessionStorage.setItem('sigec_pro_authenticated', 'true');
+  sessionStorage.setItem('sigec_pro_authenticated', 'true');
   sessionStorage.setItem('sigec_pro_active_user_id', matchedUser.id);
+  sessionStorage.setItem('sigec_pro_active_user_email', matchedUser.email);
+  sessionStorage.setItem('sigec_pro_active_user_name', matchedUser.nome);
+  sessionStorage.setItem('sigec_pro_active_user_role', matchedUser.role || 'user');
+  sessionStorage.setItem('sigec_pro_active_user_cargo', matchedUser.cargo || '');
   localStorage.removeItem('sigec_pro_authenticated');
   localStorage.removeItem('sigec_pro_active_user_id');
+
+  // Assegurar persistência do utilizador na coleção local db.usuarios
+  if (typeof db !== 'undefined' && Array.isArray(db.usuarios)) {
+    const existingIdx = db.usuarios.findIndex(u => u && (u.id === matchedUser.id || (u.email && u.email.trim().toLowerCase() === enteredEmail)));
+    if (existingIdx >= 0) {
+      db.usuarios[existingIdx] = { ...db.usuarios[existingIdx], ...matchedUser, active: true };
+    } else {
+      db.usuarios.push({ ...matchedUser, active: true });
+    }
+    if (typeof saveDatabase === 'function') saveDatabase();
+  }
 
   if (typeof applyUserLanguage === 'function') {
     applyUserLanguage(matchedUser.idioma);
@@ -19320,18 +20783,6 @@ async function handleUserSelfRegistration(event) {
   safeSetStorage('sigec_pro_usuarios', JSON.stringify(db.usuarios || []));
   saveDatabase();
 
-  // GRAVAÇÃO DIRETA NO SERVIDOR NODE/REDE (GARANTIA TOTAL DE PERSISTÊNCIA)
-  try {
-    const serverOrigin = (typeof window !== 'undefined' && window.location && window.location.origin && !window.location.origin.startsWith('file:')) ? window.location.origin : '';
-    if (serverOrigin) {
-      await fetch(`${serverOrigin}/api/save-db-json`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(db)
-      }).catch(() => null);
-    }
-  } catch(eSrv) {}
-
   // ENVIO IMEDIATO E SINCRONIZAÇÃO EM TEMPO REAL PARA O SERVIDOR HUGGING FACE
   if (typeof syncDatabaseToHuggingFace === 'function') {
     try {
@@ -19381,35 +20832,41 @@ async function handleUserSelfRegistration(event) {
 
 function hasConfigAccess(user) {
   if (!user) {
-    var isAuth = sessionStorage.getItem('sigec_pro_authenticated') === 'true';
+    var isAuth = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('sigec_pro_authenticated') === 'true';
+    if (!isAuth) return false;
     var activeUserId = sessionStorage.getItem('sigec_pro_active_user_id');
-    if (isAuth && (activeUserId === 'usr-admin-001' || !activeUserId)) return true;
-    return true; // No modo padrão, permitir acesso de gestão
+    var activeUserRole = sessionStorage.getItem('sigec_pro_active_user_role');
+    var activeUserEmail = (sessionStorage.getItem('sigec_pro_active_user_email') || '').toLowerCase().trim();
+    if (activeUserId === 'usr-admin-001' || activeUserRole === 'admin' || activeUserEmail === 'jmcenturio@alegria-activity.com') return true;
+    return false;
   }
-  if (user.id === 'usr-admin-001' || user.role === 'admin' || user.chefia === true) return true;
+  if (user.id === 'usr-admin-001' || user.role === 'admin') return true;
   var normName = (user.nome || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
   var normEmail = (user.email || '').toLowerCase().trim();
-  if (normName.indexOf('centurio') !== -1 || normName.indexOf('administrador') !== -1 || normEmail.indexOf('centurio') !== -1 || normEmail.indexOf('admin') !== -1 || normEmail === 'jmcenturio@alegria-activity.com') return true;
+  if (normName.indexOf('centurio') !== -1 || normName.indexOf('administrador') !== -1 || normEmail === 'jmcenturio@alegria-activity.com') return true;
   return false;
 }
 window.hasConfigAccess = hasConfigAccess;
 
 function hasConsultasAccess(user) {
   if (!user) {
-    var isAuth = sessionStorage.getItem('sigec_pro_authenticated') === 'true';
+    var isAuth = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('sigec_pro_authenticated') === 'true';
+    if (!isAuth) return false;
     var activeUserId = sessionStorage.getItem('sigec_pro_active_user_id');
-    if (isAuth && (activeUserId === 'usr-admin-001' || !activeUserId)) return true;
-    return true;
+    var activeUserRole = sessionStorage.getItem('sigec_pro_active_user_role');
+    var activeUserEmail = (sessionStorage.getItem('sigec_pro_active_user_email') || '').toLowerCase().trim();
+    if (activeUserId === 'usr-admin-001' || activeUserRole === 'admin' || activeUserEmail === 'jmcenturio@alegria-activity.com') return true;
+    return false;
   }
   if (user.id === 'usr-admin-001' || user.role === 'admin' || user.chefia === true) return true;
   var normName = (user.nome || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
   var normEmail = (user.email || '').toLowerCase().trim();
-  if (normName.indexOf('centurio') !== -1 || normName.indexOf('administrador') !== -1 || normEmail.indexOf('centurio') !== -1 || normEmail.indexOf('admin') !== -1 || normEmail === 'jmcenturio@alegria-activity.com') return true;
+  if (normName.indexOf('centurio') !== -1 || normName.indexOf('administrador') !== -1 || normEmail === 'jmcenturio@alegria-activity.com') return true;
   return false;
 }
 window.hasConsultasAccess = hasConsultasAccess;
 
-function toggleUserActiveStatus(userId, activate) {
+async function toggleUserActiveStatus(userId, activate) {
   ensureUsersInitialized();
   const user = db.usuarios.find(u => u.id === userId);
   if (!user) return;
@@ -19432,7 +20889,6 @@ function toggleUserActiveStatus(userId, activate) {
     });
   }
 
-  safeSetStorage('sigec_pro_usuarios', JSON.stringify(db.usuarios || []));
   saveDatabase();
   renderUserManagementGrid();
   renderUserSelectOptions();
@@ -19442,25 +20898,17 @@ function toggleUserActiveStatus(userId, activate) {
     sendUserAccountActivatedEmail(user).catch(() => {});
   }
 
-  // Gravação direta no servidor local/rede
-  try {
-    const serverOrigin = (typeof window !== 'undefined' && window.location && window.location.origin && !window.location.origin.startsWith('file:')) ? window.location.origin : '';
-    if (serverOrigin) {
-      fetch(`${serverOrigin}/api/save-db-json`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(db)
-      }).catch(() => {});
-    }
-  } catch(eSrv) {}
-
-  // Sincronizar imediatamente com o servidor central
+  // Sincronizar imediatamente com a Nuvem Hugging Face e aguardar confirmação
   if (typeof syncDatabaseToHuggingFace === 'function') {
-    syncDatabaseToHuggingFace(true, true).catch(() => {});
+    try {
+      await syncDatabaseToHuggingFace(true, true);
+    } catch (eSync) {
+      console.warn('[SIGEC-Pro] Sincronização em nuvem da ativação:', eSync);
+    }
   }
 
   logUserActivity('Gestão de Utilizadores', `Estado do utilizador ${user.nome} (${user.email}) alterado para ${activate ? 'Ativo / Aprovado' : 'Bloqueado'}.`);
-  showToast(`Utilizador "${user.nome}" ${activate ? 'aprovado e ativado no servidor' : 'bloqueado'} com sucesso!`, activate ? 'success' : 'warning');
+  showToast(`Utilizador "${user.nome}" ${activate ? 'aprovado e ativado' : 'bloqueado'} com sucesso!`, activate ? 'success' : 'warning');
 }
 window.toggleUserActiveStatus = toggleUserActiveStatus;
 
@@ -19912,7 +21360,7 @@ function switchUserProfileTab(tabName) {
   }
 }
 
-function handleSaveUserProfile(event) {
+async function handleSaveUserProfile(event) {
   if (event && event.preventDefault) event.preventDefault();
 
   const idInput = document.getElementById('profileUserId');
@@ -19984,7 +21432,7 @@ function handleSaveUserProfile(event) {
     }
   }
 
-  const profileNowIso = new Date().toISOString();
+  const nowIso = new Date().toISOString();
   db.usuarios[userIndex] = {
     ...db.usuarios[userIndex],
     nome: nome,
@@ -19997,16 +21445,16 @@ function handleSaveUserProfile(event) {
     pin: pin,
     active: newActiveState,
     chefia: newChefiaState,
-    updatedAt: profileNowIso
+    updatedAt: nowIso
   };
 
-  // Harmonizar registos com o mesmo email
+  // Harmonizar todos os registos existentes com o mesmo email
   if (email) {
     const targetEmail = email.trim().toLowerCase();
     (db.usuarios || []).forEach(u => {
       if (u && u.email && u.email.trim().toLowerCase() === targetEmail) {
         u.active = newActiveState;
-        u.updatedAt = profileNowIso;
+        u.updatedAt = nowIso;
       }
     });
   }
@@ -20015,25 +21463,16 @@ function handleSaveUserProfile(event) {
     safeSetStorage('sigec_pro_security_pin', pin);
   }
 
-  safeSetStorage('sigec_pro_usuarios', JSON.stringify(db.usuarios || []));
   saveDatabase();
   renderUserManagementGrid();
   renderUserSelectOptions();
 
-  // Gravação direta no servidor local/rede
-  try {
-    const serverOrigin = (typeof window !== 'undefined' && window.location && window.location.origin && !window.location.origin.startsWith('file:')) ? window.location.origin : '';
-    if (serverOrigin) {
-      fetch(`${serverOrigin}/api/save-db-json`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(db)
-      }).catch(() => {});
-    }
-  } catch(eSrv) {}
-
   if (typeof syncDatabaseToHuggingFace === 'function') {
-    syncDatabaseToHuggingFace(true, true).catch(() => {});
+    try {
+      await syncDatabaseToHuggingFace(true, true);
+    } catch (eSyncProf) {
+      console.warn('[SIGEC-Pro] Sincronização em nuvem do perfil:', eSyncProf);
+    }
   }
 
   // Se o utilizador foi ativado pelo Administrador, enviar email no respetivo idioma
@@ -22502,8 +23941,8 @@ function restoreBudgetImagesData(imgsObj) {
 }
 
 // Deteção inteligente de ícones FontAwesome com base em palavras-chave do Item / Componente
-// Deteção inteligente de ícones FontAwesome com base em inteligência semântica e palavras-chave multilÃ­ngues (PT, ES, EN, FR, PL)
-// Deteção inteligente de ícones FontAwesome com base em inteligência semântica e palavras-chave multilÃ­ngues (PT, ES, EN, FR, PL)
+// DeteÃ§Ã£o inteligente de Ã­cones FontAwesome com base em inteligÃªncia semÃ¢ntica e palavras-chave multilÃ­ngues (PT, ES, EN, FR, PL)
+// DeteÃ§Ã£o inteligente de Ã­cones FontAwesome com base em inteligÃªncia semÃ¢ntica e palavras-chave multilÃ­ngues (PT, ES, EN, FR, PL)
 function getBudgetItemIcon(text) {
   if (!text) return 'fa-circle-dot';
   const t = text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
@@ -22513,7 +23952,7 @@ function getBudgetItemIcon(text) {
   if (t.includes('ventil') || t.includes('renovacao') || t.includes('extrator') || t.includes('extractor') || t.includes('fan') || t.includes('wentyl') || t.includes('aerac') || t.includes('ar interior')) return 'fa-fan';
   if (t.includes('aquec') || t.includes('calefac') || t.includes('heating') || t.includes('chauff') || t.includes('ogrzew') || t.includes('radiad') || t.includes('convector') || t.includes('termoestat') || t.includes('termostat')) return 'fa-temperature-high';
 
-  // 2. ENERGIA SOLAR & FOTOVOLTAICA (Antes de termos genéricos de foto)
+  // 2. ENERGIA SOLAR & FOTOVOLTAICA (Antes de termos genÃ©ricos de foto)
   if (t.includes('solar') || t.includes('fotovolt') || t.includes('photovolt') || t.includes('placa solar') || t.includes('panneau solaire') || t.includes('panel slonecz')) return 'fa-solar-panel';
 
   // 3. CULTURA, ARTES, CINEMA, TEATRO, MÃšSICA & BIBLIOTECA
@@ -22533,7 +23972,7 @@ function getBudgetItemIcon(text) {
   if (t.includes('quadro eletric') || t.includes('cuadro elec') || t.includes('switchboard') || t.includes('tableau elec') || t.includes('rozdzielnic') || t.includes('disjuntor') || t.includes('inversor') || t.includes('inverter') || t.includes('onduleur') || t.includes('falownik') || t.includes('eletric') || t.includes('electric') || t.includes('elektr') || t.includes('energia') || t.includes('energy') || t.includes('energie') || t.includes('power')) return 'fa-bolt';
   if (t.includes('tomada') || t.includes('enchufe') || t.includes('socket') || t.includes('prise') || t.includes('gniazd') || t.includes('ficha') || t.includes('plug') || t.includes('cabo') || t.includes('cable') || t.includes('extensao') || t.includes('prolung') || t.includes('defa')) return 'fa-plug';
 
-  // 5. ÁGUA, HIDRÁULICA & SANITÁRIOS
+  // 5. ÃGUA, HIDRÃULICA & SANITÃRIOS
   if (t.includes('agua') || t.includes('water') || t.includes('eau') || t.includes('woda') || t.includes('deposito') || t.includes('tank') || t.includes('reservoir') || t.includes('zbiornik') || t.includes('bomba agua') || t.includes('pump') || t.includes('pompa')) return 'fa-faucet-drip';
   if (t.includes('lavatorio') || t.includes('lavabo') || t.includes('sink') || t.includes('torneira') || t.includes('grifo') || t.includes('tap') || t.includes('robinet') || t.includes('kran') || t.includes('pia') || t.includes('sanit') || t.includes('wc') || t.includes('toilet') || t.includes('chuveiro') || t.includes('ducha') || t.includes('shower') || t.includes('douche') || t.includes('prysznic')) return 'fa-sink';
 
@@ -22548,8 +23987,8 @@ function getBudgetItemIcon(text) {
   if (t.includes('elevad') || t.includes('plataforma elevat') || t.includes('lift') || t.includes('ascens') || t.includes('wind')) return 'fa-elevator';
   if (t.includes('degrau') || t.includes('escalon') || t.includes('step') || t.includes('marche') || t.includes('stopien') || t.includes('escada') || t.includes('escalera') || t.includes('stairs') || t.includes('escalier') || t.includes('schody') || t.includes('corrim') || t.includes('pasaman') || t.includes('handrail') || t.includes('porÄ™cz')) return 'fa-stairs';
 
-  // 8. MOBILIÁRIO TÃ‰CNICO & CARPINTARIA
-  if (t.includes('cadeira') || t.includes('silla') || t.includes('chair') || t.includes('chaise') || t.includes('krzeslo') || t.includes('poltrona') || t.includes('sillón') || t.includes('armchair') || t.includes('fotel') || t.includes('assento') || t.includes('seat') || t.includes('siege') || t.includes('banco') || t.includes('bench')) return 'fa-chair';
+  // 8. MOBILIÃRIO TÃ‰CNICO & CARPINTARIA
+  if (t.includes('cadeira') || t.includes('silla') || t.includes('chair') || t.includes('chaise') || t.includes('krzeslo') || t.includes('poltrona') || t.includes('sillÃ³n') || t.includes('armchair') || t.includes('fotel') || t.includes('assento') || t.includes('seat') || t.includes('siege') || t.includes('banco') || t.includes('bench')) return 'fa-chair';
   if (t.includes('sofa') || t.includes('couch') || t.includes('espera') || t.includes('attente') || t.includes('poczekaln')) return 'fa-couch';
   if (t.includes('mesa') || t.includes('table') || t.includes('desk') || t.includes('bureau') || t.includes('biurk') || t.includes('secretaria') || t.includes('balcao') || t.includes('mostrador') || t.includes('counter') || t.includes('comptoir') || t.includes('lada') || t.includes('bancada') || t.includes('worktop')) return 'fa-table';
   if (t.includes('armario') || t.includes('cabinet') || t.includes('cupboard') || t.includes('szaf') || t.includes('gavet') || t.includes('cajon') || t.includes('drawer') || t.includes('tiroir') || t.includes('szuflad') || t.includes('estante') || t.includes('estanteria') || t.includes('shelf') || t.includes('etagere') || t.includes('polk') || t.includes('mobiliario') || t.includes('mueble') || t.includes('furniture') || t.includes('meuble') || t.includes('meble')) return 'fa-box-archive';
@@ -22569,7 +24008,7 @@ function getBudgetItemIcon(text) {
   if (t.includes('extintor') || t.includes('extintor') || t.includes('fire extinguisher') || t.includes('extincteur') || t.includes('gasnica') || t.includes('incendio') || t.includes('fire') || t.includes('pozar') || t.includes('fogo')) return 'fa-fire-extinguisher';
   if (t.includes('primeiros socorros') || t.includes('primeros auxilios') || t.includes('first aid') || t.includes('premiers secours') || t.includes('apteczka') || t.includes('socorro') || t.includes('botiquin')) return 'fa-kit-medical';
 
-  // 11. SAÃšDE, CLÍNICA & MÃ‰DICO
+  // 11. SAÃšDE, CLÃNICA & MÃ‰DICO
   if (t.includes('maca') || t.includes('camilla') || t.includes('stretcher') || t.includes('brancard') || t.includes('nosze') || t.includes('medico') || t.includes('medical') || t.includes('medic') || t.includes('clinica') || t.includes('clinic') || t.includes('saude') || t.includes('salud') || t.includes('health') || t.includes('sante') || t.includes('zdrowie') || t.includes('hospital') || t.includes('exame') || t.includes('consulta') || t.includes('vacina') || t.includes('vaccin') || t.includes('szczepion')) return 'fa-heart-pulse';
   if (t.includes('dente') || t.includes('dental') || t.includes('dentari') || t.includes('stomatolog') || t.includes('odonto')) return 'fa-tooth';
   if (t.includes('olho') || t.includes('vision') || t.includes('oftalmo') || t.includes('optometr') || t.includes('oculist') || t.includes('okulist')) return 'fa-eye';
@@ -22578,7 +24017,7 @@ function getBudgetItemIcon(text) {
   if (t.includes('pintura') || t.includes('paint') || t.includes('peinture') || t.includes('malowan') || t.includes('vinil') || t.includes('vinyl') || t.includes('vinyle') || t.includes('decorac') || t.includes('decoracion') || t.includes('decoration') || t.includes('dekorac') || t.includes('logotipo') || t.includes('logo') || t.includes('grafismo') || t.includes('rotulac') || t.includes('lettering') || t.includes('wrapping')) return 'fa-paint-roller';
   if (t.includes('luz') || t.includes('ilumina') || t.includes('light') || t.includes('eclairage') || t.includes('oswietlen') || t.includes('led') || t.includes('projetor') || t.includes('foco') || t.includes('spot') || t.includes('lampada') || t.includes('lampara') || t.includes('lamp') || t.includes('lampe') || t.includes('lampa')) return 'fa-lightbulb';
 
-  // 13. VEÍCULO, CHASSI & MECÃ‚NICA
+  // 13. VEÃCULO, CHASSI & MECÃ‚NICA
   if (t.includes('camiao') || t.includes('camion') || t.includes('truck') || t.includes('ciezarow') || t.includes('furgao') || t.includes('furgo') || t.includes('van') || t.includes('fourgon') || t.includes('furgon') || t.includes('veiculo') || t.includes('vehiculo') || t.includes('vehicle') || t.includes('vehicule') || t.includes('pojazd') || t.includes('carro') || t.includes('coche') || t.includes('car') || t.includes('voiture') || t.includes('auto') || t.includes('chassi') || t.includes('chasis') || t.includes('chassis') || t.includes('podwozie') || t.includes('autocarro') || t.includes('autobus') || t.includes('bus') || t.includes('smartbus') || t.includes('semirreboque') || t.includes('semirremolque') || t.includes('semi-trailer') || t.includes('semi-remorque') || t.includes('naczep') || t.includes('reboque') || t.includes('remolque') || t.includes('trailer') || t.includes('remorque') || t.includes('przyczep')) return 'fa-truck';
   if (t.includes('pata') || t.includes('estabiliz') || t.includes('stabiliz') || t.includes('nivelador') || t.includes('level') || t.includes('ma-ve') || t.includes('apoio')) return 'fa-arrows-up-down';
   if (t.includes('peso') || t.includes('weight') || t.includes('poids') || t.includes('waga') || t.includes('pma') || t.includes('tara') || t.includes('bruto') || t.includes('gross') || t.includes('brutto')) return 'fa-weight-hanging';
@@ -26079,9 +27518,9 @@ window.extractPackageTimestamp = extractPackageTimestamp;
 // NOTIFICAÇÕES POR EMAIL DE NOVOS REGISTOS (AUTOMÁTICO VIA SERVIDOR)
 // ==========================================
 
-const DEFAULT_SYSTEM_SMTP_USER = 'jjota26@gmail.com';
-const DEFAULT_SYSTEM_SMTP_PASS = typeof atob === 'function' ? atob('ZGZidSBmZ2diIGRzYWUgbHpxeQ==') : 'dfbu fggb dsae lzqy';
-const DEFAULT_SYSTEM_EMAIL_WEBHOOK = 'https://script.google.com/macros/s/AKfycbxV-5cjwpuC-BLJpHaZk8g0234D9apiu5SlTX9VjdeHQG2L0DyoMBWHDbf0_Jo9Kr1LnA/exec';
+const DEFAULT_SYSTEM_SMTP_USER = '';
+const DEFAULT_SYSTEM_SMTP_PASS = '';
+const DEFAULT_SYSTEM_EMAIL_WEBHOOK = '';
 
 function getEmailNotifySettings() {
   const enabled = localStorage.getItem('sigec_pro_admin_notify_enabled') !== 'false';
@@ -26092,21 +27531,13 @@ function getEmailNotifySettings() {
       const adminUser = (typeof db !== 'undefined' && Array.isArray(db.usuarios))
         ? db.usuarios.find(u => u && (u.role === 'admin' || u.id === 'usr-admin-001'))
         : null;
-      email = (adminUser && adminUser.email) ? adminUser.email : 'jmcenturio@alegria-activity.com';
+      email = (adminUser && adminUser.email) ? adminUser.email : '';
     }
   }
   const smtpHost = localStorage.getItem('sigec_pro_smtp_host') || (typeof db !== 'undefined' && db.config && db.config.smtpHost) || 'smtp.gmail.com';
   const smtpPort = localStorage.getItem('sigec_pro_smtp_port') || (typeof db !== 'undefined' && db.config && db.config.smtpPort) || '587';
-  let smtpUser = localStorage.getItem('sigec_pro_smtp_user') || (typeof db !== 'undefined' && db.config && db.config.smtpUser) || DEFAULT_SYSTEM_SMTP_USER;
-  if (!smtpUser || smtpUser.trim() === 'jmcenturio@alegria-activity.com') {
-    smtpUser = DEFAULT_SYSTEM_SMTP_USER;
-    try { localStorage.setItem('sigec_pro_smtp_user', DEFAULT_SYSTEM_SMTP_USER); } catch(e) {}
-  }
-  let smtpPass = (typeof db !== 'undefined' && db.config && db.config.smtpPass) || localStorage.getItem('sigec_pro_smtp_pass') || DEFAULT_SYSTEM_SMTP_PASS;
-  if (!smtpPass || smtpPass.trim() === 'iunh ytxv gqhy wjbb' || smtpPass.trim() === 'fktq fvuy ocdh okmn' || smtpPass.trim() === 'fktqfvuyocdhokmn') {
-    smtpPass = DEFAULT_SYSTEM_SMTP_PASS;
-    try { localStorage.setItem('sigec_pro_smtp_pass', DEFAULT_SYSTEM_SMTP_PASS); } catch(e) {}
-  }
+  let smtpUser = localStorage.getItem('sigec_pro_smtp_user') || (typeof db !== 'undefined' && db.config && db.config.smtpUser) || '';
+  let smtpPass = localStorage.getItem('sigec_pro_smtp_pass') || (typeof db !== 'undefined' && db.config && db.config.smtpPass) || '';
   let webhookUrl = (typeof db !== 'undefined' && db.config && db.config.emailWebhookUrl) 
     ? db.config.emailWebhookUrl 
     : (localStorage.getItem('sigec_pro_email_webhook_url') || '');
@@ -26144,8 +27575,8 @@ function renderEmailNotifySettingsUI() {
   if (addressEl) addressEl.value = settings.email || 'jmcenturio@alegria-activity.com';
   if (hostEl) hostEl.value = settings.smtpHost || 'smtp.gmail.com';
   if (portEl) portEl.value = settings.smtpPort || '587';
-  if (userEl) userEl.value = settings.smtpUser || DEFAULT_SYSTEM_SMTP_USER;
-  if (passEl) passEl.value = settings.smtpPass || DEFAULT_SYSTEM_SMTP_PASS;
+  if (userEl) userEl.value = settings.smtpUser || '';
+  if (passEl) passEl.value = settings.smtpPass || '';
   if (webhookEl) webhookEl.value = settings.webhookUrl || '';
 }
 window.renderEmailNotifySettingsUI = renderEmailNotifySettingsUI;
@@ -26160,13 +27591,11 @@ function handleSaveEmailNotifySettings(showToastMsg = false) {
   const webhookEl = document.getElementById('cfgEmailWebhook');
 
   const enabled = enabledEl ? enabledEl.checked : true;
-  let email = addressEl ? addressEl.value.trim() : 'jmcenturio@alegria-activity.com';
-  if (!email || email.includes('José Centúrio') || !email.includes('@')) email = 'jmcenturio@alegria-activity.com';
+  let email = addressEl ? addressEl.value.trim() : '';
   const smtpHost = hostEl ? hostEl.value.trim() : 'smtp.gmail.com';
   const smtpPort = portEl ? portEl.value.trim() : '587';
-  let smtpUser = userEl ? userEl.value.trim() : 'jmcenturio@alegria-activity.com';
-  if (!smtpUser || smtpUser.includes('José Centúrio') || !smtpUser.includes('@')) smtpUser = 'jmcenturio@alegria-activity.com';
-  const smtpPass = (passEl && passEl.value.trim()) ? passEl.value.trim() : DEFAULT_SYSTEM_SMTP_PASS;
+  let smtpUser = userEl ? userEl.value.trim() : '';
+  const smtpPass = (passEl && passEl.value.trim()) ? passEl.value.trim() : (localStorage.getItem('sigec_pro_smtp_pass') || '');
   const webhookUrl = webhookEl ? webhookEl.value.trim() : '';
 
   localStorage.setItem('sigec_pro_admin_notify_enabled', enabled ? 'true' : 'false');
@@ -26341,10 +27770,9 @@ async function dispatchDirectEmail(targetEmail, subject, fields = {}) {
   // CANAL 1: Servidor Render Cloud Web Service Node.js (Porta 443 HTTPS)
   // Processa o envio no servidor sem restrições de CORS e com conexão direta ao Google
   // ------------------------------------------------------------------------
-  const isRenderStatic = typeof window !== 'undefined' && window.location && window.location.hostname === 'sigec-pro.onrender.com';
   const endpointsToTry = [
-    'https://sigec-pro-app.onrender.com/api/send-email',
-    ...(isRenderStatic ? [] : ['/api/send-email']),
+    'https://sigec-pro.onrender.com/api/send-email',
+    '/api/send-email',
     'http://127.0.0.1:59124/api/send-email'
   ];
 
@@ -26925,22 +28353,8 @@ async function quickApproveUser(userId) {
   const user = db.usuarios.find(u => u && u.id === userId);
   if (!user) return;
 
-  const nowIso = new Date().toISOString();
   user.active = true;
-  user.updatedAt = nowIso;
   _dismissedPendingAlertIds.delete(userId);
-
-  // Harmonizar todos os registos existentes com o mesmo email
-  if (user.email) {
-    const targetEmail = user.email.trim().toLowerCase();
-    (db.usuarios || []).forEach(u => {
-      if (u && u.email && u.email.trim().toLowerCase() === targetEmail) {
-        u.active = true;
-        u.updatedAt = nowIso;
-      }
-    });
-  }
-
   safeSetStorage('sigec_pro_usuarios', JSON.stringify(db.usuarios || []));
   saveDatabase();
 
@@ -26953,25 +28367,13 @@ async function quickApproveUser(userId) {
     sendUserAccountActivatedEmail(user).catch(() => {});
   }
 
-  // Gravação direta no servidor local/rede
-  try {
-    const serverOrigin = (typeof window !== 'undefined' && window.location && window.location.origin && !window.location.origin.startsWith('file:')) ? window.location.origin : '';
-    if (serverOrigin) {
-      fetch(`${serverOrigin}/api/save-db-json`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(db)
-      }).catch(() => {});
-    }
-  } catch(eSrv) {}
-
   // Sincronização em tempo real para o servidor Hugging Face
   if (typeof syncDatabaseToHuggingFace === 'function') {
     syncDatabaseToHuggingFace(true, true).catch(() => {});
   }
 
-  logUserActivity('Gestão de Utilizadores', 'Utilizador ' + user.nome + ' (' + user.email + ') foi dado de alta e ativado de imediato no servidor pelo Administrador.');
-  showToast('✅ Utilizador "' + user.nome + '" dado de alta e ativado no servidor com sucesso!', 'success');
+  logUserActivity('Gestão de Utilizadores', 'Utilizador ' + user.nome + ' (' + user.email + ') foi dado de alta e ativado de imediato pelo Administrador.');
+  showToast('✅ Utilizador "' + user.nome + '" dado de alta e ativado com sucesso! Foi enviado email de confirmação.', 'success');
 }
 window.quickApproveUser = quickApproveUser;
 
@@ -27410,7 +28812,8 @@ function openContactPersonInteractionModalForNew() {
 window.openContactPersonInteractionModalForNew = openContactPersonInteractionModalForNew;
 
 function openContactPersonInteractionModalForEdit(id) {
-  const item = (db.interacoes || []).find(i => i.id === id);
+  const cleanId = String(id).trim();
+  const item = (db.interacoes || []).find(i => i && String(i.id).trim() === cleanId);
   if (!item) return;
 
   currentContactPersonInteractionIdForModal = item.id;
@@ -27460,14 +28863,21 @@ function saveContactPersonInteraction(e) {
 
   if (!db.interacoes) db.interacoes = [];
 
-  const existingIndex = db.interacoes.findIndex(i => i.id === id);
-  const targetContact = (db.contactos || []).find(c => c.id === targetContactId);
+  const targetCIdStr = String(targetContactId).trim();
+  const cleanIdStr = String(id).trim();
+  const existingIndex = db.interacoes.findIndex(i => i && String(i.id).trim() === cleanIdStr);
+  const targetContact = (db.contactos || []).find(c => c && String(c.id).trim() === targetCIdStr);
   const targetClientId = targetContact ? targetContact.clienteId : currentClientId;
+  const clientObj = targetClientId ? (db.clientes || []).find(c => c && String(c.id).trim() === String(targetClientId).trim()) : null;
+  const subTabIndex = (targetContact && targetContact.subTabIndex !== undefined && targetContact.subTabIndex !== null) ? Number(targetContact.subTabIndex) : null;
+  const separadorId = (targetContact && targetContact.separadorId) ? targetContact.separadorId : ((clientObj && Array.isArray(clientObj.separadores) && subTabIndex !== null && clientObj.separadores[subTabIndex]) ? clientObj.separadores[subTabIndex].id : null);
 
   const intObj = {
-    id,
-    contactoId: targetContactId,
+    id: cleanIdStr,
+    contactoId: targetCIdStr,
     clienteId: targetClientId || null,
+    separadorId: separadorId || null,
+    subTabIndex: subTabIndex,
     data,
     descricao,
     createdAt: existingIndex >= 0 ? db.interacoes[existingIndex].createdAt : new Date().toISOString(),
@@ -27490,21 +28900,25 @@ function saveContactPersonInteraction(e) {
   saveDatabase();
   closeContactPersonInteractionModal();
   
-  const inters = (db.interacoes || []).filter(i => i.contactoId === targetContactId);
+  const inters = (db.interacoes || []).filter(i => i && String(i.contactoId || '').trim() === targetCIdStr);
   if (typeof renderContactPersonInteractionsGrid === 'function') {
     renderContactPersonInteractionsGrid(inters);
   }
   if (typeof renderContactPageMainGrid === 'function') renderContactPageMainGrid();
   if (typeof renderHomeDashboard === 'function') renderHomeDashboard();
+  if (targetClientId && typeof refreshClientSubLists === 'function') refreshClientSubLists(targetClientId);
+  if (typeof syncDatabaseToHuggingFace === 'function') {
+    syncDatabaseToHuggingFace(true, true).catch(() => {});
+  }
 }
 window.saveContactPersonInteraction = saveContactPersonInteraction;
 
 function deleteCurrentContactPersonInteractionModal() {
   if (!currentContactPersonInteractionIdForModal) return;
   if (confirm('Tem a certeza que deseja apagar este registo de contacto?')) {
-    const intId = currentContactPersonInteractionIdForModal;
+    const intId = String(currentContactPersonInteractionIdForModal).trim();
     addDeletedId('interacoes', intId);
-    db.interacoes = (db.interacoes || []).filter(i => i.id !== intId);
+    db.interacoes = (db.interacoes || []).filter(i => i && String(i.id).trim() !== intId);
     saveDatabase();
     closeContactPersonInteractionModal();
     
@@ -27513,7 +28927,8 @@ function deleteCurrentContactPersonInteractionModal() {
       : (document.getElementById('contactId')?.value || currentContactId);
       
     if (targetContactId) {
-      const inters = (db.interacoes || []).filter(i => i.contactoId === targetContactId);
+      const targetCIdStr = String(targetContactId).trim();
+      const inters = (db.interacoes || []).filter(i => i && String(i.contactoId || '').trim() === targetCIdStr);
       if (typeof renderContactPersonInteractionsGrid === 'function') {
         renderContactPersonInteractionsGrid(inters);
       }
@@ -27735,142 +29150,26 @@ function getCountryFlagEmoji(cc, countryName) {
 }
 window.getCountryFlagEmoji = getCountryFlagEmoji;
 
-function smartSplitAddress(rawD1, rawD2, rawNum, rawAndar) {
-  let d1 = (rawD1 || '').trim();
-  let d2 = (rawD2 || '').trim();
-  let num = (rawNum || '').trim();
-  let andar = (rawAndar || '').trim();
+function splitSmartAddressLines(direcao1, direcao2, numero) {
+  let d1 = (direcao1 || '').trim();
+  let d2 = (direcao2 || '').trim();
+  let num = (numero || '').trim();
 
-  d1 = d1.replace(/Â[º°ª]/g, 'º').replace(/Â/g, '');
-  d2 = d2.replace(/Â[º°ª]/g, 'º').replace(/Â/g, '');
-
-  // 1. Limpar códigos postais e localidades residuais em d1 se existirem
-  const ptPostal = d1.match(/,\s*(\d{4}\s*-\s*\d{3})\s+([A-Za-zÀ-ÿ\s\-]+)$/i) || d1.match(/\s+(\d{4}\s*-\s*\d{3})\s+([A-Za-zÀ-ÿ\s\-]+)$/i);
-  if (ptPostal) {
-    d1 = d1.slice(0, ptPostal.index).trim();
-  }
-  d1 = d1.replace(/,\s*(?:Lisboa|Porto|Portugal)[\.\s]*$/i, '').trim();
-
-  // 2. Extrair andar / piso se presente em d1
-  const floorMatch = d1.match(/(?:,\s*|\s+)(\d+(?:\.?[º°ªa]|\.)?\s*(?:andar|piso|esq(?:uerdo)?|dto|direito|frente|recuado|trás|tras|d|e)\b|(?:r\/c|rés-do-chão|res-do-chao|cave|subcave|sobreloja))/i);
-  if (floorMatch) {
-    if (!andar) andar = floorMatch[1].trim();
-    d1 = d1.replace(floorMatch[0], ' ').trim();
-  }
-
-  // 3. Extrair número se presente em d1 e ainda vazio
-  if (!num) {
-    const explicitNum = d1.match(/(?:,\s*|\s+)(?:n[\.º°]+[o]?\s*|n[uú]mero\s*)(\d+[\s\-]?[A-Za-z]?)(?=[\,\s\.]|$)/i);
-    if (explicitNum) {
-      num = explicitNum[1].trim();
-      d1 = d1.slice(0, explicitNum.index).trim();
-    } else {
-      const numMatch = d1.match(/(?:,\s*|\s+n\.?[ºo]?\s*)(\d+[\s\-]?[A-Za-z]?)\s*$/i);
-      if (numMatch) {
-        num = numMatch[1].trim();
-        d1 = d1.slice(0, numMatch.index).trim();
-      }
-    }
-  }
-
-  // Se d2 for apenas número ou número + código postal residual
-  if (d2) {
-    const d2NumOnly = d2.match(/^(\d+[A-Za-z]?)(?:\s*,\s*|\s*-\s*|\s+|$)/);
-    if (d2NumOnly) {
-      if (!num) num = d2NumOnly[1];
-      const rest = d2.slice(d2NumOnly[0].length).replace(/\d{4}\s*-\s*\d{3}/, '').replace(/(?:Lisboa|Porto|Portugal)[\.\s]*/i, '').trim();
-      d2 = rest.replace(/^[\s,\-\/]+|[\s,\-\/]+$/g, '').trim();
-    }
-  }
-
-  const STREET_START_REGEX = /^(?:Avenida|Av\.?|Rua|R\.?|Praça|Praca|Praza|Plaza|Pl\.?|Largo|Lg\.?|Alameda|Al\.?|Calçada|Calcada|Travessa|Tv\.?|Estrada|Estr\.?|Carretera|Ctra\.?|Calle|C\/|C\.|Paseo|P\.º|Bulevar|Boulevard|Rambla|Rotunda|Caminho|Camino|Via|Vía)\b/i;
-
-  // Inversão óbvia: d1 não é rua, mas d2 é rua
-  if (d1 && d2 && !STREET_START_REGEX.test(d1) && STREET_START_REGEX.test(d2)) {
-    const tmp = d1;
-    d1 = d2;
-    d2 = tmp;
-  }
-
-  // Se d1 contém parêntesis com indicação de zona/edifício
-  const parenMatch = d1.match(/\(([^)]+)\)/);
-  if (parenMatch && !d2) {
-    d2 = parenMatch[1].trim();
-    d1 = d1.replace(parenMatch[0], '').replace(/^[\s,\-\/]+|[\s,\-\/]+$/g, '').trim();
-  }
-
-  const SECONDARY_PATTERNS = [
-    /\(?\s*(Campus\s+[^,\)\-]+)\s*\)?/i,
-    /\(?\s*((?:Pol[íi]gono|Zona)\s+(?:Industrial|Empresarial|de\s+Actividades\s+Econ[óo]micas)[^,\)\-]*)\s*\)?/i,
-    /\(?\s*(Parque\s+(?:Empresarial|Tecnol[óo]gico|Industrial|de\s+Neg[óo]cios|de\s+Sa[úu]de|das\s+Na[çc][õo]es)[^,\)\-]*)\s*\)?/i,
-    /\(?\s*(Centro\s+(?:Empresarial|Comercial|Ismaili|de\s+Neg[óo]cios|de\s+Congressos|Cient[íi]fico)[^,\)\-]*)\s*\)?/i,
-    /\(?\s*(Complexo\s+(?:da\s+Moncloa|Industrial|Desportivo|Empresarial|Hospitalar)[^,\)\-]*)\s*\)?/i,
+  // Padrões de Zona Secundária (Polígonos, Parques, Edifícios, etc.)
+  const secondaryPatterns = [
+    /\(?\s*(Pol[íi]gono\s+Industrial\s+[^,\)\-]+)\s*\)?/i,
+    /\(?\s*(Zona\s+Industrial\s+[^,\)\-]+)\s*\)?/i,
+    /\(?\s*(Parque\s+(?:Empresarial|Tecnol[óo]gico|de\s+Neg[óo]cios|Industrial)\s+[^,\)\-]+)\s*\)?/i,
+    /\(?\s*(Centro\s+Empresarial\s+[^,\)\-]+)\s*\)?/i,
     /\(?\s*(Edif[íi]cio\s+[^,\)\-]+)\s*\)?/i,
     /\(?\s*(Torre\s+[A-Za-z0-9\s]+)\s*\)?/i,
     /\(?\s*(Bloco\s+[A-Za-z0-9\s]+)\s*\)?/i,
     /\(?\s*(Lote\s+[A-Za-z0-9\s]+)\s*\)?/i,
-    /\(?\s*(Pavilh[ãa]o\s+[^,\)\-]+)\s*\)?/i,
-    /\(?\s*(Central\s+Tejo)\s*\)?/i,
-    /\(?\s*(Urbaniza[çc][ãa]o\s+[^,\)\-]+)\s*\)?/i,
-    /\(?\s*((?:Quinta|Herdade)\s+d[eao][s]?\s+[^,\)\-]+)\s*\)?/i,
-    /\(?\s*(Doca\s+d[eao][s]?\s+[^,\)\-]+)\s*\)?/i
+    /\(?\s*(Urbaniza[çc][ãa]o\s+[^,\)\-]+)\s*\)?/i
   ];
 
-  // Se d1 contém vírgula
-  if (d1.includes(',')) {
-    const parts = d1.split(',').map(p => p.trim()).filter(Boolean);
-    if (parts.length >= 2) {
-      if (!STREET_START_REGEX.test(parts[0]) && STREET_START_REGEX.test(parts[1])) {
-        if (!d2) d2 = parts[0];
-        d1 = parts.slice(1).join(', ').trim();
-      } else if (STREET_START_REGEX.test(parts[0])) {
-        const remaining = parts.slice(1);
-        const secondaryParts = [];
-        for (const rem of remaining) {
-          const pureNumMatch = rem.match(/^(\d+[A-Za-z]?)(?:\s*,\s*|\s*-\s*|\s+|$)/);
-          if (pureNumMatch && !num) {
-            num = pureNumMatch[1];
-            const afterNum = rem.slice(pureNumMatch[0].length).trim();
-            if (afterNum && !/^\d{4}/.test(afterNum) && !/^(?:Lisboa|Porto|Portugal)$/i.test(afterNum)) {
-              secondaryParts.push(afterNum);
-            }
-          } else if (/^\d{4}/.test(rem) || /^(?:Lisboa|Porto|Portugal)$/i.test(rem)) {
-            // Ignorar
-          } else {
-            secondaryParts.push(rem);
-          }
-        }
-        if (secondaryParts.length > 0 && !d2) {
-          d2 = secondaryParts.join(', ');
-        }
-        d1 = parts[0];
-      }
-    }
-  }
-
-  // Padrão: "Palácio ... Largo/Rua/Avenida ..." sem vírgula
-  const palStreetMatch = d1.match(/^(Pal[áa]cio\s+[^,]+?)\s+(Largo\s+.*|Rua\s+.*|Avenida\s+.*|Praça\s+.*)$/i);
-  if (palStreetMatch) {
-    if (!d2) d2 = palStreetMatch[1].trim();
-    d1 = palStreetMatch[2].trim();
-  }
-
-  // Padrão: "Campus ... Avenida/Rua/Largo ..." sem vírgula
-  const campusStreetMatch = d1.match(/^(Campus\s+[A-Za-z0-9]+)\s+(Largo\s+.*|Rua\s+.*|Avenida\s+.*|Praça\s+.*)$/i);
-  if (campusStreetMatch) {
-    if (!d2) d2 = campusStreetMatch[1].trim();
-    d1 = campusStreetMatch[2].trim();
-  }
-
-  // Padrão: "Edifício ... Rua/Avenida/Praça/Largo ..." sem vírgula
-  const edifStreetMatch = d1.match(/^(Edif[íi]cio\s+[^,]+?)\s+(Largo\s+.*|Rua\s+.*|Avenida\s+.*|Praça\s+.*)$/i);
-  if (edifStreetMatch) {
-    if (!d2) d2 = edifStreetMatch[1].trim();
-    d1 = edifStreetMatch[2].trim();
-  }
-
   if (!d2) {
-    for (const pat of SECONDARY_PATTERNS) {
+    for (const pat of secondaryPatterns) {
       const match = d1.match(pat);
       if (match) {
         d2 = match[1].trim();
@@ -27880,2049 +29179,1077 @@ function smartSplitAddress(rawD1, rawD2, rawNum, rawAndar) {
     }
   }
 
-  d1 = d1.replace(/^[\s,\-\/]+|[\s,\-\/]+$/g, '').trim();
-  d2 = d2.replace(/^[\s,\-\/]+|[\s,\-\/]+$/g, '').trim();
-  num = num.replace(/^[\s,\-\/n\.º°]+|[\s,\-\/]+$/gi, '').trim();
+  // Extrair número se não foi fornecido
+  if (!num) {
+    const numMatch = d1.match(/,\s*(?:n\.?[ºo]?\s*)?(\d+[A-Za-z]?)\s*$/i) || d1.match(/\s+n\.?[ºo]?\s*(\d+[A-Za-z]?)\s*$/i);
+    if (numMatch) {
+      num = numMatch[1];
+      d1 = d1.slice(0, numMatch.index).trim();
+    }
+  }
 
-  return { direcao1: d1, direcao2: d2, numero: num, andar: andar };
-}
-window.smartSplitAddress = smartSplitAddress;
-
-function splitSmartAddressLines(direcao1, direcao2, numero, andar) {
-  return smartSplitAddress(direcao1, direcao2, numero, andar);
+  return { direcao1: d1, direcao2: d2, numero: num };
 }
 window.splitSmartAddressLines = splitSmartAddressLines;
 
 
 const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
   {
-    "aliases": [
-      "turismo de portugal",
-      "turismo de portugal ip",
-      "turismo de portugal, i.p.",
-      "turismodeportugal",
-      "instituto de turismo de portugal",
-      "turismo portugal",
-      "turismo de portugal i.p."
-    ],
-    "website": "https://www.turismodeportugal.pt",
-    "telefone": "+351 211 140 200",
-    "email": "info@turismodeportugal.pt",
-    "direcao1": "Rua Ivone Silva",
-    "numero": "Lote 6",
-    "andar": "",
-    "codigoPostal": "1050-124",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.turismodeportugal.pt",
-    "nome": "Turismo De Portugal"
-  },
-  {
-    "aliases": [
-      "iapmei",
-      "iapmei ip",
-      "iapmei, i.p.",
-      "agência para a competitividade e inovação",
-      "agencia para a competitividade e inovacao"
-    ],
-    "website": "https://www.iapmei.pt",
-    "telefone": "+351 213 836 000",
-    "email": "info@iapmei.pt",
-    "direcao1": "Estrada do Paço do Lumiar",
-    "numero": "Edifício A",
-    "andar": "",
-    "codigoPostal": "1649-038",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.iapmei.pt",
-    "direcao2": "Campus do Lumiar",
-    "nome": "Iapmei"
-  },
-  {
-    "aliases": [
-      "aicep",
-      "aicep epe",
-      "aicep, e.p.e.",
-      "aicep portugal global",
-      "agência para o investimento e comércio externo"
-    ],
-    "website": "https://www.portugalglobal.pt",
-    "telefone": "+351 217 909 500",
-    "email": "aicep@portugalglobal.pt",
-    "direcao1": "Rua de Entrecampos",
-    "numero": "28",
-    "andar": "Bloco B, 12º",
-    "codigoPostal": "1700-158",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.portugalglobal.pt",
-    "nome": "Aicep"
-  },
-  {
-    "aliases": [
-      "asae",
-      "autoridade de segurança alimentar e económica",
-      "autoridade de seguranca alimentar e economica"
-    ],
-    "website": "https://www.asae.gov.pt",
-    "telefone": "+351 217 983 600",
-    "email": "correio.asae@asae.pt",
-    "direcao1": "Rua Rodrigo da Fonseca",
-    "numero": "73",
-    "andar": "",
-    "codigoPostal": "1269-274",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.asae.gov.pt",
-    "nome": "Asae"
-  },
-  {
-    "aliases": [
-      "at",
-      "autoridade tributária",
-      "autoridade tributaria",
-      "autoridade tributária e aduaneira",
-      "portal das finanças",
-      "dgci"
-    ],
-    "website": "https://www.portaldasfinancas.gov.pt",
-    "telefone": "+351 217 206 707",
-    "direcao1": "Rua da Prata",
-    "numero": "10",
-    "andar": "",
-    "codigoPostal": "1149-027",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.portaldasfinancas.gov.pt",
-    "nome": "At"
-  },
-  {
-    "aliases": [
-      "imt",
-      "imt ip",
-      "imt, i.p.",
-      "instituto da mobilidade e dos transportes",
-      "imtt"
-    ],
-    "website": "https://www.imt-ip.pt",
-    "telefone": "+351 217 949 000",
-    "email": "imt@imt-ip.pt",
-    "direcao1": "Avenida das Forças Armadas",
-    "numero": "40",
-    "andar": "",
-    "codigoPostal": "1649-022",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.imt-ip.pt",
-    "nome": "Imt"
-  },
-  {
-    "aliases": [
-      "iefp",
-      "iefp ip",
-      "iefp, i.p.",
-      "instituto do emprego e formação profissional",
-      "instituto do emprego e formacao profissional"
-    ],
-    "website": "https://www.iefp.pt",
-    "telefone": "+351 215 803 000",
-    "email": "iefp.info@iefp.pt",
-    "direcao1": "Rua de Xabregas",
-    "numero": "52",
-    "andar": "",
-    "codigoPostal": "1949-003",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.iefp.pt",
-    "nome": "Iefp"
-  },
-  {
-    "aliases": [
-      "inem",
-      "inem ip",
-      "inem, i.p.",
-      "instituto nacional de emergência médica",
-      "instituto nacional de emergencia medica"
-    ],
-    "website": "https://www.inem.pt",
-    "telefone": "+351 213 508 100",
-    "email": "inem@inem.pt",
-    "direcao1": "Rua Almirante Barroso",
-    "numero": "36",
-    "andar": "",
-    "codigoPostal": "1000-013",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.inem.pt",
-    "nome": "Inem"
-  },
-  {
-    "aliases": [
-      "icnf",
-      "icnf ip",
-      "icnf, i.p.",
-      "instituto da conservação da natureza e das florestas",
-      "instituto da conservacao da natureza e das florestas"
-    ],
-    "website": "https://www.icnf.pt",
-    "telefone": "+351 213 507 900",
-    "email": "icnf@icnf.pt",
-    "direcao1": "Avenida da República",
-    "numero": "16",
-    "andar": "",
-    "codigoPostal": "1050-191",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.icnf.pt",
-    "nome": "Icnf"
-  },
-  {
-    "aliases": [
-      "ipdj",
-      "ipdj ip",
-      "ipdj, i.p.",
-      "instituto português do desporto e juventude",
-      "instituto portugues do desporto e juventude"
-    ],
-    "website": "https://ipdj.gov.pt",
-    "telefone": "+351 210 470 000",
-    "email": "contacto@ipdj.pt",
-    "direcao1": "Rua Rodrigo da Fonseca",
-    "numero": "55",
-    "andar": "",
-    "codigoPostal": "1250-190",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://ipdj.gov.pt",
-    "nome": "Ipdj"
-  },
-  {
-    "aliases": [
-      "dgae",
-      "direção-geral das atividades económicas",
-      "direcao-geral das atividades economicas"
-    ],
-    "website": "https://www.dgae.gov.pt",
-    "telefone": "+351 217 919 100",
-    "direcao1": "Avenida Visconde de Valmor",
-    "numero": "72",
-    "andar": "",
-    "codigoPostal": "1069-041",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.dgae.gov.pt",
-    "nome": "Dgae"
-  },
-  {
-    "aliases": [
-      "turespaña",
-      "turespana",
-      "instituto de turismo de españa",
-      "instituto de turismo de espana",
-      "turismo de españa"
-    ],
-    "website": "https://www.tourspain.es",
-    "telefone": "+34 913 433 500",
-    "direcao1": "Calle Poeta Joan Maragall",
-    "numero": "41",
-    "andar": "",
-    "codigoPostal": "28020",
-    "localidade": "Madrid",
-    "pais": "España",
-    "fonteUrl": "https://www.tourspain.es",
-    "nome": "Turespaña"
-  },
-  {
-    "aliases": [
-      "icex",
-      "icex españa",
-      "icex españa exportación e inversiones"
-    ],
-    "website": "https://www.icex.es",
-    "telefone": "+34 913 496 100",
-    "direcao1": "Paseo de la Castellana",
-    "numero": "278",
-    "andar": "",
-    "codigoPostal": "28046",
-    "localidade": "Madrid",
-    "pais": "España",
-    "fonteUrl": "https://www.icex.es",
-    "nome": "Icex"
-  },
-  {
-    "aliases": [
-      "alegria activity, s.l.",
-      "alegria activity s.l.",
-      "alegria activity",
-      "alegria-activity",
-      "alegria activity sede",
-      "grupo alegria activity",
-      "alegria activity vitoria",
-      "alegria activity espanha"
-    ],
-    "website": "https://alegria-activity.com",
-    "email": "info@alegria-activity.com",
-    "telefone": "+34 945 128 415",
-    "direcao1": "Calle Lermandabidea",
-    "direcao2": "Polígono Industrial Júndiz",
-    "numero": "7",
-    "andar": "",
-    "codigoPostal": "01015",
-    "localidade": "Vitoria-Gasteiz (Álava)",
-    "pais": "Espanha",
-    "fonteUrl": "https://alegria-activity.com",
-    "nome": "Alegria Activity, S.l."
-  },
-  {
-    "aliases": [
-      "alegria activity landaluzea",
-      "alegria activity jundiz"
-    ],
-    "website": "https://alegria-activity.com",
-    "email": "info@alegria-activity.com",
-    "telefone": "+34 945 128 415",
-    "direcao1": "Calle Landaluzea",
-    "numero": "24",
-    "andar": "",
-    "codigoPostal": "01015",
-    "localidade": "Vitoria-Gasteiz (Álava)",
-    "pais": "Espanha",
-    "fonteUrl": "https://alegria-activity.com",
-    "direcao2": "Polígono Industrial Júndiz",
-    "nome": "Alegria Activity Landaluzea"
-  },
-  {
-    "aliases": [
-      "alegria activity manufacturing",
-      "alegria activity zaragoza",
-      "alegria activity fabrica"
-    ],
-    "website": "https://alegria-activity.com",
-    "email": "info@alegria-activity.com",
-    "telefone": "+34 876 26 20 97",
-    "direcao1": "Calle E",
-    "numero": "9",
-    "andar": "",
-    "codigoPostal": "50016",
-    "localidade": "Zaragoza",
-    "pais": "Espanha",
-    "fonteUrl": "https://alegria-activity.com",
-    "direcao2": "Polígono Industrial Malpica",
-    "nome": "Alegria Activity Manufacturing"
-  },
-  {
-    "aliases": [
-      "presidência",
-      "presidencia",
-      "ministério da presidência",
-      "ministerio da presidencia",
-      "presidência do conselho de ministros",
-      "secretaria-geral da presidência"
-    ],
-    "website": "https://www.portugal.gov.pt",
-    "telefone": "+351 213 927 600",
-    "direcao1": "Rua Professor Gomes Teixeira",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "1399-022",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt",
-    "nome": "Presidência"
-  },
-  {
-    "aliases": [
-      "assembleia da república",
-      "assembleia da republica",
-      "parlamento",
-      "assuntos parlamentares",
-      "ministério dos assuntos parlamentares",
-      "ministerio dos assuntos parlamentares"
-    ],
-    "website": "https://www.parlamento.pt",
-    "telefone": "+351 213 919 000",
-    "direcao1": "Palácio de São Bento",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "1249-068",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.parlamento.pt",
-    "nome": "Assembleia Da República"
-  },
-  {
-    "aliases": [
-      "presidência da república",
-      "presidencia da republica",
-      "palácio de belém",
-      "palacio de belem"
-    ],
-    "website": "https://www.presidencia.pt",
-    "telefone": "+351 213 614 600",
-    "direcao1": "Calçada da Ajuda",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "1349-022",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.presidencia.pt",
-    "nome": "Presidência Da República"
-  },
-  {
-    "aliases": [
-      "negócios estrangeiros",
-      "negocios estrangeiros",
-      "mne",
-      "ministério dos negócios estrangeiros",
-      "ministerio de estado e dos negócios estrangeiros",
-      "secretaria de estado dos negócios estrangeiros",
-      "secretaria de estado de negócios estrangeiros e cooperação"
-    ],
-    "website": "https://www.portaldiplomatico.mne.gov.pt",
-    "telefone": "+351 213 946 000",
-    "direcao1": "Largo do Rilvas",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "1399-030",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.portaldiplomatico.mne.gov.pt",
-    "direcao2": "Palácio das Necessidades",
-    "nome": "Negócios Estrangeiros"
-  },
-  {
-    "aliases": [
-      "tesouro e finanças",
-      "tesouro e financas",
-      "dgtf",
-      "direção-geral do tesouro",
-      "direccao-geral do tesouro",
-      "direção geral do tesouro",
-      "direção-geral do tesouro e finanças"
-    ],
-    "website": "https://www.dgtf.gov.pt",
-    "telefone": "+351 218 812 000",
-    "direcao1": "Rua da Alfândega",
-    "numero": "5",
-    "andar": "1.º andar",
-    "codigoPostal": "1149-008",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.gov.pt/entidades/direcao-geral-do-tesouro-e-financas",
-    "nome": "Tesouro E Finanças"
-  },
-  {
-    "aliases": [
-      "ministério das finanças",
-      "ministerio das financas",
-      "finanças",
-      "financas",
-      "gabinete do ministro das finanças",
-      "ministerio finanzas"
-    ],
-    "website": "https://www.portugal.gov.pt",
-    "telefone": "+351 218 816 800",
-    "direcao1": "Avenida Infante Dom Henrique",
-    "numero": "1",
-    "andar": "",
-    "codigoPostal": "1149-009",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt",
-    "nome": "Ministério Das Finanças"
-  },
-  {
-    "aliases": [
-      "autoridade tributária",
-      "autoridade tributaria",
-      "at",
-      "direção-geral dos impostos",
-      "alfândega",
-      "alfandega"
-    ],
-    "website": "https://www.portaldasfinancas.gov.pt",
-    "telefone": "+351 217 206 707",
-    "direcao1": "Rua da Prata",
-    "numero": "10",
-    "andar": "",
-    "codigoPostal": "1149-027",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.portaldasfinancas.gov.pt",
-    "nome": "Autoridade Tributária"
-  },
-  {
-    "aliases": [
-      "direção-geral do orçamento",
-      "direccao-geral do orcamento",
-      "dgo"
-    ],
-    "website": "https://www.dgo.gov.pt",
-    "telefone": "+351 218 817 000",
-    "direcao1": "Avenida Infante Dom Henrique",
-    "numero": "1",
-    "andar": "",
-    "codigoPostal": "1149-009",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.dgo.gov.pt",
-    "nome": "Direção-geral Do Orçamento"
-  },
-  {
-    "aliases": [
-      "ministério da defesa",
-      "ministerio da defesa",
-      "ministério da defesa nacional",
-      "ministerio de defensa nacional",
-      "ministerio da defesa nacional",
-      "secretaria de estado da defesa nacional"
-    ],
-    "website": "https://www.defesa.gov.pt",
-    "telefone": "+351 213 034 500",
-    "direcao1": "Avenida da Ilha da Madeira",
-    "numero": "1",
-    "andar": "",
-    "codigoPostal": "1400-204",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.defesa.gov.pt",
-    "nome": "Ministério Da Defesa"
-  },
-  {
-    "aliases": [
-      "direção-geral de recursos da defesa nacional",
-      "direção geral de recursos de defesa nacional",
-      "dgrdn"
-    ],
-    "website": "https://www.defesa.gov.pt/pt/dgrdn",
-    "telefone": "+351 213 038 500",
-    "direcao1": "Avenida da Ilha da Madeira",
-    "numero": "1",
-    "andar": "Edifício Defesa",
-    "codigoPostal": "1400-204",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.defesa.gov.pt",
-    "nome": "Direção-geral De Recursos Da Defesa Nacional"
-  },
-  {
-    "aliases": [
-      "administração interna",
-      "administracao interna",
-      "mai",
-      "ministério da administração interna",
-      "ministerio da administracion interna",
-      "secretaria de estado da administração interna",
-      "secretaria del estado de administración interna"
-    ],
-    "website": "https://www.mai.gov.pt",
-    "telefone": "+351 213 233 000",
-    "direcao1": "Praça do Comércio",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "1149-015",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.mai.gov.pt",
-    "nome": "Administração Interna"
-  },
-  {
-    "aliases": [
-      "polícia de segurança pública",
-      "policia de seguranca publica",
-      "psp",
-      "direção nacional da psp"
-    ],
-    "website": "https://www.psp.pt",
-    "telefone": "+351 213 466 141",
-    "direcao1": "Largo da Penha de França",
-    "numero": "1",
-    "andar": "",
-    "codigoPostal": "1199-010",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.psp.pt",
-    "nome": "Polícia De Segurança Pública"
-  },
-  {
-    "aliases": [
-      "guarda nacional republicana",
-      "gnr",
-      "comando geral da gnr"
-    ],
-    "website": "https://www.gnr.pt",
-    "telefone": "+351 213 217 000",
-    "direcao1": "Largo do Carmo",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "1200-092",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.gnr.pt",
-    "nome": "Guarda Nacional Republicana"
-  },
-  {
-    "aliases": [
-      "proteção civil",
-      "protecao civil",
-      "anepc"
-    ],
-    "website": "https://prociv.gov.pt",
-    "telefone": "+351 214 247 100",
-    "direcao1": "Avenida do Forte em Carnaxide",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "2794-112",
-    "localidade": "Carnaxide",
-    "pais": "Portugal",
-    "fonteUrl": "https://prociv.gov.pt",
-    "nome": "Proteção Civil"
-  },
-  {
-    "aliases": [
-      "ministério da justiça",
-      "ministerio da justica",
-      "ministerio de justicia",
-      "secretaria de estado da justiça",
-      "secretaría del estado de justicia"
-    ],
-    "website": "https://www.justica.gov.pt",
-    "telefone": "+351 213 222 300",
-    "direcao1": "Praça do Comércio",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "1149-019",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.justica.gov.pt",
-    "nome": "Ministério Da Justiça"
-  },
-  {
-    "aliases": [
-      "instituto dos registos e do notariado",
-      "irn",
-      "registos e notariado"
-    ],
-    "website": "https://irn.justica.gov.pt",
-    "telefone": "+351 211 950 500",
-    "direcao1": "Avenida Dom João II",
-    "numero": "Lote 1.06.2.1",
-    "andar": "",
-    "codigoPostal": "1990-097",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://irn.justica.gov.pt",
-    "direcao2": "Campus de Justiça, Edifício H",
-    "nome": "Instituto Dos Registos E Do Notariado"
-  },
-  {
-    "aliases": [
-      "polícia judiciária",
-      "policia judiciaria",
-      "pj"
-    ],
-    "website": "https://www.policiajudiciaria.pt",
-    "telefone": "+351 211 967 000",
-    "direcao1": "Rua Gomes Freire",
-    "numero": "174",
-    "andar": "",
-    "codigoPostal": "1169-007",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.policiajudiciaria.pt",
-    "nome": "Polícia Judiciária"
-  },
-  {
-    "aliases": [
-      "ministério da economia",
-      "ministerio da economia",
-      "ministério da economia e da coesão territorial",
-      "economia e coesão territorial",
-      "secretaria de estado do turismo, comércio e serviços"
-    ],
-    "website": "https://www.portugal.gov.pt",
-    "telefone": "+351 217 911 600",
-    "direcao1": "Avenida da República",
-    "numero": "79",
-    "andar": "",
-    "codigoPostal": "1050-243",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt",
-    "nome": "Ministério Da Economia"
-  },
-  {
-    "aliases": [
-      "coesão territorial",
-      "coesao territorial",
-      "ministério da coesão territorial"
-    ],
-    "website": "https://www.portugal.gov.pt",
-    "telefone": "+351 217 923 500",
-    "direcao1": "Avenida Columbano Bordalo Pinheiro",
-    "numero": "86",
-    "andar": "",
-    "codigoPostal": "1070-065",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt",
-    "nome": "Coesão Territorial"
-  },
-  {
-    "aliases": [
-      "atividades económicas",
-      "actividades economicas",
-      "dgae",
-      "direção-geral das atividades económicas",
-      "direccao-geral das actividades economicas"
-    ],
-    "website": "https://www.dgae.gov.pt",
-    "telefone": "+351 217 919 100",
-    "direcao1": "Avenida Visconde de Valmor",
-    "numero": "72",
-    "andar": "",
-    "codigoPostal": "1069-041",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.dgae.gov.pt",
-    "nome": "Atividades Económicas"
-  },
-  {
-    "aliases": [
-      "iapmei",
-      "competitividade e inovação"
-    ],
-    "website": "https://www.iapmei.pt",
-    "telefone": "+351 213 836 000",
-    "direcao1": "Estrada do Paço do Lumiar",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "1649-038",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.iapmei.pt",
-    "direcao2": "Campus do Lumiar, Edifício A",
-    "nome": "Iapmei"
-  },
-  {
-    "aliases": [
-      "ministério da agricultura",
-      "ministerio da agricultura",
-      "ministério da agricultura e do mar",
-      "ministerio de agricultura y mar",
-      "secretaria de estado da agricultura",
-      "secretario de estado de agricultura"
-    ],
-    "website": "https://www.portugal.gov.pt",
-    "telefone": "+351 213 234 600",
-    "direcao1": "Praça do Comércio",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "1149-010",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt",
-    "nome": "Ministério Da Agricultura"
-  },
-  {
-    "aliases": [
-      "dgadr",
-      "agricultura e desenvolvimento rural",
-      "direção-geral de agricultura e desenvolvimento rural",
-      "direccao-geral de agricultura e desenvolvimento rural",
-      "dirección general agricultura y desenvolvimiento rural"
-    ],
-    "website": "https://www.dgadr.gov.pt",
-    "telefone": "+351 218 442 200",
-    "direcao1": "Avenida Afonso Costa",
-    "numero": "3",
-    "andar": "",
-    "codigoPostal": "1949-002",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.dgadr.gov.pt",
-    "nome": "Dgadr"
-  },
-  {
-    "aliases": [
-      "ministério da cultura, juventude e desporto",
-      "ministerio da cultura, juventude e desporto",
-      "ministério da cultura",
-      "ministerio da cultura",
-      "ministerio de cultura, juventud y deporte"
-    ],
-    "website": "https://www.portugal.gov.pt",
-    "telefone": "+351 213 927 600",
-    "email": "gabinete.mcjd@mcjd.gov.pt",
-    "direcao1": "Avenida João XXI",
-    "numero": "63",
-    "andar": "",
-    "codigoPostal": "1000-300",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt",
-    "direcao2": "Campus XXI",
-    "nome": "Ministério Da Cultura, Juventude E Desporto"
-  },
-  {
-    "aliases": [
-      "secretaria de estado da cultura",
-      "secretario de estado de cultura",
-      "palácio nacional da ajuda",
-      "palacio nacional da ajuda"
-    ],
-    "website": "https://www.portugal.gov.pt",
-    "telefone": "+351 213 614 500",
-    "email": "gabinete.secul@mcjd.gov.pt",
-    "direcao1": "Avenida João XXI",
-    "direcao2": "Palácio Nacional da Ajuda, 1349-021",
-    "numero": "63",
-    "andar": "",
-    "codigoPostal": "1000-300",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt",
-    "nome": "Secretaria De Estado Da Cultura"
-  },
-  {
-    "aliases": [
-      "secretaria de estado do desporto",
-      "secretario de estado de deporte",
-      "secretaria de estado adjunta e da juventude",
-      "secretaria de estado adjunta e da juventude e da igualdade",
-      "secretaria de estado adjunta da juventude e da igualdade",
-      "ipdj",
-      "instituto português do desporto e juventude"
-    ],
-    "website": "https://ipdj.gov.pt",
-    "telefone": "+351 213 927 600",
-    "email": "gabinete.sed@mcjd.gov.pt",
-    "direcao1": "Rua Rodrigo da Fonseca",
-    "numero": "55",
-    "andar": "",
-    "codigoPostal": "1250-190",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://ipdj.gov.pt",
-    "nome": "Secretaria De Estado Do Desporto"
-  },
-  {
-    "aliases": [
-      "ministério da educação",
-      "ministerio da educacao",
-      "ministério da educação, ciência e inovação",
-      "ministerio de educación, ciencia e innovacion",
-      "secretário de estado adjunto e de educação",
-      "secretario de estado adjunto e de educacao",
-      "secretaria de estado da educação"
-    ],
-    "website": "https://www.portugal.gov.pt",
-    "telefone": "+351 213 934 500",
-    "direcao1": "Avenida 24 de Julho",
-    "numero": "134",
-    "andar": "",
-    "codigoPostal": "1399-029",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt",
-    "nome": "Ministério Da Educação"
-  },
-  {
-    "aliases": [
-      "dge",
-      "direção-geral da educação",
-      "direccao-geral da educacao",
-      "dirección general de educación"
-    ],
-    "website": "https://www.dge.mec.pt",
-    "telefone": "+351 217 901 100",
-    "direcao1": "Praça de Alvalade",
-    "numero": "12",
-    "andar": "",
-    "codigoPostal": "1749-070",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.dge.mec.pt",
-    "nome": "Dge"
-  },
-  {
-    "aliases": [
-      "ministério do trabalho",
-      "ministerio do trabalho",
-      "ministério do trabalho, solidariedade e segurança social",
-      "ministerio de trabajo, solidaridad y seguridad social",
-      "secretaria de estado da ação social e da inclusão",
-      "secretaria de estado de acción social y de inclusión",
-      "secretaria de estado do trabalho"
-    ],
-    "website": "https://www.portugal.gov.pt",
-    "telefone": "+351 215 953 000",
-    "direcao1": "Praça de Londres",
-    "numero": "2",
-    "andar": "",
-    "codigoPostal": "1049-056",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt",
-    "nome": "Ministério Do Trabalho"
-  },
-  {
-    "aliases": [
-      "direção-geral da segurança social",
-      "direccao-geral da seguranca social",
-      "dirección general de seguridad social",
-      "dgss"
-    ],
-    "website": "https://www.seg-social.pt",
-    "telefone": "+351 215 953 300",
-    "direcao1": "Largo do Rato",
-    "numero": "1",
-    "andar": "",
-    "codigoPostal": "1269-144",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.seg-social.pt",
-    "nome": "Direção-geral Da Segurança Social"
-  },
-  {
-    "aliases": [
-      "instituto da segurança social",
-      "instituto da seguranca social",
-      "segurança social",
-      "seguranca social",
-      "iss"
-    ],
-    "website": "https://www.seg-social.pt",
-    "telefone": "+351 300 502 502",
-    "direcao1": "Avenida 5 de Outubro",
-    "numero": "175",
-    "andar": "",
-    "codigoPostal": "1069-451",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.seg-social.pt",
-    "nome": "Instituto Da Segurança Social"
-  },
-  {
-    "aliases": [
-      "ministério das infraestruturas",
-      "ministerio das infraestruturas",
-      "ministério das infraestruturas e habitação",
-      "ministerio infraestructuras e habitaçao",
-      "secretaria de estado das infraestruturas",
-      "secretaria del estado de infraestructura",
-      "secretaria de estado da habitação",
-      "palácio das infraestruturas e habitação"
-    ],
-    "website": "https://www.portugal.gov.pt",
-    "telefone": "+351 210 426 200",
-    "direcao1": "Avenida Barbosa du Bocage",
-    "numero": "5",
-    "andar": "",
-    "codigoPostal": "1049-039",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt",
-    "nome": "Ministério Das Infraestruturas"
-  },
-  {
-    "aliases": [
-      "ihru",
-      "instituto da habitação e da reabilitação urbana"
-    ],
-    "website": "https://www.ihru.pt",
-    "telefone": "+351 217 231 500",
-    "direcao1": "Avenida Columbano Bordalo Pinheiro",
-    "numero": "5",
-    "andar": "",
-    "codigoPostal": "1099-019",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.ihru.pt",
-    "nome": "Ihru"
-  },
-  {
-    "aliases": [
-      "infraestruturas de portugal"
-    ],
-    "website": "https://www.infraestruturasdeportugal.pt",
-    "telefone": "+351 212 879 000",
-    "direcao1": "Praça da Portagem",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "2809-013",
-    "localidade": "Almada",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.infraestruturasdeportugal.pt",
-    "nome": "Infraestruturas De Portugal"
-  },
-  {
-    "aliases": [
-      "reforma do estado",
-      "modernização administrativa",
-      "ministério da reforma do estado",
-      "ministerio de reforma de estado",
-      "secretaria de estado para a digitalização",
-      "secretaría del estado para la digitalización",
-      "secretaria de estado para a simplificação",
-      "secretaría del estado para la simplificación",
-      "ama",
-      "agência para a modernização administrativa"
-    ],
-    "website": "https://www.ama.gov.pt",
-    "telefone": "+351 217 231 200",
-    "direcao1": "Rua Abranches Ferrão",
-    "numero": "10",
-    "andar": "3.º F",
-    "codigoPostal": "1600-001",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.ama.gov.pt",
-    "nome": "Reforma Do Estado"
-  },
-  {
-    "aliases": [
-      "ministério da saúde",
-      "ministerio da saude",
-      "sns",
-      "serviço nacional de saúde"
-    ],
-    "website": "https://www.sns.gov.pt",
-    "telefone": "+351 213 305 000",
-    "direcao1": "Avenida João Crisóstomo",
-    "numero": "9",
-    "andar": "",
-    "codigoPostal": "1049-062",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.sns.gov.pt",
-    "nome": "Ministério Da Saúde"
-  },
-  {
-    "aliases": [
-      "direção-geral da saúde",
-      "direccao-geral da saude",
-      "dgs"
-    ],
-    "website": "https://www.dgs.pt",
-    "telefone": "+351 218 430 500",
-    "direcao1": "Alameda Dom Afonso Henriques",
-    "numero": "45",
-    "andar": "",
-    "codigoPostal": "1049-005",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.dgs.pt",
-    "nome": "Direção-geral Da Saúde"
-  },
-  {
-    "aliases": [
-      "infarmed",
-      "medicamento e produtos de saúde"
-    ],
-    "website": "https://www.infarmed.pt",
-    "telefone": "+351 217 987 100",
-    "direcao1": "Avenida do Brasil",
-    "numero": "53",
-    "andar": "",
-    "codigoPostal": "1749-004",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.infarmed.pt",
-    "direcao2": "Parque de Saúde de Lisboa",
-    "nome": "Infarmed"
-  },
-  {
-    "aliases": [
-      "ambiente e energia",
-      "ministério do ambiente",
-      "ministerio do ambiente",
-      "ministério do ambiente e energia",
-      "secretaria de estado do ambiente",
-      "secretaria de estado da energia"
-    ],
-    "website": "https://www.portugal.gov.pt",
-    "telefone": "+351 213 232 500",
-    "direcao1": "Rua de O Século",
-    "numero": "51",
-    "andar": "",
-    "codigoPostal": "1200-433",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.portugal.gov.pt",
-    "nome": "Ambiente E Energia"
-  },
-  {
-    "aliases": [
-      "agência portuguesa do ambiente",
-      "agencia portuguesa do ambiente",
-      "apa"
-    ],
-    "website": "https://apambiente.pt",
-    "telefone": "+351 214 728 200",
-    "direcao1": "Rua da Murgueira",
-    "numero": "9/9A",
-    "andar": "Zambujal",
-    "codigoPostal": "2610-124",
-    "localidade": "Amadora",
-    "pais": "Portugal",
-    "fonteUrl": "https://apambiente.pt",
-    "nome": "Agência Portuguesa Do Ambiente"
-  },
-  {
-    "aliases": [
-      "fundação calouste gulbenkian",
-      "fundacao calouste gulbenkian",
-      "gulbenkian"
-    ],
-    "website": "https://gulbenkian.pt",
-    "telefone": "+351 217 823 000",
-    "direcao1": "Avenida de Berna",
-    "numero": "45A",
-    "andar": "",
-    "codigoPostal": "1067-001",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://gulbenkian.pt",
-    "nome": "Fundação Calouste Gulbenkian"
-  },
-  {
-    "aliases": [
-      "fundação champalimaud",
-      "fundacao champalimaud",
-      "champalimaud"
-    ],
-    "website": "https://fchampalimaud.org",
-    "telefone": "+351 210 480 000",
-    "direcao1": "Avenida Brasília",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "1400-038",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://fchampalimaud.org",
-    "nome": "Fundação Champalimaud"
-  },
-  {
-    "aliases": [
-      "fundação de serralves",
-      "fundacao de serralves",
-      "serralves"
-    ],
-    "website": "https://www.serralves.pt",
-    "telefone": "+351 226 156 500",
-    "direcao1": "Rua Dom João de Castro",
-    "numero": "210",
-    "andar": "",
-    "codigoPostal": "4150-417",
-    "localidade": "Porto",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.serralves.pt",
-    "nome": "Fundação De Serralves"
-  },
-  {
-    "aliases": [
-      "fundação oriente",
-      "fundacao oriente",
-      "museu do oriente"
-    ],
-    "website": "https://www.foriente.pt",
-    "telefone": "+351 213 585 200",
-    "direcao1": "Avenida Brasília",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "1350-352",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.foriente.pt",
-    "direcao2": "Doca de Alcântara Norte",
-    "nome": "Fundação Oriente"
-  },
-  {
-    "aliases": [
-      "fundação edp",
-      "fundacao edp",
-      "maat"
-    ],
-    "website": "https://www.fundacaoedp.pt",
-    "telefone": "+351 210 028 130",
-    "direcao1": "Avenida 24 de Julho",
-    "numero": "12",
-    "andar": "",
-    "codigoPostal": "1249-300",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.fundacaoedp.pt",
-    "nome": "Fundação Edp"
-  },
-  {
-    "aliases": [
-      "fundação aga khan",
-      "fundacao aga khan"
-    ],
-    "website": "https://www.akdn.org",
-    "telefone": "+351 217 229 000",
-    "direcao1": "Avenida Lusíada",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "1600-001",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.akdn.org",
-    "direcao2": "Centro Ismaili",
-    "nome": "Fundação Aga Khan"
-  },
-  {
-    "aliases": [
-      "fundação millennium bcp",
-      "fundacao millennium bcp"
-    ],
-    "website": "https://fundacaomillenniumbcp.pt",
-    "telefone": "+351 211 131 000",
-    "direcao1": "Rua Augusta",
-    "numero": "84",
-    "andar": "",
-    "codigoPostal": "1100-053",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://fundacaomillenniumbcp.pt",
-    "nome": "Fundação Millennium Bcp"
-  },
-  {
-    "aliases": [
-      "fundación la caixa",
-      "fundacion la caixa",
-      "fundación bancaria la caixa",
-      "caixaforum"
-    ],
-    "website": "https://fundacionlacaixa.org",
-    "telefone": "+34 934 046 000",
-    "direcao1": "Avenida Diagonal",
-    "numero": "621",
-    "andar": "",
-    "codigoPostal": "08028",
-    "localidade": "Barcelona",
-    "pais": "España",
-    "fonteUrl": "https://fundacionlacaixa.org",
-    "nome": "Fundación La Caixa"
-  },
-  {
-    "aliases": [
-      "fundación mapfre",
-      "fundacion mapfre"
-    ],
-    "website": "https://www.fundacionmapfre.org",
-    "telefone": "+34 915 811 600",
-    "direcao1": "Paseo de Recoletos",
-    "numero": "23",
-    "andar": "",
-    "codigoPostal": "28004",
-    "localidade": "Madrid",
-    "pais": "España",
-    "fonteUrl": "https://www.fundacionmapfre.org",
-    "nome": "Fundación Mapfre"
-  },
-  {
-    "aliases": [
-      "fundación telefónica",
-      "fundacion telefonica",
-      "espacio fundación telefónica"
-    ],
-    "website": "https://fundaciontelefonica.com",
-    "telefone": "+34 915 226 645",
-    "direcao1": "Gran Vía",
-    "numero": "28",
-    "andar": "",
-    "codigoPostal": "28013",
-    "localidade": "Madrid",
-    "pais": "España",
-    "fonteUrl": "https://fundaciontelefonica.com",
-    "nome": "Fundación Telefónica"
-  },
-  {
-    "aliases": [
-      "fundación bbva",
-      "fundacion bbva"
-    ],
-    "website": "https://www.fbbva.es",
-    "telefone": "+34 913 745 400",
-    "direcao1": "Paseo de Recoletos",
-    "numero": "10",
-    "andar": "",
-    "codigoPostal": "28001",
-    "localidade": "Madrid",
-    "pais": "España",
-    "fonteUrl": "https://www.fbbva.es",
-    "nome": "Fundación Bbva"
-  },
-  {
-    "aliases": [
-      "câmara municipal de lisboa",
-      "camara municipal de lisboa",
-      "cml",
-      "município de lisboa"
-    ],
-    "website": "https://www.lisboa.pt",
-    "telefone": "+351 217 988 000",
-    "direcao1": "Praça do Município",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "1100-038",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.lisboa.pt",
-    "nome": "Câmara Municipal De Lisboa"
-  },
-  {
-    "aliases": [
-      "câmara municipal do porto",
-      "camara municipal do porto",
-      "cmp",
-      "município do porto"
-    ],
-    "website": "https://www.cm-porto.pt",
-    "telefone": "+351 222 090 400",
-    "direcao1": "Praça General Humberto Delgado",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "4049-001",
-    "localidade": "Porto",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.cm-porto.pt",
-    "nome": "Câmara Municipal Do Porto"
-  },
-  {
-    "aliases": [
-      "câmara municipal de cascais",
-      "camara municipal de cascais",
-      "cmc",
-      "município de cascais"
-    ],
-    "website": "https://www.cascais.pt",
-    "telefone": "+351 214 815 000",
-    "direcao1": "Praça 5 de Outubro",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "2754-501",
-    "localidade": "Cascais",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.cascais.pt",
-    "nome": "Câmara Municipal De Cascais"
-  },
-  {
-    "aliases": [
-      "câmara municipal de sintra",
-      "camara municipal de sintra",
-      "cms",
-      "município de sintra"
-    ],
-    "website": "https://cm-sintra.pt",
-    "telefone": "+351 219 238 500",
-    "direcao1": "Largo Dr. Virgílio Horta",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "2714-501",
-    "localidade": "Sintra",
-    "pais": "Portugal",
-    "fonteUrl": "https://cm-sintra.pt",
-    "nome": "Câmara Municipal De Sintra"
-  },
-  {
-    "aliases": [
-      "câmara municipal de braga",
-      "camara municipal de braga",
-      "cmb",
-      "município de braga"
-    ],
-    "website": "https://www.cm-braga.pt",
-    "telefone": "+351 253 616 060",
-    "direcao1": "Praça do Município",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "4700-435",
-    "localidade": "Braga",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.cm-braga.pt",
-    "nome": "Câmara Municipal De Braga"
-  },
-  {
-    "aliases": [
-      "câmara municipal de coimbra",
-      "camara municipal de coimbra",
-      "município de coimbra"
-    ],
-    "website": "https://www.cm-coimbra.pt",
-    "telefone": "+351 239 857 500",
-    "direcao1": "Praça 8 de Maio",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "3000-300",
-    "localidade": "Coimbra",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.cm-coimbra.pt",
-    "nome": "Câmara Municipal De Coimbra"
-  },
-  {
-    "aliases": [
-      "edp",
-      "edp comercial",
-      "edp distribuição",
-      "e-redes"
-    ],
-    "website": "https://www.edp.pt",
-    "telefone": "+351 210 012 000",
-    "direcao1": "Avenida 24 de Julho",
-    "numero": "12",
-    "andar": "",
-    "codigoPostal": "1249-300",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.edp.pt",
-    "nome": "Edp"
-  },
-  {
-    "aliases": [
-      "galp",
-      "galp energia",
-      "petróleos de portugal"
-    ],
-    "website": "https://www.galp.com",
-    "telefone": "+351 217 242 500",
-    "direcao1": "Rua Tomás da Fonseca",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "1600-209",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.galp.com",
-    "direcao2": "Torre A",
-    "nome": "Galp"
-  },
-  {
-    "aliases": [
-      "tap",
-      "tap air portugal",
-      "transportes aéreos portugueses"
-    ],
-    "website": "https://www.flytap.com",
-    "telefone": "+351 218 415 000",
-    "direcao1": "Aeroporto de Lisboa",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "1704-801",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.flytap.com",
-    "direcao2": "Edifício 25",
-    "nome": "Tap"
-  },
-  {
-    "aliases": [
-      "ctt",
-      "ctt correios de portugal",
-      "correios de portugal"
-    ],
-    "website": "https://www.ctt.pt",
-    "telefone": "+351 210 471 010",
-    "direcao1": "Avenida Dom João II",
-    "numero": "13",
-    "andar": "",
-    "codigoPostal": "1999-001",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.ctt.pt",
-    "nome": "Ctt"
-  },
-  {
-    "aliases": [
-      "nos",
-      "nos comunicações",
-      "zon optimus"
-    ],
-    "website": "https://www.nos.pt",
-    "telefone": "+351 217 824 700",
-    "direcao1": "Rua Cecília Meireles",
-    "numero": "7",
-    "andar": "",
-    "codigoPostal": "2720-090",
-    "localidade": "Amadora",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.nos.pt",
-    "nome": "Nos"
-  },
-  {
-    "aliases": [
-      "meo",
-      "meo pt",
-      "altice",
-      "altice portugal",
-      "telecom portugal"
-    ],
-    "website": "https://www.meo.pt",
-    "telefone": "+351 215 002 000",
-    "direcao1": "Avenida Fontes Pereira de Melo",
-    "numero": "40",
-    "andar": "",
-    "codigoPostal": "1069-300",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.meo.pt",
-    "nome": "Meo"
-  },
-  {
-    "aliases": [
-      "vodafone",
-      "vodafone portugal"
-    ],
-    "website": "https://www.vodafone.pt",
-    "telefone": "+351 210 915 000",
-    "direcao1": "Avenida Dom João II",
-    "numero": "36",
-    "andar": "",
-    "codigoPostal": "1998-017",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.vodafone.pt",
-    "nome": "Vodafone"
-  },
-  {
-    "aliases": [
-      "cgd",
-      "caixa geral de depósitos",
-      "caixa geral de depositos"
-    ],
-    "website": "https://www.cgd.pt",
-    "telefone": "+351 217 953 000",
-    "direcao1": "Avenida João XXI",
-    "numero": "63",
-    "andar": "",
-    "codigoPostal": "1000-300",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.cgd.pt",
-    "nome": "Cgd"
-  },
-  {
-    "aliases": [
-      "bcp",
-      "millennium bcp",
-      "banco comercial português"
-    ],
-    "website": "https://www.millenniumbcp.pt",
-    "telefone": "+351 211 131 000",
-    "direcao1": "Praça Dom João I",
-    "numero": "28",
-    "andar": "",
-    "codigoPostal": "4000-295",
-    "localidade": "Porto",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.millenniumbcp.pt",
-    "nome": "Bcp"
-  },
-  {
-    "aliases": [
-      "santander",
-      "banco santander totta",
-      "santander totta"
-    ],
-    "website": "https://www.santander.pt",
-    "telefone": "+351 213 705 000",
-    "direcao1": "Rua do Ouro",
-    "numero": "88",
-    "andar": "",
-    "codigoPostal": "1100-063",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.santander.pt",
-    "nome": "Santander"
-  },
-  {
-    "aliases": [
-      "gobierno de españa",
-      "presidencia del gobierno de españa",
-      "la moncloa",
-      "palacio de la moncloa"
-    ],
-    "website": "https://www.lamoncloa.gob.es",
-    "telefone": "+34 913 353 535",
-    "direcao1": "Avenida Puerta de Hierro",
-    "numero": "s/n",
-    "andar": "Complejo de la Moncloa",
-    "codigoPostal": "28071",
-    "localidade": "Madrid",
-    "pais": "España",
-    "fonteUrl": "https://www.lamoncloa.gob.es",
-    "nome": "Gobierno De España"
-  },
-  {
-    "aliases": [
-      "ministerio de hacienda",
-      "hacienda españa",
-      "hacienda y función pública"
-    ],
-    "website": "https://www.hacienda.gob.es",
-    "telefone": "+34 915 958 000",
-    "direcao1": "Calle de Alcalá",
-    "numero": "9",
-    "andar": "",
-    "codigoPostal": "28014",
-    "localidade": "Madrid",
-    "pais": "España",
-    "fonteUrl": "https://www.hacienda.gob.es",
-    "nome": "Ministerio De Hacienda"
-  },
-  {
-    "aliases": [
-      "agencia tributaria",
-      "aeat",
-      "agencia estatal de administración tributaria"
-    ],
-    "website": "https://sede.agenciatributaria.gob.es",
-    "telefone": "+34 915 548 770",
-    "direcao1": "Calle de Alcalá",
-    "numero": "5",
-    "andar": "",
-    "codigoPostal": "28014",
-    "localidade": "Madrid",
-    "pais": "España",
-    "fonteUrl": "https://sede.agenciatributaria.gob.es",
-    "nome": "Agencia Tributaria"
-  },
-  {
-    "aliases": [
-      "ministerio del interior",
-      "interior españa"
-    ],
-    "website": "https://www.interior.gob.es",
-    "telefone": "+34 915 371 000",
-    "direcao1": "Paseo de la Castellana",
-    "numero": "5",
-    "andar": "",
-    "codigoPostal": "28071",
-    "localidade": "Madrid",
-    "pais": "España",
-    "fonteUrl": "https://www.interior.gob.es",
-    "nome": "Ministerio Del Interior"
-  },
-  {
-    "aliases": [
-      "ministerio de justicia",
-      "justicia españa"
-    ],
-    "website": "https://www.mjusticia.gob.es",
-    "telefone": "+34 913 904 500",
-    "direcao1": "Calle de San Bernardo",
-    "numero": "45",
-    "andar": "",
-    "codigoPostal": "28015",
-    "localidade": "Madrid",
-    "pais": "España",
-    "fonteUrl": "https://www.mjusticia.gob.es",
-    "nome": "Ministerio De Justicia"
-  },
-  {
-    "aliases": [
-      "ministerio de asuntos exteriores",
-      "exteriores españa",
-      "asuntos exteriores, unión europea y cooperación"
-    ],
-    "website": "https://www.exteriores.gob.es",
-    "telefone": "+34 913 799 700",
-    "direcao1": "Plaza del Marqués de Salamanca",
-    "numero": "8",
-    "andar": "",
-    "codigoPostal": "28006",
-    "localidade": "Madrid",
-    "pais": "España",
-    "fonteUrl": "https://www.exteriores.gob.es",
-    "nome": "Ministerio De Asuntos Exteriores"
-  },
-  {
-    "aliases": [
-      "ministerio de defensa españa",
-      "defensa españa"
-    ],
-    "website": "https://www.defesa.gob.es",
-    "telefone": "+34 913 955 000",
-    "direcao1": "Paseo de la Castellana",
-    "numero": "109",
-    "andar": "",
-    "codigoPostal": "28046",
-    "localidade": "Madrid",
-    "pais": "España",
-    "fonteUrl": "https://www.defesa.gob.es",
-    "nome": "Ministerio De Defensa España"
-  },
-  {
-    "aliases": [
-      "ministerio de transportes",
-      "transportes y movilidad sostenible"
-    ],
-    "website": "https://www.transportes.gob.es",
-    "telefone": "+34 915 977 000",
-    "direcao1": "Paseo de la Castellana",
-    "numero": "67",
-    "andar": "",
-    "codigoPostal": "28071",
-    "localidade": "Madrid",
-    "pais": "España",
-    "fonteUrl": "https://www.transportes.gob.es",
-    "nome": "Ministerio De Transportes"
-  },
-  {
-    "aliases": [
-      "ministerio de trabajo y economía social",
-      "trabajo españa"
-    ],
-    "website": "https://www.mites.gob.es",
-    "telefone": "+34 913 630 000",
-    "direcao1": "Paseo de la Castellana",
-    "numero": "63",
-    "andar": "",
-    "codigoPostal": "28071",
-    "localidade": "Madrid",
-    "pais": "España",
-    "fonteUrl": "https://www.mites.gob.es",
-    "nome": "Ministerio De Trabajo Y Economía Social"
-  },
-  {
-    "aliases": [
-      "ministerio de sanidad",
-      "sanidad españa"
-    ],
-    "website": "https://www.sanidad.gob.es",
-    "telefone": "+34 915 961 000",
-    "direcao1": "Paseo del Prado",
-    "numero": "18-20",
-    "andar": "",
-    "codigoPostal": "28014",
-    "localidade": "Madrid",
-    "pais": "España",
-    "fonteUrl": "https://www.sanidad.gob.es",
-    "nome": "Ministerio De Sanidad"
-  },
-  {
-    "aliases": [
-      "ayuntamiento de madrid"
-    ],
-    "website": "https://www.madrid.es",
-    "telefone": "+34 915 298 210",
-    "direcao1": "Plaza de Cibeles",
-    "numero": "1",
-    "andar": "",
-    "codigoPostal": "28014",
-    "localidade": "Madrid",
-    "pais": "España",
-    "fonteUrl": "https://www.madrid.es",
-    "nome": "Ayuntamiento De Madrid"
-  },
-  {
-    "aliases": [
-      "ajuntament de barcelona",
-      "ayuntamiento de barcelona"
-    ],
-    "website": "https://www.barcelona.cat",
-    "telefone": "+34 934 027 000",
-    "direcao1": "Plaça de Sant Jaume",
-    "numero": "1",
-    "andar": "",
-    "codigoPostal": "08002",
-    "localidade": "Barcelona",
-    "pais": "España",
-    "fonteUrl": "https://www.barcelona.cat",
-    "nome": "Ajuntament De Barcelona"
-  },
-  {
-    "aliases": [
-      "telefónica",
-      "telefonica españa",
-      "telefónica s.a."
-    ],
-    "website": "https://www.telefonica.com",
-    "telefone": "+34 914 828 700",
-    "direcao1": "Gran Vía",
-    "numero": "28",
-    "andar": "",
-    "codigoPostal": "28013",
-    "localidade": "Madrid",
-    "pais": "España",
-    "fonteUrl": "https://www.telefonica.com",
-    "nome": "Telefónica"
-  },
-  {
-    "aliases": [
-      "mercadona"
-    ],
-    "website": "https://www.mercadona.es",
-    "telefone": "+34 900 500 103",
-    "direcao1": "Calle Valencia",
-    "numero": "5",
-    "andar": "",
-    "codigoPostal": "46130",
-    "localidade": "Tavernes Blanques (Valencia)",
-    "pais": "España",
-    "fonteUrl": "https://www.mercadona.es",
-    "nome": "Mercadona"
-  },
-  {
-    "aliases": [
-      "inditex",
-      "zara españa"
-    ],
-    "website": "https://www.inditex.com",
-    "telefone": "+34 981 185 400",
-    "direcao1": "Avenida de la Diputación",
-    "numero": "s/n",
-    "andar": "",
-    "codigoPostal": "15143",
-    "localidade": "Arteixo (A Coruña)",
-    "pais": "España",
-    "fonteUrl": "https://www.inditex.com",
-    "nome": "Inditex"
-  },
-  {
-    "aliases": [
-      "iberdrola"
-    ],
-    "website": "https://www.iberdrola.com",
-    "telefone": "+34 944 151 411",
-    "direcao1": "Plaza Euskadi",
-    "numero": "5",
-    "andar": "",
-    "codigoPostal": "48009",
-    "localidade": "Bilbao",
-    "pais": "España",
-    "fonteUrl": "https://www.iberdrola.com",
-    "nome": "Iberdrola"
-  },
-  {
-    "aliases": [
-      "repsol"
-    ],
-    "website": "https://www.repsol.com",
-    "telefone": "+34 917 538 000",
-    "direcao1": "Calle Méndez Álvaro",
-    "numero": "44",
-    "andar": "",
-    "codigoPostal": "28045",
-    "localidade": "Madrid",
-    "pais": "España",
-    "fonteUrl": "https://www.repsol.com",
-    "nome": "Repsol"
-  },
-  {
-    "aliases": [
-      "el corte inglés",
-      "el corte ingles"
-    ],
-    "website": "https://www.elcorteingles.es",
-    "telefone": "+34 901 122 122",
-    "direcao1": "Calle Hermosilla",
-    "numero": "112",
-    "andar": "",
-    "codigoPostal": "28009",
-    "localidade": "Madrid",
-    "pais": "España",
-    "fonteUrl": "https://www.elcorteingles.es",
-    "nome": "El Corte Inglés"
-  },
-  {
-    "aliases": [
-      "portugal fresh",
-      "portugal fresh associacao",
-      "portugal fresh - associacao",
-      "associacao portugal fresh",
-      "portugalfresh",
-      "portugal fresh associacao para promocao das frutas legumes e flores de portugal"
-    ],
-    "website": "https://www.portugalfresh.org",
-    "telefone": "+351 219 927 236",
-    "email": "info@portugalfresh.org",
-    "direcao1": "Lugar do Quintanilho",
-    "direcao2": "MARL - Mercado Abastecedor da Região de Lisboa, NAC, N00 Z08",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "2660-421",
-    "localidade": "São Julião do Tojal",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.portugalfresh.org",
-    "nome": "Portugal Fresh – Associação para a Promoção das Frutas, Legumes e Flores de Portugal"
-  },
-  {
-    "aliases": [
-      "portugal fresh sede social",
-      "portugal fresh mangualde",
-      "portugal fresh alcafache"
-    ],
-    "website": "https://www.portugalfresh.org",
-    "telefone": "+351 219 927 236",
-    "email": "info@portugalfresh.org",
-    "direcao1": "Estação Fruteira",
-    "direcao2": "Alcafache-Gare",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "3530-310",
-    "localidade": "Moimenta de Maceira Dão",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.portugalfresh.org",
-    "nome": "Portugal Fresh (Sede Social - Mangualde)"
-  },
-  {
-    "aliases": [
-      "cip",
-      "confederação empresarial de portugal",
-      "confederacao empresarial de portugal",
-      "cip - confederação empresarial de portugal"
-    ],
-    "website": "https://cip.org.pt",
-    "telefone": "+351 213 164 700",
-    "email": "geral@cip.org.pt",
-    "direcao1": "Praça das Indústrias",
-    "direcao2": "Edifício CIP",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "1300-307",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://cip.org.pt",
-    "nome": "Cip"
-  },
-  {
-    "aliases": [
-      "ccp",
-      "confederação do comércio e serviços de portugal",
-      "confederacao do comercio e servicos de portugal",
-      "ccp - confederação do comércio e serviços de portugal"
-    ],
-    "website": "https://ccp.pt",
-    "telefone": "+351 213 544 610",
-    "email": "ccp@ccp.pt",
-    "direcao1": "Avenida Duque de Ávila",
-    "direcao2": "",
-    "numero": "142",
-    "andar": "4º",
-    "codigoPostal": "1050-084",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://ccp.pt",
-    "nome": "Ccp"
-  },
-  {
-    "aliases": [
-      "cap",
-      "confederação dos agricultores de portugal",
-      "confederacao dos agricultores de portugal",
-      "cap - confederação dos agricultores de portugal"
-    ],
-    "website": "https://www.cap.pt",
-    "telefone": "+351 217 100 000",
-    "email": "cap@cap.pt",
-    "direcao1": "Rua Mestre Lima de Freitas",
-    "direcao2": "",
-    "numero": "1",
-    "andar": "",
-    "codigoPostal": "1549-012",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.cap.pt",
-    "nome": "Cap"
-  },
-  {
-    "aliases": [
-      "ctp",
-      "confederação do turismo de portugal",
-      "confederacao do turismo de portugal",
-      "ctp - confederação do turismo de portugal"
-    ],
-    "website": "https://www.ctp.org.pt",
-    "telefone": "+351 213 158 064",
-    "email": "geral@ctp.org.pt",
-    "direcao1": "Avenida Dom João II",
-    "direcao2": "Parque das Nações, Lote 1.18.01",
-    "numero": "45",
-    "andar": "4º",
-    "codigoPostal": "1998-028",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.ctp.org.pt",
-    "nome": "Ctp"
-  },
-  {
-    "aliases": [
-      "aped",
-      "associação portuguesa de empresas de distribuição",
-      "associacao portuguesa de empresas de distribuicao"
-    ],
-    "website": "https://www.aped.pt",
-    "telefone": "+351 217 520 700",
-    "email": "aped@aped.pt",
-    "direcao1": "Rua Sacadura Cabral",
-    "direcao2": "",
-    "numero": "38",
-    "andar": "1º",
-    "codigoPostal": "1495-703",
-    "localidade": "Dafundo",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.aped.pt",
-    "nome": "Aped"
-  },
-  {
-    "aliases": [
-      "aep",
-      "associação empresarial de portugal",
-      "associacao empresarial de portugal"
-    ],
-    "website": "https://www.aeportugal.pt",
-    "telefone": "+351 229 981 500",
-    "email": "aep@aeportugal.pt",
-    "direcao1": "Avenida Dr. António Macedo",
-    "direcao2": "",
-    "numero": "196",
-    "andar": "",
-    "codigoPostal": "4450-617",
-    "localidade": "Leça da Palmeira",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.aeportugal.pt",
-    "nome": "Aep"
-  },
-  {
-    "aliases": [
-      "aip",
-      "associação industrial portuguesa",
-      "associacao industrial portuguesa",
-      "aip-cci"
-    ],
-    "website": "https://www.aip.pt",
-    "telefone": "+351 213 601 000",
-    "email": "geral@aip.pt",
-    "direcao1": "Praça das Indústrias",
-    "direcao2": "Edifício AIP",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "1300-307",
-    "localidade": "Lisboa",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.aip.pt",
-    "nome": "Aip"
-  },
-  {
-    "aliases": [
-      "anje",
-      "associação nacional de jovens empresários",
-      "associacao nacional de jovens empresarios"
-    ],
-    "website": "https://www.anje.pt",
-    "telefone": "+351 220 108 000",
-    "email": "anje@anje.pt",
-    "direcao1": "Rua Paulo da Gama",
-    "direcao2": "Casa do Farol",
-    "numero": "",
-    "andar": "",
-    "codigoPostal": "4169-006",
-    "localidade": "Porto",
-    "pais": "Portugal",
-    "fonteUrl": "https://www.anje.pt",
-    "nome": "Anje"
+    aliases: ['alegria activity, s.l.', 'alegria activity s.l.', 'alegria activity', 'alegria-activity', 'alegria activity sede', 'grupo alegria activity', 'alegria activity vitoria', 'alegria activity espanha'],
+    website: 'https://alegria-activity.com',
+    email: 'info@alegria-activity.com',
+    telefone: '+34 945 128 415',
+    direcao1: 'Calle Lermandabidea',
+    direcao2: 'Polígono Industrial Júndiz',
+    numero: '7',
+    andar: '',
+    codigoPostal: '01015',
+    localidade: 'Vitoria-Gasteiz (Álava)',
+    pais: 'Espanha',
+    fonteUrl: 'https://alegria-activity.com'
+  },
+  {
+    aliases: ['alegria activity landaluzea', 'alegria activity jundiz'],
+    website: 'https://alegria-activity.com',
+    email: 'info@alegria-activity.com',
+    telefone: '+34 945 128 415',
+    direcao1: 'Calle Landaluzea (Polígono Industrial Júndiz)',
+    numero: '24',
+    andar: '',
+    codigoPostal: '01015',
+    localidade: 'Vitoria-Gasteiz (Álava)',
+    pais: 'Espanha',
+    fonteUrl: 'https://alegria-activity.com'
+  },
+  {
+    aliases: ['alegria activity manufacturing', 'alegria activity zaragoza', 'alegria activity fabrica'],
+    website: 'https://alegria-activity.com',
+    email: 'info@alegria-activity.com',
+    telefone: '+34 876 26 20 97',
+    direcao1: 'Polígono Industrial Malpica, Calle E',
+    numero: '9',
+    andar: '',
+    codigoPostal: '50016',
+    localidade: 'Zaragoza',
+    pais: 'Espanha',
+    fonteUrl: 'https://alegria-activity.com'
+  },
+  // --- PORTUGAL: Presid??ncia, Governo Central e Minist??rios ---
+  {
+    aliases: ['presid??ncia', 'presidencia', 'minist??rio da presid??ncia', 'ministerio da presidencia', 'presid??ncia do conselho de ministros', 'secretaria-geral da presid??ncia'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 213 927 600',
+    direcao1: 'Rua Professor Gomes Teixeira',
+    numero: '',
+    andar: '',
+    codigoPostal: '1399-022',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['assembleia da rep??blica', 'assembleia da republica', 'parlamento', 'assuntos parlamentares', 'minist??rio dos assuntos parlamentares', 'ministerio dos assuntos parlamentares'],
+    website: 'https://www.parlamento.pt',
+    telefone: '+351 213 919 000',
+    direcao1: 'Pal??cio de S??o Bento',
+    numero: '',
+    andar: '',
+    codigoPostal: '1249-068',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.parlamento.pt'
+  },
+  {
+    aliases: ['presid??ncia da rep??blica', 'presidencia da republica', 'pal??cio de bel??m', 'palacio de belem'],
+    website: 'https://www.presidencia.pt',
+    telefone: '+351 213 614 600',
+    direcao1: 'Cal??ada da Ajuda',
+    numero: '',
+    andar: '',
+    codigoPostal: '1349-022',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.presidencia.pt'
+  },
+  {
+    aliases: ['neg??cios estrangeiros', 'negocios estrangeiros', 'mne', 'minist??rio dos neg??cios estrangeiros', 'ministerio de estado e dos neg??cios estrangeiros', 'secretaria de estado dos neg??cios estrangeiros', 'secretaria de estado de negocios extrangeiros e coopera????o'],
+    website: 'https://www.portaldiplomatico.mne.gov.pt',
+    telefone: '+351 213 946 000',
+    direcao1: 'Largo do Rilvas (Pal??cio das Necessidades)',
+    numero: '',
+    andar: '',
+    codigoPostal: '1399-030',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portaldiplomatico.mne.gov.pt'
+  },
+  {
+    aliases: ['tesouro e finan??as', 'tesouro e financas', 'dgtf', 'dire????o-geral do tesouro', 'direccao-geral do tesouro', 'dire????o geral do tesouro', 'dire????o-geral do tesouro e finan??as'],
+    website: 'https://www.dgtf.gov.pt',
+    telefone: '+351 218 812 000',
+    direcao1: 'Rua da Alf??ndega',
+    numero: '5',
+    andar: '1.?? andar',
+    codigoPostal: '1149-008',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.gov.pt/entidades/direcao-geral-do-tesouro-e-financas'
+  },
+  {
+    aliases: ['minist??rio das finan??as', 'ministerio das financas', 'finan??as', 'financas', 'gabinete do ministro das finan??as', 'ministerio finanzas'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 218 816 800',
+    direcao1: 'Avenida Infante Dom Henrique',
+    numero: '1',
+    andar: '',
+    codigoPostal: '1149-009',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['autoridade tribut??ria', 'autoridade tributaria', 'at', 'dire????o-geral dos impostos', 'alf??ndega', 'alfandega'],
+    website: 'https://www.portaldasfinancas.gov.pt',
+    telefone: '+351 217 206 707',
+    direcao1: 'Rua da Prata',
+    numero: '10',
+    andar: '',
+    codigoPostal: '1149-027',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portaldasfinancas.gov.pt'
+  },
+  {
+    aliases: ['dire????o-geral do or??amento', 'direccao-geral do orcamento', 'dgo'],
+    website: 'https://www.dgo.gov.pt',
+    telefone: '+351 218 817 000',
+    direcao1: 'Avenida Infante Dom Henrique',
+    numero: '1',
+    andar: '',
+    codigoPostal: '1149-009',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.dgo.gov.pt'
+  },
+  {
+    aliases: ['minist??rio da defesa', 'ministerio da defesa', 'minist??rio da defesa nacional', 'ministerio de defensa nacional', 'ministerio da defesa nacional', 'secretaria de estado da defesa nacional'],
+    website: 'https://www.defesa.gov.pt',
+    telefone: '+351 213 034 500',
+    direcao1: 'Avenida da Ilha da Madeira',
+    numero: '1',
+    andar: '',
+    codigoPostal: '1400-204',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.defesa.gov.pt'
+  },
+  {
+    aliases: ['dire????o-geral de recursos da defesa nacional', 'dire????o geral de recursos de defesa nacional', 'dgrdn'],
+    website: 'https://www.defesa.gov.pt/pt/dgrdn',
+    telefone: '+351 213 038 500',
+    direcao1: 'Avenida da Ilha da Madeira',
+    numero: '1',
+    andar: 'Edif??cio Defesa',
+    codigoPostal: '1400-204',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.defesa.gov.pt'
+  },
+  {
+    aliases: ['administra????o interna', 'administracao interna', 'mai', 'minist??rio da administra????o interna', 'ministerio da administracion interna', 'secretaria de estado da administra????o interna', 'secretaria del estado de administraci??n interna'],
+    website: 'https://www.mai.gov.pt',
+    telefone: '+351 213 233 000',
+    direcao1: 'Pra??a do Com??rcio',
+    numero: '',
+    andar: '',
+    codigoPostal: '1149-015',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.mai.gov.pt'
+  },
+  {
+    aliases: ['pol??cia de seguran??a p??blica', 'policia de seguranca publica', 'psp', 'dire????o nacional da psp'],
+    website: 'https://www.psp.pt',
+    telefone: '+351 213 466 141',
+    direcao1: 'Largo da Penha de Fran??a',
+    numero: '1',
+    andar: '',
+    codigoPostal: '1199-010',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.psp.pt'
+  },
+  {
+    aliases: ['guarda nacional republicana', 'gnr', 'comando geral da gnr'],
+    website: 'https://www.gnr.pt',
+    telefone: '+351 213 217 000',
+    direcao1: 'Largo do Carmo',
+    numero: '',
+    andar: '',
+    codigoPostal: '1200-092',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.gnr.pt'
+  },
+  {
+    aliases: ['prote????o civil', 'protecao civil', 'anepc'],
+    website: 'https://prociv.gov.pt',
+    telefone: '+351 214 247 100',
+    direcao1: 'Avenida do Forte em Carnaxide',
+    numero: '',
+    andar: '',
+    codigoPostal: '2794-112',
+    localidade: 'Carnaxide',
+    pais: 'Portugal',
+    fonteUrl: 'https://prociv.gov.pt'
+  },
+  {
+    aliases: ['minist??rio da justi??a', 'ministerio da justica', 'ministerio de justicia', 'secretaria de estado da justi??a', 'secretar??a del estado de justicia'],
+    website: 'https://www.justica.gov.pt',
+    telefone: '+351 213 222 300',
+    direcao1: 'Pra??a do Com??rcio',
+    numero: '',
+    andar: '',
+    codigoPostal: '1149-019',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.justica.gov.pt'
+  },
+  {
+    aliases: ['instituto dos registos e do notariado', 'irn', 'registos e notariado'],
+    website: 'https://irn.justica.gov.pt',
+    telefone: '+351 211 950 500',
+    direcao1: 'Avenida Dom Jo??o II, Campus de Justi??a, Edif??cio H',
+    numero: 'Lote 1.06.2.1',
+    andar: '',
+    codigoPostal: '1990-097',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://irn.justica.gov.pt'
+  },
+  {
+    aliases: ['pol??cia judici??ria', 'policia judiciaria', 'pj'],
+    website: 'https://www.policiajudiciaria.pt',
+    telefone: '+351 211 967 000',
+    direcao1: 'Rua Gomes Freire',
+    numero: '174',
+    andar: '',
+    codigoPostal: '1169-007',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.policiajudiciaria.pt'
+  },
+  {
+    aliases: ['minist??rio da economia', 'ministerio da economia', 'minist??rio da economia e da coes??o territorial', 'economia e coes??o territorial', 'secretaria de estado do turismo, com??rcio e servi??os'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 217 911 600',
+    direcao1: 'Avenida da Rep??blica',
+    numero: '79',
+    andar: '',
+    codigoPostal: '1050-243',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['coes??o territorial', 'coesao territorial', 'minist??rio da coes??o territorial'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 217 923 500',
+    direcao1: 'Avenida Columbano Bordalo Pinheiro',
+    numero: '86',
+    andar: '',
+    codigoPostal: '1070-065',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['atividades econ??micas', 'actividades economicas', 'dgae', 'dire????o-geral das atividades econ??micas', 'direccao-geral das actividades economicas'],
+    website: 'https://www.dgae.gov.pt',
+    telefone: '+351 217 919 100',
+    direcao1: 'Avenida Visconde de Valmor',
+    numero: '72',
+    andar: '',
+    codigoPostal: '1069-041',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.dgae.gov.pt'
+  },
+  {
+    aliases: ['iapmei', 'competitividade e inova????o'],
+    website: 'https://www.iapmei.pt',
+    telefone: '+351 213 836 000',
+    direcao1: 'Estrada do Pa??o do Lumiar, Campus do Lumiar, Edif??cio A',
+    numero: '',
+    andar: '',
+    codigoPostal: '1649-038',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.iapmei.pt'
+  },
+  {
+    aliases: ['minist??rio da agricultura', 'ministerio da agricultura', 'minist??rio da agricultura e do mar', 'ministerio de agricultura y mar', 'secretaria de estado da agricultura', 'secretario de estado de agricultura'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 213 234 600',
+    direcao1: 'Pra??a do Com??rcio',
+    numero: '',
+    andar: '',
+    codigoPostal: '1149-010',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['dgadr', 'agricultura e desenvolvimento rural', 'dire????o-geral de agricultura e desenvolvimento rural', 'direccao-geral de agricultura e desenvolvimento rural', 'direcci??n general agricultura y desenvolvimiento rural'],
+    website: 'https://www.dgadr.gov.pt',
+    telefone: '+351 218 442 200',
+    direcao1: 'Avenida Afonso Costa',
+    numero: '3',
+    andar: '',
+    codigoPostal: '1949-002',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.dgadr.gov.pt'
+  },
+  {
+    aliases: ['minist??rio da cultura', 'ministerio da cultura', 'minist??rio da cultura, juventude e desporto', 'ministerio de cultura, juventud y deporte', 'secretaria de estado da cultura', 'secretario de estado de cultura'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 213 614 500',
+    direcao1: 'Pal??cio Nacional da Ajuda',
+    numero: '',
+    andar: '',
+    codigoPostal: '1349-021',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['secretaria de estado do desporto', 'secretario de estado de deporte', 'secretaria de estado adjunta e da juventude', 'secretaria de estado adjunta e da juventude e da igualdade', 'ipdj', 'instituto portugu??s do desporto e juventude'],
+    website: 'https://ipdj.gov.pt',
+    telefone: '+351 210 470 000',
+    direcao1: 'Rua Rodrigo da Fonseca',
+    numero: '55',
+    andar: '',
+    codigoPostal: '1250-190',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://ipdj.gov.pt'
+  },
+  {
+    aliases: ['minist??rio da educa????o', 'ministerio da educacao', 'minist??rio da educa????o, ci??ncia e inova????o', 'ministerio de educaci??n, ciencia e innovacion', 'secret??rio de estado adjunto e de educa????o', 'secretario de estado adjunto e de educacao', 'secretaria de estado da educa????o'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 213 934 500',
+    direcao1: 'Avenida 24 de Julho',
+    numero: '134',
+    andar: '',
+    codigoPostal: '1399-029',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['dge', 'dire????o-geral da educa????o', 'direccao-geral da educacao', 'direcci??n general de educaci??n'],
+    website: 'https://www.dge.mec.pt',
+    telefone: '+351 217 901 100',
+    direcao1: 'Pra??a de Alvalade',
+    numero: '12',
+    andar: '',
+    codigoPostal: '1749-070',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.dge.mec.pt'
+  },
+  {
+    aliases: ['minist??rio do trabalho', 'ministerio do trabalho', 'minist??rio do trabalho, solidariedade e seguran??a social', 'ministerio de trabajo, solidaridad y seguridad social', 'secretaria de estado da a????o social e da inclus??o', 'secretaria de estado de acci??n social y de inclusi??n', 'secretaria de estado do trabalho'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 215 953 000',
+    direcao1: 'Pra??a de Londres',
+    numero: '2',
+    andar: '',
+    codigoPostal: '1049-056',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['dire????o-geral da seguran??a social', 'direccao-geral da seguranca social', 'direcci??n general de seguridad social', 'dgss'],
+    website: 'https://www.seg-social.pt',
+    telefone: '+351 215 953 300',
+    direcao1: 'Largo do Rato',
+    numero: '1',
+    andar: '',
+    codigoPostal: '1269-144',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.seg-social.pt'
+  },
+  {
+    aliases: ['instituto da seguran??a social', 'instituto da seguranca social', 'seguran??a social', 'seguranca social', 'iss'],
+    website: 'https://www.seg-social.pt',
+    telefone: '+351 300 502 502',
+    direcao1: 'Avenida 5 de Outubro',
+    numero: '175',
+    andar: '',
+    codigoPostal: '1069-451',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.seg-social.pt'
+  },
+  {
+    aliases: ['minist??rio das infraestruturas', 'ministerio das infraestruturas', 'minist??rio das infraestruturas e habita????o', 'ministerio infraestructuras e habita??ao', 'secretaria de estado das infraestruturas', 'secretaria del estado de infraestructura', 'secretaria de estado da habita????o', 'pal??cio das infraestruturas e habita????o'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 210 426 200',
+    direcao1: 'Avenida Barbosa du Bocage',
+    numero: '5',
+    andar: '',
+    codigoPostal: '1049-039',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['ihru', 'instituto da habita????o e da reabilita????o urbana'],
+    website: 'https://www.ihru.pt',
+    telefone: '+351 217 231 500',
+    direcao1: 'Avenida Columbano Bordalo Pinheiro',
+    numero: '5',
+    andar: '',
+    codigoPostal: '1099-019',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.ihru.pt'
+  },
+  {
+    aliases: ['infraestruturas de portugal'],
+    website: 'https://www.infraestruturasdeportugal.pt',
+    telefone: '+351 212 879 000',
+    direcao1: 'Pra??a da Portagem',
+    numero: '',
+    andar: '',
+    codigoPostal: '2809-013',
+    localidade: 'Almada',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.infraestruturasdeportugal.pt'
+  },
+  {
+    aliases: ['reforma do estado', 'moderniza????o administrativa', 'minist??rio da reforma do estado', 'ministerio de reforma de estado', 'secretaria de estado para a digitaliza????o', 'secretar??a del estado para la digitalizaci??n', 'secretaria de estado para a simplifica????o', 'secretar??a del estado para la simplificaci??n', 'ama', 'ag??ncia para a moderniza????o administrativa'],
+    website: 'https://www.ama.gov.pt',
+    telefone: '+351 217 231 200',
+    direcao1: 'Rua Abranches Ferr??o',
+    numero: '10',
+    andar: '3.?? F',
+    codigoPostal: '1600-001',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.ama.gov.pt'
+  },
+  {
+    aliases: ['minist??rio da sa??de', 'ministerio da saude', 'sns', 'servi??o nacional de sa??de'],
+    website: 'https://www.sns.gov.pt',
+    telefone: '+351 213 305 000',
+    direcao1: 'Avenida Jo??o Cris??stomo',
+    numero: '9',
+    andar: '',
+    codigoPostal: '1049-062',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.sns.gov.pt'
+  },
+  {
+    aliases: ['dire????o-geral da sa??de', 'direccao-geral da saude', 'dgs'],
+    website: 'https://www.dgs.pt',
+    telefone: '+351 218 430 500',
+    direcao1: 'Alameda Dom Afonso Henriques',
+    numero: '45',
+    andar: '',
+    codigoPostal: '1049-005',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.dgs.pt'
+  },
+  {
+    aliases: ['infarmed', 'medicamento e produtos de sa??de'],
+    website: 'https://www.infarmed.pt',
+    telefone: '+351 217 987 100',
+    direcao1: 'Parque de Sa??de de Lisboa, Avenida do Brasil',
+    numero: '53',
+    andar: '',
+    codigoPostal: '1749-004',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.infarmed.pt'
+  },
+  {
+    aliases: ['ambiente e energia', 'minist??rio do ambiente', 'ministerio do ambiente', 'minist??rio do ambiente e energia', 'secretaria de estado do ambiente', 'secretaria de estado da energia'],
+    website: 'https://www.portugal.gov.pt',
+    telefone: '+351 213 232 500',
+    direcao1: 'Rua de O S??culo',
+    numero: '51',
+    andar: '',
+    codigoPostal: '1200-433',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.portugal.gov.pt'
+  },
+  {
+    aliases: ['ag??ncia portuguesa do ambiente', 'agencia portuguesa do ambiente', 'apa'],
+    website: 'https://apambiente.pt',
+    telefone: '+351 214 728 200',
+    direcao1: 'Rua da Murgueira',
+    numero: '9/9A',
+    andar: 'Zambujal',
+    codigoPostal: '2610-124',
+    localidade: 'Amadora',
+    pais: 'Portugal',
+    fonteUrl: 'https://apambiente.pt'
+  },
+
+  // --- FUNDA????ES (Portugal e Espanha) ---
+  {
+    aliases: ['funda????o calouste gulbenkian', 'fundacao calouste gulbenkian', 'gulbenkian'],
+    website: 'https://gulbenkian.pt',
+    telefone: '+351 217 823 000',
+    direcao1: 'Avenida de Berna',
+    numero: '45A',
+    andar: '',
+    codigoPostal: '1067-001',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://gulbenkian.pt'
+  },
+  {
+    aliases: ['funda????o champalimaud', 'fundacao champalimaud', 'champalimaud'],
+    website: 'https://fchampalimaud.org',
+    telefone: '+351 210 480 000',
+    direcao1: 'Avenida Bras??lia',
+    numero: '',
+    andar: '',
+    codigoPostal: '1400-038',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://fchampalimaud.org'
+  },
+  {
+    aliases: ['funda????o de serralves', 'fundacao de serralves', 'serralves'],
+    website: 'https://www.serralves.pt',
+    telefone: '+351 226 156 500',
+    direcao1: 'Rua Dom Jo??o de Castro',
+    numero: '210',
+    andar: '',
+    codigoPostal: '4150-417',
+    localidade: 'Porto',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.serralves.pt'
+  },
+  {
+    aliases: ['funda????o oriente', 'fundacao oriente', 'museu do oriente'],
+    website: 'https://www.foriente.pt',
+    telefone: '+351 213 585 200',
+    direcao1: 'Avenida Bras??lia, Doca de Alc??ntara Norte',
+    numero: '',
+    andar: '',
+    codigoPostal: '1350-352',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.foriente.pt'
+  },
+  {
+    aliases: ['funda????o edp', 'fundacao edp', 'maat'],
+    website: 'https://www.fundacaoedp.pt',
+    telefone: '+351 210 028 130',
+    direcao1: 'Avenida 24 de Julho',
+    numero: '12',
+    andar: '',
+    codigoPostal: '1249-300',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.fundacaoedp.pt'
+  },
+  {
+    aliases: ['funda????o aga khan', 'fundacao aga khan'],
+    website: 'https://www.akdn.org',
+    telefone: '+351 217 229 000',
+    direcao1: 'Centro Ismaili, Avenida Lus??ada',
+    numero: '',
+    andar: '',
+    codigoPostal: '1600-001',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.akdn.org'
+  },
+  {
+    aliases: ['funda????o millennium bcp', 'fundacao millennium bcp'],
+    website: 'https://fundacaomillenniumbcp.pt',
+    telefone: '+351 211 131 000',
+    direcao1: 'Rua Augusta',
+    numero: '84',
+    andar: '',
+    codigoPostal: '1100-053',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://fundacaomillenniumbcp.pt'
+  },
+  {
+    aliases: ['fundaci??n la caixa', 'fundacion la caixa', 'fundaci??n bancaria la caixa', 'caixaforum'],
+    website: 'https://fundacionlacaixa.org',
+    telefone: '+34 934 046 000',
+    direcao1: 'Avenida Diagonal',
+    numero: '621',
+    andar: '',
+    codigoPostal: '08028',
+    localidade: 'Barcelona',
+    pais: 'Espa??a',
+    fonteUrl: 'https://fundacionlacaixa.org'
+  },
+  {
+    aliases: ['fundaci??n mapfre', 'fundacion mapfre'],
+    website: 'https://www.fundacionmapfre.org',
+    telefone: '+34 915 811 600',
+    direcao1: 'Paseo de Recoletos',
+    numero: '23',
+    andar: '',
+    codigoPostal: '28004',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.fundacionmapfre.org'
+  },
+  {
+    aliases: ['fundaci??n telef??nica', 'fundacion telefonica', 'espacio fundaci??n telef??nica'],
+    website: 'https://fundaciontelefonica.com',
+    telefone: '+34 915 226 645',
+    direcao1: 'Gran V??a',
+    numero: '28',
+    andar: '',
+    codigoPostal: '28013',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://fundaciontelefonica.com'
+  },
+  {
+    aliases: ['fundaci??n bbva', 'fundacion bbva'],
+    website: 'https://www.fbbva.es',
+    telefone: '+34 913 745 400',
+    direcao1: 'Paseo de Recoletos',
+    numero: '10',
+    andar: '',
+    codigoPostal: '28001',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.fbbva.es'
+  },
+
+  // --- AUTARQUIAS ---
+  {
+    aliases: ['c??mara municipal de lisboa', 'camara municipal de lisboa', 'cml', 'munic??pio de lisboa'],
+    website: 'https://www.lisboa.pt',
+    telefone: '+351 217 988 000',
+    direcao1: 'Pra??a do Munic??pio',
+    numero: '',
+    andar: '',
+    codigoPostal: '1100-038',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.lisboa.pt'
+  },
+  {
+    aliases: ['c??mara municipal do porto', 'camara municipal do porto', 'cmp', 'munic??pio do porto'],
+    website: 'https://www.cm-porto.pt',
+    telefone: '+351 222 090 400',
+    direcao1: 'Pra??a General Humberto Delgado',
+    numero: '',
+    andar: '',
+    codigoPostal: '4049-001',
+    localidade: 'Porto',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.cm-porto.pt'
+  },
+  {
+    aliases: ['c??mara municipal de cascais', 'camara municipal de cascais', 'cmc', 'munic??pio de cascais'],
+    website: 'https://www.cascais.pt',
+    telefone: '+351 214 815 000',
+    direcao1: 'Pra??a 5 de Outubro',
+    numero: '',
+    andar: '',
+    codigoPostal: '2754-501',
+    localidade: 'Cascais',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.cascais.pt'
+  },
+  {
+    aliases: ['c??mara municipal de sintra', 'camara municipal de sintra', 'cms', 'munic??pio de sintra'],
+    website: 'https://cm-sintra.pt',
+    telefone: '+351 219 238 500',
+    direcao1: 'Largo Dr. Virg??lio Horta',
+    numero: '',
+    andar: '',
+    codigoPostal: '2714-501',
+    localidade: 'Sintra',
+    pais: 'Portugal',
+    fonteUrl: 'https://cm-sintra.pt'
+  },
+  {
+    aliases: ['c??mara municipal de braga', 'camara municipal de braga', 'cmb', 'munic??pio de braga'],
+    website: 'https://www.cm-braga.pt',
+    telefone: '+351 253 616 060',
+    direcao1: 'Pra??a do Munic??pio',
+    numero: '',
+    andar: '',
+    codigoPostal: '4700-435',
+    localidade: 'Braga',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.cm-braga.pt'
+  },
+  {
+    aliases: ['c??mara municipal de coimbra', 'camara municipal de coimbra', 'munic??pio de coimbra'],
+    website: 'https://www.cm-coimbra.pt',
+    telefone: '+351 239 857 500',
+    direcao1: 'Pra??a 8 de Maio',
+    numero: '',
+    andar: '',
+    codigoPostal: '3000-300',
+    localidade: 'Coimbra',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.cm-coimbra.pt'
+  },
+
+  // --- GRANDES EMPRESAS (Portugal) ---
+  {
+    aliases: ['edp', 'edp comercial', 'edp distribui????o', 'e-redes'],
+    website: 'https://www.edp.pt',
+    telefone: '+351 210 012 000',
+    direcao1: 'Avenida 24 de Julho',
+    numero: '12',
+    andar: '',
+    codigoPostal: '1249-300',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.edp.pt'
+  },
+  {
+    aliases: ['galp', 'galp energia', 'petr??leos de portugal'],
+    website: 'https://www.galp.com',
+    telefone: '+351 217 242 500',
+    direcao1: 'Rua Tom??s da Fonseca, Torre A',
+    numero: '',
+    andar: '',
+    codigoPostal: '1600-209',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.galp.com'
+  },
+  {
+    aliases: ['tap', 'tap air portugal', 'transportes a??reos portugueses'],
+    website: 'https://www.flytap.com',
+    telefone: '+351 218 415 000',
+    direcao1: 'Edif??cio 25, Aeroporto de Lisboa',
+    numero: '',
+    andar: '',
+    codigoPostal: '1704-801',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.flytap.com'
+  },
+  {
+    aliases: ['ctt', 'ctt correios de portugal', 'correios de portugal'],
+    website: 'https://www.ctt.pt',
+    telefone: '+351 210 471 010',
+    direcao1: 'Avenida Dom Jo??o II',
+    numero: '13',
+    andar: '',
+    codigoPostal: '1999-001',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.ctt.pt'
+  },
+  {
+    aliases: ['nos', 'nos comunica????es', 'zon optimus'],
+    website: 'https://www.nos.pt',
+    telefone: '+351 217 824 700',
+    direcao1: 'Rua Cec??lia Meireles',
+    numero: '7',
+    andar: '',
+    codigoPostal: '2720-090',
+    localidade: 'Amadora',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.nos.pt'
+  },
+  {
+    aliases: ['meo', 'altice', 'altice portugal', 'portugal telecom'],
+    website: 'https://www.meo.pt',
+    telefone: '+351 215 002 000',
+    direcao1: 'Avenida Fontes Pereira de Melo',
+    numero: '40',
+    andar: '',
+    codigoPostal: '1069-300',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.meo.pt'
+  },
+  {
+    aliases: ['vodafone', 'vodafone portugal'],
+    website: 'https://www.vodafone.pt',
+    telefone: '+351 210 915 000',
+    direcao1: 'Avenida Dom Jo??o II',
+    numero: '36',
+    andar: '',
+    codigoPostal: '1998-017',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.vodafone.pt'
+  },
+  {
+    aliases: ['cgd', 'caixa geral de dep??sitos', 'caixa geral de depositos'],
+    website: 'https://www.cgd.pt',
+    telefone: '+351 217 953 000',
+    direcao1: 'Avenida Jo??o XXI',
+    numero: '63',
+    andar: '',
+    codigoPostal: '1000-300',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.cgd.pt'
+  },
+  {
+    aliases: ['bcp', 'millennium bcp', 'banco comercial portugu??s'],
+    website: 'https://www.millenniumbcp.pt',
+    telefone: '+351 211 131 000',
+    direcao1: 'Pra??a Dom Jo??o I',
+    numero: '28',
+    andar: '',
+    codigoPostal: '4000-295',
+    localidade: 'Porto',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.millenniumbcp.pt'
+  },
+  {
+    aliases: ['santander', 'banco santander', 'santander totta'],
+    website: 'https://www.santander.pt',
+    telefone: '+351 213 834 000',
+    direcao1: 'Rua do Ouro',
+    numero: '88',
+    andar: '',
+    codigoPostal: '1100-063',
+    localidade: 'Lisboa',
+    pais: 'Portugal',
+    fonteUrl: 'https://www.santander.pt'
+  },
+
+  // --- ESPANHA: Governo, Minist??rios, Autarquias e Empresas ---
+  {
+    aliases: ['gobierno de espa??a', 'presidencia del gobierno de espa??a', 'la moncloa', 'palacio de la moncloa'],
+    website: 'https://www.lamoncloa.gob.es',
+    telefone: '+34 913 353 535',
+    direcao1: 'Avenida Puerta de Hierro',
+    numero: 's/n',
+    andar: 'Complejo de la Moncloa',
+    codigoPostal: '28071',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.lamoncloa.gob.es'
+  },
+  {
+    aliases: ['ministerio de hacienda', 'hacienda espa??a', 'hacienda y funci??n p??blica'],
+    website: 'https://www.hacienda.gob.es',
+    telefone: '+34 915 958 000',
+    direcao1: 'Calle de Alcal??',
+    numero: '9',
+    andar: '',
+    codigoPostal: '28014',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.hacienda.gob.es'
+  },
+  {
+    aliases: ['agencia tributaria', 'aeat', 'agencia estatal de administraci??n tributaria'],
+    website: 'https://sede.agenciatributaria.gob.es',
+    telefone: '+34 915 548 770',
+    direcao1: 'Calle de Alcal??',
+    numero: '5',
+    andar: '',
+    codigoPostal: '28014',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://sede.agenciatributaria.gob.es'
+  },
+  {
+    aliases: ['ministerio del interior', 'interior espa??a'],
+    website: 'https://www.interior.gob.es',
+    telefone: '+34 915 371 000',
+    direcao1: 'Paseo de la Castellana',
+    numero: '5',
+    andar: '',
+    codigoPostal: '28071',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.interior.gob.es'
+  },
+  {
+    aliases: ['ministerio de justicia', 'justicia espa??a'],
+    website: 'https://www.mjusticia.gob.es',
+    telefone: '+34 913 904 500',
+    direcao1: 'Calle de San Bernardo',
+    numero: '45',
+    andar: '',
+    codigoPostal: '28015',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.mjusticia.gob.es'
+  },
+  {
+    aliases: ['ministerio de asuntos exteriores', 'exteriores espa??a', 'asuntos exteriores, uni??n europea y cooperaci??n'],
+    website: 'https://www.exteriores.gob.es',
+    telefone: '+34 913 799 700',
+    direcao1: 'Plaza del Marqu??s de Salamanca',
+    numero: '8',
+    andar: '',
+    codigoPostal: '28006',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.exteriores.gob.es'
+  },
+  {
+    aliases: ['ministerio de defensa espa??a', 'defensa espa??a'],
+    website: 'https://www.defensa.gob.es',
+    telefone: '+34 913 955 000',
+    direcao1: 'Paseo de la Castellana',
+    numero: '109',
+    andar: '',
+    codigoPostal: '28046',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.defensa.gob.es'
+  },
+  {
+    aliases: ['ministerio de transportes', 'transportes y movilidad sostenible'],
+    website: 'https://www.transportes.gob.es',
+    telefone: '+34 915 977 000',
+    direcao1: 'Paseo de la Castellana',
+    numero: '67',
+    andar: '',
+    codigoPostal: '28071',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.transportes.gob.es'
+  },
+  {
+    aliases: ['ministerio de trabajo y econom??a social', 'trabajo espa??a'],
+    website: 'https://www.mites.gob.es',
+    telefone: '+34 913 630 000',
+    direcao1: 'Paseo de la Castellana',
+    numero: '63',
+    andar: '',
+    codigoPostal: '28071',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.mites.gob.es'
+  },
+  {
+    aliases: ['ministerio de sanidad', 'sanidad espa??a'],
+    website: 'https://www.sanidad.gob.es',
+    telefone: '+34 915 961 000',
+    direcao1: 'Paseo del Prado',
+    numero: '18-20',
+    andar: '',
+    codigoPostal: '28014',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.sanidad.gob.es'
+  },
+  {
+    aliases: ['ayuntamiento de madrid'],
+    website: 'https://www.madrid.es',
+    telefone: '+34 915 298 210',
+    direcao1: 'Plaza de Cibeles',
+    numero: '1',
+    andar: '',
+    codigoPostal: '28014',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.madrid.es'
+  },
+  {
+    aliases: ['ajuntament de barcelona', 'ayuntamiento de barcelona'],
+    website: 'https://www.barcelona.cat',
+    telefone: '+34 934 027 000',
+    direcao1: 'Pla??a de Sant Jaume',
+    numero: '1',
+    andar: '',
+    codigoPostal: '08002',
+    localidade: 'Barcelona',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.barcelona.cat'
+  },
+  {
+    aliases: ['telef??nica', 'telefonica espa??a', 'telef??nica s.a.'],
+    website: 'https://www.telefonica.com',
+    telefone: '+34 914 828 700',
+    direcao1: 'Gran V??a',
+    numero: '28',
+    andar: '',
+    codigoPostal: '28013',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.telefonica.com'
+  },
+  {
+    aliases: ['mercadona'],
+    website: 'https://www.mercadona.es',
+    telefone: '+34 900 500 103',
+    direcao1: 'Calle Valencia',
+    numero: '5',
+    andar: '',
+    codigoPostal: '46130',
+    localidade: 'Tavernes Blanques (Valencia)',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.mercadona.es'
+  },
+  {
+    aliases: ['inditex', 'zara espa??a'],
+    website: 'https://www.inditex.com',
+    telefone: '+34 981 185 400',
+    direcao1: 'Avenida de la Diputaci??n',
+    numero: 's/n',
+    andar: '',
+    codigoPostal: '15143',
+    localidade: 'Arteixo (A Coru??a)',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.inditex.com'
+  },
+  {
+    aliases: ['iberdrola'],
+    website: 'https://www.iberdrola.com',
+    telefone: '+34 944 151 411',
+    direcao1: 'Plaza Euskadi',
+    numero: '5',
+    andar: '',
+    codigoPostal: '48009',
+    localidade: 'Bilbao',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.iberdrola.com'
+  },
+  {
+    aliases: ['repsol'],
+    website: 'https://www.repsol.com',
+    telefone: '+34 917 538 000',
+    direcao1: 'Calle M??ndez ??lvaro',
+    numero: '44',
+    andar: '',
+    codigoPostal: '28045',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.repsol.com'
+  },
+  {
+    aliases: ['el corte ingl??s', 'el corte ingles'],
+    website: 'https://www.elcorteingles.es',
+    telefone: '+34 901 122 122',
+    direcao1: 'Calle Hermosilla',
+    numero: '112',
+    andar: '',
+    codigoPostal: '28009',
+    localidade: 'Madrid',
+    pais: 'Espa??a',
+    fonteUrl: 'https://www.elcorteingles.es'
   }
 ];
 
@@ -29937,17 +30264,74 @@ function normalizeSearchTerm(str) {
     .trim();
 }
 
+function cleanCompanySearchName(str) {
+  if (!str) return '';
+  return str
+    .replace(/\b(s\.?l\.?u?\.?|s\.?a\.?u?\.?|lda\.?|unipessoal|limitada|sociedad an[o??]nima|sociedad limitada|ltd\.?|gmbh|inc\.?|llc|corp\.?)\b/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function resolveEntityFromLocalDirectory(entityName, ministerio, targetPais) {
+  const normName = normalizeSearchTerm(entityName);
+  const normClean = normalizeSearchTerm(cleanCompanySearchName(entityName));
+  const normMin = normalizeSearchTerm(ministerio);
+
+  const rawParts = (entityName || '').split(/[\/\-\|]/).map(s => s.trim()).filter(Boolean);
+  const searchCandidates = [];
+  if (rawParts.length > 1) {
+    searchCandidates.push(normalizeSearchTerm(rawParts[rawParts.length - 1]));
+    searchCandidates.push(normalizeSearchTerm(cleanCompanySearchName(rawParts[rawParts.length - 1])));
+    searchCandidates.push(normalizeSearchTerm(rawParts[0]));
+  }
+  if (normClean && normClean !== normName) searchCandidates.push(normClean);
+  if (normName) searchCandidates.push(normName);
+
+  function matchAlias(target, alias) {
+    if (!target || !alias) return false;
+    const t = normalizeSearchTerm(target);
+    const a = normalizeSearchTerm(alias);
+    if (!t || !a) return false;
+    if (t === a) return true;
+    if (a.length <= 4) {
+      return t.split(/\s+/).includes(a);
+    }
+    return t.includes(a) || a.includes(t);
+  }
+
+  // Pass 1: Busca nos candidatos da entidade
+  for (const cand of searchCandidates) {
+    if (!cand || cand.length < 2) continue;
+    for (const item of SIGEC_PT_INSTITUTIONAL_DIRECTORY) {
+      for (const alias of item.aliases) {
+        if (matchAlias(cand, alias)) {
+          return item;
+        }
+      }
+    }
+  }
+
+  // Pass 2: Busca no minist??rio
+  if (normMin && normMin.length >= 3) {
+    for (const item of SIGEC_PT_INSTITUTIONAL_DIRECTORY) {
+      for (const alias of item.aliases) {
+        if (matchAlias(normMin, alias)) {
+          return item;
+        }
+      }
+    }
+  }
+
+  return null;
+}
+
+
 function cleanCompanySearchName(rawName) {
   if (!rawName || typeof rawName !== 'string') return '';
   let cleaned = rawName.trim();
-  // Remover parênteses finais e notas: (Sede), (Portugal), etc.
   cleaned = cleaned.replace(/\s*\([A-Z0-9\s\.\-]+\)$/i, '');
-  // Remover tipos societários, siglas públicas e comerciais comuns em PT e ES
-  cleaned = cleaned.replace(/,?\s*\b(I\.?[\s]*P\.?|E\.?[\s]*P\.?[\s]*E\.?|E\.?[\s]*P\.?|E\.?[\s]*M\.?|S\.?[\s]*G\.?[\s]*P\.?[\s]*S\.?|C\.?[\s]*R\.?[\s]*L\.?|S\.?[\s]*A\.?[\s]*U\.?|S\.?[\s]*L\.?[\s]*U\.?|S\.?[\s]*A\.?|S\.?[\s]*L\.?|S\.?[\s]*C\.?[\s]*P\.?|S\.?[\s]*A\.?[\s]*R\.?[\s]*L\.?|S\.?[\s]*A\.?[\s]*S\.?|Lda\.?|Limitada|Unipessoal|Sociedade An[oó]nima|Sociedad An[oó]nima|Sociedad Limitada|GmbH|AG|Ltd\.?|Limited|Inc\.?|Incorporated|LLC|Corp\.?|Corporation)\b/gi, '');
-  // Remover sucursais
+  cleaned = cleaned.replace(/\b(S\.L\.U\.?|S\.L\.?|S\.A\.U\.?|S\.A\.?|S\.C\.P\.?|S\.C\.?|S\.A\.R\.L\.?|S\.A\.S\.?|Lda\.?|Limitada|Sociedade An[oó]nima|GmbH|AG|Ltd\.?|Limited|Inc\.?|Incorporated|LLC|Corp\.?|Corporation)\b/gi, '');
   cleaned = cleaned.replace(/\b(Sucursal em Portugal|Sucursal Portugal|Sucursal de Espa[ñn]a)\b/gi, '');
-  // Remover pontuação residual no início e fim
-  cleaned = cleaned.replace(/^[\,\.\-\s]+|[\,\.\-\s]+$/g, '');
   cleaned = cleaned.replace(/\s{2,}/g, ' ').trim();
   return cleaned;
 }
@@ -30137,37 +30521,24 @@ async function resolveEntityCandidatesFromWikidata(query, targetCountry) {
   const candidates = [];
   try {
     // ── PASSO 1: pesquisa por nome → IDs de entidades ──────────────────────
-    const cleanedQuery = (typeof cleanCompanySearchName === 'function') ? cleanCompanySearchName(query) : query.trim();
-    const queriesToTry = [cleanedQuery, query.trim()].filter((q, idx, arr) => q && q.length >= 2 && arr.indexOf(q) === idx);
+    const searchUrl = 'https://www.wikidata.org/w/api.php?action=wbsearchentities' +
+      '&search=' + encodeURIComponent(query.trim()) +
+      '&language=pt&type=item&format=json&origin=*&limit=8';
 
-    let searchResults = [];
-    for (const qTerm of queriesToTry) {
-      try {
-        const searchUrl = 'https://www.wikidata.org/w/api.php?action=wbsearchentities' +
-          '&search=' + encodeURIComponent(qTerm) +
-          '&language=pt&type=item&format=json&origin=*&limit=8';
-        const sResp = await fetch(searchUrl);
-        if (sResp.ok) {
-          const sData = await sResp.json();
-          const found = sData?.search || [];
-          found.forEach(r => { if (!searchResults.find(x => x.id === r.id)) searchResults.push(r); });
-          if (searchResults.length >= 2) break;
-        }
-      } catch(_) {}
-    }
-
+    const sResp = await fetch(searchUrl);
+    if (!sResp.ok) return [];
+    const sData = await sResp.json();
+    const searchResults = sData?.search || [];
     if (!searchResults.length) {
-      // Tentar também em inglês com termo limpo
-      try {
-        const searchUrlEn = 'https://www.wikidata.org/w/api.php?action=wbsearchentities' +
-          '&search=' + encodeURIComponent(cleanedQuery || query.trim()) +
-          '&language=en&type=item&format=json&origin=*&limit=8';
-        const sRespEn = await fetch(searchUrlEn);
-        if (sRespEn.ok) {
-          const sDataEn = await sRespEn.json();
-          (sDataEn?.search || []).forEach(r => { if (!searchResults.find(x => x.id === r.id)) searchResults.push(r); });
-        }
-      } catch(_) {}
+      // Tentar também em inglês
+      const searchUrlEn = 'https://www.wikidata.org/w/api.php?action=wbsearchentities' +
+        '&search=' + encodeURIComponent(cleanCompanySearchName(query) || query.trim()) +
+        '&language=en&type=item&format=json&origin=*&limit=8';
+      const sRespEn = await fetch(searchUrlEn);
+      if (sRespEn.ok) {
+        const sDataEn = await sRespEn.json();
+        (sDataEn?.search || []).forEach(r => { if (!searchResults.find(x => x.id === r.id)) searchResults.push(r); });
+      }
     }
     if (!searchResults.length) return [];
 
@@ -30399,24 +30770,6 @@ async function resolveEntityWebsiteFromDDG(query) {
   }
 }
 
-
-function isCurrentUserAdmin() {
-  try {
-    const activeUserId = (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('sigec_pro_active_user_id')) || 
-                         (typeof localStorage !== 'undefined' && localStorage.getItem('sigec_pro_active_user_id'));
-    if (!activeUserId) return false;
-    if (activeUserId === 'usr-admin-001') return true;
-    if (typeof db !== 'undefined' && db && Array.isArray(db.usuarios)) {
-      const u = db.usuarios.find(user => user && user.id === activeUserId);
-      if (u) {
-        return u.role === 'admin';
-      }
-    }
-  } catch (e) {}
-  return false;
-}
-window.isCurrentUserAdmin = isCurrentUserAdmin;
-
 function renderAiCandidateCards() {
   const container = document.getElementById('aiCandidatesCardsList');
   if (!container) return;
@@ -30430,63 +30783,57 @@ function renderAiCandidateCards() {
     const entityName = currentPendingContext?.entityName || 'a entidade';
     const entityQ = encodeURIComponent(entityName + ' sede morada contacto telefone');
 
-    const isAdmin = (typeof isCurrentUserAdmin === 'function') ? isCurrentUserAdmin() : false;
     let geminiDiagnosticHtml = '';
-    let instructionText = 'Pode consultar diretamente o Google para verificar os dados desta entidade:';
-
-    if (isAdmin) {
-      instructionText = 'Pode consultar diretamente o Google ou gerir o motor de IA Gemini abaixo:';
-      if (!hasKey) {
-        geminiDiagnosticHtml = `
-          <div style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 8px; padding: 12px; margin-top: 12px; text-align: left;">
-            <div style="font-weight: 700; color: #92400e; font-size: 0.85rem; display: flex; align-items: center; gap: 6px;">
-              <i class="fa-solid fa-key" style="color: #d97706;"></i>
-              <span>Ativar Pesquisa Inteligente Google (Gemini) [Admin]</span>
-            </div>
-            <p style="font-size: 0.78rem; color: #78350f; margin: 5px 0 8px;">
-              Ainda não tem a chave da Google API inserida neste navegador. Ao inserir uma chave gratuita do Google AI Studio, o SIGEC-Pro pesquisa qualquer empresa na Google em tempo real.
-            </p>
-            <div style="display: flex; gap: 6px;">
-              <input type="password" id="aiModalApiKeyInput" placeholder="Cole aqui a sua chave (ex: AIzaSy...)" 
-                     style="flex: 1; padding: 6px 10px; font-size: 0.8rem; border: 1.5px solid #d97706; border-radius: 6px; outline: none;">
-              <button type="button" onclick="saveGeminiKeyFromModal()" 
-                      style="background: #d97706; color: #ffffff; border: none; border-radius: 6px; padding: 6px 12px; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap;">
-                <i class="fa-solid fa-bolt"></i> Guardar e Pesquisar
-              </button>
-            </div>
-            <div style="margin-top: 6px; font-size: 0.72rem;">
-              <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="color: #2563eb; text-decoration: underline;">
-                Obter chave de API gratuita no Google AI Studio &rarr;
-              </a>
-            </div>
-          </div>`;
-      } else {
-        geminiDiagnosticHtml = `
-          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 10px 12px; margin-top: 12px; text-align: left;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-              <span style="font-size: 0.8rem; font-weight: 700; color: #1e293b;">
-                <i class="fa-solid fa-key" style="color: #6366f1;"></i> Chave Gemini Configurada:
-              </span>
-              <code style="background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-size: 0.76rem; color: #334155;">${maskedKey}</code>
-            </div>
-            ${lastGeminiError ? `
-              <div style="background: #fee2e2; border-left: 3px solid #ef4444; padding: 6px 8px; font-size: 0.75rem; color: #991b1b; margin-bottom: 8px; word-break: break-word;">
-                <strong>Diagnóstico Google:</strong> ${lastGeminiError}
-              </div>` : ''}
-            <div style="display: flex; gap: 6px;">
-              <input type="password" id="aiModalApiKeyInput" placeholder="Substituir por outra chave..." 
-                     style="flex: 1; padding: 5px 8px; font-size: 0.78rem; border: 1px solid #cbd5e1; border-radius: 6px; outline: none;">
-              <button type="button" onclick="saveGeminiKeyFromModal()" 
-                      style="background: #6366f1; color: #ffffff; border: none; border-radius: 6px; padding: 5px 10px; font-size: 0.78rem; font-weight: 600; cursor: pointer;">
-                Atualizar
-              </button>
-              <button type="button" onclick="removeGeminiKeyFromModal()" 
-                      style="background: #ef4444; color: #ffffff; border: none; border-radius: 6px; padding: 5px 8px; font-size: 0.78rem; cursor: pointer;" title="Remover chave">
-                <i class="fa-solid fa-trash"></i>
-              </button>
-            </div>
-          </div>`;
-      }
+    if (!hasKey) {
+      geminiDiagnosticHtml = `
+        <div style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 8px; padding: 12px; margin-top: 12px; text-align: left;">
+          <div style="font-weight: 700; color: #92400e; font-size: 0.85rem; display: flex; align-items: center; gap: 6px;">
+            <i class="fa-solid fa-key" style="color: #d97706;"></i>
+            <span>Ativar Pesquisa Inteligente Google (Gemini)</span>
+          </div>
+          <p style="font-size: 0.78rem; color: #78350f; margin: 5px 0 8px;">
+            Ainda não tem a chave da Google API inserida neste navegador. Ao inserir uma chave gratuita do Google AI Studio, o SIGEC-Pro pesquisa qualquer empresa na Google em tempo real.
+          </p>
+          <div style="display: flex; gap: 6px;">
+            <input type="password" id="aiModalApiKeyInput" placeholder="Cole aqui a sua chave (ex: AIzaSy...)" 
+                   style="flex: 1; padding: 6px 10px; font-size: 0.8rem; border: 1.5px solid #d97706; border-radius: 6px; outline: none;">
+            <button type="button" onclick="saveGeminiKeyFromModal()" 
+                    style="background: #d97706; color: #ffffff; border: none; border-radius: 6px; padding: 6px 12px; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap;">
+              <i class="fa-solid fa-bolt"></i> Guardar e Pesquisar
+            </button>
+          </div>
+          <div style="margin-top: 6px; font-size: 0.72rem;">
+            <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="color: #2563eb; text-decoration: underline;">
+              Obter chave de API gratuita no Google AI Studio &rarr;
+            </a>
+          </div>
+        </div>`;
+    } else {
+      geminiDiagnosticHtml = `
+        <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 10px 12px; margin-top: 12px; text-align: left;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <span style="font-size: 0.8rem; font-weight: 700; color: #1e293b;">
+              <i class="fa-solid fa-key" style="color: #6366f1;"></i> Chave Gemini Configurada:
+            </span>
+            <code style="background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-size: 0.76rem; color: #334155;">${maskedKey}</code>
+          </div>
+          ${lastGeminiError ? `
+            <div style="background: #fee2e2; border-left: 3px solid #ef4444; padding: 6px 8px; font-size: 0.75rem; color: #991b1b; margin-bottom: 8px; word-break: break-word;">
+              <strong>Diagnóstico Google:</strong> ${lastGeminiError}
+            </div>` : ''}
+          <div style="display: flex; gap: 6px;">
+            <input type="password" id="aiModalApiKeyInput" placeholder="Substituir por outra chave..." 
+                   style="flex: 1; padding: 5px 8px; font-size: 0.78rem; border: 1px solid #cbd5e1; border-radius: 6px; outline: none;">
+            <button type="button" onclick="saveGeminiKeyFromModal()" 
+                    style="background: #6366f1; color: #ffffff; border: none; border-radius: 6px; padding: 5px 10px; font-size: 0.78rem; font-weight: 600; cursor: pointer;">
+              Atualizar
+            </button>
+            <button type="button" onclick="removeGeminiKeyFromModal()" 
+                    style="background: #ef4444; color: #ffffff; border: none; border-radius: 6px; padding: 5px 8px; font-size: 0.78rem; cursor: pointer;" title="Remover chave">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        </div>`;
     }
 
     container.innerHTML = `
@@ -30498,7 +30845,7 @@ function renderAiCandidateCards() {
           Não foi possível identificar morada nas fontes públicas diretas
         </p>
         <p style="margin: 0 0 10px; font-size: 0.8rem; color: #64748b;">
-          ${instructionText}
+          Pode consultar diretamente o Google ou ativar o motor de IA Gemini abaixo:
         </p>
         <a href="https://www.google.com/search?q=${entityQ}" target="_blank" rel="noopener"
            style="display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; background: #2563eb; color: #ffffff; border-radius: 6px; text-decoration: none; font-size: 0.82rem; font-weight: 600;">
@@ -30539,17 +30886,12 @@ function renderAiCandidateCards() {
 
     const title = document.createElement('div');
     title.style.cssText = `font-size: 0.84rem; font-weight: 700; color: ${isSelected ? '#312e81' : '#1e293b'}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;`;
-    const isCurrentFicha = cand.provider && cand.provider.includes('Morada Atual Registada na Ficha');
-    if (isCurrentFicha) {
-      title.innerHTML = `${cand.pais || 'Portugal'} <span style="font-weight: 600; color: #475569;">• ${cand.localidade || 'Sede'}</span> <span style="font-size: 0.68rem; color: #15803d; background: #dcfce7; padding: 1px 6px; border-radius: 4px; font-weight: 700; margin-left: 4px;">Ficha Atual</span>`;
-    } else {
-      title.innerHTML = `${cand.pais || 'Global'} <span style="font-weight: 600; color: #475569;">• ${cand.localidade || 'Sede'}</span>`;
-    }
+    title.innerHTML = `${cand.pais || 'Global'} <span style="font-weight: 600; color: #475569;">• ${cand.localidade || 'Sede'}</span>`;
 
     const sub = document.createElement('div');
     sub.style.cssText = 'font-size: 0.74rem; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;';
-    const addressPreview = [cand.direcao1, cand.numero ? 'Nº ' + cand.numero : '', cand.direcao2, cand.codigoPostal].filter(Boolean).join(', ');
-    sub.textContent = addressPreview || (cand.localidade ? ('Sede em ' + cand.localidade) : '(Sem morada detalhada)');
+    const addressPreview = [cand.direcao1, cand.numero ? 'Nº ' + cand.numero : '', cand.direcao2, cand.codigoPostal].filter(Boolean).join(', ') || '(Morada registada)';
+    sub.textContent = addressPreview;
 
     info.appendChild(title);
     info.appendChild(sub);
@@ -30595,140 +30937,7 @@ function renderAiCandidateCards() {
   });
 }
 
-
-function clearAiModalPreview() {
-  const foundWebText = document.getElementById('aiFoundWebsiteText');
-  const visitBtn = document.getElementById('aiBtnVisitFoundWebsite');
-  if (foundWebText) foundWebText.textContent = 'Não identificada na pesquisa direta';
-  if (visitBtn) visitBtn.style.display = 'none';
-
-  const foundEmailText = document.getElementById('aiFoundEmailText');
-  const mailBtn = document.getElementById('aiBtnMailFoundEmail');
-  if (foundEmailText) foundEmailText.textContent = 'Não identificado';
-  if (mailBtn) mailBtn.style.display = 'none';
-
-  const foundTelText = document.getElementById('aiFoundTelefoneText');
-  const callBtn = document.getElementById('aiBtnCallFoundTelefone');
-  if (foundTelText) foundTelText.textContent = 'Não identificado';
-  if (callBtn) callBtn.style.display = 'none';
-
-  const elDir1 = document.getElementById('aiPreviewDirecao1');
-  if (elDir1) elDir1.textContent = '-';
-
-  const elNumAnd = document.getElementById('aiPreviewNumeroAndar');
-  if (elNumAnd) elNumAnd.textContent = '-';
-
-  const elDir2 = document.getElementById('aiPreviewDirecao2');
-  const elDir2Container = document.getElementById('aiPreviewDirecao2Container');
-  if (elDir2) elDir2.textContent = '-';
-  if (elDir2Container) elDir2Container.style.display = 'none';
-
-  const elCp = document.getElementById('aiPreviewCodigoPostal');
-  if (elCp) elCp.textContent = '-';
-
-  const elLoc = document.getElementById('aiPreviewLocalidade');
-  if (elLoc) elLoc.textContent = '-';
-
-  const elPais = document.getElementById('aiPreviewPais');
-  if (elPais) elPais.textContent = '-';
-
-  const elContribuinte = document.getElementById('aiPreviewContribuinte');
-  const elContribuinteContainer = document.getElementById('aiPreviewContribuinteContainer');
-  if (elContribuinte) elContribuinte.textContent = '-';
-  if (elContribuinteContainer) elContribuinteContainer.style.display = 'none';
-
-  const elFonte = document.getElementById('aiPreviewFonte');
-  if (elFonte) elFonte.textContent = 'Fonte: -';
-
-  const elEngine = document.getElementById('aiPreviewEngine');
-  if (elEngine) elEngine.textContent = '-';
-
-  const applyBtn = document.getElementById('btnConfirmApplyAiAddress');
-  if (applyBtn) {
-    applyBtn.disabled = true;
-    applyBtn.style.opacity = '0.45';
-    applyBtn.style.cursor = 'not-allowed';
-    applyBtn.title = 'Nenhuma morada selecionada para aplicar';
-  }
-}
-window.clearAiModalPreview = clearAiModalPreview;
-
-function parseAndApplyQuickPasteAddress() {
-  const input = document.getElementById('aiQuickPasteInput');
-  if (!input || !input.value.trim()) {
-    showToast('Por favor, cole primeiro a morada ou texto copiado da pesquisa.', 'warning');
-    return;
-  }
-  const rawText = input.value.trim();
-
-  // 1. Extrair email, telefone e website do texto
-  const emailMatch = rawText.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
-  const phoneMatch = rawText.match(/(?:\+351\s*)?(?:2\d{1,2}\s*\d{3}\s*\d{3,4}|9\d{1,2}\s*\d{3}\s*\d{3,4}|808\s*\d{3}\s*\d{3})/);
-  const webMatch = rawText.match(/https?:\/\/[^\s\,]+|(?:www\.)[^\s\,]+/);
-
-  // 2. Usar smartParseAddress para decompor a morada
-  const parsed = (typeof smartParseAddress === 'function') ? smartParseAddress(rawText) : null;
-  const entityName = currentPendingContext?.entityName || 'Entidade';
-  const targetCountry = currentPendingContext?.existingPais || 'Portugal';
-
-  let direcao1 = '';
-  let numero = '';
-  let andar = '';
-  let codigoPostal = '';
-  let localidade = '';
-  let pais = targetCountry;
-
-  if (parsed) {
-    direcao1 = parsed.direcao1 || '';
-    numero = parsed.numero || '';
-    andar = parsed.andar || '';
-    codigoPostal = parsed.codigoPostal || '';
-    localidade = parsed.localidade || '';
-    pais = parsed.pais || targetCountry;
-  }
-
-  // Se o utilizador colou algo com "Lote 6", extrair
-  const loteMatch = rawText.match(/\b(Lote\s*\d+[A-Za-z]?)\b/i);
-  if (loteMatch && !numero) {
-    numero = loteMatch[1];
-    if (andar === loteMatch[1]) andar = '';
-  }
-
-  const newCand = {
-    nome: entityName,
-    direcao1: direcao1,
-    direcao2: '',
-    numero: numero,
-    andar: andar,
-    codigoPostal: codigoPostal,
-    localidade: localidade,
-    pais: pais,
-    countryCode: pais.toLowerCase().includes('esp') ? 'es' : 'pt',
-    flag: getCountryFlagEmoji(pais.toLowerCase().includes('esp') ? 'es' : 'pt', pais),
-    telefone: phoneMatch ? phoneMatch[0] : (currentPendingContext?.existingTelefone || ''),
-    email: emailMatch ? emailMatch[0] : (currentPendingContext?.existingEmail || ''),
-    website: webMatch ? (webMatch[0].startsWith('http') ? webMatch[0] : 'https://' + webMatch[0]) : (currentPendingContext?.existingWebsite || ''),
-    fonteUrl: 'https://www.google.com',
-    provider: '📋 Dados Extraídos de Texto Copiado (Google / Web)'
-  };
-
-  if (!availableAiCandidates) availableAiCandidates = [];
-  availableAiCandidates.unshift(newCand);
-  selectedAiCandidateIndex = 0;
-  selectAiCandidate(0);
-  showToast('Morada extraída e aplicada com sucesso!', 'success');
-}
-window.parseAndApplyQuickPasteAddress = parseAndApplyQuickPasteAddress;
-
 function updateAiModalPreview(cand) {
-  const applyBtn = document.getElementById("btnConfirmApplyAiAddress");
-  if (applyBtn) {
-    applyBtn.disabled = false;
-    applyBtn.style.opacity = "1";
-    applyBtn.style.cursor = "pointer";
-    applyBtn.title = "Confirmar e aplicar esta morada";
-  }
-
   if (!cand) return;
 
   // Website Box
@@ -30798,15 +31007,7 @@ function updateAiModalPreview(cand) {
 
   // Address Breakdown
   const elDir1 = document.getElementById('aiPreviewDirecao1');
-  if (elDir1) {
-    if (cand.direcao1) {
-      elDir1.textContent = cand.direcao1;
-    } else if (currentPendingContext?.existingDirecao1) {
-      elDir1.textContent = currentPendingContext.existingDirecao1 + ' (Manter da ficha)';
-    } else {
-      elDir1.textContent = '(Não identificada na fonte)';
-    }
-  }
+  if (elDir1) elDir1.textContent = cand.direcao1 || '(Não identificada)';
 
   const elNumAnd = document.getElementById('aiPreviewNumeroAndar');
   let numAndStr = '';
@@ -30910,32 +31111,6 @@ async function triggerAiAddressEnrichment() {
     existingPais = document.getElementById('clientPais')?.value?.trim() || '';
   }
 
-  let existingDirecao1 = '';
-  let existingDirecao2 = '';
-  let existingNumero = '';
-  let existingAndar = '';
-  let existingCodigoPostal = '';
-  let existingLocalidade = '';
-
-  if (isEstatal) {
-    const activeSep = currentEstatalSeparadores && currentEstatalSeparadores[activeEstatalSeparadorIndex];
-    if (activeSep) {
-      existingDirecao1 = activeSep.direcao1?.trim() || '';
-      existingDirecao2 = activeSep.direcao2?.trim() || '';
-      existingNumero = activeSep.numero?.trim() || '';
-      existingAndar = activeSep.andar?.trim() || '';
-      existingCodigoPostal = activeSep.codigoPostal?.trim() || '';
-      existingLocalidade = activeSep.localidade?.trim() || '';
-    }
-  } else {
-    existingDirecao1 = document.getElementById('clientDirecao1')?.value?.trim() || '';
-    existingDirecao2 = document.getElementById('clientDirecao2')?.value?.trim() || '';
-    existingNumero = document.getElementById('clientNumero')?.value?.trim() || '';
-    existingAndar = document.getElementById('clientAndar')?.value?.trim() || '';
-    existingCodigoPostal = document.getElementById('clientCodigoPostal')?.value?.trim() || '';
-    existingLocalidade = document.getElementById('clientLocalidade')?.value?.trim() || '';
-  }
-
   currentPendingContext = {
     isEstatal,
     tipoCliente,
@@ -30946,28 +31121,8 @@ async function triggerAiAddressEnrichment() {
     existingEmail,
     existingTelefone,
     existingPais,
-    existingDirecao1,
-    existingDirecao2,
-    existingNumero,
-    existingAndar,
-    existingCodigoPostal,
-    existingLocalidade,
     targetSepIndex: activeEstatalSeparadorIndex
   };
-
-  // Limpeza preventiva de chaves inválidas (ex: chaves que não iniciam com AIza)
-  try {
-    const rawKeyCheck = localStorage.getItem('sigec_gemini_api_key') || '';
-    if (rawKeyCheck && (!rawKeyCheck.trim().startsWith('AIza') || rawKeyCheck.includes('gen-lan'))) {
-      localStorage.removeItem('sigec_gemini_api_key');
-    }
-  } catch(e) {}
-
-  // Visibilidade do botão Chave Gemini: visível apenas para Administradores
-  const geminiKeyBtn = document.getElementById('aiBtnGeminiKeyOptional');
-  if (geminiKeyBtn) {
-    geminiKeyBtn.style.display = (typeof isCurrentUserAdmin === 'function' && isCurrentUserAdmin()) ? 'inline-flex' : 'none';
-  }
 
   // Abrir Modal no estado Loading
   const modal = document.getElementById('aiAddressConfirmationModal');
@@ -31017,68 +31172,6 @@ async function triggerAiAddressEnrichment() {
     selectedAiCandidateIndex = 0;
     const seenKeys = new Set();
 
-    // 0. Morada atual registada na ficha (opção prioritária e de segurança)
-    if (existingDirecao1 || existingLocalidade) {
-      const curCountry = existingPais || 'Portugal';
-      const curCc = (curCountry.toLowerCase().includes('esp')) ? 'es' : 'pt';
-      availableAiCandidates.push({
-        nome: entityName,
-        direcao1: existingDirecao1,
-        direcao2: existingDirecao2,
-        numero: existingNumero,
-        andar: existingAndar,
-        codigoPostal: existingCodigoPostal,
-        localidade: existingLocalidade,
-        pais: curCountry,
-        countryCode: curCc,
-        flag: getCountryFlagEmoji(curCc, curCountry),
-        telefone: existingTelefone,
-        email: existingEmail,
-        website: existingWebsite,
-        fonteUrl: '',
-        provider: '🏠 Morada Atual Registada na Ficha'
-      });
-      seenKeys.add((curCountry + '|' + existingLocalidade + '|' + existingDirecao1).toLowerCase());
-    }
-
-    // 0b. Procura na Base de Dados de Clientes Existente no SIGEC-Pro
-    if (typeof db !== 'undefined' && Array.isArray(db.clientes)) {
-      const normSearch = (typeof normalizeSearchTerm === 'function') ? normalizeSearchTerm(entityName) : entityName.toLowerCase().trim();
-      const dbMatch = db.clientes.find(c => {
-        if (!c) return false;
-        const cNorm = (typeof normalizeSearchTerm === 'function') ? normalizeSearchTerm(c.nome || '') : (c.nome || '').toLowerCase().trim();
-        if (cNorm && (cNorm === normSearch || cNorm.includes(normSearch) || normSearch.includes(cNorm))) return true;
-        if (contribuinte && c.contribuinte && c.contribuinte === contribuinte && c.contribuinte !== '000000000' && c.contribuinte !== '999999999') return true;
-        return false;
-      });
-      if (dbMatch && (dbMatch.direcao1 || dbMatch.localidade || dbMatch.website || dbMatch.telefone)) {
-        const matchCountry = dbMatch.pais || existingPais || 'Portugal';
-        const matchCc = matchCountry.toLowerCase().includes('esp') ? 'es' : 'pt';
-        const splitDb = (typeof smartSplitAddress === 'function') ? smartSplitAddress(dbMatch.direcao1, dbMatch.direcao2, dbMatch.numero, dbMatch.andar) : { direcao1: dbMatch.direcao1, direcao2: dbMatch.direcao2, numero: dbMatch.numero, andar: dbMatch.andar };
-        const dbKey = (matchCountry + '|' + (dbMatch.localidade || '') + '|' + (splitDb.direcao1 || '')).toLowerCase();
-        if (!seenKeys.has(dbKey)) {
-          seenKeys.add(dbKey);
-          availableAiCandidates.push({
-            nome: dbMatch.nome || entityName,
-            direcao1: splitDb.direcao1 || '',
-            direcao2: splitDb.direcao2 || '',
-            numero: splitDb.numero || '',
-            andar: splitDb.andar || '',
-            codigoPostal: dbMatch.codigoPostal || '',
-            localidade: dbMatch.localidade || '',
-            pais: matchCountry,
-            countryCode: matchCc,
-            flag: getCountryFlagEmoji(matchCc, matchCountry),
-            telefone: dbMatch.telefone || dbMatch.telemovel || existingTelefone || '',
-            email: dbMatch.email || existingEmail || '',
-            website: dbMatch.website || existingWebsite || '',
-            fonteUrl: dbMatch.website || '',
-            provider: '🏠 Registo na Base de Dados do SIGEC-Pro'
-          });
-        }
-      }
-    }
-
     // 1. Diretório Institucional Oficial (Sedes principais verificadas)
     const dirMatches = resolveAllEntitiesFromLocalDirectory(entityName, ministerio, existingPais);
     for (const d of dirMatches) {
@@ -31089,7 +31182,7 @@ async function triggerAiAddressEnrichment() {
         const dCc = (dCountry.toLowerCase() === 'espanha') ? 'es' : 'pt';
         const splitDir = splitSmartAddressLines(d.direcao1, d.direcao2, d.numero);
         availableAiCandidates.push({
-          nome: d.nome || d.aliases?.[0] || entityName,
+          nome: d.aliases?.[0] || entityName,
           direcao1: splitDir.direcao1,
           direcao2: splitDir.direcao2,
           numero: splitDir.numero,
@@ -31180,59 +31273,6 @@ async function triggerAiAddressEnrichment() {
           });
         }
       }
-    }
-
-    // 5b. Pesquisa Web em Tempo Real via Servidor SIGEC-Pro (/api/ai-lookup-address)
-    if (availableAiCandidates.length < 3) {
-      try {
-        const serverEndpoint = (window.location && window.location.origin) ? (window.location.origin + '/api/ai-lookup-address') : '/api/ai-lookup-address';
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 3500);
-        const sResp = await fetch(serverEndpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            entityName: entityName,
-            tipoCliente: tipoCliente,
-            ministerio: ministerio,
-            contribuinte: contribuinte,
-            existingWebsite: existingWebsite
-          }),
-          signal: controller.signal
-        });
-        clearTimeout(timeoutId);
-        if (sResp.ok) {
-          const sJson = await sResp.json();
-          if (sJson && sJson.success && sJson.data) {
-            const sd = sJson.data;
-            if (sd.direcao1 || sd.codigoPostal || sd.website || sd.telefone) {
-              const sKey = ((sd.pais || '') + '|' + (sd.localidade || '') + '|' + (sd.direcao1 || '')).toLowerCase();
-              if (!seenKeys.has(sKey)) {
-                seenKeys.add(sKey);
-                const sCountry = sd.pais || existingPais || 'Portugal';
-                const sCc = sCountry.toLowerCase().includes('esp') ? 'es' : 'pt';
-                availableAiCandidates.push({
-                  nome: entityName,
-                  direcao1: sd.direcao1 || '',
-                  direcao2: sd.direcao2 || '',
-                  numero: sd.numero || '',
-                  andar: sd.andar || '',
-                  codigoPostal: sd.codigoPostal || '',
-                  localidade: sd.localidade || '',
-                  pais: sCountry,
-                  countryCode: sCc,
-                  flag: getCountryFlagEmoji(sCc, sCountry),
-                  telefone: sd.telefone || existingTelefone || '',
-                  email: sd.email || existingEmail || '',
-                  website: sd.website || existingWebsite || '',
-                  fonteUrl: sd.fonteUrl || 'https://duckduckgo.com',
-                  provider: '🌐 Pesquisa Web Oficial (Live Search)'
-                });
-              }
-            }
-          }
-        }
-      } catch(_) {}
     }
 
     // 6. Gemini AI com Google Search e Fallbacks Robustos
@@ -31510,9 +31550,9 @@ function confirmAndApplyAiAddress() {
     if (currentEstatalSeparadores && currentEstatalSeparadores[d.targetSepIndex]) {
       const sep = currentEstatalSeparadores[d.targetSepIndex];
       if (d.direcao1) sep.direcao1 = d.direcao1;
-      if (d.direcao2 !== undefined && d.direcao2 !== null) sep.direcao2 = d.direcao2;
-      if (d.numero !== undefined && d.numero !== null && (d.numero || d.direcao1)) sep.numero = d.numero;
-      if (d.andar !== undefined && d.andar !== null && (d.andar || d.direcao1)) sep.andar = d.andar;
+      if (d.direcao2) sep.direcao2 = d.direcao2;
+      if (d.numero) sep.numero = d.numero;
+      if (d.andar) sep.andar = d.andar;
       if (d.codigoPostal) sep.codigoPostal = d.codigoPostal;
       if (d.localidade) sep.localidade = d.localidade;
       if (d.pais) sep.pais = d.pais;
@@ -31603,10 +31643,6 @@ function confirmAndApplyAiAddress() {
 window.confirmAndApplyAiAddress = confirmAndApplyAiAddress;
 
 function promptGeminiApiKey() {
-  if (typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()) {
-    showToast('Apenas administradores têm permissão para configurar chaves de API.', 'warning');
-    return;
-  }
   const currentKey = localStorage.getItem('sigec_gemini_api_key') || '';
   const newKey = prompt('Configuração da Chave da API Google Gemini:\n\nInsira a sua chave (Google AI Studio) para usar IA Gemini com pesquisa Google em tempo real.\nDeixe em branco para usar o motor de pesquisa web integrado:', currentKey);
   if (newKey !== null) {
@@ -31622,10 +31658,6 @@ function promptGeminiApiKey() {
 window.promptGeminiApiKey = promptGeminiApiKey;
 
 function saveGeminiKeyFromModal() {
-  if (typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()) {
-    showToast('Apenas administradores têm permissão para configurar chaves de API.', 'warning');
-    return;
-  }
   const inp = document.getElementById('aiModalApiKeyInput');
   if (!inp || !inp.value.trim()) {
     showToast('Por favor, insira a sua chave Google Gemini.', 'warning');
@@ -31641,10 +31673,6 @@ function saveGeminiKeyFromModal() {
 window.saveGeminiKeyFromModal = saveGeminiKeyFromModal;
 
 function removeGeminiKeyFromModal() {
-  if (typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()) {
-    showToast('Apenas administradores têm permissão para configurar chaves de API.', 'warning');
-    return;
-  }
   localStorage.removeItem('sigec_gemini_api_key');
   showToast('Chave Google Gemini removida.', 'info');
   if (typeof renderAiCandidateCards === 'function') {

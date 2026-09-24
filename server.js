@@ -1,64 +1,8 @@
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const net = require('net');
 const tls = require('tls');
-const { exec } = require('child_process');
-
-const DEFAULT_HF_TOKEN = process.env.HF_TOKEN || ['h' + 'f_', 'gpJRFQOh', 'NRrkdKsR', 'KQCRxHWv', 'kzLTnvsohD'].join('');
-const DEFAULT_HF_SPACE = process.env.HF_SPACE || 'josecenturio/SIGEC-Pro';
-
-let _serverDbVersion = Date.now();
-let _cachedDbStats = { clientes: 0, contactos: 0, projetos: 0, usuarios: 0 };
-let _hfServerPushTimer = null;
-
-function triggerServerHuggingFacePush(merged) {
-  if (_hfServerPushTimer) clearTimeout(_hfServerPushTimer);
-  _hfServerPushTimer = setTimeout(() => {
-    try {
-      const rawJson = JSON.stringify(payload, null, 2);
-      const contentBase64 = Buffer.from(rawJson, 'utf8').toString('base64');
-      const space = DEFAULT_HF_SPACE;
-      const token = DEFAULT_HF_TOKEN;
-
-      const dataDir = path.join(__dirname, 'data');
-      if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
-      const tmpPayloadPath = path.join(dataDir, '.hf_tmp_payload.json');
-
-      const dsPayload = JSON.stringify({
-        summary: `[SIGEC-Pro Server] Sincronização centralizada Dataset - ${new Date().toISOString()}`,
-        files: [
-          { path: 'Programa SIGEC-Pro/data/db.json', content: contentBase64, encoding: 'base64' },
-          { path: 'data/db.json', content: contentBase64, encoding: 'base64' }
-        ]
-      });
-      fs.writeFileSync(tmpPayloadPath, dsPayload, 'utf8');
-
-      const curlBin = process.platform === 'win32' ? 'curl.exe' : 'curl';
-      const curlCmdDs = curlBin + ' -s -X POST -H "Authorization: Bearer ' + token + '" -H "Content-Type: application/json" --data-binary @"' + tmpPayloadPath.replace(/\\/g, '/') + '" "https://huggingface.co/api/datasets/' + space + '/commit/main"'
-      exec(curlCmdDs, (err1) => {
-        if (err1) console.warn('[Server HF Push Dataset Error]:', err1.message);
-
-        const spPayload = JSON.stringify({
-          summary: `[SIGEC-Pro Server] Sincronização centralizada Space - ${new Date().toISOString()}`,
-          files: [
-            { path: 'data/db.json', content: contentBase64, encoding: 'base64' }
-          ]
-        });
-        fs.writeFileSync(tmpPayloadPath, spPayload, 'utf8');
-
-        const curlCmdSp = curlBin + ' -s -X POST -H "Authorization: Bearer ' + token + '" -H "Content-Type: application/json" --data-binary @"' + tmpPayloadPath.replace(/\\/g, '/') + '" "https://huggingface.co/api/spaces/' + space + '/commit/main"'
-        exec(curlCmdSp, (err2) => {
-          if (err2) console.warn('[Server HF Push Space Error]:', err2.message);
-          try { if (fs.existsSync(tmpPayloadPath)) fs.unlinkSync(tmpPayloadPath); } catch(eU) {}
-        });
-      });
-    } catch(errPush) {
-      console.warn('[Server HF Push Exception]:', errPush.message);
-    }
-  }, 1000);
-}
 
 const PORT = process.env.PORT || 10000;
 const MIME_TYPES = {
@@ -79,8 +23,8 @@ const MIME_TYPES = {
   '.sigecpkg': 'application/json'
 };
 
-const DEFAULT_SMTP_USER = process.env.SMTP_USER || 'jjota26@gmail.com';
-const DEFAULT_SMTP_PASS = process.env.SMTP_PASS || Buffer.from('ZGZidWZnZ2Jkc2FlbHpxeQ==', 'base64').toString('utf8');
+const DEFAULT_SMTP_USER = process.env.SMTP_USER || '';
+const DEFAULT_SMTP_PASS = process.env.SMTP_PASS || '';
 const DEFAULT_EMAIL_WEBHOOK_URL = process.env.EMAIL_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbxV-5cjwpuC-BLJpHaZk8g0234D9apiu5SlTX9VjdeHQG2L0DyoMBWHDbf0_Jo9Kr1LnA/exec';
 
 async function sendEmailViaSmtp(options) {
@@ -402,184 +346,6 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // Endpoint de Consulta em Tempo Real do Estado de Ativação do Utilizador
-  if (pathname === '/api/user-status') {
-    const email = (parsedUrl.searchParams.get('email') || '').trim().toLowerCase();
-    if (!email) {
-      res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
-      res.end(JSON.stringify({ success: false, message: 'Email obrigatório' }));
-      return;
-    }
-
-    try {
-      const dbPath = path.join(__dirname, 'data', 'db.json');
-      if (!fs.existsSync(dbPath)) {
-        res.writeHead(404, { 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(JSON.stringify({ success: false, message: 'Base de dados não encontrada' }));
-        return;
-      }
-      const raw = fs.readFileSync(dbPath, 'utf8');
-      const dbData = JSON.parse(raw);
-      const users = Array.isArray(dbData.usuarios) ? dbData.usuarios : [];
-      const matching = users.filter(u => u && u.email && u.email.trim().toLowerCase() === email);
-      const activeUser = matching.find(u => u.active === true) || matching[matching.length - 1];
-
-      if (!activeUser) {
-        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(JSON.stringify({ success: true, exists: false, active: false }));
-        return;
-      }
-
-      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-      res.end(JSON.stringify({
-        success: true,
-        exists: true,
-        active: activeUser.active === true,
-        user: {
-          id: activeUser.id,
-          nome: activeUser.nome,
-          email: activeUser.email,
-          role: activeUser.role,
-          active: activeUser.active === true,
-          pin: activeUser.pin,
-          idioma: activeUser.idioma
-        }
-      }));
-    } catch (errStatus) {
-      res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
-      res.end(JSON.stringify({ success: false, message: errStatus.message }));
-    }
-    return;
-  }
-
-  // Endpoint de Versão da Base de Dados (Polled em tempo real por outros computadores)
-  if (pathname === '/api/db-version') {
-    res.writeHead(200, {
-      'Content-Type': 'application/json; charset=utf-8',
-      'Cache-Control': 'no-cache, no-store, must-revalidate',
-      'Pragma': 'no-cache',
-      'Expires': '0'
-    });
-    res.end(JSON.stringify({
-      success: true,
-      version: _serverDbVersion,
-      stats: _cachedDbStats,
-      timestamp: new Date(_serverDbVersion).toISOString()
-    }));
-    return;
-  }
-
-  // Endpoint de Leitura Direta da Base de Dados Centralizada
-  if (pathname === '/api/db-json') {
-    if (req.method !== 'GET' && req.method !== 'HEAD') {
-      res.writeHead(405, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: false, message: 'Método não permitido' }));
-      return;
-    }
-
-    try {
-      const dbPath = path.join(__dirname, 'data', 'db.json');
-      const altPath = path.join(__dirname, 'Programa SIGEC-Pro', 'data', 'db.json');
-      let targetPath = fs.existsSync(dbPath) ? dbPath : (fs.existsSync(altPath) ? altPath : null);
-
-      if (!targetPath) {
-        res.writeHead(404, { 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(JSON.stringify({ success: false, message: 'Base de dados não encontrada' }));
-        return;
-      }
-
-      const raw = fs.readFileSync(targetPath, 'utf8');
-      res.writeHead(200, {
-        'Content-Type': 'application/json; charset=utf-8',
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-        'Pragma': 'no-cache',
-        'Expires': '0'
-      });
-      res.end(raw);
-    } catch (errDb) {
-      res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
-      res.end(JSON.stringify({ success: false, message: errDb.message }));
-    }
-    return;
-  }
-
-  // Endpoint de Gravação Imediata da Base de Dados no Servidor
-  if (pathname === '/api/save-db-json' || pathname === '/api/push-cloud-db') {
-    if (req.method !== 'POST') {
-      res.writeHead(405, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: false, message: 'Método não permitido' }));
-      return;
-    }
-
-    let body = '';
-    req.on('data', chunk => body += chunk);
-    req.on('end', async () => {
-      try {
-        const payload = JSON.parse(body || '{}');
-        if (!payload || typeof payload !== 'object') {
-          res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
-          res.end(JSON.stringify({ success: false, message: 'Payload inválido' }));
-          return;
-        }
-
-        const dataDir = path.join(__dirname, 'data');
-        if (!fs.existsSync(dataDir)) {
-          fs.mkdirSync(dataDir, { recursive: true });
-        }
-        const dbPath = path.join(dataDir, 'db.json');
-        // Merge seguro: preservar registos existentes não presentes no payload
-        let existingDb = {};
-        if (fs.existsSync(dbPath)) {
-          try { existingDb = JSON.parse(fs.readFileSync(dbPath, 'utf8')); } catch(eRead) { existingDb = {}; }
-        }
-        const deletedRegistry = (payload._deletedRegistry && typeof payload._deletedRegistry === 'object') ? payload._deletedRegistry : {};
-        const MERGEABLE_ENTITIES = ['clientes', 'contactos', 'projetos', 'orcamentos', 'interacoes', 'interacoesProjetos', 'usuarios', 'userLogs', 'ignoredDuplicates'];
-        const merged = Object.assign({}, existingDb, payload);
-        MERGEABLE_ENTITIES.forEach(function(entity) {
-          const existingArr = Array.isArray(existingDb[entity]) ? existingDb[entity] : [];
-          const payloadArr = Array.isArray(payload[entity]) ? payload[entity] : null;
-          if (payloadArr === null) { merged[entity] = existingArr; return; }
-          const payloadMap = {};
-          payloadArr.forEach(function(item) { if (item && item.id) payloadMap[item.id] = item; });
-          const extraFromExisting = existingArr.filter(function(item) {
-            if (!item || !item.id) return false;
-            if (payloadMap[item.id]) return false; // already in payload (payload is newer)
-            if (deletedRegistry[item.id]) return false; // explicitly deleted
-            return true;
-          });
-          merged[entity] = extraFromExisting.concat(payloadArr);
-        });
-        fs.writeFileSync(dbPath, JSON.stringify(merged, null, 2), 'utf8');
-
-        // Se existir a pasta alternativa 'Programa SIGEC-Pro/data', atualizar também
-        const altDir = path.join(__dirname, 'Programa SIGEC-Pro', 'data');
-        if (fs.existsSync(altDir)) {
-          fs.writeFileSync(path.join(altDir, 'db.json'), JSON.stringify(merged, null, 2), 'utf8');
-        }
-
-        _serverDbVersion = Date.now();
-        _cachedDbStats = {
-          clientes: Array.isArray(merged.clientes) ? merged.clientes.length : 0,
-          contactos: Array.isArray(merged.contactos) ? merged.contactos.length : 0,
-          projetos: Array.isArray(merged.projetos) ? merged.projetos.length : 0,
-          usuarios: Array.isArray(merged.usuarios) ? merged.usuarios.length : 0
-        };
-
-        // Disparar sincronização com a Nuvem em segundo plano a partir do servidor
-        if (typeof triggerServerHuggingFacePush === 'function') {
-          triggerServerHuggingFacePush(merged);
-        }
-
-        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(JSON.stringify({ success: true, message: 'Base de dados gravada no servidor com sucesso', version: _serverDbVersion }));
-      } catch (errSave) {
-        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(JSON.stringify({ success: false, message: errSave.message }));
-      }
-    });
-    return;
-  }
-
   // Endpoint de Pesquisa e Enriquecimento de Morada com IA
   if (pathname === '/api/ai-lookup-address') {
     if (req.method !== 'POST') {
@@ -672,19 +438,7 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
             }
           });
           if (nifResp.ok) {
-            let nifHtml = await nifResp.text();
-            // Se for página de resultados de pesquisa com link direto para o detalhe
-            const listMatch = nifHtml.match(/href='\/(5\d{8})\/'[^>]*>([^<]*)<\/a>/i) || nifHtml.match(/href='\/(5\d{8})\/'/i);
-            if (listMatch) {
-              try {
-                const detailResp = await fetch('https://www.nif.pt/' + listMatch[1] + '/', {
-                  headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' }
-                });
-                if (detailResp.ok) {
-                  nifHtml = await detailResp.text();
-                }
-              } catch(_) {}
-            }
+            const nifHtml = await nifResp.text();
             const cpMatch = nifHtml.match(/\b(\d{4}-\d{3})\b/);
             let nifCp = cpMatch ? cpMatch[1] : '';
             let nifLoc = '';
@@ -746,12 +500,7 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
         }
 
         // 3. Motor de Varrimento e Extração Web Alternativo (Server-side)
-        const cleanEntityName = entityName
-          .replace(/\s*\([A-Z0-9\s\.\-]+\)$/i, '')
-          .replace(/,?\s*\b(I\.?[\s]*P\.?|E\.?[\s]*P\.?[\s]*E\.?|E\.?[\s]*P\.?|E\.?[\s]*M\.?|S\.?[\s]*G\.?[\s]*P\.?[\s]*S\.?|C\.?[\s]*R\.?[\s]*L\.?|S\.?[\s]*A\.?[\s]*U\.?|S\.?[\s]*L\.?[\s]*U\.?|S\.?[\s]*A\.?|S\.?[\s]*L\.?|Lda\.?|Limitada|Unipessoal)\b/gi, '')
-          .replace(/^[\,\.\-\s]+|[\,\.\-\s]+$/g, '')
-          .trim();
-        let query = `${cleanEntityName || entityName} morada sede contactos Portugal`;
+        let query = `${entityName} morada sede contactos Portugal`;
         if (tipoCliente === 'Estatal' && ministerio) {
           query = `${entityName} ${ministerio} morada sede contactos Portugal`;
         }
@@ -846,20 +595,11 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
           address.direcao1 = street;
         }
 
-        // Número de porta ou Lote
+        // Número de porta
         if (!address.numero) {
-          const loteMatch = fullText.match(/\b(Lote\s*\d+[A-Za-z]?)\b/i);
-          if (loteMatch) {
-            address.numero = loteMatch[1];
-          } else {
-            const numMatch = fullText.match(/\b(?:n\.?[ºo]?|número|no\.)\s*(\d+[A-Za-z]?)\b/i) || fullText.match(/,\s*(\d+[A-Za-z]?)\s*,/);
-            if (numMatch) address.numero = numMatch[1];
-          }
+          const numMatch = fullText.match(/\b(?:n\.?[ºo]?|número|no\.)\s*(\d+[A-Za-z]?)\b/i) || fullText.match(/,\s*(\d+[A-Za-z]?)\s*,/);
+          if (numMatch) address.numero = numMatch[1];
         }
-
-        // Contactos (Telefone e Email)
-        const phoneMatch = fullText.match(/(?:\+351\s*)?(?:2\d{1,2}\s*\d{3}\s*\d{3,4}|9\d{1,2}\s*\d{3}\s*\d{3,4}|808\s*\d{3}\s*\d{3})/);
-        const emailMatch = fullText.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
 
         // Andar
         const andarMatch = fullText.match(/\b(\d+[ºªo]\s*(?:andar|Dto|Esq|Frt|frente)?|R\/C|rés-do-chão)\b/i);
@@ -882,8 +622,6 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
           provider: 'Web Search Engine',
           data: {
             website: detectedWebsite,
-            telefone: phoneMatch ? phoneMatch[0] : '',
-            email: emailMatch ? emailMatch[0] : '',
             direcao1: address.direcao1,
             direcao2: address.direcao2,
             numero: address.numero,
@@ -906,6 +644,31 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
   if (pathname === '/api/heartbeat') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ status: 'ok' }));
+    return;
+  }
+
+  // Endpoint de Gravação de Base de Dados (sigec-pro.onrender.com)
+  if (pathname === '/api/save-db-json') {
+    if (req.method !== 'POST') {
+      res.writeHead(405, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, message: 'Método não permitido' }));
+      return;
+    }
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => {
+      try {
+        const parsed = JSON.parse(body);
+        const dbPath = path.join(__dirname, 'data', 'db.json');
+        fs.mkdirSync(path.dirname(dbPath), { recursive: true });
+        fs.writeFileSync(dbPath, JSON.stringify(parsed, null, 2), 'utf8');
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ success: true, message: 'Base de dados gravada com sucesso no servidor', version: Date.now() }));
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ success: false, message: err.message || 'Erro ao gravar base de dados' }));
+      }
+    });
     return;
   }
 
