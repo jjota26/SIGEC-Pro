@@ -6597,17 +6597,16 @@ function mergeCloudDatabaseSafely(cloudData) {
         const localTs = new Date(localItem.updatedAt || localItem.createdAt || 0).getTime();
         const cloudTs = new Date(cloudItem.updatedAt || cloudItem.createdAt || 0).getTime();
 
-        // Regra especial e prioritária para Utilizadores: prevalência e efeito imediato para o respetivo utilizador
+        // Regra especial e prioritária para Utilizadores: prevalência temporal estrita e blindagem contra reversão
         if (localArrayName === 'usuarios') {
-          const userFieldsChanged = (cloudItem.active !== localItem.active) ||
-                                    (cloudItem.role !== localItem.role) ||
-                                    (cloudItem.cargo !== localItem.cargo) ||
-                                    (cloudItem.idioma !== localItem.idioma) ||
-                                    (cloudItem.nome !== localItem.nome) ||
-                                    (cloudItem.pin !== localItem.pin) ||
-                                    (cloudItem.chefia !== localItem.chefia);
+          // Se a versão local é mais recente que a versão da nuvem, a versão local PREVALECE ABSOLUTAMENTE!
+          if (localTs > cloudTs) {
+            hasLocalNewerChanges = true;
+            return;
+          }
 
-          if (cloudTs >= localTs || userFieldsChanged) {
+          // Apenas se a versão da nuvem for estritamente mais recente que a versão local
+          if (cloudTs > localTs) {
             localArr[index] = { ...localItem, ...cloudItem };
             hasRemoteChangesApplied = true;
 
@@ -6637,10 +6636,10 @@ function mergeCloudDatabaseSafely(cloudData) {
               }
             }
             return;
-          } else if (localTs > cloudTs) {
-            hasLocalNewerChanges = true;
-            return;
           }
+
+          // Se os timestamps são iguais, preservar a versão local sem alterações
+          return;
         }
 
         if (cloudTs > localTs) {
@@ -6759,7 +6758,7 @@ function mergeCloudDatabaseSafely(cloudData) {
 window.mergeCloudDatabaseSafely = mergeCloudDatabaseSafely;
 
 async function loadDatabaseFromHuggingFace(silent = false, force = false) {
-  const _LOCAL_SAVE_GUARD_MS = 3000;
+  const _LOCAL_SAVE_GUARD_MS = 30000; // 30s de proteção absoluta após gravação local recente
   if (!force && silent && window._lastLocalSaveTimestamp && (Date.now() - window._lastLocalSaveTimestamp) < _LOCAL_SAVE_GUARD_MS) {
     return false;
   }
@@ -21064,8 +21063,17 @@ function renderUserManagementGrid() {
       if (Array.isArray(parsed) && parsed.length > 0) {
         if (!Array.isArray(db.usuarios)) db.usuarios = [];
         parsed.forEach(storedU => {
-          if (storedU && storedU.id && !db.usuarios.some(u => u.id === storedU.id || (u.email && storedU.email && u.email.toLowerCase().trim() === storedU.email.toLowerCase().trim()))) {
-            db.usuarios.push(storedU);
+          if (storedU && storedU.id) {
+            const idx = db.usuarios.findIndex(u => u && (u.id === storedU.id || (u.email && storedU.email && u.email.toLowerCase().trim() === storedU.email.toLowerCase().trim())));
+            if (idx >= 0) {
+              const localTs = new Date(db.usuarios[idx].updatedAt || db.usuarios[idx].createdAt || 0).getTime();
+              const storedTs = new Date(storedU.updatedAt || storedU.createdAt || 0).getTime();
+              if (storedTs >= localTs) {
+                db.usuarios[idx] = { ...db.usuarios[idx], ...storedU };
+              }
+            } else {
+              db.usuarios.push(storedU);
+            }
           }
         });
       }
@@ -21643,7 +21651,8 @@ async function handleSaveUserProfile(event) {
     if (email) removeDeletedId('usuarios', email);
   }
 
-  // 1. Guardar localmente
+  // 1. Guardar localmente com blindagem de timestamp
+  window._lastLocalSaveTimestamp = Date.now();
   safeSetStorage('sigec_pro_usuarios', JSON.stringify(db.usuarios));
   saveDatabase();
 
