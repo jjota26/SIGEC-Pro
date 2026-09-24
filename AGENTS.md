@@ -30,6 +30,17 @@ Este repositório contém o código-fonte, a interface web PWA, a lógica de neg
 
 ---
 
+## 🔁 REGRA PERMANENTE: PERSISTÊNCIA ABSOLUTA DE DECISÕES NO GESTOR DE DUPLICADOS
+
+> [!IMPORTANT]
+> **REGRA DE NÃO REAPARECIMENTO DE COMPARAÇÕES JÁ DECIDIDAS:**
+> Sempre que no separador **Duplicados**, o utilizador determinar o que fazer com registos de Clientes, Contactos ou Projetos (seja através de **Fundir Registos**, **Manter Ambos**, **Manter Apenas Um** ou **Eliminar**):
+> 1. **Essa comparação NUNCA MAIS PODE VOLTAR A APARECER**, porque já foi anteriormente estabelecido pelo utilizador como proceder.
+> 2. **Persistência Global e Sincronizada:** A decisão deve ficar registada de forma perene tanto na base de dados central (`db.ignoredDuplicates`), como nas cópias locais (`localStorage`), sendo automaticamente sincronizada entre todos os computadores, instâncias e na nuvem para que nenhum outro dispositivo volte a sugerir o mesmo par/grupo.
+> 3. **Remoção Imediata da Interface:** Assim que a ação for confirmada, o grupo resolvido deve ser imediatamente expurgado da lista ativa do separador Duplicados e os contadores de badge devem ser decrementados em tempo real, sem necessidade de recarregar a página.
+
+---
+
 ## 🔒 OUTRAS REGRAS CRÍTICAS DE DESENVOLVIMENTO
 
 1. **Preservação Absoluta de Dados:**

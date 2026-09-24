@@ -22,25 +22,98 @@
   // Grupo ativo no modal (referência estável para confirmExecuteKeep*)
   let currentActiveGroup = null;
 
+  function getIgnoredDuplicateKeys() {
+    const keys = new Set();
+    // 1. localStorage local
+    try {
+      const local = JSON.parse(localStorage.getItem('sigec_pro_dup_ignored') || '[]');
+      if (Array.isArray(local)) {
+        local.forEach(k => {
+          if (typeof k === 'string' && k.trim()) {
+            keys.add(k.trim());
+            keys.add(k.replace(/\|/g, ':::'));
+            keys.add(k.replace(/:::/g, '|'));
+          }
+        });
+      }
+    } catch (e) {}
+
+    // 2. Base de dados central db.ignoredDuplicates
+    try {
+      if (typeof db !== 'undefined' && db && Array.isArray(db.ignoredDuplicates)) {
+        db.ignoredDuplicates.forEach(item => {
+          if (!item) return;
+          const k = typeof item === 'object' ? item.key : String(item);
+          if (k) {
+            keys.add(k);
+            keys.add(k.replace(/\|/g, ':::'));
+            keys.add(k.replace(/:::/g, '|'));
+          }
+          if (item && item.id1 && item.id2) {
+            keys.add([String(item.id1), String(item.id2)].sort().join('|'));
+            keys.add([String(item.id1), String(item.id2)].sort().join(':::'));
+          }
+        });
+      }
+    } catch (e) {}
+
+    return keys;
+  }
+
   function isDuplicatePairDecided(id1, id2) {
     if (!id1 || !id2) return false;
     try {
-      const ignored = JSON.parse(localStorage.getItem('sigec_pro_dup_ignored') || '[]');
-      const key = [id1, id2].sort().join('|');
-      return ignored.includes(key);
+      const keys = getIgnoredDuplicateKeys();
+      const k1 = [String(id1), String(id2)].sort().join('|');
+      const k2 = [String(id1), String(id2)].sort().join(':::');
+      return keys.has(k1) || keys.has(k2);
     } catch (e) {
       return false;
     }
   }
 
-  function markDuplicatePairDecided(id1, id2) {
+  function markDuplicatePairDecided(id1, id2, type = 'duplicados') {
     if (!id1 || !id2) return;
+    const str1 = String(id1).trim();
+    const str2 = String(id2).trim();
+    if (!str1 || !str2 || str1 === str2) return;
+
+    const keyPipe = [str1, str2].sort().join('|');
+    const keyColons = [str1, str2].sort().join(':::');
+
+    // 1. Persistir em localStorage
     try {
-      const ignored = JSON.parse(localStorage.getItem('sigec_pro_dup_ignored') || '[]');
-      const key = [id1, id2].sort().join('|');
-      if (!ignored.includes(key)) {
-        ignored.push(key);
-        localStorage.setItem('sigec_pro_dup_ignored', JSON.stringify(ignored));
+      const local = JSON.parse(localStorage.getItem('sigec_pro_dup_ignored') || '[]');
+      let updatedLocal = false;
+      if (!local.includes(keyPipe)) { local.push(keyPipe); updatedLocal = true; }
+      if (!local.includes(keyColons)) { local.push(keyColons); updatedLocal = true; }
+      if (updatedLocal) {
+        localStorage.setItem('sigec_pro_dup_ignored', JSON.stringify(local));
+      }
+    } catch (e) {}
+
+    // 2. Persistir na Base de Dados Central db.ignoredDuplicates
+    try {
+      if (typeof db !== 'undefined' && db) {
+        if (!Array.isArray(db.ignoredDuplicates)) db.ignoredDuplicates = [];
+        const exists = db.ignoredDuplicates.some(it => {
+          if (!it) return false;
+          const k = typeof it === 'object' ? it.key : String(it);
+          return k === keyPipe || k === keyColons;
+        });
+        if (!exists) {
+          db.ignoredDuplicates.push({
+            type: type || 'duplicados',
+            key: keyColons,
+            id1: [str1, str2].sort()[0],
+            id2: [str1, str2].sort()[1],
+            decidedAt: new Date().toISOString(),
+            decidedBy: (typeof currentUser !== 'undefined' && currentUser && currentUser.nome) || 'Utilizador'
+          });
+          if (typeof saveDatabase === 'function') {
+            saveDatabase();
+          }
+        }
       }
     } catch (e) {}
   }
@@ -440,19 +513,22 @@
     let contactGroups = scanContactDuplicates(db.contactos || [], db.clientes || []);
     let projectGroups = scanProjectDuplicates(db.projetos || [], db.clientes || []);
 
-    // Filtrar pares ignorados (decisão "Manter Ambos")
-    try {
-      const ignoredPairs = JSON.parse(localStorage.getItem('sigec_pro_dup_ignored') || '[]');
-      if (ignoredPairs.length > 0) {
-        const isIgnored = (group) => {
-          const pairKey = group.items.map(i => i.id).sort().join('|');
-          return ignoredPairs.includes(pairKey);
-        };
-        clientGroups  = clientGroups.filter(g => !isIgnored(g));
-        contactGroups = contactGroups.filter(g => !isIgnored(g));
-        projectGroups = projectGroups.filter(g => !isIgnored(g));
+    // Filtrar grupos já decididos pelo utilizador (Fundir, Manter Ambos ou Manter Um)
+    const isGroupDecided = (group) => {
+      if (!group || !Array.isArray(group.items) || group.items.length < 2) return true;
+      for (let a = 0; a < group.items.length; a++) {
+        for (let b = a + 1; b < group.items.length; b++) {
+          if (isDuplicatePairDecided(group.items[a].id, group.items[b].id)) {
+            return true;
+          }
+        }
       }
-    } catch (e) { /* ignorar erros de parsing */ }
+      return false;
+    };
+
+    clientGroups  = clientGroups.filter(g => !isGroupDecided(g));
+    contactGroups = contactGroups.filter(g => !isGroupDecided(g));
+    projectGroups = projectGroups.filter(g => !isGroupDecided(g));
 
     const allGroups = [...clientGroups, ...contactGroups, ...projectGroups];
     const totalGroups = allGroups.length;
@@ -620,7 +696,14 @@
 
     db[group.type] = db[group.type].filter(item => !secondaryIds.includes(item.id));
 
-    // 4. Registar na Atividade do Sistema
+    // 4. Registar todos os pares deste grupo como decididos para que nunca mais reapareçam
+    for (let a = 0; a < group.items.length; a++) {
+      for (let b = a + 1; b < group.items.length; b++) {
+        markDuplicatePairDecided(group.items[a].id, group.items[b].id, group.type);
+      }
+    }
+
+    // 5. Registar na Atividade do Sistema
     const activeUserId = sessionStorage.getItem('sigec_pro_active_user_id') || 'usr-admin';
     if (!Array.isArray(db.activityHistory)) db.activityHistory = [];
     db.activityHistory.unshift({
@@ -633,7 +716,7 @@
       timestamp: new Date().toISOString()
     });
 
-    // 5. Guardar permanentemente na BD interna e no localStorage
+    // 6. Guardar permanentemente na BD interna e no localStorage
     if (typeof saveDatabase === 'function') {
       saveDatabase();
     }
@@ -649,8 +732,9 @@
       syncDatabaseToHuggingFace(true, true).catch(() => {});
     }
 
-    // Recalcular duplicados
+    // Recalcular duplicados e atualizar contadores
     scanAllDuplicates();
+    updateBadgeCounters();
     return {
       success: true,
       mergedRecord,
@@ -1231,6 +1315,8 @@
     if (typeof saveDatabase === 'function') saveDatabase();
     if (typeof saveDeletedRegistry === 'function') saveDeletedRegistry();
     closeDuplicateMergeModal();
+    scanAllDuplicates();
+    updateBadgeCounters();
     renderDuplicatesUI();
     refreshAllAppViews();
     if (typeof showToast === 'function') showToast(`${toDelete.length} registo(s) eliminado(s). Registo selecionado mantido sem alterações.`, 'success');
@@ -1267,7 +1353,7 @@
 
     for (let a = 0; a < ids.length; a++) {
       for (let b = a + 1; b < ids.length; b++) {
-        markDuplicatePairDecided(ids[a], ids[b]);
+        markDuplicatePairDecided(ids[a], ids[b], groupType);
       }
     }
 
@@ -1292,7 +1378,10 @@
 
     closeDuplicateMergeModal();
     currentActiveGroup = null;
+    scanAllDuplicates();
+    updateBadgeCounters();
     renderDuplicatesUI();
+    refreshAllAppViews();
 
     if (typeof showToast === 'function') {
       showToast('Ambos os registos mantidos. Não serão mais sugeridos como duplicados.', 'info');
@@ -1345,8 +1434,8 @@
     if (!confirm(`Confirma a eliminação definitiva de:\n"${name}"${depWarning}\n\nEsta ação não pode ser revertida.`)) return;
 
     // Apagar o registo da BD
-        group.items.forEach(other => {
-      if (other.id !== itemId) markDuplicatePairDecided(itemId, other.id);
+    group.items.forEach(other => {
+      if (other.id !== itemId) markDuplicatePairDecided(itemId, other.id, group.type);
     });
     if (typeof addDeletedId === 'function') addDeletedId(group.type, itemId);
     db[group.type] = db[group.type].filter(i => i.id !== itemId);
@@ -1366,8 +1455,10 @@
 
     if (typeof saveDatabase === 'function') saveDatabase();
     if (typeof saveDeletedRegistry === 'function') saveDeletedRegistry();
-    refreshAllAppViews();
+    scanAllDuplicates();
+    updateBadgeCounters();
     renderDuplicatesUI();
+    refreshAllAppViews();
     if (typeof showToast === 'function') {
       showToast(`"${name}" eliminado com sucesso.`, 'success');
     }
@@ -1546,6 +1637,10 @@
   window.normalizeNIF = normalizeNIF;
   window.renderDuplicatesUI = renderDuplicatesUI;
   window.filterDuplicatesList = filterDuplicatesList;
+  window.scanAllDuplicates = scanAllDuplicates;
+  window.updateBadgeCounters = updateBadgeCounters;
+  window.isDuplicatePairDecided = isDuplicatePairDecided;
+  window.markDuplicatePairDecided = markDuplicatePairDecided;
   window.autoMergeHighConfidenceDuplicates = autoMergeHighConfidenceDuplicates;
   window.openDuplicateMergeModal = openDuplicateMergeModal;
   window.openDuplicateActionModal = openDuplicateActionModal;

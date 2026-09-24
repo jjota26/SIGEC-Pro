@@ -6726,6 +6726,44 @@ function mergeCloudDatabaseSafely(cloudData) {
     }
   }
 
+  // Sincronização bidirecional do Registo de Duplicados Decididos / Ignorados
+  if (Array.isArray(cloudData.ignoredDuplicates)) {
+    if (!Array.isArray(db.ignoredDuplicates)) db.ignoredDuplicates = [];
+    const localIgnoredSet = new Set(db.ignoredDuplicates);
+    let anyDupMerged = false;
+
+    cloudData.ignoredDuplicates.forEach(pairKey => {
+      if (pairKey && !localIgnoredSet.has(pairKey)) {
+        db.ignoredDuplicates.push(pairKey);
+        localIgnoredSet.add(pairKey);
+        anyDupMerged = true;
+      }
+    });
+
+    try {
+      const stored = localStorage.getItem('sigec_pro_dup_ignored');
+      if (stored) {
+        const arr = JSON.parse(stored);
+        if (Array.isArray(arr)) {
+          arr.forEach(pairKey => {
+            if (pairKey && !localIgnoredSet.has(pairKey)) {
+              db.ignoredDuplicates.push(pairKey);
+              localIgnoredSet.add(pairKey);
+              anyDupMerged = true;
+            }
+          });
+        }
+      }
+      localStorage.setItem('sigec_pro_dup_ignored', JSON.stringify(db.ignoredDuplicates));
+    } catch (e) {}
+
+    if (anyDupMerged) {
+      hasRemoteChangesApplied = true;
+    }
+  } else if (Array.isArray(db.ignoredDuplicates) && db.ignoredDuplicates.length > 0) {
+    hasLocalNewerChanges = true;
+  }
+
   // Se foram aplicadas alterações remotas, persistir no armazenamento local e re-renderizar a interface
   if (hasRemoteChangesApplied) {
     if (typeof sanitizeAllDatabaseEntities === 'function') {
@@ -6746,6 +6784,8 @@ function mergeCloudDatabaseSafely(cloudData) {
       if (typeof renderUserManagementGrid === 'function') renderUserManagementGrid();
       if (typeof renderUserSelectOptions === 'function') renderUserSelectOptions();
       if (typeof updateHeaderActiveUserBadge === 'function') updateHeaderActiveUserBadge();
+      if (typeof scanAllDuplicates === 'function') scanAllDuplicates();
+      if (typeof updateBadgeCounters === 'function') updateBadgeCounters();
     } catch(uiSyncErr) {}
   }
 

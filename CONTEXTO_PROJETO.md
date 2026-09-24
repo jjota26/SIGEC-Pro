@@ -3,8 +3,23 @@
 - Versao: V1.7.35
 - Autor: Jose Centurio
 - Nuvem: josecenturio/SIGEC-Pro
-- Data: 24/09/2026 23:15
-- Estado: Versão uniformizada globalmente em V1.7.35 em todos os componentes (package.json, app.js, index.html, relatórios e service worker). Suporte multilíngue rigoroso ativo e layout compacto de configuração 2x3 operacional.
+- Data: 24/09/2026 23:45
+- Estado: Regra permanente de persistência absoluta de decisões de duplicados registada e blindada na base de dados (db.ignoredDuplicates), localStorage e sincronização na nuvem Hugging Face.
+
+## 0000000000000. Persistência Absoluta de Decisões no Gestor de Duplicados e Sincronização na Nuvem (24/09/2026 23:45)
+- **Regra Permanente Solicitada pelo Utilizador:**
+  Sempre que no separador Duplicados se determina o que fazer com clientes, contactos ou projetos ("Manter Ambos", "Manter Só Um", "Fundir Registos" ou "Eliminar"), essa comparação NUNCA PODE VOLTAR A APARECER, porque já foi anteriormente estabelecido pelo utilizador como proceder.
+- **Implementações & Blindagens Técnicas:**
+  1. **Regra Registada em GEMINI.md e AGENTS.md:** Documentada como diretriz perpétua e inviolável de conformidade obrigatória.
+  2. **Persistência Central Unificada (`db.ignoredDuplicates` e `localStorage`):**
+     - Em `duplicatesManager.js`, `isDuplicatePairDecided` e `markDuplicatePairDecided` gravam e consultam em tempo real quer `localStorage` (`sigec_pro_dup_ignored`), quer a base de dados principal `db.ignoredDuplicates`.
+     - Suporte nativo a ambos os formatos de chave de par (`id1|id2` e `id1:::id2`) ordenados alfabeticamente.
+  3. **Exclusão Combinatória Estrita (`isGroupDecided`):**
+     - A função `scanAllDuplicates()` avalia todas as combinações de 2 elementos dentro de qualquer grupo de duplicados. Se qualquer par já tiver uma decisão registada, o grupo é imediatamente e totalmente descartado dos resultados.
+  4. **Feedback e Desaparecimento Imediato no Ecrã:**
+     - Nas ações "Manter Ambos" (`keepBothDirect` / `confirmExecuteKeepBoth`), "Manter Só Um" (`confirmExecuteKeepOne`), "Fundir Registos" (`executeMergeGroup`) e "Eliminar" (`deleteDuplicateRecord`), os pares são marcados, as alterações são salvas e o ecrã/contadores são atualizados de imediato (`scanAllDuplicates()`, `updateBadgeCounters()`, `renderDuplicatesUI()`).
+  5. **Sincronização Bidirecional com a Nuvem (`mergeCloudDatabaseSafely` em `app.js`):**
+     - `cloudData.ignoredDuplicates` é integrado automaticamente em `db.ignoredDuplicates` e sincronizado com `localStorage`, garantindo que decisões tomadas num dispositivo nunca são desfeitas ao sincronizar ou noutros dispositivos.
 
 ## 00000000000. Ocultação Estrita de Nome de Usuário e Limpeza Sob Data na Página do Cliente (24/09/2026 14:32)
 - **Objetivo do Utilizador:** O nome do Usuário não deve aparecer nos registos. Sempre que o registo seja feito na página do cliente, não deve aparecer nada escrito por baixo da data.
