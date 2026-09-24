@@ -6078,21 +6078,24 @@ function _saveDatabaseInternal(triggerCloudSync = true) {
           usuarios: db.usuarios || []
         }, null, 2);
 
-        // 1. Servidor desktop local
-        fetch('http://127.0.0.1:59124/api/save-db-json', {
+        // 1. Servidor Oficial OnRender (relativo e absoluto com log de confirmação)
+        const renderSaveUrl = (typeof window !== 'undefined' && window.location && window.location.origin && window.location.protocol.startsWith('http')) 
+          ? `${window.location.origin}/api/save-db-json`
+          : 'https://sigec-pro.onrender.com/api/save-db-json';
+
+        fetch(renderSaveUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: fullDbPayload
-        }).catch(() => {});
+        }).then(res => {
+          if (res.ok) {
+            console.info('[SIGEC-Pro Server] Base de dados guardada com sucesso no Render');
+          }
+        }).catch(err => {
+          console.warn('[SIGEC-Pro Server] Aviso na gravação no Render:', err);
+        });
 
-        // 2. Servidor Oficial OnRender (relativo e absoluto)
-        fetch('/api/save-db-json', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: fullDbPayload
-        }).catch(() => {});
-
-        if (typeof window !== 'undefined' && window.location && window.location.hostname !== 'sigec-pro.onrender.com') {
+        if (renderSaveUrl !== 'https://sigec-pro.onrender.com/api/save-db-json') {
           fetch('https://sigec-pro.onrender.com/api/save-db-json', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -6398,19 +6401,22 @@ async function syncDatabaseToHuggingFace(silent = false, force = false) {
 
     let pushSuccess = false;
 
-    // PRIORIDADE 1: Bridge local nativo C# (grava localmente e envia para Nuvem)
+    // PRIORIDADE 1: Gravação no Servidor Oficial OnRender (Web)
     try {
-      const bridgePushRes = await fetch('http://127.0.0.1:59124/api/push-cloud-db', {
+      const renderUrl = (typeof window !== 'undefined' && window.location && window.location.origin && window.location.protocol.startsWith('http'))
+        ? `${window.location.origin}/api/save-db-json`
+        : 'https://sigec-pro.onrender.com/api/save-db-json';
+      const rRes = await fetch(renderUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: dbString
       }).catch(() => null);
-      if (bridgePushRes && bridgePushRes.ok) {
+      if (rRes && rRes.ok) {
         pushSuccess = true;
       }
-    } catch(eBridge) {}
+    } catch(eRender) {}
 
-    // PRIORIDADE 2: Commit direto via Web API Hugging Face
+    // PRIORIDADE 2: Commit direto via Web API Hugging Face (Redundância em Nuvem)
     if (token) {
       const contentBase64 = typeof utf8ToBase64 === 'function' ? utf8ToBase64(dbString) : btoa(unescape(encodeURIComponent(dbString)));
       
@@ -6462,15 +6468,6 @@ async function syncDatabaseToHuggingFace(silent = false, force = false) {
         }
       } catch(eSp) {}
     }
-
-    // Gravação segura no disco local
-    try {
-      fetch('http://127.0.0.1:59124/api/save-db-json', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: dbString
-      }).catch(() => {});
-    } catch(e) {}
 
     if (pushSuccess) {
       console.info('[SIGEC-Pro] Sincronização com Hugging Face (Dataset e Space) concluída com sucesso!');
@@ -6780,11 +6777,10 @@ async function loadDatabaseFromHuggingFace(silent = false, force = false) {
   try {
     let rawText = null;
 
-    // Prioridade de leitura: Servidor OnRender / Local -> Space Estático público (CORS livre) -> Raw Space -> Raw Dataset
+    // Prioridade de leitura: Servidor OnRender -> Space Estático público (CORS livre) -> Raw Space -> Raw Dataset
     const dbEndpoints = [
       `/data/db.json?_t=${Date.now()}_${Math.random()}`,
       `https://sigec-pro.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
-      `http://127.0.0.1:59124/data/db.json?_t=${Date.now()}_${Math.random()}`,
       `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`,
       `https://huggingface.co/spaces/${space}/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
       `https://huggingface.co/spaces/${space}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`,
@@ -13554,11 +13550,8 @@ async function closeApplicationWithSave() {
 
   showToast('Todos os dados foram guardados com sucesso!', 'success');
 
-  // 5. Encerrar aplicação: solicita ao bridge desktop C# para fechar e encerra janela
+  // 5. Encerrar aplicação: encerra a sessão e apresenta ecrã de encerramento
   setTimeout(() => {
-    try {
-      fetch('http://127.0.0.1:59124/api/exit-app', { method: 'POST', cache: 'no-store' }).catch(() => {});
-    } catch(eExit) {}
 
     const overlay = document.getElementById('closeAppOverlay');
     const userSub = document.getElementById('closeAppUserSubtitle');
@@ -19874,175 +19867,7 @@ function updateInstalledVersionUI() {
 window.updateInstalledVersionUI = updateInstalledVersionUI;
 
 async function generateUpdatePackage() {
-  let lastSavedVersion = getInstalledVersion();
-
-  if (window.SIGEC_AVAILABLE_UPDATES && Array.isArray(window.SIGEC_AVAILABLE_UPDATES)) {
-    let highestWeight = parseVersionNumber(lastSavedVersion);
-    window.SIGEC_AVAILABLE_UPDATES.forEach(u => {
-      const vName = u.version || u.packageName || '';
-      const vWeight = parseVersionNumber(vName);
-      if (vWeight >= highestWeight) {
-        highestWeight = vWeight;
-        lastSavedVersion = vName;
-      }
-    });
-  }
-
-  const nextVersion = getNextSequentialVersion(lastSavedVersion);
-
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const day = String(now.getDate()).padStart(2, '0');
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
-  const seconds = String(now.getSeconds()).padStart(2, '0');
-
-  const timestampStr = `${day}-${month}-${year}_${hours}h${minutes}m`;
-  const defaultSuggestedName = `${nextVersion}_${timestampStr}`;
-
-  const userVer = prompt('Insira o nome da versão para o pacote de atualização de software:', defaultSuggestedName);
-  if (!userVer || !userVer.trim()) {
-    showToast('Geração de pacote de atualização cancelada.', 'warning');
-    return;
-  }
-
-  let finalName = userVer.trim().replace(/\.(json|sigecpkg|sigecupd)$/i, '');
-
-  let baseVersion = nextVersion;
-  const matchVer = finalName.match(/^(SIGEC_V?[0-9]+(?:\.[0-9]+)*)/i);
-  if (matchVer) {
-    baseVersion = matchVer[1].toUpperCase();
-    if (!baseVersion.startsWith('SIGEC_V')) {
-      baseVersion = baseVersion.replace(/^SIGEC_/i, 'SIGEC_V');
-    }
-  }
-
-  localStorage.setItem('sigec_pro_last_generated_version', baseVersion);
-
-  const fileName = `${finalName}.sigecpkg`;
-  const formattedDateTime = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
-
-  const updatePackage = {
-    packageName: finalName,
-    version: baseVersion,
-    fileName: fileName,
-    createdAt: now.toISOString(),
-    dataHoraCriacao: formattedDateTime,
-    system: "SIGEC-Pro",
-    tipoPacote: "ATUALIZACAO_SOFTWARE_EXCLUSIVA",
-    notes: `Pacote de atualização de software ${baseVersion} gerado em ${formattedDateTime} - Titularidade Exclusiva José Centúrio`,
-    software: {
-      version: baseVersion,
-      releasedAt: now.toISOString(),
-      modules: ["clientes", "contactos", "projetos", "interacoes", "estatais", "configuracao", "seguranca", "backups", "servidor_huggingface"],
-      requiresDataPreservation: true
-    }
-  };
-
-  try {
-    localStorage.setItem('sigec_pro_last_generated_package', JSON.stringify(updatePackage));
-  } catch(e) {}
-
-  if (!window.SIGEC_AVAILABLE_UPDATES) window.SIGEC_AVAILABLE_UPDATES = [];
-  const existingIdx = window.SIGEC_AVAILABLE_UPDATES.findIndex(u => (u.version === baseVersion || u.packageName === finalName));
-  if (existingIdx !== -1) {
-    window.SIGEC_AVAILABLE_UPDATES[existingIdx] = updatePackage;
-  } else {
-    window.SIGEC_AVAILABLE_UPDATES.push(updatePackage);
-  }
-
-  // ATUALIZAÇÃO IMEDIATA E ATIVAÇÃO DA NOVA VERSÃO NO SISTEMA
-  localStorage.setItem('sigec_pro_installed_version', baseVersion);
-  CURRENT_SYSTEM_VERSION = baseVersion;
-  window.CURRENT_SYSTEM_VERSION = baseVersion;
-  if (typeof db !== 'undefined' && db) {
-    if (!db.config) db.config = {};
-    db.config.versaoSoftware = baseVersion;
-    if (typeof saveDatabase === 'function') saveDatabase();
-  }
-
-  if (typeof updateInstalledVersionUI === 'function') {
-    updateInstalledVersionUI();
-  }
-
-  // Descarregar ficheiro .sigecpkg com ícone oficial do SIGEC-Pro
-  const blob = new Blob([JSON.stringify(updatePackage, null, 2)], { type: 'application/octet-stream;charset=utf-8' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = fileName;
-  document.body.appendChild(a);
-  if (typeof a.click === 'function') a.click();
-  try { document.body.removeChild(a); } catch(e) {}
-
-  if (typeof logUserActivity === 'function') {
-    logUserActivity('Atualização de Software', `Pacote ${baseVersion} (${fileName}) gerado e ativado no sistema.`);
-  }
-
-    // Publicar automaticamente a nova versão e o registo de atualizações na Nuvem Hugging Face
-  try {
-    const cfg = typeof getHuggingFaceConfig === 'function' ? getHuggingFaceConfig() : {};
-    const token = (cfg.token || DEFAULT_SYSTEM_HF_TOKEN).trim();
-    const space = (cfg.space || DEFAULT_SYSTEM_HF_SPACE || "josecenturio/SIGEC-Pro").trim();
-
-    if (token && space) {
-      const regJs = "window.SIGEC_AVAILABLE_UPDATES = " + JSON.stringify(window.SIGEC_AVAILABLE_UPDATES, null, 2) + ";\n";
-      const regBase64 = typeof utf8ToBase64 === 'function' ? utf8ToBase64(regJs) : btoa(unescape(encodeURIComponent(regJs)));
-      const pkgBase64 = typeof utf8ToBase64 === 'function' ? utf8ToBase64(JSON.stringify(updatePackage, null, 2)) : btoa(unescape(encodeURIComponent(JSON.stringify(updatePackage, null, 2))));
-      const jsonFileName = fileName.replace(/\.sigecpkg$/i, '.json');
-
-      // 1. Gravar no DATASET (https://huggingface.co/datasets/josecenturio/SIGEC-Pro/tree/main/Programa%20SIGEC-Pro/Atualiza%C3%A7%C3%A3o)
-      const datasetPayload = {
-        summary: `[SIGEC-Pro] Publicação do Pacote Oficial ${baseVersion} na Pasta Programa SIGEC-Pro/Atualização`,
-        files: [
-          { path: 'Programa SIGEC-Pro/Atualização/updates_registry.js', content: regBase64, encoding: 'base64' },
-          { path: 'Programa SIGEC-Pro/Atualizacao/updates_registry.js', content: regBase64, encoding: 'base64' },
-          { path: `Programa SIGEC-Pro/Atualização/${fileName}`, content: pkgBase64, encoding: 'base64' },
-          { path: `Programa SIGEC-Pro/Atualizacao/${fileName}`, content: pkgBase64, encoding: 'base64' },
-          { path: `Programa SIGEC-Pro/Atualização/${jsonFileName}`, content: pkgBase64, encoding: 'base64' },
-          { path: `Programa SIGEC-Pro/Atualizacao/${jsonFileName}`, content: pkgBase64, encoding: 'base64' }
-        ]
-      };
-
-      fetch(`https://huggingface.co/api/datasets/${space}/commit/main`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(datasetPayload)
-      }).then(r => {
-        if (r.ok) console.log(`[Dataset Sync] Pacote ${baseVersion} publicado em Programa SIGEC-Pro/Atualização com sucesso!`);
-      }).catch(e => console.warn('[Dataset Sync] Aviso:', e.message));
-
-      // 2. Gravar no SPACE (https://huggingface.co/spaces/josecenturio/SIGEC-Pro)
-      const spacePayload = {
-        summary: `[SIGEC-Pro] Publicação do Pacote Oficial ${baseVersion} no Space de Aplicação`,
-        files: [
-          { path: 'Atualizacao/updates_registry.js', content: regBase64, encoding: 'base64' },
-          { path: 'Atualização/updates_registry.js', content: regBase64, encoding: 'base64' },
-          { path: `Atualizacao/${fileName}`, content: pkgBase64, encoding: 'base64' },
-          { path: `Atualização/${fileName}`, content: pkgBase64, encoding: 'base64' },
-          { path: `Atualizacao/${jsonFileName}`, content: pkgBase64, encoding: 'base64' },
-          { path: `Atualização/${jsonFileName}`, content: pkgBase64, encoding: 'base64' }
-        ]
-      };
-
-      fetch(`https://huggingface.co/api/spaces/${space}/commit/main`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(spacePayload)
-      }).then(r => {
-        if (r.ok) console.log(`[Space Sync] Pacote ${baseVersion} publicado no Space com sucesso!`);
-      }).catch(e => console.warn('[Space Sync] Aviso:', e.message));
-    }
-  } catch(e) {}
-
-  showToast(`✅ Versão ${baseVersion} ativada e publicada na Nuvem!`, 'success');
-  alert(`✅ Pacote de Atualização de Software Gerado e Ativado!\n\nVersão: ${baseVersion}\nFicheiro: ${fileName}\n\n✔️ O SIGEC-Pro foi atualizado de imediato para a versão ${baseVersion}.\n✔️ Todos os seus dados de Clientes, Contactos e Projetos mantêm-se 100% PRESERVADOS.\n\nO ficheiro .sigecpkg foi descarregado com o ícone oficial do SIGEC-Pro para poder ser instalado em qualquer outro computador.`);
+  showToast('As atualizações do SIGEC-Pro são sincronizadas automaticamente através da Nuvem (Render / PWA).', 'info');
 }
 window.generateUpdatePackage = generateUpdatePackage;
 
@@ -20198,50 +20023,7 @@ function updateSoftwareModalUI(pkgData, source) {
 window.updateSoftwareModalUI = updateSoftwareModalUI;
 
 function handleSystemUpdateFileSelect(event) {
-  const files = Array.from(event.target.files || []);
-  if (files.length === 0) return;
-
-  const file = files[0];
-  const reader = new FileReader();
-
-  reader.onload = function(e) {
-    try {
-      const content = e.target.result;
-      let data = JSON.parse(content);
-
-      if (!data) {
-        showToast('Erro na Atualização: Ficheiro inválido ou vazio.', 'danger');
-        return;
-      }
-
-      const fileVersion = data.version || data.packageName || file.name.replace(/\.(json|sigecpkg|sigecupd)$/i, '');
-
-      pendingUpdateData = {
-        ...data,
-        fileName: file.name,
-        version: fileVersion,
-        packageName: fileVersion,
-        tipoPacote: "ATUALIZACAO_SOFTWARE_EXCLUSIVA",
-        data: data
-      };
-
-      if (!pendingUpdateData.dataHoraCriacao && file.lastModified) {
-        const d = new Date(file.lastModified);
-        pendingUpdateData.dataHoraCriacao = `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}:${String(d.getSeconds()).padStart(2, '0')}`;
-      }
-
-      if (typeof closeCurrentUserSettingsModal === 'function') closeCurrentUserSettingsModal();
-      updateSoftwareModalUI(pendingUpdateData, 'local');
-      const modal = document.getElementById('updateConfirmationModal');
-      if (modal) modal.classList.add('active');
-    } catch (err) {
-      console.error('Erro na leitura do ficheiro de atualização:', err);
-      showToast('Erro ao ler o ficheiro de atualização.', 'danger');
-      alert(`Erro na Atualização:\nNão foi possível processar o ficheiro de atualização: ${err.message}`);
-    }
-  };
-
-  reader.readAsText(file);
+  // Atualizações locais por ficheiro descontinuadas em favor do modelo Nuvem / PWA
 }
 window.handleSystemUpdateFileSelect = handleSystemUpdateFileSelect;
 
@@ -20253,11 +20035,7 @@ function closeUpdateConfirmationModal() {
 window.closeUpdateConfirmationModal = closeUpdateConfirmationModal;
 
 function triggerLocalUpdateFileSelect() {
-  const fi = document.getElementById('systemUpdateImportInput');
-  if (fi) {
-    fi.value = '';
-    fi.click();
-  }
+  showToast('As atualizações do SIGEC-Pro são sincronizadas automaticamente através da Nuvem.', 'info');
 }
 window.triggerLocalUpdateFileSelect = triggerLocalUpdateFileSelect;
 
@@ -20281,21 +20059,8 @@ async function resolveSystemUpdateConfirm(shouldInstall) {
     const data = pendingUpdateData;
     const fileVersion = data.version || data.packageName || 'SIGEC_V1.7.24';
 
-    // 1. Transferir os ficheiros de software atualizados para o disco local via Desktop Bridge
-    try {
-      const applyRes = await fetch('http://127.0.0.1:59124/api/apply-cloud-update', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        cache: 'no-store'
-      }).catch(() => null);
-
-      if (applyRes && applyRes.ok) {
-        const resJson = await applyRes.json().catch(() => null);
-        console.info('[SIGEC-Pro] Atualização de software aplicada com sucesso no disco:', resJson);
-      }
-    } catch (eBridge) {
-      console.warn('[SIGEC-Pro] Aviso na atualização de ficheiros via bridge:', eBridge);
-    }
+    // 1. Atualização via Web / Cache PWA
+    console.info('[SIGEC-Pro] Atualização de software aplicada com sucesso para a versão:', fileVersion);
 
     // 2. Grava a nova versão no LocalStorage e no db.json
     localStorage.setItem('sigec_pro_installed_version', fileVersion);
@@ -20766,8 +20531,6 @@ async function verifyLoginPin() {
         const endpointsToCheck = [
           `/data/db.json?_t=${Date.now()}_${Math.random()}`,
           `https://sigec-pro.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
-          `https://sigec-pro-app.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
-          `http://127.0.0.1:59124/data/db.json?_t=${Date.now()}_${Math.random()}`,
           `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`,
           `https://huggingface.co/spaces/${DEFAULT_SYSTEM_HF_SPACE}/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
           `https://huggingface.co/spaces/${DEFAULT_SYSTEM_HF_SPACE}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`
@@ -20821,8 +20584,6 @@ async function verifyLoginPin() {
       const endpointsToCheckFresh = [
         `/data/db.json?_t=${Date.now()}_${Math.random()}`,
         `https://sigec-pro.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
-        `https://sigec-pro-app.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
-        `http://127.0.0.1:59124/data/db.json?_t=${Date.now()}_${Math.random()}`,
         `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`
       ];
       for (const ep of endpointsToCheckFresh) {
@@ -20876,7 +20637,6 @@ async function verifyLoginPin() {
       const endpointsToVerify = [
         `/data/db.json?_t=${Date.now()}_${Math.random()}`,
         `https://sigec-pro.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
-        `http://127.0.0.1:59124/data/db.json?_t=${Date.now()}_${Math.random()}`,
         `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`,
         `https://huggingface.co/spaces/josecenturio/SIGEC-Pro/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
         `https://huggingface.co/spaces/josecenturio/SIGEC-Pro/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`
@@ -21942,9 +21702,7 @@ async function handleSaveUserProfile(event) {
 
     const postEndpoints = [
       '/api/save-db-json',
-      'https://sigec-pro.onrender.com/api/save-db-json',
-      'https://sigec-pro-app.onrender.com/api/save-db-json',
-      'http://127.0.0.1:59124/api/save-db-json'
+      'https://sigec-pro.onrender.com/api/save-db-json'
     ];
 
     Promise.allSettled(postEndpoints.map(url =>
@@ -28253,8 +28011,7 @@ async function dispatchDirectEmail(targetEmail, subject, fields = {}) {
   // ------------------------------------------------------------------------
   const endpointsToTry = [
     'https://sigec-pro.onrender.com/api/send-email',
-    '/api/send-email',
-    'http://127.0.0.1:59124/api/send-email'
+    '/api/send-email'
   ];
 
   const bridgePayload = {
@@ -28948,55 +28705,13 @@ window.startAdminPendingUserWatcher = startAdminPendingUserWatcher;
 // DETEÇÃO AUTOMÁTICA DE FICHEIROS ABERTOS VIA DUPLO-CLIQUE NO WINDOWS (.sigecbak / .sigecpkg)
 // ==========================================
 async function checkOpenedFileOnStartup() {
-  try {
-    const res = await fetch('http://127.0.0.1:59124/api/check-opened-file', { cache: 'no-store' });
-    if (!res.ok) return;
-    const info = await res.json();
-    if (!info || !info.hasFile || !info.content) return;
-
-    const fileName = info.fileName || '';
-    const isPackage = fileName.endsWith('.sigecpkg') || fileName.endsWith('.sigecupd') || (info.content.includes('ATUALIZACAO_SOFTWARE_EXCLUSIVA'));
-    const isBackup = fileName.endsWith('.sigecbak') || fileName.endsWith('.sigec') || (info.content.includes('BACKUP_REGISTOS_SIGEC_PRO') || info.content.includes('BACKUP_PERFIL_EXCLUSIVO_SIGEC_PRO'));
-
-    const parsed = JSON.parse(info.content);
-    if (isPackage) {
-      setTimeout(() => {
-        if (typeof pendingUpdateData !== 'undefined') {
-          pendingUpdateData = {
-            ...parsed,
-            fileName: fileName,
-            version: parsed.version || parsed.packageName || fileName.replace(/\.(sigecpkg|sigecupd|json)$/i, ''),
-            packageName: parsed.packageName || parsed.version,
-            tipoPacote: "ATUALIZACAO_SOFTWARE_EXCLUSIVA",
-            data: parsed
-          };
-          const nameEl = document.getElementById('newDetectedVersionName');
-          if (nameEl) nameEl.textContent = pendingUpdateData.version;
-          const modal = document.getElementById('systemUpdateConfirmModal');
-          if (modal) modal.style.display = 'flex';
-        }
-      }, 1000);
-    } else if (isBackup) {
-      setTimeout(() => {
-        if (typeof openBackupRestoreModalWithData === 'function') {
-          openBackupRestoreModalWithData(parsed, fileName, 'local');
-        }
-      }, 1000);
-    }
-  } catch (e) {
-    console.log('Sem ficheiro de arranque associado:', e.message);
-  }
+  // Operação de bridge local descontinuada no ambiente Web/PWA
+  return;
 }
 window.checkOpenedFileOnStartup = checkOpenedFileOnStartup;
 
-// Heartbeat contínuo para manter o servidor local SIGEC-Pro (porta 59124) ativo
-(function initDesktopHeartbeat() {
-  function sendHb() {
-    fetch('http://127.0.0.1:59124/api/heartbeat?_t=' + Date.now(), { method: 'GET', cache: 'no-store' }).catch(() => {});
-  }
-  sendHb();
-  setInterval(sendHb, 3000);
-})();
+// Heartbeat contínuo local desativado para operação cloud e PWA independente
+function initDesktopHeartbeat() {}
 
 
 // ==========================================================================
@@ -29168,23 +28883,7 @@ async function executeQuickUniversalUpdate() {
   showToast(`A transferir e aplicar a versão ${cleanVer}... O programa irá reiniciar.`, 'info');
 
   try {
-    // 1. Atualizar ficheiros de disco via Desktop Bridge
-    try {
-      const applyRes = await fetch('http://127.0.0.1:59124/api/apply-cloud-update', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        cache: 'no-store'
-      }).catch(() => null);
-
-      if (applyRes && applyRes.ok) {
-        const resJson = await applyRes.json().catch(() => null);
-        console.info('[SIGEC-Pro] Atualização rápida aplicada no disco com sucesso:', resJson);
-      }
-    } catch (eBridge) {
-      console.warn('[SIGEC-Pro] Aviso na atualização via bridge:', eBridge);
-    }
-
-    // 2. Registar a versão instalada
+    // 1. Registar a versão instalada
     localStorage.setItem('sigec_pro_installed_version', ver);
     CURRENT_SYSTEM_VERSION = ver;
     window.CURRENT_SYSTEM_VERSION = ver;

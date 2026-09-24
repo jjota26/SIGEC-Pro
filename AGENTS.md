@@ -52,7 +52,16 @@
 ---
 
 ## 📜 3. ESTADO ATUAL E HISTÓRICO DE DESENVOLVIMENTO
-- **Última Atualização:** 24/09/2026 14:32 (Versão V1.7.27 - Ocultação Estrita do Nome do Usuário e Limpeza Sob a Data na Página do Cliente)
+- **Última Atualização:** 24/09/2026 22:15 (Erradicação Total de Erros de Conexão ERR_CONNECTION_REFUSED / Porta 59124 e Endpoints Descontinuados)
+- **Erradicação Total de Erros de Conexão ERR_CONNECTION_REFUSED (24/09/2026 22:15):**
+  - **Causa Raiz Identificada:** A rotina `initDesktopHeartbeat()` em `app.js` executava um `setInterval` a cada 3 segundos a efetuar `fetch` para `http://127.0.0.1:59124/api/heartbeat`. Como no ambiente Web/PWA esse servidor de desktop wrapper local não está em execução, o DevTools era inundado ciclicamente de erros vermelhos `net::ERR_CONNECTION_REFUSED`. Adicionalmente, existiam chamadas residuais à porta 59124 em `checkOpenedFileOnStartup()`, `executeQuickUniversalUpdate()` e endpoints inativos (`https://sigec-pro-app.onrender.com`).
+  - **Correções Implementadas:**
+    1. Desativação do loop de 3 segundos em `initDesktopHeartbeat()`;
+    2. Neutralização de chamadas de arranque em `checkOpenedFileOnStartup()`;
+    3. Remoção de blocos `apply-cloud-update` apontados à porta 59124;
+    4. Saneamento de listas de endpoints em `endpointsToCheck`, `endpointsToCheckFresh`, `endpointsToVerify`, `postEndpoints` e `endpointsToTry`;
+    5. Preservação integral da persistência: LocalStorage, Render (`https://sigec-pro.onrender.com/api/save-db-json`) e Hugging Face (`josecenturio/SIGEC-Pro`);
+    6. Validação de sintaxe JS (`node -c app.js`) concluída com 100% de sucesso.
 - **Ocultação Estrita do Nome do Usuário e Limpeza Sob a Data na Página do Cliente (24/09/2026 14:32):**
   - **Objetivo:** Garantir que o nome do Usuário/operador (ex: José Centúrio, José Maria, Victoria Schwab Vilte) NUNCA apareça nos registos, e que em qualquer registo efetuado na página do cliente não apareça nada escrito por baixo da data (apresentando apenas a data limpa).
   - **Implementações e Blindagens Concluídas:**
