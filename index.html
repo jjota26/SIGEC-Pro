@@ -12,7 +12,7 @@
     if ('caches' in window) {
       caches.keys().then(function(keys) {
         keys.forEach(function(k) {
-          if (k !== 'sigec-pro-v4.6') {
+          if (k !== 'sigec-pro-v5.18') {
             console.log('[PWA] Purga imediata de cache antiga:', k);
             caches.delete(k);
           }
@@ -2580,201 +2580,205 @@
           </p>
 
           <!-- Grelha Reordenada de Botões e Controles de Configuração -->
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem;">
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
 
-            <!-- BANNER DE GARANTIA E PROTEÃ‡ÃƒO DE DADOS -->
+            <!-- BANNER DE GARANTIA E PROTEÇÃO DE DADOS -->
             <div
-              style="grid-column: 1 / -1; background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 12px; padding: 1.25rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 2px 8px rgba(34, 197, 94, 0.1);">
+              style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 10px; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 0.85rem; box-shadow: 0 1px 4px rgba(34, 197, 94, 0.08);">
               <div
-                style="width: 52px; height: 52px; border-radius: 50%; background: #dcfce7; color: #15803d; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0;">
+                style="width: 38px; height: 38px; border-radius: 50%; background: #dcfce7; color: #15803d; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0;">
                 <i class="fa-solid fa-shield-halved"></i>
               </div>
-              <div>
-                <h3 style="font-size: 1.05rem; color: #166534; margin: 0 0 0.25rem 0; font-weight: 700;">
-                  <i class="fa-solid fa-lock" style="margin-right: 6px;"></i> Proteção e Preservação de Dados Ativa
-                </h3>
-                <p style="font-size: 0.88rem; color: #15803d; margin: 0; line-height: 1.45;">
-                  <strong>Garantia de Integridade:</strong> Os dados e fichas do seu programa SIGEC-Pro estão 100%
-                  salvaguardados. Nenhum registo será alterado, reposto ou apagado sem a sua autorização e confirmação
-                  explícita prévia.
-                </p>
+              <div style="flex: 1;">
+                <div style="font-size: 0.95rem; color: #166534; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                  <i class="fa-solid fa-lock"></i> Proteção e Preservação de Dados Ativa
+                </div>
+                <div style="font-size: 0.82rem; color: #15803d; margin-top: 2px; line-height: 1.35;">
+                  <strong>Garantia de Integridade:</strong> Os dados e fichas do seu programa SIGEC-Pro estão 100% salvaguardados. Nenhum registo será alterado ou apagado sem a sua confirmação explícita.
+                </div>
               </div>
             </div>
 
-            <!-- BLOCO 1: Cópia de Segurança Completa -->
-            <div class="card" style="border: 1px solid var(--soft-blue-border); background: #f8fafc; padding: 1.25rem;">
-              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-                <div
-                  style="width: 42px; height: 42px; border-radius: 8px; background: #dbeafe; color: #1e40af; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
-                  <i class="fa-solid fa-shield-halved"></i>
-                </div>
+            <!-- LINHA 1: GESTÃO DE DADOS (CÓPIAS E IMPORTAÇÃO) - 2 COLUNAS EQUILIBRADAS -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1rem;">
+
+              <!-- BLOCO 1: Cópia de Segurança Completa -->
+              <div class="card" style="border: 1px solid var(--soft-blue-border); background: #f8fafc; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; margin-bottom: 0;">
                 <div>
-                  <h3 style="font-size: 1rem; color: #1e3a8a; margin: 0; font-weight: 700;">Cópia de Segurança Completa
-                  </h3>
-                  <span style="font-size: 0.78rem; color: var(--text-muted);">Backup integral dos dados do
-                    sistema</span>
+                  <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.5rem;">
+                    <div style="width: 36px; height: 36px; border-radius: 8px; background: #dbeafe; color: #1e40af; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">
+                      <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                      <h3 style="font-size: 0.95rem; color: #1e3a8a; margin: 0; font-weight: 700;">Cópia de Segurança Completa</h3>
+                      <span style="font-size: 0.75rem; color: var(--text-muted);">Backup e restauro integral dos dados do sistema</span>
+                    </div>
+                  </div>
+                  <p style="font-size: 0.8rem; color: #475569; margin-bottom: 0.75rem; line-height: 1.35;">
+                    Exporte ou restaure todos os registos (Clientes, Contactos, Projetos e Interações) via ficheiro ou Google Drive.
+                  </p>
+                </div>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                  <button type="button" class="btn btn-primary" onclick="exportDatabaseJSON()"
+                    style="flex: 1; justify-content: center; font-size: 0.82rem; padding: 0.45rem 0.75rem;"
+                    title="Criar backup contendo apenas dados de registo">
+                    <i class="fa-solid fa-download"></i> Criar Backup
+                  </button>
+                  <button type="button" class="btn btn-secondary" onclick="triggerDatabaseRestore()"
+                    style="flex: 1; justify-content: center; font-size: 0.82rem; padding: 0.45rem 0.75rem;"
+                    title="Restaurar backup a partir de ficheiro">
+                    <i class="fa-solid fa-upload"></i> Restaurar
+                  </button>
+                  <button type="button" class="btn btn-secondary" onclick="openDriveModal()"
+                    title="Sincronização Google Drive (jjota26@gmail.com)"
+                    style="flex: 1; justify-content: center; background: #e0f2fe; color: #0369a1; border-color: #bae6fd; font-size: 0.82rem; padding: 0.45rem 0.75rem;">
+                    <i class="fa-brands fa-google-drive"></i> Google Drive
+                  </button>
+                  <input type="file" id="fullDatabaseImportInput" accept=".sigecbak,.sigec,.json" onchange="importDatabaseJSON(event)" style="display:none;">
                 </div>
               </div>
-              <p style="font-size: 0.85rem; color: #475569; margin-bottom: 1rem; line-height: 1.4;">
-                Exporte todos os registos do programa (Clientes, Contactos, Projetos e Interações) para um ficheiro de
-                cópia de segurança.
-              </p>
-              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                <button type="button" class="btn btn-primary" onclick="exportDatabaseJSON()"
-                  style="flex: 1.2; justify-content: center;"
-                  title="Criar backup contendo apenas dados de registo e guardar na pasta Backup do servidor Hugging Face">
-                  <i class="fa-solid fa-download"></i> Criar Backup
-                </button>
-                <button type="button" class="btn btn-secondary" onclick="triggerDatabaseRestore()"
-                  style="flex: 1; justify-content: center;"
-                  title="Procurar o backup mais recente na pasta Backup do servidor Hugging Face">
-                  <i class="fa-solid fa-upload"></i> Restaurar Backup
-                </button>
-                <button type="button" class="btn btn-secondary" onclick="openDriveModal()"
-                  title="Sincronização Google Drive (jjota26@gmail.com)"
-                  style="flex: 1; justify-content: center; background: #e0f2fe; color: #0369a1; border-color: #bae6fd;">
-                  <i class="fa-brands fa-google-drive"></i> Google Drive
-                </button>
-                <input type="file" id="fullDatabaseImportInput" accept=".sigecbak,.sigec,.json" onchange="importDatabaseJSON(event)"
-                  style="display:none;">
-              </div>
-            </div>
 
-            <!-- BLOCO 2: Importar Ficheiros por Ficha -->
-            <div class="card" style="border: 1px solid var(--soft-blue-border); background: #f8fafc; padding: 1.25rem;">
-              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-                <div
-                  style="width: 42px; height: 42px; border-radius: 8px; background: #e0e7ff; color: #3730a3; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
-                  <i class="fa-solid fa-file-import"></i>
-                </div>
+              <!-- BLOCO 2: Importar Ficheiros por Ficha -->
+              <div class="card" style="border: 1px solid var(--soft-blue-border); background: #f8fafc; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; margin-bottom: 0;">
                 <div>
-                  <h3 style="font-size: 1rem; color: #1e3a8a; margin: 0; font-weight: 700;">Importação de Ficheiros</h3>
-                  <span style="font-size: 0.78rem; color: var(--text-muted);">Carregar ficheiros JSON, Excel (.xlsx) ou
-                    CSV</span>
+                  <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.5rem;">
+                    <div style="width: 36px; height: 36px; border-radius: 8px; background: #e0e7ff; color: #3730a3; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">
+                      <i class="fa-solid fa-file-import"></i>
+                    </div>
+                    <div>
+                      <h3 style="font-size: 0.95rem; color: #1e3a8a; margin: 0; font-weight: 700;">Importação de Ficheiros</h3>
+                      <span style="font-size: 0.75rem; color: var(--text-muted);">Suporta ficheiros JSON, Excel (.xlsx, .xls) ou CSV</span>
+                    </div>
+                  </div>
+                  <p style="font-size: 0.8rem; color: #475569; margin-bottom: 0.75rem; line-height: 1.35;">
+                    Carregue listagens e tabelas específicas diretamente para a respetiva secção do sistema.
+                  </p>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
+                  <button type="button" class="btn btn-outline" onclick="triggerCategoryImport('clientes')"
+                    style="justify-content: center; font-size: 0.8rem; padding: 0.45rem 0.5rem; white-space: nowrap;"
+                    title="Importar lista de Clientes">
+                    <i class="fa-solid fa-building" style="color: var(--primary-blue); margin-right: 4px;"></i> Clientes
+                  </button>
+                  <button type="button" class="btn btn-outline" onclick="triggerCategoryImport('contactos')"
+                    style="justify-content: center; font-size: 0.8rem; padding: 0.45rem 0.5rem; white-space: nowrap;"
+                    title="Importar lista de Contactos">
+                    <i class="fa-solid fa-address-book" style="color: var(--primary-blue); margin-right: 4px;"></i> Contactos
+                  </button>
+                  <button type="button" class="btn btn-outline" onclick="triggerCategoryImport('projetos')"
+                    style="justify-content: center; font-size: 0.8rem; padding: 0.45rem 0.5rem; white-space: nowrap;"
+                    title="Importar lista de Projetos">
+                    <i class="fa-solid fa-folder-open" style="color: var(--primary-blue); margin-right: 4px;"></i> Projetos
+                  </button>
+                  <input type="file" id="categoryImportInput" accept=".sigecbak,.json,.xlsx,.xls,.csv" onchange="handleCategoryImport(event)" style="display:none;">
                 </div>
               </div>
-              <p style="font-size: 0.85rem; color: #475569; margin-bottom: 1rem; line-height: 1.4;">
-                Importe listagens específicas de Clientes, Contactos ou Projetos diretamente para o sistema.
-              </p>
-              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                <button type="button" class="btn btn-outline" onclick="triggerCategoryImport('clientes')"
-                  style="justify-content: flex-start;">
-                  <i class="fa-solid fa-building" style="color: var(--primary-blue); width: 20px;"></i> Importar
-                  Ficheiro
-                  de Clientes
-                </button>
-                <button type="button" class="btn btn-outline" onclick="triggerCategoryImport('contactos')"
-                  style="justify-content: flex-start;">
-                  <i class="fa-solid fa-address-book" style="color: var(--primary-blue); width: 20px;"></i> Importar
-                  Ficheiro de Contactos
-                </button>
-                <button type="button" class="btn btn-outline" onclick="triggerCategoryImport('projetos')"
-                  style="justify-content: flex-start;">
-                  <i class="fa-solid fa-folder-open" style="color: var(--primary-blue); width: 20px;"></i> Importar
-                  Ficheiro de Projetos
-                </button>
-                <input type="file" id="categoryImportInput" accept=".sigecbak,.json,.xlsx,.xls,.csv"
-                  onchange="handleCategoryImport(event)" style="display:none;">
-              </div>
+
             </div>
 
-            <!-- BLOCO DE MANUTENÃ‡ÃƒO: Limpeza de Ficheiros Temporários e Otimização -->
-            <div class="card"
-              style="border: 1.5px solid #10b981; background: #f0fdf4; padding: 1.25rem; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.08);">
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
-                <div style="display: flex; align-items: center; gap: 0.75rem;">
-                  <div
-                    style="width: 42px; height: 42px; border-radius: 8px; background: #dcfce7; color: #16a34a; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
-                    <i class="fa-solid fa-broom"></i>
+            <!-- LINHA 2: MANUTENÇÃO, IA E ATUALIZAÇÕES - 3 COLUNAS EQUILIBRADAS -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+
+              <!-- BLOCO 3: Limpeza de Ficheiros Temporários e Otimização -->
+              <div class="card"
+                style="border: 1.5px solid #10b981; background: #f0fdf4; padding: 1rem; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.06); display: flex; flex-direction: column; justify-content: space-between; margin-bottom: 0;">
+                <div>
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.5rem;">
+                    <div style="display: flex; align-items: center; gap: 0.65rem;">
+                      <div style="width: 36px; height: 36px; border-radius: 8px; background: #dcfce7; color: #16a34a; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">
+                        <i class="fa-solid fa-broom"></i>
+                      </div>
+                      <div>
+                        <h3 style="font-size: 0.92rem; color: #166534; margin: 0; font-weight: 700;">Limpeza & Otimização</h3>
+                        <span style="font-size: 0.73rem; color: #15803d;">Libertar memória local</span>
+                      </div>
+                    </div>
+                    <span style="padding: 0.2rem 0.5rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 700; background: #dcfce7; color: #15803d; border: 1px solid #86efac; white-space: nowrap;">
+                      <i class="fa-solid fa-shield-check"></i> Seguro
+                    </span>
                   </div>
-                  <div>
-                    <h3 style="font-size: 1rem; color: #166534; margin: 0; font-weight: 700;">Limpeza de Temporários & Otimização</h3>
-                    <span style="font-size: 0.78rem; color: #15803d;">Libertação de memória e eliminação de resíduos locais</span>
+
+                  <div id="storageUsageStatsBlock">
+                    <!-- Estatísticas de armazenamento renderizadas dinamicamente -->
                   </div>
+
+                  <p style="font-size: 0.78rem; color: #334155; margin-bottom: 0.75rem; line-height: 1.35;">
+                    Elimina resíduos e ficheiros temporários do navegador sem afetar nenhum registo de Clientes ou Projetos.
+                  </p>
                 </div>
-                <span style="padding: 0.25rem 0.65rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; background: #dcfce7; color: #15803d; border: 1px solid #86efac;">
-                  <i class="fa-solid fa-shield-check"></i> Dados 100% Preservados
-                </span>
-              </div>
 
-              <div id="storageUsageStatsBlock">
-                <!-- Estatísticas de armazenamento renderizadas dinamicamente -->
-              </div>
-
-              <p style="font-size: 0.85rem; color: #334155; margin-bottom: 1rem; line-height: 1.4;">
-                Elimina pacotes de atualização antigos, ficheiros de sincronização temporários e resíduos do navegador para libertar memória sem afetar nenhuma das suas fichas.
-              </p>
-
-              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
                 <button type="button" class="btn btn-primary" onclick="deepCleanTemporaryStorage(true)"
-                  style="flex: 1; justify-content: center; background: #16a34a; border-color: #16a34a; font-weight: 700; box-shadow: 0 2px 6px rgba(22, 163, 74, 0.25);"
+                  style="width: 100%; justify-content: center; background: #16a34a; border-color: #16a34a; font-weight: 700; font-size: 0.82rem; padding: 0.5rem; box-shadow: 0 2px 6px rgba(22, 163, 74, 0.2);"
                   title="Executar limpeza imediata de pacotes e registos temporários">
-                  <i class="fa-solid fa-broom"></i> Limpar Temporários e Otimizar
+                  <i class="fa-solid fa-broom"></i> Limpar e Otimizar
                 </button>
               </div>
-            </div>
 
-            <!-- BLOCO: Normalização Inteligente de Nomes e Moradas (IA) -->
-            <div class="card"
-              style="border: 1.5px solid #6366f1; background: #eef2ff; padding: 1.25rem; box-shadow: 0 2px 10px rgba(99, 102, 241, 0.08); border-radius: 12px; margin-top: 1rem;">
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
-                <div style="display: flex; align-items: center; gap: 0.75rem;">
-                  <div
-                    style="width: 42px; height: 42px; border-radius: 8px; background: #e0e7ff; color: #4f46e5; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <!-- BLOCO 4: Normalização Inteligente de Nomes e Moradas (IA) -->
+              <div class="card"
+                style="border: 1.5px solid #6366f1; background: #eef2ff; padding: 1rem; box-shadow: 0 2px 8px rgba(99, 102, 241, 0.06); display: flex; flex-direction: column; justify-content: space-between; margin-bottom: 0;">
+                <div>
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.5rem;">
+                    <div style="display: flex; align-items: center; gap: 0.65rem;">
+                      <div style="width: 36px; height: 36px; border-radius: 8px; background: #e0e7ff; color: #4f46e5; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                      </div>
+                      <div>
+                        <h3 style="font-size: 0.92rem; color: #3730a3; margin: 0; font-weight: 700;">Normalização (IA)</h3>
+                        <span style="font-size: 0.73rem; color: #4338ca;">Nomes compostos e moradas</span>
+                      </div>
+                    </div>
+                    <span style="padding: 0.2rem 0.5rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 700; background: #e0e7ff; color: #4338ca; border: 1px solid #c7d2fe; white-space: nowrap;">
+                      <i class="fa-solid fa-brain"></i> IA Ativa
+                    </span>
                   </div>
-                  <div>
-                    <h3 style="font-size: 1rem; color: #3730a3; margin: 0; font-weight: 700;">Normalização de Nomes e Moradas (IA)</h3>
-                    <span style="font-size: 0.78rem; color: #4338ca;">Decomposição de moradas completas e separação inteligente de nomes próprios compostos</span>
-                  </div>
+
+                  <p style="font-size: 0.78rem; color: #334155; margin-bottom: 0.75rem; line-height: 1.35;">
+                    Decompõe moradas completas (Rua, Nº, Código Postal, Localidade) e separa nomes compostos em todas as fichas existentes.
+                  </p>
                 </div>
-                <span style="padding: 0.25rem 0.65rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; background: #e0e7ff; color: #4338ca; border: 1px solid #c7d2fe;">
-                  <i class="fa-solid fa-brain"></i> IA Ativa
-                </span>
-              </div>
 
-              <p style="font-size: 0.85rem; color: #334155; margin-bottom: 1rem; line-height: 1.4;">
-                Aplica a inteligência artificial a todos os Clientes e Contactos existentes no programa: decompõe moradas agregadas em Rua, Nº, Andar/Piso, Código Postal, Localidade e País, e separa com precisão nomes próprios compostos portugueses (ex: Maria da Graça, José Manuel, António Vítor).
-              </p>
-
-              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
                 <button type="button" class="btn btn-primary" onclick="normalizeExistingContactsAndAddresses(true)"
-                  style="flex: 1; justify-content: center; background: #4f46e5; border-color: #4f46e5; font-weight: 700; box-shadow: 0 2px 6px rgba(79, 70, 229, 0.25);"
+                  style="width: 100%; justify-content: center; background: #4f46e5; border-color: #4f46e5; font-weight: 700; font-size: 0.82rem; padding: 0.5rem; box-shadow: 0 2px 6px rgba(79, 70, 229, 0.2);"
                   title="Executar análise e normalização inteligente em todos os registos existentes">
-                  <i class="fa-solid fa-wand-magic-sparkles"></i> Normalizar Nomes e Moradas Existentes
+                  <i class="fa-solid fa-wand-magic-sparkles"></i> Normalizar com IA
                 </button>
               </div>
+
+              <!-- BLOCO 5: Atualizações de Software & Versões -->
+              <div class="card"
+                style="border: 1.5px solid #0284c7; background: #ffffff; padding: 1rem; box-shadow: 0 2px 8px rgba(2, 132, 199, 0.06); display: flex; flex-direction: column; justify-content: space-between; margin-bottom: 0;">
+                <div>
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.5rem;">
+                    <div style="display: flex; align-items: center; gap: 0.65rem;">
+                      <div style="width: 36px; height: 36px; border-radius: 8px; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">
+                        <i class="fa-solid fa-cloud-arrow-down"></i>
+                      </div>
+                      <div>
+                        <h3 style="font-size: 0.92rem; color: #0369a1; margin: 0; font-weight: 700;">Atualizações Nuvem</h3>
+                        <span style="font-size: 0.73rem; color: #0284c7;">Verificação online</span>
+                      </div>
+                    </div>
+                    <span style="padding: 0.2rem 0.5rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 700; background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; white-space: nowrap;">
+                      <strong id="cfgInstalledVersionBadge" class="current-installed-version-badge">V1.7.27</strong>
+                    </span>
+                  </div>
+
+                  <p style="font-size: 0.78rem; color: #334155; margin-bottom: 0.75rem; line-height: 1.35;">
+                    Pesquisa e instala as versões mais recentes a partir do servidor em nuvem sem apagar os seus registos locais.
+                  </p>
+                </div>
+
+                <button type="button" class="btn btn-primary" onclick="checkAndInstallUpdate(false)"
+                  style="width: 100%; justify-content: center; background: #0284c7; color: #ffffff; font-weight: 700; font-size: 0.82rem; padding: 0.5rem;"
+                  title="Procurar se existe uma nova versão de software publicada no servidor na Nuvem">
+                  <i class="fa-solid fa-arrows-rotate"></i> Procurar Atualizações
+                </button>
+              </div>
+
             </div>
 
-            <!-- BLOCO 3: Atualizações de Software & Versões -->
-            <div class="card"
-              style="border: 1.5px solid #0284c7; background: #ffffff; padding: 1.25rem; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08); border-radius: 12px;">
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
-                <div style="display: flex; align-items: center; gap: 0.75rem;">
-                  <div
-                    style="width: 42px; height: 42px; border-radius: 8px; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
-                    <i class="fa-solid fa-cloud-arrow-down"></i>
-                  </div>
-                  <div>
-                    <h3 style="font-size: 1.05rem; color: #0369a1; margin: 0; font-weight: 700;">Atualizações de Software (SIGEC-Pro)</h3>
-                    <span style="font-size: 0.78rem; color: #0284c7;">Verificação automática e manual de novas versões na Nuvem Hugging Face</span>
-                  </div>
-                </div>
-                <span style="padding: 0.3rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd;">
-                  Versão Atual: <strong id="cfgInstalledVersionBadge" class="current-installed-version-badge">V1.7.27</strong>
-                </span>
-              </div>
-              <p style="font-size: 0.85rem; color: #334155; margin-bottom: 1rem; line-height: 1.4;">
-                Pesquise e instale novas versões do software diretamente do servidor na Nuvem. Todas as atualizações mantêm os seus Clientes, Contactos, Projetos e Utilizadores <strong>100% preservados</strong>.
-              </p>
-              <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
-                <button type="button" class="btn btn-primary" onclick="checkAndInstallUpdate(false)"
-                  style="min-width: 220px; justify-content: center; background: #0284c7; color: #ffffff; font-weight: 700; padding: 0.65rem 1.25rem;"
-                  title="Procurar se existe uma nova versão de software publicada no servidor na Nuvem">
-                  <i class="fa-solid fa-arrows-rotate"></i> Procurar Atualizações na Nuvem
-                </button>
-              </div>
-            </div>
+          </div>
 
             <!-- BLOCO 5: Sincronização em Tempo Real com o Servidor Hugging Face Spaces -->
             <div class="card"
@@ -4859,11 +4863,11 @@
   <div id="toastContainer" class="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999999 !important;"></div>
 
   <!-- Internationalization & Translations Engine -->
-  <script src="i18n.js?v=202609242235"></script>
+  <script src="i18n.js?v=202609242258"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=202609242235"></script>
+  <script src="app.js?v=202609242258"></script>
   <!-- Duplicates Management Engine -->
-  <script src="duplicatesManager.js?v=202609242235"></script>
+  <script src="duplicatesManager.js?v=202609242258"></script>
 
   <!-- Inicialização segura de definições de email no arranque -->
   <script>
@@ -6479,7 +6483,7 @@
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js?v=202609242130')
+      navigator.serviceWorker.register('/sw.js?v=202609242258')
         .then(function (reg) {
           if (typeof reg.update === 'function') {
             reg.update();

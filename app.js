@@ -5946,22 +5946,17 @@ function renderStorageUsageStats() {
   const statusText = percentUsed > 75 ? 'Ocupação Elevada (Recomenda-se Limpeza)' : (percentUsed > 45 ? 'Ocupação Moderada' : 'Excelente (Espaço Livre Amplo)');
 
   container.innerHTML = `
-    <div style="background: ${statusBg}; border: 1.5px solid ${statusBorder}; border-radius: 10px; padding: 1rem; margin-bottom: 1rem;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
-        <div>
-          <strong style="color: #0f172a; font-size: 0.92rem;"><i class="fa-solid fa-hard-drive" style="color: ${statusColor}; margin-right: 6px;"></i> Estado do Armazenamento Local:</strong>
-          <span style="display: inline-block; margin-left: 6px; padding: 0.15rem 0.55rem; border-radius: 9999px; font-size: 0.72rem; font-weight: 700; background: #ffffff; color: ${statusColor}; border: 1px solid ${statusBorder};">${statusText}</span>
-        </div>
-        <span style="font-size: 0.85rem; font-weight: 700; color: #334155;">${usedKB} KB / ~5 000 KB (${percentUsed}%)</span>
+    <div style="background: ${statusBg}; border: 1px solid ${statusBorder}; border-radius: 8px; padding: 0.5rem 0.75rem; margin: 0.35rem 0 0.5rem 0;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem; flex-wrap: wrap; gap: 0.3rem;">
+        <span style="font-size: 0.78rem; font-weight: 700; color: #0f172a;">
+          <i class="fa-solid fa-hard-drive" style="color: ${statusColor}; margin-right: 4px;"></i> Uso Local:
+          <span style="margin-left: 4px; padding: 0.1rem 0.45rem; border-radius: 9999px; font-size: 0.68rem; font-weight: 700; background: #ffffff; color: ${statusColor}; border: 1px solid ${statusBorder};">${statusText}</span>
+        </span>
+        <span style="font-size: 0.75rem; font-weight: 700; color: #334155;">${usedKB} KB (${percentUsed}%)</span>
       </div>
-
-      <div style="width: 100%; height: 10px; background: #e2e8f0; border-radius: 9999px; overflow: hidden; margin-bottom: 0.6rem;">
+      <div style="width: 100%; height: 6px; background: #e2e8f0; border-radius: 9999px; overflow: hidden;">
         <div style="width: ${percentUsed}%; height: 100%; background: ${statusColor}; border-radius: 9999px; transition: width 0.3s ease-in-out;"></div>
       </div>
-
-      <p style="margin: 0; font-size: 0.78rem; color: #475569; line-height: 1.4;">
-        Todos os dados essenciais (Clientes, Contactos, Projetos e Utilizadores) estão preservados. A limpeza remove caches antigas de pacotes, versões anteriores e resíduos do navegador.
-      </p>
     </div>
   `;
 }
