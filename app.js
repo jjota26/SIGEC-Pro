@@ -20234,6 +20234,19 @@ function ensureUsersInitialized() {
         }
         u.active = true;
       }
+
+      // Garantir que Victoria Schwab Vilte tem SEMPRE idioma Español e está ativa
+      if (u.id === 'usr-1789972905110' || uEmail === 'victoria@alegria-activity.com' || (uName.includes('victoria') && uName.includes('schwab'))) {
+        u.nome = 'Victoria Schwab Vilte';
+        if (u.idioma !== 'Español') {
+          u.idioma = 'Español';
+          needsSave = true;
+        }
+        if (u.active !== true) {
+          u.active = true;
+          needsSave = true;
+        }
+      }
     });
 
     // Garantir que o utilizador José Maria está sempre presente no sistema
@@ -20252,6 +20265,27 @@ function ensureUsersInitialized() {
         chefia: false,
         active: true,
         createdAt: "2026-09-19T23:53:51.944Z"
+      });
+      needsSave = true;
+    }
+
+    // Garantir que a utilizadora Victoria Schwab Vilte está sempre presente no sistema e ativa
+    const hasVictoria = db.usuarios.some(u => u && (u.id === 'usr-1789972905110' || (u.email && u.email.toLowerCase().trim() === 'victoria@alegria-activity.com') || ((u.nome || '').toLowerCase().includes('victoria') && (u.nome || '').toLowerCase().includes('schwab'))));
+    if (!hasVictoria) {
+      db.usuarios.push({
+        id: "usr-1789972905110",
+        nome: "Victoria Schwab Vilte",
+        primeiroNome: "Victoria",
+        apelido: "Schwab Vilte",
+        email: "victoria@alegria-activity.com",
+        cargo: "Gestora de proyectos",
+        idioma: "Español",
+        pin: "Victoria_202",
+        role: "user",
+        chefia: false,
+        active: true,
+        createdAt: "2026-09-21T06:41:45.110Z",
+        updatedAt: "2026-09-24T05:54:00.000Z"
       });
       needsSave = true;
     }

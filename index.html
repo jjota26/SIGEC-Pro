@@ -793,8 +793,8 @@
           <i class="fa-solid fa-user-gear"></i>
         </div>
         <div style="display: flex; flex-direction: column; text-align: left; line-height: 1.2;">
-          <span id="headerActiveUserDisplayName" style="color: #ffffff; font-weight: 700; font-size: 0.84rem;">José Centúrio</span>
-          <span id="headerActiveUserRoleName" style="color: #bae6fd; font-size: 0.72rem; font-weight: 500;">Administrador</span>
+          <span id="headerActiveUserDisplayName" style="color: #ffffff; font-weight: 700; font-size: 0.84rem;">A carregar...</span>
+          <span id="headerActiveUserRoleName" style="color: #bae6fd; font-size: 0.72rem; font-weight: 500;">Utilizador</span>
         </div>
         <i class="fa-solid fa-gear" style="color: #ffffff; font-size: 0.85rem; margin-left: 0.25rem;"></i>
       </div>
@@ -2761,7 +2761,7 @@
                   </div>
                 </div>
                 <span style="padding: 0.3rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd;">
-                  Versão Atual: <strong id="cfgInstalledVersionBadge" class="current-installed-version-badge">V1.7.25</strong>
+                  Versão Atual: <strong id="cfgInstalledVersionBadge" class="current-installed-version-badge">V1.7.27</strong>
                 </span>
               </div>
               <p style="font-size: 0.85rem; color: #334155; margin-bottom: 1rem; line-height: 1.4;">
@@ -3283,7 +3283,7 @@
               <!-- Direção / Morada -->
               <div class="form-group col-8">
                 <label for="clientDirecao1" data-i18n="client_address1_label">Direção (Linha 1)</label>
-                <input type="text" id="clientDirecao1" class="form-control" placeholder="Rua, Avenida, Praça..." data-i18n-placeholder="client_placeholder_address1" onblur="handleClientDirecaoBlur()">
+                <input type="text" id="clientDirecao1" class="form-control" placeholder="Rua, Avenida, Praça..." data-i18n-placeholder="client_placeholder_address1">
               </div>
 
               <div class="form-group col-4">
@@ -4871,33 +4871,25 @@
   <div id="toastContainer" class="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999999 !important;"></div>
 
   <!-- Internationalization & Translations Engine -->
-  <script src="i18n.js?v=202609240540"></script>
+  <script src="i18n.js?v=202609240815"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=202609240540"></script>
+  <script src="app.js?v=202609240815"></script>
   <!-- Duplicates Management Engine -->
-  <script src="duplicatesManager.js?v=202609240540"></script>
+  <script src="duplicatesManager.js?v=202609240815"></script>
 
-  <!-- Auto-cura imediata de definições SMTP e Webhook no arranque de qualquer computador -->
+  <!-- Inicialização segura de definições de email no arranque -->
   <script>
     (function() {
       try {
-        var defaultPass = atob('ZGZidSBmZ2diIGRzYWUgbHpxeQ==');
-        var defaultUser = 'jjota26@gmail.com';
-        var oldPass = localStorage.getItem('sigec_pro_smtp_pass');
-        if (!oldPass || oldPass.trim() !== defaultPass) {
-          localStorage.setItem('sigec_pro_smtp_pass', defaultPass);
-        }
-        var oldUser = localStorage.getItem('sigec_pro_smtp_user');
-        if (!oldUser || oldUser.trim() === 'jmcenturio@alegria-activity.com') {
-          localStorage.setItem('sigec_pro_smtp_user', defaultUser);
-        }
-        var passInput = document.getElementById('cfgSmtpPass');
-        if (passInput && (!passInput.value || passInput.value.trim() !== defaultPass)) {
-          passInput.value = defaultPass;
-        }
+        var storedUser = localStorage.getItem('sigec_pro_smtp_user');
         var userInput = document.getElementById('cfgSmtpUser');
-        if (userInput && (!userInput.value || userInput.value.trim() === 'jmcenturio@alegria-activity.com')) {
-          userInput.value = defaultUser;
+        if (userInput && storedUser) {
+          userInput.value = storedUser;
+        }
+        var storedPass = localStorage.getItem('sigec_pro_smtp_pass');
+        var passInput = document.getElementById('cfgSmtpPass');
+        if (passInput && storedPass) {
+          passInput.value = storedPass;
         }
         var defaultWebhook = 'https://script.google.com/macros/s/AKfycbxV-5cjwpuC-BLJpHaZk8g0234D9apiu5SlTX9VjdeHQG2L0DyoMBWHDbf0_Jo9Kr1LnA/exec';
         var webhookUrl = localStorage.getItem('sigec_pro_email_webhook_url');
@@ -5009,7 +5001,9 @@
 
       var selectEl = document.getElementById('contactClienteId');
       var selectedClienteId = selectEl ? selectEl.value : '';
-      if (!selectedClienteId) selectedClienteId = null;
+      if (!selectedClienteId) {
+        selectedClienteId = null;
+      }
 
       var nomeEl = document.getElementById('contactNome');
       var nome = nomeEl ? nomeEl.value.trim() : '';
@@ -5021,72 +5015,59 @@
       var idEl = document.getElementById('contactId');
       var id = (idEl ? idEl.value : '') || (typeof generateId === 'function' ? generateId('con') : 'con-' + Date.now());
 
+      var apelido = (document.getElementById('contactApelido') || {}).value || '';
+      var cargo = (document.getElementById('contactCargo') || {}).value || '';
+      var telefone = (document.getElementById('contactTelefone') || {}).value || '';
+      var telemovel = (document.getElementById('contactTelemovel') || {}).value || '';
+      var email = (document.getElementById('contactEmail') || {}).value || '';
+      var notas = (document.getElementById('contactNotas') || {}).value || '';
+
+      apelido = apelido.trim();
+      cargo = cargo.trim();
+      telefone = telefone.trim();
+      telemovel = telemovel.trim();
+      email = email.trim();
+      notas = notas.trim();
+
       var existingIndex = -1;
       if (typeof db !== 'undefined' && db.contactos) {
         for (var i = 0; i < db.contactos.length; i++) {
           if (db.contactos[i].id === id) { existingIndex = i; break; }
         }
       }
-      var existing = existingIndex >= 0 ? db.contactos[existingIndex] : {};
-
-      var apelido = ((document.getElementById('contactApelido') || {}).value || '').trim();
-      var cargo = ((document.getElementById('contactCargo') || {}).value || '').trim();
-      var telefone = ((document.getElementById('contactTelefone') || {}).value || '').trim();
-      var telemovel = ((document.getElementById('contactTelemovel') || {}).value || '').trim();
-      var email = ((document.getElementById('contactEmail') || {}).value || '').trim();
-      var notas = ((document.getElementById('contactNotas') || {}).value || '').trim();
-      var extensao = ((document.getElementById('contactExtensao') || {}).value || existing.extensao || '').trim();
 
       var finalSubTabIndex = 0;
-      if (typeof currentSubTabContactIndex !== 'undefined' && currentSubTabContactIndex !== null) {
+      if (typeof currentSubTabContactIndex !== 'undefined' && currentSubTabContactIndex !== null && currentSubTabContactIndex !== undefined) {
         finalSubTabIndex = Number(currentSubTabContactIndex);
-      } else if (existing.subTabIndex !== undefined && existing.subTabIndex !== null) {
-        finalSubTabIndex = Number(existing.subTabIndex);
+      } else if (existingIndex >= 0 && db.contactos[existingIndex].subTabIndex !== undefined && db.contactos[existingIndex].subTabIndex !== null) {
+        finalSubTabIndex = Number(db.contactos[existingIndex].subTabIndex);
       } else if (typeof activeEstatalSeparadorIndex !== 'undefined') {
         finalSubTabIndex = Number(activeEstatalSeparadorIndex || 0);
       }
 
       var proxEl = document.getElementById('contactProximoContacto');
-      var proximoContacto = (proxEl && proxEl.value) ? proxEl.value.trim() : (existing.proximoContacto || null);
+      var proximoContacto = (proxEl && proxEl.value) ? proxEl.value.trim() : (existingIndex >= 0 ? db.contactos[existingIndex].proximoContacto : null);
       var inativoEl = document.getElementById('contactInativo');
-      var inativo = inativoEl ? inativoEl.checked : (existing.inativo || false);
+      var inativo = inativoEl ? inativoEl.checked : (existingIndex >= 0 ? !!db.contactos[existingIndex].inativo : false);
 
-      var selectedClientObj = selectedClienteId && typeof db !== 'undefined' && db.clientes
-        ? db.clientes.find(function(c) { return String(c.id).trim() === String(selectedClienteId).trim(); })
-        : null;
-
-      // Determinar userId e comercial (preservar do registo existente ou usar utilizador ativo)
-      var activeUserId = (typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('sigec_pro_active_user_id') : null) || 'usr-admin-001';
-      var activeUser = typeof db !== 'undefined' && db.usuarios
-        ? (db.usuarios.find(function(u) { return u && u.id === activeUserId; }) || null)
-        : null;
-      var userId = existing.userId || activeUserId;
-      var comercialAtribuidoId = existing.comercialAtribuidoId || (selectedClientObj ? selectedClientObj.comercialAtribuidoId : null) || activeUserId;
-      var comercialAtribuidoNome = existing.comercialAtribuidoNome || (selectedClientObj ? selectedClientObj.comercialAtribuidoNome : null) || (activeUser ? activeUser.nome : 'José Centúrio');
-      var separadorId = existing.separadorId || (selectedClientObj && selectedClientObj.separadores && selectedClientObj.separadores[finalSubTabIndex] ? selectedClientObj.separadores[finalSubTabIndex].id : null);
-
-      var contactObj = Object.assign({}, existing, {
+      var selectedClientObj = selectedClienteId && typeof db !== 'undefined' && db.clientes ? db.clientes.find(function(c) { return String(c.id).trim() === String(selectedClienteId).trim(); }) : null;
+      var contactObj = {
         id: id,
         clienteId: selectedClienteId,
-        empresa: selectedClientObj ? (selectedClientObj.nome || '') : (existing.empresa || ''),
+        empresa: selectedClientObj ? (selectedClientObj.nome || '') : '',
         subTabIndex: selectedClienteId ? finalSubTabIndex : 0,
-        separadorId: separadorId,
         nome: nome,
         apelido: apelido,
         cargo: cargo,
         telefone: telefone,
         telemovel: telemovel,
-        extensao: extensao,
         email: email,
         notas: notas,
         inativo: inativo,
         proximoContacto: proximoContacto,
-        userId: userId,
-        comercialAtribuidoId: comercialAtribuidoId,
-        comercialAtribuidoNome: comercialAtribuidoNome,
-        createdAt: existing.createdAt || new Date().toISOString(),
+        createdAt: (existingIndex >= 0 && db.contactos[existingIndex].createdAt) ? db.contactos[existingIndex].createdAt : new Date().toISOString(),
         updatedAt: new Date().toISOString()
-      });
+      };
 
       if (existingIndex >= 0) {
         db.contactos[existingIndex] = contactObj;
@@ -5113,6 +5094,8 @@
         });
         if (isDup) return;
       }
+
+
     };
 
     window.openAttachExistingContactModal = function () {
@@ -5445,14 +5428,14 @@
           <span style="color: var(--text-muted);"><i class="fa-solid fa-file-code"
               style="color: #0284c7; margin-right: 4px;"></i> Ficheiro:</span>
           <strong id="updateRestoreFileName"
-            style="color: #0f172a; font-family: monospace; font-size: 0.88rem; word-break: break-all;">SIGEC_V1.7.25.json</strong>
+            style="color: #0f172a; font-family: monospace; font-size: 0.88rem; word-break: break-all;">SIGEC_V1.7.27.json</strong>
         </div>
         <div
           style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.85rem;">
           <span style="color: var(--text-muted);"><i class="fa-solid fa-tag"
               style="color: #0284c7; margin-right: 4px;"></i> Versão / Pacote:</span>
           <strong id="updateRestoreFileVersion"
-            style="color: #0284c7; font-size: 0.95rem; letter-spacing: 0.5px;">SIGEC_V1.7.25</strong>
+            style="color: #0284c7; font-size: 0.95rem; letter-spacing: 0.5px;">SIGEC_V1.7.27</strong>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
           <span style="color: var(--text-muted);"><i class="fa-solid fa-calendar-clock"
@@ -6240,7 +6223,7 @@
                 </div>
               </div>
               <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 700; background: #dcfce7; color: #15803d; border: 1px solid #86efac;">
-                Versão Instalada: <strong id="userSettingsInstalledVersionBadge" class="current-installed-version-badge">V1.7.25</strong>
+                Versão Instalada: <strong id="userSettingsInstalledVersionBadge" class="current-installed-version-badge">V1.7.27</strong>
               </span>
             </div>
             <p style="font-size: 0.88rem; color: #334155; margin: 0 0 1.25rem 0; line-height: 1.5;">
@@ -6364,7 +6347,7 @@
 
           <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.5rem; margin-bottom: 0.5rem;">
             <div>
-              <label style="font-size: 0.72rem; color: #64748b; font-weight: 600; display: block;">Direção (Linha 1) - Rua / Avenida</label>
+              <label style="font-size: 0.72rem; color: #64748b; font-weight: 600; display: block;">Direção (Linha 1) â€” Rua / Avenida</label>
               <div id="aiPreviewDirecao1" style="font-size: 0.86rem; font-weight: 600; color: #1e293b; padding: 4px 8px; background: #f8fafc; border-radius: 4px; min-height: 28px;">-</div>
             </div>
             <div>
@@ -6375,7 +6358,7 @@
 
           <div style="margin-bottom: 0.5rem;" id="aiPreviewDirecao2Container">
             <label style="font-size: 0.72rem; color: #4338ca; font-weight: 600; display: flex; align-items: center; gap: 5px;">
-              <i class="fa-solid fa-industry" style="color: #6366f1;"></i> Direção (Linha 2) - Zona Industrial / Edifício / Bloco:
+              <i class="fa-solid fa-industry" style="color: #6366f1;"></i> Direção (Linha 2) â€” Polígono Industrial / Edifício / Zona:
             </label>
             <div id="aiPreviewDirecao2" style="font-size: 0.86rem; font-weight: 600; color: #3730a3; padding: 4px 8px; background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 4px; min-height: 28px;">-</div>
           </div>
@@ -6416,7 +6399,7 @@
             <a href="javascript:void(0)" id="aiBtnGoogleMapsAssisted" target="_blank" rel="noopener noreferrer" style="font-size: 0.76rem; font-weight: 600; color: #15803d; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 6px; background: #f0fdf4; border: 1px solid #bbf7d0;" title="Ver localização no Google Maps">
               <i class="fa-solid fa-location-dot" style="color: #ea4335;"></i> Ver no Google Maps
             </a>
-            <a href="javascript:void(0)" id="aiBtnGeminiKeyOptional" onclick="promptGeminiApiKey()" style="font-size: 0.76rem; font-weight: 600; color: #6366f1; text-decoration: none; display: none; align-items: center; gap: 5px; padding: 4px 8px; border-radius: 6px; background: #eef2ff;" title="Configurar chave de API Google Gemini (opcional)">
+            <a href="javascript:void(0)" onclick="promptGeminiApiKey()" style="font-size: 0.76rem; font-weight: 600; color: #6366f1; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; padding: 4px 8px; border-radius: 6px; background: #eef2ff;" title="Configurar chave de API Google Gemini (opcional)">
               <i class="fa-solid fa-key"></i> Chave Gemini (Opcional)
             </a>
           </div>
@@ -6424,7 +6407,7 @@
             <button type="button" class="btn btn-close" onclick="closeAiAddressModal()" style="padding: 0.6rem 1.1rem;">
               Cancelar
             </button>
-            <button type="button" class="btn btn-primary" id="btnConfirmApplyAiAddress" onclick="confirmAndApplyAiAddress()" style="padding: 0.6rem 1.25rem; font-weight: 600; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
+            <button type="button" class="btn btn-primary" onclick="confirmAndApplyAiAddress()" style="padding: 0.6rem 1.25rem; font-weight: 600; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
               <i class="fa-solid fa-check"></i> Confirmar e Aplicar à Ficha
             </button>
           </div>
@@ -6439,7 +6422,7 @@
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js?v=202609232310')
+      navigator.serviceWorker.register('/sw.js?v=202609240815')
         .then(function (reg) {
           if (typeof reg.update === 'function') {
             reg.update();
