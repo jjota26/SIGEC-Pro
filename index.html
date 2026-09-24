@@ -12,7 +12,7 @@
     if ('caches' in window) {
       caches.keys().then(function(keys) {
         keys.forEach(function(k) {
-          if (k !== 'sigec-pro-v5.19') {
+          if (k !== 'sigec-pro-v1.7.35') {
             console.log('[PWA] Purga imediata de cache antiga:', k);
             caches.delete(k);
           }
@@ -2760,7 +2760,7 @@
                       </div>
                     </div>
                     <span style="padding: 0.2rem 0.5rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 700; background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; white-space: nowrap;">
-                      <strong id="cfgInstalledVersionBadge" class="current-installed-version-badge">V1.7.27</strong>
+                      <strong id="cfgInstalledVersionBadge" class="current-installed-version-badge">V1.7.35</strong>
                     </span>
                   </div>
 
@@ -4863,11 +4863,11 @@
   <div id="toastContainer" class="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999999 !important;"></div>
 
   <!-- Internationalization & Translations Engine -->
-  <script src="i18n.js?v=202609242305"></script>
+  <script src="i18n.js?v=1.7.35"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=202609242305"></script>
+  <script src="app.js?v=1.7.35"></script>
   <!-- Duplicates Management Engine -->
-  <script src="duplicatesManager.js?v=202609242305"></script>
+  <script src="duplicatesManager.js?v=1.7.35"></script>
 
   <!-- Inicialização segura de definições de email no arranque -->
   <script>
@@ -5469,14 +5469,14 @@
           <span style="color: var(--text-muted);"><i class="fa-solid fa-file-code"
               style="color: #0284c7; margin-right: 4px;"></i> Ficheiro:</span>
           <strong id="updateRestoreFileName"
-            style="color: #0f172a; font-family: monospace; font-size: 0.88rem; word-break: break-all;">SIGEC_V1.7.27.json</strong>
+            style="color: #0f172a; font-family: monospace; font-size: 0.88rem; word-break: break-all;">SIGEC_V1.7.35.json</strong>
         </div>
         <div
           style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.85rem;">
           <span style="color: var(--text-muted);"><i class="fa-solid fa-tag"
               style="color: #0284c7; margin-right: 4px;"></i> Versão / Pacote:</span>
           <strong id="updateRestoreFileVersion"
-            style="color: #0284c7; font-size: 0.95rem; letter-spacing: 0.5px;">SIGEC_V1.7.27</strong>
+            style="color: #0284c7; font-size: 0.95rem; letter-spacing: 0.5px;">SIGEC_V1.7.35</strong>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
           <span style="color: var(--text-muted);"><i class="fa-solid fa-calendar-clock"
@@ -6259,7 +6259,7 @@
                 </div>
               </div>
               <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 700; background: #dcfce7; color: #15803d; border: 1px solid #86efac;">
-                Versão Instalada: <strong id="userSettingsInstalledVersionBadge" class="current-installed-version-badge">V1.7.27</strong>
+                Versão Instalada: <strong id="userSettingsInstalledVersionBadge" class="current-installed-version-badge">V1.7.35</strong>
               </span>
             </div>
             <p style="font-size: 0.88rem; color: #334155; margin: 0 0 1.25rem 0; line-height: 1.5;">
@@ -6483,7 +6483,7 @@
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js?v=202609242305')
+      navigator.serviceWorker.register('/sw.js?v=1.7.35')
         .then(function (reg) {
           if (typeof reg.update === 'function') {
             reg.update();

@@ -1,7 +1,7 @@
-﻿# SIGEC-Pro - Sistema Integrado de Gestão Empresarial e Contactos
+# SIGEC-Pro - Sistema Integrado de Gestão Empresarial e Contactos
 
 **Autor e Direitos de Autor:** José Centúrio  
-**Versão:** SIGEC_V1.7.25  
+**Versão:** SIGEC_V1.7.35  
 
 Sistema Integrado de Gestão Empresarial e Contactos concebido para gestão de Clientes (Estatais e Normais), Contactos, Projetos, Interações, Orçamentos e sincronização na nuvem.
 

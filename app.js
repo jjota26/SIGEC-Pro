@@ -5183,7 +5183,7 @@ const INITIAL_EXCEL_DATABASE = {
                          "usuarioEmail":  "jmcenturio@alegria-activity.com",
                          "acao":  "Atualização de Software",
                          "tipoAcao":  "Atualização de Software",
-                         "descricao":  "SIGEC-Pro atualizado com sucesso para a versão SIGEC_V1.7.28.",
+                         "descricao":  "SIGEC-Pro atualizado com sucesso para a versão SIGEC_V1.7.35.",
                          "detalhes":  {
 
                                       },
@@ -19740,8 +19740,8 @@ window.exportSearchToExcel = exportSearchToExcel;
 window.exportSearchResultsToPDF = exportSearchResultsToPDF;
 window.exportSearchResultsToExcel = exportSearchResultsToExcel;
 
-var CURRENT_SYSTEM_VERSION = "SIGEC_V1.7.27";
-window.CURRENT_SYSTEM_VERSION = "SIGEC_V1.7.27";
+var CURRENT_SYSTEM_VERSION = "SIGEC_V1.7.35";
+window.CURRENT_SYSTEM_VERSION = "SIGEC_V1.7.35";
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
@@ -19793,7 +19793,7 @@ window.parseVersionNumber = parseVersionNumber;
 
 function getNextSequentialVersion(lastVersionStr) {
   const match = String(lastVersionStr || '').match(/SIGEC_V?([0-9]+(?:\.[0-9]+)*)/i) || String(lastVersionStr || '').match(/([0-9]+(?:\.[0-9]+)*)/);
-  if (!match) return 'SIGEC_V1.7.14';
+  if (!match) return 'SIGEC_V1.7.35';
   
   const parts = match[1].split('.').map(p => parseInt(p, 10) || 0);
   if (parts.length === 1) {
@@ -19806,12 +19806,16 @@ function getNextSequentialVersion(lastVersionStr) {
 window.getNextSequentialVersion = getNextSequentialVersion;
 
 function getInstalledVersion() {
-  let ver = 'SIGEC_V1.7.27';
+  let ver = 'SIGEC_V1.7.35';
   
   if (typeof localStorage !== 'undefined') {
     const saved = localStorage.getItem('sigec_pro_installed_version');
-    if (saved && typeof saved === 'string' && saved.trim()) {
+    if (saved && typeof saved === 'string' && saved.trim() && parseVersionNumber(saved) >= parseVersionNumber('SIGEC_V1.7.35')) {
       ver = saved.trim();
+    } else {
+      try {
+        localStorage.setItem('sigec_pro_installed_version', 'SIGEC_V1.7.35');
+      } catch (e) {}
     }
   }
   

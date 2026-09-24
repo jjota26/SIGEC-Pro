@@ -1,10 +1,10 @@
 # CONTEXTO DO PROJETO SIGEC-Pro
 
-- Versao: V1.7.27
+- Versao: V1.7.35
 - Autor: Jose Centurio
 - Nuvem: josecenturio/SIGEC-Pro
-- Data: 24/09/2026 14:32
-- Estado: Ocultação estrita do nome de usuário nos registos e limpeza completa sob a data na página do cliente. Apenas a Pessoa de Contacto genuína é exibida quando existente. Testes automatizados no Edge Headless 100% aprovados, binários recompilados e sincronização concluída.
+- Data: 24/09/2026 23:15
+- Estado: Versão uniformizada globalmente em V1.7.35 em todos os componentes (package.json, app.js, index.html, relatórios e service worker). Suporte multilíngue rigoroso ativo e layout compacto de configuração 2x3 operacional.
 
 ## 00000000000. Ocultação Estrita de Nome de Usuário e Limpeza Sob Data na Página do Cliente (24/09/2026 14:32)
 - **Objetivo do Utilizador:** O nome do Usuário não deve aparecer nos registos. Sempre que o registo seja feito na página do cliente, não deve aparecer nada escrito por baixo da data.
