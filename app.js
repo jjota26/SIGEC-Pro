@@ -5942,14 +5942,17 @@ function renderStorageUsageStats() {
 
   const statusColor = percentUsed > 75 ? '#dc2626' : (percentUsed > 45 ? '#d97706' : '#16a34a');
   const statusBg = percentUsed > 75 ? '#fef2f2' : (percentUsed > 45 ? '#fffbeb' : '#f0fdf4');
-  const statusBorder = percentUsed > 75 ? '#fecaca' : (percentUsed > 45 ? '#fde68a' : '#bbf7d0');
-  const statusText = percentUsed > 75 ? 'Ocupação Elevada (Recomenda-se Limpeza)' : (percentUsed > 45 ? 'Ocupação Moderada' : 'Excelente (Espaço Livre Amplo)');
+  const statusHigh = typeof t === 'function' ? t('cfg_storage_status_high', 'Ocupação Elevada (Recomenda-se Limpeza)') : 'Ocupação Elevada (Recomenda-se Limpeza)';
+  const statusMod = typeof t === 'function' ? t('cfg_storage_status_mod', 'Ocupação Moderada') : 'Ocupação Moderada';
+  const statusGood = typeof t === 'function' ? t('cfg_storage_status_good', 'Excelente (Espaço Livre Amplo)') : 'Excelente (Espaço Livre Amplo)';
+  const statusText = percentUsed > 75 ? statusHigh : (percentUsed > 45 ? statusMod : statusGood);
+  const localUsageLabel = typeof t === 'function' ? t('cfg_storage_local_usage', 'Uso Local:') : 'Uso Local:';
 
   container.innerHTML = `
     <div style="background: ${statusBg}; border: 1px solid ${statusBorder}; border-radius: 8px; padding: 0.5rem 0.75rem; margin: 0.35rem 0 0.5rem 0;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem; flex-wrap: wrap; gap: 0.3rem;">
         <span style="font-size: 0.78rem; font-weight: 700; color: #0f172a;">
-          <i class="fa-solid fa-hard-drive" style="color: ${statusColor}; margin-right: 4px;"></i> Uso Local:
+          <i class="fa-solid fa-hard-drive" style="color: ${statusColor}; margin-right: 4px;"></i> <span data-i18n="cfg_storage_local_usage">${localUsageLabel}</span>
           <span style="margin-left: 4px; padding: 0.1rem 0.45rem; border-radius: 9999px; font-size: 0.68rem; font-weight: 700; background: #ffffff; color: ${statusColor}; border: 1px solid ${statusBorder};">${statusText}</span>
         </span>
         <span style="font-size: 0.75rem; font-weight: 700; color: #334155;">${usedKB} KB (${percentUsed}%)</span>

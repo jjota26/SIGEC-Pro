@@ -216,6 +216,230 @@ const SIGEC_I18N = {
   user_settings_btn_check_updates: { Português: "Procurar Atualizações", Español: "Buscar Actualizaciones", English: "Check for Updates", Français: "Rechercher Mises à Jour", Polski: "Sprawdź Aktualizacje" },
   user_settings_btn_install_file: { Português: "Instalar de Ficheiro (.sigecpkg / .json)", Español: "Instalar desde Archivo (.sigecpkg / .json)", English: "Install from File (.sigecpkg / .json)", Français: "Installer depuis Fichier (.sigecpkg / .json)", Polski: "Zainstaluj z Pliku (.sigecpkg / .json)" },
   user_settings_btn_generate_package: { Português: "Gerar Pacote de Atualização", Español: "Generar Paquete de Actualización", English: "Generate Update Package", Français: "Générer Paquet de Mise à Jour", Polski: "Generuj Pakiet Aktualizacji" },
+  cfg_banner_data_protection_title: {
+    "Português": "Proteção e Preservação de Dados Ativa",
+    "Español": "Protección y Preservación de Datos Activa",
+    "English": "Active Data Protection & Preservation",
+    "Français": "Protection et Préservation des Données Active",
+    "Polski": "Aktywna Ochrona i Zachowanie Danych"
+  },
+  cfg_banner_integrity_guarantee_label: {
+    "Português": "Garantia de Integridade:",
+    "Español": "Garantía de Integridad:",
+    "English": "Integrity Guarantee:",
+    "Français": "Garantie d'Intégrité :",
+    "Polski": "Gwarancja Integralności:"
+  },
+  cfg_banner_integrity_guarantee_desc: {
+    "Português": "Os dados e fichas do seu programa SIGEC-Pro estão 100% salvaguardados. Nenhum registo será alterado ou apagado sem a sua confirmação explícita.",
+    "Español": "Los datos y fichas de su programa SIGEC-Pro están 100% salvaguardados. Ningún registro será modificado o eliminado sin su confirmación explícita.",
+    "English": "Your SIGEC-Pro data and records are 100% safeguarded. No records will be modified or deleted without your explicit confirmation.",
+    "Français": "Les données et fiches de votre logiciel SIGEC-Pro sont protégées à 100%. Aucun enregistrement ne sera modifié ou supprimé sans votre confirmation explicite.",
+    "Polski": "Dane i karty w programie SIGEC-Pro są w 100% chronione. Żaden wpis nie zostanie zmieniony ani usunięty bez Twojej wyraźnej zgody."
+  },
+  cfg_card_backup_title: {
+    "Português": "Cópia de Segurança Completa",
+    "Español": "Copia de Seguridad Completa",
+    "English": "Complete Backup",
+    "Français": "Sauvegarde Complète",
+    "Polski": "Pełna Kopia Zapasowa"
+  },
+  cfg_card_backup_subtitle: {
+    "Português": "Backup e restauro integral dos dados do sistema",
+    "Español": "Copia de seguridad y restauración integral del sistema",
+    "English": "Complete system data backup and restore",
+    "Français": "Sauvegarde et restauration intégrale des données du système",
+    "Polski": "Kompletna kopia zapasowa i przywracanie danych systemu"
+  },
+  cfg_card_backup_desc: {
+    "Português": "Exporte ou restaure todos os registos (Clientes, Contactos, Projetos e Interações) via ficheiro ou Google Drive.",
+    "Español": "Exporte o restaure todos los registros (Clientes, Contactos, Proyectos e Interacciones) mediante archivo o Google Drive.",
+    "English": "Export or restore all records (Clients, Contacts, Projects and Interactions) via file or Google Drive.",
+    "Français": "Exportez ou restaurez tous les enregistrements (Clients, Contacts, Projets et Interactions) par fichier ou Google Drive.",
+    "Polski": "Eksportuj lub przywracaj wszystkie wpisy (Klienci, Kontakty, Projekty i Interakcje) za pomocą pliku lub Dysku Google."
+  },
+  cfg_btn_create_backup: {
+    "Português": "Criar Backup",
+    "Español": "Crear Copia",
+    "English": "Create Backup",
+    "Français": "Créer Sauvegarde",
+    "Polski": "Utwórz Kopię"
+  },
+  cfg_btn_restore_backup: {
+    "Português": "Restaurar",
+    "Español": "Restaurar",
+    "English": "Restore",
+    "Français": "Restaurer",
+    "Polski": "Przywróć"
+  },
+  cfg_card_import_title: {
+    "Português": "Importação de Ficheiros",
+    "Español": "Importación de Archivos",
+    "English": "File Import",
+    "Français": "Importation de Fichiers",
+    "Polski": "Import Plików"
+  },
+  cfg_card_import_subtitle: {
+    "Português": "Suporta ficheiros JSON, Excel (.xlsx, .xls) ou CSV",
+    "Español": "Admite archivos JSON, Excel (.xlsx, .xls) o CSV",
+    "English": "Supports JSON, Excel (.xlsx, .xls) or CSV files",
+    "Français": "Prend en charge les fichiers JSON, Excel (.xlsx, .xls) ou CSV",
+    "Polski": "Obsługuje pliki JSON, Excel (.xlsx, .xls) lub CSV"
+  },
+  cfg_card_import_desc: {
+    "Português": "Carregue listagens e tabelas específicas diretamente para a respetiva secção do sistema.",
+    "Español": "Cargue listados y tablas específicas directamente en la sección correspondiente del sistema.",
+    "English": "Load specific lists and tables directly into the respective system section.",
+    "Français": "Chargez des listes et tableaux spécifiques directement dans la section correspondante du système.",
+    "Polski": "Wczytaj określone listy i tabele bezpośrednio do odpowiedniej sekcji systemu."
+  },
+  cfg_btn_import_clients: {
+    "Português": "Clientes",
+    "Español": "Clientes",
+    "English": "Clients",
+    "Français": "Clients",
+    "Polski": "Klienci"
+  },
+  cfg_btn_import_contacts: {
+    "Português": "Contactos",
+    "Español": "Contactos",
+    "English": "Contacts",
+    "Français": "Contacts",
+    "Polski": "Kontakty"
+  },
+  cfg_btn_import_projects: {
+    "Português": "Projetos",
+    "Español": "Proyectos",
+    "English": "Projects",
+    "Français": "Projets",
+    "Polski": "Projekty"
+  },
+  cfg_card_cleanup_title: {
+    "Português": "Limpeza & Otimização",
+    "Español": "Limpieza y Optimización",
+    "English": "Cleanup & Optimization",
+    "Français": "Nettoyage & Optimisation",
+    "Polski": "Czyszczenie i Optymalizacja"
+  },
+  cfg_card_cleanup_subtitle: {
+    "Português": "Libertar memória local",
+    "Español": "Liberar memoria local",
+    "English": "Free up local memory",
+    "Français": "Libérer la mémoire locale",
+    "Polski": "Zwolnij pamięć lokalną"
+  },
+  cfg_badge_safe: {
+    "Português": "Seguro",
+    "Español": "Seguro",
+    "English": "Safe",
+    "Français": "Sécurisé",
+    "Polski": "Bezpieczny"
+  },
+  cfg_card_cleanup_desc: {
+    "Português": "Elimina resíduos e ficheiros temporários do navegador sem afetar nenhum registo de Clientes ou Projetos.",
+    "Español": "Elimina residuos y archivos temporales del navegador sin afectar ningún registro de Clientes o Proyectos.",
+    "English": "Removes cache and temporary browser files without affecting any Client or Project records.",
+    "Français": "Supprime les résidus et fichiers temporaires du navigateur sans affecter aucun enregistrement de Clients ou Projets.",
+    "Polski": "Usuwa pozostałości i pliki tymczasowe przeglądarki bez wpływu na wpisy Klientów lub Projektów."
+  },
+  cfg_btn_clean_optimize: {
+    "Português": "Limpar e Otimizar",
+    "Español": "Limpiar y Optimizar",
+    "English": "Clean & Optimize",
+    "Français": "Nettoyer et Optimiser",
+    "Polski": "Wyczyść i Zoptymalizuj"
+  },
+  cfg_card_ai_norm_title: {
+    "Português": "Normalização (IA)",
+    "Español": "Normalización (IA)",
+    "English": "Normalization (AI)",
+    "Français": "Normalisation (IA)",
+    "Polski": "Normalizacja (AI)"
+  },
+  cfg_card_ai_norm_subtitle: {
+    "Português": "Nomes compostos e moradas",
+    "Español": "Nombres compuestos y direcciones",
+    "English": "Compound names and addresses",
+    "Français": "Noms composés et adresses",
+    "Polski": "Złożone nazwiska i adresy"
+  },
+  cfg_badge_ai_active: {
+    "Português": "IA Ativa",
+    "Español": "IA Activa",
+    "English": "Active AI",
+    "Français": "IA Active",
+    "Polski": "Aktywne AI"
+  },
+  cfg_card_ai_norm_desc: {
+    "Português": "Decompõe moradas completas (Rua, Nº, Código Postal, Localidade) e separa nomes compostos em todas as fichas existentes.",
+    "Español": "Descompone direcciones completas (Calle, Nº, Código Postal, Localidad) y separa nombres compuestos en todas las fichas existentes.",
+    "English": "Breaks down complete addresses (Street, No., Postal Code, City) and splits compound names in all existing profiles.",
+    "Français": "Décompose les adresses complètes (Rue, N°, Code Postal, Ville) et sépare les noms composés dans toutes les fiches existantes.",
+    "Polski": "Rozkłada pełne adresy (Ulica, Nr, Kod Pocztowy, Miejscowość) i dzieli imiona złożone we wszystkich istniejących kartach."
+  },
+  cfg_btn_ai_normalize: {
+    "Português": "Normalizar com IA",
+    "Español": "Normalizar con IA",
+    "English": "Normalize with AI",
+    "Français": "Normaliser avec l'IA",
+    "Polski": "Normalizuj za pomocą AI"
+  },
+  cfg_card_updates_title: {
+    "Português": "Atualizações Nuvem",
+    "Español": "Actualizaciones en la Nube",
+    "English": "Cloud Updates",
+    "Français": "Mises à Jour Cloud",
+    "Polski": "Aktualizacje w Chmurze"
+  },
+  cfg_card_updates_subtitle: {
+    "Português": "Verificação online",
+    "Español": "Verificación en línea",
+    "English": "Online check",
+    "Français": "Vérification en ligne",
+    "Polski": "Weryfikacja online"
+  },
+  cfg_card_updates_desc: {
+    "Português": "Pesquisa e instala as versões mais recentes a partir do servidor em nuvem sem apagar os seus registos locais.",
+    "Español": "Busca e instala las versiones más recientes desde el servidor en la nube sin borrar sus registros locales.",
+    "English": "Searches and installs the latest versions from the cloud server without deleting your local records.",
+    "Français": "Recherche et installe les dernières versions à partir du serveur cloud sans supprimer vos enregistrements locaux.",
+    "Polski": "Wyszukuje i instaluje najnowsze wersje z serwera w chmurze bez usuwania lokalnych wpisów."
+  },
+  cfg_btn_check_updates: {
+    "Português": "Procurar Atualizações",
+    "Español": "Buscar Actualizaciones",
+    "English": "Check for Updates",
+    "Français": "Rechercher des Mises à Jour",
+    "Polski": "Sprawdź Aktualizacje"
+  },
+  cfg_storage_local_usage: {
+    "Português": "Uso Local:",
+    "Español": "Uso Local:",
+    "English": "Local Usage:",
+    "Français": "Utilisation Locale :",
+    "Polski": "Użycie Lokalne:"
+  },
+  cfg_storage_status_high: {
+    "Português": "Ocupação Elevada (Recomenda-se Limpeza)",
+    "Español": "Ocupación Alta (Se recomienda Limpieza)",
+    "English": "High Usage (Cleanup Recommended)",
+    "Français": "Occupation Élevée (Nettoyage Recommandé)",
+    "Polski": "Wysokie Zużycie (Zalecane Czyszczenie)"
+  },
+  cfg_storage_status_mod: {
+    "Português": "Ocupação Moderada",
+    "Español": "Ocupación Moderada",
+    "English": "Moderate Usage",
+    "Français": "Occupation Modérée",
+    "Polski": "Umiarkowane Zużycie"
+  },
+  cfg_storage_status_good: {
+    "Português": "Excelente (Espaço Livre Amplo)",
+    "Español": "Excelente (Espacio Libre Amplio)",
+    "English": "Excellent (Plenty of Free Space)",
+    "Français": "Excellent (Grand Espace Libre)",
+    "Polski": "Doskonałe (Dużo Wolnego Miejsca)"
+  },
     user_settings_tab_theme: {
     Português: "Cores do Programa",
     Español: "Colores del Programa",
@@ -1508,8 +1732,27 @@ const SIGEC_PHRASES_MAP = {
   "Gestão de Cópia de Segurança & Restauro": { "Portugu\u00EAs": "Gestão de Cópia de Segurança & Restauro", "Espa\u00F1ol": "Gestión de Copia de Seguridad y Restauración", "English": "Backup & Restore Management", "Fran\u00E7ais": "Gestion des Sauvegardes et Restaurations", "Polski": "ZarzÄ…dzanie Kopiami Zapasowymi i Przywracaniem" },
   "Cópia de Segurança Completa": { "Portugu\u00EAs": "Cópia de Segurança Completa", "Espa\u00F1ol": "Copia de Seguridad Completa", "English": "Complete Backup", "Fran\u00E7ais": "Sauvegarde ComplÃ¨te", "Polski": "PeÅ‚na Kopia Zapasowa" },
   "Criar Backup": { "Portugu\u00EAs": "Criar Backup", "Espa\u00F1ol": "Crear Copia", "English": "Create Backup", "Fran\u00E7ais": "Créer Sauvegarde", "Polski": "Utwórz KopiÄ™" },
-  "Restaurar Backup": { "Portugu\u00EAs": "Restaurar Backup", "Espa\u00F1ol": "Restaurar Copia", "English": "Restore Backup", "Fran\u00E7ais": "Restaurer Sauvegarde", "Polski": "PrzywróÄ‡ KopiÄ™" },
-  "Importação de Ficheiros": { "Portugu\u00EAs": "Importação de Ficheiros", "Espa\u00F1ol": "Importación de Archivos", "English": "File Import", "Fran\u00E7ais": "Importation de Fichiers", "Polski": "Import Plików" },
+  "Restaurar Backup": { "Português": "Restaurar Backup", "Español": "Restaurar Copia", "English": "Restore Backup", "Français": "Restaurer Sauvegarde", "Polski": "Przywróć Kopię" },
+  "Restaurar": { "Português": "Restaurar", "Español": "Restaurar", "English": "Restore", "Français": "Restaurer", "Polski": "Przywróć" },
+  "Clientes": { "Português": "Clientes", "Español": "Clientes", "English": "Clients", "Français": "Clients", "Polski": "Klienci" },
+  "Contactos": { "Português": "Contactos", "Español": "Contactos", "English": "Contacts", "Français": "Contacts", "Polski": "Kontakty" },
+  "Projetos": { "Português": "Projetos", "Español": "Proyectos", "English": "Projects", "Français": "Projets", "Polski": "Projekty" },
+  "Limpeza & Otimização": { "Português": "Limpeza & Otimização", "Español": "Limpieza y Optimización", "English": "Cleanup & Optimization", "Français": "Nettoyage & Optimisation", "Polski": "Czyszczenie i Optymalizacja" },
+  "Libertar memória local": { "Português": "Libertar memória local", "Español": "Liberar memoria local", "English": "Free up local memory", "Français": "Libérer la mémoire locale", "Polski": "Zwolnij pamięć lokalną" },
+  "Seguro": { "Português": "Seguro", "Español": "Seguro", "English": "Safe", "Français": "Sécurisé", "Polski": "Bezpieczny" },
+  "Limpar e Otimizar": { "Português": "Limpar e Otimizar", "Español": "Limpiar y Optimizar", "English": "Clean & Optimize", "Français": "Nettoyer et Optimiser", "Polski": "Wyczyść i Zoptymalizuj" },
+  "Normalização (IA)": { "Português": "Normalização (IA)", "Español": "Normalización (IA)", "English": "Normalization (AI)", "Français": "Normalisation (IA)", "Polski": "Normalizacja (AI)" },
+  "Nomes compostos e moradas": { "Português": "Nomes compostos e moradas", "Español": "Nombres compuestos y direcciones", "English": "Compound names and addresses", "Français": "Noms composés et adresses", "Polski": "Złożone nazwiska i adresy" },
+  "IA Ativa": { "Português": "IA Ativa", "Español": "IA Activa", "English": "Active AI", "Français": "IA Active", "Polski": "Aktywne AI" },
+  "Normalizar com IA": { "Português": "Normalizar com IA", "Español": "Normalizar con IA", "English": "Normalize with AI", "Français": "Normaliser avec l'IA", "Polski": "Normalizuj za pomocą AI" },
+  "Atualizações Nuvem": { "Português": "Atualizações Nuvem", "Español": "Actualizaciones en la Nube", "English": "Cloud Updates", "Français": "Mises à Jour Cloud", "Polski": "Aktualizacje w Chmurze" },
+  "Verificação online": { "Português": "Verificação online", "Español": "Verificación en línea", "English": "Online check", "Français": "Vérification en ligne", "Polski": "Weryfikacja online" },
+  "Procurar Atualizações": { "Português": "Procurar Atualizações", "Español": "Buscar Actualizaciones", "English": "Check for Updates", "Français": "Rechercher des Mises à Jour", "Polski": "Sprawdź Aktualizacje" },
+  "Proteção e Preservação de Dados Ativa": { "Português": "Proteção e Preservação de Dados Ativa", "Español": "Protección y Preservación de Datos Activa", "English": "Active Data Protection & Preservation", "Français": "Protection et Préservation des Données Active", "Polski": "Aktywna Ochrona i Zachowanie Danych" },
+  "Garantia de Integridade:": { "Português": "Garantia de Integridade:", "Español": "Garantía de Integridad:", "English": "Integrity Guarantee:", "Français": "Garantie d'Intégrité :", "Polski": "Gwarancja Integralności:" },
+  "Backup e restauro integral dos dados do sistema": { "Português": "Backup e restauro integral dos dados do sistema", "Español": "Copia de seguridad y restauración integral del sistema", "English": "Complete system data backup and restore", "Français": "Sauvegarde et restauration intégrale des données du système", "Polski": "Kompletna kopia zapasowa i przywracanie danych systemu" },
+  "Uso Local:": { "Português": "Uso Local:", "Español": "Uso Local:", "English": "Local Usage:", "Français": "Utilisation Locale :", "Polski": "Użycie Lokalne:" },
+  "Importação de Ficheiros": { "Português": "Importação de Ficheiros", "Español": "Importación de Archivos", "English": "File Import", "Français": "Importation de Fichiers", "Polski": "Import Plików" },
   "Importar Ficheiro de Clientes": { "Portugu\u00EAs": "Importar Ficheiro de Clientes", "Espa\u00F1ol": "Importar Archivo de Clientes", "English": "Import Clients File", "Fran\u00E7ais": "Importer Fichier Clients", "Polski": "Importuj Plik Klientów" },
   "Importar Ficheiro de Contactos": { "Portugu\u00EAs": "Importar Ficheiro de Contactos", "Espa\u00F1ol": "Importar Archivo de Contactos", "English": "Import Contacts File", "Fran\u00E7ais": "Importer Fichier Contacts", "Polski": "Importuj Plik Kontaktów" },
   "Importar Ficheiro de Projetos": { "Portugu\u00EAs": "Importar Ficheiro de Projetos", "Espa\u00F1ol": "Importar Archivo de Proyectos", "English": "Import Projects File", "Fran\u00E7ais": "Importer Fichier Projets", "Polski": "Importuj Plik Projektów" },
