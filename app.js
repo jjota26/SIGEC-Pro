@@ -6758,7 +6758,7 @@ function mergeCloudDatabaseSafely(cloudData) {
 window.mergeCloudDatabaseSafely = mergeCloudDatabaseSafely;
 
 async function loadDatabaseFromHuggingFace(silent = false, force = false) {
-  const _LOCAL_SAVE_GUARD_MS = 30000; // 30s de proteção absoluta após gravação local recente
+  const _LOCAL_SAVE_GUARD_MS = 5000; // 5 segundos de salvaguarda com merge estrito por prevalência temporal
   if (!force && silent && window._lastLocalSaveTimestamp && (Date.now() - window._lastLocalSaveTimestamp) < _LOCAL_SAVE_GUARD_MS) {
     return false;
   }
