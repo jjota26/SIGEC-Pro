@@ -3,25 +3,34 @@
 - Versao: V1.7.27
 - Autor: Jose Centurio
 - Nuvem: josecenturio/SIGEC-Pro
-- Data: 24/09/2026 14:05
-- Estado: Apresentação do autor sob a data nas caixas de contactos realizados (contactos, clientes e projetos). Layout vertical refinado com ícone de utilizador, resolução inteligente retroativa de autor, persistência determinística e testes automatizados no Edge Headless 100% aprovados.
+- Data: 24/09/2026 14:25
+- Estado: Apresentação de Pessoa de Contacto e Autor sob a data nas caixas de contactos realizados (contactos, clientes e projetos). Resolução inteligente universal, persistência em cascata, testes automatizados no Edge Headless 100% aprovados, binários recompilados e repositórios sincronizados.
 
-## 000000000. Apresentação do Autor sob a Data nas Caixas de Contactos Realizados (24/09/2026 14:05)
-- **Objetivo do Utilizador:** Nas caixas/grelhas de "Contactos Realizados" (interações de contactos, clientes e projetos), exibir o nome do autor do registo por baixo da data em cada cartão, com estilo profissional e ícone de utilizador (`fa-solid fa-user`).
-- **Implementações & Melhorias Efetuadas:**
-  1. **Disposição Vertical e Tipografia Refinada (`styles.css`):**
-     - Classe `.interaction-card-date` atualizada para empilhamento vertical com espaçamento harmonioso (`flex-direction: column; align-items: flex-start; gap: 0.25rem; min-width: 160px;`).
-     - Nova classe `.interaction-date-text` para destaque da data e hora.
-     - Nova classe `.interaction-author-name` em cor ardósia (`#475569`), tipografia 500, truncagem suave de nomes extensos e ícone cinzento elegante (`#64748b`).
-  2. **Resolução Retroativa Inteligente de Autor (`getInteractionAuthorName` em `app.js`):**
-     - Garante que mesmo interações antigas ou importadas exibam o nome legível do utilizador através de verificação em cascata (`userName`, `userNome`, `autor`, lookup por `userId` em `db.usuarios`, autor do contacto/cliente pai ou fallback seguro para "José Centúrio").
-  3. **Persistência Determinística em Novas Interações:**
-     - `addQuickContactInteraction`, `addQuickInteraction`, `saveInteraction`, `addQuickProjectInteraction`, `saveProjectInteraction`, `saveContactPersonInteraction` e o interceptor inline `saveContact` gravam incondicionalmente `userId` e `userName` da sessão ativa.
-  4. **PWA e Cache Invalidation:** `index.html` e `sw.js` (cache `sigec-pro-v5.1`) atualizados com tags de versão `v=202609241400`.
-  5. **Compilação e Assinatura Digital Authenticode:**
-     - Executáveis `SIGEC-Pro.exe` e `Instalar-SIGEC-Pro.exe` (1.7.27.0) recompilados com `csc.exe` e assinados digitalmente por José Centúrio.
-  6. **Testes Automatizados Reais no Edge Headless:** Simulação de carregamento e DOM dumping aprovou a renderização correta de todos os elementos.
-  7. **Dual Parity:** Ficheiros sincronizados em `g:\SIGEC-Pro_Codigo_Integral`, `AppData\Local\SIGEC-Pro` e GitHub `jjota26/SIGEC-Pro` (commit `d3747d961126df0c02126cd2523cec31695eed78`).
+## 0000000000. Apresentação Dinâmica de Pessoa de Contacto e Autor sob a Data (24/09/2026 14:25)
+- **Objetivo do Utilizador:** Nas caixas/grelhas de "Contactos Realizados" (interações de contactos, clientes e projetos), exibir sob a data a identificação da Pessoa de Contacto relacionada (ou o autor do registo se não houver pessoa de contacto associada), com layout vertical refinado e ícone de utilizador (`fa-solid fa-user`).
+- **Implementações & Blindagens Efetuadas:**
+  1. **Resolução Universal Inteligente (`getInteractionContactPersonName` em `app.js`):**
+     - Prioridade 1: Contacto associado via `contactoId` / `contactId` resolvido em tempo real em `db.contactos` (nome e apelido sanitizados);
+     - Prioridade 2: Nome explícito guardado em `item.contactoNome`, `item.contactName` ou `item.interlocutor`;
+     - Prioridade 3: Contexto do contacto aberto em modal (`currentContactIdForModal`);
+     - Prioridade 4: Menção de contactos do cliente no texto da descrição;
+     - Prioridade 5: Se não houver pessoa de contacto individual associada, exibe o Autor do registo (`userName`, `userNome`, `autor`, lookup em `db.usuarios` via `userId` ou comercial atribuído com fallback para "José Centúrio");
+     - Alias mantido: `window.getInteractionAuthorName = getInteractionContactPersonName`.
+  2. **Persistência Determinística em Cascata:**
+     - `addQuickContactInteraction`, `saveContactPersonInteraction`, e override `saveContact` (em `app.js` e `index.html`) gravam `contactoNome` na adição rápida de notas, ao salvar contacto com texto pendente e na sincronização em cascata de interações.
+  3. **Disposição Vertical e Tipografia Refinada (`styles.css`):**
+     - `.interaction-card-date` com disposição vertical (`flex-direction: column; align-items: flex-start; gap: 0.25rem; min-width: 160px;`).
+     - `.interaction-date-text` para destaque da data e hora com ícone de calendário.
+     - `.interaction-author-name` em cor ardósia (`#475569`), tipografia 500, truncagem suave de nomes extensos e ícone cinzento elegante (`#64748b`).
+  4. **PWA e Cache Invalidation:**
+     - `index.html` atualizado com timestamp `v=202609241420` para `styles.css`, `app.js`, `i18n.js` e `duplicatesManager.js`.
+     - `sw.js` atualizado para a cache `sigec-pro-v5.2`.
+  5. **Compilação e Assinatura Digital de Binários:**
+     - Executáveis `SIGEC-Pro.exe` e `Instalar-SIGEC-Pro.exe` (1.7.27.0) recompilados com `csc.exe` e manifesto oficial atribuído a **José Centúrio**.
+  6. **Testes Automatizados Reais no Microsoft Edge Headless:**
+     - Suíte com testes de unidade e renderização DOM concluída com 100% de sucesso (0 falhas) em Edge headless, incluindo validação do `index.html` real.
+  7. **Dual Parity:**
+     - Ficheiros propagados para `g:\SIGEC-Pro_Codigo_Integral`, `%LOCALAPPDATA%\SIGEC-Pro` e GitHub `jjota26/SIGEC-Pro` (commit `71ae583fcae96c3090dea428f68a226a50030a27`).
 
 ## 00000000. Erradicação Integral de Caracteres Raros e Blindagem UTF-8 em Runtime (24/09/2026 13:30)
 - **Problema Reportado pelo Utilizador:** Surgimento de caracteres estranhos e artefactos com diamantes/interrogações (ex: "Banco Caboverdiano de Negcios - BCN", "Avenida Amlcar Cabral, n. 44", "500001462º", "direcao2º", etc.).

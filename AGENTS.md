@@ -52,16 +52,22 @@
 ---
 
 ## 📜 3. ESTADO ATUAL E HISTÓRICO DE DESENVOLVIMENTO
-- **Última Atualização:** 24/09/2026 14:05 (Versão V1.7.27 - Apresentação do Autor sob a Data nas Caixas de Contactos Realizados)
-- **Apresentação do Autor sob a Data nas Caixas de Contactos Realizados (24/09/2026 14:05):**
-  - **Objetivo:** Nas caixas/grelhas de "Contactos Realizados" (interações de contactos, clientes e projetos), exibir o nome do autor do registo por baixo da data em cada cartão, com estilo profissional e ícone de utilizador (`fa-solid fa-user`).
-  - **Implementação e Melhorias:**
-    1. **Layout e Estilização (`styles.css`):** Reestruturada a classe `.interaction-card-date` para disposição vertical (`flex-direction: column; align-items: flex-start; gap: 0.25rem; min-width: 160px;`). Adicionadas as classes `.interaction-date-text` (data com destaque) e `.interaction-author-name` (nome do operador em cinzento ardósia `#475569`, peso 500, truncagem elegante e ícone `#64748b`).
-    2. **Resolução Retroativa Inteligente de Autor (`getInteractionAuthorName` em `app.js`):** Garante a exibição do nome correto para interações legadas procurando recursivamente em `userName`, `userNome`, `autor`, `userId`, comercial associado ao contacto/cliente ou autor de registo com fallback seguro.
-    3. **Registo Automático do Utilizador Ativo:** Atualizadas todas as rotinas de persistência (`addQuickContactInteraction`, `addQuickInteraction`, `saveInteraction`, `addQuickProjectInteraction`, `saveProjectInteraction`, `saveContactPersonInteraction`, e override `saveContact` em `index.html`) para gravarem de forma determinística `userId` e `userName` do operador com sessão iniciada.
-    4. **Cache Buster e PWA:** `index.html` atualizado com timestamp `202609241400` para CSS e JS; `sw.js` atualizado para a cache `sigec-pro-v5.1`.
-    5. **Testes Automatizados Reais no Edge Headless:** Simulação com injeção de DOM validou 100% de sucesso na renderização dos cartões com data no topo e autor com ícone sob a data.
-    6. **Binários e Sincronização:** `SIGEC-Pro.exe` e `Instalar-SIGEC-Pro.exe` recompilados e assinados; ficheiros propagados para `g:\SIGEC-Pro_Codigo_Integral`, `%LOCALAPPDATA%\SIGEC-Pro` e GitHub `jjota26/SIGEC-Pro` (commit `d3747d961126df0c02126cd2523cec31695eed78`).
+- **Última Atualização:** 24/09/2026 14:25 (Versão V1.7.27 - Apresentação Dinâmica de Pessoa de Contacto e Autor sob a Data nas Caixas de Contactos Realizados)
+- **Apresentação de Pessoa de Contacto e Autor sob a Data nas Caixas de Contactos Realizados (24/09/2026 14:25):**
+  - **Objetivo:** Nas caixas/grelhas de "Contactos Realizados" (interações de contactos, clientes e projetos), exibir sob a data a identificação da Pessoa de Contacto relacionada (ou o autor do registo se não houver pessoa de contacto individual associada), com layout vertical refinado e ícone de utilizador (`fa-solid fa-user`).
+  - **Implementação e Blindagens Concluídas:**
+    1. **Resolução Universal Inteligente (`getInteractionContactPersonName` em `app.js`):**
+       - Prioridade 1: Contacto associado via `contactoId` / `contactId` resolvido em tempo real em `db.contactos` (nome e apelido sanitizados);
+       - Prioridade 2: Nome explícito gravado em `item.contactoNome`, `item.contactName` ou `item.interlocutor`;
+       - Prioridade 3: Contexto do contacto aberto em modal (`currentContactIdForModal`);
+       - Prioridade 4: Menção de contactos do cliente no texto da descrição;
+       - Prioridade 5: Se não houver pessoa de contacto individual associada, exibe o **Autor do registo** (`userName`, `userNome`, `autor`, lookup em `db.usuarios` via `userId` ou comercial atribuído com fallback para "José Centúrio");
+       - Mantido alias compatível `window.getInteractionAuthorName = getInteractionContactPersonName`.
+    2. **Persistência Determinística em Cascata:** Atualizadas rotinas de persistência (`addQuickContactInteraction`, `saveContactPersonInteraction`, e o override de `saveContact` em `index.html`) para gravarem deterministicamente `contactoNome`, preservando notas pendentes e sincronizando em cascata.
+    3. **Layout e Estilização (`styles.css`):** `.interaction-card-date` com disposição vertical (`flex-direction: column; align-items: flex-start; gap: 0.25rem; min-width: 160px;`), `.interaction-date-text` (data com destaque) e `.interaction-author-name` (nome do contacto/autor em ardósia `#475569`, peso 500, truncagem suave e ícone `#64748b`).
+    4. **Cache Buster e PWA:** `index.html` atualizado com timestamp `202609241420` para `styles.css`, `app.js`, `i18n.js` e `duplicatesManager.js`; `sw.js` atualizado para a cache `sigec-pro-v5.2`.
+    5. **Testes Automatizados Reais no Microsoft Edge Headless:** Suíte automatizada validou com 100% de sucesso todos os cenários (contactoId direto, contactoNome, autor como fallback em notas gerais, renderização nos 3 tipos de grelhas e teste de integridade DOM no `index.html` real).
+    6. **Recompilação e Sincronização Dual Parity:** `SIGEC-Pro.exe` e `Instalar-SIGEC-Pro.exe` recompilados (1.7.27.0); ficheiros propagados para `g:\SIGEC-Pro_Codigo_Integral`, `%LOCALAPPDATA%\SIGEC-Pro` e GitHub `jjota26/SIGEC-Pro` (commit `71ae583fcae96c3090dea428f68a226a50030a27`).
 - **Erradicação Integral de Caracteres Raros e Blindagem UTF-8 em Runtime (24/09/2026 13:30):**
   - **Problema Reportado pelo Utilizador:** Surgimento de caracteres estranhos e artefactos com diamantes/interrogações (ex: "Banco Caboverdiano de Negcios - BCN", "Avenida Amlcar Cabral, n. 44", "500001462º", "direcao2º", etc.).
   - **Causa Raiz Identificada:** 
