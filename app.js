@@ -5754,6 +5754,10 @@ function loadDatabase() {
     // Eliminação permanente e irreversível de quaisquer projetos fictícios antigos
     purgeGeneratedMockData();
 
+    if (typeof sanitizeAllDatabaseEntities === 'function') {
+      sanitizeAllDatabaseEntities();
+    }
+
     saveDatabase();
   } catch (err) {
     console.error('Erro ao carregar base de dados:', err);
@@ -6726,6 +6730,9 @@ function mergeCloudDatabaseSafely(cloudData) {
 
   // Se foram aplicadas alterações remotas, persistir no armazenamento local e re-renderizar a interface
   if (hasRemoteChangesApplied) {
+    if (typeof sanitizeAllDatabaseEntities === 'function') {
+      sanitizeAllDatabaseEntities();
+    }
     if (typeof saveDatabaseLocalOnly === 'function') {
       saveDatabaseLocalOnly();
     }
@@ -9590,16 +9597,16 @@ function loadClientIntoForm(clientId, skipDirtyCheck = false, skipTabSwitch = fa
   } else {
     currentEstatalSeparadores = [];
     activeEstatalSeparadorIndex = 0;
-    document.getElementById('clientNome').value = client.nome || '';
-    document.getElementById('clientContribuinte').value = client.contribuinte || '';
-    document.getElementById('clientDirecao1').value = client.direcao1 || '';
-    document.getElementById('clientDirecao2').value = client.direcao2 || '';
+    document.getElementById('clientNome').value = (typeof sanitizeUtf8String === 'function' ? sanitizeUtf8String(client.nome) : client.nome) || '';
+    document.getElementById('clientContribuinte').value = (typeof sanitizeUtf8String === 'function' ? sanitizeUtf8String(client.contribuinte) : client.contribuinte) || '';
+    document.getElementById('clientDirecao1').value = (typeof sanitizeUtf8String === 'function' ? sanitizeUtf8String(client.direcao1) : client.direcao1) || '';
+    document.getElementById('clientDirecao2').value = (typeof sanitizeUtf8String === 'function' ? sanitizeUtf8String(client.direcao2) : client.direcao2) || '';
     document.getElementById('clientNumero').value = client.numero || '';
     document.getElementById('clientAndar').value = client.andar || '';
     document.getElementById('clientCodigoPostal').value = client.codigoPostal || '';
     const locEl = document.getElementById('clientLocalidade');
     if (locEl) {
-      locEl.value = client.localidade || '';
+      locEl.value = (typeof sanitizeUtf8String === 'function' ? sanitizeUtf8String(client.localidade) : client.localidade) || '';
       autoExpandInput(locEl);
     }
     const paisEl = document.getElementById('clientPais');
@@ -20221,6 +20228,11 @@ function sanitizeUtf8String(str) {
     .replace(/JosÃ©/g, 'José')
     .replace(/CentÃºrio/g, 'Centúrio')
     .replace(/FundaÃ§Ã£o/g, 'Fundação')
+    .replace(/TransferÃªncia/g, 'Transferência')
+    .replace(/orÃ§amentos/g, 'orçamentos')
+    .replace(/interaÃ§Ãµes/g, 'interações')
+    .replace(/2Âº/g, '2º')
+    .replace(/7Âº/g, '7º')
     .replace(/Ã¡/g, 'á')
     .replace(/Ã /g, 'à')
     .replace(/Ã£/g, 'ã')
@@ -20232,9 +20244,74 @@ function sanitizeUtf8String(str) {
     .replace(/Ãµ/g, 'õ')
     .replace(/Ã´/g, 'ô')
     .replace(/Ãº/g, 'ú')
-    .replace(/Ã§/g, 'ç');
+    .replace(/Ã§/g, 'ç')
+    // Higienização de \uFFFD (replacement char) e artefatos de interrogação
+    .replace(/Neg[\uFFFD?]cios/g, 'Negócios')
+    .replace(/Am[\uFFFD?]lcar/g, 'Amílcar')
+    .replace(/Funda[\uFFFD?]{1,2}o/g, 'Fundação')
+    .replace(/Jer[\uFFFD?]nimo/g, 'Jerónimo')
+    .replace(/Ant[\uFFFD?]nio/g, 'António')
+    .replace(/Jos[\uFFFD?] Cent[\uFFFD?]rio/g, 'José Centúrio')
+    .replace(/Jos[\uFFFD?]\s/g, 'José ')
+    .replace(/Cent[\uFFFD?]rio/g, 'Centúrio')
+    .replace(/Am[\uFFFD?]rica/g, 'América')
+    .replace(/Bras[\uFFFD?]lia/g, 'Brasília')
+    .replace(/Comunica[\uFFFD?]{1,2}o/g, 'Comunicação')
+    .replace(/Comunicaci[\uFFFD?]n/g, 'Comunicación')
+    .replace(/Gon[\uFFFD?]alo/g, 'Gonçalo')
+    .replace(/Ven[\uFFFD?]ncio/g, 'Venâncio')
+    .replace(/energ[\uFFFD?]a/g, 'energía')
+    .replace(/petr[\uFFFD?]leo/g, 'petróleo')
+    .replace(/transici[\uFFFD?]n/g, 'transición')
+    .replace(/descarbonizaci[\uFFFD?]n/g, 'descarbonización')
+    .replace(/Educaci[\uFFFD?]n/g, 'Educación')
+    .replace(/Protecci[\uFFFD?]n/g, 'Protección')
+    .replace(/situaci[\uFFFD?]{1,2}n/g, 'situación')
+    .replace(/televisi[\uFFFD?]n/g, 'televisión')
+    .replace(/telefon[\uFFFD?]a/g, 'telefonía')
+    .replace(/m[\uFFFD?]vil/g, 'móvil')
+    .replace(/tecnolog[\uFFFD?]a/g, 'tecnología')
+    .replace(/Gest[\uFFFD?]o/g, 'Gestão')
+    .replace(/Patroc[\uFFFD?]nios/g, 'Patrocínios')
+    .replace(/Ativa[\uFFFD?]{1,2}o/g, 'Ativação')
+    .replace(/transmisi[\uFFFD?]n/g, 'transmisión')
+    .replace(/Lu[\uFFFD?]s/g, 'Luís')
+    .replace(/construcci[\uFFFD?]n/g, 'construcción')
+    .replace(/ingenier[\uFFFD?]a/g, 'ingeniería')
+    .replace(/gesti[\uFFFD?]n/g, 'gestión')
+    .replace(/Am[\uFFFD?]lia/g, 'Amélia')
+    .replace(/educaci[\uFFFD?]n/g, 'educación')
+    .replace(/In[\uFFFD?]s/g, 'Inês')
+    .replace(/decis[\uFFFD?]o/g, 'decisão')
+    .replace(/administra[\uFFFD?]{1,2}o/g, 'administração')
+    .replace(/apresenta[\uFFFD?]{1,2}o/g, 'apresentação')
+    .replace(/Edi[\uFFFD?]{1,2}o/g, 'Edição')
+    .replace(/altera[\uFFFD?]{1,4}es/g, 'alterações')
+    .replace(/500001462\u00BA/g, '500001462')
+    .replace(/2\u00BA134567\u00BA89/g, '213456789')
+    .replace(/n\.[\uFFFD?º]\s*44/g, 'n.º 44');
 }
 window.sanitizeUtf8String = sanitizeUtf8String;
+
+function sanitizeAllDatabaseEntities() {
+  if (typeof db !== 'object' || !db) return;
+  const stringKeys = ['nome', 'apelido', 'empresa', 'cargo', 'direcao1', 'direcao2', 'localidade', 'tipoCliente', 'comercial', 'comercialAtribuidoNome', 'notas', 'descricao', 'contribuinte', 'telefone'];
+
+  ['clientes', 'contactos', 'usuarios', 'interacoes', 'projetos'].forEach(coll => {
+    if (Array.isArray(db[coll])) {
+      db[coll].forEach(item => {
+        if (item && typeof item === 'object') {
+          stringKeys.forEach(k => {
+            if (item[k] && typeof item[k] === 'string') {
+              item[k] = sanitizeUtf8String(item[k]);
+            }
+          });
+        }
+      });
+    }
+  });
+}
+window.sanitizeAllDatabaseEntities = sanitizeAllDatabaseEntities;
 
 function ensureUsersInitialized() {
   loadDeletedRegistry();
