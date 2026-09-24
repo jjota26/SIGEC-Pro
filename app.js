@@ -11902,7 +11902,7 @@ function toggleContactPersonInteractionsSort() {
 window.toggleContactPersonInteractionsSort = toggleContactPersonInteractionsSort;
 
 function getInteractionContactPersonName(item) {
-  if (!item) return 'Contacto Geral';
+  if (!item) return '';
 
   const activeDb = (typeof db !== 'undefined' && db && typeof db === 'object') ? db : ((typeof window !== 'undefined' && window.db && typeof window.db === 'object') ? window.db : {});
 
@@ -11947,62 +11947,9 @@ function getInteractionContactPersonName(item) {
     }
   }
 
-  // 4. Se tiver clienteId, verificar se algum contacto desse cliente é mencionado no texto da interação
-  const cliId = item.clienteId || (typeof currentClientId !== 'undefined' ? currentClientId : null);
-  if (cliId && Array.isArray(activeDb.contactos)) {
-    const clientContacts = activeDb.contactos.filter(c => c && String(c.clienteId).trim() === String(cliId).trim());
-    if (clientContacts.length > 0) {
-      if (item.descricao && typeof item.descricao === 'string') {
-        const descLower = item.descricao.toLowerCase();
-        for (const con of clientContacts) {
-          const n = (con.nome || '').trim().toLowerCase();
-          const a = (con.apelido || '').trim().toLowerCase();
-          if (n && n.length >= 3 && descLower.includes(n)) {
-            const fullName = [con.nome, con.apelido].filter(Boolean).join(' ');
-            return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(fullName) : fullName;
-          }
-          if (a && a.length >= 3 && descLower.includes(a)) {
-            const fullName = [con.nome, con.apelido].filter(Boolean).join(' ');
-            return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(fullName) : fullName;
-          }
-        }
-      }
-      if (clientContacts.length === 1) {
-        const single = clientContacts[0];
-        const fullName = [single.nome, single.apelido].filter(Boolean).join(' ');
-        if (fullName) {
-          return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(fullName) : fullName;
-        }
-      }
-    }
-  }
-
-  // 5. Se não houver pessoa de contacto individual associada, exibir o Autor do registo / operador
-  const authorName = (item.userName || item.userNome || item.autor || item.createdByName || item.operador || '').trim();
-  if (authorName) {
-    return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(authorName) : authorName;
-  }
-
-  const uId = item.userId || item.createdById;
-  if (uId && Array.isArray(activeDb.usuarios)) {
-    const usr = activeDb.usuarios.find(u => u && String(u.id).trim() === String(uId).trim());
-    if (usr && usr.nome) {
-      return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(usr.nome.trim()) : usr.nome.trim();
-    }
-  }
-
-  // 6. Comercial atribuído ao contacto ou cliente
-  if (cliId && Array.isArray(activeDb.clientes)) {
-    const cli = activeDb.clientes.find(c => c && String(c.id).trim() === String(cliId).trim());
-    if (cli && cli.comercialAtribuidoNome && cli.comercialAtribuidoNome.trim()) {
-      return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(cli.comercialAtribuidoNome.trim()) : cli.comercialAtribuidoNome.trim();
-    }
-    if (cli && cli.nome) {
-      return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(cli.nome) : cli.nome;
-    }
-  }
-
-  return 'José Centúrio';
+  // O nome do Usuário/operador NÃO deve aparecer nos registos.
+  // Sempre que o registo seja feito na página do cliente ou sem contacto associado, não aparece nada sob a data.
+  return '';
 }
 window.getInteractionContactPersonName = getInteractionContactPersonName;
 window.getInteractionAuthorName = getInteractionContactPersonName;
@@ -12030,6 +11977,9 @@ function renderContactPersonInteractionsGrid(interactions) {
   sorted.forEach(item => {
     const formattedDate = item.data ? new Date(item.data).toLocaleString('pt-PT', { dateStyle: 'short', timeStyle: 'short' }) : '-';
     const contactName = getInteractionContactPersonName(item);
+    const authorHtml = contactName 
+      ? `<span class="interaction-author-name" title="${escapeHtml(contactName)}"><i class="fa-solid fa-user"></i> ${escapeHtml(contactName)}</span>` 
+      : '';
 
     const card = document.createElement('div');
     card.className = 'interaction-card';
@@ -12045,7 +11995,7 @@ function renderContactPersonInteractionsGrid(interactions) {
       <div class="interaction-card-row">
         <div class="interaction-card-date">
           <span class="interaction-date-text"><i class="fa-regular fa-calendar-days"></i> ${formattedDate}</span>
-          <span class="interaction-author-name" title="${escapeHtml(contactName)}"><i class="fa-solid fa-user"></i> ${escapeHtml(contactName)}</span>
+          ${authorHtml}
         </div>
         <div class="interaction-card-content">${escapeHtml(item.descricao || '')}</div>
       </div>
@@ -12198,7 +12148,12 @@ function renderClientInteractionsGrid(interactions) {
 
   sorted.forEach(item => {
     const formattedDate = item.data ? new Date(item.data).toLocaleString('pt-PT', { dateStyle: 'short', timeStyle: 'short' }) : '-';
-    const contactName = getInteractionContactPersonName(item);
+    // Sempre que o registo seja feito na página do cliente, não deve aparecer nada escrito por baixo da data
+    const hasContact = !!(item.contactoId || item.contactId || item.contacto_id);
+    const contactName = hasContact ? getInteractionContactPersonName(item) : '';
+    const authorHtml = contactName 
+      ? `<span class="interaction-author-name" title="${escapeHtml(contactName)}"><i class="fa-solid fa-user"></i> ${escapeHtml(contactName)}</span>`
+      : '';
 
     const card = document.createElement('div');
     card.className = 'interaction-card';
@@ -12214,7 +12169,7 @@ function renderClientInteractionsGrid(interactions) {
       <div class="interaction-card-row">
         <div class="interaction-card-date">
           <span class="interaction-date-text"><i class="fa-regular fa-calendar-days"></i> ${formattedDate}</span>
-          <span class="interaction-author-name" title="${escapeHtml(contactName)}"><i class="fa-solid fa-user"></i> ${escapeHtml(contactName)}</span>
+          ${authorHtml}
         </div>
         <div class="interaction-card-content">${item.descricao}</div>
       </div>
@@ -12913,7 +12868,11 @@ function renderProjectInteractionsGrid(interactions) {
 
   sorted.forEach(item => {
     const formattedDate = item.data ? new Date(item.data).toLocaleString('pt-PT', { dateStyle: 'short', timeStyle: 'short' }) : '-';
-    const contactName = getInteractionContactPersonName(item);
+    const hasContact = !!(item.contactoId || item.contactId || item.contacto_id);
+    const contactName = hasContact ? getInteractionContactPersonName(item) : '';
+    const authorHtml = contactName 
+      ? `<span class="interaction-author-name" title="${escapeHtml(contactName)}"><i class="fa-solid fa-user"></i> ${escapeHtml(contactName)}</span>`
+      : '';
 
     const card = document.createElement('div');
     card.className = 'interaction-card';
@@ -12930,7 +12889,7 @@ function renderProjectInteractionsGrid(interactions) {
       <div class="interaction-card-row">
         <div class="interaction-card-date">
           <span class="interaction-date-text"><i class="fa-regular fa-calendar-days"></i> ${formattedDate}</span>
-          <span class="interaction-author-name" title="${escapeHtml(contactName)}"><i class="fa-solid fa-user"></i> ${escapeHtml(contactName)}</span>
+          ${authorHtml}
         </div>
         <div class="interaction-card-content">${item.descricao}</div>
       </div>
