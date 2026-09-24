@@ -6067,7 +6067,7 @@ function _saveDatabaseInternal(triggerCloudSync = true) {
 
     if (typeof saveDeletedRegistry === 'function') saveDeletedRegistry();
 
-    // Gravação assíncrona imediata no ficheiro local data/db.json caso o servidor desktop esteja ativo
+    // Gravação assíncrona imediata no ficheiro local data/db.json e servidor OnRender
     try {
       if (typeof fetch === 'function') {
         const fullDbPayload = JSON.stringify({
@@ -6079,11 +6079,28 @@ function _saveDatabaseInternal(triggerCloudSync = true) {
           orcamentos: db.orcamentos || [],
           usuarios: db.usuarios || []
         }, null, 2);
+
+        // 1. Servidor desktop local
         fetch('http://127.0.0.1:59124/api/save-db-json', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: fullDbPayload
         }).catch(() => {});
+
+        // 2. Servidor Oficial OnRender (relativo e absoluto)
+        fetch('/api/save-db-json', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: fullDbPayload
+        }).catch(() => {});
+
+        if (typeof window !== 'undefined' && window.location && window.location.hostname !== 'sigec-pro.onrender.com') {
+          fetch('https://sigec-pro.onrender.com/api/save-db-json', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: fullDbPayload
+          }).catch(() => {});
+        }
       }
     } catch(eDisk) {}
 
@@ -6497,8 +6514,21 @@ function mergeCloudDatabaseSafely(cloudData) {
         if (!deletedRegistry[type]) deletedRegistry[type] = [];
         cloudList.forEach(delId => {
           if (delId) {
-            const strId = String(delId).trim();
+            // Se for objeto, extrair id ou ignorar
+            const rawId = (typeof delId === 'object' && delId !== null) ? (delId.id || delId.email || '') : String(delId);
+            const strId = String(rawId).trim();
             const lower = strId.toLowerCase();
+            if (!strId) return;
+
+            // REGRA ABSOLUTA: utilizadores legítimos existentes NUNCA podem ser marcados como eliminados
+            if (type === 'usuarios') {
+              const inCloudUsers = Array.isArray(cloudData.usuarios) && cloudData.usuarios.some(u => u && (u.id === strId || (u.email && u.email.toLowerCase() === lower)));
+              const inLocalUsers = Array.isArray(db.usuarios) && db.usuarios.some(u => u && (u.id === strId || (u.email && u.email.toLowerCase() === lower)));
+              if (inCloudUsers || inLocalUsers || strId === 'usr-admin-001' || lower === 'jmcenturio@alegria-activity.com' || strId === 'usr-1789862031944' || lower === 'jjota26@gmail.com' || strId === 'usr-1789972905110' || lower === 'victoria@alegria-activity.com') {
+                return;
+              }
+            }
+
             if (!deletedRegistry[type].some(x => String(x).trim().toLowerCase() === lower)) {
               deletedRegistry[type].push(strId);
               anyDeletedMerged = true;
@@ -6527,6 +6557,13 @@ function mergeCloudDatabaseSafely(cloudData) {
     localArr = localArr.filter(item => {
       if (!item) return false;
       const id = item[idProp] ? String(item[idProp]).trim() : null;
+      if (localArrayName === 'usuarios') {
+        if (item.id === 'usr-admin-001' || item.role === 'admin') return true;
+        // Preservar sempre qualquer utilizador que venha na lista da nuvem
+        if (cloudArr.some(c => c && (c.id === item.id || (c.email && item.email && c.email.toLowerCase().trim() === item.email.toLowerCase().trim())))) {
+          return true;
+        }
+      }
       if (id && typeof isDeletedId === 'function' && isDeletedId(localArrayName, id)) {
         return false;
       }
@@ -6550,25 +6587,63 @@ function mergeCloudDatabaseSafely(cloudData) {
       const id = String(cloudItem[idProp]).trim();
 
       // Se foi apagado (localmente ou na nuvem), ignorar
-      if (typeof isDeletedId === 'function' && isDeletedId(localArrayName, id)) return;
+      if (localArrayName !== 'usuarios' && typeof isDeletedId === 'function' && isDeletedId(localArrayName, id)) return;
       if (localArrayName === 'contactos' && (id.startsWith('con-1789667264257') || id.startsWith('con-1789667264258'))) return;
 
       if (!localMap.has(id)) {
         // Novo item vindo da nuvem
         localArr.push(cloudItem);
         hasRemoteChangesApplied = true;
+        if (localArrayName === 'usuarios' && typeof removeDeletedId === 'function') {
+          removeDeletedId('usuarios', id);
+          if (cloudItem.email) removeDeletedId('usuarios', cloudItem.email);
+        }
       } else {
         const { item: localItem, index } = localMap.get(id);
         const localTs = new Date(localItem.updatedAt || localItem.createdAt || 0).getTime();
         const cloudTs = new Date(cloudItem.updatedAt || cloudItem.createdAt || 0).getTime();
 
-        // Regra especial e prioritária para Utilizadores: Se a nuvem tem a conta Ativa, prevalece sempre!
+        // Regra especial e prioritária para Utilizadores: prevalência e efeito imediato para o respetivo utilizador
         if (localArrayName === 'usuarios') {
-          if (cloudItem.active === true && localItem.active === false) {
-            localArr[index] = { ...localItem, ...cloudItem, active: true };
+          const userFieldsChanged = (cloudItem.active !== localItem.active) ||
+                                    (cloudItem.role !== localItem.role) ||
+                                    (cloudItem.cargo !== localItem.cargo) ||
+                                    (cloudItem.idioma !== localItem.idioma) ||
+                                    (cloudItem.nome !== localItem.nome) ||
+                                    (cloudItem.pin !== localItem.pin) ||
+                                    (cloudItem.chefia !== localItem.chefia);
+
+          if (cloudTs >= localTs || userFieldsChanged) {
+            localArr[index] = { ...localItem, ...cloudItem };
             hasRemoteChangesApplied = true;
+
+            // EFEITO IMEDIATO PARA O UTILIZADOR COM SESSÃO ATIVA NESTE COMPUTADOR
+            const currentActiveUserId = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('sigec_pro_active_user_id') : null;
+            if (currentActiveUserId && currentActiveUserId === cloudItem.id) {
+              // 1. Se a conta foi desativada pelo Administrador, terminar sessão imediatamente
+              if (cloudItem.active === false && cloudItem.role !== 'admin') {
+                alert('⚠️ A sua conta de utilizador foi desativada pelo Administrador do Sistema.\nA sua sessão foi terminada.');
+                sessionStorage.removeItem('sigec_pro_authenticated');
+                sessionStorage.removeItem('sigec_pro_active_user_id');
+                window.location.reload();
+                return;
+              }
+
+              // 2. Se o idioma foi alterado, aplicar de imediato
+              if (cloudItem.idioma && typeof applyUserLanguage === 'function') {
+                applyUserLanguage(cloudItem.idioma);
+              }
+
+              // 3. Atualizar emblema de utilizador, cargo e permissões
+              if (typeof updateHeaderActiveUserBadge === 'function') {
+                updateHeaderActiveUserBadge();
+              }
+              if (typeof applyUserPermissions === 'function') {
+                applyUserPermissions();
+              }
+            }
             return;
-          } else if (localItem.active === true && cloudItem.active === false) {
+          } else if (localTs > cloudTs) {
             hasLocalNewerChanges = true;
             return;
           }
@@ -6670,6 +6745,9 @@ function mergeCloudDatabaseSafely(cloudData) {
       if (typeof renderProjectPageMainGrid === 'function') renderProjectPageMainGrid();
       if (typeof renderHomeDashboard === 'function') renderHomeDashboard();
       if (typeof renderDatabaseOverview === 'function') renderDatabaseOverview();
+      if (typeof renderUserManagementGrid === 'function') renderUserManagementGrid();
+      if (typeof renderUserSelectOptions === 'function') renderUserSelectOptions();
+      if (typeof updateHeaderActiveUserBadge === 'function') updateHeaderActiveUserBadge();
     } catch(uiSyncErr) {}
   }
 
@@ -6702,8 +6780,11 @@ async function loadDatabaseFromHuggingFace(silent = false, force = false) {
   try {
     let rawText = null;
 
-    // Prioridade de leitura: Space Estático público (CORS livre) -> Raw Space -> Raw Dataset
+    // Prioridade de leitura: Servidor OnRender / Local -> Space Estático público (CORS livre) -> Raw Space -> Raw Dataset
     const dbEndpoints = [
+      `/data/db.json?_t=${Date.now()}_${Math.random()}`,
+      `https://sigec-pro.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
+      `http://127.0.0.1:59124/data/db.json?_t=${Date.now()}_${Math.random()}`,
       `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`,
       `https://huggingface.co/spaces/${space}/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
       `https://huggingface.co/spaces/${space}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`,
@@ -20165,8 +20246,19 @@ window.sanitizeUtf8String = sanitizeUtf8String;
 function ensureUsersInitialized() {
   loadDeletedRegistry();
 
+  // Purga defensiva: utilizadores legítimos NUNCA devem estar em deletedRegistry.usuarios
+  if (deletedRegistry && Array.isArray(deletedRegistry.usuarios)) {
+    deletedRegistry.usuarios = deletedRegistry.usuarios.filter(del => {
+      if (!del) return false;
+      const str = (typeof del === 'object' && del !== null ? (del.id || del.email || '') : String(del)).toLowerCase().trim();
+      return str !== 'usr-admin-001' && str !== 'jmcenturio@alegria-activity.com' &&
+             str !== 'usr-1789862031944' && str !== 'jjota26@gmail.com' &&
+             str !== 'usr-1789972905110' && str !== 'victoria@alegria-activity.com';
+    });
+  }
+
   if (!Array.isArray(db.usuarios) || db.usuarios.length === 0) {
-    if (typeof INITIAL_EXCEL_DATABASE !== 'undefined' && Array.isArray(INITIAL_EXCEL_DATABASE.usuarios)) {
+    if (typeof INITIAL_EXCEL_DATABASE !== 'undefined' && Array.isArray(INITIAL_EXCEL_DATABASE.usuarios) && INITIAL_EXCEL_DATABASE.usuarios.length > 0) {
       db.usuarios = JSON.parse(JSON.stringify(INITIAL_EXCEL_DATABASE.usuarios));
     } else {
       db.usuarios = [];
@@ -20179,7 +20271,7 @@ function ensureUsersInitialized() {
       const parsed = JSON.parse(rawStoredUsers);
       if (Array.isArray(parsed) && parsed.length > 0) {
         parsed.forEach(storedU => {
-          if (storedU && storedU.id && !isDeletedId('usuarios', storedU.id)) {
+          if (storedU && storedU.id) {
             const idx = db.usuarios.findIndex(u => u && (u.id === storedU.id || (u.email && storedU.email && u.email.toLowerCase().trim() === storedU.email.toLowerCase().trim())));
             if (idx >= 0) {
               db.usuarios[idx] = { ...db.usuarios[idx], ...storedU };
@@ -20193,11 +20285,6 @@ function ensureUsersInitialized() {
   }
 
   if (Array.isArray(db.usuarios)) {
-    db.usuarios = db.usuarios.filter(u => {
-      if (u.role === 'admin' || u.id === 'usr-admin-001') return true;
-      return u && u.id && !isDeletedId('usuarios', u.id);
-    });
-
     let needsSave = false;
 
     // Garantir integridade de Administradores e normalização de idiomas de todos os utilizadores
@@ -20207,7 +20294,7 @@ function ensureUsersInitialized() {
       const uEmail = (u.email || '').toLowerCase().trim();
       const uName = (u.nome || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
 
-      // Normalizar idioma para todos os utilizadores
+      // Normalizar idioma para todos os utilizadores (preservando o que o Administrador definiu)
       if (u.idioma) {
         const normLang = typeof normalizeLanguageName === 'function' ? normalizeLanguageName(u.idioma) : u.idioma;
         if (normLang !== u.idioma) {
@@ -20223,29 +20310,6 @@ function ensureUsersInitialized() {
         u.role = 'admin';
         u.chefia = true;
         u.active = true;
-      }
-
-      // Garantir que José Maria tem SEMPRE idioma Español e está ativo
-      if (u.id === 'usr-1789862031944' || uEmail === 'jjota26@gmail.com' || uName === 'jose maria' || uName === 'josemaria') {
-        u.nome = 'José Maria';
-        if (u.idioma !== 'Español') {
-          u.idioma = 'Español';
-          needsSave = true;
-        }
-        u.active = true;
-      }
-
-      // Garantir que Victoria Schwab Vilte tem SEMPRE idioma Español e está ativa
-      if (u.id === 'usr-1789972905110' || uEmail === 'victoria@alegria-activity.com' || (uName.includes('victoria') && uName.includes('schwab'))) {
-        u.nome = 'Victoria Schwab Vilte';
-        if (u.idioma !== 'Español') {
-          u.idioma = 'Español';
-          needsSave = true;
-        }
-        if (u.active !== true) {
-          u.active = true;
-          needsSave = true;
-        }
       }
     });
 
@@ -20418,10 +20482,15 @@ function logUserActivity(acao, detalhes, extra = {}) {
 window.logUserActivity = logUserActivity;
 
 function renderUserSelectOptions() {
-  const select = document.getElementById('loginUserSelect') || document.getElementById('filterUserSelect');
-  if (!select) return;
   const users = (typeof db !== 'undefined' && Array.isArray(db.usuarios)) ? db.usuarios.filter(u => u && u.active !== false) : [];
-  select.innerHTML = users.map(u => `<option value="${u.id}">${u.nome}</option>`).join('');
+  const optionsHtml = users.map(u => `<option value="${u.id}">${(typeof escapeHtml === 'function') ? escapeHtml(u.nome) : u.nome}</option>`).join('');
+  ['loginUserSelect', 'filterUserSelect', 'consultasUserSelect'].forEach(selId => {
+    const el = document.getElementById(selId);
+    if (el) el.innerHTML = optionsHtml;
+  });
+  if (typeof populateConsultasUserSelect === 'function') {
+    populateConsultasUserSelect();
+  }
 }
 window.renderUserSelectOptions = renderUserSelectOptions;
 
@@ -20473,6 +20542,9 @@ async function verifyLoginPin() {
       }
       if (!matchedUser) {
         const endpointsToCheck = [
+          `/data/db.json?_t=${Date.now()}_${Math.random()}`,
+          `https://sigec-pro.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
+          `http://127.0.0.1:59124/data/db.json?_t=${Date.now()}_${Math.random()}`,
           `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`,
           `https://huggingface.co/spaces/${DEFAULT_SYSTEM_HF_SPACE}/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
           `https://huggingface.co/spaces/${DEFAULT_SYSTEM_HF_SPACE}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`
@@ -20517,8 +20589,45 @@ async function verifyLoginPin() {
 
   // Validação estrita: a palavra-passe / PIN tem de coincidir exatamente com o PIN do utilizador
   const masterAdminPin = typeof getAdminPin === 'function' ? getAdminPin() : PERMANENT_ADMIN_MASTER_PIN;
-  const isPinValid = (enteredPin === matchedUser.pin) || 
+  let isPinValid = (enteredPin === matchedUser.pin) || 
     (matchedUser.role === 'admin' && (enteredPin === masterAdminPin || enteredPin === PERMANENT_ADMIN_MASTER_PIN));
+
+  // Se o PIN falhou localmente, consultar imediatamente o servidor central para verificar se o Administrador atualizou a palavra-passe
+  if (!isPinValid) {
+    try {
+      const endpointsToCheckFresh = [
+        `/data/db.json?_t=${Date.now()}_${Math.random()}`,
+        `https://sigec-pro.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
+        `http://127.0.0.1:59124/data/db.json?_t=${Date.now()}_${Math.random()}`,
+        `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`
+      ];
+      for (const ep of endpointsToCheckFresh) {
+        try {
+          const fetchRes = await fetch(ep, { cache: 'no-store' }).catch(() => null);
+          if (fetchRes && fetchRes.ok) {
+            const freshData = await fetchRes.json().catch(() => null);
+            if (freshData && Array.isArray(freshData.usuarios)) {
+              const cloudMatched = freshData.usuarios.find(u => u && u.email && u.email.trim().toLowerCase() === enteredEmail);
+              if (cloudMatched) {
+                const localIdx = db.usuarios.findIndex(u => u && u.email && u.email.trim().toLowerCase() === enteredEmail);
+                if (localIdx >= 0) {
+                  db.usuarios[localIdx] = { ...db.usuarios[localIdx], ...cloudMatched };
+                  matchedUser = db.usuarios[localIdx];
+                } else {
+                  db.usuarios.push(cloudMatched);
+                  matchedUser = cloudMatched;
+                }
+                saveDatabase();
+                isPinValid = (enteredPin === matchedUser.pin) || 
+                  (matchedUser.role === 'admin' && (enteredPin === masterAdminPin || enteredPin === PERMANENT_ADMIN_MASTER_PIN));
+                if (isPinValid) break;
+              }
+            }
+          }
+        } catch (_) {}
+      }
+    } catch (_) {}
+  }
 
   if (!isPinValid) {
     if (errorMsg) {
@@ -20541,6 +20650,9 @@ async function verifyLoginPin() {
       }
       // Consultar diretamente os endpoints em tempo real com cache buster
       const endpointsToVerify = [
+        `/data/db.json?_t=${Date.now()}_${Math.random()}`,
+        `https://sigec-pro.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
+        `http://127.0.0.1:59124/data/db.json?_t=${Date.now()}_${Math.random()}`,
         `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`,
         `https://huggingface.co/spaces/josecenturio/SIGEC-Pro/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
         `https://huggingface.co/spaces/josecenturio/SIGEC-Pro/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`
@@ -21497,10 +21609,50 @@ async function handleSaveUserProfile(event) {
     safeSetStorage('sigec_pro_security_pin', pin);
   }
 
+  // Garantir que o utilizador nunca fica em deletedRegistry
+  if (typeof removeDeletedId === 'function') {
+    removeDeletedId('usuarios', userId);
+    if (email) removeDeletedId('usuarios', email);
+  }
+
+  safeSetStorage('sigec_pro_usuarios', JSON.stringify(db.usuarios));
   saveDatabase();
   renderUserManagementGrid();
   renderUserSelectOptions();
+  if (typeof populateConsultasUserSelect === 'function') populateConsultasUserSelect();
+  if (typeof populateClientComercialOptions === 'function') populateClientComercialOptions();
 
+  // ENVIO IMEDIATO E SÍNCRONO PARA O SERVIDOR CENTRAL (OnRender, Local Bridge e Nuvem)
+  try {
+    const fullDbPayload = JSON.stringify({
+      clientes: db.clientes || [],
+      contactos: db.contactos || [],
+      projetos: db.projetos || [],
+      interacoes: db.interacoes || [],
+      interacoesProjetos: db.interacoesProjetos || [],
+      orcamentos: db.orcamentos || [],
+      usuarios: db.usuarios || [],
+      _deletedRegistry: (typeof deletedRegistry !== 'undefined' ? deletedRegistry : {})
+    }, null, 2);
+
+    const postEndpoints = [
+      '/api/save-db-json',
+      'https://sigec-pro.onrender.com/api/save-db-json',
+      'http://127.0.0.1:59124/api/save-db-json'
+    ];
+
+    await Promise.allSettled(postEndpoints.map(url =>
+      fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: fullDbPayload
+      }).catch(() => null)
+    ));
+  } catch(eSavePost) {
+    console.warn('[SIGEC-Pro] Envio de perfil para o servidor:', eSavePost);
+  }
+
+  // Sincronização em tempo real com Hugging Face Space & Dataset
   if (typeof syncDatabaseToHuggingFace === 'function') {
     try {
       await syncDatabaseToHuggingFace(true, true);
@@ -21514,14 +21666,30 @@ async function handleSaveUserProfile(event) {
     sendUserAccountActivatedEmail(db.usuarios[userIndex]).catch(() => {});
   }
 
-  if (activeUserId === userId && typeof applyUserLanguage === 'function') {
-    applyUserLanguage(idioma);
+  // ATIVAÇÃO IMEDIATA DAS ALTERAÇÕES PARA O RESPETIVO UTILIZADOR SE ESTIVER COM SESSÃO NESTE AMBIENTE
+  if (activeUserId === userId) {
+    if (newActiveState === false && role !== 'admin') {
+      alert('⚠️ A sua conta de utilizador foi desativada pelo Administrador do Sistema.\nA sua sessão foi terminada.');
+      sessionStorage.removeItem('sigec_pro_authenticated');
+      sessionStorage.removeItem('sigec_pro_active_user_id');
+      window.location.reload();
+      return;
+    }
+    if (typeof applyUserLanguage === 'function') {
+      applyUserLanguage(idioma);
+    }
+    if (typeof updateHeaderActiveUserBadge === 'function') {
+      updateHeaderActiveUserBadge();
+    }
+    if (typeof applyUserPermissions === 'function') {
+      applyUserPermissions();
+    }
   }
 
-  logUserActivity('Ficha do Utilizador', `Dados de registo e PIN do utilizador ${nome} atualizados pelo Administrador.`);
-  const updatedToast = typeof t === 'function' ? t('toast_profile_updated') : `Ficha do utilizador ${nome} atualizada com sucesso!`;
+  logUserActivity('Ficha do Utilizador', `Dados de registo e características do utilizador ${nome} atualizados e ativados pelo Administrador.`);
+  const updatedToast = typeof t === 'function' ? t('toast_profile_updated') : `Ficha do utilizador ${nome} atualizada e ativa no sistema!`;
   showToast(updatedToast);
-  alert(`✅ Ficha Atualizada!\n\nOs dados de registo e o PIN do utilizador "${nome}" foram guardados no programa com sucesso.`);
+  alert(`✅ Ficha Atualizada e Ativa!\n\nOs dados de registo e características do utilizador "${nome}" foram guardados e enviados de imediato para o servidor com sucesso.`);
 }
 
 function sendPasswordResetEmailToUser() {
