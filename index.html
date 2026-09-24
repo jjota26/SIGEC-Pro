@@ -5701,7 +5701,7 @@
       <div class="modal-body" style="padding: 1.25rem; overflow-y: auto; flex: 1; background: #ffffff;">
         <!-- SEPARADOR 1: DADOS DE REGISTO & DEFINIÃ‡ÃƒO DE PIN -->
         <div id="userProfileTabInfo" style="display: block;">
-          <form onsubmit="handleSaveUserProfile(event)" style="display: flex; flex-direction: column; gap: 1rem;">
+          <form id="formUserProfile" onsubmit="handleSaveUserProfile(event); return false;" style="display: flex; flex-direction: column; gap: 1rem;">
             <input type="hidden" id="profileUserId">
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
@@ -5825,7 +5825,7 @@
               <button type="button" class="btn btn-secondary" onclick="closeUserProfileModal()">
                 <span data-i18n="btn_cancel">Cancelar</span>
               </button>
-              <button type="submit" class="btn btn-primary" style="background: #0284c7; padding: 0.65rem 1.25rem;">
+              <button type="button" id="btnSaveUserProfile" onclick="handleSaveUserProfile(event)" class="btn btn-primary" style="background: #0284c7; padding: 0.65rem 1.25rem; font-weight: 600; cursor: pointer;">
                 <i class="fa-solid fa-floppy-disk"></i> <span data-i18n="btn_save_user_profile">Guardar Ficha do Utilizador</span>
               </button>
             </div>
