@@ -3,8 +3,22 @@
 - Versao: V1.7.27
 - Autor: Jose Centurio
 - Nuvem: josecenturio/SIGEC-Pro
-- Data: 24/09/2026 14:25
-- Estado: Apresentação de Pessoa de Contacto e Autor sob a data nas caixas de contactos realizados (contactos, clientes e projetos). Resolução inteligente universal, persistência em cascata, testes automatizados no Edge Headless 100% aprovados, binários recompilados e repositórios sincronizados.
+- Data: 24/09/2026 14:32
+- Estado: Ocultação estrita do nome de usuário nos registos e limpeza completa sob a data na página do cliente. Apenas a Pessoa de Contacto genuína é exibida quando existente. Testes automatizados no Edge Headless 100% aprovados, binários recompilados e sincronização concluída.
+
+## 00000000000. Ocultação Estrita de Nome de Usuário e Limpeza Sob Data na Página do Cliente (24/09/2026 14:32)
+- **Objetivo do Utilizador:** O nome do Usuário não deve aparecer nos registos. Sempre que o registo seja feito na página do cliente, não deve aparecer nada escrito por baixo da data.
+- **Implementações & Blindagens Efetuadas:**
+  1. **Remoção de Fallbacks de Usuário (`getInteractionContactPersonName` em `app.js`):**
+     - O nome do Usuário/operador (`userName`, `userNome`, `userId`, `db.usuarios`, etc.) foi totalmente excluído da função.
+     - Se o registo não estiver associado a uma Pessoa de Contacto genuína de `db.contactos`, a função retorna string vazia (`""`).
+  2. **Limpeza Sob a Data na Página do Cliente (`renderClientInteractionsGrid`):**
+     - Qualquer registo efetuado na página do cliente (sem contacto individual associado) não renderiza `.interaction-author-name`, mantendo a coluna da data exclusivamente com a data e hora formatada.
+  3. **Páginas de Contactos e Projetos:**
+     - Contactos exibem o nome da Pessoa de Contacto relacionada; projetos sem contacto mantêm a data limpa; nunca é exibido o nome do operador.
+  4. **PWA e Cache Invalidation:** `index.html` atualizado com timestamp `v=202609241430`, `sw.js` com `sigec-pro-v5.3`.
+  5. **Testes Automatizados Reais no Edge Headless:** Suíte automatizada validou com 100% de sucesso todos os cenários.
+  6. **Binários e Sincronização:** `SIGEC-Pro.exe` e `Instalar-SIGEC-Pro.exe` (1.7.27.0) recompilados; ficheiros sincronizados localmente e no GitHub.
 
 ## 0000000000. Apresentação Dinâmica de Pessoa de Contacto e Autor sob a Data (24/09/2026 14:25)
 - **Objetivo do Utilizador:** Nas caixas/grelhas de "Contactos Realizados" (interações de contactos, clientes e projetos), exibir sob a data a identificação da Pessoa de Contacto relacionada (ou o autor do registo se não houver pessoa de contacto associada), com layout vertical refinado e ícone de utilizador (`fa-solid fa-user`).

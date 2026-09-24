@@ -52,8 +52,18 @@
 ---
 
 ## 📜 3. ESTADO ATUAL E HISTÓRICO DE DESENVOLVIMENTO
-- **Última Atualização:** 24/09/2026 14:25 (Versão V1.7.27 - Apresentação Dinâmica de Pessoa de Contacto e Autor sob a Data nas Caixas de Contactos Realizados)
-- **Apresentação de Pessoa de Contacto e Autor sob a Data nas Caixas de Contactos Realizados (24/09/2026 14:25):**
+- **Última Atualização:** 24/09/2026 14:32 (Versão V1.7.27 - Ocultação Estrita do Nome do Usuário e Limpeza Sob a Data na Página do Cliente)
+- **Ocultação Estrita do Nome do Usuário e Limpeza Sob a Data na Página do Cliente (24/09/2026 14:32):**
+  - **Objetivo:** Garantir que o nome do Usuário/operador (ex: José Centúrio, José Maria, Victoria Schwab Vilte) NUNCA apareça nos registos, e que em qualquer registo efetuado na página do cliente não apareça nada escrito por baixo da data (apresentando apenas a data limpa).
+  - **Implementações e Blindagens Concluídas:**
+    1. **Eliminação de Exibição de Nome de Usuário (`getInteractionContactPersonName` em `app.js`):** Removidos todos os fallbacks que exibiam autor, `userName`, `userNome`, utilizador do sistema (`db.usuarios`), comercial ou cliente. Se não existir uma Pessoa de Contacto genuína associada ao registo, a função retorna string vazia (`""`).
+    2. **Limpeza Sob a Data na Página do Cliente (`renderClientInteractionsGrid`):** Para qualquer registo feito na página do cliente (sem pessoa de contacto associada), o elemento `.interaction-author-name` não é renderizado, ficando a coluna da data exclusivamente com a data e hora (`.interaction-date-text`), sem linhas em branco ou textos espúrios.
+    3. **Página de Projetos (`renderProjectInteractionsGrid`):** Se o registo de projeto não possuir pessoa de contacto associada, também não exibe nada por baixo da data.
+    4. **Página de Contactos (`renderContactPersonInteractionsGrid`):** Exibe a Pessoa de Contacto relacionada quando existente; nunca exibe o operador/utilizador.
+    5. **Cache Buster e PWA:** `index.html` atualizado com timestamp `202609241430` para `styles.css`, `app.js`, `i18n.js` e `duplicatesManager.js`; `sw.js` atualizado para `sigec-pro-v5.3`.
+    6. **Testes Automatizados Reais no Microsoft Edge Headless:** Suíte automatizada validou com 100% de sucesso todos os cenários (nenhum nome de usuário exibido em qualquer grelha, registos de cliente sem nada sob a data, e contactos exibindo apenas a pessoa de contacto).
+    7. **Binários Desktop e Espelhos Locais:** `SIGEC-Pro.exe` e `Instalar-SIGEC-Pro.exe` recompilados na versão 1.7.27.0 e propagados para `g:\SIGEC-Pro_Codigo_Integral`, `%LOCALAPPDATA%\SIGEC-Pro` e GitHub `jjota26/SIGEC-Pro`.
+- **Apresentação Dinâmica de Pessoa de Contacto sob a Data (24/09/2026 14:25):**
   - **Objetivo:** Nas caixas/grelhas de "Contactos Realizados" (interações de contactos, clientes e projetos), exibir sob a data a identificação da Pessoa de Contacto relacionada (ou o autor do registo se não houver pessoa de contacto individual associada), com layout vertical refinado e ícone de utilizador (`fa-solid fa-user`).
   - **Implementação e Blindagens Concluídas:**
     1. **Resolução Universal Inteligente (`getInteractionContactPersonName` em `app.js`):**
