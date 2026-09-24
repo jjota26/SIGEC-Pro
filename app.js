@@ -20544,6 +20544,7 @@ async function verifyLoginPin() {
         const endpointsToCheck = [
           `/data/db.json?_t=${Date.now()}_${Math.random()}`,
           `https://sigec-pro.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
+          `https://sigec-pro-app.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
           `http://127.0.0.1:59124/data/db.json?_t=${Date.now()}_${Math.random()}`,
           `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`,
           `https://huggingface.co/spaces/${DEFAULT_SYSTEM_HF_SPACE}/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
@@ -20598,6 +20599,7 @@ async function verifyLoginPin() {
       const endpointsToCheckFresh = [
         `/data/db.json?_t=${Date.now()}_${Math.random()}`,
         `https://sigec-pro.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
+        `https://sigec-pro-app.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
         `http://127.0.0.1:59124/data/db.json?_t=${Date.now()}_${Math.random()}`,
         `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`
       ];
@@ -21638,6 +21640,7 @@ async function handleSaveUserProfile(event) {
     const postEndpoints = [
       '/api/save-db-json',
       'https://sigec-pro.onrender.com/api/save-db-json',
+      'https://sigec-pro-app.onrender.com/api/save-db-json',
       'http://127.0.0.1:59124/api/save-db-json'
     ];
 
