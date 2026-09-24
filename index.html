@@ -4871,11 +4871,11 @@
   <div id="toastContainer" class="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999999 !important;"></div>
 
   <!-- Internationalization & Translations Engine -->
-  <script src="i18n.js?v=202609242100"></script>
+  <script src="i18n.js?v=202609242110"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=202609242100"></script>
+  <script src="app.js?v=202609242110"></script>
   <!-- Duplicates Management Engine -->
-  <script src="duplicatesManager.js?v=202609242100"></script>
+  <script src="duplicatesManager.js?v=202609242110"></script>
 
   <!-- Inicialização segura de definições de email no arranque -->
   <script>
@@ -6343,6 +6343,34 @@
           </div>
           <div id="aiCandidatesCardsList" style="display: flex; flex-direction: column; gap: 0.4rem; max-height: 155px; overflow-y: auto; padding-right: 4px;">
             <!-- Renderizado dinamicamente via JS -->
+          </div>
+        </div>
+
+        <!-- Bloco de Assistência Google e Colagem Rápida Inteligente -->
+        <div id="aiSmartPasteSection" style="margin-bottom: 1rem; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 0.85rem 1rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: #1e293b; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-paste" style="color: #4f46e5;"></i> Colar Morada Copiada do Google:
+            </span>
+            <div style="display: flex; gap: 6px;">
+              <a href="javascript:void(0)" id="aiBtnGoogleDirectLink" target="_blank" rel="noopener" style="font-size: 0.74rem; font-weight: 600; color: #2563eb; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 4px 9px; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+                <i class="fa-brands fa-google"></i> Pesquisar no Google &rarr;
+              </a>
+              <a href="javascript:void(0)" id="aiBtnGoogleMapsDirectLink" target="_blank" rel="noopener" style="font-size: 0.74rem; font-weight: 600; color: #15803d; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 4px 9px; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+                <i class="fa-solid fa-location-dot" style="color: #ea4335;"></i> Google Maps &rarr;
+              </a>
+            </div>
+          </div>
+          <div style="display: flex; gap: 6px;">
+            <input type="text" id="aiSmartPasteInput" placeholder="Cole aqui a morada que copiou do Google (ex: Av. da Liberdade 120, 1250-142 Lisboa)..." 
+                   style="flex: 1; padding: 7px 10px; font-size: 0.82rem; border: 1.5px solid #cbd5e1; border-radius: 8px; outline: none;"
+                   oninput="handleSmartPasteInput(this.value)">
+            <button type="button" onclick="applySmartPasteFromInput()" style="background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%); color: #ffffff; border: none; border-radius: 8px; padding: 7px 14px; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; gap: 5px;">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Preencher
+            </button>
+          </div>
+          <div id="aiSmartPasteSuccessMsg" style="display: none; font-size: 0.76rem; color: #16a34a; font-weight: 600; margin-top: 6px;">
+            <i class="fa-solid fa-circle-check"></i> Morada decomposta com sucesso! Campos de Rua, Número, Código Postal e Cidade preenchidos abaixo.
           </div>
         </div>
 

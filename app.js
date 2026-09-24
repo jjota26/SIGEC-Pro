@@ -31260,93 +31260,152 @@ async function resolveEntityWebsiteFromDDG(query) {
   }
 }
 
-function renderAiCandidateCards() {
-  const container = document.getElementById('aiCandidatesCardsList');
-  if (!container) return;
-  container.innerHTML = '';
+function parseSmartAddress(text) {
+  if (!text || typeof text !== "string") return null;
+  const raw = text.trim();
+  if (!raw) return null;
 
-  // ── Estado "Não encontrado" ─────────────────────────────────────────────
-  if (!availableAiCandidates || availableAiCandidates.length === 0) {
-    const rawKey = localStorage.getItem('sigec_gemini_api_key') || '';
-    const hasKey = !!rawKey.trim();
-    const maskedKey = hasKey ? (rawKey.trim().slice(0, 7) + '...' + rawKey.trim().slice(-4)) : '';
-    const entityName = currentPendingContext?.entityName || 'a entidade';
-    const entityQ = encodeURIComponent(entityName + ' sede morada contacto telefone');
+  let direcao1 = "";
+  let direcao2 = "";
+  let numero = "";
+  let andar = "";
+  let codigoPostal = "";
+  let localidade = "";
+  let pais = "";
 
-    let geminiDiagnosticHtml = '';
-    if (!hasKey) {
-      geminiDiagnosticHtml = `
-        <div style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 8px; padding: 12px; margin-top: 12px; text-align: left;">
-          <div style="font-weight: 700; color: #92400e; font-size: 0.85rem; display: flex; align-items: center; gap: 6px;">
-            <i class="fa-solid fa-key" style="color: #d97706;"></i>
-            <span>Ativar Pesquisa Inteligente Google (Gemini)</span>
-          </div>
-          <p style="font-size: 0.78rem; color: #78350f; margin: 5px 0 8px;">
-            Ainda não tem a chave da Google API inserida neste navegador. Ao inserir uma chave gratuita do Google AI Studio, o SIGEC-Pro pesquisa qualquer empresa na Google em tempo real.
-          </p>
-          <div style="display: flex; gap: 6px;">
-            <input type="password" id="aiModalApiKeyInput" placeholder="Cole aqui a sua chave (ex: AIzaSy...)" 
-                   style="flex: 1; padding: 6px 10px; font-size: 0.8rem; border: 1.5px solid #d97706; border-radius: 6px; outline: none;">
-            <button type="button" onclick="saveGeminiKeyFromModal()" 
-                    style="background: #d97706; color: #ffffff; border: none; border-radius: 6px; padding: 6px 12px; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap;">
-              <i class="fa-solid fa-bolt"></i> Guardar e Pesquisar
-            </button>
-          </div>
-          <div style="margin-top: 6px; font-size: 0.72rem;">
-            <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="color: #2563eb; text-decoration: underline;">
-              Obter chave de API gratuita no Google AI Studio &rarr;
-            </a>
-          </div>
-        </div>`;
-    } else {
-      geminiDiagnosticHtml = `
-        <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 10px 12px; margin-top: 12px; text-align: left;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-            <span style="font-size: 0.8rem; font-weight: 700; color: #1e293b;">
-              <i class="fa-solid fa-key" style="color: #6366f1;"></i> Chave Gemini Configurada:
-            </span>
-            <code style="background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-size: 0.76rem; color: #334155;">${maskedKey}</code>
-          </div>
-          ${lastGeminiError ? `
-            <div style="background: #fee2e2; border-left: 3px solid #ef4444; padding: 6px 8px; font-size: 0.75rem; color: #991b1b; margin-bottom: 8px; word-break: break-word;">
-              <strong>Diagnóstico Google:</strong> ${lastGeminiError}
-            </div>` : ''}
-          <div style="display: flex; gap: 6px;">
-            <input type="password" id="aiModalApiKeyInput" placeholder="Substituir por outra chave..." 
-                   style="flex: 1; padding: 5px 8px; font-size: 0.78rem; border: 1px solid #cbd5e1; border-radius: 6px; outline: none;">
-            <button type="button" onclick="saveGeminiKeyFromModal()" 
-                    style="background: #6366f1; color: #ffffff; border: none; border-radius: 6px; padding: 5px 10px; font-size: 0.78rem; font-weight: 600; cursor: pointer;">
-              Atualizar
-            </button>
-            <button type="button" onclick="removeGeminiKeyFromModal()" 
-                    style="background: #ef4444; color: #ffffff; border: none; border-radius: 6px; padding: 5px 8px; font-size: 0.78rem; cursor: pointer;" title="Remover chave">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-        </div>`;
+  const cpPtMatch = raw.match(/\b(\d{4}-\d{3})\b/);
+  const cpEsMatch = raw.match(/\b(\d{5})\b/);
+  if (cpPtMatch) {
+    codigoPostal = cpPtMatch[1];
+    pais = "Portugal";
+  } else if (cpEsMatch) {
+    codigoPostal = cpEsMatch[1];
+    pais = "Espanha";
+  }
+
+  const paises = [
+    { name: "Portugal", regex: /\b(?:Portugal)\b/i },
+    { name: "Espanha", regex: /\b(?:Espanha|España|Spain)\b/i },
+    { name: "França", regex: /\b(?:França|France)\b/i },
+    { name: "Reino Unido", regex: /\b(?:Reino Unido|United Kingdom)\b/i }
+  ];
+  for (const p of paises) {
+    if (p.regex.test(raw)) {
+      pais = p.name;
+      break;
     }
+  }
 
-    container.innerHTML = `
-      <div style="padding: 12px 10px; text-align: center; color: #475569;">
-        <div style="font-size: 1.8rem; margin-bottom: 4px; color: #64748b;">
-          <i class="fa-solid fa-magnifying-glass-location"></i>
-        </div>
-        <p style="margin: 0 0 4px; font-weight: 700; font-size: 0.95rem; color: #1e293b;">
-          Não foi possível identificar morada nas fontes públicas diretas
-        </p>
-        <p style="margin: 0 0 10px; font-size: 0.8rem; color: #64748b;">
-          Pode consultar diretamente o Google ou ativar o motor de IA Gemini abaixo:
-        </p>
-        <a href="https://www.google.com/search?q=${entityQ}" target="_blank" rel="noopener"
-           style="display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; background: #2563eb; color: #ffffff; border-radius: 6px; text-decoration: none; font-size: 0.82rem; font-weight: 600;">
-          <i class="fa-brands fa-google"></i> Ver "${entityName}" no Google
-        </a>
-        ${geminiDiagnosticHtml}
-      </div>`;
+  const andarMatch = raw.match(/\b(\d+[ºªo]\s*(?:andar|Dto|Esq|Frt|frente|piso)?|R\/C|rés-do-chão|Planta\s*\d+|Piso\s*\d+)\b/i);
+  if (andarMatch) {
+    andar = andarMatch[1].trim();
+  }
+
+  if (codigoPostal) {
+    const afterCpRegex = new RegExp(codigoPostal + "\\s*,?\\s*([^,\\n]+)", "i");
+    const afterCpMatch = raw.match(afterCpRegex);
+    if (afterCpMatch && afterCpMatch[1]) {
+      let loc = afterCpMatch[1].replace(/\b(?:Portugal|Espanha|España|Spain|França|France)\b/i, "").trim();
+      if (loc) localidade = loc.replace(/^[,\s\-]+/, "").trim();
+    }
+  }
+
+  let streetPart = raw;
+  if (codigoPostal) {
+    streetPart = raw.split(codigoPostal)[0];
+  }
+  if (andar) {
+    streetPart = streetPart.replace(andar, "");
+  }
+
+  const numMatch = streetPart.match(/\b(?:n\.?[ºo]?\s*|nº\s*)?(\d+[A-Za-z]?)\b/i);
+  if (numMatch) {
+    numero = numMatch[1];
+  }
+
+  const parts = streetPart.split(",").map(s => s.trim()).filter(Boolean);
+  if (parts.length > 0) {
+    direcao1 = parts[0];
+    if (parts.length > 1) {
+      const p2 = parts[1];
+      if (p2 !== numero && !p2.includes(numero) && p2 !== andar) {
+        direcao2 = p2;
+      }
+    }
+  }
+
+  if (numero) {
+    const numEndRegex = new RegExp("\\s*,?\\s*(?:n\\.?[ºo]?\\s*)?" + numero + "\\s*$", "i");
+    direcao1 = direcao1.replace(numEndRegex, "").trim();
+  }
+
+  if (!localidade) {
+    const allParts = raw.split(",").map(s => s.trim()).filter(Boolean);
+    if (allParts.length >= 2) {
+      localidade = allParts[allParts.length - 1].replace(/\b(?:Portugal|Espanha|España|Spain)\b/i, "").trim();
+    }
+  }
+
+  return {
+    direcao1: direcao1 || raw,
+    direcao2: direcao2 || "",
+    numero: numero || "",
+    andar: andar || "",
+    codigoPostal: codigoPostal || "",
+    localidade: localidade || "",
+    pais: pais || "Portugal",
+    provider: "Colagem Inteligente (Google Search)"
+  };
+}
+window.parseSmartAddress = parseSmartAddress;
+
+function applySmartPasteFromInput() {
+  const inp = document.getElementById("aiSmartPasteInput");
+  if (!inp || !inp.value.trim()) {
+    if (typeof showToast === "function") showToast("Por favor, cole primeiro a morada copiada do Google.", "warning");
     return;
   }
-  // ────────────────────────────────────────────────────────────────────────
+  handleSmartPasteInput(inp.value.trim(), true);
+}
+window.applySmartPasteFromInput = applySmartPasteFromInput;
 
+function handleSmartPasteInput(text, showNotification = false) {
+  if (!text || text.trim().length < 4) return;
+  const parsed = parseSmartAddress(text);
+  if (!parsed) return;
+
+  const currentEntity = (currentPendingContext && currentPendingContext.entityName) ? currentPendingContext.entityName : "Entidade";
+  pendingAiAddressData = Object.assign({}, pendingAiAddressData || {}, parsed, {
+    nome: currentEntity,
+    website: pendingAiAddressData?.website || "",
+    email: pendingAiAddressData?.email || "",
+    telefone: pendingAiAddressData?.telefone || "",
+    fonteUrl: "https://www.google.com/search?q=" + encodeURIComponent(currentEntity + " morada")
+  });
+
+  updateAiModalPreview(pendingAiAddressData);
+
+  const successEl = document.getElementById("aiSmartPasteSuccessMsg");
+  if (successEl) {
+    successEl.style.display = "block";
+  }
+  if (showNotification && typeof showToast === "function") {
+    showToast("Morada preenchida com sucesso! Pode rever e confirmar.", "success");
+  }
+}
+window.handleSmartPasteInput = handleSmartPasteInput;
+
+function renderAiCandidateCards() {
+  const container = document.getElementById("aiCandidatesCardsList");
+  if (!container) return;
+  container.innerHTML = "";
+
+  if (!availableAiCandidates || availableAiCandidates.length === 0) {
+    const multiContainer = document.getElementById("aiMultipleCandidatesContainer");
+    if (multiContainer) multiContainer.style.display = "none";
+    container.innerHTML = "";
+    return;
+  }
   availableAiCandidates.forEach((cand, idx) => {
     const isSelected = (idx === selectedAiCandidateIndex);
     const card = document.createElement('div');
@@ -31945,22 +32004,51 @@ Devolve APENAS este JSON exato (sem texto extra, sem markdown):
       }
     }
 
+        // Configurar atalhos diretos do Google e Google Maps
+    const entityQ = encodeURIComponent(entityName + " sede morada contacto telefone");
+    const gDirect = document.getElementById("aiBtnGoogleDirectLink");
+    if (gDirect) {
+      gDirect.href = "https://www.google.com/search?q=" + entityQ;
+    }
+    const gMaps = document.getElementById("aiBtnGoogleMapsDirectLink");
+    if (gMaps) {
+      const qMaps = encodeURIComponent(entityName + (existingPais ? " " + existingPais : ""));
+      gMaps.href = "https://www.google.com/maps/search/?api=1&query=" + qMaps;
+    }
+    const smartInput = document.getElementById("aiSmartPasteInput");
+    if (smartInput) smartInput.value = "";
+    const successEl = document.getElementById("aiSmartPasteSuccessMsg");
+    if (successEl) successEl.style.display = "none";
+
     if (availableAiCandidates.length === 0) {
-      // Não fechar o modal — mostrar estado "não encontrado" com link Google
-      if (loadingState) loadingState.style.display = 'none';
-      if (contentState) contentState.style.display = 'block';
-      const multiContainer = document.getElementById('aiMultipleCandidatesContainer');
-      if (multiContainer) multiContainer.style.display = 'block';
-      const countBadge = document.getElementById('aiCandidatesCountBadge');
-      if (countBadge) countBadge.textContent = '0';
-      renderAiCandidateCards(); // mostra o estado "não encontrado" com Google link
-      const targetLabel = document.getElementById('aiTargetLabel');
-      if (targetLabel) targetLabel.textContent = 'Entidade pesquisada:';
-      const targetEntity = document.getElementById('aiTargetEntityName');
+      if (loadingState) loadingState.style.display = "none";
+      if (contentState) contentState.style.display = "block";
+      const multiContainer = document.getElementById("aiMultipleCandidatesContainer");
+      if (multiContainer) multiContainer.style.display = "none";
+      
+      pendingAiAddressData = {
+        nome: entityName,
+        direcao1: "",
+        direcao2: "",
+        numero: "",
+        andar: "",
+        codigoPostal: "",
+        localidade: "",
+        pais: existingPais || "Portugal",
+        website: existingWebsite || "",
+        email: existingEmail || "",
+        telefone: existingTelefone || "",
+        fonteUrl: "https://www.google.com/search?q=" + entityQ
+      };
+      updateAiModalPreview(pendingAiAddressData);
+
+      const targetLabel = document.getElementById("aiTargetLabel");
+      if (targetLabel) targetLabel.textContent = "Entidade a atualizar:";
+      const targetEntity = document.getElementById("aiTargetEntityName");
       if (targetEntity) targetEntity.textContent = entityName;
       if (btn) {
         btn.disabled = false;
-        btn.innerHTML = '<i class="fa-solid fa-house"></i> <span data-i18n="btn_ai_update_address">Atualização de Direção</span>';
+        btn.innerHTML = "<i class=\"fa-solid fa-house\"></i> <span data-i18n=\"btn_ai_update_address\">Atualização de Direção</span>";
       }
       return;
     }
