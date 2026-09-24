@@ -7766,12 +7766,8 @@ function isItemOwnedByTargetUser(item, targetUser) {
   var targetNome = (targetUser.nome || '').toLowerCase().trim();
   var targetNorm = typeof normalizeText === 'function' ? normalizeText(targetUser.nome || '') : targetNome;
 
-  // 0. O Administrador do Sistema, Chefias e Gestores têm acesso total e irrestrito a TODOS os clientes, contactos e projetos
-  var isTargetAdmin = (targetId === 'usr-admin-001') || (targetUser.role === 'admin') || (targetUser.chefia === true) || (targetNorm.indexOf('administrador') !== -1) || (targetNorm.indexOf('centurio') !== -1);
-  if (isTargetAdmin) {
-    return true;
-  }
-
+  // Cada utilizador (incluindo Chefias e Administradores) ve apenas os seus proprios registos no seu perfil.
+  // Consultas de outros utilizadores sao feitas exclusivamente atraves do separador Consultas.
   // 1. Identificadores explícitos no próprio item (Prioridade Estrita por ID)
   var cAtribId = String(item.comercialAtribuidoId || item.userId || item.criadoPorId || item.comercialId || item.comercial_id || '').trim();
   if (cAtribId && targetId) {
