@@ -11566,9 +11566,12 @@ function saveContact(e) {
     const authorId = activeUser ? activeUser.id : (contactObj?.comercialAtribuidoId || contactObj?.userId || 'usr-admin-001');
     const authorName = activeUser ? (activeUser.nome || activeUser.email) : (contactObj?.comercialAtribuidoNome || 'José Centúrio');
 
+    const contactFullName = `${nome || ''} ${apelido || ''}`.trim();
+
     const newIntObj = {
       id: newQuickId,
       contactoId: String(id).trim(),
+      contactoNome: contactFullName,
       clienteId: selectedClienteId || null,
       separadorId: assignedSeparadorId || null,
       subTabIndex: selectedClienteId ? finalSubTabIndex : null,
@@ -11584,15 +11587,19 @@ function saveContact(e) {
     pendingQuickTextEl.style.height = 'auto';
   }
 
-  // Sincronização em cascata: garantir que todas as interações deste contacto têm clienteId, subTabIndex e separadorId atualizados
+  // Sincronização em cascata: garantir que todas as interações deste contacto têm clienteId, subTabIndex, separadorId e contactoNome atualizados
   if (Array.isArray(db.interacoes)) {
     const targetCIdStr = String(id).trim();
+    const contactFullName = `${nome || ''} ${apelido || ''}`.trim();
     db.interacoes.forEach(intr => {
       if (intr && String(intr.contactoId || '').trim() === targetCIdStr) {
         intr.clienteId = selectedClienteId || null;
         intr.subTabIndex = selectedClienteId ? finalSubTabIndex : null;
         if (assignedSeparadorId) {
           intr.separadorId = assignedSeparadorId;
+        }
+        if (contactFullName) {
+          intr.contactoNome = contactFullName;
         }
       }
     });
@@ -11894,87 +11901,111 @@ function toggleContactPersonInteractionsSort() {
 }
 window.toggleContactPersonInteractionsSort = toggleContactPersonInteractionsSort;
 
-function getInteractionAuthorName(item) {
-  if (!item) return 'José Centúrio';
+function getInteractionContactPersonName(item) {
+  if (!item) return 'Contacto Geral';
 
-  // 1. Nome explícito guardado no objeto
-  if (item.userName && typeof item.userName === 'string' && item.userName.trim()) {
-    return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(item.userName.trim()) : item.userName.trim();
-  }
-  if (item.userNome && typeof item.userNome === 'string' && item.userNome.trim()) {
-    return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(item.userNome.trim()) : item.userNome.trim();
-  }
-  if (item.autor && typeof item.autor === 'string' && item.autor.trim()) {
-    return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(item.autor.trim()) : item.autor.trim();
-  }
-  if (item.autorNome && typeof item.autorNome === 'string' && item.autorNome.trim()) {
-    return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(item.autorNome.trim()) : item.autorNome.trim();
-  }
-  if (item.comercialNome && typeof item.comercialNome === 'string' && item.comercialNome.trim()) {
-    return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(item.comercialNome.trim()) : item.comercialNome.trim();
-  }
-  if (item.comercial && typeof item.comercial === 'string' && item.comercial.trim()) {
-    return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(item.comercial.trim()) : item.comercial.trim();
-  }
-
-  // 2. Resolver por ID de utilizador (userId ou createdById)
   const activeDb = (typeof db !== 'undefined' && db && typeof db === 'object') ? db : ((typeof window !== 'undefined' && window.db && typeof window.db === 'object') ? window.db : {});
-  const uId = item.userId || item.createdById || item.usuarioId;
-  if (uId && Array.isArray(activeDb.usuarios)) {
-    const u = activeDb.usuarios.find(x => x && (x.id === uId || (x.email && x.email.toLowerCase() === String(uId).toLowerCase())));
-    if (u && u.nome) {
-      return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(u.nome) : u.nome;
-    }
-  }
 
-  // 3. Resolver pelo contacto associado
-  if (item.contactoId && Array.isArray(activeDb.contactos)) {
-    const con = activeDb.contactos.find(c => c && String(c.id).trim() === String(item.contactoId).trim());
+  // 1. Prioridade direta: Contacto associado via contactoId / contactId
+  const cId = item.contactoId || item.contactId || item.contacto_id;
+  if (cId && Array.isArray(activeDb.contactos)) {
+    const con = activeDb.contactos.find(c => c && String(c.id).trim() === String(cId).trim());
     if (con) {
-      if (con.comercialAtribuidoNome) {
-        return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(con.comercialAtribuidoNome) : con.comercialAtribuidoNome;
-      }
-      if (con.comercialAtribuidoId) {
-        const u = (activeDb.usuarios || []).find(x => x && x.id === con.comercialAtribuidoId);
-        if (u && u.nome) return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(u.nome) : u.nome;
-      }
-      if (con.userId) {
-        const u = (activeDb.usuarios || []).find(x => x && x.id === con.userId);
-        if (u && u.nome) return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(u.nome) : u.nome;
+      const nome = (con.nome || '').trim();
+      const apelido = (con.apelido || '').trim();
+      const fullName = [nome, apelido].filter(Boolean).join(' ');
+      if (fullName) {
+        return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(fullName) : fullName;
       }
     }
   }
 
-  // 4. Resolver pelo cliente associado
+  // 2. Se o próprio objeto já possui o nome do contacto guardado
+  if (item.contactoNome && typeof item.contactoNome === 'string' && item.contactoNome.trim()) {
+    return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(item.contactoNome.trim()) : item.contactoNome.trim();
+  }
+  if (item.contactName && typeof item.contactName === 'string' && item.contactName.trim()) {
+    return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(item.contactName.trim()) : item.contactName.trim();
+  }
+  if (item.interlocutor && typeof item.interlocutor === 'string' && item.interlocutor.trim()) {
+    return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(item.interlocutor.trim()) : item.interlocutor.trim();
+  }
+
+  // 3. Se estiver no modal/contexto de um contacto específico aberto
+  const curCId = (typeof currentContactIdForModal !== 'undefined' && currentContactIdForModal) 
+    ? currentContactIdForModal 
+    : (typeof document !== 'undefined' && document.getElementById('contactId')?.value);
+  if (curCId && Array.isArray(activeDb.contactos)) {
+    const con = activeDb.contactos.find(c => c && String(c.id).trim() === String(curCId).trim());
+    if (con) {
+      const nome = (con.nome || '').trim();
+      const apelido = (con.apelido || '').trim();
+      const fullName = [nome, apelido].filter(Boolean).join(' ');
+      if (fullName) {
+        return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(fullName) : fullName;
+      }
+    }
+  }
+
+  // 4. Se tiver clienteId, verificar se algum contacto desse cliente é mencionado no texto da interação
   const cliId = item.clienteId || (typeof currentClientId !== 'undefined' ? currentClientId : null);
+  if (cliId && Array.isArray(activeDb.contactos)) {
+    const clientContacts = activeDb.contactos.filter(c => c && String(c.clienteId).trim() === String(cliId).trim());
+    if (clientContacts.length > 0) {
+      if (item.descricao && typeof item.descricao === 'string') {
+        const descLower = item.descricao.toLowerCase();
+        for (const con of clientContacts) {
+          const n = (con.nome || '').trim().toLowerCase();
+          const a = (con.apelido || '').trim().toLowerCase();
+          if (n && n.length >= 3 && descLower.includes(n)) {
+            const fullName = [con.nome, con.apelido].filter(Boolean).join(' ');
+            return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(fullName) : fullName;
+          }
+          if (a && a.length >= 3 && descLower.includes(a)) {
+            const fullName = [con.nome, con.apelido].filter(Boolean).join(' ');
+            return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(fullName) : fullName;
+          }
+        }
+      }
+      if (clientContacts.length === 1) {
+        const single = clientContacts[0];
+        const fullName = [single.nome, single.apelido].filter(Boolean).join(' ');
+        if (fullName) {
+          return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(fullName) : fullName;
+        }
+      }
+    }
+  }
+
+  // 5. Se não houver pessoa de contacto individual associada, exibir o Autor do registo / operador
+  const authorName = (item.userName || item.userNome || item.autor || item.createdByName || item.operador || '').trim();
+  if (authorName) {
+    return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(authorName) : authorName;
+  }
+
+  const uId = item.userId || item.createdById;
+  if (uId && Array.isArray(activeDb.usuarios)) {
+    const usr = activeDb.usuarios.find(u => u && String(u.id).trim() === String(uId).trim());
+    if (usr && usr.nome) {
+      return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(usr.nome.trim()) : usr.nome.trim();
+    }
+  }
+
+  // 6. Comercial atribuído ao contacto ou cliente
   if (cliId && Array.isArray(activeDb.clientes)) {
     const cli = activeDb.clientes.find(c => c && String(c.id).trim() === String(cliId).trim());
-    if (cli) {
-      if (cli.comercialAtribuidoNome) {
-        return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(cli.comercialAtribuidoNome) : cli.comercialAtribuidoNome;
-      }
-      if (cli.comercialAtribuidoId) {
-        const u = (activeDb.usuarios || []).find(x => x && x.id === cli.comercialAtribuidoId);
-        if (u && u.nome) return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(u.nome) : u.nome;
-      }
-      if (cli.userId) {
-        const u = (activeDb.usuarios || []).find(x => x && x.id === cli.userId);
-        if (u && u.nome) return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(u.nome) : u.nome;
-      }
+    if (cli && cli.comercialAtribuidoNome && cli.comercialAtribuidoNome.trim()) {
+      return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(cli.comercialAtribuidoNome.trim()) : cli.comercialAtribuidoNome.trim();
     }
-  }
-
-  // 5. Utilizador com sessão iniciada atualmente
-  if (typeof getActiveLoggedInUser === 'function') {
-    const curU = getActiveLoggedInUser();
-    if (curU && curU.nome) {
-      return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(curU.nome) : curU.nome;
+    if (cli && cli.nome) {
+      return (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(cli.nome) : cli.nome;
     }
   }
 
   return 'José Centúrio';
 }
-window.getInteractionAuthorName = getInteractionAuthorName;
+window.getInteractionContactPersonName = getInteractionContactPersonName;
+window.getInteractionAuthorName = getInteractionContactPersonName;
 
 function renderContactPersonInteractionsGrid(interactions) {
   const grid = document.getElementById('contactPersonInteractionsGrid');
@@ -11998,7 +12029,7 @@ function renderContactPersonInteractionsGrid(interactions) {
 
   sorted.forEach(item => {
     const formattedDate = item.data ? new Date(item.data).toLocaleString('pt-PT', { dateStyle: 'short', timeStyle: 'short' }) : '-';
-    const authorName = getInteractionAuthorName(item);
+    const contactName = getInteractionContactPersonName(item);
 
     const card = document.createElement('div');
     card.className = 'interaction-card';
@@ -12014,7 +12045,7 @@ function renderContactPersonInteractionsGrid(interactions) {
       <div class="interaction-card-row">
         <div class="interaction-card-date">
           <span class="interaction-date-text"><i class="fa-regular fa-calendar-days"></i> ${formattedDate}</span>
-          <span class="interaction-author-name" title="${escapeHtml(authorName)}"><i class="fa-solid fa-user"></i> ${escapeHtml(authorName)}</span>
+          <span class="interaction-author-name" title="${escapeHtml(contactName)}"><i class="fa-solid fa-user"></i> ${escapeHtml(contactName)}</span>
         </div>
         <div class="interaction-card-content">${escapeHtml(item.descricao || '')}</div>
       </div>
@@ -12052,6 +12083,7 @@ function addQuickContactInteraction() {
 
   const targetCIdStr = String(targetContactId).trim();
   const contact = (db.contactos || []).find(c => c && String(c.id).trim() === targetCIdStr);
+  const contactFullName = contact ? [contact.nome, contact.apelido].filter(Boolean).join(' ') : '';
   const clienteId = contact ? contact.clienteId : currentClientId;
   const clientObj = clienteId ? (db.clientes || []).find(c => c && String(c.id).trim() === String(clienteId).trim()) : null;
   const subTabIndex = (contact && contact.subTabIndex !== undefined && contact.subTabIndex !== null) ? Number(contact.subTabIndex) : null;
@@ -12064,6 +12096,7 @@ function addQuickContactInteraction() {
   const intObj = {
     id,
     contactoId: targetCIdStr,
+    contactoNome: contactFullName,
     clienteId: clienteId || null,
     separadorId: separadorId || null,
     subTabIndex: subTabIndex,
@@ -12165,7 +12198,7 @@ function renderClientInteractionsGrid(interactions) {
 
   sorted.forEach(item => {
     const formattedDate = item.data ? new Date(item.data).toLocaleString('pt-PT', { dateStyle: 'short', timeStyle: 'short' }) : '-';
-    const authorName = getInteractionAuthorName(item);
+    const contactName = getInteractionContactPersonName(item);
 
     const card = document.createElement('div');
     card.className = 'interaction-card';
@@ -12181,7 +12214,7 @@ function renderClientInteractionsGrid(interactions) {
       <div class="interaction-card-row">
         <div class="interaction-card-date">
           <span class="interaction-date-text"><i class="fa-regular fa-calendar-days"></i> ${formattedDate}</span>
-          <span class="interaction-author-name" title="${escapeHtml(authorName)}"><i class="fa-solid fa-user"></i> ${escapeHtml(authorName)}</span>
+          <span class="interaction-author-name" title="${escapeHtml(contactName)}"><i class="fa-solid fa-user"></i> ${escapeHtml(contactName)}</span>
         </div>
         <div class="interaction-card-content">${item.descricao}</div>
       </div>
@@ -12880,7 +12913,7 @@ function renderProjectInteractionsGrid(interactions) {
 
   sorted.forEach(item => {
     const formattedDate = item.data ? new Date(item.data).toLocaleString('pt-PT', { dateStyle: 'short', timeStyle: 'short' }) : '-';
-    const authorName = getInteractionAuthorName(item);
+    const contactName = getInteractionContactPersonName(item);
 
     const card = document.createElement('div');
     card.className = 'interaction-card';
@@ -12897,7 +12930,7 @@ function renderProjectInteractionsGrid(interactions) {
       <div class="interaction-card-row">
         <div class="interaction-card-date">
           <span class="interaction-date-text"><i class="fa-regular fa-calendar-days"></i> ${formattedDate}</span>
-          <span class="interaction-author-name" title="${escapeHtml(authorName)}"><i class="fa-solid fa-user"></i> ${escapeHtml(authorName)}</span>
+          <span class="interaction-author-name" title="${escapeHtml(contactName)}"><i class="fa-solid fa-user"></i> ${escapeHtml(contactName)}</span>
         </div>
         <div class="interaction-card-content">${item.descricao}</div>
       </div>
@@ -29328,6 +29361,7 @@ function saveContactPersonInteraction(e) {
   const existingIndex = db.interacoes.findIndex(i => i && String(i.id).trim() === cleanIdStr);
   const existingItem = existingIndex >= 0 ? db.interacoes[existingIndex] : null;
   const targetContact = (db.contactos || []).find(c => c && String(c.id).trim() === targetCIdStr);
+  const contactFullName = targetContact ? [targetContact.nome, targetContact.apelido].filter(Boolean).join(' ') : '';
   const targetClientId = targetContact ? targetContact.clienteId : currentClientId;
   const clientObj = targetClientId ? (db.clientes || []).find(c => c && String(c.id).trim() === String(targetClientId).trim()) : null;
   const subTabIndex = (targetContact && targetContact.subTabIndex !== undefined && targetContact.subTabIndex !== null) ? Number(targetContact.subTabIndex) : null;
@@ -29340,6 +29374,7 @@ function saveContactPersonInteraction(e) {
   const intObj = {
     id: cleanIdStr,
     contactoId: targetCIdStr,
+    contactoNome: contactFullName,
     clienteId: targetClientId || null,
     separadorId: separadorId || null,
     subTabIndex: subTabIndex,
