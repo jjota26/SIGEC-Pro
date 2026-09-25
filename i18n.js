@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ====================================================================
  * SIGEC-Pro - MÓDULO DE INTERNACIONALIZAÇÃO E TRADUÇÃO DINÂMICA (i18n)
  * Suporte completo para: Português, Español, English, Français, Polski
@@ -6,196 +6,6 @@
  */
 
 const SIGEC_I18N = {
-  contact_placeholder_firstname: {
-    "Português": "Primeiro Nome",
-    "Español": "Primer Nombre",
-    "English": "First Name",
-    "Français": "Prénom",
-    "Polski": "Imię"
-  },
-  contact_placeholder_lastname: {
-    "Português": "Último Nome",
-    "Español": "Apellido",
-    "English": "Last Name",
-    "Français": "Nom de famille",
-    "Polski": "Nazwisko"
-  },
-  contact_placeholder_cargo: {
-    "Português": "ex: Diretor de Compras / Gerente",
-    "Español": "ej: Director de Compras / Gerente",
-    "English": "e.g.: Purchasing Director / Manager",
-    "Français": "ex. : Directeur des Achats / Gérant",
-    "Polski": "np. Dyrektor ds. Zakupów / Kierownik"
-  },
-  contact_placeholder_notes: {
-    "Português": "Escreva observações ou notas sobre este contacto...",
-    "Español": "Escriba observaciones o notas sobre este contacto...",
-    "English": "Write observations or notes about this contact...",
-    "Français": "Écrivez des observations ou des notes sur ce contact...",
-    "Polski": "Wpisz uwagi lub notatki o tym kontakcie..."
-  },
-  contact_placeholder_interaction: {
-    "Português": "Escreva livremente as notas do contacto...",
-    "Español": "Escriba libremente las notas del contacto...",
-    "English": "Write contact notes freely...",
-    "Français": "Écrivez librement les notes du contact...",
-    "Polski": "Wpisz swobodnie notatki dotyczące kontaktu..."
-  },
-  contact_placeholder_quick_interaction: {
-    "Português": "Escreva aqui livremente os detalhes do contacto efetuado...",
-    "Español": "Escriba aquí libremente los detalles del contacto realizado...",
-    "English": "Write freely here the details of the interaction made...",
-    "Français": "Écrivez ici librement les détails du contact effectué...",
-    "Polski": "Wpisz tutaj swobodnie szczegóły zrealizowanego kontaktu..."
-  },
-  project_placeholder_name: {
-    "Português": "ex: Campanha de Verão 2026",
-    "Español": "ej: Campaña de Verano 2026",
-    "English": "e.g.: Summer Campaign 2026",
-    "Français": "ex. : Campagne d'Été 2026",
-    "Polski": "np. Kampania Letnia 2026"
-  },
-  project_placeholder_vehicle: {
-    "Português": "ex: Carrinha Box",
-    "Español": "ej: Furgoneta Box",
-    "English": "e.g.: Box Van",
-    "Français": "ex. : Fourgon Caisse",
-    "Polski": "np. Furgon z Zabudową"
-  },
-  project_placeholder_interaction: {
-    "Português": "Escreva livremente as notas do projeto...",
-    "Español": "Escriba libremente las notas del proyecto...",
-    "English": "Write project notes freely...",
-    "Français": "Écrivez librement les notes du projet...",
-    "Polski": "Wpisz swobodnie notatki dotyczące projektu..."
-  },
-  project_placeholder_quick_interaction: {
-    "Português": "Escreva aqui livremente os detalhes e notas do projeto...",
-    "Español": "Escriba aquí libremente los detalles y notas del proyecto...",
-    "English": "Write freely here the details and notes of the project...",
-    "Français": "Écrivez ici librement les détails et notes du projet...",
-    "Polski": "Wpisz tutaj swobodnie szczegóły i notatki dotyczące projektu..."
-  },
-  user_placeholder_firstname: {
-    "Português": "Ex: António",
-    "Español": "Ej: Antonio",
-    "English": "Ex: Anthony",
-    "Français": "Ex. : Antoine",
-    "Polski": "Np. Antoni"
-  },
-  user_placeholder_firstname_female: {
-    "Português": "Ex: Maria",
-    "Español": "Ej: María",
-    "English": "Ex: Mary",
-    "Français": "Ex. : Marie",
-    "Polski": "Np. Maria"
-  },
-  user_placeholder_lastname: {
-    "Português": "Ex: Silva",
-    "Español": "Ej: Silva",
-    "English": "Ex: Smith",
-    "Français": "Ex. : Dupont",
-    "Polski": "Np. Kowalski"
-  },
-  user_placeholder_lastname_alt: {
-    "Português": "Ex: Santos",
-    "Español": "Ej: Santos",
-    "English": "Ex: Jones",
-    "Français": "Ex. : Martin",
-    "Polski": "Np. Nowak"
-  },
-  user_placeholder_cargo: {
-    "Português": "Ex: Diretor Técnico",
-    "Español": "Ej: Director Técnico",
-    "English": "Ex: Technical Director",
-    "Français": "Ex. : Directeur Technique",
-    "Polski": "Np. Dyrektor Techniczny"
-  },
-  user_placeholder_cargo_female: {
-    "Português": "Ex: Gestora de Projetos",
-    "Español": "Ej: Gestora de Proyectos",
-    "English": "Ex: Project Manager",
-    "Français": "Ex. : Chef de Projets",
-    "Polski": "Np. Kierownik Projektu"
-  },
-  user_placeholder_pin: {
-    "Português": "8 a 12 caracteres (Maiúscula, minúscula, nº e símbolo)",
-    "Español": "8 a 12 caracteres (Mayúscula, minúscula, nº y símbolo)",
-    "English": "8 to 12 characters (Uppercase, lowercase, number and symbol)",
-    "Français": "8 à 12 caractères (Majuscule, minuscule, chiffre et symbole)",
-    "Polski": "Od 8 do 12 znaków (Wielka litera, mała litera, cyfra i symbol)"
-  },
-  user_placeholder_confirm_pin: {
-    "Português": "Repita a Palavra-Passe",
-    "Español": "Repita la Contraseña",
-    "English": "Repeat Password",
-    "Français": "Répétez le mot de passe",
-    "Polski": "Powtórz hasło"
-  },
-  admin_auth_pin_placeholder: {
-    "Português": "Insira o PIN de Administrador",
-    "Español": "Introduzca el PIN de Administrador",
-    "English": "Enter Administrator PIN",
-    "Français": "Entrez le code PIN d'administrateur",
-    "Polski": "Wprowadź kod PIN administratora"
-  },
-  user_settings_current_password_placeholder: {
-    "Português": "Introduza a sua palavra-passe atual...",
-    "Español": "Introduzca su contraseña actual...",
-    "English": "Enter your current password...",
-    "Français": "Entrez votre mot de passe actuel...",
-    "Polski": "Wprowadź swoje obecne hasło..."
-  },
-  user_settings_new_password_placeholder: {
-    "Português": "Introduza a nova palavra-passe...",
-    "Español": "Introduzca la nueva contraseña...",
-    "English": "Enter new password...",
-    "Français": "Entrez le nouveau mot de passe...",
-    "Polski": "Wprowadź nowe hasło..."
-  },
-  user_settings_confirm_password_placeholder: {
-    "Português": "Repita a nova palavra-passe...",
-    "Español": "Repita la nueva contraseña...",
-    "English": "Repeat new password...",
-    "Français": "Répétez le nouveau mot de passe...",
-    "Polski": "Powtórz nowe hasło..."
-  },
-  search_attach_contact_placeholder: {
-    "Português": "Pesquisar contacto por nome, apelido, cargo, empresa atual, email, telefone...",
-    "Español": "Buscar contacto por nombre, apellido, cargo, empresa actual, email, teléfono...",
-    "English": "Search contact by name, last name, role, current company, email, phone...",
-    "Français": "Rechercher un contact par nom, prénom, poste, entreprise actuelle, email, téléphone...",
-    "Polski": "Szukaj kontaktu według imienia, nazwiska, stanowiska, firmy, e-maila, telefonu..."
-  },
-  search_detach_contact_placeholder: {
-    "Português": "Pesquisar contacto por nome, apelido, cargo, telefone, email...",
-    "Español": "Buscar contacto por nombre, apellido, cargo, teléfono, email...",
-    "English": "Search contact by name, last name, role, phone, email...",
-    "Français": "Rechercher un contact par nom, prénom, poste, téléphone, email...",
-    "Polski": "Szukaj kontaktu według imienia, nazwiska, stanowiska, telefonu, e-maila..."
-  },
-  search_address_label_placeholder: {
-    "Português": "Pesquisar por nome, morada, localidade...",
-    "Español": "Buscar por nombre, dirección, localidad...",
-    "English": "Search by name, address, location...",
-    "Français": "Rechercher par nom, adresse, localité...",
-    "Polski": "Szukaj według nazwy, adresu, miejscowości..."
-  },
-  search_export_placeholder: {
-    "Português": "Pesquisar por nome, NIF, cargo, localidade, projeto...",
-    "Español": "Buscar por nombre, CIF, cargo, localidad, proyecto...",
-    "English": "Search by name, Tax ID, role, location, project...",
-    "Français": "Rechercher par nom, identifiant fiscal, poste, localité, projet...",
-    "Polski": "Szukaj według nazwy, NIP, stanowiska, miejscowości, projektu..."
-  },
-  search_duplicates_placeholder: {
-    "Português": "Pesquisar nos duplicados por nome, NIF, email, empresa...",
-    "Español": "Buscar en duplicados por nombre, CIF, email, empresa...",
-    "English": "Search duplicates by name, Tax ID, email, company...",
-    "Français": "Rechercher dans les doublons par nom, identifiant fiscal, email, entreprise...",
-    "Polski": "Szukaj w duplikatach według nazwy, NIP, e-maila, firmy..."
-  },
-
   client_website_label: {
     "Português": "Página Web / Website",
     "Español": "Página Web / Sitio Web",
@@ -259,16 +69,16 @@ const SIGEC_I18N = {
     "Français": "Ex : 2410",
     "Polski": "Np.: 2410"
   },
-  dash_project_tracking_title: { "Portugu\u00EAs": "Acompanhamento de Projetos", "Espa\u00F1ol": "Seguimiento de Proyectos", "English": "Project Tracking", "Fran\u00E7ais": "Suivi des Projets", "Polski": "Śledzenie Projektów" },
-  dash_contact_tracking_title: { "Portugu\u00EAs": "Acompanhamento de Contactos", "Espa\u00F1ol": "Seguimiento de Contactos", "English": "Contact Tracking", "Fran\u00E7ais": "Suivi des Contacts", "Polski": "Śledzenie Kontaktów" },
-  dash_client_tracking_title: { "Portugu\u00EAs": "Acompanhamento de Clientes", "Espa\u00F1ol": "Seguimiento de Clientes", "English": "Client Tracking", "Fran\u00E7ais": "Suivi des Clients", "Polski": "Śledzenie Klientów" },
+  dash_project_tracking_title: { "Portugu\u00EAs": "Acompanhamento de Projetos", "Espa\u00F1ol": "Seguimiento de Proyectos", "English": "Project Tracking", "Fran\u00E7ais": "Suivi des Projets", "Polski": "Åšledzenie Projektów" },
+  dash_contact_tracking_title: { "Portugu\u00EAs": "Acompanhamento de Contactos", "Espa\u00F1ol": "Seguimiento de Contactos", "English": "Contact Tracking", "Fran\u00E7ais": "Suivi des Contacts", "Polski": "Åšledzenie Kontaktów" },
+  dash_client_tracking_title: { "Portugu\u00EAs": "Acompanhamento de Clientes", "Espa\u00F1ol": "Seguimiento de Clientes", "English": "Client Tracking", "Fran\u00E7ais": "Suivi des Clients", "Polski": "Åšledzenie Klientów" },
   contact_card_title: { "Portugu\u00EAs": "Registo / Ficha de Contacto", "Espa\u00F1ol": "Registro / Ficha de Contacto", "English": "Contact Profile / Record", "Fran\u00E7ais": "Enregistrement / Fiche Contact", "Polski": "Rejestr / Karta Kontaktu" },
-  dash_direct_contacts: { "Portugu\u00EAs": "Contactos Diretos", "Espa\u00F1ol": "Contactos Directos", "English": "Direct Contacts", "Fran\u00E7ais": "Contacts Directs", "Polski": "Kontakty Bezpośrednie" },
+  dash_direct_contacts: { "Portugu\u00EAs": "Contactos Diretos", "Espa\u00F1ol": "Contactos Directos", "English": "Direct Contacts", "Fran\u00E7ais": "Contacts Directs", "Polski": "Kontakty BezpoÅ›rednie" },
   search_contacts_placeholder: { "Portugu\u00EAs": "Pesquisar apenas Contactos por nome, empresa, cargo, email...", "Espa\u00F1ol": "Buscar solo Contactos por nombre, empresa, cargo, correo...", "English": "Search only Contacts by name, company, position, email...", "Fran\u00E7ais": "Rechercher uniquement les Contacts par nom, entreprise, poste, email...", "Polski": "Szukaj tylko Kontaktów po nazwisku, firmie, stanowisku, emailu..." },
   search_contacts_btn: { "Portugu\u00EAs": "Pesquisar Contactos", "Espa\u00F1ol": "Buscar Contactos", "English": "Search Contacts", "Fran\u00E7ais": "Rechercher Contacts", "Polski": "Szukaj Kontaktów" },
-  contact_list_title: { "Portugu\u00EAs": "Lista Completa de Contactos", "Espa\u00F1ol": "Lista Completa de Contactos", "English": "Complete Contact List", "Fran\u00E7ais": "Liste Complète des Contacts", "Polski": "Pełna Lista Kontaktów" },
+  contact_list_title: { "Portugu\u00EAs": "Lista Completa de Contactos", "Espa\u00F1ol": "Lista Completa de Contactos", "English": "Complete Contact List", "Fran\u00E7ais": "Liste ComplÃ¨te des Contacts", "Polski": "PeÅ‚na Lista Kontaktów" },
   contact_filter_sem_cliente: { "Portugu\u00EAs": "Contactos Sem Cliente", "Espa\u00F1ol": "Contactos Sin Cliente", "English": "Unassigned Contacts", "Fran\u00E7ais": "Contacts Sans Client", "Polski": "Kontakty Bez Klienta" },
-  contact_filter_estatal: { "Portugu\u00EAs": "Contactos Público / Estatal", "Espa\u00F1ol": "Contactos Público / Estatal", "English": "Public / State Contacts", "Fran\u00E7ais": "Contacts Publics / Étatiques", "Polski": "Kontakty Publiczne / Państwowe" },
+  contact_filter_estatal: { "Portugu\u00EAs": "Contactos Público / Estatal", "Espa\u00F1ol": "Contactos Público / Estatal", "English": "Public / State Contacts", "Fran\u00E7ais": "Contacts Publics / Étatiques", "Polski": "Kontakty Publiczne / PaÅ„stwowe" },
   contact_filter_fundacao: { "Portugu\u00EAs": "Contactos Fundações", "Espa\u00F1ol": "Contactos Fundaciones", "English": "Foundation Contacts", "Fran\u00E7ais": "Contacts Fondations", "Polski": "Kontakty Fundacji" },
   contact_filter_privado: { "Portugu\u00EAs": "Contactos Privados", "Espa\u00F1ol": "Contactos Privados", "English": "Private Contacts", "Fran\u00E7ais": "Contacts Privés", "Polski": "Kontakty Prywatne" },
   contact_filter_all: { "Portugu\u00EAs": "Todos os Contactos", "Espa\u00F1ol": "Todos los Contactos", "English": "All Contacts", "Fran\u00E7ais": "Tous les Contacts", "Polski": "Wszyscy Kontakty" },
@@ -277,18 +87,18 @@ const SIGEC_I18N = {
   dash_active_projects: { "Portugu\u00EAs": "Projetos Ativos", "Espa\u00F1ol": "Proyectos Activos", "English": "Active Projects", "Fran\u00E7ais": "Projets Actifs", "Polski": "Aktywne Projekty" },
   search_projects_placeholder: { "Portugu\u00EAs": "Pesquisar apenas Projetos por nome, tipo, cliente, estado...", "Espa\u00F1ol": "Buscar solo Proyectos por nombre, tipo, cliente, estado...", "English": "Search only Projects by name, type, client, status...", "Fran\u00E7ais": "Rechercher uniquement les Projets par nom, type, client, statut...", "Polski": "Szukaj tylko Projektów po nazwie, typie, kliencie, statusie..." },
   search_projects_btn: { "Portugu\u00EAs": "Pesquisar Projetos", "Espa\u00F1ol": "Buscar Proyectos", "English": "Search Projects", "Fran\u00E7ais": "Rechercher Projets", "Polski": "Szukaj Projektów" },
-  project_list_title: { "Portugu\u00EAs": "Lista Completa de Projetos", "Espa\u00F1ol": "Lista Completa de Proyectos", "English": "Complete Project List", "Fran\u00E7ais": "Liste Complète des Projets", "Polski": "Pełna Lista Projektów" },
+  project_list_title: { "Portugu\u00EAs": "Lista Completa de Projetos", "Espa\u00F1ol": "Lista Completa de Proyectos", "English": "Complete Project List", "Fran\u00E7ais": "Liste ComplÃ¨te des Projets", "Polski": "PeÅ‚na Lista Projektów" },
   btn_view_all: { "Portugu\u00EAs": "Ver Todos", "Espa\u00F1ol": "Ver Todos", "English": "View All", "Fran\u00E7ais": "Voir Tout", "Polski": "Zobacz Wszystko" },
   global_search_btn: { "Portugu\u00EAs": "Pesquisar Global", "Espa\u00F1ol": "B\u00FAsqueda Global", "English": "Global Search", "Fran\u00E7ais": "Recherche Globale", "Polski": "Szukaj Globalnie" },
-  global_search_placeholder: { "Portugu\u00EAs": "Escreva aqui o termo de pesquisa...", "Espa\u00F1ol": "Escriba aquí el término de búsqueda...", "English": "Type your search query here...", "Fran\u00E7ais": "Écrivez le terme de recherche ici...", "Polski": "Wpisz tutaj szukaną frazę..." },
+  global_search_placeholder: { "Portugu\u00EAs": "Escreva aqui o termo de pesquisa...", "Espa\u00F1ol": "Escriba aquí el término de búsqueda...", "English": "Type your search query here...", "Fran\u00E7ais": "Écrivez le terme de recherche ici...", "Polski": "Wpisz tutaj szukanÄ… frazÄ™..." },
   search_clients_opt: { "Português": "Buscar Clientes", "Español": "Buscar Clientes", "English": "Search Clients", "Français": "Rechercher Clients", "Polski": "Szukaj Klientów" },
   search_contacts_opt: { "Portugu\u00EAs": "Buscar Contactos", "Espa\u00F1ol": "Buscar Contactos", "English": "Search Contacts", "Fran\u00E7ais": "Rechercher Contacts", "Polski": "Szukaj Kontaktów" },
   search_projects_opt: { "Portugu\u00EAs": "Buscar Projetos", "Espa\u00F1ol": "Buscar Proyectos", "English": "Search Projects", "Fran\u00E7ais": "Rechercher Projets", "Polski": "Szukaj Projektów" },
   client_list_title: { "Portugu\u00EAs": "Lista de Clientes", "Espa\u00F1ol": "Lista de Clientes", "English": "Client List", "Fran\u00E7ais": "Liste des Clients", "Polski": "Lista Klientów" },
   dash_registered_clients: { "Portugu\u00EAs": "Clientes Registados", "Espa\u00F1ol": "Clientes Registrados", "English": "Registered Clients", "Fran\u00E7ais": "Clients Enregistrés", "Polski": "Zarejestrowani Klienci" },
-  search_clients_placeholder: { "Portugu\u00EAs": "Pesquisar apenas Clientes por nome, NIF, morada, localidade...", "Espa\u00F1ol": "Buscar solo Clientes por nombre, NIF, dirección, localidad...", "English": "Search only Clients by name, Tax ID, address, city...", "Fran\u00E7ais": "Rechercher uniquement les Clients par nom, NIF, adresse, ville...", "Polski": "Szukaj tylko Klientów po nazwie, NIP, adresie, miejscowości..." },
+  search_clients_placeholder: { "Portugu\u00EAs": "Pesquisar apenas Clientes por nome, NIF, morada, localidade...", "Espa\u00F1ol": "Buscar solo Clientes por nombre, NIF, dirección, localidad...", "English": "Search only Clients by name, Tax ID, address, city...", "Fran\u00E7ais": "Rechercher uniquement les Clients par nom, NIF, adresse, ville...", "Polski": "Szukaj tylko Klientów po nazwie, NIP, adresie, miejscowoÅ›ci..." },
   search_clients_btn: { "Portugu\u00EAs": "Pesquisar Clientes", "Espa\u00F1ol": "Buscar Clientes", "English": "Search Clients", "Fran\u00E7ais": "Rechercher Clients", "Polski": "Szukaj Klientów" },
-  filter_estatal: { "Portugu\u00EAs": "Entidades Públicas / Estatal", "Espa\u00F1ol": "Entidades Públicas / Estatal", "English": "Public / State Entities", "Fran\u00E7ais": "Entités Publiques / Étatiques", "Polski": "Podmioty Publiczne / Państwowe" },
+  filter_estatal: { "Portugu\u00EAs": "Entidades Públicas / Estatal", "Espa\u00F1ol": "Entidades Públicas / Estatal", "English": "Public / State Entities", "Fran\u00E7ais": "Entités Publiques / Étatiques", "Polski": "Podmioty Publiczne / PaÅ„stwowe" },
   filter_fundacao: { "Portugu\u00EAs": "Fundações", "Espa\u00F1ol": "Fundaciones", "English": "Foundations", "Fran\u00E7ais": "Fondations", "Polski": "Fundacje" },
   filter_privado: { "Portugu\u00EAs": "Clientes Privados", "Espa\u00F1ol": "Clientes Privados", "English": "Private Clients", "Fran\u00E7ais": "Clients Privés", "Polski": "Klienci Prywatni" },
   filter_all: { "Portugu\u00EAs": "Todos os Clientes", "Espa\u00F1ol": "Todos los Clientes", "English": "All Clients", "Fran\u00E7ais": "Tous les Clients", "Polski": "Wszyscy Klienci" },
@@ -406,6 +216,258 @@ const SIGEC_I18N = {
   user_settings_btn_check_updates: { Português: "Procurar Atualizações", Español: "Buscar Actualizaciones", English: "Check for Updates", Français: "Rechercher Mises à Jour", Polski: "Sprawdź Aktualizacje" },
   user_settings_btn_install_file: { Português: "Instalar de Ficheiro (.sigecpkg / .json)", Español: "Instalar desde Archivo (.sigecpkg / .json)", English: "Install from File (.sigecpkg / .json)", Français: "Installer depuis Fichier (.sigecpkg / .json)", Polski: "Zainstaluj z Pliku (.sigecpkg / .json)" },
   user_settings_btn_generate_package: { Português: "Gerar Pacote de Atualização", Español: "Generar Paquete de Actualización", English: "Generate Update Package", Français: "Générer Paquet de Mise à Jour", Polski: "Generuj Pakiet Aktualizacji" },
+  cfg_banner_data_protection_title: {
+    "Português": "Proteção e Preservação de Dados Ativa",
+    "Español": "Protección y Preservación de Datos Activa",
+    "English": "Active Data Protection & Preservation",
+    "Français": "Protection et Préservation des Données Active",
+    "Polski": "Aktywna Ochrona i Zachowanie Danych"
+  },
+  cfg_banner_integrity_guarantee_label: {
+    "Português": "Garantia de Integridade:",
+    "Español": "Garantía de Integridad:",
+    "English": "Integrity Guarantee:",
+    "Français": "Garantie d'Intégrité :",
+    "Polski": "Gwarancja Integralności:"
+  },
+  cfg_banner_integrity_guarantee_desc: {
+    "Português": "Os dados e fichas do seu programa SIGEC-Pro estão 100% salvaguardados. Nenhum registo será alterado ou apagado sem a sua confirmação explícita.",
+    "Español": "Los datos y fichas de su programa SIGEC-Pro están 100% salvaguardados. Ningún registro será modificado o eliminado sin su confirmación explícita.",
+    "English": "Your SIGEC-Pro data and records are 100% safeguarded. No records will be modified or deleted without your explicit confirmation.",
+    "Français": "Les données et fiches de votre logiciel SIGEC-Pro sont protégées à 100%. Aucun enregistrement ne sera modifié ou supprimé sans votre confirmation explicite.",
+    "Polski": "Dane i karty w programie SIGEC-Pro są w 100% chronione. Żaden wpis nie zostanie zmieniony ani usunięty bez Twojej wyraźnej zgody."
+  },
+  cfg_card_backup_title: {
+    "Português": "Cópia de Segurança Completa",
+    "Español": "Copia de Seguridad Completa",
+    "English": "Complete Backup",
+    "Français": "Sauvegarde Complète",
+    "Polski": "Pełna Kopia Zapasowa"
+  },
+  cfg_card_backup_subtitle: {
+    "Português": "Backup e restauro integral dos dados do sistema",
+    "Español": "Copia de seguridad y restauración integral del sistema",
+    "English": "Complete system data backup and restore",
+    "Français": "Sauvegarde et restauration intégrale des données du système",
+    "Polski": "Kompletna kopia zapasowa i przywracanie danych systemu"
+  },
+  cfg_card_backup_desc: {
+    "Português": "Exporte ou restaure todos os registos (Clientes, Contactos, Projetos e Interações) via ficheiro ou Google Drive.",
+    "Español": "Exporte o restaure todos los registros (Clientes, Contactos, Proyectos e Interacciones) mediante archivo o Google Drive.",
+    "English": "Export or restore all records (Clients, Contacts, Projects and Interactions) via file or Google Drive.",
+    "Français": "Exportez ou restaurez tous les enregistrements (Clients, Contacts, Projets et Interactions) par fichier ou Google Drive.",
+    "Polski": "Eksportuj lub przywracaj wszystkie wpisy (Klienci, Kontakty, Projekty i Interakcje) za pomocą pliku lub Dysku Google."
+  },
+  cfg_btn_create_backup: {
+    "Português": "Criar Backup",
+    "Español": "Crear Copia",
+    "English": "Create Backup",
+    "Français": "Créer Sauvegarde",
+    "Polski": "Utwórz Kopię"
+  },
+  cfg_btn_restore_backup: {
+    "Português": "Restaurar",
+    "Español": "Restaurar",
+    "English": "Restore",
+    "Français": "Restaurer",
+    "Polski": "Przywróć"
+  },
+  cfg_card_import_title: {
+    "Português": "Importação de Ficheiros",
+    "Español": "Importación de Archivos",
+    "English": "File Import",
+    "Français": "Importation de Fichiers",
+    "Polski": "Import Plików"
+  },
+  cfg_card_import_subtitle: {
+    "Português": "Suporta ficheiros JSON, Excel (.xlsx, .xls) ou CSV",
+    "Español": "Admite archivos JSON, Excel (.xlsx, .xls) o CSV",
+    "English": "Supports JSON, Excel (.xlsx, .xls) or CSV files",
+    "Français": "Prend en charge les fichiers JSON, Excel (.xlsx, .xls) ou CSV",
+    "Polski": "Obsługuje pliki JSON, Excel (.xlsx, .xls) lub CSV"
+  },
+  cfg_card_import_desc: {
+    "Português": "Carregue listagens e tabelas específicas diretamente para a respetiva secção do sistema.",
+    "Español": "Cargue listados y tablas específicas directamente en la sección correspondiente del sistema.",
+    "English": "Load specific lists and tables directly into the respective system section.",
+    "Français": "Chargez des listes et tableaux spécifiques directement dans la section correspondante du système.",
+    "Polski": "Wczytaj określone listy i tabele bezpośrednio do odpowiedniej sekcji systemu."
+  },
+  cfg_btn_import_clients: {
+    "Português": "Clientes",
+    "Español": "Clientes",
+    "English": "Clients",
+    "Français": "Clients",
+    "Polski": "Klienci"
+  },
+  cfg_btn_import_contacts: {
+    "Português": "Contactos",
+    "Español": "Contactos",
+    "English": "Contacts",
+    "Français": "Contacts",
+    "Polski": "Kontakty"
+  },
+  cfg_btn_import_projects: {
+    "Português": "Projetos",
+    "Español": "Proyectos",
+    "English": "Projects",
+    "Français": "Projets",
+    "Polski": "Projekty"
+  },
+  cfg_card_cleanup_title: {
+    "Português": "Limpeza & Otimização",
+    "Español": "Limpieza y Optimización",
+    "English": "Cleanup & Optimization",
+    "Français": "Nettoyage & Optimisation",
+    "Polski": "Czyszczenie i Optymalizacja"
+  },
+  cfg_card_cleanup_subtitle: {
+    "Português": "Libertar memória local",
+    "Español": "Liberar memoria local",
+    "English": "Free up local memory",
+    "Français": "Libérer la mémoire locale",
+    "Polski": "Zwolnij pamięć lokalną"
+  },
+  cfg_badge_safe: {
+    "Português": "Seguro",
+    "Español": "Seguro",
+    "English": "Safe",
+    "Français": "Sécurisé",
+    "Polski": "Bezpieczny"
+  },
+  cfg_storage_local_usage: {
+    "Português": "Uso Local:",
+    "Español": "Uso Local:",
+    "English": "Local Storage:",
+    "Français": "Stockage Local :",
+    "Polski": "Pamięć Lokalna:"
+  },
+  cfg_storage_status_high: {
+    "Português": "Ocupação Elevada (Recomenda-se Limpeza)",
+    "Español": "Ocupación Alta (Se recomienda limpieza)",
+    "English": "High Usage (Cleanup Recommended)",
+    "Français": "Utilisation Élevée (Nettoyage Recommandé)",
+    "Polski": "Wysokie Użycie (Zalecane Czyszczenie)"
+  },
+  cfg_storage_status_mod: {
+    "Português": "Ocupação Moderada",
+    "Español": "Ocupación Moderada",
+    "English": "Moderate Usage",
+    "Français": "Utilisation Modérée",
+    "Polski": "Umiarkowane Użycie"
+  },
+  cfg_storage_status_good: {
+    "Português": "Excelente (Espaço Livre Amplo)",
+    "Español": "Excelente (Amplio espacio libre)",
+    "English": "Excellent (Ample Free Space)",
+    "Français": "Excellent (Grand Espace Libre)",
+    "Polski": "Doskonałe (Dużo Wolnego Miejsca)"
+  },
+  cfg_card_cleanup_desc: {
+    "Português": "Elimina resíduos e ficheiros temporários do navegador sem afetar nenhum registo de Clientes ou Projetos.",
+    "Español": "Elimina residuos y archivos temporales del navegador sin afectar ningún registro de Clientes o Proyectos.",
+    "English": "Removes cache and temporary browser files without affecting any Client or Project records.",
+    "Français": "Supprime les résidus et fichiers temporaires du navigateur sans affecter aucun enregistrement de Clients ou Projets.",
+    "Polski": "Usuwa pozostałości i pliki tymczasowe przeglądarki bez wpływu na wpisy Klientów lub Projektów."
+  },
+  cfg_btn_clean_optimize: {
+    "Português": "Limpar e Otimizar",
+    "Español": "Limpiar y Optimizar",
+    "English": "Clean & Optimize",
+    "Français": "Nettoyer et Optimiser",
+    "Polski": "Wyczyść i Zoptymalizuj"
+  },
+  cfg_card_ai_norm_title: {
+    "Português": "Normalização (IA)",
+    "Español": "Normalización (IA)",
+    "English": "Normalization (AI)",
+    "Français": "Normalisation (IA)",
+    "Polski": "Normalizacja (AI)"
+  },
+  cfg_card_ai_norm_subtitle: {
+    "Português": "Nomes compostos e moradas",
+    "Español": "Nombres compuestos y direcciones",
+    "English": "Compound names and addresses",
+    "Français": "Noms composés et adresses",
+    "Polski": "Złożone nazwiska i adresy"
+  },
+  cfg_badge_ai_active: {
+    "Português": "IA Ativa",
+    "Español": "IA Activa",
+    "English": "Active AI",
+    "Français": "IA Active",
+    "Polski": "Aktywne AI"
+  },
+  cfg_card_ai_norm_desc: {
+    "Português": "Decompõe moradas completas (Rua, Nº, Código Postal, Localidade) e separa nomes compostos em todas as fichas existentes.",
+    "Español": "Descompone direcciones completas (Calle, Nº, Código Postal, Localidad) y separa nombres compuestos en todas las fichas existentes.",
+    "English": "Breaks down complete addresses (Street, No., Postal Code, City) and splits compound names in all existing profiles.",
+    "Français": "Décompose les adresses complètes (Rue, N°, Code Postal, Ville) et sépare les noms composés dans toutes les fiches existantes.",
+    "Polski": "Rozkłada pełne adresy (Ulica, Nr, Kod Pocztowy, Miejscowość) i dzieli imiona złożone we wszystkich istniejących kartach."
+  },
+  cfg_btn_ai_normalize: {
+    "Português": "Normalizar com IA",
+    "Español": "Normalizar con IA",
+    "English": "Normalize with AI",
+    "Français": "Normaliser avec l'IA",
+    "Polski": "Normalizuj za pomocą AI"
+  },
+  cfg_card_updates_title: {
+    "Português": "Atualizações Nuvem",
+    "Español": "Actualizaciones en la Nube",
+    "English": "Cloud Updates",
+    "Français": "Mises à Jour Cloud",
+    "Polski": "Aktualizacje w Chmurze"
+  },
+  cfg_card_updates_subtitle: {
+    "Português": "Verificação online",
+    "Español": "Verificación en línea",
+    "English": "Online check",
+    "Français": "Vérification en ligne",
+    "Polski": "Weryfikacja online"
+  },
+  cfg_card_updates_desc: {
+    "Português": "Pesquisa e instala as versões mais recentes a partir do servidor em nuvem sem apagar os seus registos locais.",
+    "Español": "Busca e instala las versiones más recientes desde el servidor en la nube sin borrar sus registros locales.",
+    "English": "Searches and installs the latest versions from the cloud server without deleting your local records.",
+    "Français": "Recherche et installe les dernières versions à partir du serveur cloud sans supprimer vos enregistrements locaux.",
+    "Polski": "Wyszukuje i instaluje najnowsze wersje z serwera w chmurze bez usuwania lokalnych wpisów."
+  },
+  cfg_btn_check_updates: {
+    "Português": "Procurar Atualizações",
+    "Español": "Buscar Actualizaciones",
+    "English": "Check for Updates",
+    "Français": "Rechercher des Mises à Jour",
+    "Polski": "Sprawdź Aktualizacje"
+  },
+  cfg_storage_local_usage: {
+    "Português": "Uso Local:",
+    "Español": "Uso Local:",
+    "English": "Local Usage:",
+    "Français": "Utilisation Locale :",
+    "Polski": "Użycie Lokalne:"
+  },
+  cfg_storage_status_high: {
+    "Português": "Ocupação Elevada (Recomenda-se Limpeza)",
+    "Español": "Ocupación Alta (Se recomienda Limpieza)",
+    "English": "High Usage (Cleanup Recommended)",
+    "Français": "Occupation Élevée (Nettoyage Recommandé)",
+    "Polski": "Wysokie Zużycie (Zalecane Czyszczenie)"
+  },
+  cfg_storage_status_mod: {
+    "Português": "Ocupação Moderada",
+    "Español": "Ocupación Moderada",
+    "English": "Moderate Usage",
+    "Français": "Occupation Modérée",
+    "Polski": "Umiarkowane Zużycie"
+  },
+  cfg_storage_status_good: {
+    "Português": "Excelente (Espaço Livre Amplo)",
+    "Español": "Excelente (Espacio Libre Amplio)",
+    "English": "Excellent (Plenty of Free Space)",
+    "Français": "Excellent (Grand Espace Libre)",
+    "Polski": "Doskonałe (Dużo Wolnego Miejsca)"
+  },
     user_settings_tab_theme: {
     Português: "Cores do Programa",
     Español: "Colores del Programa",
@@ -1591,9 +1653,9 @@ const SIGEC_PHRASES_MAP = {
   "Entidades Públicas / Estatal": { "Portugu\u00EAs": "Entidades P\u00FAblicas / Estatal", "Espa\u00F1ol": "Entidades P\u00FAblicas / Estatal", "English": "Public / State Entities", "Fran\u00E7ais": "Entit\u00E9s Publiques / \u00C9tatiques", "Polski": "Podmioty Publiczne / Pa\u0144stwowe" },
   "Privados": { "Portugu\u00EAs": "Privados", "Espa\u00F1ol": "Privados", "English": "Private", "Fran\u00E7ais": "Privés", "Polski": "Prywatne" },
   "Fundações": { "Portugu\u00EAs": "Fundações", "Espa\u00F1ol": "Fundaciones", "English": "Foundations", "Fran\u00E7ais": "Fondations", "Polski": "Fundacje" },
-  "Estatais": { "Portugu\u00EAs": "Estatais", "Espa\u00F1ol": "Estatales", "English": "State / Public", "Fran\u00E7ais": "Étatiques", "Polski": "Państwowe" },
+  "Estatais": { "Portugu\u00EAs": "Estatais", "Espa\u00F1ol": "Estatales", "English": "State / Public", "Fran\u00E7ais": "Étatiques", "Polski": "PaÅ„stwowe" },
   "Clientes Privados": { "Portugu\u00EAs": "Clientes Privados", "Espa\u00F1ol": "Clientes Privados", "English": "Private Clients", "Fran\u00E7ais": "Clients Privés", "Polski": "Klienci Prywatni" },
-  "Entidades Estatais": { "Portugu\u00EAs": "Entidades Estatais", "Espa\u00F1ol": "Entidades Estatales", "English": "State Entities", "Fran\u00E7ais": "Entités Étatiques", "Polski": "Podmioty Państwowe" },
+  "Entidades Estatais": { "Portugu\u00EAs": "Entidades Estatais", "Espa\u00F1ol": "Entidades Estatales", "English": "State Entities", "Fran\u00E7ais": "Entités Étatiques", "Polski": "Podmioty PaÅ„stwowe" },
   "Nenhum cliente encontrado para os critérios de pesquisa.": { "Portugu\u00EAs": "Nenhum cliente encontrado para os critérios de pesquisa.", "Espa\u00F1ol": "No se encontraron clientes para los criterios de búsqueda.", "English": "No clients found for the search criteria.", "Fran\u00E7ais": "Aucun client trouvé pour les critÃ¨res de recherche.", "Polski": "Nie znaleziono klientów speÅ‚niajÄ…cych kryteria wyszukiwania." },
   // --- CAMPOS E DESCRITIVOS GERAIS MULTILÍNGUE (REVISÃO COMPLETA) ---
   "Nome / Razão Social": { "Portugu\u00EAs": "Nome / Razão Social", "Espa\u00F1ol": "Nombre / Razón Social", "English": "Name / Company Name", "Fran\u00E7ais": "Nom / Raison Sociale", "Polski": "Nazwa / Firma" },
@@ -1698,8 +1760,27 @@ const SIGEC_PHRASES_MAP = {
   "Gestão de Cópia de Segurança & Restauro": { "Portugu\u00EAs": "Gestão de Cópia de Segurança & Restauro", "Espa\u00F1ol": "Gestión de Copia de Seguridad y Restauración", "English": "Backup & Restore Management", "Fran\u00E7ais": "Gestion des Sauvegardes et Restaurations", "Polski": "ZarzÄ…dzanie Kopiami Zapasowymi i Przywracaniem" },
   "Cópia de Segurança Completa": { "Portugu\u00EAs": "Cópia de Segurança Completa", "Espa\u00F1ol": "Copia de Seguridad Completa", "English": "Complete Backup", "Fran\u00E7ais": "Sauvegarde ComplÃ¨te", "Polski": "PeÅ‚na Kopia Zapasowa" },
   "Criar Backup": { "Portugu\u00EAs": "Criar Backup", "Espa\u00F1ol": "Crear Copia", "English": "Create Backup", "Fran\u00E7ais": "Créer Sauvegarde", "Polski": "Utwórz KopiÄ™" },
-  "Restaurar Backup": { "Portugu\u00EAs": "Restaurar Backup", "Espa\u00F1ol": "Restaurar Copia", "English": "Restore Backup", "Fran\u00E7ais": "Restaurer Sauvegarde", "Polski": "PrzywróÄ‡ KopiÄ™" },
-  "Importação de Ficheiros": { "Portugu\u00EAs": "Importação de Ficheiros", "Espa\u00F1ol": "Importación de Archivos", "English": "File Import", "Fran\u00E7ais": "Importation de Fichiers", "Polski": "Import Plików" },
+  "Restaurar Backup": { "Português": "Restaurar Backup", "Español": "Restaurar Copia", "English": "Restore Backup", "Français": "Restaurer Sauvegarde", "Polski": "Przywróć Kopię" },
+  "Restaurar": { "Português": "Restaurar", "Español": "Restaurar", "English": "Restore", "Français": "Restaurer", "Polski": "Przywróć" },
+  "Clientes": { "Português": "Clientes", "Español": "Clientes", "English": "Clients", "Français": "Clients", "Polski": "Klienci" },
+  "Contactos": { "Português": "Contactos", "Español": "Contactos", "English": "Contacts", "Français": "Contacts", "Polski": "Kontakty" },
+  "Projetos": { "Português": "Projetos", "Español": "Proyectos", "English": "Projects", "Français": "Projets", "Polski": "Projekty" },
+  "Limpeza & Otimização": { "Português": "Limpeza & Otimização", "Español": "Limpieza y Optimización", "English": "Cleanup & Optimization", "Français": "Nettoyage & Optimisation", "Polski": "Czyszczenie i Optymalizacja" },
+  "Libertar memória local": { "Português": "Libertar memória local", "Español": "Liberar memoria local", "English": "Free up local memory", "Français": "Libérer la mémoire locale", "Polski": "Zwolnij pamięć lokalną" },
+  "Seguro": { "Português": "Seguro", "Español": "Seguro", "English": "Safe", "Français": "Sécurisé", "Polski": "Bezpieczny" },
+  "Limpar e Otimizar": { "Português": "Limpar e Otimizar", "Español": "Limpiar y Optimizar", "English": "Clean & Optimize", "Français": "Nettoyer et Optimiser", "Polski": "Wyczyść i Zoptymalizuj" },
+  "Normalização (IA)": { "Português": "Normalização (IA)", "Español": "Normalización (IA)", "English": "Normalization (AI)", "Français": "Normalisation (IA)", "Polski": "Normalizacja (AI)" },
+  "Nomes compostos e moradas": { "Português": "Nomes compostos e moradas", "Español": "Nombres compuestos y direcciones", "English": "Compound names and addresses", "Français": "Noms composés et adresses", "Polski": "Złożone nazwiska i adresy" },
+  "IA Ativa": { "Português": "IA Ativa", "Español": "IA Activa", "English": "Active AI", "Français": "IA Active", "Polski": "Aktywne AI" },
+  "Normalizar com IA": { "Português": "Normalizar com IA", "Español": "Normalizar con IA", "English": "Normalize with AI", "Français": "Normaliser avec l'IA", "Polski": "Normalizuj za pomocą AI" },
+  "Atualizações Nuvem": { "Português": "Atualizações Nuvem", "Español": "Actualizaciones en la Nube", "English": "Cloud Updates", "Français": "Mises à Jour Cloud", "Polski": "Aktualizacje w Chmurze" },
+  "Verificação online": { "Português": "Verificação online", "Español": "Verificación en línea", "English": "Online check", "Français": "Vérification en ligne", "Polski": "Weryfikacja online" },
+  "Procurar Atualizações": { "Português": "Procurar Atualizações", "Español": "Buscar Actualizaciones", "English": "Check for Updates", "Français": "Rechercher des Mises à Jour", "Polski": "Sprawdź Aktualizacje" },
+  "Proteção e Preservação de Dados Ativa": { "Português": "Proteção e Preservação de Dados Ativa", "Español": "Protección y Preservación de Datos Activa", "English": "Active Data Protection & Preservation", "Français": "Protection et Préservation des Données Active", "Polski": "Aktywna Ochrona i Zachowanie Danych" },
+  "Garantia de Integridade:": { "Português": "Garantia de Integridade:", "Español": "Garantía de Integridad:", "English": "Integrity Guarantee:", "Français": "Garantie d'Intégrité :", "Polski": "Gwarancja Integralności:" },
+  "Backup e restauro integral dos dados do sistema": { "Português": "Backup e restauro integral dos dados do sistema", "Español": "Copia de seguridad y restauración integral del sistema", "English": "Complete system data backup and restore", "Français": "Sauvegarde et restauration intégrale des données du système", "Polski": "Kompletna kopia zapasowa i przywracanie danych systemu" },
+  "Uso Local:": { "Português": "Uso Local:", "Español": "Uso Local:", "English": "Local Usage:", "Français": "Utilisation Locale :", "Polski": "Użycie Lokalne:" },
+  "Importação de Ficheiros": { "Português": "Importação de Ficheiros", "Español": "Importación de Archivos", "English": "File Import", "Français": "Importation de Fichiers", "Polski": "Import Plików" },
   "Importar Ficheiro de Clientes": { "Portugu\u00EAs": "Importar Ficheiro de Clientes", "Espa\u00F1ol": "Importar Archivo de Clientes", "English": "Import Clients File", "Fran\u00E7ais": "Importer Fichier Clients", "Polski": "Importuj Plik Klientów" },
   "Importar Ficheiro de Contactos": { "Portugu\u00EAs": "Importar Ficheiro de Contactos", "Espa\u00F1ol": "Importar Archivo de Contactos", "English": "Import Contacts File", "Fran\u00E7ais": "Importer Fichier Contacts", "Polski": "Importuj Plik Kontaktów" },
   "Importar Ficheiro de Projetos": { "Portugu\u00EAs": "Importar Ficheiro de Projetos", "Espa\u00F1ol": "Importar Archivo de Proyectos", "English": "Import Projects File", "Fran\u00E7ais": "Importer Fichier Projets", "Polski": "Importuj Plik Projektów" },
@@ -1710,20 +1791,20 @@ const SIGEC_PHRASES_MAP = {
   "Nome do Repositório": { "Portugu\u00EAs": "Nome do Repositório", "Espa\u00F1ol": "Nombre del Repositorio", "English": "Repository Name", "Fran\u00E7ais": "Nom du Dépôt", "Polski": "Nazwa Repozytorium" },
   "Caminho do Ficheiro de Dados": { "Portugu\u00EAs": "Caminho do Ficheiro de Dados", "Espa\u00F1ol": "Ruta del Archivo de Datos", "English": "Data File Path", "Fran\u00E7ais": "Chemin du Fichier de Données", "Polski": "ÅšcieÅ¼ka Pliku Danych" },
   "Token de Acesso Pessoal (PAT)": { "Portugu\u00EAs": "Token de Acesso Pessoal (PAT)", "Espa\u00F1ol": "Token de Acceso Personal (PAT)", "English": "Personal Access Token (PAT)", "Fran\u00E7ais": "Jeton d'AccÃ¨s Personnel (PAT)", "Polski": "Osobisty Token DostÄ™pu (PAT)" },
-  "Guardar Definições do Servidor": { "Portugu\u00EAs": "Guardar Definições do Servidor", "Espa\u00F1ol": "Guardar Ajustes del Servidor", "English": "Save Server Settings", "Fran\u00E7ais": "Enregistrer Paramètres Serveur", "Polski": "Zapisz Ustawienia Serwera" },
+  "Guardar Definições do Servidor": { "Portugu\u00EAs": "Guardar Definições do Servidor", "Espa\u00F1ol": "Guardar Ajustes del Servidor", "English": "Save Server Settings", "Fran\u00E7ais": "Enregistrer ParamÃ¨tres Serveur", "Polski": "Zapisz Ustawienia Serwera" },
   "Sincronizar": { "Portugu\u00EAs": "Sincronizar", "Espa\u00F1ol": "Sincronizar", "English": "Synchronize", "Fran\u00E7ais": "Synchroniser", "Polski": "Synchronizuj" },
   "Remover Token": { "Portugu\u00EAs": "Remover Token", "Espa\u00F1ol": "Eliminar Token", "English": "Remove Token", "Fran\u00E7ais": "Supprimer Jeton", "Polski": "UsuÅ„ Token" },
-  "Gestão de Utilizadores & Registos de Acesso": { "Portugu\u00EAs": "Gestão de Utilizadores & Registos de Acesso", "Espa\u00F1ol": "Gestión de Usuarios y Registros de Acceso", "English": "User Management & Access Records", "Fran\u00E7ais": "Gestion des Utilisateurs et Accès", "Polski": "Zarządzanie Użytkownikami i Rejestr Dostępów" },
+  "Gestão de Utilizadores & Registos de Acesso": { "Portugu\u00EAs": "Gestão de Utilizadores & Registos de Acesso", "Espa\u00F1ol": "Gestión de Usuarios y Registros de Acceso", "English": "User Management & Access Records", "Fran\u00E7ais": "Gestion des Utilisateurs et AccÃ¨s", "Polski": "ZarzÄ…dzanie UÅ¼ytkownikami i Rejestr DostÄ™pów" },
   "Bloquear Programa": { "Portugu\u00EAs": "Bloquear Programa", "Espa\u00F1ol": "Bloquear Programa", "English": "Lock Program", "Fran\u00E7ais": "Verrouiller Programme", "Polski": "Zablokuj Program" },
   "Registrar Novo Utilizador": { "Portugu\u00EAs": "Registrar Novo Utilizador", "Espa\u00F1ol": "Registrar Nuevo Usuario", "English": "Register New User", "Fran\u00E7ais": "Enregistrer Nouvel Utilisateur", "Polski": "Zarejestruj Nowego UÅ¼ytkownika" },
   "Ficha do Utilizador": { "Portugu\u00EAs": "Ficha do Utilizador", "Espa\u00F1ol": "Ficha del Usuario", "English": "User Profile", "Fran\u00E7ais": "Fiche Utilisateur", "Polski": "Karta UÅ¼ytkownika" },
   "Dados de Registo & PIN": { "Portugu\u00EAs": "Dados de Registo & PIN", "Espa\u00F1ol": "Datos de Registro y PIN", "English": "Registration Data & PIN", "Fran\u00E7ais": "Données d'Enregistrement et PIN", "Polski": "Dane Rejestracyjne i PIN" },
   "Histórico de Atividade Real": { "Portugu\u00EAs": "Histórico de Atividade Real", "Espa\u00F1ol": "Historial de Actividad Real", "English": "Real Activity History", "Fran\u00E7ais": "Historique d'Activité Réelle", "Polski": "Rzeczywista Historia AktywnoÅ›ci" },
-  "Perfil de Acesso": { "Portugu\u00EAs": "Perfil de Acesso", "Espa\u00F1ol": "Perfil de Acceso", "English": "Access Level", "Fran\u00E7ais": "Profil d'Accès", "Polski": "Poziom Dostępu" },
+  "Perfil de Acesso": { "Portugu\u00EAs": "Perfil de Acesso", "Espa\u00F1ol": "Perfil de Acceso", "English": "Access Level", "Fran\u00E7ais": "Profil d'AccÃ¨s", "Polski": "Poziom DostÄ™pu" },
   "Utilizador Padrão": { "Portugu\u00EAs": "Utilizador Padrão", "Espa\u00F1ol": "Usuario Estándar", "English": "Standard User", "Fran\u00E7ais": "Utilisateur Standard", "Polski": "UÅ¼ytkownik Standardowy" },
-  "Acesso Autorizado / Utilizador Ativo": { "Portugu\u00EAs": "Acesso Autorizado / Utilizador Ativo", "Espa\u00F1ol": "Acceso Autorizado / Usuario Activo", "English": "Authorized Access / Active User", "Fran\u00E7ais": "Accès Autorisé / Utilisateur Actif", "Polski": "Dostęp Autoryzowany / Aktywny Użytkownik" },
-  "Definição de Palavra-Passe": { "Portugu\u00EAs": "Definição de Palavra-Passe", "Espa\u00F1ol": "Definición de Contraseña", "English": "Password Setup", "Fran\u00E7ais": "Définition du Mot de Passe", "Polski": "Ustawienie Hasła" },
-  "Nova Palavra-Passe": { "Portugu\u00EAs": "Nova Palavra-Passe", "Espa\u00F1ol": "Nueva Contraseña", "English": "New Password", "Fran\u00E7ais": "Nouveau Mot de Passe", "Polski": "Nowe Hasło" },
+  "Acesso Autorizado / Utilizador Ativo": { "Portugu\u00EAs": "Acesso Autorizado / Utilizador Ativo", "Espa\u00F1ol": "Acceso Autorizado / Usuario Activo", "English": "Authorized Access / Active User", "Fran\u00E7ais": "AccÃ¨s Autorisé / Utilisateur Actif", "Polski": "DostÄ™p Autoryzowany / Aktywny UÅ¼ytkownik" },
+  "Definição de Palavra-Passe": { "Portugu\u00EAs": "Definição de Palavra-Passe", "Espa\u00F1ol": "Definición de ContraseÃ±a", "English": "Password Setup", "Fran\u00E7ais": "Définition du Mot de Passe", "Polski": "Ustawienie HasÅ‚a" },
+  "Nova Palavra-Passe": { "Portugu\u00EAs": "Nova Palavra-Passe", "Espa\u00F1ol": "Nueva ContraseÃ±a", "English": "New Password", "Fran\u00E7ais": "Nouveau Mot de Passe", "Polski": "Nowe HasÅ‚o" },
   "Enviar Link por Email": { "Portugu\u00EAs": "Enviar Link por Email", "Espa\u00F1ol": "Enviar Enlace por Correo", "English": "Send Link by Email", "Fran\u00E7ais": "Envoyer Lien par Email", "Polski": "WyÅ›lij Link Emailem" },
   "Guardar Ficha do Utilizador": { "Portugu\u00EAs": "Guardar Ficha do Utilizador", "Espa\u00F1ol": "Guardar Ficha del Usuario", "English": "Save User Profile", "Fran\u00E7ais": "Enregistrer Fiche Utilisateur", "Polski": "Zapisz KartÄ™ UÅ¼ytkownika" },
   "Gestão Inteligente de Duplicados": { "Portugu\u00EAs": "Gestão Inteligente de Duplicados", "Espa\u00F1ol": "Gestión Inteligente de Duplicados", "English": "Smart Duplicate Management", "Fran\u00E7ais": "Gestion Intelligente des Doublons", "Polski": "Inteligentne ZarzÄ…dzanie Duplikatami" },
@@ -1732,13 +1813,13 @@ const SIGEC_PHRASES_MAP = {
   "Fundir Registos": { "Portugu\u00EAs": "Fundir Registos", "Espa\u00F1ol": "Fusionar Registros", "English": "Merge Records", "Fran\u00E7ais": "Fusionner Enregistrements", "Polski": "PoÅ‚Ä…cz Wpisy" },
   "Apagar": { "Portugu\u00EAs": "Apagar", "Espa\u00F1ol": "Eliminar", "English": "Delete", "Fran\u00E7ais": "Supprimer", "Polski": "UsuÅ„" },
   "Ver": { "Portugu\u00EAs": "Ver", "Espa\u00F1ol": "Ver", "English": "View", "Fran\u00E7ais": "Voir", "Polski": "Zobacz" },
-  "Critérios": { "Portugu\u00EAs": "Critérios", "Espa\u00F1ol": "Criterios", "English": "Criteria", "Fran\u00E7ais": "Critères", "Polski": "Kryteria" },
+  "Critérios": { "Portugu\u00EAs": "Critérios", "Espa\u00F1ol": "Criterios", "English": "Criteria", "Fran\u00E7ais": "CritÃ¨res", "Polski": "Kryteria" },
   "Alta Certeza": { "Portugu\u00EAs": "Alta Certeza", "Espa\u00F1ol": "Alta Certeza", "English": "High Confidence", "Fran\u00E7ais": "Haute Certitude", "Polski": "Wysoka PewnoÅ›Ä‡" },
   "Média Certeza": { "Portugu\u00EAs": "Média Certeza", "Espa\u00F1ol": "Certeza Media", "English": "Medium Confidence", "Fran\u00E7ais": "Moyenne Certitude", "Polski": "Åšrednia PewnoÅ›Ä‡" },
   "Principal": { "Portugu\u00EAs": "Principal", "Espa\u00F1ol": "Principal", "English": "Primary", "Fran\u00E7ais": "Principal", "Polski": "GÅ‚ówny" },
   "Secundário": { "Portugu\u00EAs": "Secundário", "Espa\u00F1ol": "Secundario", "English": "Secondary", "Fran\u00E7ais": "Secondaire", "Polski": "Wtórny" },
   "Hoje": { "Portugu\u00EAs": "Hoje", "Espa\u00F1ol": "Hoy", "English": "Today", "Fran\u00E7ais": "Aujourd'hui", "Polski": "Dzisiaj" },
-  "Amanhã": { "Portugu\u00EAs": "Amanhã", "Espa\u00F1ol": "Mañana", "English": "Tomorrow", "Fran\u00E7ais": "Demain", "Polski": "Jutro" },
+  "Amanhã": { "Portugu\u00EAs": "Amanhã", "Espa\u00F1ol": "MaÃ±ana", "English": "Tomorrow", "Fran\u00E7ais": "Demain", "Polski": "Jutro" },
   "Em atraso": { "Portugu\u00EAs": "Em atraso", "Espa\u00F1ol": "Atrasado", "English": "Overdue", "Fran\u00E7ais": "En retard", "Polski": "ZalegÅ‚e" },
   "Sem data agendada": { "Portugu\u00EAs": "Sem data agendada", "Espa\u00F1ol": "Sin fecha programada", "English": "No date scheduled", "Fran\u00E7ais": "Aucune date programmée", "Polski": "Brak zaplanowanej daty" },
   "Sem registo prévio": { "Portugu\u00EAs": "Sem registo prévio", "Espa\u00F1ol": "Sin registro previo", "English": "No prior record", "Fran\u00E7ais": "Aucun enregistrement préalable", "Polski": "Brak wczeÅ›niejszego wpisu" },
@@ -1765,7 +1846,7 @@ const SIGEC_PHRASES_MAP = {
   "Visita Comercial": { "Portugu\u00EAs": "Visita Comercial", "Espa\u00F1ol": "Visita Comercial", "English": "Sales Visit", "Fran\u00E7ais": "Visite Commerciale", "Polski": "Wizyta Handlowa" },
   "Proposta Enviada": { "Portugu\u00EAs": "Proposta Enviada", "Espa\u00F1ol": "Propuesta Enviada", "English": "Proposal Sent", "Fran\u00E7ais": "Proposition Envoyée", "Polski": "WysÅ‚ano OfertÄ™" },
   "Portugal": { "Portugu\u00EAs": "Portugal", "Espa\u00F1ol": "Portugal", "English": "Portugal", "Fran\u00E7ais": "Portugal", "Polski": "Portugalia" },
-  "Espanha": { "Portugu\u00EAs": "Espanha", "Espa\u00F1ol": "España", "English": "Spain", "Fran\u00E7ais": "Espagne", "Polski": "Hiszpania" },
+  "Espanha": { "Portugu\u00EAs": "Espanha", "Espa\u00F1ol": "EspaÃ±a", "English": "Spain", "Fran\u00E7ais": "Espagne", "Polski": "Hiszpania" },
   "França": { "Portugu\u00EAs": "França", "Espa\u00F1ol": "Francia", "English": "France", "Fran\u00E7ais": "Francia", "Polski": "Francja" },
   "Reino Unido": { "Portugu\u00EAs": "Reino Unido", "Espa\u00F1ol": "Reino Unido", "English": "United Kingdom", "Fran\u00E7ais": "Royaume-Uni", "Polski": "Wielka Brytania" },
   "Alemanha": { "Portugu\u00EAs": "Alemanha", "Espa\u00F1ol": "Alemania", "English": "Germany", "Fran\u00E7ais": "Allemagne", "Polski": "Niemcy" },
@@ -3282,89 +3363,37 @@ if (typeof document !== 'undefined') {
  */
 function translateSystemTerm(term, targetLang) {
   if (!term || typeof term !== 'string') return term;
-  // Normalizar mojibake de codificação comum em termos de entrada
-  let cleanTerm = term.trim()
-    .replace(/Ãšltimo/g, 'Último')
-    .replace(/Ãº/g, 'ú')
-    .replace(/Ã¡/g, 'á')
-    .replace(/Ã©/g, 'é')
-    .replace(/Ã£/g, 'ã')
-    .replace(/Ã§/g, 'ç')
-    .replace(/Ã³/g, 'ó')
-    .replace(/Ãª/g, 'ê')
-    .replace(/Ã­/g, 'í')
-    .replace(/Âº/g, 'º')
-    .replace(/Â/g, '');
+  const cleanTerm = term.trim();
   if (!cleanTerm) return term;
 
   const effectiveLang = targetLang || (typeof getActiveUserLanguage === 'function' ? getActiveUserLanguage() : 'Português');
   const normalizedLang = normalizeLanguageName(effectiveLang);
 
   // 1. Verificar em SIGEC_PHRASES_MAP direto
-  if (typeof SIGEC_PHRASES_MAP !== 'undefined' && SIGEC_PHRASES_MAP[cleanTerm]) {
-    const val = SIGEC_PHRASES_MAP[cleanTerm][normalizedLang];
-    if (val) return val;
-    if (normalizedLang === 'Português') return cleanTerm;
+  if (SIGEC_PHRASES_MAP[cleanTerm]) {
+    return SIGEC_PHRASES_MAP[cleanTerm][normalizedLang] || cleanTerm;
   }
 
-  // 2. Procurar em SIGEC_PHRASES_MAP reversamente ou case-insensitive
-  if (typeof SIGEC_PHRASES_MAP !== 'undefined') {
-    for (const [ptKey, translations] of Object.entries(SIGEC_PHRASES_MAP)) {
-      if (!translations || typeof translations !== 'object') continue;
-      if (ptKey.toLowerCase() === cleanTerm.toLowerCase()) {
-        const val = translations[normalizedLang];
-        if (val) return val;
+  // 2. Procurar em SIGEC_PHRASES_MAP reversamente (caso o termo já esteja em outro idioma)
+  for (const [ptKey, translations] of Object.entries(SIGEC_PHRASES_MAP)) {
+    if (!translations || typeof translations !== 'object') continue;
+    if (ptKey.toLowerCase() === cleanTerm.toLowerCase()) {
+      return translations[normalizedLang] || ptKey;
+    }
+    for (const [langKey, langVal] of Object.entries(translations)) {
+      if (typeof langVal === 'string' && langVal.toLowerCase() === cleanTerm.toLowerCase()) {
         if (normalizedLang === 'Português') return ptKey;
-      }
-      for (const [langKey, langVal] of Object.entries(translations)) {
-        if (typeof langVal === 'string' && langVal && langVal.toLowerCase() === cleanTerm.toLowerCase()) {
-          if (normalizedLang === 'Português') return ptKey;
-          return translations[normalizedLang] || langVal;
-        }
+        return translations[normalizedLang] || langVal;
       }
     }
   }
 
-  // 3. Procurar em SIGEC_I18N se a chave corresponder a um id ou frase
-  if (typeof SIGEC_I18N !== 'undefined') {
-    if (SIGEC_I18N[cleanTerm]) {
-      const val = SIGEC_I18N[cleanTerm][normalizedLang];
-      if (val) return val;
-      if (normalizedLang === 'Português') return SIGEC_I18N[cleanTerm]['Português'] || cleanTerm;
-    }
-    for (const [i18nKey, translations] of Object.entries(SIGEC_I18N)) {
-      if (!translations || typeof translations !== 'object') continue;
-      for (const [langKey, langVal] of Object.entries(translations)) {
-        if (typeof langVal === 'string' && langVal && langVal.toLowerCase() === cleanTerm.toLowerCase()) {
-          return translations[normalizedLang] || (normalizedLang === 'Português' ? (translations['Português'] || cleanTerm) : langVal);
-        }
-      }
-    }
-  }
-
-  // 4. Procurar em SIGEC_TRANSLATIONS diretamente pela chave ou valores
+  // 3. Procurar em SIGEC_TRANSLATIONS
   if (typeof SIGEC_TRANSLATIONS !== 'undefined') {
-    if (SIGEC_TRANSLATIONS[cleanTerm]) {
-      const transObj = SIGEC_TRANSLATIONS[cleanTerm];
-      if (normalizedLang === 'Português') {
-        return (transObj['Português'] || transObj['Portugu\\u00EAs'] || cleanTerm);
-      }
-      const val = transObj[normalizedLang];
-      if (val) return val;
-    }
     for (const [transKey, translations] of Object.entries(SIGEC_TRANSLATIONS)) {
       if (!translations || typeof translations !== 'object') continue;
-      if (transKey.toLowerCase() === cleanTerm.toLowerCase()) {
-        if (normalizedLang === 'Português') {
-          return (translations['Português'] || translations['Portugu\\u00EAs'] || transKey);
-        }
-        return translations[normalizedLang] || (translations['Português'] || translations['Portugu\\u00EAs'] || transKey);
-      }
       for (const [langKey, langVal] of Object.entries(translations)) {
-        if (typeof langVal === 'string' && langVal && langVal.toLowerCase() === cleanTerm.toLowerCase()) {
-          if (normalizedLang === 'Português') {
-            return translations['Português'] || translations['Portugu\\u00EAs'] || transKey;
-          }
+        if (typeof langVal === 'string' && langVal.toLowerCase() === cleanTerm.toLowerCase()) {
           return translations[normalizedLang] || langVal;
         }
       }
