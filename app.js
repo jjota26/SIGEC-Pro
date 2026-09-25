@@ -29,16 +29,6 @@ window.safeJsonParseWithBom = safeJsonParseWithBom;
 // ==========================================
 // FUNÇÕES GLOBAIS E UTILITÁRIOS (SIGEC-PRO)
 // ==========================================
-function isLocalDesktopEnvironment() {
-  if (typeof window === 'undefined') return false;
-  if (window.__SIGEC_DESKTOP__ || (window.chrome && window.chrome.webview)) return true;
-  if (!window.location) return false;
-  const h = window.location.hostname || '';
-  const p = window.location.port || '';
-  return h === '127.0.0.1' || h === 'localhost' || h === '0.0.0.0' || p === '59124';
-}
-window.isLocalDesktopEnvironment = isLocalDesktopEnvironment;
-
 if (typeof window !== 'undefined' && typeof window.t === 'undefined') {
   window.t = function(key, defaultVal) {
     if (typeof SIGEC_I18N !== 'undefined' && SIGEC_I18N && SIGEC_I18N[key]) {
@@ -76,16 +66,13 @@ const DEFAULT_SYSTEM_HF_TOKEN = ['h' + 'f_', 'gpJRFQOh', 'NRrkdKsR', 'KQCRxHWv',
 const DEFAULT_SYSTEM_HF_SPACE = "josecenturio/SIGEC-Pro";
 const DEFAULT_SYSTEM_HF_URL = "https://josecenturio-sigec-pro.static.hf.space";
 const DEFAULT_SYSTEM_HF_PATH = "data/db.json";
-const DEFAULT_SYSTEM_RENDER_URL = "https://sigec-pro.onrender.com";
 if (typeof window !== 'undefined') {
   window.DEFAULT_SYSTEM_HF_TOKEN = DEFAULT_SYSTEM_HF_TOKEN;
   window.DEFAULT_SYSTEM_HF_SPACE = DEFAULT_SYSTEM_HF_SPACE;
   window.DEFAULT_SYSTEM_HF_URL = DEFAULT_SYSTEM_HF_URL;
   window.DEFAULT_SYSTEM_HF_PATH = DEFAULT_SYSTEM_HF_PATH;
-  window.DEFAULT_SYSTEM_RENDER_URL = DEFAULT_SYSTEM_RENDER_URL;
   window.SIGEC_SYSTEM_TOKEN = DEFAULT_SYSTEM_HF_TOKEN;
 }
-
 
 const INITIAL_EXCEL_DATABASE = {
     "clientes":  [
@@ -2404,7 +2391,7 @@ const INITIAL_EXCEL_DATABASE = {
                                                  "nomePersonalizado":  "",
                                                  "nome":  "CCDR-N (Comissão de Coordenação e Desenvolvimento Regional do Norte)",
                                                  "contribuinte":  "501227181",
-                                                 "direcao1":  "Rua Rainha Dona Estefânia, n.Âº 251",
+                                                 "direcao1":  "Rua Rainha Dona Estefânia, n.º 251",
                                                  "direcao2":  "",
                                                  "numero":  "",
                                                  "andar":  "",
@@ -5196,7 +5183,7 @@ const INITIAL_EXCEL_DATABASE = {
                          "usuarioEmail":  "jmcenturio@alegria-activity.com",
                          "acao":  "Atualização de Software",
                          "tipoAcao":  "Atualização de Software",
-                         "descricao":  "SIGEC-Pro atualizado com sucesso para a versão SIGEC_V1.7.28.",
+                         "descricao":  "SIGEC-Pro atualizado com sucesso para a versão SIGEC_V1.7.35.",
                          "detalhes":  {
 
                                       },
@@ -5930,8 +5917,10 @@ function deepCleanTemporaryStorage(manualTrigger = false) {
 
     if (manualTrigger) {
       const msg = `🧹 Limpeza de Temporários Concluída!\n\n• Espaço libertado: ${freedKB} KB\n• Espaço atual em uso: ${usedKB} KB\n• Ficheiros e dados de clientes/projetos: 100% preservados.\n\nO armazenamento local do programa está agora perfeitamente otimizado.`;
-      alert(msg);
-      showToast(`Limpeza concluída! ${freedKB} KB libertados com sucesso.`, 'success');
+      if (typeof showToast === 'function') {
+        showToast(`Limpeza concluída! ${freedKB} KB libertados com sucesso.`, 'success');
+      }
+      try { alert(msg); } catch(e) {}
     }
 
     return { freedKB, usedKB, initialBytes, finalBytes };
@@ -5956,25 +5945,24 @@ function renderStorageUsageStats() {
   const statusColor = percentUsed > 75 ? '#dc2626' : (percentUsed > 45 ? '#d97706' : '#16a34a');
   const statusBg = percentUsed > 75 ? '#fef2f2' : (percentUsed > 45 ? '#fffbeb' : '#f0fdf4');
   const statusBorder = percentUsed > 75 ? '#fecaca' : (percentUsed > 45 ? '#fde68a' : '#bbf7d0');
-  const statusText = percentUsed > 75 ? 'Ocupação Elevada (Recomenda-se Limpeza)' : (percentUsed > 45 ? 'Ocupação Moderada' : 'Excelente (Espaço Livre Amplo)');
+  const statusHigh = typeof t === 'function' ? t('cfg_storage_status_high', 'Ocupação Elevada (Recomenda-se Limpeza)') : 'Ocupação Elevada (Recomenda-se Limpeza)';
+  const statusMod = typeof t === 'function' ? t('cfg_storage_status_mod', 'Ocupação Moderada') : 'Ocupação Moderada';
+  const statusGood = typeof t === 'function' ? t('cfg_storage_status_good', 'Excelente (Espaço Livre Amplo)') : 'Excelente (Espaço Livre Amplo)';
+  const statusText = percentUsed > 75 ? statusHigh : (percentUsed > 45 ? statusMod : statusGood);
+  const localUsageLabel = typeof t === 'function' ? t('cfg_storage_local_usage', 'Uso Local:') : 'Uso Local:';
 
   container.innerHTML = `
-    <div style="background: ${statusBg}; border: 1.5px solid ${statusBorder}; border-radius: 10px; padding: 1rem; margin-bottom: 1rem;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
-        <div>
-          <strong style="color: #0f172a; font-size: 0.92rem;"><i class="fa-solid fa-hard-drive" style="color: ${statusColor}; margin-right: 6px;"></i> Estado do Armazenamento Local:</strong>
-          <span style="display: inline-block; margin-left: 6px; padding: 0.15rem 0.55rem; border-radius: 9999px; font-size: 0.72rem; font-weight: 700; background: #ffffff; color: ${statusColor}; border: 1px solid ${statusBorder};">${statusText}</span>
-        </div>
-        <span style="font-size: 0.85rem; font-weight: 700; color: #334155;">${usedKB} KB / ~5 000 KB (${percentUsed}%)</span>
+    <div style="background: ${statusBg}; border: 1px solid ${statusBorder}; border-radius: 8px; padding: 0.5rem 0.75rem; margin: 0.35rem 0 0.5rem 0;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem; flex-wrap: wrap; gap: 0.3rem;">
+        <span style="font-size: 0.78rem; font-weight: 700; color: #0f172a;">
+          <i class="fa-solid fa-hard-drive" style="color: ${statusColor}; margin-right: 4px;"></i> <span data-i18n="cfg_storage_local_usage">${localUsageLabel}</span>
+          <span style="margin-left: 4px; padding: 0.1rem 0.45rem; border-radius: 9999px; font-size: 0.68rem; font-weight: 700; background: #ffffff; color: ${statusColor}; border: 1px solid ${statusBorder};">${statusText}</span>
+        </span>
+        <span style="font-size: 0.75rem; font-weight: 700; color: #334155;">${usedKB} KB (${percentUsed}%)</span>
       </div>
-
-      <div style="width: 100%; height: 10px; background: #e2e8f0; border-radius: 9999px; overflow: hidden; margin-bottom: 0.6rem;">
+      <div style="width: 100%; height: 6px; background: #e2e8f0; border-radius: 9999px; overflow: hidden;">
         <div style="width: ${percentUsed}%; height: 100%; background: ${statusColor}; border-radius: 9999px; transition: width 0.3s ease-in-out;"></div>
       </div>
-
-      <p style="margin: 0; font-size: 0.78rem; color: #475569; line-height: 1.4;">
-        Todos os dados essenciais (Clientes, Contactos, Projetos e Utilizadores) estão preservados. A limpeza remove caches antigas de pacotes, versões anteriores e resíduos do navegador.
-      </p>
     </div>
   `;
 }
@@ -6091,27 +6079,32 @@ function _saveDatabaseInternal(triggerCloudSync = true) {
           usuarios: db.usuarios || []
         }, null, 2);
 
-        // 1. Servidor desktop local (apenas no executável desktop local)
-        if (typeof isLocalDesktopEnvironment === 'function' && isLocalDesktopEnvironment()) {
-          fetch('http://127.0.0.1:59124/api/save-db-json', {
+        // 1. Servidor Oficial OnRender (relativo e absoluto com log de confirmação)
+        const renderSaveUrl = (typeof window !== 'undefined' && window.location && window.location.origin && window.location.protocol.startsWith('http')) 
+          ? `${window.location.origin}/api/save-db-json`
+          : 'https://sigec-pro.onrender.com/api/save-db-json';
+
+        fetch(renderSaveUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: fullDbPayload
+        }).then(res => {
+          if (res.ok) {
+            console.info('[SIGEC-Pro Server] Base de dados guardada com sucesso no Render');
+          }
+        }).catch(err => {
+          console.warn('[SIGEC-Pro Server] Aviso na gravação no Render:', err);
+        });
+
+        if (renderSaveUrl !== 'https://sigec-pro.onrender.com/api/save-db-json') {
+          fetch('https://sigec-pro.onrender.com/api/save-db-json', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: fullDbPayload
           }).catch(() => {});
         }
-
-
-        // 2. Servidor Oficial OnRender — sempre activo independentemente do hostname
-        try {
-          fetch(`${DEFAULT_SYSTEM_RENDER_URL}/api/save-db-json`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: fullDbPayload
-          }).catch(() => {});
-        } catch(eRender2) {}
       }
     } catch(eDisk) {}
-
 
     if (!s1 || !s2 || !s3) {
       saveSuccess = false;
@@ -6373,8 +6366,6 @@ async function handleFullServerSync(silent = false) {
 window.handleFullServerSync = handleFullServerSync;
 
 let isSyncingToHuggingFace = false;
-let _lastHfCommitTimestamp = 0;
-const HF_COMMIT_MIN_INTERVAL_MS = 30000;
 
 async function syncDatabaseToHuggingFace(silent = false, force = false) {
   const cfg = getHuggingFaceConfig();
@@ -6411,36 +6402,23 @@ async function syncDatabaseToHuggingFace(silent = false, force = false) {
 
     let pushSuccess = false;
 
-    // PRIORIDADE 1: Bridge local nativo C# (apenas no ambiente desktop local)
-    if (typeof isLocalDesktopEnvironment === 'function' && isLocalDesktopEnvironment()) {
-      try {
-        const bridgePushRes = await fetch('http://127.0.0.1:59124/api/push-cloud-db', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: dbString
-        }).catch(() => null);
-        if (bridgePushRes && bridgePushRes.ok) {
-          pushSuccess = true;
-        }
-      } catch(eBridge) {}
-    }
-
-    // Gravação segura no servidor oficial Render
+    // PRIORIDADE 1: Gravação no Servidor Oficial OnRender (Web)
     try {
-      fetch(`${DEFAULT_SYSTEM_RENDER_URL}/api/save-db-json`, {
+      const renderUrl = (typeof window !== 'undefined' && window.location && window.location.origin && window.location.protocol.startsWith('http'))
+        ? `${window.location.origin}/api/save-db-json`
+        : 'https://sigec-pro.onrender.com/api/save-db-json';
+      const rRes = await fetch(renderUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: dbString
-      }).catch(() => {});
+      }).catch(() => null);
+      if (rRes && rRes.ok) {
+        pushSuccess = true;
+      }
     } catch(eRender) {}
 
-
-    // PRIORIDADE 2: Commit direto via Web API Hugging Face (com cooldown de 30s para evitar HTTP 429)
-    const nowTs = Date.now();
-    const canCommitHf = force || (nowTs - _lastHfCommitTimestamp >= HF_COMMIT_MIN_INTERVAL_MS);
-
-    if (token && canCommitHf) {
-      _lastHfCommitTimestamp = nowTs;
+    // PRIORIDADE 2: Commit direto via Web API Hugging Face (Redundância em Nuvem)
+    if (token) {
       const contentBase64 = typeof utf8ToBase64 === 'function' ? utf8ToBase64(dbString) : btoa(unescape(encodeURIComponent(dbString)));
       
       // 1. Gravar no DATASET (https://huggingface.co/datasets/josecenturio/SIGEC-Pro/tree/main/Programa%20SIGEC-Pro/data/db.json)
@@ -6490,19 +6468,6 @@ async function syncDatabaseToHuggingFace(silent = false, force = false) {
           pushSuccess = true;
         }
       } catch(eSp) {}
-    } else if (token && !canCommitHf) {
-      pushSuccess = true;
-    }
-
-    // Gravação segura no disco local (apenas no ambiente desktop local)
-    if (typeof isLocalDesktopEnvironment === 'function' && isLocalDesktopEnvironment()) {
-      try {
-        fetch('http://127.0.0.1:59124/api/save-db-json', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: dbString
-        }).catch(() => {});
-      } catch(e) {}
     }
 
     if (pushSuccess) {
@@ -6761,6 +6726,44 @@ function mergeCloudDatabaseSafely(cloudData) {
     }
   }
 
+  // Sincronização bidirecional do Registo de Duplicados Decididos / Ignorados
+  if (Array.isArray(cloudData.ignoredDuplicates)) {
+    if (!Array.isArray(db.ignoredDuplicates)) db.ignoredDuplicates = [];
+    const localIgnoredSet = new Set(db.ignoredDuplicates);
+    let anyDupMerged = false;
+
+    cloudData.ignoredDuplicates.forEach(pairKey => {
+      if (pairKey && !localIgnoredSet.has(pairKey)) {
+        db.ignoredDuplicates.push(pairKey);
+        localIgnoredSet.add(pairKey);
+        anyDupMerged = true;
+      }
+    });
+
+    try {
+      const stored = localStorage.getItem('sigec_pro_dup_ignored');
+      if (stored) {
+        const arr = JSON.parse(stored);
+        if (Array.isArray(arr)) {
+          arr.forEach(pairKey => {
+            if (pairKey && !localIgnoredSet.has(pairKey)) {
+              db.ignoredDuplicates.push(pairKey);
+              localIgnoredSet.add(pairKey);
+              anyDupMerged = true;
+            }
+          });
+        }
+      }
+      localStorage.setItem('sigec_pro_dup_ignored', JSON.stringify(db.ignoredDuplicates));
+    } catch (e) {}
+
+    if (anyDupMerged) {
+      hasRemoteChangesApplied = true;
+    }
+  } else if (Array.isArray(db.ignoredDuplicates) && db.ignoredDuplicates.length > 0) {
+    hasLocalNewerChanges = true;
+  }
+
   // Se foram aplicadas alterações remotas, persistir no armazenamento local e re-renderizar a interface
   if (hasRemoteChangesApplied) {
     if (typeof sanitizeAllDatabaseEntities === 'function') {
@@ -6781,6 +6784,8 @@ function mergeCloudDatabaseSafely(cloudData) {
       if (typeof renderUserManagementGrid === 'function') renderUserManagementGrid();
       if (typeof renderUserSelectOptions === 'function') renderUserSelectOptions();
       if (typeof updateHeaderActiveUserBadge === 'function') updateHeaderActiveUserBadge();
+      if (typeof scanAllDuplicates === 'function') scanAllDuplicates();
+      if (typeof updateBadgeCounters === 'function') updateBadgeCounters();
     } catch(uiSyncErr) {}
   }
 
@@ -6813,22 +6818,15 @@ async function loadDatabaseFromHuggingFace(silent = false, force = false) {
   try {
     let rawText = null;
 
-    // Prioridade de leitura: Servidor OnRender (PRINCIPAL) -> Local -> Space Estático (backup) -> Raw HF -> Raw Dataset
-    const isLocal = typeof isLocalDesktopEnvironment === 'function' && isLocalDesktopEnvironment();
+    // Prioridade de leitura: Servidor OnRender -> Space Estático público (CORS livre) -> Raw Space -> Raw Dataset
     const dbEndpoints = [
-      `${DEFAULT_SYSTEM_RENDER_URL}/data/db.json?_t=${Date.now()}_${Math.random()}`
-    ];
-    if (isLocal) {
-      dbEndpoints.push(`http://127.0.0.1:59124/data/db.json?_t=${Date.now()}_${Math.random()}`);
-    }
-    dbEndpoints.push(
       `/data/db.json?_t=${Date.now()}_${Math.random()}`,
-      `${DEFAULT_SYSTEM_HF_URL}/data/db.json?_t=${Date.now()}_${Math.random()}`,
+      `https://sigec-pro.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
+      `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`,
       `https://huggingface.co/spaces/${space}/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
       `https://huggingface.co/spaces/${space}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`,
       `https://huggingface.co/datasets/${space}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`
-    );
-
+    ];
 
     const headers = { 'Cache-Control': 'no-cache, no-store' };
     if (token) headers['Authorization'] = `Bearer ${token}`;
@@ -10558,7 +10556,7 @@ function renderAttachExistingContactList() {
       <div style="flex: 1; min-width: 220px;">
         <div style="font-weight: 700; color: #1e3a8a; font-size: 0.95rem;">
           ${escapeHtml(con.nome || '')} ${escapeHtml(con.apelido || '')}
-          ${isCurrentClient ? '<span class="badge badge-success" style="font-size: 0.7rem; margin-left: 6px;">Já neste Cliente</span>' : ''}
+          ${isCurrentClient ? '<span class="badge badge-success" style="font-size: 0.7rem; margin-left: 6px;">JÃ¡ neste Cliente</span>' : ''}
         </div>
         ${con.cargo ? `<div style="font-size: 0.8rem; color: #64748b;"><i class="fa-solid fa-briefcase"></i> ${escapeHtml(con.cargo)}</div>` : ''}
         <div style="font-size: 0.8rem; color: #475569; margin-top: 0.25rem; display: flex; gap: 0.8rem; flex-wrap: wrap;">
@@ -10585,13 +10583,13 @@ function executeAttachExistingContact(contactId) {
     : (document.getElementById('clientId')?.value || '');
 
   if (!targetClientId) {
-    showToast('Cliente não identificado.', 'danger');
+    showToast('Cliente nÃ£o identificado.', 'danger');
     alert('Por favor, selecione ou guarde primeiro o Cliente antes de associar contactos.');
     return;
   }
   const con = (db.contactos || []).find(c => c.id === contactId);
   if (!con) {
-    showToast('Contacto não encontrado.', 'danger');
+    showToast('Contacto nÃ£o encontrado.', 'danger');
     return;
   }
 
@@ -11204,7 +11202,7 @@ function saveClient(e) {
     if (isTransfer) {
       const oldUser = (db.usuarios || []).find(u => u.id === oldUserId);
       const oldName = oldUser ? oldUser.nome : oldUserId;
-      logUserActivity('Transferência de Cliente', `Cliente "${clientObj.nome}" transferido de ${oldName} para ${targetUserName || targetUserId} com todos os seus contactos, projetos, orÃ§amentos e interaÃ§Ãµes.`);
+      logUserActivity('TransferÃªncia de Cliente', `Cliente "${clientObj.nome}" transferido de ${oldName} para ${targetUserName || targetUserId} com todos os seus contactos, projetos, orÃ§amentos e interaÃ§Ãµes.`);
     }
   }
   currentClientId = id;
@@ -11413,22 +11411,7 @@ function openContactModalForNew(forcedSubIndex = null) {
   document.getElementById('contactModalTitle').innerHTML = currentClientId 
     ? '<i class="fa-solid fa-user-plus"></i> Novo Contacto do Cliente' 
     : '<i class="fa-solid fa-user-plus"></i> Novo Contacto';
-  const cModalNew = document.getElementById('contactModal');
-  if (cModalNew) {
-    const activeLang = typeof getActiveUserLanguage === 'function' ? getActiveUserLanguage() : 'Português';
-    if (typeof applyModalLanguage === 'function') {
-      applyModalLanguage(cModalNew, activeLang);
-    }
-    const apEl = document.getElementById('contactApelido');
-    if (apEl) apEl.placeholder = (typeof t === 'function' ? t('contact_placeholder_lastname', 'Último Nome', activeLang) : 'Último Nome');
-    const nmEl = document.getElementById('contactNome');
-    if (nmEl) nmEl.placeholder = (typeof t === 'function' ? t('contact_placeholder_firstname', 'Primeiro Nome', activeLang) : 'Primeiro Nome');
-    const cgEl = document.getElementById('contactCargo');
-    if (cgEl) cgEl.placeholder = (typeof t === 'function' ? t('contact_placeholder_cargo', 'ex: Diretor de Compras / Gerente', activeLang) : 'ex: Diretor de Compras / Gerente');
-    const ntEl = document.getElementById('contactNotas');
-    if (ntEl) ntEl.placeholder = (typeof t === 'function' ? t('contact_placeholder_notes', 'Escreva observações ou notas sobre este contacto...', activeLang) : 'Escreva observações ou notas sobre este contacto...');
-    cModalNew.classList.add('active');
-  }
+  document.getElementById('contactModal').classList.add('active');
 
   // Renderizar lista de interações (vazia para novo contacto)
   renderContactPersonInteractionsGrid([]);
@@ -11471,22 +11454,7 @@ function openContactModalForEdit(contactId) {
 
   document.getElementById('btnDeleteContact').style.display = 'inline-flex';
   document.getElementById('contactModalTitle').innerHTML = '<i class="fa-solid fa-user-pen"></i> Editar Ficha de Contacto';
-  const cModalEdit = document.getElementById('contactModal');
-  if (cModalEdit) {
-    const activeLang = typeof getActiveUserLanguage === 'function' ? getActiveUserLanguage() : 'Português';
-    if (typeof applyModalLanguage === 'function') {
-      applyModalLanguage(cModalEdit, activeLang);
-    }
-    const apEl = document.getElementById('contactApelido');
-    if (apEl) apEl.placeholder = (typeof t === 'function' ? t('contact_placeholder_lastname', 'Último Nome', activeLang) : 'Último Nome');
-    const nmEl = document.getElementById('contactNome');
-    if (nmEl) nmEl.placeholder = (typeof t === 'function' ? t('contact_placeholder_firstname', 'Primeiro Nome', activeLang) : 'Primeiro Nome');
-    const cgEl = document.getElementById('contactCargo');
-    if (cgEl) cgEl.placeholder = (typeof t === 'function' ? t('contact_placeholder_cargo', 'ex: Diretor de Compras / Gerente', activeLang) : 'ex: Diretor de Compras / Gerente');
-    const ntEl = document.getElementById('contactNotas');
-    if (ntEl) ntEl.placeholder = (typeof t === 'function' ? t('contact_placeholder_notes', 'Escreva observações ou notas sobre este contacto...', activeLang) : 'Escreva observações ou notas sobre este contacto...');
-    cModalEdit.classList.add('active');
-  }
+  document.getElementById('contactModal').classList.add('active');
 
   // Renderizar interações deste contacto com correspondência exata
   const targetCId = String(contact.id).trim();
@@ -11589,7 +11557,7 @@ function saveContact(e) {
 
   if (existingContactIndex >= 0) {
     const camposAlterados = [];
-    const camposLabel = { nome: 'Nome', apelido: 'Apelido', cargo: 'Cargo', email: 'Email', telefone: 'Telefone', telemovel: 'Telemóvel', notas: 'Notas', inativo: 'Inativo' };
+    const camposLabel = { nome: 'Nome', apelido: 'Apelido', cargo: 'Cargo', email: 'Email', telefone: 'Telefone', telemovel: 'TelemÃ³vel', notas: 'Notas', inativo: 'Inativo' };
     Object.keys(camposLabel).forEach(campo => {
       const valAnterior = (contactoAnterior[campo] || '').toString().trim();
       const valNovo = (contactObj[campo] || '').toString().trim();
@@ -11600,19 +11568,19 @@ function saveContact(e) {
 
     db.contactos[existingContactIndex] = contactObj;
     showToast('Contacto atualizado com sucesso!');
-    logUserActivity('Edição de Contacto', `Ficha do contacto "${contactObj.nome} ${contactObj.apelido || ''}" atualizada.`, {
-      acao: 'Edição',
+    logUserActivity('EdiÃ§Ã£o de Contacto', `Ficha do contacto "${contactObj.nome} ${contactObj.apelido || ''}" atualizada.`, {
+      acao: 'EdiÃ§Ã£o',
       ficha: 'Contacto',
       nome: `${contactObj.nome} ${contactObj.apelido || ''}`.trim(),
       email: contactObj.email || '',
       cargo: contactObj.cargo || '',
-      camposAlterados: camposAlterados.length > 0 ? camposAlterados : [{ campo: 'Ficheiro guardado', anterior: '', novo: 'Sem alterações detetadas' }]
+      camposAlterados: camposAlterados.length > 0 ? camposAlterados : [{ campo: 'Ficheiro guardado', anterior: '', novo: 'Sem alteraÃ§Ãµes detetadas' }]
     });
   } else {
     db.contactos.push(contactObj);
     showToast('Contacto adicionado com sucesso!');
-    logUserActivity('Criação de Contacto', `Novo contacto "${contactObj.nome} ${contactObj.apelido || ''}" associado ao cliente.`, {
-      acao: 'Criação',
+    logUserActivity('CriaÃ§Ã£o de Contacto', `Novo contacto "${contactObj.nome} ${contactObj.apelido || ''}" associado ao cliente.`, {
+      acao: 'CriaÃ§Ã£o',
       ficha: 'Contacto',
       nome: `${contactObj.nome} ${contactObj.apelido || ''}`.trim(),
       email: contactObj.email || '',
@@ -11911,7 +11879,7 @@ function saveContactNextContactDate(newDate) {
     if (typeof syncDatabaseToHuggingFace === 'function') {
       syncDatabaseToHuggingFace(true, true).catch(() => {});
     }
-    showToast(t('Data de próximo contacto atualizada com sucesso!'));
+    showToast(t('Data de prÃ³ximo contacto atualizada com sucesso!'));
   }
 }
 window.saveContactNextContactDate = saveContactNextContactDate;
@@ -12414,14 +12382,7 @@ function updateProjectContactsDropdown(client, isEstatal, prev1 = null, prev2 = 
 
 function openProjectModal() {
   initModalResizing();
-  const projModal = document.getElementById('projectModal');
-  if (projModal) {
-    const activeLang = typeof getActiveUserLanguage === 'function' ? getActiveUserLanguage() : 'Português';
-    if (typeof applyModalLanguage === 'function') {
-      applyModalLanguage(projModal, activeLang);
-    }
-    projModal.classList.add('active');
-  }
+  document.getElementById('projectModal')?.classList.add('active');
 }
 
 function closeProjectModal() {
@@ -13630,13 +13591,8 @@ async function closeApplicationWithSave() {
 
   showToast('Todos os dados foram guardados com sucesso!', 'success');
 
-  // 5. Encerrar aplicação: solicita ao bridge desktop C# para fechar e encerra janela
+  // 5. Encerrar aplicação: encerra a sessão e apresenta ecrã de encerramento
   setTimeout(() => {
-    try {
-      if (typeof isLocalDesktopEnvironment === 'function' && isLocalDesktopEnvironment()) {
-        fetch('http://127.0.0.1:59124/api/exit-app', { method: 'POST', cache: 'no-store' }).catch(() => {});
-      }
-    } catch(eExit) {}
 
     const overlay = document.getElementById('closeAppOverlay');
     const userSub = document.getElementById('closeAppUserSubtitle');
@@ -14542,14 +14498,14 @@ function openPdfInNewTab(item) {
     <body>
       <div class="viewer-header">
         <div class="viewer-title">
-          <span>ðŸ“„</span>
+          <span>📄</span>
           <span>${escapeHtml(item.name)}</span>
           <span style="font-size: 12px; color: #94a3b8; font-weight: normal;">(${(item.size/1024).toFixed(1)} KB)</span>
         </div>
         <div class="viewer-actions">
-          <button id="btnDown" class="btn btn-primary">â¬‡ Descarregar PDF</button>
-          <button onclick="window.print()" class="btn btn-secondary">ðŸ–¨ Imprimir</button>
-          <button onclick="window.close()" class="btn btn-secondary">âœ• Fechar</button>
+          <button id="btnDown" class="btn btn-primary">⬇ Descarregar PDF</button>
+          <button onclick="window.print()" class="btn btn-secondary">🖨 Imprimir</button>
+          <button onclick="window.close()" class="btn btn-secondary">✖ Fechar</button>
         </div>
       </div>
       <iframe src="${pdfUrl}#toolbar=1&navpanes=1"></iframe>
@@ -14618,9 +14574,9 @@ function openWordDocInNewTab(item) {
           <span style="font-size: 12px; color: #94a3b8; font-weight: normal;">(${(item.size/1024).toFixed(1)} KB)</span>
         </div>
         <div class="viewer-actions">
-          <button id="btnDownload" class="btn btn-primary">â¬‡ Descarregar DOCX</button>
-          <button onclick="window.print()" class="btn btn-secondary">ðŸ–¨ Imprimir</button>
-          <button onclick="window.close()" class="btn btn-secondary">âœ• Fechar</button>
+          <button id="btnDownload" class="btn btn-primary">⬇ Descarregar DOCX</button>
+          <button onclick="window.print()" class="btn btn-secondary">🖨 Imprimir</button>
+          <button onclick="window.close()" class="btn btn-secondary">✖ Fechar</button>
         </div>
       </div>
       <div class="page-container">
@@ -14740,9 +14696,9 @@ function openExcelDocInNewTab(item) {
           <span style="font-size: 12px; color: #a7f3d0; font-weight: normal;">(${(item.size/1024).toFixed(1)} KB)</span>
         </div>
         <div class="viewer-actions">
-          <button id="btnDownload" class="btn btn-primary">â¬‡ Descarregar Excel</button>
-          <button onclick="window.print()" class="btn btn-secondary">ðŸ–¨ Imprimir</button>
-          <button onclick="window.close()" class="btn btn-secondary">âœ• Fechar</button>
+          <button id="btnDownload" class="btn btn-primary">⬇ Descarregar Excel</button>
+          <button onclick="window.print()" class="btn btn-secondary">🖨 Imprimir</button>
+          <button onclick="window.close()" class="btn btn-secondary">✖ Fechar</button>
         </div>
       </div>
       <div class="controls-bar">
@@ -14857,7 +14813,7 @@ function openImageInNewTab(item) {
     <body>
       <div class="viewer-header">
         <div class="viewer-title">
-          <span>ðŸ–¼</span>
+          <span>🖼</span>
           <span>${escapeHtml(item.name)}</span>
           <span style="font-size: 12px; color: #94a3b8; font-weight: normal;">(${(item.size/1024).toFixed(1)} KB)</span>
         </div>
@@ -14865,9 +14821,9 @@ function openImageInNewTab(item) {
           <button id="btnZoomIn" class="btn btn-secondary">ðŸ” +</button>
           <button id="btnZoomOut" class="btn btn-secondary">ðŸ” -</button>
           <button id="btnZoomReset" class="btn btn-secondary">100%</button>
-          <button id="btnDownload" class="btn btn-primary">â¬‡ Descarregar Imagem</button>
-          <button onclick="window.print()" class="btn btn-secondary">ðŸ–¨ Imprimir</button>
-          <button onclick="window.close()" class="btn btn-secondary">âœ• Fechar</button>
+          <button id="btnDownload" class="btn btn-primary">⬇ Descarregar Imagem</button>
+          <button onclick="window.print()" class="btn btn-secondary">🖨 Imprimir</button>
+          <button onclick="window.close()" class="btn btn-secondary">✖ Fechar</button>
         </div>
       </div>
       <div class="img-container">
@@ -14936,8 +14892,8 @@ function openMediaInNewTab(item) {
           <span style="font-size: 12px; color: #94a3b8; font-weight: normal;">(${(item.size/1024).toFixed(1)} KB)</span>
         </div>
         <div class="viewer-actions">
-          <button id="btnDownload" class="btn btn-primary">â¬‡ Descarregar Média</button>
-          <button onclick="window.close()" class="btn btn-secondary">âœ• Fechar</button>
+          <button id="btnDownload" class="btn btn-primary">⬇ Descarregar Média</button>
+          <button onclick="window.close()" class="btn btn-secondary">✖ Fechar</button>
         </div>
       </div>
       <div class="media-container">
@@ -15018,15 +14974,15 @@ function openTextInNewTab(item) {
     <body>
       <div class="viewer-header">
         <div class="viewer-title">
-          <span>ðŸ“„</span>
+          <span>📄</span>
           <span>${escapeHtml(item.name)}</span>
           <span style="font-size: 12px; color: #94a3b8; font-weight: normal;">(${(item.size/1024).toFixed(1)} KB)</span>
         </div>
         <div class="viewer-actions">
           <button id="btnCopy" class="btn btn-secondary">ðŸ“‹ Copiar Texto</button>
-          <button id="btnDownload" class="btn btn-primary">â¬‡ Descarregar Ficheiro</button>
-          <button onclick="window.print()" class="btn btn-secondary">ðŸ–¨ Imprimir</button>
-          <button onclick="window.close()" class="btn btn-secondary">âœ• Fechar</button>
+          <button id="btnDownload" class="btn btn-primary">⬇ Descarregar Ficheiro</button>
+          <button onclick="window.print()" class="btn btn-secondary">🖨 Imprimir</button>
+          <button onclick="window.close()" class="btn btn-secondary">✖ Fechar</button>
         </div>
       </div>
       <div class="content-container">
@@ -15042,7 +14998,7 @@ function openTextInNewTab(item) {
   if (btnCopy) {
     btnCopy.onclick = function() {
       navigator.clipboard.writeText(rawText).then(() => {
-        btnCopy.textContent = 'âœ“ Copiado!';
+        btnCopy.textContent = '✓ Copiado!';
         setTimeout(() => { btnCopy.textContent = 'ðŸ“‹ Copiar Texto'; }, 2000);
       });
     };
@@ -15092,7 +15048,7 @@ function openGenericInNewTab(item) {
           <span>${escapeHtml(item.name)}</span>
         </div>
         <div class="viewer-actions">
-          <button onclick="window.close()" class="btn btn-secondary">âœ• Fechar</button>
+          <button onclick="window.close()" class="btn btn-secondary">✖ Fechar</button>
         </div>
       </div>
       <div class="card">
@@ -15102,7 +15058,7 @@ function openGenericInNewTab(item) {
         <p style="color: #cbd5e1; font-size: 14px; line-height: 1.5; margin-bottom: 25px;">
           Este ficheiro está protegido e guardado no sistema SIGEC-Pro. Clique no botão abaixo para transferir o ficheiro diretamente para o seu computador.
         </p>
-        <button id="btnDownload" class="btn btn-primary" style="font-size: 14px; padding: 10px 22px;">â¬‡ Descarregar Ficheiro Original</button>
+        <button id="btnDownload" class="btn btn-primary" style="font-size: 14px; padding: 10px 22px;">⬇ Descarregar Ficheiro Original</button>
       </div>
     </body>
     </html>
@@ -16524,7 +16480,7 @@ function smartParseAddress(raw) {
   let str = raw.trim();
   if (!str) return null;
 
-  // Sanitize common UTF-8 double-encoding artifacts like 'n.Âº' -> 'n.º'
+  // Sanitize common UTF-8 double-encoding artifacts like 'n.º' -> 'n.º'
   str = str.replace(/Â[º°ª]/g, 'º').replace(/Â/g, '');
 
   const result = {
@@ -19880,7 +19836,7 @@ window.parseVersionNumber = parseVersionNumber;
 
 function getNextSequentialVersion(lastVersionStr) {
   const match = String(lastVersionStr || '').match(/SIGEC_V?([0-9]+(?:\.[0-9]+)*)/i) || String(lastVersionStr || '').match(/([0-9]+(?:\.[0-9]+)*)/);
-  if (!match) return 'SIGEC_V1.7.14';
+  if (!match) return 'SIGEC_V1.7.35';
   
   const parts = match[1].split('.').map(p => parseInt(p, 10) || 0);
   if (parts.length === 1) {
@@ -19893,18 +19849,16 @@ function getNextSequentialVersion(lastVersionStr) {
 window.getNextSequentialVersion = getNextSequentialVersion;
 
 function getInstalledVersion() {
-  const CODE_BASE_VERSION = 'SIGEC_V1.7.35';
-  let ver = CODE_BASE_VERSION;
+  let ver = 'SIGEC_V1.7.35';
   
   if (typeof localStorage !== 'undefined') {
     const saved = localStorage.getItem('sigec_pro_installed_version');
-    if (saved && typeof saved === 'string' && saved.trim()) {
-      const savedClean = saved.trim();
-      if (typeof parseVersionNumber === 'function' && parseVersionNumber(savedClean) >= parseVersionNumber(CODE_BASE_VERSION)) {
-        ver = savedClean;
-      } else {
-        try { localStorage.setItem('sigec_pro_installed_version', CODE_BASE_VERSION); } catch (e) {}
-      }
+    if (saved && typeof saved === 'string' && saved.trim() && parseVersionNumber(saved) >= parseVersionNumber('SIGEC_V1.7.35')) {
+      ver = saved.trim();
+    } else {
+      try {
+        localStorage.setItem('sigec_pro_installed_version', 'SIGEC_V1.7.35');
+      } catch (e) {}
     }
   }
   
@@ -19958,175 +19912,7 @@ function updateInstalledVersionUI() {
 window.updateInstalledVersionUI = updateInstalledVersionUI;
 
 async function generateUpdatePackage() {
-  let lastSavedVersion = getInstalledVersion();
-
-  if (window.SIGEC_AVAILABLE_UPDATES && Array.isArray(window.SIGEC_AVAILABLE_UPDATES)) {
-    let highestWeight = parseVersionNumber(lastSavedVersion);
-    window.SIGEC_AVAILABLE_UPDATES.forEach(u => {
-      const vName = u.version || u.packageName || '';
-      const vWeight = parseVersionNumber(vName);
-      if (vWeight >= highestWeight) {
-        highestWeight = vWeight;
-        lastSavedVersion = vName;
-      }
-    });
-  }
-
-  const nextVersion = getNextSequentialVersion(lastSavedVersion);
-
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const day = String(now.getDate()).padStart(2, '0');
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
-  const seconds = String(now.getSeconds()).padStart(2, '0');
-
-  const timestampStr = `${day}-${month}-${year}_${hours}h${minutes}m`;
-  const defaultSuggestedName = `${nextVersion}_${timestampStr}`;
-
-  const userVer = prompt('Insira o nome da versão para o pacote de atualização de software:', defaultSuggestedName);
-  if (!userVer || !userVer.trim()) {
-    showToast('Geração de pacote de atualização cancelada.', 'warning');
-    return;
-  }
-
-  let finalName = userVer.trim().replace(/\.(json|sigecpkg|sigecupd)$/i, '');
-
-  let baseVersion = nextVersion;
-  const matchVer = finalName.match(/^(SIGEC_V?[0-9]+(?:\.[0-9]+)*)/i);
-  if (matchVer) {
-    baseVersion = matchVer[1].toUpperCase();
-    if (!baseVersion.startsWith('SIGEC_V')) {
-      baseVersion = baseVersion.replace(/^SIGEC_/i, 'SIGEC_V');
-    }
-  }
-
-  localStorage.setItem('sigec_pro_last_generated_version', baseVersion);
-
-  const fileName = `${finalName}.sigecpkg`;
-  const formattedDateTime = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
-
-  const updatePackage = {
-    packageName: finalName,
-    version: baseVersion,
-    fileName: fileName,
-    createdAt: now.toISOString(),
-    dataHoraCriacao: formattedDateTime,
-    system: "SIGEC-Pro",
-    tipoPacote: "ATUALIZACAO_SOFTWARE_EXCLUSIVA",
-    notes: `Pacote de atualização de software ${baseVersion} gerado em ${formattedDateTime} - Titularidade Exclusiva José Centúrio`,
-    software: {
-      version: baseVersion,
-      releasedAt: now.toISOString(),
-      modules: ["clientes", "contactos", "projetos", "interacoes", "estatais", "configuracao", "seguranca", "backups", "servidor_huggingface"],
-      requiresDataPreservation: true
-    }
-  };
-
-  try {
-    localStorage.setItem('sigec_pro_last_generated_package', JSON.stringify(updatePackage));
-  } catch(e) {}
-
-  if (!window.SIGEC_AVAILABLE_UPDATES) window.SIGEC_AVAILABLE_UPDATES = [];
-  const existingIdx = window.SIGEC_AVAILABLE_UPDATES.findIndex(u => (u.version === baseVersion || u.packageName === finalName));
-  if (existingIdx !== -1) {
-    window.SIGEC_AVAILABLE_UPDATES[existingIdx] = updatePackage;
-  } else {
-    window.SIGEC_AVAILABLE_UPDATES.push(updatePackage);
-  }
-
-  // ATUALIZAÇÃO IMEDIATA E ATIVAÇÃO DA NOVA VERSÃO NO SISTEMA
-  localStorage.setItem('sigec_pro_installed_version', baseVersion);
-  CURRENT_SYSTEM_VERSION = baseVersion;
-  window.CURRENT_SYSTEM_VERSION = baseVersion;
-  if (typeof db !== 'undefined' && db) {
-    if (!db.config) db.config = {};
-    db.config.versaoSoftware = baseVersion;
-    if (typeof saveDatabase === 'function') saveDatabase();
-  }
-
-  if (typeof updateInstalledVersionUI === 'function') {
-    updateInstalledVersionUI();
-  }
-
-  // Descarregar ficheiro .sigecpkg com ícone oficial do SIGEC-Pro
-  const blob = new Blob([JSON.stringify(updatePackage, null, 2)], { type: 'application/octet-stream;charset=utf-8' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = fileName;
-  document.body.appendChild(a);
-  if (typeof a.click === 'function') a.click();
-  try { document.body.removeChild(a); } catch(e) {}
-
-  if (typeof logUserActivity === 'function') {
-    logUserActivity('Atualização de Software', `Pacote ${baseVersion} (${fileName}) gerado e ativado no sistema.`);
-  }
-
-    // Publicar automaticamente a nova versão e o registo de atualizações na Nuvem Hugging Face
-  try {
-    const cfg = typeof getHuggingFaceConfig === 'function' ? getHuggingFaceConfig() : {};
-    const token = (cfg.token || DEFAULT_SYSTEM_HF_TOKEN).trim();
-    const space = (cfg.space || DEFAULT_SYSTEM_HF_SPACE || "josecenturio/SIGEC-Pro").trim();
-
-    if (token && space) {
-      const regJs = "window.SIGEC_AVAILABLE_UPDATES = " + JSON.stringify(window.SIGEC_AVAILABLE_UPDATES, null, 2) + ";\n";
-      const regBase64 = typeof utf8ToBase64 === 'function' ? utf8ToBase64(regJs) : btoa(unescape(encodeURIComponent(regJs)));
-      const pkgBase64 = typeof utf8ToBase64 === 'function' ? utf8ToBase64(JSON.stringify(updatePackage, null, 2)) : btoa(unescape(encodeURIComponent(JSON.stringify(updatePackage, null, 2))));
-      const jsonFileName = fileName.replace(/\.sigecpkg$/i, '.json');
-
-      // 1. Gravar no DATASET (https://huggingface.co/datasets/josecenturio/SIGEC-Pro/tree/main/Programa%20SIGEC-Pro/Atualiza%C3%A7%C3%A3o)
-      const datasetPayload = {
-        summary: `[SIGEC-Pro] Publicação do Pacote Oficial ${baseVersion} na Pasta Programa SIGEC-Pro/Atualização`,
-        files: [
-          { path: 'Programa SIGEC-Pro/Atualização/updates_registry.js', content: regBase64, encoding: 'base64' },
-          { path: 'Programa SIGEC-Pro/Atualizacao/updates_registry.js', content: regBase64, encoding: 'base64' },
-          { path: `Programa SIGEC-Pro/Atualização/${fileName}`, content: pkgBase64, encoding: 'base64' },
-          { path: `Programa SIGEC-Pro/Atualizacao/${fileName}`, content: pkgBase64, encoding: 'base64' },
-          { path: `Programa SIGEC-Pro/Atualização/${jsonFileName}`, content: pkgBase64, encoding: 'base64' },
-          { path: `Programa SIGEC-Pro/Atualizacao/${jsonFileName}`, content: pkgBase64, encoding: 'base64' }
-        ]
-      };
-
-      fetch(`https://huggingface.co/api/datasets/${space}/commit/main`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(datasetPayload)
-      }).then(r => {
-        if (r.ok) console.log(`[Dataset Sync] Pacote ${baseVersion} publicado em Programa SIGEC-Pro/Atualização com sucesso!`);
-      }).catch(e => console.warn('[Dataset Sync] Aviso:', e.message));
-
-      // 2. Gravar no SPACE (https://huggingface.co/spaces/josecenturio/SIGEC-Pro)
-      const spacePayload = {
-        summary: `[SIGEC-Pro] Publicação do Pacote Oficial ${baseVersion} no Space de Aplicação`,
-        files: [
-          { path: 'Atualizacao/updates_registry.js', content: regBase64, encoding: 'base64' },
-          { path: 'Atualização/updates_registry.js', content: regBase64, encoding: 'base64' },
-          { path: `Atualizacao/${fileName}`, content: pkgBase64, encoding: 'base64' },
-          { path: `Atualização/${fileName}`, content: pkgBase64, encoding: 'base64' },
-          { path: `Atualizacao/${jsonFileName}`, content: pkgBase64, encoding: 'base64' },
-          { path: `Atualização/${jsonFileName}`, content: pkgBase64, encoding: 'base64' }
-        ]
-      };
-
-      fetch(`https://huggingface.co/api/spaces/${space}/commit/main`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(spacePayload)
-      }).then(r => {
-        if (r.ok) console.log(`[Space Sync] Pacote ${baseVersion} publicado no Space com sucesso!`);
-      }).catch(e => console.warn('[Space Sync] Aviso:', e.message));
-    }
-  } catch(e) {}
-
-  showToast(`✅ Versão ${baseVersion} ativada e publicada na Nuvem!`, 'success');
-  alert(`✅ Pacote de Atualização de Software Gerado e Ativado!\n\nVersão: ${baseVersion}\nFicheiro: ${fileName}\n\n✔️ O SIGEC-Pro foi atualizado de imediato para a versão ${baseVersion}.\n✔️ Todos os seus dados de Clientes, Contactos e Projetos mantêm-se 100% PRESERVADOS.\n\nO ficheiro .sigecpkg foi descarregado com o ícone oficial do SIGEC-Pro para poder ser instalado em qualquer outro computador.`);
+  showToast('As atualizações do SIGEC-Pro são sincronizadas automaticamente através da Nuvem (Render / PWA).', 'info');
 }
 window.generateUpdatePackage = generateUpdatePackage;
 
@@ -20282,50 +20068,7 @@ function updateSoftwareModalUI(pkgData, source) {
 window.updateSoftwareModalUI = updateSoftwareModalUI;
 
 function handleSystemUpdateFileSelect(event) {
-  const files = Array.from(event.target.files || []);
-  if (files.length === 0) return;
-
-  const file = files[0];
-  const reader = new FileReader();
-
-  reader.onload = function(e) {
-    try {
-      const content = e.target.result;
-      let data = JSON.parse(content);
-
-      if (!data) {
-        showToast('Erro na Atualização: Ficheiro inválido ou vazio.', 'danger');
-        return;
-      }
-
-      const fileVersion = data.version || data.packageName || file.name.replace(/\.(json|sigecpkg|sigecupd)$/i, '');
-
-      pendingUpdateData = {
-        ...data,
-        fileName: file.name,
-        version: fileVersion,
-        packageName: fileVersion,
-        tipoPacote: "ATUALIZACAO_SOFTWARE_EXCLUSIVA",
-        data: data
-      };
-
-      if (!pendingUpdateData.dataHoraCriacao && file.lastModified) {
-        const d = new Date(file.lastModified);
-        pendingUpdateData.dataHoraCriacao = `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}:${String(d.getSeconds()).padStart(2, '0')}`;
-      }
-
-      if (typeof closeCurrentUserSettingsModal === 'function') closeCurrentUserSettingsModal();
-      updateSoftwareModalUI(pendingUpdateData, 'local');
-      const modal = document.getElementById('updateConfirmationModal');
-      if (modal) modal.classList.add('active');
-    } catch (err) {
-      console.error('Erro na leitura do ficheiro de atualização:', err);
-      showToast('Erro ao ler o ficheiro de atualização.', 'danger');
-      alert(`Erro na Atualização:\nNão foi possível processar o ficheiro de atualização: ${err.message}`);
-    }
-  };
-
-  reader.readAsText(file);
+  // Atualizações locais por ficheiro descontinuadas em favor do modelo Nuvem / PWA
 }
 window.handleSystemUpdateFileSelect = handleSystemUpdateFileSelect;
 
@@ -20337,11 +20080,7 @@ function closeUpdateConfirmationModal() {
 window.closeUpdateConfirmationModal = closeUpdateConfirmationModal;
 
 function triggerLocalUpdateFileSelect() {
-  const fi = document.getElementById('systemUpdateImportInput');
-  if (fi) {
-    fi.value = '';
-    fi.click();
-  }
+  showToast('As atualizações do SIGEC-Pro são sincronizadas automaticamente através da Nuvem.', 'info');
 }
 window.triggerLocalUpdateFileSelect = triggerLocalUpdateFileSelect;
 
@@ -20365,23 +20104,8 @@ async function resolveSystemUpdateConfirm(shouldInstall) {
     const data = pendingUpdateData;
     const fileVersion = data.version || data.packageName || 'SIGEC_V1.7.24';
 
-    // 1. Transferir os ficheiros de software atualizados para o disco local via Desktop Bridge
-    if (typeof isLocalDesktopEnvironment === 'function' && isLocalDesktopEnvironment()) {
-      try {
-        const applyRes = await fetch('http://127.0.0.1:59124/api/apply-cloud-update', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          cache: 'no-store'
-        }).catch(() => null);
-
-        if (applyRes && applyRes.ok) {
-          const resJson = await applyRes.json().catch(() => null);
-          console.info('[SIGEC-Pro] Atualização de software aplicada com sucesso no disco:', resJson);
-        }
-      } catch (eBridge) {
-        console.warn('[SIGEC-Pro] Aviso na atualização de ficheiros via bridge:', eBridge);
-      }
-    }
+    // 1. Atualização via Web / Cache PWA
+    console.info('[SIGEC-Pro] Atualização de software aplicada com sucesso para a versão:', fileVersion);
 
     // 2. Grava a nova versão no LocalStorage e no db.json
     localStorage.setItem('sigec_pro_installed_version', fileVersion);
@@ -20470,7 +20194,6 @@ function sanitizeUtf8String(str) {
     .replace(/Gon[\uFFFD?]alo/g, 'Gonçalo')
     .replace(/Ven[\uFFFD?]ncio/g, 'Venâncio')
     .replace(/energ[\uFFFD?]a/g, 'energía')
-    .replace(/energ[\uFFFD?]tica/g, 'energética')
     .replace(/petr[\uFFFD?]leo/g, 'petróleo')
     .replace(/transici[\uFFFD?]n/g, 'transición')
     .replace(/descarbonizaci[\uFFFD?]n/g, 'descarbonización')
@@ -20565,6 +20288,20 @@ function ensureUsersInitialized() {
   }
 
   if (Array.isArray(db.usuarios)) {
+    const seenUserIds = new Set();
+    const seenUserEmails = new Set();
+    db.usuarios = db.usuarios.filter(u => {
+      if (!u || !u.id) return false;
+      const uId = String(u.id).trim();
+      const uEmail = String(u.email || '').toLowerCase().trim();
+      if (seenUserIds.has(uId)) return false;
+      if (uEmail && seenUserEmails.has(uEmail)) return false;
+      seenUserIds.add(uId);
+      if (uEmail) seenUserEmails.add(uEmail);
+      if (u.role === 'admin' || u.id === 'usr-admin-001') return true;
+      return !isDeletedId('usuarios', u.id);
+    });
+
     let needsSave = false;
 
     // Garantir integridade de Administradores e normalização de idiomas de todos os utilizadores
@@ -20588,6 +20325,21 @@ function ensureUsersInitialized() {
         u.nome = 'José Centúrio';
         u.cargo = 'Administrador do Sistema';
         u.role = 'admin';
+        u.chefia = true;
+        u.active = true;
+      }
+
+      // Garantir integridade da utilizadora Victoria Schwab Vilte (Ativa e com Chefia para Consultas)
+      if (u.id === 'usr-1789972905110' || uEmail === 'victoria@alegria-activity.com' || (uName.includes('victoria') && uName.includes('schwab'))) {
+        u.id = 'usr-1789972905110';
+        u.nome = 'Victoria Schwab Vilte';
+        u.primeiroNome = 'Victoria';
+        u.apelido = 'Schwab Vilte';
+        u.email = 'victoria@alegria-activity.com';
+        u.cargo = 'Gestora de proyectos';
+        u.idioma = 'Español';
+        if (!u.pin) u.pin = 'Victoria_202';
+        u.role = 'user';
         u.chefia = true;
         u.active = true;
       }
@@ -20626,7 +20378,7 @@ function ensureUsersInitialized() {
         idioma: "Español",
         pin: "Victoria_202",
         role: "user",
-        chefia: false,
+        chefia: true,
         active: true,
         createdAt: "2026-09-21T06:41:45.110Z",
         updatedAt: "2026-09-24T05:54:00.000Z"
@@ -20824,8 +20576,6 @@ async function verifyLoginPin() {
         const endpointsToCheck = [
           `/data/db.json?_t=${Date.now()}_${Math.random()}`,
           `https://sigec-pro.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
-          `https://sigec-pro-app.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
-          `http://127.0.0.1:59124/data/db.json?_t=${Date.now()}_${Math.random()}`,
           `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`,
           `https://huggingface.co/spaces/${DEFAULT_SYSTEM_HF_SPACE}/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
           `https://huggingface.co/spaces/${DEFAULT_SYSTEM_HF_SPACE}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`
@@ -20879,8 +20629,6 @@ async function verifyLoginPin() {
       const endpointsToCheckFresh = [
         `/data/db.json?_t=${Date.now()}_${Math.random()}`,
         `https://sigec-pro.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
-        `https://sigec-pro-app.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
-        `http://127.0.0.1:59124/data/db.json?_t=${Date.now()}_${Math.random()}`,
         `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`
       ];
       for (const ep of endpointsToCheckFresh) {
@@ -20934,7 +20682,6 @@ async function verifyLoginPin() {
       const endpointsToVerify = [
         `/data/db.json?_t=${Date.now()}_${Math.random()}`,
         `https://sigec-pro.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
-        `http://127.0.0.1:59124/data/db.json?_t=${Date.now()}_${Math.random()}`,
         `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`,
         `https://huggingface.co/spaces/josecenturio/SIGEC-Pro/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
         `https://huggingface.co/spaces/josecenturio/SIGEC-Pro/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`
@@ -21523,13 +21270,7 @@ window.toggleLoginRegisterMode = toggleLoginRegisterMode;
 
 function openRegisterUserModal() {
   const modal = document.getElementById('userRegisterModal');
-  if (modal) {
-    const activeLang = typeof getActiveUserLanguage === 'function' ? getActiveUserLanguage() : 'Português';
-    if (typeof applyModalLanguage === 'function') {
-      applyModalLanguage(modal, activeLang);
-    }
-    modal.classList.add('active');
-  }
+  if (modal) modal.classList.add('active');
 }
 
 function closeRegisterUserModal() {
@@ -21752,13 +21493,9 @@ function openUserProfileModal(userId, initialTab = 'info') {
     customDateInput.style.display = 'none';
   }
 
-  if (modal) {
-    const activeLang = typeof getActiveUserLanguage === 'function' ? getActiveUserLanguage() : 'Português';
-    if (typeof applyModalLanguage === 'function') {
-      applyModalLanguage(modal, activeLang);
-    }
-    modal.classList.add('active');
-  }
+  switchUserProfileTab(initialTab);
+
+  if (modal) modal.classList.add('active');
   logUserActivity('Ficha do Utilizador', `Ficha do utilizador ${user.nome} aberta após autenticação de Administrador.`);
 }
 
@@ -22010,9 +21747,7 @@ async function handleSaveUserProfile(event) {
 
     const postEndpoints = [
       '/api/save-db-json',
-      'https://sigec-pro.onrender.com/api/save-db-json',
-      'https://sigec-pro-app.onrender.com/api/save-db-json',
-      'http://127.0.0.1:59124/api/save-db-json'
+      'https://sigec-pro.onrender.com/api/save-db-json'
     ];
 
     Promise.allSettled(postEndpoints.map(url =>
@@ -28321,8 +28056,7 @@ async function dispatchDirectEmail(targetEmail, subject, fields = {}) {
   // ------------------------------------------------------------------------
   const endpointsToTry = [
     'https://sigec-pro.onrender.com/api/send-email',
-    '/api/send-email',
-    'http://127.0.0.1:59124/api/send-email'
+    '/api/send-email'
   ];
 
   const bridgePayload = {
@@ -29016,55 +28750,13 @@ window.startAdminPendingUserWatcher = startAdminPendingUserWatcher;
 // DETEÇÃO AUTOMÁTICA DE FICHEIROS ABERTOS VIA DUPLO-CLIQUE NO WINDOWS (.sigecbak / .sigecpkg)
 // ==========================================
 async function checkOpenedFileOnStartup() {
-  try {
-    const res = await fetch('http://127.0.0.1:59124/api/check-opened-file', { cache: 'no-store' });
-    if (!res.ok) return;
-    const info = await res.json();
-    if (!info || !info.hasFile || !info.content) return;
-
-    const fileName = info.fileName || '';
-    const isPackage = fileName.endsWith('.sigecpkg') || fileName.endsWith('.sigecupd') || (info.content.includes('ATUALIZACAO_SOFTWARE_EXCLUSIVA'));
-    const isBackup = fileName.endsWith('.sigecbak') || fileName.endsWith('.sigec') || (info.content.includes('BACKUP_REGISTOS_SIGEC_PRO') || info.content.includes('BACKUP_PERFIL_EXCLUSIVO_SIGEC_PRO'));
-
-    const parsed = JSON.parse(info.content);
-    if (isPackage) {
-      setTimeout(() => {
-        if (typeof pendingUpdateData !== 'undefined') {
-          pendingUpdateData = {
-            ...parsed,
-            fileName: fileName,
-            version: parsed.version || parsed.packageName || fileName.replace(/\.(sigecpkg|sigecupd|json)$/i, ''),
-            packageName: parsed.packageName || parsed.version,
-            tipoPacote: "ATUALIZACAO_SOFTWARE_EXCLUSIVA",
-            data: parsed
-          };
-          const nameEl = document.getElementById('newDetectedVersionName');
-          if (nameEl) nameEl.textContent = pendingUpdateData.version;
-          const modal = document.getElementById('systemUpdateConfirmModal');
-          if (modal) modal.style.display = 'flex';
-        }
-      }, 1000);
-    } else if (isBackup) {
-      setTimeout(() => {
-        if (typeof openBackupRestoreModalWithData === 'function') {
-          openBackupRestoreModalWithData(parsed, fileName, 'local');
-        }
-      }, 1000);
-    }
-  } catch (e) {
-    console.log('Sem ficheiro de arranque associado:', e.message);
-  }
+  // Operação de bridge local descontinuada no ambiente Web/PWA
+  return;
 }
 window.checkOpenedFileOnStartup = checkOpenedFileOnStartup;
 
-// Heartbeat contínuo para manter o servidor local SIGEC-Pro (porta 59124) ativo
-(function initDesktopHeartbeat() {
-  function sendHb() {
-    fetch('http://127.0.0.1:59124/api/heartbeat?_t=' + Date.now(), { method: 'GET', cache: 'no-store' }).catch(() => {});
-  }
-  sendHb();
-  setInterval(sendHb, 3000);
-})();
+// Heartbeat contínuo local desativado para operação cloud e PWA independente
+function initDesktopHeartbeat() {}
 
 
 // ==========================================================================
@@ -29236,23 +28928,7 @@ async function executeQuickUniversalUpdate() {
   showToast(`A transferir e aplicar a versão ${cleanVer}... O programa irá reiniciar.`, 'info');
 
   try {
-    // 1. Atualizar ficheiros de disco via Desktop Bridge
-    try {
-      const applyRes = await fetch('http://127.0.0.1:59124/api/apply-cloud-update', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        cache: 'no-store'
-      }).catch(() => null);
-
-      if (applyRes && applyRes.ok) {
-        const resJson = await applyRes.json().catch(() => null);
-        console.info('[SIGEC-Pro] Atualização rápida aplicada no disco com sucesso:', resJson);
-      }
-    } catch (eBridge) {
-      console.warn('[SIGEC-Pro] Aviso na atualização via bridge:', eBridge);
-    }
-
-    // 2. Registar a versão instalada
+    // 1. Registar a versão instalada
     localStorage.setItem('sigec_pro_installed_version', ver);
     CURRENT_SYSTEM_VERSION = ver;
     window.CURRENT_SYSTEM_VERSION = ver;
@@ -29792,9 +29468,9 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     pais: 'Espanha',
     fonteUrl: 'https://alegria-activity.com'
   },
-  // --- PORTUGAL: Presid??ncia, Governo Central e Minist??rios ---
+  // --- PORTUGAL: Presidência, Governo Central e Ministérios ---
   {
-    aliases: ['presid??ncia', 'presidencia', 'minist??rio da presid??ncia', 'ministerio da presidencia', 'presid??ncia do conselho de ministros', 'secretaria-geral da presid??ncia'],
+    aliases: ['presidência', 'presidencia', 'ministério da presidência', 'ministerio da presidencia', 'presidência do conselho de ministros', 'secretaria-geral da presidência'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 213 927 600',
     direcao1: 'Rua Professor Gomes Teixeira',
@@ -29806,10 +29482,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['assembleia da rep??blica', 'assembleia da republica', 'parlamento', 'assuntos parlamentares', 'minist??rio dos assuntos parlamentares', 'ministerio dos assuntos parlamentares'],
+    aliases: ['assembleia da república', 'assembleia da republica', 'parlamento', 'assuntos parlamentares', 'ministério dos assuntos parlamentares', 'ministerio dos assuntos parlamentares'],
     website: 'https://www.parlamento.pt',
     telefone: '+351 213 919 000',
-    direcao1: 'Pal??cio de S??o Bento',
+    direcao1: 'Palácio de São Bento',
     numero: '',
     andar: '',
     codigoPostal: '1249-068',
@@ -29818,10 +29494,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.parlamento.pt'
   },
   {
-    aliases: ['presid??ncia da rep??blica', 'presidencia da republica', 'pal??cio de bel??m', 'palacio de belem'],
+    aliases: ['presidência da república', 'presidencia da republica', 'palácio de belém', 'palacio de belem'],
     website: 'https://www.presidencia.pt',
     telefone: '+351 213 614 600',
-    direcao1: 'Cal??ada da Ajuda',
+    direcao1: 'Calçada da Ajuda',
     numero: '',
     andar: '',
     codigoPostal: '1349-022',
@@ -29830,10 +29506,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.presidencia.pt'
   },
   {
-    aliases: ['neg??cios estrangeiros', 'negocios estrangeiros', 'mne', 'minist??rio dos neg??cios estrangeiros', 'ministerio de estado e dos neg??cios estrangeiros', 'secretaria de estado dos neg??cios estrangeiros', 'secretaria de estado de negocios extrangeiros e coopera????o'],
+    aliases: ['negócios estrangeiros', 'negocios estrangeiros', 'mne', 'ministério dos negócios estrangeiros', 'ministerio de estado e dos negócios estrangeiros', 'secretaria de estado dos negócios estrangeiros', 'secretaria de estado de negocios extrangeiros e cooperação'],
     website: 'https://www.portaldiplomatico.mne.gov.pt',
     telefone: '+351 213 946 000',
-    direcao1: 'Largo do Rilvas (Pal??cio das Necessidades)',
+    direcao1: 'Largo do Rilvas (Palácio das Necessidades)',
     numero: '',
     andar: '',
     codigoPostal: '1399-030',
@@ -29842,19 +29518,19 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portaldiplomatico.mne.gov.pt'
   },
   {
-    aliases: ['tesouro e finan??as', 'tesouro e financas', 'dgtf', 'dire????o-geral do tesouro', 'direccao-geral do tesouro', 'dire????o geral do tesouro', 'dire????o-geral do tesouro e finan??as'],
+    aliases: ['tesouro e finanças', 'tesouro e financas', 'dgtf', 'direção-geral do tesouro', 'direccao-geral do tesouro', 'direção geral do tesouro', 'direção-geral do tesouro e finanças'],
     website: 'https://www.dgtf.gov.pt',
     telefone: '+351 218 812 000',
-    direcao1: 'Rua da Alf??ndega',
+    direcao1: 'Rua da Alfândega',
     numero: '5',
-    andar: '1.?? andar',
+    andar: '1.º andar',
     codigoPostal: '1149-008',
     localidade: 'Lisboa',
     pais: 'Portugal',
     fonteUrl: 'https://www.gov.pt/entidades/direcao-geral-do-tesouro-e-financas'
   },
   {
-    aliases: ['minist??rio das finan??as', 'ministerio das financas', 'finan??as', 'financas', 'gabinete do ministro das finan??as', 'ministerio finanzas'],
+    aliases: ['ministério das finanças', 'ministerio das financas', 'finanças', 'financas', 'gabinete do ministro das finanças', 'ministerio finanzas'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 218 816 800',
     direcao1: 'Avenida Infante Dom Henrique',
@@ -29866,7 +29542,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['autoridade tribut??ria', 'autoridade tributaria', 'at', 'dire????o-geral dos impostos', 'alf??ndega', 'alfandega'],
+    aliases: ['autoridade tributária', 'autoridade tributaria', 'at', 'direção-geral dos impostos', 'alfândega', 'alfandega'],
     website: 'https://www.portaldasfinancas.gov.pt',
     telefone: '+351 217 206 707',
     direcao1: 'Rua da Prata',
@@ -29878,7 +29554,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portaldasfinancas.gov.pt'
   },
   {
-    aliases: ['dire????o-geral do or??amento', 'direccao-geral do orcamento', 'dgo'],
+    aliases: ['direção-geral do orçamento', 'direccao-geral do orcamento', 'dgo'],
     website: 'https://www.dgo.gov.pt',
     telefone: '+351 218 817 000',
     direcao1: 'Avenida Infante Dom Henrique',
@@ -29890,7 +29566,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.dgo.gov.pt'
   },
   {
-    aliases: ['minist??rio da defesa', 'ministerio da defesa', 'minist??rio da defesa nacional', 'ministerio de defensa nacional', 'ministerio da defesa nacional', 'secretaria de estado da defesa nacional'],
+    aliases: ['ministério da defesa', 'ministerio da defesa', 'ministério da defesa nacional', 'ministerio de defensa nacional', 'ministerio da defesa nacional', 'secretaria de estado da defesa nacional'],
     website: 'https://www.defesa.gov.pt',
     telefone: '+351 213 034 500',
     direcao1: 'Avenida da Ilha da Madeira',
@@ -29902,22 +29578,22 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.defesa.gov.pt'
   },
   {
-    aliases: ['dire????o-geral de recursos da defesa nacional', 'dire????o geral de recursos de defesa nacional', 'dgrdn'],
+    aliases: ['direção-geral de recursos da defesa nacional', 'direção geral de recursos de defesa nacional', 'dgrdn'],
     website: 'https://www.defesa.gov.pt/pt/dgrdn',
     telefone: '+351 213 038 500',
     direcao1: 'Avenida da Ilha da Madeira',
     numero: '1',
-    andar: 'Edif??cio Defesa',
+    andar: 'Edifício Defesa',
     codigoPostal: '1400-204',
     localidade: 'Lisboa',
     pais: 'Portugal',
     fonteUrl: 'https://www.defesa.gov.pt'
   },
   {
-    aliases: ['administra????o interna', 'administracao interna', 'mai', 'minist??rio da administra????o interna', 'ministerio da administracion interna', 'secretaria de estado da administra????o interna', 'secretaria del estado de administraci??n interna'],
+    aliases: ['administração interna', 'administracao interna', 'mai', 'ministério da administração interna', 'ministerio da administracion interna', 'secretaria de estado da administração interna', 'secretaria del estado de administración interna'],
     website: 'https://www.mai.gov.pt',
     telefone: '+351 213 233 000',
-    direcao1: 'Pra??a do Com??rcio',
+    direcao1: 'Praça do Comércio',
     numero: '',
     andar: '',
     codigoPostal: '1149-015',
@@ -29926,10 +29602,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.mai.gov.pt'
   },
   {
-    aliases: ['pol??cia de seguran??a p??blica', 'policia de seguranca publica', 'psp', 'dire????o nacional da psp'],
+    aliases: ['polícia de segurança pública', 'policia de seguranca publica', 'psp', 'direção nacional da psp'],
     website: 'https://www.psp.pt',
     telefone: '+351 213 466 141',
-    direcao1: 'Largo da Penha de Fran??a',
+    direcao1: 'Largo da Penha de França',
     numero: '1',
     andar: '',
     codigoPostal: '1199-010',
@@ -29950,7 +29626,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.gnr.pt'
   },
   {
-    aliases: ['prote????o civil', 'protecao civil', 'anepc'],
+    aliases: ['proteção civil', 'protecao civil', 'anepc'],
     website: 'https://prociv.gov.pt',
     telefone: '+351 214 247 100',
     direcao1: 'Avenida do Forte em Carnaxide',
@@ -29962,10 +29638,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://prociv.gov.pt'
   },
   {
-    aliases: ['minist??rio da justi??a', 'ministerio da justica', 'ministerio de justicia', 'secretaria de estado da justi??a', 'secretar??a del estado de justicia'],
+    aliases: ['ministério da justiça', 'ministerio da justica', 'ministerio de justicia', 'secretaria de estado da justiça', 'secretaría del estado de justicia'],
     website: 'https://www.justica.gov.pt',
     telefone: '+351 213 222 300',
-    direcao1: 'Pra??a do Com??rcio',
+    direcao1: 'Praça do Comércio',
     numero: '',
     andar: '',
     codigoPostal: '1149-019',
@@ -29977,7 +29653,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     aliases: ['instituto dos registos e do notariado', 'irn', 'registos e notariado'],
     website: 'https://irn.justica.gov.pt',
     telefone: '+351 211 950 500',
-    direcao1: 'Avenida Dom Jo??o II, Campus de Justi??a, Edif??cio H',
+    direcao1: 'Avenida Dom João II, Campus de Justiça, Edifício H',
     numero: 'Lote 1.06.2.1',
     andar: '',
     codigoPostal: '1990-097',
@@ -29986,7 +29662,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://irn.justica.gov.pt'
   },
   {
-    aliases: ['pol??cia judici??ria', 'policia judiciaria', 'pj'],
+    aliases: ['polícia judiciária', 'policia judiciaria', 'pj'],
     website: 'https://www.policiajudiciaria.pt',
     telefone: '+351 211 967 000',
     direcao1: 'Rua Gomes Freire',
@@ -29998,10 +29674,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.policiajudiciaria.pt'
   },
   {
-    aliases: ['minist??rio da economia', 'ministerio da economia', 'minist??rio da economia e da coes??o territorial', 'economia e coes??o territorial', 'secretaria de estado do turismo, com??rcio e servi??os'],
+    aliases: ['ministério da economia', 'ministerio da economia', 'ministério da economia e da coesão territorial', 'economia e coesão territorial', 'secretaria de estado do turismo, comércio e serviços'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 217 911 600',
-    direcao1: 'Avenida da Rep??blica',
+    direcao1: 'Avenida da República',
     numero: '79',
     andar: '',
     codigoPostal: '1050-243',
@@ -30010,7 +29686,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['coes??o territorial', 'coesao territorial', 'minist??rio da coes??o territorial'],
+    aliases: ['coesão territorial', 'coesao territorial', 'ministério da coesão territorial'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 217 923 500',
     direcao1: 'Avenida Columbano Bordalo Pinheiro',
@@ -30022,7 +29698,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['atividades econ??micas', 'actividades economicas', 'dgae', 'dire????o-geral das atividades econ??micas', 'direccao-geral das actividades economicas'],
+    aliases: ['atividades económicas', 'actividades economicas', 'dgae', 'direção-geral das atividades económicas', 'direccao-geral das actividades economicas'],
     website: 'https://www.dgae.gov.pt',
     telefone: '+351 217 919 100',
     direcao1: 'Avenida Visconde de Valmor',
@@ -30034,10 +29710,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.dgae.gov.pt'
   },
   {
-    aliases: ['iapmei', 'competitividade e inova????o'],
+    aliases: ['iapmei', 'competitividade e inovação'],
     website: 'https://www.iapmei.pt',
     telefone: '+351 213 836 000',
-    direcao1: 'Estrada do Pa??o do Lumiar, Campus do Lumiar, Edif??cio A',
+    direcao1: 'Estrada do Pação do Lumiar, Campus do Lumiar, Edifício A',
     numero: '',
     andar: '',
     codigoPostal: '1649-038',
@@ -30046,10 +29722,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.iapmei.pt'
   },
   {
-    aliases: ['minist??rio da agricultura', 'ministerio da agricultura', 'minist??rio da agricultura e do mar', 'ministerio de agricultura y mar', 'secretaria de estado da agricultura', 'secretario de estado de agricultura'],
+    aliases: ['ministério da agricultura', 'ministerio da agricultura', 'ministério da agricultura e do mar', 'ministerio de agricultura y mar', 'secretaria de estado da agricultura', 'secretario de estado de agricultura'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 213 234 600',
-    direcao1: 'Pra??a do Com??rcio',
+    direcao1: 'Praça do Comércio',
     numero: '',
     andar: '',
     codigoPostal: '1149-010',
@@ -30058,7 +29734,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['dgadr', 'agricultura e desenvolvimento rural', 'dire????o-geral de agricultura e desenvolvimento rural', 'direccao-geral de agricultura e desenvolvimento rural', 'direcci??n general agricultura y desenvolvimiento rural'],
+    aliases: ['dgadr', 'agricultura e desenvolvimento rural', 'direção-geral de agricultura e desenvolvimento rural', 'direccao-geral de agricultura e desenvolvimento rural', 'dirección general agricultura y desenvolvimiento rural'],
     website: 'https://www.dgadr.gov.pt',
     telefone: '+351 218 442 200',
     direcao1: 'Avenida Afonso Costa',
@@ -30070,10 +29746,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.dgadr.gov.pt'
   },
   {
-    aliases: ['minist??rio da cultura', 'ministerio da cultura', 'minist??rio da cultura, juventude e desporto', 'ministerio de cultura, juventud y deporte', 'secretaria de estado da cultura', 'secretario de estado de cultura'],
+    aliases: ['ministério da cultura', 'ministerio da cultura', 'ministério da cultura, juventude e desporto', 'ministerio de cultura, juventud y deporte', 'secretaria de estado da cultura', 'secretario de estado de cultura'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 213 614 500',
-    direcao1: 'Pal??cio Nacional da Ajuda',
+    direcao1: 'Palácio Nacional da Ajuda',
     numero: '',
     andar: '',
     codigoPostal: '1349-021',
@@ -30082,7 +29758,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['secretaria de estado do desporto', 'secretario de estado de deporte', 'secretaria de estado adjunta e da juventude', 'secretaria de estado adjunta e da juventude e da igualdade', 'ipdj', 'instituto portugu??s do desporto e juventude'],
+    aliases: ['secretaria de estado do desporto', 'secretario de estado de deporte', 'secretaria de estado adjunta e da juventude', 'secretaria de estado adjunta e da juventude e da igualdade', 'ipdj', 'instituto português do desporto e juventude'],
     website: 'https://ipdj.gov.pt',
     telefone: '+351 210 470 000',
     direcao1: 'Rua Rodrigo da Fonseca',
@@ -30094,7 +29770,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://ipdj.gov.pt'
   },
   {
-    aliases: ['minist??rio da educa????o', 'ministerio da educacao', 'minist??rio da educa????o, ci??ncia e inova????o', 'ministerio de educaci??n, ciencia e innovacion', 'secret??rio de estado adjunto e de educa????o', 'secretario de estado adjunto e de educacao', 'secretaria de estado da educa????o'],
+    aliases: ['ministério da educação', 'ministerio da educacao', 'ministério da educação, ciência e inovação', 'ministerio de educación, ciencia e innovacion', 'secretário de estado adjunto e de educação', 'secretario de estado adjunto e de educacao', 'secretaria de estado da educação'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 213 934 500',
     direcao1: 'Avenida 24 de Julho',
@@ -30106,10 +29782,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['dge', 'dire????o-geral da educa????o', 'direccao-geral da educacao', 'direcci??n general de educaci??n'],
+    aliases: ['dge', 'direção-geral da educação', 'direccao-geral da educacao', 'dirección general de educación'],
     website: 'https://www.dge.mec.pt',
     telefone: '+351 217 901 100',
-    direcao1: 'Pra??a de Alvalade',
+    direcao1: 'Praça de Alvalade',
     numero: '12',
     andar: '',
     codigoPostal: '1749-070',
@@ -30118,10 +29794,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.dge.mec.pt'
   },
   {
-    aliases: ['minist??rio do trabalho', 'ministerio do trabalho', 'minist??rio do trabalho, solidariedade e seguran??a social', 'ministerio de trabajo, solidaridad y seguridad social', 'secretaria de estado da a????o social e da inclus??o', 'secretaria de estado de acci??n social y de inclusi??n', 'secretaria de estado do trabalho'],
+    aliases: ['ministério do trabalho', 'ministerio do trabalho', 'ministério do trabalho, solidariedade e segurança social', 'ministerio de trabajo, solidaridad y seguridad social', 'secretaria de estado da ação social e da inclusão', 'secretaria de estado de acción social y de inclusión', 'secretaria de estado do trabalho'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 215 953 000',
-    direcao1: 'Pra??a de Londres',
+    direcao1: 'Praça de Londres',
     numero: '2',
     andar: '',
     codigoPostal: '1049-056',
@@ -30130,7 +29806,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['dire????o-geral da seguran??a social', 'direccao-geral da seguranca social', 'direcci??n general de seguridad social', 'dgss'],
+    aliases: ['direção-geral da segurança social', 'direccao-geral da seguranca social', 'dirección general de seguridad social', 'dgss'],
     website: 'https://www.seg-social.pt',
     telefone: '+351 215 953 300',
     direcao1: 'Largo do Rato',
@@ -30142,7 +29818,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.seg-social.pt'
   },
   {
-    aliases: ['instituto da seguran??a social', 'instituto da seguranca social', 'seguran??a social', 'seguranca social', 'iss'],
+    aliases: ['instituto da segurança social', 'instituto da seguranca social', 'segurança social', 'seguranca social', 'iss'],
     website: 'https://www.seg-social.pt',
     telefone: '+351 300 502 502',
     direcao1: 'Avenida 5 de Outubro',
@@ -30154,7 +29830,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.seg-social.pt'
   },
   {
-    aliases: ['minist??rio das infraestruturas', 'ministerio das infraestruturas', 'minist??rio das infraestruturas e habita????o', 'ministerio infraestructuras e habita??ao', 'secretaria de estado das infraestruturas', 'secretaria del estado de infraestructura', 'secretaria de estado da habita????o', 'pal??cio das infraestruturas e habita????o'],
+    aliases: ['ministério das infraestruturas', 'ministerio das infraestruturas', 'ministério das infraestruturas e habitação', 'ministerio infraestructuras e habitação', 'secretaria de estado das infraestruturas', 'secretaria del estado de infraestructura', 'secretaria de estado da habitação', 'palácio das infraestruturas e habitação'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 210 426 200',
     direcao1: 'Avenida Barbosa du Bocage',
@@ -30166,7 +29842,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['ihru', 'instituto da habita????o e da reabilita????o urbana'],
+    aliases: ['ihru', 'instituto da habitação e da reabilitação urbana'],
     website: 'https://www.ihru.pt',
     telefone: '+351 217 231 500',
     direcao1: 'Avenida Columbano Bordalo Pinheiro',
@@ -30181,7 +29857,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     aliases: ['infraestruturas de portugal'],
     website: 'https://www.infraestruturasdeportugal.pt',
     telefone: '+351 212 879 000',
-    direcao1: 'Pra??a da Portagem',
+    direcao1: 'Praça da Portagem',
     numero: '',
     andar: '',
     codigoPostal: '2809-013',
@@ -30190,22 +29866,22 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.infraestruturasdeportugal.pt'
   },
   {
-    aliases: ['reforma do estado', 'moderniza????o administrativa', 'minist??rio da reforma do estado', 'ministerio de reforma de estado', 'secretaria de estado para a digitaliza????o', 'secretar??a del estado para la digitalizaci??n', 'secretaria de estado para a simplifica????o', 'secretar??a del estado para la simplificaci??n', 'ama', 'ag??ncia para a moderniza????o administrativa'],
+    aliases: ['reforma do estado', 'modernização administrativa', 'ministério da reforma do estado', 'ministerio de reforma de estado', 'secretaria de estado para a digitalização', 'secretaría del estado para la digitalización', 'secretaria de estado para a simplificação', 'secretaría del estado para la simplificación', 'ama', 'agência para a modernização administrativa'],
     website: 'https://www.ama.gov.pt',
     telefone: '+351 217 231 200',
-    direcao1: 'Rua Abranches Ferr??o',
+    direcao1: 'Rua Abranches Ferrão',
     numero: '10',
-    andar: '3.?? F',
+    andar: '3.º F',
     codigoPostal: '1600-001',
     localidade: 'Lisboa',
     pais: 'Portugal',
     fonteUrl: 'https://www.ama.gov.pt'
   },
   {
-    aliases: ['minist??rio da sa??de', 'ministerio da saude', 'sns', 'servi??o nacional de sa??de'],
+    aliases: ['ministério da saúde', 'ministerio da saude', 'sns', 'serviço nacional de saúde'],
     website: 'https://www.sns.gov.pt',
     telefone: '+351 213 305 000',
-    direcao1: 'Avenida Jo??o Cris??stomo',
+    direcao1: 'Avenida João Crisóstomo',
     numero: '9',
     andar: '',
     codigoPostal: '1049-062',
@@ -30214,7 +29890,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.sns.gov.pt'
   },
   {
-    aliases: ['dire????o-geral da sa??de', 'direccao-geral da saude', 'dgs'],
+    aliases: ['direção-geral da saúde', 'direccao-geral da saude', 'dgs'],
     website: 'https://www.dgs.pt',
     telefone: '+351 218 430 500',
     direcao1: 'Alameda Dom Afonso Henriques',
@@ -30226,10 +29902,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.dgs.pt'
   },
   {
-    aliases: ['infarmed', 'medicamento e produtos de sa??de'],
+    aliases: ['infarmed', 'medicamento e produtos de saúde'],
     website: 'https://www.infarmed.pt',
     telefone: '+351 217 987 100',
-    direcao1: 'Parque de Sa??de de Lisboa, Avenida do Brasil',
+    direcao1: 'Parque de Saúde de Lisboa, Avenida do Brasil',
     numero: '53',
     andar: '',
     codigoPostal: '1749-004',
@@ -30238,10 +29914,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.infarmed.pt'
   },
   {
-    aliases: ['ambiente e energia', 'minist??rio do ambiente', 'ministerio do ambiente', 'minist??rio do ambiente e energia', 'secretaria de estado do ambiente', 'secretaria de estado da energia'],
+    aliases: ['ambiente e energia', 'ministério do ambiente', 'ministerio do ambiente', 'ministério do ambiente e energia', 'secretaria de estado do ambiente', 'secretaria de estado da energia'],
     website: 'https://www.portugal.gov.pt',
     telefone: '+351 213 232 500',
-    direcao1: 'Rua de O S??culo',
+    direcao1: 'Rua de O Século',
     numero: '51',
     andar: '',
     codigoPostal: '1200-433',
@@ -30250,7 +29926,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.portugal.gov.pt'
   },
   {
-    aliases: ['ag??ncia portuguesa do ambiente', 'agencia portuguesa do ambiente', 'apa'],
+    aliases: ['agência portuguesa do ambiente', 'agencia portuguesa do ambiente', 'apa'],
     website: 'https://apambiente.pt',
     telefone: '+351 214 728 200',
     direcao1: 'Rua da Murgueira',
@@ -30262,9 +29938,9 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://apambiente.pt'
   },
 
-  // --- FUNDA????ES (Portugal e Espanha) ---
+  // --- fundações (Portugal e Espanha) ---
   {
-    aliases: ['funda????o calouste gulbenkian', 'fundacao calouste gulbenkian', 'gulbenkian'],
+    aliases: ['fundação calouste gulbenkian', 'fundacao calouste gulbenkian', 'gulbenkian'],
     website: 'https://gulbenkian.pt',
     telefone: '+351 217 823 000',
     direcao1: 'Avenida de Berna',
@@ -30276,10 +29952,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://gulbenkian.pt'
   },
   {
-    aliases: ['funda????o champalimaud', 'fundacao champalimaud', 'champalimaud'],
+    aliases: ['fundação champalimaud', 'fundacao champalimaud', 'champalimaud'],
     website: 'https://fchampalimaud.org',
     telefone: '+351 210 480 000',
-    direcao1: 'Avenida Bras??lia',
+    direcao1: 'Avenida Brasília',
     numero: '',
     andar: '',
     codigoPostal: '1400-038',
@@ -30288,10 +29964,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://fchampalimaud.org'
   },
   {
-    aliases: ['funda????o de serralves', 'fundacao de serralves', 'serralves'],
+    aliases: ['fundação de serralves', 'fundacao de serralves', 'serralves'],
     website: 'https://www.serralves.pt',
     telefone: '+351 226 156 500',
-    direcao1: 'Rua Dom Jo??o de Castro',
+    direcao1: 'Rua Dom João de Castro',
     numero: '210',
     andar: '',
     codigoPostal: '4150-417',
@@ -30300,10 +29976,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.serralves.pt'
   },
   {
-    aliases: ['funda????o oriente', 'fundacao oriente', 'museu do oriente'],
+    aliases: ['fundação oriente', 'fundacao oriente', 'museu do oriente'],
     website: 'https://www.foriente.pt',
     telefone: '+351 213 585 200',
-    direcao1: 'Avenida Bras??lia, Doca de Alc??ntara Norte',
+    direcao1: 'Avenida Brasília, Doca de Alcântara Norte',
     numero: '',
     andar: '',
     codigoPostal: '1350-352',
@@ -30312,7 +29988,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.foriente.pt'
   },
   {
-    aliases: ['funda????o edp', 'fundacao edp', 'maat'],
+    aliases: ['fundação edp', 'fundacao edp', 'maat'],
     website: 'https://www.fundacaoedp.pt',
     telefone: '+351 210 028 130',
     direcao1: 'Avenida 24 de Julho',
@@ -30324,10 +30000,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.fundacaoedp.pt'
   },
   {
-    aliases: ['funda????o aga khan', 'fundacao aga khan'],
+    aliases: ['fundação aga khan', 'fundacao aga khan'],
     website: 'https://www.akdn.org',
     telefone: '+351 217 229 000',
-    direcao1: 'Centro Ismaili, Avenida Lus??ada',
+    direcao1: 'Centro Ismaili, Avenida Lusíada',
     numero: '',
     andar: '',
     codigoPostal: '1600-001',
@@ -30336,7 +30012,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.akdn.org'
   },
   {
-    aliases: ['funda????o millennium bcp', 'fundacao millennium bcp'],
+    aliases: ['fundação millennium bcp', 'fundacao millennium bcp'],
     website: 'https://fundacaomillenniumbcp.pt',
     telefone: '+351 211 131 000',
     direcao1: 'Rua Augusta',
@@ -30348,7 +30024,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://fundacaomillenniumbcp.pt'
   },
   {
-    aliases: ['fundaci??n la caixa', 'fundacion la caixa', 'fundaci??n bancaria la caixa', 'caixaforum'],
+    aliases: ['fundación la caixa', 'fundacion la caixa', 'fundación bancaria la caixa', 'caixaforum'],
     website: 'https://fundacionlacaixa.org',
     telefone: '+34 934 046 000',
     direcao1: 'Avenida Diagonal',
@@ -30356,11 +30032,11 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '08028',
     localidade: 'Barcelona',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://fundacionlacaixa.org'
   },
   {
-    aliases: ['fundaci??n mapfre', 'fundacion mapfre'],
+    aliases: ['fundación mapfre', 'fundacion mapfre'],
     website: 'https://www.fundacionmapfre.org',
     telefone: '+34 915 811 600',
     direcao1: 'Paseo de Recoletos',
@@ -30368,23 +30044,23 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28004',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.fundacionmapfre.org'
   },
   {
-    aliases: ['fundaci??n telef??nica', 'fundacion telefonica', 'espacio fundaci??n telef??nica'],
+    aliases: ['fundación telefónica', 'fundacion telefonica', 'espacio fundación telefónica'],
     website: 'https://fundaciontelefonica.com',
     telefone: '+34 915 226 645',
-    direcao1: 'Gran V??a',
+    direcao1: 'Gran Vía',
     numero: '28',
     andar: '',
     codigoPostal: '28013',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://fundaciontelefonica.com'
   },
   {
-    aliases: ['fundaci??n bbva', 'fundacion bbva'],
+    aliases: ['fundación bbva', 'fundacion bbva'],
     website: 'https://www.fbbva.es',
     telefone: '+34 913 745 400',
     direcao1: 'Paseo de Recoletos',
@@ -30392,16 +30068,16 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28001',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.fbbva.es'
   },
 
   // --- AUTARQUIAS ---
   {
-    aliases: ['c??mara municipal de lisboa', 'camara municipal de lisboa', 'cml', 'munic??pio de lisboa'],
+    aliases: ['câmara municipal de lisboa', 'camara municipal de lisboa', 'cml', 'município de lisboa'],
     website: 'https://www.lisboa.pt',
     telefone: '+351 217 988 000',
-    direcao1: 'Pra??a do Munic??pio',
+    direcao1: 'Praça do Município',
     numero: '',
     andar: '',
     codigoPostal: '1100-038',
@@ -30410,10 +30086,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.lisboa.pt'
   },
   {
-    aliases: ['c??mara municipal do porto', 'camara municipal do porto', 'cmp', 'munic??pio do porto'],
+    aliases: ['câmara municipal do porto', 'camara municipal do porto', 'cmp', 'município do porto'],
     website: 'https://www.cm-porto.pt',
     telefone: '+351 222 090 400',
-    direcao1: 'Pra??a General Humberto Delgado',
+    direcao1: 'Praça General Humberto Delgado',
     numero: '',
     andar: '',
     codigoPostal: '4049-001',
@@ -30422,10 +30098,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.cm-porto.pt'
   },
   {
-    aliases: ['c??mara municipal de cascais', 'camara municipal de cascais', 'cmc', 'munic??pio de cascais'],
+    aliases: ['câmara municipal de cascais', 'camara municipal de cascais', 'cmc', 'município de cascais'],
     website: 'https://www.cascais.pt',
     telefone: '+351 214 815 000',
-    direcao1: 'Pra??a 5 de Outubro',
+    direcao1: 'Praça 5 de Outubro',
     numero: '',
     andar: '',
     codigoPostal: '2754-501',
@@ -30434,10 +30110,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.cascais.pt'
   },
   {
-    aliases: ['c??mara municipal de sintra', 'camara municipal de sintra', 'cms', 'munic??pio de sintra'],
+    aliases: ['câmara municipal de sintra', 'camara municipal de sintra', 'cms', 'município de sintra'],
     website: 'https://cm-sintra.pt',
     telefone: '+351 219 238 500',
-    direcao1: 'Largo Dr. Virg??lio Horta',
+    direcao1: 'Largo Dr. Virgílio Horta',
     numero: '',
     andar: '',
     codigoPostal: '2714-501',
@@ -30446,10 +30122,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://cm-sintra.pt'
   },
   {
-    aliases: ['c??mara municipal de braga', 'camara municipal de braga', 'cmb', 'munic??pio de braga'],
+    aliases: ['câmara municipal de braga', 'camara municipal de braga', 'cmb', 'município de braga'],
     website: 'https://www.cm-braga.pt',
     telefone: '+351 253 616 060',
-    direcao1: 'Pra??a do Munic??pio',
+    direcao1: 'Praça do Município',
     numero: '',
     andar: '',
     codigoPostal: '4700-435',
@@ -30458,10 +30134,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.cm-braga.pt'
   },
   {
-    aliases: ['c??mara municipal de coimbra', 'camara municipal de coimbra', 'munic??pio de coimbra'],
+    aliases: ['câmara municipal de coimbra', 'camara municipal de coimbra', 'município de coimbra'],
     website: 'https://www.cm-coimbra.pt',
     telefone: '+351 239 857 500',
-    direcao1: 'Pra??a 8 de Maio',
+    direcao1: 'Praça 8 de Maio',
     numero: '',
     andar: '',
     codigoPostal: '3000-300',
@@ -30472,7 +30148,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
 
   // --- GRANDES EMPRESAS (Portugal) ---
   {
-    aliases: ['edp', 'edp comercial', 'edp distribui????o', 'e-redes'],
+    aliases: ['edp', 'edp comercial', 'edp distribuição', 'e-redes'],
     website: 'https://www.edp.pt',
     telefone: '+351 210 012 000',
     direcao1: 'Avenida 24 de Julho',
@@ -30484,10 +30160,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.edp.pt'
   },
   {
-    aliases: ['galp', 'galp energia', 'petr??leos de portugal'],
+    aliases: ['galp', 'galp energia', 'petróleos de portugal'],
     website: 'https://www.galp.com',
     telefone: '+351 217 242 500',
-    direcao1: 'Rua Tom??s da Fonseca, Torre A',
+    direcao1: 'Rua Tomás da Fonseca, Torre A',
     numero: '',
     andar: '',
     codigoPostal: '1600-209',
@@ -30496,10 +30172,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.galp.com'
   },
   {
-    aliases: ['tap', 'tap air portugal', 'transportes a??reos portugueses'],
+    aliases: ['tap', 'tap air portugal', 'transportes aéreos portugueses'],
     website: 'https://www.flytap.com',
     telefone: '+351 218 415 000',
-    direcao1: 'Edif??cio 25, Aeroporto de Lisboa',
+    direcao1: 'Edifício 25, Aeroporto de Lisboa',
     numero: '',
     andar: '',
     codigoPostal: '1704-801',
@@ -30511,7 +30187,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     aliases: ['ctt', 'ctt correios de portugal', 'correios de portugal'],
     website: 'https://www.ctt.pt',
     telefone: '+351 210 471 010',
-    direcao1: 'Avenida Dom Jo??o II',
+    direcao1: 'Avenida Dom João II',
     numero: '13',
     andar: '',
     codigoPostal: '1999-001',
@@ -30520,10 +30196,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.ctt.pt'
   },
   {
-    aliases: ['nos', 'nos comunica????es', 'zon optimus'],
+    aliases: ['nos', 'nos comunicações', 'zon optimus'],
     website: 'https://www.nos.pt',
     telefone: '+351 217 824 700',
-    direcao1: 'Rua Cec??lia Meireles',
+    direcao1: 'Rua Cecília Meireles',
     numero: '7',
     andar: '',
     codigoPostal: '2720-090',
@@ -30547,7 +30223,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     aliases: ['vodafone', 'vodafone portugal'],
     website: 'https://www.vodafone.pt',
     telefone: '+351 210 915 000',
-    direcao1: 'Avenida Dom Jo??o II',
+    direcao1: 'Avenida Dom João II',
     numero: '36',
     andar: '',
     codigoPostal: '1998-017',
@@ -30556,10 +30232,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.vodafone.pt'
   },
   {
-    aliases: ['cgd', 'caixa geral de dep??sitos', 'caixa geral de depositos'],
+    aliases: ['cgd', 'caixa geral de depósitos', 'caixa geral de depositos'],
     website: 'https://www.cgd.pt',
     telefone: '+351 217 953 000',
-    direcao1: 'Avenida Jo??o XXI',
+    direcao1: 'Avenida João XXI',
     numero: '63',
     andar: '',
     codigoPostal: '1000-300',
@@ -30568,10 +30244,10 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.cgd.pt'
   },
   {
-    aliases: ['bcp', 'millennium bcp', 'banco comercial portugu??s'],
+    aliases: ['bcp', 'millennium bcp', 'banco comercial português'],
     website: 'https://www.millenniumbcp.pt',
     telefone: '+351 211 131 000',
-    direcao1: 'Pra??a Dom Jo??o I',
+    direcao1: 'Praça Dom João I',
     numero: '28',
     andar: '',
     codigoPostal: '4000-295',
@@ -30592,9 +30268,9 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     fonteUrl: 'https://www.santander.pt'
   },
 
-  // --- ESPANHA: Governo, Minist??rios, Autarquias e Empresas ---
+  // --- ESPANHA: Governo, Ministérios, Autarquias e Empresas ---
   {
-    aliases: ['gobierno de espa??a', 'presidencia del gobierno de espa??a', 'la moncloa', 'palacio de la moncloa'],
+    aliases: ['gobierno de españa', 'presidencia del gobierno de españa', 'la moncloa', 'palacio de la moncloa'],
     website: 'https://www.lamoncloa.gob.es',
     telefone: '+34 913 353 535',
     direcao1: 'Avenida Puerta de Hierro',
@@ -30602,35 +30278,35 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: 'Complejo de la Moncloa',
     codigoPostal: '28071',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.lamoncloa.gob.es'
   },
   {
-    aliases: ['ministerio de hacienda', 'hacienda espa??a', 'hacienda y funci??n p??blica'],
+    aliases: ['ministerio de hacienda', 'hacienda españa', 'hacienda y función pública'],
     website: 'https://www.hacienda.gob.es',
     telefone: '+34 915 958 000',
-    direcao1: 'Calle de Alcal??',
+    direcao1: 'Calle de Alcalá',
     numero: '9',
     andar: '',
     codigoPostal: '28014',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.hacienda.gob.es'
   },
   {
-    aliases: ['agencia tributaria', 'aeat', 'agencia estatal de administraci??n tributaria'],
+    aliases: ['agencia tributaria', 'aeat', 'agencia estatal de administración tributaria'],
     website: 'https://sede.agenciatributaria.gob.es',
     telefone: '+34 915 548 770',
-    direcao1: 'Calle de Alcal??',
+    direcao1: 'Calle de Alcalá',
     numero: '5',
     andar: '',
     codigoPostal: '28014',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://sede.agenciatributaria.gob.es'
   },
   {
-    aliases: ['ministerio del interior', 'interior espa??a'],
+    aliases: ['ministerio del interior', 'interior españa'],
     website: 'https://www.interior.gob.es',
     telefone: '+34 915 371 000',
     direcao1: 'Paseo de la Castellana',
@@ -30638,11 +30314,11 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28071',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.interior.gob.es'
   },
   {
-    aliases: ['ministerio de justicia', 'justicia espa??a'],
+    aliases: ['ministerio de justicia', 'justicia españa'],
     website: 'https://www.mjusticia.gob.es',
     telefone: '+34 913 904 500',
     direcao1: 'Calle de San Bernardo',
@@ -30650,23 +30326,23 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28015',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.mjusticia.gob.es'
   },
   {
-    aliases: ['ministerio de asuntos exteriores', 'exteriores espa??a', 'asuntos exteriores, uni??n europea y cooperaci??n'],
+    aliases: ['ministerio de asuntos exteriores', 'exteriores españa', 'asuntos exteriores, unión europea y cooperación'],
     website: 'https://www.exteriores.gob.es',
     telefone: '+34 913 799 700',
-    direcao1: 'Plaza del Marqu??s de Salamanca',
+    direcao1: 'Plaza del Marqués de Salamanca',
     numero: '8',
     andar: '',
     codigoPostal: '28006',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.exteriores.gob.es'
   },
   {
-    aliases: ['ministerio de defensa espa??a', 'defensa espa??a'],
+    aliases: ['ministerio de defensa españa', 'defensa españa'],
     website: 'https://www.defensa.gob.es',
     telefone: '+34 913 955 000',
     direcao1: 'Paseo de la Castellana',
@@ -30674,7 +30350,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28046',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.defensa.gob.es'
   },
   {
@@ -30686,11 +30362,11 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28071',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.transportes.gob.es'
   },
   {
-    aliases: ['ministerio de trabajo y econom??a social', 'trabajo espa??a'],
+    aliases: ['ministerio de trabajo y economía social', 'trabajo españa'],
     website: 'https://www.mites.gob.es',
     telefone: '+34 913 630 000',
     direcao1: 'Paseo de la Castellana',
@@ -30698,11 +30374,11 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28071',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.mites.gob.es'
   },
   {
-    aliases: ['ministerio de sanidad', 'sanidad espa??a'],
+    aliases: ['ministerio de sanidad', 'sanidad españa'],
     website: 'https://www.sanidad.gob.es',
     telefone: '+34 915 961 000',
     direcao1: 'Paseo del Prado',
@@ -30710,7 +30386,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28014',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.sanidad.gob.es'
   },
   {
@@ -30722,31 +30398,31 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28014',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.madrid.es'
   },
   {
     aliases: ['ajuntament de barcelona', 'ayuntamiento de barcelona'],
     website: 'https://www.barcelona.cat',
     telefone: '+34 934 027 000',
-    direcao1: 'Pla??a de Sant Jaume',
+    direcao1: 'Plaça de Sant Jaume',
     numero: '1',
     andar: '',
     codigoPostal: '08002',
     localidade: 'Barcelona',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.barcelona.cat'
   },
   {
-    aliases: ['telef??nica', 'telefonica espa??a', 'telef??nica s.a.'],
+    aliases: ['telefónica', 'telefonica españa', 'telefónica s.a.'],
     website: 'https://www.telefonica.com',
     telefone: '+34 914 828 700',
-    direcao1: 'Gran V??a',
+    direcao1: 'Gran Vía',
     numero: '28',
     andar: '',
     codigoPostal: '28013',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.telefonica.com'
   },
   {
@@ -30758,19 +30434,19 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '46130',
     localidade: 'Tavernes Blanques (Valencia)',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.mercadona.es'
   },
   {
-    aliases: ['inditex', 'zara espa??a'],
+    aliases: ['inditex', 'zara españa'],
     website: 'https://www.inditex.com',
     telefone: '+34 981 185 400',
-    direcao1: 'Avenida de la Diputaci??n',
+    direcao1: 'Avenida de la Diputación',
     numero: 's/n',
     andar: '',
     codigoPostal: '15143',
-    localidade: 'Arteixo (A Coru??a)',
-    pais: 'Espa??a',
+    localidade: 'Arteixo (A Coruña)',
+    pais: 'España',
     fonteUrl: 'https://www.inditex.com'
   },
   {
@@ -30782,23 +30458,23 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '48009',
     localidade: 'Bilbao',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.iberdrola.com'
   },
   {
     aliases: ['repsol'],
     website: 'https://www.repsol.com',
     telefone: '+34 917 538 000',
-    direcao1: 'Calle M??ndez ??lvaro',
+    direcao1: 'Calle Méndez Álvaro',
     numero: '44',
     andar: '',
     codigoPostal: '28045',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.repsol.com'
   },
   {
-    aliases: ['el corte ingl??s', 'el corte ingles'],
+    aliases: ['el corte inglés', 'el corte ingles'],
     website: 'https://www.elcorteingles.es',
     telefone: '+34 901 122 122',
     direcao1: 'Calle Hermosilla',
@@ -30806,7 +30482,7 @@ const SIGEC_PT_INSTITUTIONAL_DIRECTORY = [
     andar: '',
     codigoPostal: '28009',
     localidade: 'Madrid',
-    pais: 'Espa??a',
+    pais: 'España',
     fonteUrl: 'https://www.elcorteingles.es'
   }
 ];
@@ -30825,7 +30501,7 @@ function normalizeSearchTerm(str) {
 function cleanCompanySearchName(str) {
   if (!str) return '';
   return str
-    .replace(/\b(s\.?l\.?u?\.?|s\.?a\.?u?\.?|lda\.?|unipessoal|limitada|sociedad an[o??]nima|sociedad limitada|ltd\.?|gmbh|inc\.?|llc|corp\.?)\b/gi, ' ')
+    .replace(/\b(s\.?l\.?u?\.?|s\.?a\.?u?\.?|lda\.?|unipessoal|limitada|sociedad an[oó]nima|sociedad limitada|ltd\.?|gmbh|inc\.?|llc|corp\.?)\b/gi, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -30869,7 +30545,7 @@ function resolveEntityFromLocalDirectory(entityName, ministerio, targetPais) {
     }
   }
 
-  // Pass 2: Busca no minist??rio
+  // Pass 2: Busca no ministério
   if (normMin && normMin.length >= 3) {
     for (const item of SIGEC_PT_INSTITUTIONAL_DIRECTORY) {
       for (const alias of item.aliases) {
@@ -31328,93 +31004,249 @@ async function resolveEntityWebsiteFromDDG(query) {
   }
 }
 
-function renderAiCandidateCards() {
-  const container = document.getElementById('aiCandidatesCardsList');
-  if (!container) return;
-  container.innerHTML = '';
+function parseSmartAddress(text) {
+  if (!text || typeof text !== "string") return null;
+  const raw = text.trim();
+  if (!raw) return null;
 
-  // ── Estado "Não encontrado" ─────────────────────────────────────────────
-  if (!availableAiCandidates || availableAiCandidates.length === 0) {
-    const rawKey = localStorage.getItem('sigec_gemini_api_key') || '';
-    const hasKey = !!rawKey.trim();
-    const maskedKey = hasKey ? (rawKey.trim().slice(0, 7) + '...' + rawKey.trim().slice(-4)) : '';
-    const entityName = currentPendingContext?.entityName || 'a entidade';
-    const entityQ = encodeURIComponent(entityName + ' sede morada contacto telefone');
+  let direcao1 = "";
+  let direcao2 = "";
+  let numero = "";
+  let andar = "";
+  let codigoPostal = "";
+  let localidade = "";
+  let pais = "";
+  let contribuinte = "";
+  let telefone = "";
+  let email = "";
+  let website = "";
 
-    let geminiDiagnosticHtml = '';
-    if (!hasKey) {
-      geminiDiagnosticHtml = `
-        <div style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 8px; padding: 12px; margin-top: 12px; text-align: left;">
-          <div style="font-weight: 700; color: #92400e; font-size: 0.85rem; display: flex; align-items: center; gap: 6px;">
-            <i class="fa-solid fa-key" style="color: #d97706;"></i>
-            <span>Ativar Pesquisa Inteligente Google (Gemini)</span>
-          </div>
-          <p style="font-size: 0.78rem; color: #78350f; margin: 5px 0 8px;">
-            Ainda não tem a chave da Google API inserida neste navegador. Ao inserir uma chave gratuita do Google AI Studio, o SIGEC-Pro pesquisa qualquer empresa na Google em tempo real.
-          </p>
-          <div style="display: flex; gap: 6px;">
-            <input type="password" id="aiModalApiKeyInput" placeholder="Cole aqui a sua chave (ex: AIzaSy...)" 
-                   style="flex: 1; padding: 6px 10px; font-size: 0.8rem; border: 1.5px solid #d97706; border-radius: 6px; outline: none;">
-            <button type="button" onclick="saveGeminiKeyFromModal()" 
-                    style="background: #d97706; color: #ffffff; border: none; border-radius: 6px; padding: 6px 12px; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap;">
-              <i class="fa-solid fa-bolt"></i> Guardar e Pesquisar
-            </button>
-          </div>
-          <div style="margin-top: 6px; font-size: 0.72rem;">
-            <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="color: #2563eb; text-decoration: underline;">
-              Obter chave de API gratuita no Google AI Studio &rarr;
-            </a>
-          </div>
-        </div>`;
-    } else {
-      geminiDiagnosticHtml = `
-        <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 10px 12px; margin-top: 12px; text-align: left;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-            <span style="font-size: 0.8rem; font-weight: 700; color: #1e293b;">
-              <i class="fa-solid fa-key" style="color: #6366f1;"></i> Chave Gemini Configurada:
-            </span>
-            <code style="background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-size: 0.76rem; color: #334155;">${maskedKey}</code>
-          </div>
-          ${lastGeminiError ? `
-            <div style="background: #fee2e2; border-left: 3px solid #ef4444; padding: 6px 8px; font-size: 0.75rem; color: #991b1b; margin-bottom: 8px; word-break: break-word;">
-              <strong>Diagnóstico Google:</strong> ${lastGeminiError}
-            </div>` : ''}
-          <div style="display: flex; gap: 6px;">
-            <input type="password" id="aiModalApiKeyInput" placeholder="Substituir por outra chave..." 
-                   style="flex: 1; padding: 5px 8px; font-size: 0.78rem; border: 1px solid #cbd5e1; border-radius: 6px; outline: none;">
-            <button type="button" onclick="saveGeminiKeyFromModal()" 
-                    style="background: #6366f1; color: #ffffff; border: none; border-radius: 6px; padding: 5px 10px; font-size: 0.78rem; font-weight: 600; cursor: pointer;">
-              Atualizar
-            </button>
-            <button type="button" onclick="removeGeminiKeyFromModal()" 
-                    style="background: #ef4444; color: #ffffff; border: none; border-radius: 6px; padding: 5px 8px; font-size: 0.78rem; cursor: pointer;" title="Remover chave">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-        </div>`;
+  let workingText = raw;
+
+  // 1. Extração de Email
+  const emailMatch = workingText.match(/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/);
+  if (emailMatch) {
+    email = emailMatch[0].trim();
+    workingText = workingText.replace(emailMatch[0], " ");
+  }
+
+  // 2. Extração de Website
+  const webMatch = workingText.match(/\b(?:https?:\/\/|www\.)[^\s,;]+\b/i);
+  if (webMatch) {
+    website = webMatch[0].trim();
+    workingText = workingText.replace(webMatch[0], " ");
+  }
+
+  // 3. Extração Explícita de Telefone quando tem rótulo (ex: Tel:, Telefone:, Tlm:, Mobile:, Fixo:)
+  const labeledTelMatch = workingText.match(/\b(?:Tel(?:efone)?|Tlm|Telemóvel|Phone|Mobile|Fixo)[\s:.-]*(?:(?:\+|00)351[\s.-]*)?((?:2\d{2}|9[1236]\d)[\s.-]*\d{3}[\s.-]*\d{3}|\d{9})\b/i);
+  if (labeledTelMatch) {
+    telefone = labeledTelMatch[0].replace(/^[^\d+]+/, '').trim();
+    workingText = workingText.replace(labeledTelMatch[0], " ");
+  }
+
+  // 4. Extração de Contribuinte (NIF / NIPC / CIF / VAT / Identificação Fiscal)
+  // 4a. Com rótulo explícito (ex: NIF: 502 123 456, NIPC: 502123456, Contribuinte: 502123456, CIF: B-12345678, PT502123456)
+  const nifPrefixMatch = workingText.match(/\b(?:NIF|NIPC|Contribuinte|Identifica[çc][ãa]o\s*Fiscal|CIF|VAT|IVA)[\s:.-]*(?:PT|ES)?[\s:.-]*([A-Z0-9][A-Z0-9\s.-]{7,11}[A-Z0-9])\b/i);
+  if (nifPrefixMatch) {
+    const rawVal = nifPrefixMatch[1].replace(/[\s.-]/g, "").toUpperCase();
+    if (/^\d{9}$/.test(rawVal) || /^[A-HJ-NP-SUVW]\d{7}[0-9A-J]$/.test(rawVal)) {
+      contribuinte = rawVal;
+      workingText = workingText.replace(nifPrefixMatch[0], " ");
     }
+  }
 
-    container.innerHTML = `
-      <div style="padding: 12px 10px; text-align: center; color: #475569;">
-        <div style="font-size: 1.8rem; margin-bottom: 4px; color: #64748b;">
-          <i class="fa-solid fa-magnifying-glass-location"></i>
-        </div>
-        <p style="margin: 0 0 4px; font-weight: 700; font-size: 0.95rem; color: #1e293b;">
-          Não foi possível identificar morada nas fontes públicas diretas
-        </p>
-        <p style="margin: 0 0 10px; font-size: 0.8rem; color: #64748b;">
-          Pode consultar diretamente o Google ou ativar o motor de IA Gemini abaixo:
-        </p>
-        <a href="https://www.google.com/search?q=${entityQ}" target="_blank" rel="noopener"
-           style="display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; background: #2563eb; color: #ffffff; border-radius: 6px; text-decoration: none; font-size: 0.82rem; font-weight: 600;">
-          <i class="fa-brands fa-google"></i> Ver "${entityName}" no Google
-        </a>
-        ${geminiDiagnosticHtml}
-      </div>`;
+  // 4b. Formato com prefixo internacional avulso (ex: PT502123456 ou ESB12345678)
+  if (!contribuinte) {
+    const vatEuMatch = workingText.match(/\b(?:PT\s*([125689]\d{8})|ES\s*([A-HJ-NP-SUVW]\d{7}[0-9A-J]))\b/i);
+    if (vatEuMatch) {
+      contribuinte = (vatEuMatch[1] || vatEuMatch[2]).replace(/\s+/g, "").toUpperCase();
+      workingText = workingText.replace(vatEuMatch[0], " ");
+    }
+  }
+
+  // 4c. NIF Coletivo Português (NIPC) avulso: inicia sempre por 5 ou 6 (nunca é telefone!)
+  if (!contribuinte) {
+    const nifPtNipc = workingText.match(/\b([56]\d{8})\b/);
+    if (nifPtNipc) {
+      contribuinte = nifPtNipc[1];
+      workingText = workingText.replace(nifPtNipc[0], " ");
+    }
+  }
+
+  // 4d. CIF Espanhol avulso (Letra + 7 dígitos + Letra/Dígito)
+  if (!contribuinte) {
+    const cifEsAvulso = workingText.match(/\b([A-HJ-NP-SUVW]\d{7}[0-9A-J])\b/i);
+    if (cifEsAvulso) {
+      contribuinte = cifEsAvulso[1].toUpperCase();
+      workingText = workingText.replace(cifEsAvulso[0], " ");
+    }
+  }
+
+  // 5. Extração de Telefone Avulso (se ainda não extraído no passo 3)
+  if (!telefone) {
+    const telMatch = workingText.match(/(?:(?:\+|00)351[\s.-]*)?(?:2\d{2}|9[1236]\d)[\s.-]*\d{3}[\s.-]*\d{3}\b/) ||
+                     workingText.match(/(?:(?:\+|00)34[\s.-]*)?(?:[689]\d{2})[\s.-]*\d{3}[\s.-]*\d{3}\b/);
+    if (telMatch) {
+      telefone = telMatch[0].trim();
+      workingText = workingText.replace(telMatch[0], " ");
+    }
+  }
+
+  // 4e. NIF Singular Português avulso (1, 2, 8, 9) caso sobre após telefone e CP
+  if (!contribuinte) {
+    const nifPtSingular = workingText.match(/\b([128]\d{8})\b/);
+    if (nifPtSingular) {
+      contribuinte = nifPtSingular[1];
+      workingText = workingText.replace(nifPtSingular[0], " ");
+    }
+  }
+
+  // 6. Código Postal e País
+  const cpPtMatch = workingText.match(/\b(\d{4}-\d{3})\b/);
+  const cpEsMatch = workingText.match(/\b(\d{5})\b/);
+  if (cpPtMatch) {
+    codigoPostal = cpPtMatch[1];
+    pais = "Portugal";
+    workingText = workingText.replace(cpPtMatch[0], " ");
+  } else if (cpEsMatch) {
+    codigoPostal = cpEsMatch[1];
+    pais = "Espanha";
+    workingText = workingText.replace(cpEsMatch[0], " ");
+  }
+
+  const paises = [
+    { name: "Portugal", regex: /\b(?:Portugal)\b/i },
+    { name: "Espanha", regex: /\b(?:Espanha|España|Spain)\b/i },
+    { name: "França", regex: /\b(?:França|France)\b/i },
+    { name: "Reino Unido", regex: /\b(?:Reino Unido|United Kingdom)\b/i }
+  ];
+  for (const p of paises) {
+    if (p.regex.test(workingText)) {
+      pais = p.name;
+      workingText = workingText.replace(p.regex, " ");
+      break;
+    }
+  }
+
+  // 6. Localidade a seguir ao código postal
+  if (codigoPostal) {
+    const afterCpRegex = new RegExp(codigoPostal + "\\s*[-–,]?\\s*([A-Za-zÀ-Úà-ú\\-\\s]+?)(?=[,\\-–;.\\n\\|]|$)", "i");
+    const afterCpMatch = raw.match(afterCpRegex);
+    if (afterCpMatch && afterCpMatch[1]) {
+      let loc = afterCpMatch[1].replace(/\b(?:Portugal|Espanha|España|Spain|França|France|Tel|NIF|CIF|Email|Website|Contribuinte)\b/gi, "").trim();
+      if (loc && loc.length > 1) {
+        localidade = loc;
+      }
+    }
+  }
+
+  // 7. Andar / Fração
+  const andarMatch = workingText.match(/\b(\d+[ºªo]\s*(?:andar|Dto|Esq|Frt|frente|piso)?|R\/C|rés-do-chão|Planta\s*\d+|Piso\s*\d+)\b/i);
+  if (andarMatch) {
+    andar = andarMatch[1].trim();
+    workingText = workingText.replace(andarMatch[0], " ");
+  }
+
+  // 8. Direção 2 (Polígono Industrial, Edifício, Zona, etc.)
+  const d2Match = raw.match(/\b((?:Polígono|Poligono|Parque|Edifício|Edificio|Bloco|Torre|Urbanização|Urbanizacao|Centro Empresarial|Zona Industrial)[\s\wÀ-Úà-ú\-\–ºª]+?)(?=[,;\n]|$)/i);
+  if (d2Match) {
+    direcao2 = d2Match[1].trim();
+    workingText = workingText.replace(d2Match[0], " ");
+  }
+
+  // 9. Número da porta
+  const numMatch = workingText.match(/\b(?:n\.?[ºo]?\s*|nº\s*)?(\d+[A-Za-z]?)\b/i);
+  if (numMatch) {
+    numero = numMatch[1];
+  }
+
+  // 10. Limpar rótulos comuns (Tel:, Email:, etc.)
+  workingText = workingText.replace(/\b(?:Tel|Telefone|Email|Web|Website|NIF|CIF|NIPC|Contribuinte|Morada|Direção)[\s:.-]*/gi, " ");
+  if (codigoPostal) workingText = workingText.replace(codigoPostal, " ");
+  if (localidade) workingText = workingText.replace(new RegExp("\\b" + localidade + "\\b", "gi"), " ");
+
+  // 11. Linha da Rua (Direção 1)
+  const parts = workingText.split(/[,;\n]+/).map(s => s.trim().replace(/^[,;\s\-.:]+|[,;\s\-.:]+$/g, "")).filter(s => s.length > 2);
+  if (parts.length > 0) {
+    direcao1 = parts[0];
+    if (numero) {
+      const numEndRegex = new RegExp("\\s*,?\\s*(?:n\\.?[ºo]?\\s*)?" + numero + "\\s*$", "i");
+      direcao1 = direcao1.replace(numEndRegex, "").trim();
+    }
+  }
+
+  return {
+    direcao1: direcao1 || raw,
+    direcao2,
+    numero,
+    andar,
+    codigoPostal,
+    localidade,
+    pais: pais || "Portugal",
+    contribuinte,
+    telefone,
+    email,
+    website,
+    provider: "Colagem Inteligente (Google Search)"
+  };
+}
+window.parseSmartAddress = parseSmartAddress;
+
+function applySmartPasteFromInput() {
+  const inp = document.getElementById("aiSmartPasteInput");
+  if (!inp || !inp.value.trim()) {
+    if (typeof showToast === "function") showToast("Por favor, cole primeiro a morada copiada do Google.", "warning");
     return;
   }
-  // ────────────────────────────────────────────────────────────────────────
+  handleSmartPasteInput(inp.value.trim(), true);
+}
+window.applySmartPasteFromInput = applySmartPasteFromInput;
 
+function handleSmartPasteInput(text, showNotification = false) {
+  if (!text || text.trim().length < 4) return;
+  const parsed = parseSmartAddress(text);
+  if (!parsed) return;
+
+  const currentEntity = (currentPendingContext && currentPendingContext.entityName) ? currentPendingContext.entityName : "Entidade";
+  pendingAiAddressData = Object.assign({}, pendingAiAddressData || {}, parsed, {
+    nome: currentEntity,
+    website: parsed.website || pendingAiAddressData?.website || "",
+    email: parsed.email || pendingAiAddressData?.email || "",
+    telefone: parsed.telefone || pendingAiAddressData?.telefone || "",
+    contribuinte: parsed.contribuinte || pendingAiAddressData?.contribuinte || "",
+    fonteUrl: "https://www.google.com/search?q=" + encodeURIComponent(currentEntity + " morada")
+  });
+
+  updateAiModalPreview(pendingAiAddressData);
+
+  const successEl = document.getElementById("aiSmartPasteSuccessMsg");
+  if (successEl) {
+    let msg = "Morada preenchida com sucesso!";
+    if (parsed.contribuinte) {
+      msg = "Morada e Contribuinte (" + parsed.contribuinte + ") preenchidos com sucesso!";
+    }
+    successEl.innerHTML = "<i class=\"fa-solid fa-circle-check\"></i> " + msg + " Pode rever e confirmar.";
+    successEl.style.display = "block";
+  }
+  if (showNotification && typeof showToast === "function") {
+    const toastMsg = parsed.contribuinte
+      ? "Morada e Contribuinte (" + parsed.contribuinte + ") decompostos com sucesso!"
+      : "Morada decomposta com sucesso! Pode rever e aplicar.";
+    showToast(toastMsg, "success");
+  }
+}
+window.handleSmartPasteInput = handleSmartPasteInput;
+function renderAiCandidateCards() {
+  const container = document.getElementById("aiCandidatesCardsList");
+  if (!container) return;
+  container.innerHTML = "";
+
+  if (!availableAiCandidates || availableAiCandidates.length === 0) {
+    const multiContainer = document.getElementById("aiMultipleCandidatesContainer");
+    if (multiContainer) multiContainer.style.display = "none";
+    container.innerHTML = "";
+    return;
+  }
   availableAiCandidates.forEach((cand, idx) => {
     const isSelected = (idx === selectedAiCandidateIndex);
     const card = document.createElement('div');
@@ -31847,7 +31679,7 @@ async function triggerAiAddressEnrichment() {
 
         // ── TENTATIVA 6a: Gemini 2.0 com Google Search Grounding ──
         try {
-          const promptGrounding = `Pesquisa na web e encontra a morada oficial e exata da sede social/fiscal (rua exata com número de porta, código postal e cidade oficial), website oficial, email oficial de atendimento e telefone da empresa/organização: "${entityName}"${existingPais ? ' (país: ' + existingPais + ')' : ''}. Responde em português.`;
+          const promptGrounding = `Pesquisa na web e encontra o número de contribuinte (NIF/NIPC em Portugal ou CIF em Espanha), a morada oficial e exata da sede social/fiscal (rua exata com número de porta, código postal e cidade oficial), website oficial, email oficial de atendimento e telefone da empresa/organização: "${entityName}"${existingPais ? ' (país: ' + existingPais + ')' : ''}. Responde em português.`;
           console.log('[SIGEC-Gemini 6a] A enviar com Google Search Grounding...');
           const gRespGrounding = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
             method: 'POST',
@@ -31880,7 +31712,7 @@ async function triggerAiAddressEnrichment() {
         if (!aiTextResponse) {
           console.log('[SIGEC-Gemini] A tentar modo conhecimento direto (sem tools)...');
           try {
-            const directPrompt = `Indica a morada oficial e exata da sede fiscal/social registada (rua e número de porta exatos, código postal, cidade/município e país), website oficial, email de contacto oficial e telefone da empresa ou organização "${entityName}"${existingPais ? ' (' + existingPais + ')' : ''}. Fornece todos os detalhes conhecidos.`;
+            const directPrompt = `Indica o número de contribuinte (NIF/NIPC em Portugal ou CIF em Espanha), a morada oficial e exata da sede fiscal/social registada (rua e número de porta exatos, código postal, cidade/município e país), website oficial, email de contacto oficial e telefone da empresa ou organização "${entityName}"${existingPais ? ' (' + existingPais + ')' : ''}. Fornece todos os detalhes conhecidos.`;
             const gRespDirect = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -31920,12 +31752,12 @@ async function triggerAiAddressEnrichment() {
 
         // ── PASSO 6b: Extrair dados estruturados em JSON ──
         if (aiTextResponse) {
-          const promptJson = `Com base neste texto sobre "${entityName}", extrai APENAS os dados de contacto em JSON:
+          const promptJson = `Com base neste texto sobre "${entityName}", extrai APENAS os dados de contacto e identificação fiscal em JSON:
 
 TEXTO: ${aiTextResponse}
 
 Devolve APENAS este JSON exato (sem texto extra, sem markdown):
-{"website":"","email":"","telefone":"","direcao1":"","codigoPostal":"","localidade":"","pais":""}`;
+{"website":"","email":"","telefone":"","contribuinte":"","direcao1":"","codigoPostal":"","localidade":"","pais":""}`;
 
           let parsed = null;
           try {
@@ -31958,7 +31790,7 @@ Devolve APENAS este JSON exato (sem texto extra, sem markdown):
           if (parsed) {
             const gCountry = parsed.pais || existingPais || 'Espanha';
             const gCc = gCountry.toLowerCase().includes('port') ? 'pt' : (gCountry.toLowerCase().includes('esp') ? 'es' : '');
-            if (parsed.website || parsed.email || parsed.localidade || parsed.direcao1 || parsed.telefone) {
+            if (parsed.website || parsed.email || parsed.localidade || parsed.direcao1 || parsed.telefone || parsed.contribuinte) {
               const gSplit = splitSmartAddressLines(parsed.direcao1 || '', parsed.direcao2 || '', parsed.numero || '');
               availableAiCandidates.push({
                 nome:        entityName,
@@ -31974,6 +31806,7 @@ Devolve APENAS este JSON exato (sem texto extra, sem markdown):
                 telefone:    parsed.telefone || existingTelefone || '',
                 email:       parsed.email || existingEmail || '',
                 website:     parsed.website || existingWebsite || '',
+                contribuinte:parsed.contribuinte || '',
                 fonteUrl:    aiSourceUrl || parsed.website || 'https://www.google.com',
                 provider:    '🔎 Google (via Gemini AI)'
               });
@@ -32013,22 +31846,51 @@ Devolve APENAS este JSON exato (sem texto extra, sem markdown):
       }
     }
 
+        // Configurar atalhos diretos do Google e Google Maps
+    const entityQ = encodeURIComponent(entityName + " sede morada contacto telefone");
+    const gDirect = document.getElementById("aiBtnGoogleDirectLink");
+    if (gDirect) {
+      gDirect.href = "https://www.google.com/search?q=" + entityQ;
+    }
+    const gMaps = document.getElementById("aiBtnGoogleMapsDirectLink");
+    if (gMaps) {
+      const qMaps = encodeURIComponent(entityName + (existingPais ? " " + existingPais : ""));
+      gMaps.href = "https://www.google.com/maps/search/?api=1&query=" + qMaps;
+    }
+    const smartInput = document.getElementById("aiSmartPasteInput");
+    if (smartInput) smartInput.value = "";
+    const successEl = document.getElementById("aiSmartPasteSuccessMsg");
+    if (successEl) successEl.style.display = "none";
+
     if (availableAiCandidates.length === 0) {
-      // Não fechar o modal — mostrar estado "não encontrado" com link Google
-      if (loadingState) loadingState.style.display = 'none';
-      if (contentState) contentState.style.display = 'block';
-      const multiContainer = document.getElementById('aiMultipleCandidatesContainer');
-      if (multiContainer) multiContainer.style.display = 'block';
-      const countBadge = document.getElementById('aiCandidatesCountBadge');
-      if (countBadge) countBadge.textContent = '0';
-      renderAiCandidateCards(); // mostra o estado "não encontrado" com Google link
-      const targetLabel = document.getElementById('aiTargetLabel');
-      if (targetLabel) targetLabel.textContent = 'Entidade pesquisada:';
-      const targetEntity = document.getElementById('aiTargetEntityName');
+      if (loadingState) loadingState.style.display = "none";
+      if (contentState) contentState.style.display = "block";
+      const multiContainer = document.getElementById("aiMultipleCandidatesContainer");
+      if (multiContainer) multiContainer.style.display = "none";
+      
+      pendingAiAddressData = {
+        nome: entityName,
+        direcao1: "",
+        direcao2: "",
+        numero: "",
+        andar: "",
+        codigoPostal: "",
+        localidade: "",
+        pais: existingPais || "Portugal",
+        website: existingWebsite || "",
+        email: existingEmail || "",
+        telefone: existingTelefone || "",
+        fonteUrl: "https://www.google.com/search?q=" + entityQ
+      };
+      updateAiModalPreview(pendingAiAddressData);
+
+      const targetLabel = document.getElementById("aiTargetLabel");
+      if (targetLabel) targetLabel.textContent = "Entidade a atualizar:";
+      const targetEntity = document.getElementById("aiTargetEntityName");
       if (targetEntity) targetEntity.textContent = entityName;
       if (btn) {
         btn.disabled = false;
-        btn.innerHTML = '<i class="fa-solid fa-house"></i> <span data-i18n="btn_ai_update_address">Atualização de Direção</span>';
+        btn.innerHTML = "<i class=\"fa-solid fa-house\"></i> <span data-i18n=\"btn_ai_update_address\">Atualização de Direção</span>";
       }
       return;
     }
@@ -32114,7 +31976,7 @@ function confirmAndApplyAiAddress() {
       if (d.codigoPostal) sep.codigoPostal = d.codigoPostal;
       if (d.localidade) sep.localidade = d.localidade;
       if (d.pais) sep.pais = d.pais;
-      if (d.contribuinte && d.contribuinte.trim() && d.contribuinte.trim() !== '000000000' && (!sep.contribuinte || sep.contribuinte.trim() === '' || sep.contribuinte.trim() === '000000000')) {
+      if (d.contribuinte && d.contribuinte.trim() && d.contribuinte.trim() !== '000000000') {
         sep.contribuinte = d.contribuinte.trim();
       }
       if (d.website && (!sep.website || sep.website.trim() === '')) {
@@ -32188,8 +32050,12 @@ function confirmAndApplyAiAddress() {
     }
     if (d.contribuinte && d.contribuinte.trim() && d.contribuinte.trim() !== '000000000') {
       const el = document.getElementById('clientContribuinte');
-      if (el && (!el.value || el.value.trim() === '' || el.value.trim() === '000000000')) {
+      if (el) {
         el.value = d.contribuinte.trim();
+        try {
+          el.dispatchEvent(new Event('input', { bubbles: true }));
+          el.dispatchEvent(new Event('change', { bubbles: true }));
+        } catch(_) {}
       }
     }
     const labelTipo = d.tipoCliente === 'Fundação' ? 'da Fundação' : 'da Empresa';
