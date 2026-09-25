@@ -19827,8 +19827,8 @@ window.exportSearchToExcel = exportSearchToExcel;
 window.exportSearchResultsToPDF = exportSearchResultsToPDF;
 window.exportSearchResultsToExcel = exportSearchResultsToExcel;
 
-var CURRENT_SYSTEM_VERSION = "SIGEC_V1.7.27";
-window.CURRENT_SYSTEM_VERSION = "SIGEC_V1.7.27";
+var CURRENT_SYSTEM_VERSION = "SIGEC_V1.7.35";
+window.CURRENT_SYSTEM_VERSION = "SIGEC_V1.7.35";
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
@@ -19893,12 +19893,18 @@ function getNextSequentialVersion(lastVersionStr) {
 window.getNextSequentialVersion = getNextSequentialVersion;
 
 function getInstalledVersion() {
-  let ver = 'SIGEC_V1.7.27';
+  const CODE_BASE_VERSION = 'SIGEC_V1.7.35';
+  let ver = CODE_BASE_VERSION;
   
   if (typeof localStorage !== 'undefined') {
     const saved = localStorage.getItem('sigec_pro_installed_version');
     if (saved && typeof saved === 'string' && saved.trim()) {
-      ver = saved.trim();
+      const savedClean = saved.trim();
+      if (typeof parseVersionNumber === 'function' && parseVersionNumber(savedClean) >= parseVersionNumber(CODE_BASE_VERSION)) {
+        ver = savedClean;
+      } else {
+        try { localStorage.setItem('sigec_pro_installed_version', CODE_BASE_VERSION); } catch (e) {}
+      }
     }
   }
   
