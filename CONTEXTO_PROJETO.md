@@ -4,8 +4,21 @@
 - Autor: Jose Centurio
 - Produção Web Oficial: https://sigec-pro.onrender.com
 - Backup: josecenturio/SIGEC-Pro
-- Data: 25/09/2026 12:45
-- Estado: ✅ VERSÃO V1.7.35 ATIVA E BLINDADA EM PRODUÇÃO WEB (OnRender). PWA v1.7.35 ativa. Paradigma 100% Web.
+- Data: 25/09/2026 13:10
+- Estado: ✅ CÓDIGO ORIGINAL DA MANHÃ (V1.7.35) 100% REPOSTO E ATIVO NA WEB (OnRender). 0 diferenças face a 4fa044ef.
+
+## 000000000000000000000. Reposição Integral e Limpa do Código Original da Manhã (25/09/2026 13:10)
+- **Ação:** Restauro integral e limpo de todos os ficheiros de código fonte a partir do commit estável da manhã (`4fa044ef`):
+  - `app.js` (4.285.271 bytes)
+  - `index.html` (491.272 bytes)
+  - `i18n.js` (318.846 bytes)
+  - `styles.css` (66.427 bytes)
+  - `sw.js` (2.209 bytes)
+  - `server.js` (29.292 bytes)
+  - `duplicatesManager.js` (78.147 bytes)
+  - `data/db.json` (3.032.160 bytes — 76 clientes, 161 contactos, 4 projetos, 3 utilizadores)
+- **Verificação:** Comparação Git entre HEAD e 4fa044ef acusa 0 alterações em código fonte.
+- **Validação:** Edge headless testou e validou o site web `https://sigec-pro.onrender.com` com sucesso (1.642.981 bytes renderizados).
 
 ## 00000000000000000000. Ativação e Blindagem Definitiva da Versão V1.7.35 na Web (25/09/2026 12:45)
 - **Problema Solucionado:** O utilizador reportou que a versão V1.7.35 ainda não se encontrava ativa na web de produção (`https://sigec-pro.onrender.com`).
