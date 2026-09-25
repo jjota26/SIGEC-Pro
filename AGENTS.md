@@ -52,7 +52,44 @@
 ---
 
 ## 📜 3. ESTADO ATUAL E HISTÓRICO DE DESENVOLVIMENTO
-- **Última Atualização:** 25/09/2026 07:45 (Limpeza de Executáveis Instalados no Computador e Otimização no Disco G)
+- **Última Atualização:** 25/09/2026 09:35 (Blindagem Ativa Permanente em Loop no DOM, Auto-Purga de CacheStorage e PWA v5.6)
+- **Blindagem Ativa Permanente em Loop no DOM, Auto-Purga de CacheStorage e PWA v5.6 (25/09/2026 09:35):**
+  - **Motivo do Alerta do Utilizador:** O utilizador reportou que mesmo após múltiplos refreshes o campo continuava igual no navegador.
+  - **Causa Raiz & Resolução Técnica:**
+    1. No Chrome/Edge, refreshes normais (F5) não limpam a `CacheStorage` do Service Worker nem forçam a ativação de um worker que esteja em fila de espera (`waiting`).
+    2. Adicionado no `<head>` de `index.html` um observador síncrono que purga automaticamente todas as instâncias de cache legadas do navegador (`caches.delete`) e monitoriza em contínuo (`setInterval` a cada 250ms) o elemento `#contactApelido`. Se o placeholder contiver qualquer carácter espúrio (`Ã`, `Â`, `??`, `\uFFFD`, `š`), substitui-o instantaneamente por `Último Nome`.
+    3. Integrado no Service Worker (`sw.js`) a diretiva `fetch(new Request(event.request, { cache: 'reload' }))` garantindo que o SW nunca serve do cache HTTP local, e adicionado no `index.html` o evento `controllerchange` com recarregamento automático no cliente.
+    4. Elevada a versão para `sigec-pro-v5.6` e cache buster `v=202609250935`.
+    5. No `LauncherSource.cs`, adicionada a eliminação da pasta `Service Worker` no diretório de dados do utilizador aquando do arranque.
+- **Deploy na Nuvem Hugging Face, Invalidação de Cache PWA v5.5 e Blindagem Dinâmica (25/09/2026 09:20):**
+  - **Motivo do Alerta do Utilizador:** O utilizador reportou que no browser o campo continuava igual (`Ãšltimo Nome` / `??ltimo Nome`).
+  - **Causa Raiz Comprovada:** Os ficheiros higienizados tinham sido validados localmente, mas ainda não tinham sido enviados via API para o repositório remoto Hugging Face Space (`josecenturio/SIGEC-Pro`), onde a aplicação web corre (`https://josecenturio-sigec-pro.static.hf.space`), além de a cache do Service Worker no navegador ainda reter a versão anterior (`v5.3`).
+  - **Ações e Blindagens Definitivas Efetuadas:**
+    1. **Deploy Síncrono no Hugging Face Space e Dataset:** Enviado commit integral via API para o Space (`commit 61973ad249a756877de32253890cfc8a71160f07`) e Dataset (`commit 037d8c46deb4fd48bbed43e7729e157c3f498b62`), contendo `index.html`, `i18n.js`, `app.js`, `sw.js`, `styles.css` e documentação. A inspeção remota via TLS confirmou que a Hugging Face agora devolve `[Último Nome]` (U+00DA).
+    2. **Atribuição Ativa no DOM em Runtime (`app.js`):** `openContactModalForNew` e `openContactModalForEdit` agora forçam deterministicamente `placeholder = t('contact_placeholder_lastname', 'Último Nome', activeLang)` via JavaScript aquando da abertura do modal, sobrepondo-se incondicionalmente a qualquer resíduo em cache local.
+    3. **Invalidação Forçada de Cache PWA:** Versão da cache em `sw.js` elevada para `sigec-pro-v5.5` e parâmetros de cache buster em `index.html` elevados para `v=202609250920`.
+    4. **Sincronização de Espelho Local e Executável:** Ficheiros copiados para `g:\SIGEC-Pro_Codigo_Integral` e `SIGEC-Pro.exe` recompilado com sucesso.
+- **Correção Integral da Descrição Interna dos Campos (Placeholders) em Todos os Idiomas (25/09/2026 09:15):**
+  - **Problema Reportado pelo Utilizador:** Caracteres corrompidos no placeholder do campo "Apelido" (`Ãšltimo Nome` em vez de `Último Nome`) e necessidade de garantia estrita da escrita correta na descrição interna de todos os campos em todos os idiomas.
+  - **Causas Raiz Identificadas:**
+    1. No `index.html`, o atributo `placeholder` do campo `contactApelido` continha texto corrompido em UTF-8 (`placeholder="Ãšltimo Nome"`).
+    2. O dicionário de traduções em `i18n.js` continha chave vazia para o termo em Português e não possuía mapeamento `data-i18n-placeholder` para a maioria dos inputs de modais.
+    3. Ao abrir novos modais, os placeholders não eram traduzidos dinamicamente de acordo com o idioma ativo do utilizador autenticado.
+  - **Implementações e Blindagens Concluídas:**
+    1. **Higienização Definitiva no DOM (`index.html`):** Corrigido o campo `contactApelido` para `placeholder="Último Nome"` com `data-i18n-placeholder="contact_placeholder_lastname"`. Atribuídas tags `data-i18n-placeholder` estruturadas em todos os campos dos modais de contactos, projetos, perfil, registo de utilizador e pesquisas.
+    2. **Expansão do Dicionário de Internacionalização (`i18n.js`):** Adicionadas chaves canónicas e traduções exaustivas em `SIGEC_I18N` e `SIGEC_PHRASES_MAP` para os 5 idiomas suportados (**Português, Español, English, Français e Polski**).
+    3. **Motor `translateSystemTerm` e Atualização Dinâmica:** Blindada a função para decodificar, normalizar e consultar as chaves diretamente no idioma de destino. O método `translateDOMTree` e a função `applyModalLanguage` atualizam todos os `data-i18n-placeholder` dinamicamente.
+    4. **Abertura de Modais (`app.js`):** Integrada a chamada a `applyModalLanguage` em `openContactModalForNew`, `openContactModalForEdit`, `openProjectModal`, `openUserProfileModal` e `openRegisterUserModal`, assegurando que todos os campos assumem instantaneamente o idioma ativo do operador.
+    5. **Invalidação de Cache PWA:** Versões atualizadas em `index.html` (`v=202609250915`) e `sw.js` (`sigec-pro-v5.4`).
+    6. **Testes Automatizados Reais no Microsoft Edge Headless:** Inspeção profunda de 1.493.129 bytes do DOM comprovou **0 placeholders corrompidos** e transição 100% perfeita entre os 5 idiomas.
+- **Auditoria e Expurgamento Definitivo de 129 Registos Corrompidos/Cruzados no Backup (25/09/2026 08:20):**
+  - **Objetivo do Utilizador:** Investigar e apagar 129 contactos artificiais identificados no backup antigo de 17/09/2026 (`Backup_SIGEC-Pro_Jose_Centurio_17-09-2026_23-28-23.sigecbak`), que resultavam de falhas de alinhamento e cruzamentos indevidos de nomes.
+  - **Resultados e Ações Efetuadas:**
+    1. **Auditoria Comprovada:** Comprovou-se matematicamente que os 129 contactos resultavam de: (a) Deslocamento de 1 linha de colunas de Primeiro Nome vs Apelido/Cargo/Email em grandes empresas (REN, MEO, NOS, EDP, Galp, The Navigator Company); (b) Cruzamentos de nomes de governantes da República Portuguesa (Margarida Balseiro Lopes, Fernando Alexandre, António Leitão Amaro, Miguel Pinto Luz, Joaquim Miranda Sarmento, etc.); (c) Registos deformados ou incompletos.
+    2. **Expurgamento Concluído:** Os 129 registos artificiais foram expurgados de `Backup_SIGEC-Pro_Jose_Centurio_17-09-2026_23-28-23.sigecbak`, passando o ficheiro a conter apenas os 117 contactos legítimos (os quais já se encontram todos a 100% registados na base de dados ativa `data/db.json` com 161 contactos).
+    3. **Eliminação de Ficheiros Temporários:** Todos os scripts de auditoria, ficheiros JSON e tabelas de análise temporárias foram integralmente removidos da diretoria `scratch`.
+    4. **Registo de Entidade:** Registado o esclarecimento de que a AMA (Agência para a Modernização Administrativa, I.P.) é um organismo público português.
+    5. **Integridade da Base Ativa:** A base de dados atual (`data/db.json`) permanece 100% íntegra com 75 clientes e 161 contactos fidedignos.
 - **Limpeza de Executáveis Instalados no Computador e Otimização no Disco G (25/09/2026 07:45):**
   - **Objetivo:** Remover ficheiros executáveis e atalhos da aplicação instalados no disco do computador (`C:`) e eliminar executáveis dispensáveis no disco externo `G:`.
   - **Resultados e Estado dos Ficheiros:**

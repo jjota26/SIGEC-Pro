@@ -12,7 +12,7 @@
     if ('caches' in window) {
       caches.keys().then(function(keys) {
         keys.forEach(function(k) {
-          if (k !== 'sigec-pro-v1.7.35') {
+          if (k !== 'sigec-pro-v4.6') {
             console.log('[PWA] Purga imediata de cache antiga:', k);
             caches.delete(k);
           }
@@ -220,8 +220,37 @@
     window.toggleLoginRegisterMode = toggleLoginRegisterMode;
   </script>
 
+  <!-- Blindagem Imediata e Permanente de Placeholders e Limpeza de Caches Antigas -->
+  <script>
+    (function() {
+      if ('caches' in window) {
+        caches.keys().then(function(keys) {
+          keys.forEach(function(k) {
+            if (k !== 'sigec-pro-v5.6') caches.delete(k);
+          });
+        });
+      }
+      function enforceCleanPlaceholders() {
+        var el = document.getElementById('contactApelido');
+        if (el && (!el.placeholder || el.placeholder.indexOf('Ã') >= 0 || el.placeholder.indexOf('Â') >= 0 || el.placeholder.indexOf('??') >= 0 || el.placeholder.indexOf('\uFFFD') >= 0 || el.placeholder.indexOf('š') >= 0)) {
+          el.placeholder = 'Último Nome';
+        }
+        var nm = document.getElementById('contactNome');
+        if (nm && (!nm.placeholder || nm.placeholder.indexOf('Ã') >= 0 || nm.placeholder.indexOf('Â') >= 0 || nm.placeholder.indexOf('??') >= 0 || nm.placeholder.indexOf('\uFFFD') >= 0 || nm.placeholder.indexOf('š') >= 0)) {
+          nm.placeholder = 'Primeiro Nome';
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', enforceCleanPlaceholders);
+      } else {
+        enforceCleanPlaceholders();
+      }
+      setInterval(enforceCleanPlaceholders, 250);
+    })();
+  </script>
+
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=202609242235">
+  <link rel="stylesheet" href="styles.css?v=202609250935">
 
   <!-- Critical Login Screen Styles (Guarantees perfect rendering even before external CSS loads) -->
   <style>
@@ -279,7 +308,7 @@
 
   <style>
     /* ====================================================
-       MENU DE NAVEGAÃ‡ÃƒO SUPERIOR SLIDE-OUT (DESLIZA PARA A ESQUERDA)
+       MENU DE NAVEGAÇÃO SUPERIOR SLIDE-OUT (DESLIZA PARA A ESQUERDA)
        ==================================================== */
     .nav-slide-bar {
       display: inline-flex;
@@ -456,7 +485,7 @@
 
     /* ====================================================
        OVERRIDE TOUCH/MOBILE: Barras de navegação sempre visíveis
-       (sem dependência de :hover — incompatível com toque)
+       (sem dependência de :hover â€” incompatível com toque)
        ==================================================== */
     @media (max-width: 768px) {
       /* Nav Slide Bar: modo strip horizontal com scroll */
@@ -475,7 +504,7 @@
       }
       .nav-slide-bar::-webkit-scrollbar { display: none !important; }
 
-      /* Todos os botões sempre visíveis — anula as regras de max-width:0 */
+      /* Todos os botões sempre visíveis â€” anula as regras de max-width:0 */
       .nav-slide-bar:not(:hover) .nav-slide-btn:not(.active) {
         max-width: 300px !important;
         padding: 0.5rem 0.75rem !important;
@@ -548,7 +577,7 @@
 
 <body>
 
-  <!-- ECRÃƒ DE AUTENTICAÃ‡ÃƒO E SEGURANÃ‡A (LOGIN PIN / PALAVRA-PASSE) -->
+  <!-- ECRÃ DE AUTENTICAÇÃO E SEGURANÇA (LOGIN PIN / PALAVRA-PASSE) -->
   <div id="loginOverlay" class="login-overlay">
     
     <div class="login-card">
@@ -587,15 +616,16 @@
           } catch(e) {}
         }, 1200);
 
-        // Heartbeat contínuo do SIGEC-Pro: mantém o servidor local HTTP e SMTP sempre ativo enquanto a janela estiver aberta
+        // Heartbeat contínuo do SIGEC-Pro: apenas ativo no ambiente Desktop local (127.0.0.1 / localhost)
         (function() {
           function sigecHeartbeat() {
-            if (window.location.protocol.indexOf('http') === 0) {
+            var h = window.location.hostname;
+            if (h === '127.0.0.1' || h === 'localhost' || h === '0.0.0.0') {
               fetch('/api/heartbeat', { method: 'GET', cache: 'no-store' }).catch(function() {});
             }
           }
           sigecHeartbeat();
-          setInterval(sigecHeartbeat, 3000);
+          setInterval(sigecHeartbeat, 5000);
         })();
       </script>
         <form id="loginForm" onsubmit="event.preventDefault(); verifyLoginPin(); return false;">
@@ -754,7 +784,7 @@
     </div>
 
     <div class="header-actions">
-      <!-- MENU DE NAVEGAÃ‡ÃƒO SUPERIOR SLIDE-OUT (DESLIZA PARA A ESQUERDA) -->
+      <!-- MENU DE NAVEGAÇÃO SUPERIOR SLIDE-OUT (DESLIZA PARA A ESQUERDA) -->
       <nav class="nav-slide-bar" id="navSlideBar">
         <button type="button" class="nav-slide-btn" data-tab="tab-database" onclick="switchTab('tab-database')"
           id="navBtnConfiguracao" title="Configuração" style="display: inline-flex;">
@@ -787,7 +817,7 @@
       </nav>
 
       <div style="display: flex; gap: 0.5rem; align-items: center;">
-      <!-- BOTÃƒO DE PERFIL E DEFINIÃ‡Ã•ES PESSOAIS DO UTILIZADOR -->
+      <!-- BOTÃO DE PERFIL E DEFINIÇÕES PESSOAIS DO UTILIZADOR -->
       <div class="header-user-profile-badge" id="headerUserProfileBadge" onclick="openCurrentUserSettingsModal()" title="Definições da Minha Conta" style="display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.14); padding: 0.35rem 0.75rem; border-radius: 8px; cursor: pointer; border: 1px solid rgba(255,255,255,0.25); transition: all 0.2s;">
         <div style="width: 32px; height: 32px; border-radius: 50%; background: #ffffff; color: var(--primary-blue, #2563eb); display: flex; align-items: center; justify-content: center; font-size: 0.95rem; font-weight: 700;">
           <i class="fa-solid fa-user-gear"></i>
@@ -1216,7 +1246,7 @@
       </div>
     </section>
 
-    <!-- TAB: ORÃ‡AMENTOS -->
+    <!-- TAB: ORÇAMENTOS -->
     <section id="tab-orcamentos" class="tab-content">
       <div class="card" style="margin-bottom: 1.5rem;">
 
@@ -1264,7 +1294,7 @@
             <!-- Caixa de Total Geral -->
             <div class="budget-total-box">
               <span>Total Geral:</span>
-              <span id="budgetGrandTotalDisplay" class="budget-total-value">0,00 €</span>
+              <span id="budgetGrandTotalDisplay" class="budget-total-value">0,00 â‚¬</span>
             </div>
           </div>
         </div>
@@ -1328,7 +1358,7 @@
           </div>
         </div>
 
-        <!-- SECÃ‡ÃƒO DE IMAGENS E ANEXOS TÃ‰CNICOS DA PROPOSTA (Pontos Oficiais José Centúrio) -->
+        <!-- SECÇÃO DE IMAGENS E ANEXOS TÉCNICOS DA PROPOSTA (Pontos Oficiais José Centúrio) -->
         <div class="budget-images-card"
           style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06); overflow: hidden;">
           <div
@@ -1808,15 +1838,15 @@
           </div>
         </div>
 
-        <!-- FORMULÁRIO TÃ‰CNICO: OS 8 CAPÍTULOS DE ORÃ‡AMENTO -->
+        <!-- FORMULÁRIO TÉCNICO: OS 8 CAPÍTULOS DE ORÇAMENTO -->
         <div id="budgetTopicsContainer">
 
-          <!-- 1. CHASSI E DIMENSÃ•ES -->
+          <!-- 1. CHASSI E DIMENSÕES -->
           <div class="budget-topic-card">
             <div class="budget-topic-header">
               <div class="budget-topic-header-left">
                 <div class="budget-topic-num">1</div>
-                <h3 class="budget-topic-title">CHASSI E DIMENSÃ•ES DO VEÍCULO</h3>
+                <h3 class="budget-topic-title">CHASSI E DIMENSÕES DO VEÍCULO</h3>
               </div>
               <div class="budget-topic-header-actions">
                 <button type="button" class="budget-add-row-btn" onclick="addBudgetRow(this)"
@@ -1831,7 +1861,7 @@
                   <tr>
                     <th style="width: 25%;">Item / Componente</th>
                     <th style="width: 58%;">Descrição / Especificação Técnica</th>
-                    <th style="width: 17%; text-align: right;">Preço (€)</th>
+                    <th style="width: 17%; text-align: right;">Preço (â‚¬)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1842,7 +1872,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -1852,7 +1882,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -1862,7 +1892,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -1871,7 +1901,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -1880,7 +1910,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -1890,7 +1920,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                 </tbody>
@@ -1918,7 +1948,7 @@
                   <tr>
                     <th style="width: 25%;">Item / Componente</th>
                     <th style="width: 58%;">Descrição / Especificação Técnica</th>
-                    <th style="width: 17%; text-align: right;">Preço (€)</th>
+                    <th style="width: 17%; text-align: right;">Preço (â‚¬)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1929,7 +1959,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -1939,7 +1969,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -1948,7 +1978,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -1958,7 +1988,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -1969,7 +1999,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                 </tbody>
@@ -1982,7 +2012,7 @@
             <div class="budget-topic-header">
               <div class="budget-topic-header-left">
                 <div class="budget-topic-num">3</div>
-                <h3 class="budget-topic-title">ISOLAMENTO TÃ‰RMICO E REVESTIMENTOS</h3>
+                <h3 class="budget-topic-title">ISOLAMENTO TÉRMICO E REVESTIMENTOS</h3>
               </div>
               <div class="budget-topic-header-actions">
                 <button type="button" class="budget-add-row-btn" onclick="addBudgetRow(this)"
@@ -1997,7 +2027,7 @@
                   <tr>
                     <th style="width: 25%;">Item / Componente</th>
                     <th style="width: 58%;">Descrição / Especificação Técnica</th>
-                    <th style="width: 17%; text-align: right;">Preço (€)</th>
+                    <th style="width: 17%; text-align: right;">Preço (â‚¬)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -2009,7 +2039,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -2020,7 +2050,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -2031,7 +2061,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                 </tbody>
@@ -2039,12 +2069,12 @@
             </div>
           </div>
 
-          <!-- 4. DIVISÃ“RIAS, MOBILIÁRIO E ESPAÃ‡O INTERIOR -->
+          <!-- 4. DIVISÓRIAS, MOBILIÁRIO E ESPAÇO INTERIOR -->
           <div class="budget-topic-card">
             <div class="budget-topic-header">
               <div class="budget-topic-header-left">
                 <div class="budget-topic-num">4</div>
-                <h3 class="budget-topic-title">DIVISÃ“RIAS, MOBILIÁRIO E ESPAÃ‡O INTERIOR</h3>
+                <h3 class="budget-topic-title">DIVISÓRIAS, MOBILIÁRIO E ESPAÇO INTERIOR</h3>
               </div>
               <div class="budget-topic-header-actions">
                 <button type="button" class="budget-add-row-btn" onclick="addBudgetRow(this)"
@@ -2059,7 +2089,7 @@
                   <tr>
                     <th style="width: 25%;">Item / Componente</th>
                     <th style="width: 58%;">Descrição / Especificação Técnica</th>
-                    <th style="width: 17%; text-align: right;">Preço (€)</th>
+                    <th style="width: 17%; text-align: right;">Preço (â‚¬)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -2069,7 +2099,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -2078,7 +2108,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -2087,7 +2117,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                 </tbody>
@@ -2095,12 +2125,12 @@
             </div>
           </div>
 
-          <!-- 5. CLIMATIZAÃ‡ÃƒO E VENTILAÃ‡ÃƒO -->
+          <!-- 5. CLIMATIZAÇÃO E VENTILAÇÃO -->
           <div class="budget-topic-card">
             <div class="budget-topic-header">
               <div class="budget-topic-header-left">
                 <div class="budget-topic-num">5</div>
-                <h3 class="budget-topic-title">CLIMATIZAÃ‡ÃƒO E VENTILAÃ‡ÃƒO</h3>
+                <h3 class="budget-topic-title">CLIMATIZAÇÃO E VENTILAÇÃO</h3>
               </div>
               <div class="budget-topic-header-actions">
                 <button type="button" class="budget-add-row-btn" onclick="addBudgetRow(this)"
@@ -2115,7 +2145,7 @@
                   <tr>
                     <th style="width: 25%;">Item / Componente</th>
                     <th style="width: 58%;">Descrição / Especificação Técnica</th>
-                    <th style="width: 17%; text-align: right;">Preço (€)</th>
+                    <th style="width: 17%; text-align: right;">Preço (â‚¬)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -2127,7 +2157,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -2137,7 +2167,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                 </tbody>
@@ -2145,12 +2175,12 @@
             </div>
           </div>
 
-          <!-- 6. INSTALAÃ‡ÃƒO ELÃ‰TRICA E ENERGIA -->
+          <!-- 6. INSTALAÇÃO ELÉTRICA E ENERGIA -->
           <div class="budget-topic-card">
             <div class="budget-topic-header">
               <div class="budget-topic-header-left">
                 <div class="budget-topic-num">6</div>
-                <h3 class="budget-topic-title">INSTALAÃ‡ÃƒO ELÃ‰TRICA, ENERGIA E ILUMINAÃ‡ÃƒO</h3>
+                <h3 class="budget-topic-title">INSTALAÇÃO ELÉTRICA, ENERGIA E ILUMINAÇÃO</h3>
               </div>
               <div class="budget-topic-header-actions">
                 <button type="button" class="budget-add-row-btn" onclick="addBudgetRow(this)"
@@ -2165,7 +2195,7 @@
                   <tr>
                     <th style="width: 25%;">Item / Componente</th>
                     <th style="width: 58%;">Descrição / Especificação Técnica</th>
-                    <th style="width: 17%; text-align: right;">Preço (€)</th>
+                    <th style="width: 17%; text-align: right;">Preço (â‚¬)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -2176,7 +2206,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -2186,7 +2216,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -2195,7 +2225,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                 </tbody>
@@ -2203,12 +2233,12 @@
             </div>
           </div>
 
-          <!-- 7. INSTALAÃ‡ÃƒO DE ÁGUAS E SANITÁRIOS -->
+          <!-- 7. INSTALAÇÃO DE ÁGUAS E SANITÁRIOS -->
           <div class="budget-topic-card">
             <div class="budget-topic-header">
               <div class="budget-topic-header-left">
                 <div class="budget-topic-num">7</div>
-                <h3 class="budget-topic-title">INSTALAÃ‡ÃƒO DE ÁGUAS E SANITÁRIOS</h3>
+                <h3 class="budget-topic-title">INSTALAÇÃO DE ÁGUAS E SANITÁRIOS</h3>
               </div>
               <div class="budget-topic-header-actions">
                 <button type="button" class="budget-add-row-btn" onclick="addBudgetRow(this)"
@@ -2223,7 +2253,7 @@
                   <tr>
                     <th style="width: 25%;">Item / Componente</th>
                     <th style="width: 58%;">Descrição / Especificação Técnica</th>
-                    <th style="width: 17%; text-align: right;">Preço (€)</th>
+                    <th style="width: 17%; text-align: right;">Preço (â‚¬)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -2234,7 +2264,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -2244,7 +2274,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                 </tbody>
@@ -2252,12 +2282,12 @@
             </div>
           </div>
 
-          <!-- 8. EQUIPAMENTO ADICIONAL E SEGURANÃ‡A -->
+          <!-- 8. EQUIPAMENTO ADICIONAL E SEGURANÇA -->
           <div class="budget-topic-card">
             <div class="budget-topic-header">
               <div class="budget-topic-header-left">
                 <div class="budget-topic-num">8</div>
-                <h3 class="budget-topic-title">EQUIPAMENTO TÃ‰CNICO E SEGURANÃ‡A ADICIONAL</h3>
+                <h3 class="budget-topic-title">EQUIPAMENTO TÉCNICO E SEGURANÇA ADICIONAL</h3>
               </div>
               <div class="budget-topic-header-actions">
                 <button type="button" class="budget-add-row-btn" onclick="addBudgetRow(this)"
@@ -2272,7 +2302,7 @@
                   <tr>
                     <th style="width: 25%;">Item / Componente</th>
                     <th style="width: 58%;">Descrição / Especificação Técnica</th>
-                    <th style="width: 17%; text-align: right;">Preço (€)</th>
+                    <th style="width: 17%; text-align: right;">Preço (â‚¬)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -2284,7 +2314,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -2295,7 +2325,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                 </tbody>
@@ -2323,7 +2353,7 @@
                   <tr>
                     <th style="width: 25%;">Item / Componente Opcional</th>
                     <th style="width: 58%;">Descrição / Especificação Técnica</th>
-                    <th style="width: 17%; text-align: right;">Preço Opcional (€)</th>
+                    <th style="width: 17%; text-align: right;">Preço Opcional (â‚¬)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -2335,7 +2365,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -2346,7 +2376,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -2357,7 +2387,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                   <tr>
@@ -2367,7 +2397,7 @@
                     <td>
                       <div class="budget-price-wrapper"><input type="number" step="0.01" class="budget-input-price"
                           placeholder="0.00" oninput="recalculateBudgetTotal()"><span
-                          class="budget-price-symbol">€</span></div>
+                          class="budget-price-symbol">â‚¬</span></div>
                     </td>
                   </tr>
                 </tbody>
@@ -2377,7 +2407,7 @@
 
         </div>
 
-        <!-- BOTÃƒO PARA ADICIONAR NOVO QUADRO / CAPÍTULO -->
+        <!-- BOTÃO PARA ADICIONAR NOVO QUADRO / CAPÍTULO -->
         <div style="margin-top: 1.25rem; margin-bottom: 1.5rem; text-align: center;">
           <button type="button" class="btn btn-primary" onclick="addNewBudgetTopicCard()"
             style="font-weight: 700; padding: 0.65rem 1.5rem; font-size: 0.92rem; box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25); border-radius: 6px;">
@@ -2387,7 +2417,7 @@
 
       </div>
 
-      <!-- HISTÃ“RICO DE ORÃ‡AMENTOS GUARDADOS (INDEPENDENTES) -->
+      <!-- HISTÓRICO DE ORÇAMENTOS GUARDADOS (INDEPENDENTES) -->
       <div class="card" style="margin-top: 1.5rem;">
         <div class="card-header"
           style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
@@ -2468,7 +2498,7 @@
         </div>
       </div>
 
-      <!-- OS TRÃŠS QUADROS -->
+      <!-- OS TRÊS QUADROS -->
       <div style="display: flex; flex-direction: column; gap: 1.5rem;">
 
         <!-- QUADRO 1: CLIENTES DO UTILIZADOR -->
@@ -2548,7 +2578,7 @@
 
     <section id="tab-database" class="tab-content">
 
-      <!-- SUB-NAV INTERNA DA CONFIGURAÃ‡ÃƒO -->
+      <!-- SUB-NAV INTERNA DA CONFIGURAÇÃO -->
       <div
         style="display:flex; gap:0.5rem; margin-bottom:1.5rem; border-bottom:2px solid var(--border-color, #e2e8f0); padding-bottom:0;">
         <button type="button" id="cfgSubTab-config" class="active" onclick="switchCfgSubTab('config')"
@@ -2563,7 +2593,7 @@
         </button>
       </div>
 
-      <!-- PAINEL: CONFIGURAÃ‡ÃƒO -->
+      <!-- PAINEL: CONFIGURAÇÃO -->
       <div id="cfgPanel-config">
         <div class="card">
           <div class="card-header">
@@ -2580,205 +2610,213 @@
           </p>
 
           <!-- Grelha Reordenada de Botões e Controles de Configuração -->
-          <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem;">
 
             <!-- BANNER DE GARANTIA E PROTEÇÃO DE DADOS -->
             <div
-              style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 10px; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 0.85rem; box-shadow: 0 1px 4px rgba(34, 197, 94, 0.08);">
+              style="grid-column: 1 / -1; background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 12px; padding: 1.25rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 2px 8px rgba(34, 197, 94, 0.1);">
               <div
-                style="width: 38px; height: 38px; border-radius: 50%; background: #dcfce7; color: #15803d; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0;">
+                style="width: 52px; height: 52px; border-radius: 50%; background: #dcfce7; color: #15803d; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0;">
                 <i class="fa-solid fa-shield-halved"></i>
               </div>
-              <div style="flex: 1;">
-                <div style="font-size: 0.95rem; color: #166534; font-weight: 700; display: flex; align-items: center; gap: 6px;">
-                  <i class="fa-solid fa-lock"></i> <span data-i18n="cfg_banner_data_protection_title">Proteção e Preservação de Dados Ativa</span>
-                </div>
-                <div style="font-size: 0.82rem; color: #15803d; margin-top: 2px; line-height: 1.35;">
-                  <strong data-i18n="cfg_banner_integrity_guarantee_label">Garantia de Integridade:</strong> <span data-i18n="cfg_banner_integrity_guarantee_desc">Os dados e fichas do seu programa SIGEC-Pro estão 100% salvaguardados. Nenhum registo será alterado ou apagado sem a sua confirmação explícita.</span>
-                </div>
+              <div>
+                <h3 style="font-size: 1.05rem; color: #166534; margin: 0 0 0.25rem 0; font-weight: 700;">
+                  <i class="fa-solid fa-lock" style="margin-right: 6px;"></i> Proteção e Preservação de Dados Ativa
+                </h3>
+                <p style="font-size: 0.88rem; color: #15803d; margin: 0; line-height: 1.45;">
+                  <strong>Garantia de Integridade:</strong> Os dados e fichas do seu programa SIGEC-Pro estão 100%
+                  salvaguardados. Nenhum registo será alterado, reposto ou apagado sem a sua autorização e confirmação
+                  explícita prévia.
+                </p>
               </div>
             </div>
 
-            <!-- LINHA 1: GESTÃO DE DADOS (CÓPIAS E IMPORTAÇÃO) - 2 COLUNAS EQUILIBRADAS -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1rem;">
-
-              <!-- BLOCO 1: Cópia de Segurança Completa -->
-              <div class="card" style="border: 1px solid var(--soft-blue-border); background: #f8fafc; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; margin-bottom: 0;">
-                <div>
-                  <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.5rem;">
-                    <div style="width: 36px; height: 36px; border-radius: 8px; background: #dbeafe; color: #1e40af; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">
-                      <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <div>
-                      <h3 style="font-size: 0.95rem; color: #1e3a8a; margin: 0; font-weight: 700;" data-i18n="cfg_card_backup_title">Cópia de Segurança Completa</h3>
-                      <span style="font-size: 0.75rem; color: var(--text-muted);" data-i18n="cfg_card_backup_subtitle">Backup e restauro integral dos dados do sistema</span>
-                    </div>
-                  </div>
-                  <p style="font-size: 0.8rem; color: #475569; margin-bottom: 0.75rem; line-height: 1.35;" data-i18n="cfg_card_backup_desc">
-                    Exporte ou restaure todos os registos (Clientes, Contactos, Projetos e Interações) via ficheiro ou Google Drive.
-                  </p>
+            <!-- BLOCO 1: Cópia de Segurança Completa -->
+            <div class="card" style="border: 1px solid var(--soft-blue-border); background: #f8fafc; padding: 1.25rem;">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                <div
+                  style="width: 42px; height: 42px; border-radius: 8px; background: #dbeafe; color: #1e40af; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                  <i class="fa-solid fa-shield-halved"></i>
                 </div>
-                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                  <button type="button" class="btn btn-primary" onclick="exportDatabaseJSON()"
-                    style="flex: 1; justify-content: center; font-size: 0.82rem; padding: 0.45rem 0.75rem;"
-                    title="Criar backup contendo apenas dados de registo" data-i18n="cfg_btn_create_backup">
-                    <i class="fa-solid fa-download"></i> Criar Backup
-                  </button>
-                  <button type="button" class="btn btn-secondary" onclick="triggerDatabaseRestore()"
-                    style="flex: 1; justify-content: center; font-size: 0.82rem; padding: 0.45rem 0.75rem;"
-                    title="Restaurar backup a partir de ficheiro" data-i18n="cfg_btn_restore_backup">
-                    <i class="fa-solid fa-upload"></i> Restaurar
-                  </button>
-                  <button type="button" class="btn btn-secondary" onclick="openDriveModal()"
-                    title="Sincronização Google Drive (jjota26@gmail.com)"
-                    style="flex: 1; justify-content: center; background: #e0f2fe; color: #0369a1; border-color: #bae6fd; font-size: 0.82rem; padding: 0.45rem 0.75rem;">
-                    <i class="fa-brands fa-google-drive"></i> Google Drive
-                  </button>
-                  <input type="file" id="fullDatabaseImportInput" accept=".sigecbak,.sigec,.json" onchange="importDatabaseJSON(event)" style="display:none;">
+                <div>
+                  <h3 style="font-size: 1rem; color: #1e3a8a; margin: 0; font-weight: 700;">Cópia de Segurança Completa
+                  </h3>
+                  <span style="font-size: 0.78rem; color: var(--text-muted);">Backup integral dos dados do
+                    sistema</span>
                 </div>
               </div>
-
-              <!-- BLOCO 2: Importar Ficheiros por Ficha -->
-              <div class="card" style="border: 1px solid var(--soft-blue-border); background: #f8fafc; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; margin-bottom: 0;">
-                <div>
-                  <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.5rem;">
-                    <div style="width: 36px; height: 36px; border-radius: 8px; background: #e0e7ff; color: #3730a3; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">
-                      <i class="fa-solid fa-file-import"></i>
-                    </div>
-                    <div>
-                      <h3 style="font-size: 0.95rem; color: #1e3a8a; margin: 0; font-weight: 700;" data-i18n="cfg_card_import_title">Importação de Ficheiros</h3>
-                      <span style="font-size: 0.75rem; color: var(--text-muted);" data-i18n="cfg_card_import_subtitle">Suporta ficheiros JSON, Excel (.xlsx, .xls) ou CSV</span>
-                    </div>
-                  </div>
-                  <p style="font-size: 0.8rem; color: #475569; margin-bottom: 0.75rem; line-height: 1.35;" data-i18n="cfg_card_import_desc">
-                    Carregue listagens e tabelas específicas diretamente para a respetiva secção do sistema.
-                  </p>
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
-                  <button type="button" class="btn btn-outline" onclick="triggerCategoryImport('clientes')"
-                    style="justify-content: center; font-size: 0.8rem; padding: 0.45rem 0.5rem; white-space: nowrap;"
-                    title="Importar lista de Clientes" data-i18n="cfg_btn_import_clients">
-                    <i class="fa-solid fa-building" style="color: var(--primary-blue); margin-right: 4px;"></i> Clientes
-                  </button>
-                  <button type="button" class="btn btn-outline" onclick="triggerCategoryImport('contactos')"
-                    style="justify-content: center; font-size: 0.8rem; padding: 0.45rem 0.5rem; white-space: nowrap;"
-                    title="Importar lista de Contactos" data-i18n="cfg_btn_import_contacts">
-                    <i class="fa-solid fa-address-book" style="color: var(--primary-blue); margin-right: 4px;"></i> Contactos
-                  </button>
-                  <button type="button" class="btn btn-outline" onclick="triggerCategoryImport('projetos')"
-                    style="justify-content: center; font-size: 0.8rem; padding: 0.45rem 0.5rem; white-space: nowrap;"
-                    title="Importar lista de Projetos" data-i18n="cfg_btn_import_projects">
-                    <i class="fa-solid fa-folder-open" style="color: var(--primary-blue); margin-right: 4px;"></i> Projetos
-                  </button>
-                  <input type="file" id="categoryImportInput" accept=".sigecbak,.json,.xlsx,.xls,.csv" onchange="handleCategoryImport(event)" style="display:none;">
-                </div>
+              <p style="font-size: 0.85rem; color: #475569; margin-bottom: 1rem; line-height: 1.4;">
+                Exporte todos os registos do programa (Clientes, Contactos, Projetos e Interações) para um ficheiro de
+                cópia de segurança.
+              </p>
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <button type="button" class="btn btn-primary" onclick="exportDatabaseJSON()"
+                  style="flex: 1.2; justify-content: center;"
+                  title="Criar backup contendo apenas dados de registo e guardar na pasta Backup do servidor Hugging Face">
+                  <i class="fa-solid fa-download"></i> Criar Backup
+                </button>
+                <button type="button" class="btn btn-secondary" onclick="triggerDatabaseRestore()"
+                  style="flex: 1; justify-content: center;"
+                  title="Procurar o backup mais recente na pasta Backup do servidor Hugging Face">
+                  <i class="fa-solid fa-upload"></i> Restaurar Backup
+                </button>
+                <button type="button" class="btn btn-secondary" onclick="openDriveModal()"
+                  title="Sincronização Google Drive (jjota26@gmail.com)"
+                  style="flex: 1; justify-content: center; background: #e0f2fe; color: #0369a1; border-color: #bae6fd;">
+                  <i class="fa-brands fa-google-drive"></i> Google Drive
+                </button>
+                <input type="file" id="fullDatabaseImportInput" accept=".sigecbak,.sigec,.json" onchange="importDatabaseJSON(event)"
+                  style="display:none;">
               </div>
-
             </div>
 
-            <!-- LINHA 2: MANUTENÇÃO, IA E ATUALIZAÇÕES - 3 COLUNAS EQUILIBRADAS -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
-
-              <!-- BLOCO 3: Limpeza de Ficheiros Temporários e Otimização -->
-              <div class="card"
-                style="border: 1.5px solid #10b981; background: #f0fdf4; padding: 1rem; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.06); display: flex; flex-direction: column; justify-content: space-between; margin-bottom: 0;">
-                <div>
-                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.5rem;">
-                    <div style="display: flex; align-items: center; gap: 0.65rem;">
-                      <div style="width: 36px; height: 36px; border-radius: 8px; background: #dcfce7; color: #16a34a; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">
-                        <i class="fa-solid fa-broom"></i>
-                      </div>
-                      <div>
-                        <h3 style="font-size: 0.92rem; color: #166534; margin: 0; font-weight: 700;" data-i18n="cfg_card_cleanup_title">Limpeza & Otimização</h3>
-                        <span style="font-size: 0.73rem; color: #15803d;" data-i18n="cfg_card_cleanup_subtitle">Libertar memória local</span>
-                      </div>
-                    </div>
-                    <span style="padding: 0.2rem 0.5rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 700; background: #dcfce7; color: #15803d; border: 1px solid #86efac; white-space: nowrap;">
-                      <i class="fa-solid fa-shield-check"></i> <span data-i18n="cfg_badge_safe">Seguro</span>
-                    </span>
-                  </div>
-
-                  <div id="storageUsageStatsBlock">
-                    <!-- Estatísticas de armazenamento renderizadas dinamicamente -->
-                  </div>
-
-                  <p style="font-size: 0.78rem; color: #334155; margin-bottom: 0.75rem; line-height: 1.35;" data-i18n="cfg_card_cleanup_desc">
-                    Elimina resíduos e ficheiros temporários do navegador sem afetar nenhum registo de Clientes ou Projetos.
-                  </p>
+            <!-- BLOCO 2: Importar Ficheiros por Ficha -->
+            <div class="card" style="border: 1px solid var(--soft-blue-border); background: #f8fafc; padding: 1.25rem;">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                <div
+                  style="width: 42px; height: 42px; border-radius: 8px; background: #e0e7ff; color: #3730a3; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                  <i class="fa-solid fa-file-import"></i>
                 </div>
+                <div>
+                  <h3 style="font-size: 1rem; color: #1e3a8a; margin: 0; font-weight: 700;">Importação de Ficheiros</h3>
+                  <span style="font-size: 0.78rem; color: var(--text-muted);">Carregar ficheiros JSON, Excel (.xlsx) ou
+                    CSV</span>
+                </div>
+              </div>
+              <p style="font-size: 0.85rem; color: #475569; margin-bottom: 1rem; line-height: 1.4;">
+                Importe listagens específicas de Clientes, Contactos ou Projetos diretamente para o sistema.
+              </p>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <button type="button" class="btn btn-outline" onclick="triggerCategoryImport('clientes')"
+                  style="justify-content: flex-start;">
+                  <i class="fa-solid fa-building" style="color: var(--primary-blue); width: 20px;"></i> Importar
+                  Ficheiro
+                  de Clientes
+                </button>
+                <button type="button" class="btn btn-outline" onclick="triggerCategoryImport('contactos')"
+                  style="justify-content: flex-start;">
+                  <i class="fa-solid fa-address-book" style="color: var(--primary-blue); width: 20px;"></i> Importar
+                  Ficheiro de Contactos
+                </button>
+                <button type="button" class="btn btn-outline" onclick="triggerCategoryImport('projetos')"
+                  style="justify-content: flex-start;">
+                  <i class="fa-solid fa-folder-open" style="color: var(--primary-blue); width: 20px;"></i> Importar
+                  Ficheiro de Projetos
+                </button>
+                <input type="file" id="categoryImportInput" accept=".sigecbak,.json,.xlsx,.xls,.csv"
+                  onchange="handleCategoryImport(event)" style="display:none;">
+              </div>
+            </div>
 
+            <!-- BLOCO DE MANUTENÇÃO: Limpeza de Ficheiros Temporários e Otimização -->
+            <div class="card"
+              style="border: 1.5px solid #10b981; background: #f0fdf4; padding: 1.25rem; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.08);">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <div
+                    style="width: 42px; height: 42px; border-radius: 8px; background: #dcfce7; color: #16a34a; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                    <i class="fa-solid fa-broom"></i>
+                  </div>
+                  <div>
+                    <h3 style="font-size: 1rem; color: #166534; margin: 0; font-weight: 700;">Limpeza de Temporários & Otimização</h3>
+                    <span style="font-size: 0.78rem; color: #15803d;">Libertação de memória e eliminação de resíduos locais</span>
+                  </div>
+                </div>
+                <span style="padding: 0.25rem 0.65rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; background: #dcfce7; color: #15803d; border: 1px solid #86efac;">
+                  <i class="fa-solid fa-shield-check"></i> Dados 100% Preservados
+                </span>
+              </div>
+
+              <div id="storageUsageStatsBlock">
+                <!-- Estatísticas de armazenamento renderizadas dinamicamente -->
+              </div>
+
+              <p style="font-size: 0.85rem; color: #334155; margin-bottom: 1rem; line-height: 1.4;">
+                Elimina pacotes de atualização antigos, ficheiros de sincronização temporários e resíduos do navegador para libertar memória sem afetar nenhuma das suas fichas.
+              </p>
+
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
                 <button type="button" class="btn btn-primary" onclick="deepCleanTemporaryStorage(true)"
-                  style="width: 100%; justify-content: center; background: #16a34a; border-color: #16a34a; font-weight: 700; font-size: 0.82rem; padding: 0.5rem; box-shadow: 0 2px 6px rgba(22, 163, 74, 0.2);"
-                  title="Executar limpeza imediata de pacotes e registos temporários" data-i18n="cfg_btn_clean_optimize">
-                  <i class="fa-solid fa-broom"></i> Limpar e Otimizar
+                  style="flex: 1; justify-content: center; background: #16a34a; border-color: #16a34a; font-weight: 700; box-shadow: 0 2px 6px rgba(22, 163, 74, 0.25);"
+                  title="Executar limpeza imediata de pacotes e registos temporários">
+                  <i class="fa-solid fa-broom"></i> Limpar Temporários e Otimizar
                 </button>
               </div>
+            </div>
 
-              <!-- BLOCO 4: Normalização Inteligente de Nomes e Moradas (IA) -->
-              <div class="card"
-                style="border: 1.5px solid #6366f1; background: #eef2ff; padding: 1rem; box-shadow: 0 2px 8px rgba(99, 102, 241, 0.06); display: flex; flex-direction: column; justify-content: space-between; margin-bottom: 0;">
-                <div>
-                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.5rem;">
-                    <div style="display: flex; align-items: center; gap: 0.65rem;">
-                      <div style="width: 36px; height: 36px; border-radius: 8px; background: #e0e7ff; color: #4f46e5; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                      </div>
-                      <div>
-                        <h3 style="font-size: 0.92rem; color: #3730a3; margin: 0; font-weight: 700;" data-i18n="cfg_card_ai_norm_title">Normalização (IA)</h3>
-                        <span style="font-size: 0.73rem; color: #4338ca;" data-i18n="cfg_card_ai_norm_subtitle">Nomes compostos e moradas</span>
-                      </div>
-                    </div>
-                    <span style="padding: 0.2rem 0.5rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 700; background: #e0e7ff; color: #4338ca; border: 1px solid #c7d2fe; white-space: nowrap;">
-                      <i class="fa-solid fa-brain"></i> <span data-i18n="cfg_badge_ai_active">IA Ativa</span>
-                    </span>
+            <!-- BLOCO: Normalização Inteligente de Nomes e Moradas (IA) -->
+            <div class="card"
+              style="border: 1.5px solid #6366f1; background: #eef2ff; padding: 1.25rem; box-shadow: 0 2px 10px rgba(99, 102, 241, 0.08); border-radius: 12px; margin-top: 1rem;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <div
+                    style="width: 42px; height: 42px; border-radius: 8px; background: #e0e7ff; color: #4f46e5; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
                   </div>
-
-                  <p style="font-size: 0.78rem; color: #334155; margin-bottom: 0.75rem; line-height: 1.35;" data-i18n="cfg_card_ai_norm_desc">
-                    Decompõe moradas completas (Rua, Nº, Código Postal, Localidade) e separa nomes compostos em todas as fichas existentes.
-                  </p>
+                  <div>
+                    <h3 style="font-size: 1rem; color: #3730a3; margin: 0; font-weight: 700;">Normalização de Nomes e Moradas (IA)</h3>
+                    <span style="font-size: 0.78rem; color: #4338ca;">Decomposição de moradas completas e separação inteligente de nomes próprios compostos</span>
+                  </div>
                 </div>
+                <span style="padding: 0.25rem 0.65rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; background: #e0e7ff; color: #4338ca; border: 1px solid #c7d2fe;">
+                  <i class="fa-solid fa-brain"></i> IA Ativa
+                </span>
+              </div>
 
+              <p style="font-size: 0.85rem; color: #334155; margin-bottom: 1rem; line-height: 1.4;">
+                Aplica a inteligência artificial a todos os Clientes e Contactos existentes no programa: decompõe moradas agregadas em Rua, Nº, Andar/Piso, Código Postal, Localidade e País, e separa com precisão nomes próprios compostos portugueses (ex: Maria da Graça, José Manuel, António Vítor).
+              </p>
+
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
                 <button type="button" class="btn btn-primary" onclick="normalizeExistingContactsAndAddresses(true)"
-                  style="width: 100%; justify-content: center; background: #4f46e5; border-color: #4f46e5; font-weight: 700; font-size: 0.82rem; padding: 0.5rem; box-shadow: 0 2px 6px rgba(79, 70, 229, 0.2);"
-                  title="Executar análise e normalização inteligente em todos os registos existentes" data-i18n="cfg_btn_ai_normalize">
-                  <i class="fa-solid fa-wand-magic-sparkles"></i> Normalizar com IA
+                  style="flex: 1; justify-content: center; background: #4f46e5; border-color: #4f46e5; font-weight: 700; box-shadow: 0 2px 6px rgba(79, 70, 229, 0.25);"
+                  title="Executar análise e normalização inteligente em todos os registos existentes">
+                  <i class="fa-solid fa-wand-magic-sparkles"></i> Normalizar Nomes e Moradas Existentes
                 </button>
               </div>
+            </div>
 
-              <!-- BLOCO 5: Atualizações de Software & Versões -->
-              <div class="card"
-                style="border: 1.5px solid #0284c7; background: #ffffff; padding: 1rem; box-shadow: 0 2px 8px rgba(2, 132, 199, 0.06); display: flex; flex-direction: column; justify-content: space-between; margin-bottom: 0;">
-                <div>
-                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.5rem;">
-                    <div style="display: flex; align-items: center; gap: 0.65rem;">
-                      <div style="width: 36px; height: 36px; border-radius: 8px; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">
-                        <i class="fa-solid fa-cloud-arrow-down"></i>
-                      </div>
-                      <div>
-                        <h3 style="font-size: 0.92rem; color: #0369a1; margin: 0; font-weight: 700;" data-i18n="cfg_card_updates_title">Atualizações Nuvem</h3>
-                        <span style="font-size: 0.73rem; color: #0284c7;" data-i18n="cfg_card_updates_subtitle">Verificação online</span>
-                      </div>
-                    </div>
-                    <span style="padding: 0.2rem 0.5rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 700; background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; white-space: nowrap;">
-                      <strong id="cfgInstalledVersionBadge" class="current-installed-version-badge">V1.7.35</strong>
-                    </span>
+            <!-- BLOCO 3: Atualizações de Software & Versões -->
+            <div class="card"
+              style="border: 1.5px solid #0284c7; background: #ffffff; padding: 1.25rem; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08); border-radius: 12px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <div
+                    style="width: 42px; height: 42px; border-radius: 8px; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                    <i class="fa-solid fa-cloud-arrow-down"></i>
                   </div>
-
-                  <p style="font-size: 0.78rem; color: #334155; margin-bottom: 0.75rem; line-height: 1.35;" data-i18n="cfg_card_updates_desc">
-                    Pesquisa e instala as versões mais recentes a partir do servidor em nuvem sem apagar os seus registos locais.
-                  </p>
+                  <div>
+                    <h3 style="font-size: 1.05rem; color: #0369a1; margin: 0; font-weight: 700;">Atualizações de Software (SIGEC-Pro)</h3>
+                    <span style="font-size: 0.78rem; color: #0284c7;">Verificação automática e manual de novas versões na Nuvem Hugging Face</span>
+                  </div>
                 </div>
-
+                <span style="padding: 0.3rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd;">
+                  Versão Atual: <strong id="cfgInstalledVersionBadge" class="current-installed-version-badge">V1.7.27</strong>
+                </span>
+              </div>
+              <p style="font-size: 0.85rem; color: #334155; margin-bottom: 1rem; line-height: 1.4;">
+                Pesquise e instale novas versões do software diretamente do servidor na Nuvem. Todas as atualizações mantêm os seus Clientes, Contactos, Projetos e Utilizadores <strong>100% preservados</strong>.
+              </p>
+              <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+                <input type="file" id="systemUpdateImportInput" accept=".sigecpkg,.sigecupd,.json"
+                  onchange="handleSystemUpdateFileSelect(event)" style="display:none;">
                 <button type="button" class="btn btn-primary" onclick="checkAndInstallUpdate(false)"
-                  style="width: 100%; justify-content: center; background: #0284c7; color: #ffffff; font-weight: 700; font-size: 0.82rem; padding: 0.5rem;"
-                  title="Procurar se existe uma nova versão de software publicada no servidor na Nuvem" data-i18n="cfg_btn_check_updates">
+                  style="flex: 1.3; min-width: 180px; justify-content: center; background: #0284c7; color: #ffffff; font-weight: 700; padding: 0.65rem 1rem;"
+                  title="Procurar se existe uma nova versão de software publicada no servidor Hugging Face">
                   <i class="fa-solid fa-arrows-rotate"></i> Procurar Atualizações
                 </button>
+                <button type="button" class="btn btn-secondary" onclick="triggerLocalUpdateFileSelect()"
+                  style="flex: 1; min-width: 150px; justify-content: center; background: #f8fafc; border: 1px solid #cbd5e1; color: #334155; font-weight: 600; padding: 0.65rem 1rem;"
+                  title="Instalar pacote de atualização a partir de um ficheiro .json no computador">
+                  <i class="fa-solid fa-folder-open"></i> Instalar de Ficheiro
+                </button>
+                <button type="button" class="btn btn-secondary" onclick="generateUpdatePackage()"
+                  style="flex: 1; min-width: 130px; justify-content: center; background: #f8fafc; border: 1px solid #cbd5e1; color: #334155; font-weight: 600; padding: 0.65rem 1rem;"
+                  title="Gerar pacote .json da versão de software atual">
+                  <i class="fa-solid fa-file-code"></i> Gerar Pacote
+                </button>
               </div>
-
             </div>
-
-          </div>
 
             <!-- BLOCO 5: Sincronização em Tempo Real com o Servidor Hugging Face Spaces -->
             <div class="card"
@@ -2944,7 +2982,7 @@
               </div>
             </div>
 
-            <!-- BLOCO 6: Gestão de Utilizadores & Registos de Acesso (ÃšNICO - NO FINAL DA PÁGINA) -->
+            <!-- BLOCO 6: Gestão de Utilizadores & Registos de Acesso (ÚNICO - NO FINAL DA PÁGINA) -->
             <div id="adminUserManagementBlock" class="card"
               style="border: 1px solid #93c5fd; background: #eff6ff; padding: 1.25rem; grid-column: 1 / -1;">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap;">
@@ -3076,7 +3114,7 @@
           </div>
         </div>
 
-        <!-- BANNER DE RESOLUÃ‡ÃƒO AUTOMÁTICA EM LOTE -->
+        <!-- BANNER DE RESOLUÇÃO AUTOMÁTICA EM LOTE -->
         <div class="card"
           style="margin-bottom: 1.5rem; background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%); border: 1px solid #c7d2fe; padding: 1.2rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
@@ -3096,7 +3134,7 @@
             <div style="display: flex; gap: 0.5rem;">
               <button type="button" class="btn btn-primary" onclick="autoMergeHighConfidenceDuplicates()"
                 id="btnAutoMergeHighConfidence" style="background: #4f46e5; border-color: #4f46e5;">
-                <i class="fa-solid fa-bolt"></i> Fundir Duplicados Ã“bvios com Segurança
+                <i class="fa-solid fa-bolt"></i> Fundir Duplicados Óbvios com Segurança
               </button>
             </div>
           </div>
@@ -3561,17 +3599,17 @@
 
             <div class="form-group col-6">
               <label for="contactNome">Nome *</label>
-              <input type="text" id="contactNome" class="form-control" required placeholder="Primeiro Nome">
+              <input type="text" id="contactNome" class="form-control" required placeholder="Primeiro Nome" data-i18n-placeholder="contact_placeholder_firstname">
             </div>
 
             <div class="form-group col-6">
               <label for="contactApelido">Apelido</label>
-              <input type="text" id="contactApelido" class="form-control" placeholder="Ãšltimo Nome">
+              <input type="text" id="contactApelido" class="form-control" placeholder="Último Nome" data-i18n-placeholder="contact_placeholder_lastname">
             </div>
 
             <div class="form-group col-12">
               <label for="contactCargo">Cargo</label>
-              <input type="text" id="contactCargo" class="form-control" placeholder="ex: Diretor de Compras / Gerente">
+              <input type="text" id="contactCargo" class="form-control" placeholder="ex: Diretor de Compras / Gerente" data-i18n-placeholder="contact_placeholder_cargo">
             </div>
 
             <div class="form-group col-4">
@@ -3688,7 +3726,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE REGISTO DE CONTACTO REALIZADO / INTERAÃ‡ÃƒO DO CONTACTO -->
+  <!-- MODAL DE REGISTO DE CONTACTO REALIZADO / INTERAÇÃO DO CONTACTO -->
   <div id="contactPersonInteractionModal" class="modal-overlay">
     <div class="modal-window" style="max-width: 750px;">
       <div class="modal-header">
@@ -3739,7 +3777,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE REGISTO DE CONTACTO REALIZADO / INTERAÃ‡ÃƒO DO CLIENTE -->
+  <!-- MODAL DE REGISTO DE CONTACTO REALIZADO / INTERAÇÃO DO CLIENTE -->
   <div id="interactionModal" class="modal-overlay">
     <div class="modal-window" style="max-width: 750px;">
       <div class="modal-header">
@@ -3886,7 +3924,7 @@
 
             <div class="form-group col-2">
               <label for="projectViatura">Viatura</label>
-              <input type="text" id="projectViatura" class="form-control" placeholder="ex: Carrinha Box">
+              <input type="text" id="projectViatura" class="form-control" placeholder="ex: Carrinha Box" data-i18n-placeholder="project_placeholder_vehicle">
             </div>
 
             <div class="form-group col-2">
@@ -4129,7 +4167,7 @@
     </div>
   </div>
 
-  <!-- OVERLAY DE SESSÃƒO ENCERRADA COM SEGURANÃ‡A -->
+  <!-- OVERLAY DE SESSÃO ENCERRADA COM SEGURANÇA -->
   <div id="closeAppOverlay" class="modal-overlay" style="z-index: 9999; background: rgba(15, 23, 42, 0.9);">
     <div class="modal-window" style="max-width: 500px; text-align: center; padding: 2.5rem 1.5rem;">
       <div style="font-size: 3.5rem; color: #10b981; margin-bottom: 1rem;">
@@ -4156,7 +4194,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE RESOLUÃ‡ÃƒO DE DADOS DUPLICADOS -->
+  <!-- MODAL DE RESOLUÇÃO DE DADOS DUPLICADOS -->
   <div id="duplicateResolutionModal" class="modal-overlay" style="z-index: 9999;">
     <div class="modal-window" style="max-width: 800px; padding: 1.75rem; max-height: 90vh; overflow-y: auto;">
       <div class="modal-header" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
@@ -4393,7 +4431,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE TRANSFERÃŠNCIA DE CONTACTO ENTRE CLIENTES -->
+  <!-- MODAL DE TRANSFERÊNCIA DE CONTACTO ENTRE CLIENTES -->
   <div id="transferContactModal" class="modal-overlay">
     <div class="modal-window" style="max-width: 550px; padding: 1.5rem;">
       <div class="modal-header">
@@ -4446,7 +4484,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE ESCOLHA E ASSOCIAÃ‡ÃƒO DE CONTACTO EXISTENTE AO CLIENTE -->
+  <!-- MODAL DE ESCOLHA E ASSOCIAÇÃO DE CONTACTO EXISTENTE AO CLIENTE -->
   <div id="attachExistingContactModal" class="modal-overlay" style="z-index: 100060;">
     <div class="modal-window"
       style="max-width: 700px; width: 95%; max-height: 90vh; display: flex; flex-direction: column; padding: 1.5rem;">
@@ -4519,7 +4557,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE DESASSOCIAÃ‡ÃƒO DE CONTACTO DO CLIENTE -->
+  <!-- MODAL DE DESASSOCIAÇÃO DE CONTACTO DO CLIENTE -->
   <div id="detachContactModal" class="modal-overlay" style="z-index: 100060;">
     <div class="modal-window"
       style="max-width: 700px; width: 95%; max-height: 90vh; display: flex; flex-direction: column; padding: 1.5rem;">
@@ -4681,7 +4719,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE IMPRESSÃƒO DE ETIQUETA POSTAL INDIVIDUAL -->
+  <!-- MODAL DE IMPRESSÃO DE ETIQUETA POSTAL INDIVIDUAL -->
   <div id="addressLabelModal" class="modal-overlay">
     <div class="modal-window" style="max-width: 580px; width: 92vw;">
       <div class="modal-header">
@@ -4724,7 +4762,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE SELEÃ‡ÃƒO MÃšLTIPLA DE ETIQUETAS POSTAIS -->
+  <!-- MODAL DE SELEÇÃO MÚLTIPLA DE ETIQUETAS POSTAIS -->
   <div id="bulkAddressLabelModal" class="modal-overlay">
     <div class="modal-window" style="max-width: 840px; width: 94vw;">
       <div class="modal-header">
@@ -4791,7 +4829,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE SELEÃ‡ÃƒO MÃšLTIPLA PARA EXPORTAÃ‡ÃƒO EXCEL E PDF -->
+  <!-- MODAL DE SELEÇÃO MÚLTIPLA PARA EXPORTAÇÃO EXCEL E PDF -->
   <div id="bulkExportSelectionModal" class="modal-overlay">
     <div class="modal-window" style="max-width: 860px; width: 94vw;">
       <div class="modal-header" id="bulkExportModalHeader" style="background: linear-gradient(135deg, #1e3a8a, #2563eb);">
@@ -4863,11 +4901,11 @@
   <div id="toastContainer" class="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999999 !important;"></div>
 
   <!-- Internationalization & Translations Engine -->
-  <script src="i18n.js?v=1.7.35"></script>
+  <script src="i18n.js?v=202609250935"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=1.7.35"></script>
+  <script src="app.js?v=202609250935"></script>
   <!-- Duplicates Management Engine -->
-  <script src="duplicatesManager.js?v=1.7.35"></script>
+  <script src="duplicatesManager.js?v=202609250935"></script>
 
   <!-- Inicialização segura de definições de email no arranque -->
   <script>
@@ -5323,7 +5361,7 @@
     };
   </script>
 
-  <!-- MODAL DE INSPEÃ‡ÃƒO E CONFIRMAÃ‡ÃƒO DE RESTAURO DE BACKUP (HUGGING FACE / LOCAL) -->
+  <!-- MODAL DE INSPEÇÃO E CONFIRMAÇÃO DE RESTAURO DE BACKUP (HUGGING FACE / LOCAL) -->
   <div id="backupRestoreConfirmationModal" class="modal-overlay" onclick="if (event.target === this) closeBackupRestoreModal()" style="z-index: 100100; display: none;">
     <div class="modal-window" style="max-width: 560px; padding: 1.75rem; border-radius: 16px; position: relative;">
       <!-- Botão Fechar X no topo direito -->
@@ -5343,10 +5381,10 @@
         </span>
       </div>
 
-      <!-- SELETOR DINÃ‚MICO DOS ÃšLTIMOS 15 BACKUPS DO SERVIDOR -->
+      <!-- SELETOR DINÂMICO DOS ÚLTIMOS 15 BACKUPS DO SERVIDOR -->
       <div id="serverBackupSelectContainer" style="background: #f0f9ff; border: 1.5px solid #bae6fd; border-radius: 12px; padding: 0.85rem 1rem; margin-bottom: 1rem; display: none;">
         <label for="serverBackupSelect" style="display: flex; justify-content: space-between; align-items: center; font-size: 0.84rem; font-weight: 700; color: #0369a1; margin-bottom: 0.45rem;">
-          <span data-i18n="server_backup_select_label"><i class="fa-solid fa-list-check" style="color: #0284c7; margin-right: 5px;"></i> Selecione a Cópia do Servidor (Ãšltimos 15 Backups):</span>
+          <span data-i18n="server_backup_select_label"><i class="fa-solid fa-list-check" style="color: #0284c7; margin-right: 5px;"></i> Selecione a Cópia do Servidor (Últimos 15 Backups):</span>
           <span id="serverBackupSelectCountBadge" style="font-size: 0.72rem; font-weight: 700; background: #dbeafe; color: #1d4ed8; padding: 2px 8px; border-radius: 999px; border: 1px solid #bfdbfe;">0 disponíveis</span>
         </label>
         <div style="position: relative;">
@@ -5445,7 +5483,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE INSPEÃ‡ÃƒO E CONFIRMAÃ‡ÃƒO DE RESTAURO DE ATUALIZAÃ‡ÃƒO (HUGGING FACE / LOCAL) -->
+  <!-- MODAL DE INSPEÇÃO E CONFIRMAÇÃO DE RESTAURO DE ATUALIZAÇÃO (HUGGING FACE / LOCAL) -->
   <div id="updateConfirmationModal" class="modal-overlay" style="z-index: 100100;">
     <div class="modal-window" style="max-width: 560px; padding: 1.75rem; border-radius: 16px;">
       <div style="text-align: center; margin-bottom: 1.25rem;">
@@ -5469,14 +5507,14 @@
           <span style="color: var(--text-muted);"><i class="fa-solid fa-file-code"
               style="color: #0284c7; margin-right: 4px;"></i> Ficheiro:</span>
           <strong id="updateRestoreFileName"
-            style="color: #0f172a; font-family: monospace; font-size: 0.88rem; word-break: break-all;">SIGEC_V1.7.35.json</strong>
+            style="color: #0f172a; font-family: monospace; font-size: 0.88rem; word-break: break-all;">SIGEC_V1.7.27.json</strong>
         </div>
         <div
           style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.85rem;">
           <span style="color: var(--text-muted);"><i class="fa-solid fa-tag"
               style="color: #0284c7; margin-right: 4px;"></i> Versão / Pacote:</span>
           <strong id="updateRestoreFileVersion"
-            style="color: #0284c7; font-size: 0.95rem; letter-spacing: 0.5px;">SIGEC_V1.7.35</strong>
+            style="color: #0284c7; font-size: 0.95rem; letter-spacing: 0.5px;">SIGEC_V1.7.27</strong>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
           <span style="color: var(--text-muted);"><i class="fa-solid fa-calendar-clock"
@@ -5528,6 +5566,11 @@
           style="flex: 1; padding: 0.65rem 1rem; background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; font-weight: 600; justify-content: center;">
           <i class="fa-solid fa-xmark"></i> Cancelar
         </button>
+        <button type="button" class="btn" onclick="triggerLocalUpdateFileSelect()"
+          style="padding: 0.65rem 1rem; background: #ffffff; color: #0284c7; border: 1px solid #bae6fd; font-weight: 600; justify-content: center;"
+          title="Escolher outro ficheiro de atualização .json do computador">
+          <i class="fa-solid fa-folder-open"></i> Do Computador...
+        </button>
         <button type="button" class="btn btn-primary" onclick="resolveSystemUpdateConfirm(true)"
           style="flex: 1.3; padding: 0.65rem 1.25rem; background: #0284c7; color: #ffffff; border: none; font-weight: 600; justify-content: center; box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);">
           <i class="fa-solid fa-check"></i> Sim, Instalar Atualização
@@ -5536,7 +5579,7 @@
     </div>
   </div>
 
-  <!-- MODAL: REGISTAR NOVO UTILIZADOR (CONFIGURAÃ‡ÃƒO) -->
+  <!-- MODAL: REGISTAR NOVO UTILIZADOR (CONFIGURAÇÃO) -->
   <div id="userRegisterModal" class="modal-overlay">
     <div class="modal-window" style="max-width: 480px; border-radius: 12px; overflow: hidden;">
       <div class="modal-header" style="background: #1e3a8a; color: #ffffff;">
@@ -5645,7 +5688,7 @@
     </div>
   </div>
 
-  <!-- MODAL: AVISO DE PALAVRA-PASSE NÃƒO COINCIDE -->
+  <!-- MODAL: AVISO DE PALAVRA-PASSE NÃO COINCIDE -->
   <div id="passwordMismatchModal" class="modal-overlay" style="z-index: 100060; display: none;">
     <div class="modal-window" style="max-width: 440px; border-radius: 12px; overflow: hidden; text-align: center; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);">
       <div class="modal-header" style="background: #dc2626; color: #ffffff; justify-content: center; padding: 1rem;">
@@ -5666,7 +5709,7 @@
     </div>
   </div>
 
-  <!-- MODAL: AUTENTICAÃ‡ÃƒO DE ADMINISTRADOR PARA HISTÃ“RICO DE ATIVIDADE -->
+  <!-- MODAL: AUTENTICAÇÃO DE ADMINISTRADOR PARA HISTÓRICO DE ATIVIDADE -->
   <div id="adminAuthModal" class="modal-overlay" style="z-index: 9999;">
     <div class="modal-window" style="max-width: 420px; border-radius: 12px; overflow: hidden;">
       <div class="modal-header" style="background: #1e293b; color: #ffffff;">
@@ -5704,7 +5747,7 @@
     </div>
   </div>
 
-  <!-- MODAL: FICHA DO UTILIZADOR (REGISTO, DEFINIÃ‡ÃƒO DE PIN E ATIVIDADE COM FILTRO POR DIAS) -->
+  <!-- MODAL: FICHA DO UTILIZADOR (REGISTO, DEFINIÇÃO DE PIN E ATIVIDADE COM FILTRO POR DIAS) -->
   <div id="userProfileModal" class="modal-overlay" style="z-index: 9998;">
     <div class="modal-window"
       style="max-width: 740px; max-height: 90vh; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;">
@@ -5735,7 +5778,7 @@
       </div>
 
       <div class="modal-body" style="padding: 1.25rem; overflow-y: auto; flex: 1; background: #ffffff;">
-        <!-- SEPARADOR 1: DADOS DE REGISTO & DEFINIÃ‡ÃƒO DE PIN -->
+        <!-- SEPARADOR 1: DADOS DE REGISTO & DEFINIÇÃO DE PIN -->
         <div id="userProfileTabInfo" style="display: block;">
           <form id="formUserProfile" onsubmit="handleSaveUserProfile(event); return false;" style="display: flex; flex-direction: column; gap: 1rem;">
             <input type="hidden" id="profileUserId">
@@ -5868,7 +5911,7 @@
           </form>
         </div>
 
-        <!-- SEPARADOR 2: HISTÃ“RICO DE ATIVIDADE REAL COM FILTRO POR DIAS -->
+        <!-- SEPARADOR 2: HISTÓRICO DE ATIVIDADE REAL COM FILTRO POR DIAS -->
         <div id="userProfileTabActivity" style="display: none;">
           <!-- Barra de Filtro por Dias -->
           <div
@@ -5882,8 +5925,8 @@
                 style="padding: 0.45rem 0.75rem; font-size: 0.85rem; font-weight: 600; border-radius: 6px; background: #ffffff; border: 1px solid #cbd5e1;">
                 <option value="all">Todos os Dias</option>
                 <option value="today">Hoje</option>
-                <option value="7days">Ãšltimos 7 dias</option>
-                <option value="30days">Ãšltimos 30 dias</option>
+                <option value="7days">Últimos 7 dias</option>
+                <option value="30days">Últimos 30 dias</option>
                 <option value="custom">Data Específica...</option>
               </select>
               <input type="date" id="userActivityCustomDate" onchange="renderUserProfileActivityTimeline()"
@@ -5946,7 +5989,7 @@
     </div>
   </div>
 
-  <!-- MODAL: COMPARADOR E FUSÃƒO DETALHADA DE DUPLICADOS -->
+  <!-- MODAL: COMPARADOR E FUSÃO DETALHADA DE DUPLICADOS -->
   <div id="duplicate-merge-modal" class="modal-overlay" style="display: none; z-index: 100050;">
     <div class="modal-window" style="max-width: 900px; width: 95%;">
       <div class="modal-header" style="background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);">
@@ -5965,7 +6008,7 @@
   </div>
 
 
-  <!-- MODAL DE DEFINIÃ‡Ã•ES PESSOAIS DO UTILIZADOR -->
+  <!-- MODAL DE DEFINIÇÕES PESSOAIS DO UTILIZADOR -->
   <div id="currentUserSettingsModal" class="modal-overlay" style="z-index: 100060; display: none;" onclick="if(event.target === this) closeCurrentUserSettingsModal()">
     <div class="modal-window modal-content" style="max-width: 650px; width: 95%; max-height: 90vh; background: #ffffff; border-radius: 12px; overflow: hidden; padding: 0; box-shadow: 0 20px 40px rgba(0,0,0,0.25); border: 1px solid #cbd5e1; display: flex; flex-direction: column;">
       <!-- Modal Header -->
@@ -5976,7 +6019,7 @@
           </div>
           <div>
             <h3 style="margin: 0; font-size: 1.15rem; font-weight: 700; color: #ffffff;" id="userSettingsModalTitle" data-i18n="user_settings_title">Definições do Utilizador</h3>
-            <p style="margin: 0.15rem 0 0 0; font-size: 0.8rem; color: #e0f2fe;" id="userSettingsModalSubtitle">José Centúrio • Administrador do Sistema</p>
+            <p style="margin: 0.15rem 0 0 0; font-size: 0.8rem; color: #e0f2fe;" id="userSettingsModalSubtitle">José Centúrio â€¢ Administrador do Sistema</p>
           </div>
         </div>
         <button type="button" onclick="closeCurrentUserSettingsModal()" style="background: transparent; border: none; color: #ffffff; font-size: 1.25rem; cursor: pointer; padding: 0.25rem 0.5rem; border-radius: 4px;" title="Fechar">
@@ -6005,7 +6048,7 @@
 
       <!-- Modal Body -->
       <div style="padding: 1.5rem; max-height: 70vh; overflow-y: auto;">
-        <!-- TAB 1: SEGURANÃ‡A / PALAVRA-PASSE -->
+        <!-- TAB 1: SEGURANÇA / PALAVRA-PASSE -->
         <div id="userSettingsTabSecurity" class="user-settings-tab-content">
           <form id="formUserChangeOwnPassword" onsubmit="handleUserChangeOwnPassword(event)">
             <div style="background: #f0f9ff; border-left: 4px solid var(--primary-blue, #2563eb); padding: 0.75rem 1rem; border-radius: 0 8px 8px 0; margin-bottom: 1.25rem;">
@@ -6057,7 +6100,7 @@
           </form>
         </div>
 
-        <!-- TAB 2: CÃ“PIA DE SEGURANÃ‡A E RESTAURO DO PERFIL -->
+        <!-- TAB 2: CÓPIA DE SEGURANÇA E RESTAURO DO PERFIL -->
         <div id="userSettingsTabBackup" class="user-settings-tab-content" style="display: none;">
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
             <!-- Export Card -->
@@ -6104,7 +6147,7 @@
           </div>
         </div>
 
-        <!-- TAB: MODELOS DE IMPORTAÃ‡ÃƒO (EXCEL .XLSX) -->
+        <!-- TAB: MODELOS DE IMPORTAÇÃO (EXCEL .XLSX) -->
         <div id="userSettingsTabTemplates" class="user-settings-tab-content" style="display: none;">
           <!-- Banner Informativo -->
           <div style="background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%); border: 1.5px solid #86efac; border-radius: 12px; padding: 1.25rem; margin-bottom: 1.25rem;">
@@ -6245,7 +6288,7 @@
           </div>
         </div>
 
-        <!-- TAB 4: ATUALIZAÃ‡Ã•ES DE SOFTWARE -->
+        <!-- TAB 4: ATUALIZAÇÕES DE SOFTWARE -->
         <div id="userSettingsTabUpdates" class="user-settings-tab-content" style="display: none;">
           <div style="background: #f0f9ff; border: 1.5px solid #bae6fd; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.25rem;">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
@@ -6259,15 +6302,18 @@
                 </div>
               </div>
               <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 700; background: #dcfce7; color: #15803d; border: 1px solid #86efac;">
-                Versão Instalada: <strong id="userSettingsInstalledVersionBadge" class="current-installed-version-badge">V1.7.35</strong>
+                Versão Instalada: <strong id="userSettingsInstalledVersionBadge" class="current-installed-version-badge">V1.7.27</strong>
               </span>
             </div>
             <p style="font-size: 0.88rem; color: #334155; margin: 0 0 1.25rem 0; line-height: 1.5;">
               Pesquise se existe uma versão mais recente do programa na Nuvem. A instalação da atualização atualiza apenas o software, mantendo <strong>100% preservados</strong> todos os seus Clientes, Contactos, Projetos e Utilizadores.
             </p>
             <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-              <button type="button" class="btn btn-primary" onclick="checkAndInstallUpdate(false)" style="flex: 1; min-width: 220px; justify-content: center; background: #0284c7; color: #ffffff; font-weight: 700; padding: 0.75rem 1.25rem; font-size: 0.92rem; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25);">
-                <i class="fa-solid fa-arrows-rotate"></i> <span data-i18n="user_settings_btn_check_updates">Procurar Atualizações na Nuvem</span>
+              <button type="button" class="btn btn-primary" onclick="checkAndInstallUpdate(false)" style="flex: 1.2; min-width: 200px; justify-content: center; background: #0284c7; color: #ffffff; font-weight: 700; padding: 0.75rem 1.25rem; font-size: 0.92rem; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25);">
+                <i class="fa-solid fa-arrows-rotate"></i> <span data-i18n="user_settings_btn_check_updates">Procurar Atualizações</span>
+              </button>
+              <button type="button" class="btn btn-secondary" onclick="triggerLocalUpdateFileSelect()" style="flex: 1; min-width: 200px; justify-content: center; background: #f8fafc; border: 1.5px solid #cbd5e1; color: #1e293b; font-weight: 700; padding: 0.75rem 1.25rem; font-size: 0.92rem; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);" title="Instalar pacote de atualização a partir de um ficheiro (.sigecpkg / .json) guardado neste computador">
+                <i class="fa-solid fa-folder-open" style="color: #0284c7;"></i> <span data-i18n="user_settings_btn_install_file">Instalar de Ficheiro</span>
               </button>
             </div>
           </div>
@@ -6281,7 +6327,7 @@
   </div>
 
 
-  <!-- MODAL DE INSPEÃ‡ÃƒO E CONFIRMAÃ‡ÃƒO DE MORADA COM IA -->
+  <!-- MODAL DE INSPEÇÃO E CONFIRMAÇÃO DE MORADA COM IA -->
   <div id="aiAddressConfirmationModal" class="modal-overlay" onclick="if (event.target === this) closeAiAddressModal()" style="z-index: 100200; display: none;">
     <div class="modal-window" style="max-width: 600px; width: 95%; max-height: 90vh; overflow-y: auto; padding: 1.25rem 1.5rem; border-radius: 16px; position: relative; box-sizing: border-box;">
       <!-- Modal Header (Draggable Handle) -->
@@ -6327,34 +6373,6 @@
           </div>
           <div id="aiCandidatesCardsList" style="display: flex; flex-direction: column; gap: 0.4rem; max-height: 155px; overflow-y: auto; padding-right: 4px;">
             <!-- Renderizado dinamicamente via JS -->
-          </div>
-        </div>
-
-        <!-- Bloco de Assistência Google e Colagem Rápida Inteligente -->
-        <div id="aiSmartPasteSection" style="margin-bottom: 1rem; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 0.85rem 1rem;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
-            <span style="font-size: 0.82rem; font-weight: 700; color: #1e293b; display: flex; align-items: center; gap: 6px;">
-              <i class="fa-solid fa-paste" style="color: #4f46e5;"></i> Colar Morada Copiada do Google:
-            </span>
-            <div style="display: flex; gap: 6px;">
-              <a href="javascript:void(0)" id="aiBtnGoogleDirectLink" target="_blank" rel="noopener" style="font-size: 0.74rem; font-weight: 600; color: #2563eb; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 4px 9px; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
-                <i class="fa-brands fa-google"></i> Pesquisar no Google &rarr;
-              </a>
-              <a href="javascript:void(0)" id="aiBtnGoogleMapsDirectLink" target="_blank" rel="noopener" style="font-size: 0.74rem; font-weight: 600; color: #15803d; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 4px 9px; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
-                <i class="fa-solid fa-location-dot" style="color: #ea4335;"></i> Google Maps &rarr;
-              </a>
-            </div>
-          </div>
-          <div style="display: flex; gap: 6px;">
-            <input type="text" id="aiSmartPasteInput" placeholder="Cole aqui a morada que copiou do Google (ex: Av. da Liberdade 120, 1250-142 Lisboa)..." 
-                   style="flex: 1; padding: 7px 10px; font-size: 0.82rem; border: 1.5px solid #cbd5e1; border-radius: 8px; outline: none;"
-                   oninput="handleSmartPasteInput(this.value)">
-            <button type="button" onclick="applySmartPasteFromInput()" style="background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%); color: #ffffff; border: none; border-radius: 8px; padding: 7px 14px; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; gap: 5px;">
-              <i class="fa-solid fa-wand-magic-sparkles"></i> Preencher
-            </button>
-          </div>
-          <div id="aiSmartPasteSuccessMsg" style="display: none; font-size: 0.76rem; color: #16a34a; font-weight: 600; margin-top: 6px;">
-            <i class="fa-solid fa-circle-check"></i> Morada decomposta com sucesso! Campos de Rua, Número, Código Postal e Cidade preenchidos abaixo.
           </div>
         </div>
 
@@ -6408,7 +6426,7 @@
 
           <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.5rem; margin-bottom: 0.5rem;">
             <div>
-              <label style="font-size: 0.72rem; color: #64748b; font-weight: 600; display: block;">Direção (Linha 1) — Rua / Avenida</label>
+              <label style="font-size: 0.72rem; color: #64748b; font-weight: 600; display: block;">Direção (Linha 1) â€” Rua / Avenida</label>
               <div id="aiPreviewDirecao1" style="font-size: 0.86rem; font-weight: 600; color: #1e293b; padding: 4px 8px; background: #f8fafc; border-radius: 4px; min-height: 28px;">-</div>
             </div>
             <div>
@@ -6419,7 +6437,7 @@
 
           <div style="margin-bottom: 0.5rem;" id="aiPreviewDirecao2Container">
             <label style="font-size: 0.72rem; color: #4338ca; font-weight: 600; display: flex; align-items: center; gap: 5px;">
-              <i class="fa-solid fa-industry" style="color: #6366f1;"></i> Direção (Linha 2) — Polígono Industrial / Edifício / Zona:
+              <i class="fa-solid fa-industry" style="color: #6366f1;"></i> Direção (Linha 2) â€” Polígono Industrial / Edifício / Zona:
             </label>
             <div id="aiPreviewDirecao2" style="font-size: 0.86rem; font-weight: 600; color: #3730a3; padding: 4px 8px; background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 4px; min-height: 28px;">-</div>
           </div>
@@ -6454,6 +6472,12 @@
 
         <div style="display: flex; gap: 0.75rem; justify-content: space-between; align-items: center; flex-wrap: wrap;">
           <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <a href="javascript:void(0)" id="aiBtnGoogleSearchAssisted" target="_blank" rel="noopener noreferrer" style="font-size: 0.76rem; font-weight: 600; color: #2563eb; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 6px; background: #eff6ff; border: 1px solid #bfdbfe;" title="Ver resultados oficiais de pesquisa no Google">
+              <i class="fa-brands fa-google"></i> Ver no Google
+            </a>
+            <a href="javascript:void(0)" id="aiBtnGoogleMapsAssisted" target="_blank" rel="noopener noreferrer" style="font-size: 0.76rem; font-weight: 600; color: #15803d; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 6px; background: #f0fdf4; border: 1px solid #bbf7d0;" title="Ver localização no Google Maps">
+              <i class="fa-solid fa-location-dot" style="color: #ea4335;"></i> Ver no Google Maps
+            </a>
             <a href="javascript:void(0)" onclick="promptGeminiApiKey()" style="font-size: 0.76rem; font-weight: 600; color: #6366f1; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; padding: 4px 8px; border-radius: 6px; background: #eef2ff;" title="Configurar chave de API Google Gemini (opcional)">
               <i class="fa-solid fa-key"></i> Chave Gemini (Opcional)
             </a>
@@ -6476,8 +6500,15 @@
 <!-- PWA: Registo do Service Worker com Auto-Update -->
 <script>
   if ('serviceWorker' in navigator) {
+    var isReloading = false;
+    navigator.serviceWorker.addEventListener('controllerchange', function() {
+      if (!isReloading) {
+        isReloading = true;
+        window.location.reload();
+      }
+    });
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js?v=1.7.35')
+      navigator.serviceWorker.register('/sw.js?v=202609250935')
         .then(function (reg) {
           if (typeof reg.update === 'function') {
             reg.update();

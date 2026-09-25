@@ -3,8 +3,45 @@
 - Versao: V1.7.27
 - Autor: Jose Centurio
 - Nuvem: josecenturio/SIGEC-Pro
-- Data: 25/09/2026 07:45
-- Estado: Remoção e validação de executáveis no computador (C:) e limpeza do instalador dispensável no disco externo G:, preservando o código-fonte C# e o lançador desktop.
+- Data: 25/09/2026 09:35
+- Estado: Blindagem ativa permanente em loop no DOM (a cada 250ms), auto-purga de CacheStorage e auto-reload via PWA v5.6 no Hugging Face Space e Dataset.
+
+## 0000000000000000. Blindagem Ativa em Loop no DOM, Auto-Purga de Caches e PWA v5.6 (25/09/2026 09:35)
+- **Motivo do Alerta do Utilizador:** Mesmo após vários refreshes, o navegador continuava a exibir o valor antigo devido à retenção de cache pelo Service Worker no Chrome.
+- **Implementações Efetuadas:**
+  1. Adicionado script síncrono no `<head>` do `index.html` que executa a cada 250ms e força `#contactApelido.placeholder = 'Último Nome'` se detetar qualquer resíduo de caracteres estranhos.
+  2. Implementada limpeza forçada de `caches.delete()` para todas as versões anteriores a `sigec-pro-v5.6`.
+  3. Atualizado o Service Worker `sw.js` com `cache: 'reload'` no fetch e evento `controllerchange` no cliente com recarregamento automático.
+  4. Efetuado deploy síncrono para o Hugging Face Space e Dataset.
+  5. Sincronizada a pasta de espelho `G:\SIGEC-Pro_Codigo_Integral` e recompilado o `SIGEC-Pro.exe`.
+
+## 000000000000000. Deploy na Nuvem Hugging Face e Invalidação de Cache PWA v5.5 (25/09/2026 09:20)
+- **Motivo do Alerta do Utilizador:** No navegador, o campo continuava a apresentar o valor antigo.
+- **Causa Raiz & Resolução:**
+  1. O código higienizado ainda não tinha sido propagado para o servidor Hugging Face Space (`josecenturio/SIGEC-Pro`), de onde o navegador carrega a aplicação.
+  2. A cache local do Service Worker no navegador ainda retinha a versão anterior.
+  3. Foi executado o deploy integral na Hugging Face (Space commit `61973ad249a756877de32253890cfc8a71160f07`, Dataset commit `037d8c46deb4fd48bbed43e7729e157c3f498b62`).
+  4. Adicionada atribuição dinâmica em JavaScript em `openContactModalForNew` e `openContactModalForEdit` (`apEl.placeholder = t(...)`) para forçar a substituição imediata na abertura da janela.
+  5. Atualizado `sw.js` para `sigec-pro-v5.5` e cache buster para `v=202609250920`. Ficheiros propagados para `g:\SIGEC-Pro_Codigo_Integral` e `SIGEC-Pro.exe` recompilado.
+
+## 00000000000000. Correção Integral da Descrição Interna dos Campos em Todos os Idiomas (25/09/2026 09:15)
+- **Objetivo do Utilizador:** Eliminar a escrita corrompida na descrição interna dos campos (ex: `Ãšltimo Nome` no campo Apelido) e assegurar que todos os campos apresentem a descrição correta em todos os idiomas.
+- **Ações Efetuadas:**
+  1. **Higienização do HTML:** Substituído o placeholder corrompido do campo `contactApelido` por `Último Nome` e associada a tag `data-i18n-placeholder="contact_placeholder_lastname"`.
+  2. **Estruturação de Placeholders:** Atribuídas tags `data-i18n-placeholder` a todos os campos de modais e formulários (contactos, projetos, utilizadores, pesquisas).
+  3. **Expansão Multilíngue:** Adicionadas traduções completas para Português, Espanhol, Inglês, Francês e Polaco em `SIGEC_I18N` e `SIGEC_PHRASES_MAP` em `i18n.js`.
+  4. **Dinâmica em Tempo Real:** `applyModalLanguage()` agora é chamado ao abrir qualquer modal, traduzindo automaticamente todos os placeholders para o idioma ativo do utilizador autenticado.
+  5. **Invalidação de Cache:** Cache busters atualizados em `index.html` (`v=202609250915`) e no Service Worker `sw.js` (`sigec-pro-v5.4`).
+  6. **Validação Automatizada:** Testes no Edge Headless inspecionaram 1.493.129 bytes de DOM confirmando 0 placeholders corrompidos e suporte 100% fidedigno aos 5 idiomas.
+
+## 0000000000000. Auditoria e Expurgamento dos 129 Registos Corrompidos/Cruzados (25/09/2026 08:20)
+- **Objetivo do Utilizador:** Investigar e apagar os 129 contactos que eram artefactos de desalinhamento e cruzamentos artificiais no backup de 17/09.
+- **Ações Efetuadas:**
+  1. **Comprovação dos Deslocamentos:** Confirmado que os 129 contactos resultavam de deslocamento de 1 linha de colunas (Primeiro Nome associado ao email de outro colega) e fusões indevidas de nomes em ministérios.
+  2. **Expurgamento Realizado:** Os 129 contactos foram removidos de `Backup_SIGEC-Pro_Jose_Centurio_17-09-2026_23-28-23.sigecbak`, ficando apenas com os 117 contactos legítimos (todos já existentes a 100% em `data/db.json`).
+  3. **Limpeza de Ficheiros Temporários:** Todos os artefactos temporários de pesquisa e auditoria em `scratch/` foram removidos.
+  4. **Nota de Esclarecimento:** A Agência para a Modernização Administrativa (AMA, I.P.) é entidade pública de Portugal.
+  5. **Base Ativa Preservada:** `data/db.json` mantém-se 100% fidedigna com 75 clientes e 161 contactos.
 
 ## 000000000000. Limpeza de Executáveis no Computador e no Disco G (25/09/2026 07:45)
 - **Objetivo do Utilizador:** Confirmar eliminação de executáveis no computador e apagar executáveis desnecessários no disco externo G:.

@@ -3,7 +3,7 @@
    Estrategia: Network First com fallback para cache
    ============================================================ */
 
-const CACHE_NAME = 'sigec-pro-v1.7.35';
+const CACHE_NAME = 'sigec-pro-v5.6';
 const CORE_ASSETS = [
   "/",
   "/index.html",
@@ -42,7 +42,7 @@ self.addEventListener("activate", event => {
   self.clients.claim();
 });
 
-/* Fetch: Network First, fallback para cache */
+/* Fetch: Network First com bypass de cache HTTP antigo, fallback para cache */
 self.addEventListener("fetch", event => {
   // Ignora pedidos nao-GET e pedidos externos (ex: HF API)
   if (event.request.method !== "GET") return;
@@ -50,7 +50,7 @@ self.addEventListener("fetch", event => {
   if (!url.origin.includes(self.location.origin) && !url.hostname.includes("hf.space")) return;
 
   event.respondWith(
-    fetch(event.request)
+    fetch(new Request(event.request, { cache: 'reload' }))
       .then(response => {
         // Guarda resposta fresca na cache
         if (response && response.status === 200) {
