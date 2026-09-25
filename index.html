@@ -12,7 +12,7 @@
     if ('caches' in window) {
       caches.keys().then(function(keys) {
         keys.forEach(function(k) {
-          if (k !== 'sigec-pro-v1.7.35') {
+          if (k !== 'sigec-pro-v1.7.35b') {
             console.log('[PWA] Purga imediata de cache antiga:', k);
             caches.delete(k);
           }
@@ -220,8 +220,27 @@
     window.toggleLoginRegisterMode = toggleLoginRegisterMode;
   </script>
 
+  <!-- Blindagem Ativa e Permanente de Placeholders e Limpeza de Caracteres Indesejados -->
+  <script>
+    (function() {
+      function enforceCleanPlaceholders() {
+        var el = document.getElementById('contactApelido');
+        if (el && (!el.placeholder || el.placeholder.indexOf('Ã') >= 0 || el.placeholder.indexOf('Â') >= 0 || el.placeholder.indexOf('??') >= 0 || el.placeholder.indexOf('\uFFFD') >= 0 || el.placeholder.indexOf('š') >= 0)) {
+          el.placeholder = 'Último Nome';
+        }
+        var nm = document.getElementById('contactNome');
+        if (nm && (!nm.placeholder || nm.placeholder.indexOf('Ã') >= 0 || nm.placeholder.indexOf('Â') >= 0 || nm.placeholder.indexOf('??') >= 0 || nm.placeholder.indexOf('\uFFFD') >= 0 || nm.placeholder.indexOf('š') >= 0)) {
+          nm.placeholder = 'Primeiro Nome';
+        }
+      }
+      enforceCleanPlaceholders();
+      document.addEventListener('DOMContentLoaded', enforceCleanPlaceholders);
+      setInterval(enforceCleanPlaceholders, 250);
+    })();
+  </script>
+
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=202609242235">
+  <link rel="stylesheet" href="styles.css?v=1.7.35b">
 
   <!-- Critical Login Screen Styles (Guarantees perfect rendering even before external CSS loads) -->
   <style>
@@ -3561,12 +3580,12 @@
 
             <div class="form-group col-6">
               <label for="contactNome">Nome *</label>
-              <input type="text" id="contactNome" class="form-control" required placeholder="Primeiro Nome">
+              <input type="text" id="contactNome" class="form-control" required placeholder="Primeiro Nome" data-i18n-placeholder="contact_placeholder_firstname">
             </div>
 
             <div class="form-group col-6">
               <label for="contactApelido">Apelido</label>
-              <input type="text" id="contactApelido" class="form-control" placeholder="Ãšltimo Nome">
+              <input type="text" id="contactApelido" class="form-control" placeholder="Último Nome" data-i18n-placeholder="contact_placeholder_lastname">
             </div>
 
             <div class="form-group col-12">
@@ -4863,11 +4882,11 @@
   <div id="toastContainer" class="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999999 !important;"></div>
 
   <!-- Internationalization & Translations Engine -->
-  <script src="i18n.js?v=1.7.35"></script>
+  <script src="i18n.js?v=1.7.35b"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=1.7.35"></script>
+  <script src="app.js?v=1.7.35b"></script>
   <!-- Duplicates Management Engine -->
-  <script src="duplicatesManager.js?v=1.7.35"></script>
+  <script src="duplicatesManager.js?v=1.7.35b"></script>
 
   <!-- Inicialização segura de definições de email no arranque -->
   <script>
@@ -6477,7 +6496,7 @@
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js?v=1.7.35')
+      navigator.serviceWorker.register('/sw.js?v=1.7.35b')
         .then(function (reg) {
           if (typeof reg.update === 'function') {
             reg.update();

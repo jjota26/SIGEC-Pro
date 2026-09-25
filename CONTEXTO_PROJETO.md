@@ -1,11 +1,21 @@
 # CONTEXTO DO PROJETO SIGEC-Pro
 
-- Versao: V1.7.35
+- Versao: V1.7.35b
 - Autor: Jose Centurio
 - Produção Web Oficial: https://sigec-pro.onrender.com
 - Backup: josecenturio/SIGEC-Pro
-- Data: 25/09/2026 13:10
-- Estado: ✅ CÓDIGO ORIGINAL DA MANHÃ (V1.7.35) 100% REPOSTO E ATIVO NA WEB (OnRender). 0 diferenças face a 4fa044ef.
+- Data: 25/09/2026 13:30
+- Estado: ✅ Correção Definitiva do Placeholder de Apelido 'Último Nome' e Blindagem Multicamada V1.7.35b Concluída e Ativa.
+
+## 0000000000000000000000. Correção Definitiva do Placeholder de Apelido 'Último Nome' e Blindagem Multicamada (25/09/2026 13:30)
+- **Problema Solucionado:** O placeholder do campo "Apelido" no modal de contactos exibia `Ãšltimo Nome` devido a codificação UTF-8 desfasada no commit original restaurado.
+- **Implementações & Blindagens:**
+  1. No `index.html`, o input `#contactApelido` foi higienizado com `placeholder="Último Nome"` e `data-i18n-placeholder="contact_placeholder_lastname"`.
+  2. No `<head>` de `index.html`, adicionado observador em loop contínuo que deteta e retifica instantaneamente qualquer resíduo legado ou carácter corrompido para `Último Nome`.
+  3. No `i18n.js`, adicionadas traduções para `contact_placeholder_lastname` e `contact_placeholder_firstname` para os 5 idiomas do sistema.
+  4. No `app.js`, `openContactModalForNew` e `openContactModalForEdit` garantem ativamente no DOM `placeholder = 'Último Nome'`.
+  5. Cache do Service Worker em `sw.js` e purgas no `index.html` atualizadas para `sigec-pro-v1.7.35b` com cache-busters renovados.
+  6. Sincronização no espelho `G:\SIGEC-Pro_Codigo_Integral` e deploy para o OnRender via GitHub `jjota26/SIGEC-Pro`.
 
 ## 000000000000000000000. Reposição Integral e Limpa do Código Original da Manhã (25/09/2026 13:10)
 - **Ação:** Restauro integral e limpo de todos os ficheiros de código fonte a partir do commit estável da manhã (`4fa044ef`):

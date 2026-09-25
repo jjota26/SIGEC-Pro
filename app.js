@@ -11413,6 +11413,11 @@ function openContactModalForNew(forcedSubIndex = null) {
     : '<i class="fa-solid fa-user-plus"></i> Novo Contacto';
   document.getElementById('contactModal').classList.add('active');
 
+  const apElNew = document.getElementById('contactApelido');
+  if (apElNew) apElNew.placeholder = 'Último Nome';
+  const nmElNew = document.getElementById('contactNome');
+  if (nmElNew) nmElNew.placeholder = 'Primeiro Nome';
+
   // Renderizar lista de interações (vazia para novo contacto)
   renderContactPersonInteractionsGrid([]);
 }
@@ -11420,6 +11425,11 @@ function openContactModalForNew(forcedSubIndex = null) {
 function openContactModalForEdit(contactId) {
   const contact = db.contactos.find(c => String(c.id).trim() === String(contactId).trim());
   if (!contact) return;
+
+  const apElEdit = document.getElementById('contactApelido');
+  if (apElEdit) apElEdit.placeholder = 'Último Nome';
+  const nmElEdit = document.getElementById('contactNome');
+  if (nmElEdit) nmElEdit.placeholder = 'Primeiro Nome';
 
   currentContactIdForModal = contact.id;
   const cIdInput = document.getElementById('contactId');

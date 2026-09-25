@@ -6,6 +6,20 @@
  */
 
 const SIGEC_I18N = {
+  contact_placeholder_lastname: {
+    "Português": "Último Nome",
+    "Español": "Apellido",
+    "English": "Last Name",
+    "Français": "Nom de famille",
+    "Polski": "Nazwisko"
+  },
+  contact_placeholder_firstname: {
+    "Português": "Primeiro Nome",
+    "Español": "Primer Nombre",
+    "English": "First Name",
+    "Français": "Prénom",
+    "Polski": "Imię"
+  },
   client_website_label: {
     "Português": "Página Web / Website",
     "Español": "Página Web / Sitio Web",

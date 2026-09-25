@@ -61,7 +61,17 @@
 ---
 
 ## 📜 3. ESTADO ATUAL E HISTÓRICO DE DESENVOLVIMENTO
-- **Última Atualização:** 25/09/2026 13:10 (Reposição Integral e Limpa do Código Original da Manhã V1.7.35)
+- **Última Atualização:** 25/09/2026 13:30 (Correção Definitiva do Placeholder de Apelido 'Último Nome' e Blindagem Multicamada PWA V1.7.35b)
+- **Correção Definitiva do Placeholder de Apelido 'Último Nome' e Blindagem Multicamada (25/09/2026 13:30):**
+  - **Problema Reportado pelo Utilizador:** O campo "Apelido" voltou a exibir no placeholder o texto corrompido `Ãšltimo Nome` no ecrã de contactos.
+  - **Causa Raiz Identificada:** A reposição integral do commit original da manhã (`4fa044ef`) continha a versão do ficheiro anterior à correção de codificação UTF-8 realizada às 09:15.
+  - **Solução Implementada e Blindagens:**
+    1. **DOM Estático (`index.html`):** Higienizado `#contactApelido` para `placeholder="Último Nome"` com `data-i18n-placeholder="contact_placeholder_lastname"`.
+    2. **Dicionário Multilingue (`i18n.js`):** Integradas as chaves canónicas `contact_placeholder_lastname` e `contact_placeholder_firstname` para os 5 idiomas suportados (Português: "Último Nome" / "Primeiro Nome").
+    3. **Runtime nos Modais (`app.js`):** Blindadas as rotinas `openContactModalForNew` e `openContactModalForEdit` para forçar deterministicamente `placeholder = 'Último Nome'`.
+    4. **Observador Contínuo no DOM (`index.html`):** Adicionado observador síncrono no `<head>` que limpa instantaneamente qualquer carácter corrompido remanescente (`Ã`, `Â`, `??`, `\uFFFD`, `š`) substituindo por `Último Nome`.
+    5. **Invalidação de Cache PWA:** Versão da cache em `sw.js` elevada para `sigec-pro-v1.7.35b`, purga no arranque atualizada no `<head>` de `index.html` e cache busters dos scripts e estilos atualizados para `v=1.7.35b`.
+    6. **Sincronização & Deploy:** Ficheiros sincronizados no espelho local `G:\SIGEC-Pro_Codigo_Integral` e propagados via commit para o GitHub `jjota26/SIGEC-Pro` para auto-deploy no OnRender.
 - **Reposição Integral e Limpa do Código Original da Manhã (25/09/2026 13:10):**
   - **Ação:** Restauro integral e direto, ficheiro a ficheiro, a partir do commit estável da manhã (`4fa044ef` / `7bd3b594`).
   - **Ficheiros Restaurados Byte a Byte:**
