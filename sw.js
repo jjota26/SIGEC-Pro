@@ -1,9 +1,9 @@
-/* ============================================================
+﻿/* ============================================================
    SIGEC-Pro — Service Worker PWA
    Estrategia: Network First com fallback para cache
    ============================================================ */
 
-const CACHE_NAME = 'sigec-pro-v5.6';
+const CACHE_NAME = 'sigec-pro-v6.0';
 const CORE_ASSETS = [
   "/",
   "/index.html",
@@ -47,7 +47,7 @@ self.addEventListener("fetch", event => {
   // Ignora pedidos nao-GET e pedidos externos (ex: HF API)
   if (event.request.method !== "GET") return;
   const url = new URL(event.request.url);
-  if (!url.origin.includes(self.location.origin) && !url.hostname.includes("hf.space")) return;
+  if (!url.origin.includes(self.location.origin) && !url.hostname.includes("hf.space") || url.hostname.includes("onrender.com")) return;
 
   event.respondWith(
     fetch(new Request(event.request, { cache: 'reload' }))
