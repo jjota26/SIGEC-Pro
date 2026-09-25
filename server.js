@@ -276,13 +276,6 @@ const server = http.createServer(async (req, res) => {
   const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   const pathname = parsedUrl.pathname;
 
-  // Endpoint de Heartbeat e Liveness
-  if (pathname === '/api/heartbeat') {
-    res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-    res.end(JSON.stringify({ status: 'ok', server: 'sigec-pro', time: Date.now() }));
-    return;
-  }
-
   // Endpoint de Envio de Email
   if (pathname === '/api/send-email' || pathname === '/api/send-smtp-email') {
     if (req.method !== 'POST') {
@@ -666,6 +659,20 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
     req.on('end', () => {
       try {
         const parsed = JSON.parse(body);
+        if (Array.isArray(parsed.usuarios)) {
+          const seenIds = new Set();
+          const seenEmails = new Set();
+          parsed.usuarios = parsed.usuarios.filter(function(u) {
+            if (!u || !u.id) return false;
+            const uId = String(u.id).trim();
+            const uEmail = String(u.email || '').trim().toLowerCase();
+            if (seenIds.has(uId)) return false;
+            if (uEmail && seenEmails.has(uEmail)) return false;
+            seenIds.add(uId);
+            if (uEmail) seenEmails.add(uEmail);
+            return true;
+          });
+        }
         const dbPath = path.join(__dirname, 'data', 'db.json');
         fs.mkdirSync(path.dirname(dbPath), { recursive: true });
         fs.writeFileSync(dbPath, JSON.stringify(parsed, null, 2), 'utf8');
