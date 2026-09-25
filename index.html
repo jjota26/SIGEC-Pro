@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt">
 
 <head>
@@ -12,13 +12,19 @@
     if ('caches' in window) {
       caches.keys().then(function(keys) {
         keys.forEach(function(k) {
-          if (k !== 'sigec-pro-v4.6') {
+          if (k !== 'sigec-pro-v1.7.35') {
             console.log('[PWA] Purga imediata de cache antiga:', k);
             caches.delete(k);
           }
         });
       });
     }
+    try {
+      var curStored = localStorage.getItem('sigec_pro_installed_version');
+      if (!curStored || curStored === 'SIGEC_V1.7.27' || curStored.indexOf('1.7.27') >= 0) {
+        localStorage.setItem('sigec_pro_installed_version', 'SIGEC_V1.7.35');
+      }
+    } catch (e) {}
   </script>
 
   <!-- PWA: Manifesto e Ícones -->
@@ -226,7 +232,7 @@
       if ('caches' in window) {
         caches.keys().then(function(keys) {
           keys.forEach(function(k) {
-            if (k !== 'sigec-pro-v5.6') caches.delete(k);
+            if (k !== 'sigec-pro-v1.7.35') caches.delete(k);
           });
         });
       }
@@ -250,7 +256,7 @@
   </script>
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=202609251145">
+  <link rel="stylesheet" href="styles.css?v=202609251235">
 
   <!-- Critical Login Screen Styles (Guarantees perfect rendering even before external CSS loads) -->
   <style>
@@ -2791,7 +2797,7 @@
                   </div>
                 </div>
                 <span style="padding: 0.3rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd;">
-                  Versão Atual: <strong id="cfgInstalledVersionBadge" class="current-installed-version-badge">V1.7.27</strong>
+                  Versão Atual: <strong id="cfgInstalledVersionBadge" class="current-installed-version-badge">V1.7.35</strong>
                 </span>
               </div>
               <p style="font-size: 0.85rem; color: #334155; margin-bottom: 1rem; line-height: 1.4;">
@@ -4902,11 +4908,11 @@
   <div id="toastContainer" class="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999999 !important;"></div>
 
   <!-- Internationalization & Translations Engine -->
-  <script src="i18n.js?v=202609251145"></script>
+  <script src="i18n.js?v=202609251235"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=202609251145"></script>
+  <script src="app.js?v=202609251235"></script>
   <!-- Duplicates Management Engine -->
-  <script src="duplicatesManager.js?v=202609251145"></script>
+  <script src="duplicatesManager.js?v=202609251235"></script>
 
   <!-- Inicialização segura de definições de email no arranque -->
   <script>
@@ -5508,14 +5514,14 @@
           <span style="color: var(--text-muted);"><i class="fa-solid fa-file-code"
               style="color: #0284c7; margin-right: 4px;"></i> Ficheiro:</span>
           <strong id="updateRestoreFileName"
-            style="color: #0f172a; font-family: monospace; font-size: 0.88rem; word-break: break-all;">SIGEC_V1.7.27.json</strong>
+            style="color: #0f172a; font-family: monospace; font-size: 0.88rem; word-break: break-all;">SIGEC_V1.7.35.json</strong>
         </div>
         <div
           style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.85rem;">
           <span style="color: var(--text-muted);"><i class="fa-solid fa-tag"
               style="color: #0284c7; margin-right: 4px;"></i> Versão / Pacote:</span>
           <strong id="updateRestoreFileVersion"
-            style="color: #0284c7; font-size: 0.95rem; letter-spacing: 0.5px;">SIGEC_V1.7.27</strong>
+            style="color: #0284c7; font-size: 0.95rem; letter-spacing: 0.5px;">SIGEC_V1.7.35</strong>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
           <span style="color: var(--text-muted);"><i class="fa-solid fa-calendar-clock"
@@ -6303,7 +6309,7 @@
                 </div>
               </div>
               <span style="padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 700; background: #dcfce7; color: #15803d; border: 1px solid #86efac;">
-                Versão Instalada: <strong id="userSettingsInstalledVersionBadge" class="current-installed-version-badge">V1.7.27</strong>
+                Versão Instalada: <strong id="userSettingsInstalledVersionBadge" class="current-installed-version-badge">V1.7.35</strong>
               </span>
             </div>
             <p style="font-size: 0.88rem; color: #334155; margin: 0 0 1.25rem 0; line-height: 1.5;">
@@ -6509,7 +6515,7 @@
       }
     });
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js?v=202609251145')
+      navigator.serviceWorker.register('/sw.js?v=202609251235')
         .then(function (reg) {
           if (typeof reg.update === 'function') {
             reg.update();
