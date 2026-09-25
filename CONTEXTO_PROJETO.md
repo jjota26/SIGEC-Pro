@@ -1,10 +1,65 @@
 # CONTEXTO DO PROJETO SIGEC-Pro
 
-- Versao: V1.7.27
+- Versao: V1.7.35
 - Autor: Jose Centurio
-- Nuvem: josecenturio/SIGEC-Pro
-- Data: 25/09/2026 09:35
-- Estado: Blindagem ativa permanente em loop no DOM (a cada 250ms), auto-purga de CacheStorage e auto-reload via PWA v5.6 no Hugging Face Space e Dataset.
+- Produção Web Oficial: https://sigec-pro.onrender.com
+- Backup: josecenturio/SIGEC-Pro
+- Data: 25/09/2026 12:45
+- Estado: ✅ VERSÃO V1.7.35 ATIVA E BLINDADA EM PRODUÇÃO WEB (OnRender). PWA v1.7.35 ativa. Paradigma 100% Web.
+
+## 00000000000000000000. Ativação e Blindagem Definitiva da Versão V1.7.35 na Web (25/09/2026 12:45)
+- **Problema Solucionado:** O utilizador reportou que a versão V1.7.35 ainda não se encontrava ativa na web de produção (`https://sigec-pro.onrender.com`).
+- **Causas Raiz:**
+  1. `CURRENT_SYSTEM_VERSION` hardcoded com `SIGEC_V1.7.27` no `app.js`.
+  2. `getInstalledVersion()` permitia que o `localStorage` antigo com `SIGEC_V1.7.27` se sobrepusesse à versão do código.
+  3. Badges estáticos no `index.html` exibiam `V1.7.27`.
+  4. Cache do Service Worker e scripts no `index.html` retinham versões antigas nos navegadores.
+  5. Campo `versaoSoftware` não preenchido em `data/db.json`.
+- **Implementações & Blindagens:**
+  1. `app.js`: Atualizado `CURRENT_SYSTEM_VERSION = "SIGEC_V1.7.35"` e blindada `getInstalledVersion()` com `CODE_BASE_VERSION = 'SIGEC_V1.7.35'`.
+  2. `index.html`: Badges atualizados para `V1.7.35`, purga de cache com `sigec-pro-v1.7.35`, sincronização de `sigec_pro_installed_version` no arranque e cache-busters `v=202609251235`.
+  3. `sw.js`: Service Worker com cache `sigec-pro-v1.7.35`.
+  4. `data/db.json`: Adicionado `versaoSoftware: "SIGEC_V1.7.35"` e `versao: "1.7.35"`.
+  5. Deploy realizado no GitHub `jjota26/SIGEC-Pro` e propagado para OnRender (`https://sigec-pro.onrender.com`).
+  6. Teste automatizado com Microsoft Edge Headless inspecionou o DOM real gerado na Web (1.644.106 bytes) e confirmou badges `V1.7.35` com 100% de sucesso.
+
+## 0000000000000000000. Migração Definitiva para Paradigma 100% Web (25/09/2026 11:00)
+- **Decisão do Utilizador:** O SIGEC-Pro já não funciona através de executáveis. Funciona exclusivamente através de página web direta. O agente não deve voltar a programar com base em executável.
+- **Ficheiros Eliminados:**
+  1. `SIGEC-Pro.exe` — Apagado (de `G:\Programa SIGEC-Pro` e `G:\SIGEC-Pro_Codigo_Integral`)
+  2. `LauncherSource.cs` — Apagado
+  3. `InstallerSource.cs` — Apagado
+  4. `AssemblyInfo.cs` — Apagado
+  5. `app.manifest` — Apagado
+  6. `Instalar_SIGEC-Pro.bat` — Apagado
+  7. `sincronizar_huggingface.bat` — Apagado
+  8. `Enviar_Para_GitHub.bat` — Apagado
+- **Ficheiros Existentes (apenas estes):** `index.html`, `app.js`, `i18n.js`, `styles.css`, `sw.js`, `duplicatesManager.js`, `data/db.json`, `AGENTS.md`, `CONTEXTO_PROJETO.md`.
+- **Regra Permanente:** Toda a programação futura é feita para funcionar em browser web. Nunca criar executáveis, ficheiros C#, manifestos de assembly ou scripts de compilação.
+
+
+## 000000000000000000. Remoção de Temporizadores Periódicos e Blindagem da Porta 59124 no Browser (25/09/2026 10:45)
+- **Objetivos & Solicitação do Utilizador:**
+  1. Remoção do temporizador automático que tentava contactar o servidor a cada 3 segundos, bem como de heartbeats periódicos de 5 segundos.
+  2. Eliminação definitiva das causas de `ERR_CONNECTION_REFUSED` e `HTTP 429 Too Many Requests`.
+- **Implementações & Blindagens Efetuadas:**
+  1. **Remoção de Heartbeats:** Removida a rotina `initDesktopHeartbeat` (executava a cada 3000ms chamando `/api/heartbeat`) em `app.js` e o bloco de heartbeat de 5000ms em `index.html`.
+  2. **Desativação de Polling Agressivo:** Eliminado o loop contínuo `setInterval(..., 10000)` e os disparos em `focus`/`visibilitychange` em `initPeriodicBackgroundSync()`. O sincronismo ocorre no arranque e durante gravações ativas.
+  3. **Blindagem Universal da Porta 59124:** Todas as 14 chamadas à porta 59124 em `app.js` foram estritamente condicionadas a `isLocalDesktopEnvironment()`. No navegador web padrão (fora da janela do executável desktop C#), a porta local 59124 nunca é chamada, prevenindo totalmente erros de conexão.
+  4. **PWA e Cache Busters:** Service Worker elevado para `sigec-pro-v5.8` e cache busters em `index.html` atualizados para `v=202609251040`.
+  5. **Compilação e Sincronização Local:** `SIGEC-Pro.exe` recompilado com sucesso (114.176 bytes) e ficheiros replicados no espelho local `g:\SIGEC-Pro_Codigo_Integral`.
+  6. **Validação Automatizada:** Testes no Edge Headless confirmaram DOM íntegro (1.761.721 bytes) e 0 erros de consola.
+
+## 00000000000000000. Otimização Cloud & Rede, Blindagem da Porta 59124 no Browser e PWA v5.7 (25/09/2026 10:25)
+- **Objetivos & Problemas Resolvidos:**
+  1. Eliminação definitiva de erros `ERR_CONNECTION_REFUSED` na porta 59124 ao aceder via navegador web (Hugging Face ou local).
+  2. Prevenção de bloqueios por limite de taxa da API da Hugging Face (`HTTP 429 Too Many Requests`).
+- **Implementações & Blindagens Efetuadas:**
+  1. **Deteção Universal de Ambiente (`isLocalDesktopEnvironment()` em `app.js`):** A função agora valida `window.__SIGEC_DESKTOP__`, `window.chrome.webview`, portas e hostnames locais. Em browsers regulares retorna deterministicamente `false`, bloqueando qualquer tentativa de comunicação com o bridge desktop local (`http://127.0.0.1:59124/api/...`).
+  2. **Proteção Contra HTTP 429 na Hugging Face (`HF_COMMIT_MIN_INTERVAL_MS = 30000`):** Implementado um espaçamento mínimo de 30 segundos entre commits automáticos para a API do Space/Dataset, prevenindo sobrecarga.
+  3. **PWA e Cache Busters:** Service Worker elevado para `sigec-pro-v5.7` e cache busters em `index.html` atualizados para `v=202609251020`.
+  4. **Deploy Dual Parity:** Commits enviados com sucesso para Hugging Face Space (`c363b6b196b9a0bffa3c713e8d40d51064a77cd7`) e Dataset (`dc5dc75899c48c1d39c2fe0b569ac55cd91eb93f`). Espelho local `G:\SIGEC-Pro_Codigo_Integral` sincronizado e `SIGEC-Pro.exe` recompilado.
+  5. **Validação Automatizada:** Testes no Edge Headless confirmaram execução limpa, carregamento integral do DOM (1.762.235 bytes) e comportamento perfeito da função de ambiente.
 
 ## 0000000000000000. Blindagem Ativa em Loop no DOM, Auto-Purga de Caches e PWA v5.6 (25/09/2026 09:35)
 - **Motivo do Alerta do Utilizador:** Mesmo após vários refreshes, o navegador continuava a exibir o valor antigo devido à retenção de cache pelo Service Worker no Chrome.
