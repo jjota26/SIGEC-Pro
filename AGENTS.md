@@ -61,8 +61,20 @@
 ---
 
 ## 📜 3. ESTADO ATUAL E HISTÓRICO DE DESENVOLVIMENTO
-- **Última Atualização:** 25/09/2026 12:45 (Ativação e Blindagem Definitiva da Versão V1.7.35 na Web Oficial OnRender)
-- **Ativação e Blindagem Definitiva da Versão V1.7.35 na Web (25/09/2026 12:45):**
+- **Última Atualização:** 25/09/2026 13:10 (Reposição Integral e Limpa do Código Original da Manhã V1.7.35)
+- **Reposição Integral e Limpa do Código Original da Manhã (25/09/2026 13:10):**
+  - **Ação:** Restauro integral e direto, ficheiro a ficheiro, a partir do commit estável da manhã (`4fa044ef` / `7bd3b594`).
+  - **Ficheiros Restaurados Byte a Byte:**
+    - `app.js` (4.285.271 bytes)
+    - `index.html` (491.272 bytes)
+    - `i18n.js` (318.846 bytes)
+    - `styles.css` (66.427 bytes)
+    - `sw.js` (2.209 bytes)
+    - `server.js` (29.292 bytes)
+    - `duplicatesManager.js` (78.147 bytes)
+    - `data/db.json` (3.032.160 bytes — 76 clientes, 161 contactos, 4 projetos, 3 utilizadores)
+  - **Sincronização:** Ficheiros restaurados no workspace local `G:\Programa SIGEC-Pro`, no espelho `G:\SIGEC-Pro_Codigo_Integral`, e enviados via GitHub API para `jjota26/SIGEC-Pro` (commits `3b26565e`, `af40a33b`, `ac1020bb`, `2007444e`, `b58aded2`, `1ea2d0ea`, `5f0df9e2`).
+  - **Validação:** Comparação Git contra `4fa044ef` confirmou 0 diferenças em código fonte. Teste automatizado com Microsoft Edge Headless no site `https://sigec-pro.onrender.com` confirmou carregamento integral do DOM (1.642.981 bytes) e versão V1.7.35 ativa.
   - **Problema Reportado pelo Utilizador:** "A versão V1.7.35, não está ativa ainda, na web do programa."
   - **Causa Raiz Identificada:**
     1. No `app.js` (linha 19830), as variáveis globais `var CURRENT_SYSTEM_VERSION` e `window.CURRENT_SYSTEM_VERSION` mantinham hardcoded `"SIGEC_V1.7.27"`.
