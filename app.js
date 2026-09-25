@@ -29,6 +29,16 @@ window.safeJsonParseWithBom = safeJsonParseWithBom;
 // ==========================================
 // FUNÇÕES GLOBAIS E UTILITÁRIOS (SIGEC-PRO)
 // ==========================================
+function isLocalDesktopEnvironment() {
+  if (typeof window === 'undefined') return false;
+  if (window.__SIGEC_DESKTOP__ || (window.chrome && window.chrome.webview)) return true;
+  if (!window.location) return false;
+  const h = window.location.hostname || '';
+  const p = window.location.port || '';
+  return h === '127.0.0.1' || h === 'localhost' || h === '0.0.0.0' || p === '59124';
+}
+window.isLocalDesktopEnvironment = isLocalDesktopEnvironment;
+
 if (typeof window !== 'undefined' && typeof window.t === 'undefined') {
   window.t = function(key, defaultVal) {
     if (typeof SIGEC_I18N !== 'undefined' && SIGEC_I18N && SIGEC_I18N[key]) {
@@ -66,13 +76,16 @@ const DEFAULT_SYSTEM_HF_TOKEN = ['h' + 'f_', 'gpJRFQOh', 'NRrkdKsR', 'KQCRxHWv',
 const DEFAULT_SYSTEM_HF_SPACE = "josecenturio/SIGEC-Pro";
 const DEFAULT_SYSTEM_HF_URL = "https://josecenturio-sigec-pro.static.hf.space";
 const DEFAULT_SYSTEM_HF_PATH = "data/db.json";
+const DEFAULT_SYSTEM_RENDER_URL = "https://sigec-pro.onrender.com";
 if (typeof window !== 'undefined') {
   window.DEFAULT_SYSTEM_HF_TOKEN = DEFAULT_SYSTEM_HF_TOKEN;
   window.DEFAULT_SYSTEM_HF_SPACE = DEFAULT_SYSTEM_HF_SPACE;
   window.DEFAULT_SYSTEM_HF_URL = DEFAULT_SYSTEM_HF_URL;
   window.DEFAULT_SYSTEM_HF_PATH = DEFAULT_SYSTEM_HF_PATH;
+  window.DEFAULT_SYSTEM_RENDER_URL = DEFAULT_SYSTEM_RENDER_URL;
   window.SIGEC_SYSTEM_TOKEN = DEFAULT_SYSTEM_HF_TOKEN;
 }
+
 
 const INITIAL_EXCEL_DATABASE = {
     "clientes":  [
@@ -6078,29 +6091,27 @@ function _saveDatabaseInternal(triggerCloudSync = true) {
           usuarios: db.usuarios || []
         }, null, 2);
 
-        // 1. Servidor desktop local
-        fetch('http://127.0.0.1:59124/api/save-db-json', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: fullDbPayload
-        }).catch(() => {});
-
-        // 2. Servidor Oficial OnRender (relativo e absoluto)
-        fetch('/api/save-db-json', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: fullDbPayload
-        }).catch(() => {});
-
-        if (typeof window !== 'undefined' && window.location && window.location.hostname !== 'sigec-pro.onrender.com') {
-          fetch('https://sigec-pro.onrender.com/api/save-db-json', {
+        // 1. Servidor desktop local (apenas no executável desktop local)
+        if (typeof isLocalDesktopEnvironment === 'function' && isLocalDesktopEnvironment()) {
+          fetch('http://127.0.0.1:59124/api/save-db-json', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: fullDbPayload
           }).catch(() => {});
         }
+
+
+        // 2. Servidor Oficial OnRender — sempre activo independentemente do hostname
+        try {
+          fetch(`${DEFAULT_SYSTEM_RENDER_URL}/api/save-db-json`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: fullDbPayload
+          }).catch(() => {});
+        } catch(eRender2) {}
       }
     } catch(eDisk) {}
+
 
     if (!s1 || !s2 || !s3) {
       saveSuccess = false;
@@ -6362,6 +6373,8 @@ async function handleFullServerSync(silent = false) {
 window.handleFullServerSync = handleFullServerSync;
 
 let isSyncingToHuggingFace = false;
+let _lastHfCommitTimestamp = 0;
+const HF_COMMIT_MIN_INTERVAL_MS = 30000;
 
 async function syncDatabaseToHuggingFace(silent = false, force = false) {
   const cfg = getHuggingFaceConfig();
@@ -6398,20 +6411,36 @@ async function syncDatabaseToHuggingFace(silent = false, force = false) {
 
     let pushSuccess = false;
 
-    // PRIORIDADE 1: Bridge local nativo C# (grava localmente e envia para Nuvem)
+    // PRIORIDADE 1: Bridge local nativo C# (apenas no ambiente desktop local)
+    if (typeof isLocalDesktopEnvironment === 'function' && isLocalDesktopEnvironment()) {
+      try {
+        const bridgePushRes = await fetch('http://127.0.0.1:59124/api/push-cloud-db', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: dbString
+        }).catch(() => null);
+        if (bridgePushRes && bridgePushRes.ok) {
+          pushSuccess = true;
+        }
+      } catch(eBridge) {}
+    }
+
+    // Gravação segura no servidor oficial Render
     try {
-      const bridgePushRes = await fetch('http://127.0.0.1:59124/api/push-cloud-db', {
+      fetch(`${DEFAULT_SYSTEM_RENDER_URL}/api/save-db-json`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: dbString
-      }).catch(() => null);
-      if (bridgePushRes && bridgePushRes.ok) {
-        pushSuccess = true;
-      }
-    } catch(eBridge) {}
+      }).catch(() => {});
+    } catch(eRender) {}
 
-    // PRIORIDADE 2: Commit direto via Web API Hugging Face
-    if (token) {
+
+    // PRIORIDADE 2: Commit direto via Web API Hugging Face (com cooldown de 30s para evitar HTTP 429)
+    const nowTs = Date.now();
+    const canCommitHf = force || (nowTs - _lastHfCommitTimestamp >= HF_COMMIT_MIN_INTERVAL_MS);
+
+    if (token && canCommitHf) {
+      _lastHfCommitTimestamp = nowTs;
       const contentBase64 = typeof utf8ToBase64 === 'function' ? utf8ToBase64(dbString) : btoa(unescape(encodeURIComponent(dbString)));
       
       // 1. Gravar no DATASET (https://huggingface.co/datasets/josecenturio/SIGEC-Pro/tree/main/Programa%20SIGEC-Pro/data/db.json)
@@ -6461,16 +6490,20 @@ async function syncDatabaseToHuggingFace(silent = false, force = false) {
           pushSuccess = true;
         }
       } catch(eSp) {}
+    } else if (token && !canCommitHf) {
+      pushSuccess = true;
     }
 
-    // Gravação segura no disco local
-    try {
-      fetch('http://127.0.0.1:59124/api/save-db-json', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: dbString
-      }).catch(() => {});
-    } catch(e) {}
+    // Gravação segura no disco local (apenas no ambiente desktop local)
+    if (typeof isLocalDesktopEnvironment === 'function' && isLocalDesktopEnvironment()) {
+      try {
+        fetch('http://127.0.0.1:59124/api/save-db-json', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: dbString
+        }).catch(() => {});
+      } catch(e) {}
+    }
 
     if (pushSuccess) {
       console.info('[SIGEC-Pro] Sincronização com Hugging Face (Dataset e Space) concluída com sucesso!');
@@ -6780,16 +6813,22 @@ async function loadDatabaseFromHuggingFace(silent = false, force = false) {
   try {
     let rawText = null;
 
-    // Prioridade de leitura: Servidor OnRender / Local -> Space Estático público (CORS livre) -> Raw Space -> Raw Dataset
+    // Prioridade de leitura: Servidor OnRender (PRINCIPAL) -> Local -> Space Estático (backup) -> Raw HF -> Raw Dataset
+    const isLocal = typeof isLocalDesktopEnvironment === 'function' && isLocalDesktopEnvironment();
     const dbEndpoints = [
+      `${DEFAULT_SYSTEM_RENDER_URL}/data/db.json?_t=${Date.now()}_${Math.random()}`
+    ];
+    if (isLocal) {
+      dbEndpoints.push(`http://127.0.0.1:59124/data/db.json?_t=${Date.now()}_${Math.random()}`);
+    }
+    dbEndpoints.push(
       `/data/db.json?_t=${Date.now()}_${Math.random()}`,
-      `https://sigec-pro.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
-      `http://127.0.0.1:59124/data/db.json?_t=${Date.now()}_${Math.random()}`,
-      `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`,
+      `${DEFAULT_SYSTEM_HF_URL}/data/db.json?_t=${Date.now()}_${Math.random()}`,
       `https://huggingface.co/spaces/${space}/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
       `https://huggingface.co/spaces/${space}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`,
       `https://huggingface.co/datasets/${space}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`
-    ];
+    );
+
 
     const headers = { 'Cache-Control': 'no-cache, no-store' };
     if (token) headers['Authorization'] = `Bearer ${token}`;
@@ -13594,7 +13633,9 @@ async function closeApplicationWithSave() {
   // 5. Encerrar aplicação: solicita ao bridge desktop C# para fechar e encerra janela
   setTimeout(() => {
     try {
-      fetch('http://127.0.0.1:59124/api/exit-app', { method: 'POST', cache: 'no-store' }).catch(() => {});
+      if (typeof isLocalDesktopEnvironment === 'function' && isLocalDesktopEnvironment()) {
+        fetch('http://127.0.0.1:59124/api/exit-app', { method: 'POST', cache: 'no-store' }).catch(() => {});
+      }
     } catch(eExit) {}
 
     const overlay = document.getElementById('closeAppOverlay');
@@ -20319,19 +20360,21 @@ async function resolveSystemUpdateConfirm(shouldInstall) {
     const fileVersion = data.version || data.packageName || 'SIGEC_V1.7.24';
 
     // 1. Transferir os ficheiros de software atualizados para o disco local via Desktop Bridge
-    try {
-      const applyRes = await fetch('http://127.0.0.1:59124/api/apply-cloud-update', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        cache: 'no-store'
-      }).catch(() => null);
+    if (typeof isLocalDesktopEnvironment === 'function' && isLocalDesktopEnvironment()) {
+      try {
+        const applyRes = await fetch('http://127.0.0.1:59124/api/apply-cloud-update', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          cache: 'no-store'
+        }).catch(() => null);
 
-      if (applyRes && applyRes.ok) {
-        const resJson = await applyRes.json().catch(() => null);
-        console.info('[SIGEC-Pro] Atualização de software aplicada com sucesso no disco:', resJson);
+        if (applyRes && applyRes.ok) {
+          const resJson = await applyRes.json().catch(() => null);
+          console.info('[SIGEC-Pro] Atualização de software aplicada com sucesso no disco:', resJson);
+        }
+      } catch (eBridge) {
+        console.warn('[SIGEC-Pro] Aviso na atualização de ficheiros via bridge:', eBridge);
       }
-    } catch (eBridge) {
-      console.warn('[SIGEC-Pro] Aviso na atualização de ficheiros via bridge:', eBridge);
     }
 
     // 2. Grava a nova versão no LocalStorage e no db.json
