@@ -42,16 +42,15 @@ self.addEventListener("activate", event => {
   self.clients.claim();
 });
 
-/* Fetch: Network First com bypass de cache HTTP antigo, fallback para cache */
+/* Fetch: Network First, fallback para cache */
 self.addEventListener("fetch", event => {
-  // Ignora pedidos nao-GET e chamadas de API
+  // Ignora pedidos nao-GET e pedidos externos (ex: HF API)
   if (event.request.method !== "GET") return;
   const url = new URL(event.request.url);
-  if (url.origin !== self.location.origin) return;
-  if (url.pathname.startsWith("/api/")) return;
+  if (!url.origin.includes(self.location.origin) && !url.hostname.includes("hf.space")) return;
 
   event.respondWith(
-    fetch(new Request(event.request, { cache: 'reload' }))
+    fetch(event.request)
       .then(response => {
         // Guarda resposta fresca na cache
         if (response && response.status === 200) {
