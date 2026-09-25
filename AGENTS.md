@@ -12,10 +12,12 @@
 ## 📌 1. IDENTIFICAÇÃO E REPOSITÓRIOS
 - **Nome do Projeto:** SIGEC-Pro (Sistema Integrado de Gestão Empresarial e Contactos)
 - **Autor e Titular Exclusivo dos Direitos de Autor:** **José Centúrio** (Todos os direitos reservados)
-- **Hugging Face Space (Backend/Nuvem):** `josecenturio/SIGEC-Pro`
-- **URL da Aplicação Web:** `https://josecenturio-sigec-pro.static.hf.space`
-- **Base de Dados JSON:** `data/db.json`
-- **Token PAT Embutido:** `[Configurado no Runtime / Base64]` (Injetado e gerido internamente)
+- **⭐ URL PRINCIPAL DA APLICAÇÃO WEB (PRODUÇÃO):** `https://sigec-pro.onrender.com` ← **SEMPRE USAR ESTE**
+- **Plataforma de Produção:** Render.com (Node.js — `server.js`) ligado ao GitHub `jjota26/SIGEC-Pro`
+- **Hugging Face Space (Backup apenas):** `josecenturio/SIGEC-Pro` / `https://josecenturio-sigec-pro.static.hf.space`
+- **Repositório GitHub (Deploy para Render):** `jjota26/SIGEC-Pro` — Token: `[Configurado no Runtime / .git/config]`
+- **Base de Dados JSON:** `data/db.json` (servida pelo servidor Render via `/data/db.json` e `/api/save-db-json`)
+- **Token PAT HF Embutido:** `[Configurado no Runtime / Base64]` (Injetado e gerido internamente — usado apenas como backup)
 - **Email e Servidor SMTP:** `jmcenturio@alegria-activity.com` | Host: `smtp.gmail.com` | Porta: `587` (Google Workspace)
 
 ---
@@ -26,9 +28,11 @@
    - O software SIGEC-Pro, a sua propriedade intelectual, código-fonte e direitos pertencem EXCLUSIVAMENTE a **José Centúrio**.
    - Qualquer compilação de binários, cabeçalhos, metadados de assembly e documentação DEVE identificar como Autor e Empresa/Proprietário **José Centúrio**.
 
-2. **Sincronização Nuvem e Local Obrigatória (Dual Parity):**
-   - Qualquer alteração efetuada nos ficheiros locais (`app.js`, `index.html`, `i18n.js`, `styles.css`, etc.) DEVE ser imediatamente sincronizada/enviada via API para o Hugging Face Space (`josecenturio/SIGEC-Pro`).
-   - NUNCA tentar contactar o GitHub (o repositório foi 100% migrado para Hugging Face Spaces).
+2. **⭐ Sincronização — Deploy EXCLUSIVAMENTE para OnRender via GitHub:**
+   - O URL de produção oficial e ÚNICO é `https://sigec-pro.onrender.com`. O HF Space é apenas backup.
+   - Qualquer alteração efetuada nos ficheiros locais (`app.js`, `index.html`, `i18n.js`, `styles.css`, etc.) DEVE ser enviada via **GitHub API** (`jjota26/SIGEC-Pro`) para que o Render faça auto-deploy.
+   - NUNCA alterar ficheiros apenas no HF Space sem também actualizar o GitHub/Render.
+   - Deploy no GitHub: usar `GitHub API PUT /repos/jjota26/SIGEC-Pro/contents/{filename}` com o token PAT GitHub do utilizador.
 
 3. **Memória Automática Entre Computadores:**
    - O agente sabe sempre tudo o que se passou nos outros computadores através deste ficheiro e do `CONTEXTO_PROJETO.md`.
@@ -37,22 +41,76 @@
 4. **Preservação Absoluta de Dados:**
    - NUNCA sobrescrever ou apagar a base de dados (`data/db.json`) sem preservar todos os utilizadores, clientes, contactos, projetos e orçamentos existentes.
 
-5. **Executáveis Desktop e Compatibilidade Antivírus Universal:**
-   - `Instalar-SIGEC-Pro.exe` e `SIGEC-Pro.exe` são compilados com **Manifesto Oficial de Segurança (app.manifest)** declarando `asInvoker`, compatibilidade com Windows 10/11/8/7, ícone PE nativo e metadados oficiais atribuídos a **José Centúrio** (`1.7.10.0`), garantindo que nenhum antivírus em qualquer computador dispare falsos positivos.
+5. **⚠️ PARADIGMA EXCLUSIVAMENTE WEB — SEM EXECUTÁVEL (Desde 25/09/2026):**
+   - O SIGEC-Pro funciona **EXCLUSIVAMENTE como aplicação web** servida pelo Render (`https://sigec-pro.onrender.com`).
+   - **NÃO EXISTEM** executáveis (`SIGEC-Pro.exe`, `Instalar-SIGEC-Pro.exe`), ficheiros C# (`LauncherSource.cs`, `InstallerSource.cs`, `AssemblyInfo.cs`), manifesto de assembly (`app.manifest`), scripts de compilação (`.bat`), nem servidor local na porta 59124.
+   - O agente **NUNCA** deve criar, compilar, referenciar ou mencionar executáveis. Toda a programação é feita para o browser web.
+   - A função `isLocalDesktopEnvironment()` existe apenas como salvaguarda defensiva e **NUNCA retorna `true` em produção web**.
 
-6. **Instalador Standalone Autónomo (All-in-One):**
-   - `Instalar-SIGEC-Pro.exe` inclui embutido em si o pacote ZIP integral da aplicação (V1.7.10), permitindo instalar de forma 100% autónoma em qualquer PC (mesmo sem outros ficheiros na pasta ou offline) e atualiza em tempo real a partir da nuvem Hugging Face se houver ligação à internet.
+6. **Arquitetura 100% Web (OnRender):**
+   - Frontend: `index.html` + `app.js` + `i18n.js` + `styles.css` + `duplicatesManager.js` + `sw.js` (PWA).
+   - Backend/Servidor: `server.js` (Node.js puro, sem dependências externas excepto `xlsx`).
+   - Base de dados: `data/db.json` servida e gravada pelo `server.js` no Render.
+   - Deploy: Via GitHub API (`jjota26/SIGEC-Pro`) → auto-deploy no Render. O HF Space é apenas espelho de backup.
+   - SMTP: Enviado via `server.js` no Render (endpoint `/api/send-email`).
 
-7. **Arquitetura de Servidor Local Integrado e SMTP Nativo:**
-   - `SIGEC-Pro.exe` funciona como servidor local de aplicação e bridge de envio SMTP nativo em segundo plano (`http://127.0.0.1:59124/`), com codificação UTF-8 rigorosa e proteção de privacidade (pontos nas palavras-passe/PINs).
 
-8. **Idioma:**
+7. **Idioma:**
    - Comunicação com o utilizador SEMPRE em Português de Portugal.
 
 ---
 
 ## 📜 3. ESTADO ATUAL E HISTÓRICO DE DESENVOLVIMENTO
-- **Última Atualização:** 25/09/2026 09:35 (Blindagem Ativa Permanente em Loop no DOM, Auto-Purga de CacheStorage e PWA v5.6)
+- **Última Atualização:** 25/09/2026 12:45 (Ativação e Blindagem Definitiva da Versão V1.7.35 na Web Oficial OnRender)
+- **Ativação e Blindagem Definitiva da Versão V1.7.35 na Web (25/09/2026 12:45):**
+  - **Problema Reportado pelo Utilizador:** "A versão V1.7.35, não está ativa ainda, na web do programa."
+  - **Causa Raiz Identificada:**
+    1. No `app.js` (linha 19830), as variáveis globais `var CURRENT_SYSTEM_VERSION` e `window.CURRENT_SYSTEM_VERSION` mantinham hardcoded `"SIGEC_V1.7.27"`.
+    2. Na função `getInstalledVersion()`, se o `localStorage` do utilizador guardasse uma versão anterior (`SIGEC_V1.7.27`), não havia validação que impedisse o downgrade face à versão real do código fonte (`SIGEC_V1.7.35`).
+    3. No `index.html`, os badges estáticos (`cfgInstalledVersionBadge` e `userSettingsInstalledVersionBadge`) exibiam `"V1.7.27"`.
+    4. No `sw.js` e no `<head>` do `index.html`, o Service Worker e as rotinas de purga de cache tinham filtros desencontrados (`v4.6`, `v5.6`, `v6.0`) que impediam a renovação imediata dos recursos nos clientes.
+    5. No `data/db.json`, o campo `db.config.versaoSoftware` estava vazio.
+  - **Solução Implementada e Blindagens:**
+    1. **`app.js`:** Atualizado `CURRENT_SYSTEM_VERSION` para `"SIGEC_V1.7.35"`. Na função `getInstalledVersion()`, adicionada constante `CODE_BASE_VERSION = 'SIGEC_V1.7.35'` com garantia de atualização automática do `localStorage` caso o valor guardado seja inferior à versão base do código.
+    2. **`index.html`:** Todos os badges de versão atualizados para `"V1.7.35"`. No `<head>`, adicionada rotina síncrona que purga caches legadas e corrige imediatamente o `localStorage` do operador caso contenha versão anterior.
+    3. **Service Worker (`sw.js`):** Cache elevada para `sigec-pro-v1.7.35` com estratégia Network-First e bypass de cache HTTP antigo (`{ cache: 'reload' }`).
+    4. **Cache Busters:** Atualizados todos os scripts e estilos em `index.html` para `v=202609251235`.
+    5. **Base de Dados (`data/db.json`):** `versaoSoftware: "SIGEC_V1.7.35"` e `versao: "1.7.35"` preservados e validados (75 clientes, 161 contactos, 4 projetos).
+    6. **Deploy no OnRender:** Todos os ficheiros sincronizados no repositório GitHub `jjota26/SIGEC-Pro` via API (commits `cc554859`, `bcda9ac3`, `12120c22`, `0179c548`).
+    7. **Testes Automatizados Reais no Edge Headless:** Inspecionado o DOM real gerado por `https://sigec-pro.onrender.com` (1.644.106 bytes): confirmados `cfgInstalledVersionBadge = V1.7.35` e `userSettingsInstalledVersionBadge = V1.7.35` com 100% de sucesso.
+- **Migração Definitiva para Paradigma 100% Web (25/09/2026 11:00):**
+  - **Decisão do Utilizador:** "O sigec-pro, já não funciona através de executáveis. Já só funciona através de página web direta. Não quero que voltes a programar com base em executável. Quero que a programação se faça com base a que o programa corra em página web."
+  - **Ficheiros Eliminados:**
+    1. `G:\Programa SIGEC-Pro\SIGEC-Pro.exe` — Apagado
+    2. `G:\Programa SIGEC-Pro\LauncherSource.cs` — Apagado
+    3. `G:\Programa SIGEC-Pro\InstallerSource.cs` — Apagado
+    4. `G:\Programa SIGEC-Pro\AssemblyInfo.cs` — Apagado
+    5. `G:\Programa SIGEC-Pro\app.manifest` — Apagado
+    6. `G:\Programa SIGEC-Pro\Instalar_SIGEC-Pro.bat` — Apagado
+    7. `G:\Programa SIGEC-Pro\sincronizar_huggingface.bat` — Apagado
+    8. `G:\Programa SIGEC-Pro\Enviar_Para_GitHub.bat` — Apagado
+    9. Todos os equivalentes em `G:\SIGEC-Pro_Codigo_Integral` — Apagados
+  - **Estado Atual:** O SIGEC-Pro é agora uma aplicação 100% web. Apenas existem `index.html`, `app.js`, `i18n.js`, `styles.css`, `sw.js`, `duplicatesManager.js`, `data/db.json`, `AGENTS.md` e `CONTEXTO_PROJETO.md`.
+- **Remoção de Temporizadores/Heartbeats Periódicos e Blindagem Completa da Porta 59124 no Browser (25/09/2026 10:45):**
+
+  - **Solicitação do Utilizador:** Remoção do temporizador automático de 3 em 3 segundos e rotinas periódicas que provocavam erros de conexão (`ERR_CONNECTION_REFUSED` e `HTTP 429 Too Many Requests`).
+  - **Ações e Blindagens Concluídas:**
+    1. **Eliminação dos Heartbeats Contínuos:** Removido o IIFE `initDesktopHeartbeat` em `app.js` (que disparava `fetch('http://127.0.0.1:59124/api/heartbeat')` a cada 3000ms) e o bloco de heartbeat de 5000ms em `index.html`.
+    2. **Desativação de Polling Agressivo em Segundo Plano:** Neutralizado o loop contínuo de `setInterval(..., 10000)` e os listeners de `focus` e `visibilitychange` em `initPeriodicBackgroundSync()`. A sincronização passa a ocorrer no arranque (`autoSyncServerOnStartup`) e aquando de gravações ou ações explícitas do utilizador.
+    3. **Blindagem Universal de Todos os Endpoints da Porta 59124:** Todas as 14 ocorrências em `app.js` (`verifyLoginPin`, `saveDatabase`, `sendDirectSmtpEmail`, `applyPendingUniversalUpdate`, etc.) foram rigorosamente condicionadas a `isLocalDesktopEnvironment()`. No navegador web padrão, nenhuma chamada à porta 59124 é sequer tentada, erradicando os erros `ERR_CONNECTION_REFUSED`.
+    4. **Invalidação de Cache e PWA v5.8:** Versão da cache em `sw.js` e filtro de purga em `index.html` elevados para `sigec-pro-v5.8`, com cache busters atualizados para `v=202609251040`.
+    5. **Recompilação e Sincronização Local:** `SIGEC-Pro.exe` recompilado com sucesso (114.176 bytes); espelho local `g:\SIGEC-Pro_Codigo_Integral` 100% sincronizado.
+    6. **Testes Automatizados Reais no Edge Headless:** Suíte automatizada comprovou a integridade do DOM (1.761.721 bytes) e ausência de falhas com 100% de sucesso.
+- **Otimização Cloud & Rede, Blindagem da Porta 59124 no Browser e PWA v5.7 (25/09/2026 10:25):**
+  - **Problemas Resolvidos:**
+    1. **Eliminação de Erros de Conexão no Navegador (`ERR_CONNECTION_REFUSED` na porta 59124):** Ao correr a aplicação web no browser normal (ex: na Hugging Face), ocorriam tentativas de chamada ao bridge local desktop (`http://127.0.0.1:59124/api/...`), gerando erros na consola do browser.
+    2. **Prevenção de `HTTP 429 Too Many Requests` no Hugging Face:** O envio contínuo ou simultâneo de commits pela API do Hugging Face provocava bloqueios temporários de taxa.
+  - **Implementações e Blindagens Concluídas:**
+    1. **Deteção Universal de Ambiente (`isLocalDesktopEnvironment()` em `app.js`):** A função agora valida rigorosamente a execução nativa desktop (`window.__SIGEC_DESKTOP__`, `window.chrome.webview`, hostname local `127.0.0.1`/`localhost` e porta `59124`). No browser padrão retorna deterministicamente `false`, impedindo qualquer chamada indevida à porta 59124 (`saveDatabase`, `syncDatabaseToHuggingFace`, `loadDatabaseFromHuggingFace`, `closeApplicationWithSave`, etc.).
+    2. **Controlo de Débito de Commits (`HF_COMMIT_MIN_INTERVAL_MS = 30000`):** Implementada proteção com intervalo mínimo de 30 segundos entre commits para a API do Hugging Face, com bypass inteligente para ações explícitas forçadas pelo utilizador.
+    3. **Invalidação Forçada de Cache PWA:** Cache do Service Worker elevada para `sigec-pro-v5.7` e parâmetros de cache buster em `index.html` atualizados para `v=202609251020`.
+    4. **Recompilação e Sincronização Dual Parity:** `SIGEC-Pro.exe` recompilado com sucesso (114 KB); ficheiros sincronizados no espelho local `g:\SIGEC-Pro_Codigo_Integral` e propagados via commit para Hugging Face Space (`c363b6b196b9a0bffa3c713e8d40d51064a77cd7`) e Dataset (`dc5dc75899c48c1d39c2fe0b569ac55cd91eb93f`).
+    5. **Testes Automatizados Reais no Edge Headless:** Testes de ambiente e integridade do DOM (1.762.235 bytes) aprovados com 100% de sucesso.
 - **Blindagem Ativa Permanente em Loop no DOM, Auto-Purga de CacheStorage e PWA v5.6 (25/09/2026 09:35):**
   - **Motivo do Alerta do Utilizador:** O utilizador reportou que mesmo após múltiplos refreshes o campo continuava igual no navegador.
   - **Causa Raiz & Resolução Técnica:**
