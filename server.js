@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const net = require('net');
 const tls = require('tls');
+const zlib = require('zlib');
 
 const PORT = process.env.PORT || 10000;
 const MIME_TYPES = {
@@ -707,8 +708,30 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
         res.end('Erro ao carregar ficheiro.');
         return;
       }
-      res.writeHead(200, { 'Content-Type': contentType });
-      res.end(content);
+      const acceptEncoding = (req.headers['accept-encoding'] || '').toLowerCase();
+      const isCompressible = contentType.includes('text') ||
+                             contentType.includes('javascript') ||
+                             contentType.includes('json') ||
+                             contentType.includes('svg');
+
+      if (acceptEncoding.includes('gzip') && isCompressible) {
+        zlib.gzip(content, (gzErr, zipped) => {
+          if (!gzErr && zipped) {
+            res.writeHead(200, {
+              'Content-Type': contentType,
+              'Content-Encoding': 'gzip',
+              'Vary': 'Accept-Encoding'
+            });
+            res.end(zipped);
+          } else {
+            res.writeHead(200, { 'Content-Type': contentType });
+            res.end(content);
+          }
+        });
+      } else {
+        res.writeHead(200, { 'Content-Type': contentType });
+        res.end(content);
+      }
     });
   });
 });

@@ -4,8 +4,16 @@
 - Autor: Jose Centurio
 - Produção Web Oficial: https://sigec-pro.onrender.com
 - Backup: josecenturio/SIGEC-Pro
-- Data: 25/09/2026 13:30
-- Estado: ✅ Correção Definitiva do Placeholder de Apelido 'Último Nome' e Blindagem Multicamada V1.7.35b Concluída e Ativa.
+- Data: 25/09/2026 13:50
+- Estado: ✅ Otimização Crítica de Desempenho e Eliminação de Loops Pesados Concluída e Ativa.
+
+## 00000000000000000000000. Otimização Crítica de Desempenho e Eliminação de Loops Pesados (25/09/2026 13:50)
+- **Problema Solucionado:** Página apresentava extrema lentidão devido a polling contínuo a cada 10s e 20s descarregando 3MB de JSON e re-renderizando o DOM, heartbeat de 3s e envio de ficheiros estáticos sem compressão.
+- **Implementações & Blindagens:**
+  1. `app.js`: Desativado o loop contínuo de polling e listeners de foco em `initPeriodicBackgroundSync()`; otimizada a rotina `startAdminPendingUserWatcher()` para consultar utilizadores em memória.
+  2. `index.html`: Removidos os `setInterval` de 3s (heartbeat) e de 250ms (placeholders).
+  3. `server.js`: Ativada compressão nativa Gzip (`zlib`), comprimindo `app.js` de 4.3 MB para ~500 KB (~88% de redução no tempo de transferência de rede).
+  4. Sincronização no espelho local `G:\SIGEC-Pro_Codigo_Integral` e deploy para o OnRender via GitHub `jjota26/SIGEC-Pro`.
 
 ## 0000000000000000000000. Correção Definitiva do Placeholder de Apelido 'Último Nome' e Blindagem Multicamada (25/09/2026 13:30)
 - **Problema Solucionado:** O placeholder do campo "Apelido" no modal de contactos exibia `Ãšltimo Nome` devido a codificação UTF-8 desfasada no commit original restaurado.

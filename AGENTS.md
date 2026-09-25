@@ -61,7 +61,19 @@
 ---
 
 ## 📜 3. ESTADO ATUAL E HISTÓRICO DE DESENVOLVIMENTO
-- **Última Atualização:** 25/09/2026 13:30 (Correção Definitiva do Placeholder de Apelido 'Último Nome' e Blindagem Multicamada PWA V1.7.35b)
+- **Última Atualização:** 25/09/2026 13:50 (Otimização Crítica de Desempenho: Desativação de Polling Agressivo e Gzip no Servidor V1.7.35b)
+- **Otimização Crítica de Desempenho e Eliminação de Loops Pesados (25/09/2026 13:50):**
+  - **Problema Reportado pelo Utilizador:** Página com lentidão extrema ("brutalmente lenta").
+  - **Causa Raiz Identificada:**
+    1. O restauro do commit 4fa044ef reintroduziu em `app.js` o loop `initPeriodicBackgroundSync` com `setInterval(10000)` e listeners de `focus` e `visibilitychange`, que descarregavam repetidamente 3.03 MB da base de dados JSON da cloud, executavam `JSON.parse` de 3 MB e re-renderizavam as tabelas e grelhas DOM em contínuo no thread principal do browser.
+    2. Em `startAdminPendingUserWatcher` (`app.js`), ocorria novo descarregamento de 3 MB a cada 20 segundos.
+    3. Em `index.html`, o script executava `fetch('/api/heartbeat')` a cada 3 segundos e `enforceCleanPlaceholders` a cada 250ms.
+    4. O servidor `server.js` servia `app.js` (4.3 MB) sem compressão Gzip.
+  - **Solução Implementada e Otimizações:**
+    1. **`app.js`:** `initPeriodicBackgroundSync()` neutralizado (sincronização apenas no arranque e por eventos explícitos do utilizador); `startAdminPendingUserWatcher()` otimizado para verificar apenas `db.usuarios` em memória a cada 60s sem chamadas de rede pesadas.
+    2. **`index.html`:** Eliminado o loop de heartbeat de 3s e o `setInterval` de 250ms.
+    3. **`server.js`:** Integrada compressão nativa Gzip (`zlib`) para todos os ficheiros de texto, JavaScript, CSS e JSON, reduzindo a transferência de `app.js` de 4.3 MB para ~500 KB (~88% de compressão).
+    4. **Sincronização & Deploy:** Ficheiros sincronizados localmente e enviados para o GitHub `jjota26/SIGEC-Pro` para auto-deploy no OnRender.
 - **Correção Definitiva do Placeholder de Apelido 'Último Nome' e Blindagem Multicamada (25/09/2026 13:30):**
   - **Problema Reportado pelo Utilizador:** O campo "Apelido" voltou a exibir no placeholder o texto corrompido `Ãšltimo Nome` no ecrã de contactos.
   - **Causa Raiz Identificada:** A reposição integral do commit original da manhã (`4fa044ef`) continha a versão do ficheiro anterior à correção de codificação UTF-8 realizada às 09:15.

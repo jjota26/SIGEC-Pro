@@ -235,7 +235,6 @@
       }
       enforceCleanPlaceholders();
       document.addEventListener('DOMContentLoaded', enforceCleanPlaceholders);
-      setInterval(enforceCleanPlaceholders, 250);
     })();
   </script>
 
@@ -606,16 +605,7 @@
           } catch(e) {}
         }, 1200);
 
-        // Heartbeat contínuo do SIGEC-Pro: mantém o servidor local HTTP e SMTP sempre ativo enquanto a janela estiver aberta
-        (function() {
-          function sigecHeartbeat() {
-            if (window.location.protocol.indexOf('http') === 0) {
-              fetch('/api/heartbeat', { method: 'GET', cache: 'no-store' }).catch(function() {});
-            }
-          }
-          sigecHeartbeat();
-          setInterval(sigecHeartbeat, 3000);
-        })();
+
       </script>
         <form id="loginForm" onsubmit="event.preventDefault(); verifyLoginPin(); return false;">
           <div id="loginFormMode">

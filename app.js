@@ -6933,30 +6933,9 @@ async function autoSyncServerOnStartup() {
 window.autoSyncServerOnStartup = autoSyncServerOnStartup;
 
 function initPeriodicBackgroundSync() {
-  const SYNC_INTERVAL_MS = 10 * 1000; // Sincronização automática em nuvem a cada 10 segundos
-  setInterval(async () => {
-    try {
-      await loadDatabaseFromHuggingFace(true);
-    } catch (e) {}
-  }, SYNC_INTERVAL_MS);
-
-  // Sincronização imediata ao focar na janela do SIGEC-Pro
-  if (typeof window !== 'undefined' && window.addEventListener) {
-    window.addEventListener('focus', async () => {
-      try {
-        await loadDatabaseFromHuggingFace(true);
-      } catch (e) {}
-    });
-    document.addEventListener('visibilitychange', async () => {
-      if (document.visibilityState === 'visible') {
-        try {
-          await loadDatabaseFromHuggingFace(true);
-        } catch (e) {}
-      }
-    });
-  }
-
-  console.info('[SIGEC-Pro] Sincronização Cloud-First ativa em tempo real (20s + Foco).');
+  // Sincronização periódica contínua desativada para máxima velocidade e fluidez da aplicação web.
+  // A sincronização ocorre de forma eficiente no arranque (autoSyncServerOnStartup) e aquando de gravações ou ações explícitas do utilizador.
+  console.info('[SIGEC-Pro] Sincronização em segundo plano passiva (no arranque e por eventos).');
 }
 window.initPeriodicBackgroundSync = initPeriodicBackgroundSync;
 
@@ -28735,20 +28714,17 @@ function startAdminPendingUserWatcher() {
   let activeUser = (activeUserId && typeof db !== 'undefined' && Array.isArray(db.usuarios)) ? db.usuarios.find(u => u && u.id === activeUserId) : null;
   if (!activeUser || !hasConfigAccess(activeUser)) return;
 
-  // Verificação em tempo real a cada 20 segundos para o Administrador
-  _adminPendingWatcherInterval = setInterval(async () => {
+  // Verificação periódica de novos utilizadores pendentes na memória sem downloads pesados
+  _adminPendingWatcherInterval = setInterval(() => {
     try {
       const isStillAuth = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('sigec_pro_authenticated') === 'true';
       if (!isStillAuth) {
         clearInterval(_adminPendingWatcherInterval);
         return;
       }
-      if (typeof loadDatabaseFromHuggingFace === 'function') {
-        await loadDatabaseFromHuggingFace(true);
-      }
       checkPendingNewUsersNotification();
     } catch (e) {}
-  }, 20000);
+  }, 60000);
 }
 window.startAdminPendingUserWatcher = startAdminPendingUserWatcher;
 
