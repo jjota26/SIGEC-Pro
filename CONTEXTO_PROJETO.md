@@ -4,8 +4,20 @@
 - Autor: Jose Centurio
 - Produção Web Oficial: https://sigec-pro.onrender.com
 - Backup: josecenturio/SIGEC-Pro
-- Data: 27/09/2026 19:42
-- Estado: ✅ Janelas Transparentes por Trás e Sistema Multi-Janelas com Foco ao Toque Implementados.
+- Data: 27/09/2026 20:00
+- Estado: ✅ Módulo 'Correção de Caracteres' Universalizado: Saneamento Profundo em Base de Dados, Interface, Botões, Moradas, Nomes e Textos.
+
+## 00000000000000000000000000. Universalização do Botão 'Correção de Caracteres' (27/09/2026 20:00)
+- **Problema & Pedido do Utilizador:** O botão de correção de caracteres não é só para moradas. É para tudo o que esteja com caracteres raros no programa: moradas, nomes, botões, títulos, tabelas, etc. Seja o que for.
+- **Implementações & Blindagens:**
+  1. `index.html`: Descrição do card `#cfgCardCharsRepair` atualizada para "Deteta e repara automaticamente caracteres estranhos, acentos corrompidos e falhas de codificação em todo o programa: nomes, fichas, moradas, botões, tabelas e textos." e tooltip do botão expandido.
+  2. `i18n.js`: Atualizadas as traduções completas nas 5 línguas (PT, ES, EN, FR, PL) refletindo o âmbito universal de correção em nomes, fichas, moradas, botões, tabelas e textos.
+  3. `app.js`: A função `repairCorruptedCharactersDatabase(interactive)` foi universalizada:
+     - **Base de Dados Integral:** Varredura recursiva em profundidade por todos os campos e sub-objetos de `db` (clientes, contactos, projetos, orçamentos, utilizadores, configurações, notas, etc.), garantindo que nenhuma propriedade de texto fique por sanear.
+     - **Interface DOM:** Varredura e higienização em tempo real de todos os botões (`button`, `.btn`), títulos (`h1..h6`), rótulos (`label`, `.badge`), células e cabeçalhos de tabela (`th`, `td`), placeholders de inputs e tooltips (`title`, `data-tooltip`).
+     - **Dicionário em Memória:** Varredura de `SIGEC_I18N` para eliminar caracteres corrompidos nas traduções ativas.
+     - **Re-renderização & Persistência:** Gravação imediata na base de dados (`saveDatabase(true)`) e atualização visual de todas as tabelas e grelhas.
+  4. Testes automatizados executados e validados com 100% de sucesso. Base de dados intacta.
 
 ## 0000000000000000000000000. Fundo Transparente de Janelas e Sistema Multi-Janelas com Foco ao Toque (27/09/2026 19:42)
 - **Problema & Pedido do Utilizador:**

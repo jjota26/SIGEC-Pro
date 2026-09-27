@@ -20314,12 +20314,14 @@ function sanitizeUtf8String(str) {
     .replace(/â€™/g, '’').replace(/â€˜/g, '‘')
     .replace(/â€“/g, '–').replace(/â€”/g, '—')
     .replace(/Â°/g, '°')
+    .replace(/[\u00C2Â\u00C3\u201A]+[\u00BAº]/g, 'º')
+    .replace(/[\u00C2Â\u00C3\u201A]+[\u00AAª]/g, 'ª')
     .replace(/Âº/g, 'º').replace(/Âª/g, 'ª').replace(/Ã‚Âº/g, 'º');
 
   // 2. Normalização de numeração e ordinais (Rua, Piso, Andar, Lote, NIF)
   res = res
-    .replace(/\b[nN]\.[\uFFFD?ºª]*\s*(\d+)/g, 'n.º $1')
-    .replace(/(\d+)\s*[\uFFFD?ºª\.]*\s*(andar|piso|fase|gaveta|sala|bloco|lote)\b/gi, '$1.º $2')
+    .replace(/\b[nN]\.[\uFFFD?ºª\u00C2Â\s]*(\d+)/g, 'n.º $1')
+    .replace(/(\d+)\s*[\uFFFD?ºª\u00C2Â\.]*\s*(andar|piso|fase|gaveta|sala|bloco|lote)\b/gi, '$1.º $2')
     .replace(/(\d+)[\u00BAº](\d+)/g, '$1$2')
     .replace(/500001462\u00BA/g, '500001462')
     .replace(/2\u00BA134567\u00BA89/g, '213456789');
@@ -20559,72 +20561,175 @@ function sanitizeAllDatabaseEntities() {
 }
 window.sanitizeAllDatabaseEntities = sanitizeAllDatabaseEntities;
 
-// Função de Saneamento e Correção de Caracteres Raros na Base de Dados
+// Função Universal de Saneamento e Correção de Caracteres Raros em Todo o Programa (Base de Dados + Interface DOM + Botões)
 function repairCorruptedCharactersDatabase(interactive = true) {
-  if (typeof db === 'undefined' || !db) {
-    if (interactive && typeof showToast === 'function') showToast('Base de dados não disponível.', 'warning');
-    return { fieldsRepaired: 0, entitiesUpdated: 0 };
-  }
-
   let fieldsRepaired = 0;
   let entitiesUpdated = 0;
-  const stringKeys = [
-    'nome', 'apelido', 'empresa', 'cargo', 'direcao1', 'direcao2', 'localidade',
-    'tipoCliente', 'ministerio', 'secretariaEstado', 'departamento', 'comercial',
-    'comercialAtribuidoNome', 'notas', 'descricao', 'assunto', 'titulo', 'contribuinte',
-    'telefone', 'telemovel', 'email', 'website', 'pais', 'paisOrigem'
-  ];
+  let uiElementsRepaired = 0;
 
-  ['clientes', 'contactos', 'projetos', 'interacoes', 'interacoesProjetos', 'usuarios', 'orcamentos'].forEach(coll => {
-    if (Array.isArray(db[coll])) {
-      db[coll].forEach(item => {
-        if (item && typeof item === 'object') {
-          let itemChanged = false;
-          stringKeys.forEach(k => {
-            if (item[k] && typeof item[k] === 'string') {
-              const original = item[k];
-              const cleaned = sanitizeUtf8String(original);
-              if (cleaned !== original) {
-                item[k] = cleaned;
-                fieldsRepaired++;
-                itemChanged = true;
+  // 1. Saneamento Recursivo e Profundo de TODA a Base de Dados (qualquer campo, objeto ou array)
+  if (typeof db !== 'undefined' && db && typeof db === 'object') {
+    const visited = new Set();
+    function deepSanitizeObject(target) {
+      if (!target || typeof target !== 'object' || visited.has(target)) return false;
+      visited.add(target);
+      let changedInEntity = false;
+
+      if (Array.isArray(target)) {
+        for (let i = 0; i < target.length; i++) {
+          if (typeof target[i] === 'string') {
+            const original = target[i];
+            const cleaned = sanitizeUtf8String(original);
+            if (cleaned !== original) {
+              target[i] = cleaned;
+              fieldsRepaired++;
+              changedInEntity = true;
+            }
+          } else if (target[i] && typeof target[i] === 'object') {
+            if (deepSanitizeObject(target[i])) changedInEntity = true;
+          }
+        }
+      } else {
+        for (const k in target) {
+          if (!Object.prototype.hasOwnProperty.call(target, k)) continue;
+          if (typeof target[k] === 'string') {
+            if (k === 'passwordHash' || k === 'salt') continue;
+            const original = target[k];
+            const cleaned = sanitizeUtf8String(original);
+            if (cleaned !== original) {
+              target[k] = cleaned;
+              fieldsRepaired++;
+              changedInEntity = true;
+            }
+          } else if (target[k] && typeof target[k] === 'object') {
+            if (deepSanitizeObject(target[k])) changedInEntity = true;
+          }
+        }
+      }
+      return changedInEntity;
+    }
+
+    for (const collKey in db) {
+      if (!Object.prototype.hasOwnProperty.call(db, collKey)) continue;
+      const coll = db[collKey];
+      if (Array.isArray(coll)) {
+        coll.forEach(item => {
+          if (item && typeof item === 'object') {
+            if (deepSanitizeObject(item)) {
+              entitiesUpdated++;
+            }
+          }
+        });
+      } else if (coll && typeof coll === 'object') {
+        if (deepSanitizeObject(coll)) {
+          entitiesUpdated++;
+        }
+      }
+    }
+  }
+
+  // 2. Saneamento do Dicionário de Internacionalização em Memória (SIGEC_I18N)
+  try {
+    const i18nDict = (typeof SIGEC_I18N !== 'undefined') ? SIGEC_I18N : (window.SIGEC_I18N || null);
+    if (i18nDict && typeof i18nDict === 'object') {
+      for (const k in i18nDict) {
+        if (i18nDict[k] && typeof i18nDict[k] === 'object') {
+          for (const lang in i18nDict[k]) {
+            if (typeof i18nDict[k][lang] === 'string') {
+              const orig = i18nDict[k][lang];
+              const cleaned = sanitizeUtf8String(orig);
+              if (cleaned !== orig) {
+                i18nDict[k][lang] = cleaned;
+                uiElementsRepaired++;
               }
             }
-          });
-          if (itemChanged) {
-            entitiesUpdated++;
+          }
+        }
+      }
+    }
+  } catch (e) {}
+
+  // 3. Saneamento Direto de Todos os Elementos da Interface DOM (Botões, Títulos, Rótulos, Moradas, Placeholders e Textos)
+  try {
+    if (typeof document !== 'undefined' && document.body) {
+      // 3.1 Varrer nós de texto da interface em botões, títulos, rótulos, links e parágrafos
+      const uiElements = document.body.querySelectorAll(
+        'button, .btn, a, h1, h2, h3, h4, h5, h6, label, th, td, span, p, .badge, .form-label, option'
+      );
+      uiElements.forEach(el => {
+        if (el.tagName === 'SCRIPT' || el.tagName === 'STYLE') return;
+
+        Array.from(el.childNodes).forEach(node => {
+          if (node.nodeType === Node.TEXT_NODE && node.nodeValue && node.nodeValue.trim().length > 0) {
+            const orig = node.nodeValue;
+            const cleaned = sanitizeUtf8String(orig);
+            if (cleaned !== orig) {
+              node.nodeValue = cleaned;
+              uiElementsRepaired++;
+            }
+          }
+        });
+
+        if (el.title) {
+          const orig = el.title;
+          const cleaned = sanitizeUtf8String(orig);
+          if (cleaned !== orig) {
+            el.title = cleaned;
+            uiElementsRepaired++;
+          }
+        }
+      });
+
+      // 3.2 Varrer inputs e textareas com placeholders
+      const inputs = document.body.querySelectorAll('input[placeholder], textarea[placeholder]');
+      inputs.forEach(inp => {
+        if (inp.placeholder) {
+          const orig = inp.placeholder;
+          const cleaned = sanitizeUtf8String(orig);
+          if (cleaned !== orig) {
+            inp.placeholder = cleaned;
+            uiElementsRepaired++;
           }
         }
       });
     }
-  });
+  } catch (e) {
+    console.warn('[Character Repair] Erro ao varrer DOM:', e);
+  }
 
+  // 4. Gravação e Re-renderização
   if (fieldsRepaired > 0) {
     if (typeof saveDatabase === 'function') {
       saveDatabase(true);
     }
-    try {
-      if (typeof renderClientsTable === 'function') renderClientsTable();
-      if (typeof renderContactsTable === 'function') renderContactsTable();
-      if (typeof renderProjectsTable === 'function') renderProjectsTable();
-      if (typeof renderHomeDashboard === 'function') renderHomeDashboard();
-      if (typeof renderClientInteractionsGrid === 'function') renderClientInteractionsGrid();
-      if (typeof renderContactInteractionsGrid === 'function') renderContactInteractionsGrid();
-      if (typeof updateBadgeCounters === 'function') updateBadgeCounters();
-    } catch(e) {}
+  }
 
-    const msg = `Correção concluída: ${fieldsRepaired} campo(s) reparado(s) em ${entitiesUpdated} ficha(s) com sucesso!`;
+  try {
+    if (typeof renderClientsTable === 'function') renderClientsTable();
+    if (typeof renderContactsTable === 'function') renderContactsTable();
+    if (typeof renderProjectsTable === 'function') renderProjectsTable();
+    if (typeof renderHomeDashboard === 'function') renderHomeDashboard();
+    if (typeof renderClientInteractionsGrid === 'function') renderClientInteractionsGrid();
+    if (typeof renderContactInteractionsGrid === 'function') renderContactInteractionsGrid();
+    if (typeof updateBadgeCounters === 'function') updateBadgeCounters();
+    if (typeof applyLanguageToUI === 'function') applyLanguageToUI();
+  } catch(e) {}
+
+  // 5. Mensagem de Conclusão Transparente e Precisa
+  const totalRepairs = fieldsRepaired + uiElementsRepaired;
+  if (totalRepairs > 0) {
+    const msg = `Correção universal concluída: ${fieldsRepaired} campo(s) na base de dados e ${uiElementsRepaired} elemento(s) da interface reparados com sucesso em todo o programa!`;
     if (interactive && typeof showToast === 'function') {
       showToast(msg, 'success');
     }
     console.log('[Character Repair]', msg);
   } else {
     if (interactive && typeof showToast === 'function') {
-      showToast('Verificação concluída: Todas as fichas e moradas já se encontram limpas e perfeitamente codificadas.', 'info');
+      showToast('Verificação concluída: Todo o programa (nomes, fichas, moradas, botões, tabelas e textos) já se encontra limpo e perfeitamente codificado.', 'info');
     }
   }
 
-  return { fieldsRepaired, entitiesUpdated };
+  return { fieldsRepaired, entitiesUpdated, uiElementsRepaired };
 }
 window.repairCorruptedCharactersDatabase = repairCorruptedCharactersDatabase;
 

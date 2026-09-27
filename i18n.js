@@ -448,11 +448,11 @@ const SIGEC_I18N = {
     "Polski": "Uniwersalny"
   },
   cfg_card_chars_repair_desc: {
-    "Português": "Deteta e repara automaticamente caracteres estranhos, acentos corrompidos e falhas de codificação em todas as fichas e moradas.",
-    "Español": "Detecta y repara automáticamente caracteres extraños, acentos dañados y fallos de codificación en todas las fichas y direcciones.",
-    "English": "Automatically detects and repairs corrupted characters, broken accents, and encoding errors in all records and addresses.",
-    "Français": "Détecte et répare automatiquement les caractères corrompus, les accents endommagés et les erreurs d'encodage dans toutes les fiches.",
-    "Polski": "Automatycznie wykrywa i naprawia uszkodzone znaki, błędne akcenty i błędy kodowania we wszystkich kartach i adresach."
+    "Português": "Deteta e repara automaticamente caracteres estranhos, acentos corrompidos e falhas de codificação em todo o programa: nomes, fichas, moradas, botões, tabelas e textos.",
+    "Español": "Detecta y repara automáticamente caracteres extraños, acentos dañados y fallos de codificación en todo el programa: nombres, fichas, direcciones, botones, tablas y textos.",
+    "English": "Automatically detects and repairs corrupted characters, broken accents, and encoding glitches across the entire program: names, records, addresses, buttons, tables, and texts.",
+    "Français": "Détecte et répare automatiquement les caractères corrompus, accents endommagés et erreurs d'encodage dans tout le programme : noms, fiches, adresses, boutons, tableaux et textes.",
+    "Polski": "Automatycznie wykrywa i naprawia uszkodzone znaki, błędne akcenty i błędy kodowania w całym programie: nazwach, kartach, adresach, przyciskach, tabelach i tekstach."
   },
   cfg_btn_chars_repair: {
     "Português": "Corrigir Caracteres",

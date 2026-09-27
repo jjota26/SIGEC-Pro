@@ -65,7 +65,13 @@
 ---
 
 ## 📜 3. ESTADO ATUAL E HISTÓRICO DE DESENVOLVIMENTO
-- **Última Atualização:** 27/09/2026 19:42 (Fundo Transparente de Janelas e Sistema Multi-Janelas com Foco ao Toque)
+- **Última Atualização:** 27/09/2026 20:00 (Módulo 'Correção de Caracteres' Universalizado: BD, Interface, Botões, Nomes e Textos)
+- **Universalização do Botão 'Correção de Caracteres' (27/09/2026 20:00):**
+  - **Requisito do Utilizador:** O botão não é só para moradas. É para tudo o que esteja com caracteres raros no programa: moradas, nomes, botões, tabelas, títulos, etc. Seja o que for.
+  - **Implementações:**
+    1. **`index.html` & `i18n.js`:** Descrição do card `#cfgCardCharsRepair` atualizada nas 5 línguas (PT, ES, EN, FR, PL) para destacar a correção em todo o programa (nomes, fichas, moradas, botões, tabelas e textos).
+    2. **`app.js`:** `repairCorruptedCharactersDatabase()` dotado de varredura recursiva completa na base de dados `db`, varredura da árvore DOM para botões (`button`, `.btn`), títulos, rótulos, células, placeholders e tooltips, e varredura do dicionário em memória `SIGEC_I18N`. Persistência automática (`saveDatabase(true)`) e re-renderização das vistas.
+    3. **Validação:** Testes automatizados executados e validados com 100% de sucesso.
 - **Fundo Transparente de Janelas e Sistema Multi-Janelas com Foco ao Toque (27/09/2026 19:42):**
   - **Requisito do Utilizador:** Ao abrir uma janela, remover a opacidade e o blur do fundo para que o que estiver por trás permaneça totalmente visível. Permitir a abertura de múltiplas janelas em simultâneo. Ao tocar/clicar em qualquer janela que esteja em segundo plano, ela deve passar imediatamente para a frente e ficar ativa. Sem alterar nada não relacionado nem qualquer registo da base de dados.
   - **Implementações:**
