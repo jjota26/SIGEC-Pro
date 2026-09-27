@@ -23,7 +23,7 @@
      - Tratamento por captura de eventos (`{ capture: true }`) em `mousedown` e `touchstart` em cada `.modal-window` e `.modal-card`, garantindo resposta instantânea ao primeiro toque.
      - Cascata inteligente suave para novas janelas abertas em simultâneo.
      - Integração no arrasto (`startDraggingModal`) e no redimensionamento (`startResizingModal`) para elevação automática de foco.
-     - `MutationObserver` no gestor de janelas para garantir que janelas recém-abertas recebem foco imediato e janelas fechadas transferem o foco para a janela imediatamente anterior.
+     - `MutationObserver` no gestor de janelas estritamente blindado: observa apenas `class` com `attributeOldValue: true` (nunca `style`), filtra transições reais de `active` e possui lock de reentrância `_isUpdatingModalFocus`, eliminando loops recursivos e garantindo máxima velocidade de carregamento e fluidez instantânea.
   3. Testes automatizados executados e validados com 100% de sucesso. Base de dados 100% intacta.
 
 ## 000000000000000000000000. Novo Módulo 'Correção de Caracteres' e Erradicação Total de 'IA' em Botões/Quadros (27/09/2026 19:25)

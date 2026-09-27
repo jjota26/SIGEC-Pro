@@ -19353,62 +19353,70 @@ function saveTransferContact(e) {
 // ==========================================
 
 let currentGlobalModalZIndex = 1000;
+window._isUpdatingModalFocus = false;
 
 function bringModalToFront(modalEl) {
-  if (!modalEl) return;
+  if (!modalEl || window._isUpdatingModalFocus) return;
   const overlay = (modalEl.classList && modalEl.classList.contains('modal-overlay'))
     ? modalEl
     : modalEl.closest('.modal-overlay');
   if (!overlay || overlay.id === 'closeAppOverlay') return;
 
-  // Encontrar o maior z-index atual entre as janelas abertas
+  const activeOverlays = Array.from(document.querySelectorAll('.modal-overlay.active'))
+    .filter(ov => ov.id !== 'closeAppOverlay' && ov.style.display !== 'none');
+  if (activeOverlays.length === 0) return;
+
+  // Encontrar o maior z-index atual entre as outras janelas abertas
   let maxZ = 1000;
-  document.querySelectorAll('.modal-overlay.active').forEach(ov => {
-    if (ov !== overlay && ov.id !== 'closeAppOverlay') {
+  activeOverlays.forEach(ov => {
+    if (ov !== overlay) {
       const z = parseInt(ov.style.zIndex || window.getComputedStyle(ov).zIndex, 10);
       if (!isNaN(z) && z > maxZ && z < 900000) maxZ = z;
     }
   });
 
-  currentGlobalModalZIndex = Math.max(currentGlobalModalZIndex + 2, maxZ + 2);
-  overlay.style.zIndex = currentGlobalModalZIndex;
+  const myCurrentZ = parseInt(overlay.style.zIndex || window.getComputedStyle(overlay).zIndex, 10) || 1000;
+  const win = overlay.querySelector('.modal-window, .modal-card');
 
-  // Se outras janelas já estiverem abertas e esta não tiver posição fixa, aplicar cascata subtil
-  const activeOverlays = Array.from(document.querySelectorAll('.modal-overlay.active'))
-    .filter(ov => ov !== overlay && ov.id !== 'closeAppOverlay' && ov.style.display !== 'none');
-  if (activeOverlays.length > 0) {
-    const win = overlay.querySelector('.modal-window, .modal-card');
-    if (win && (!win.style.left || win.style.left === '') && !win.dataset.cascadeOffsetApplied) {
+  // Se já for a única janela ou já tiver o maior z-index e foco ativo, evita computação redundante
+  if (myCurrentZ > maxZ && win && win.classList.contains('modal-window-active') && activeOverlays.length === 1) {
+    return;
+  }
+
+  window._isUpdatingModalFocus = true;
+  try {
+    currentGlobalModalZIndex = Math.max(currentGlobalModalZIndex + 2, maxZ + 2);
+    overlay.style.zIndex = currentGlobalModalZIndex;
+
+    // Se outras janelas já estiverem abertas e esta não tiver posição fixa, aplicar cascata subtil
+    if (activeOverlays.length > 1 && win && (!win.style.left || win.style.left === '') && !win.dataset.cascadeOffsetApplied) {
       win.dataset.cascadeOffsetApplied = 'true';
       const offsetIndex = (activeOverlays.length % 5);
       if (offsetIndex > 0) {
         win.style.transform = `translate(${offsetIndex * 26}px, ${offsetIndex * 26}px)`;
       }
     }
-  }
 
-  // Atualizar classes visuais de janela ativa vs inativa em segundo plano
-  document.querySelectorAll('.modal-overlay.active').forEach(ov => {
-    if (ov.id === 'closeAppOverlay') return;
-    const win = ov.querySelector('.modal-window, .modal-card');
-    if (ov === overlay) {
-      ov.classList.add('modal-focused');
-      if (win) {
-        win.classList.add('modal-window-active');
-        win.classList.remove('modal-window-inactive');
+    // Atualizar classes visuais de janela ativa vs inativa em segundo plano (apenas nos elementos da janela)
+    activeOverlays.forEach(ov => {
+      const w = ov.querySelector('.modal-window, .modal-card');
+      if (!w) return;
+      if (ov === overlay) {
+        if (!w.classList.contains('modal-window-active')) w.classList.add('modal-window-active');
+        w.classList.remove('modal-window-inactive');
+      } else {
+        w.classList.remove('modal-window-active');
+        if (!w.classList.contains('modal-window-inactive')) w.classList.add('modal-window-inactive');
       }
-    } else {
-      ov.classList.remove('modal-focused');
-      if (win) {
-        win.classList.remove('modal-window-active');
-        win.classList.add('modal-window-inactive');
-      }
-    }
-  });
+    });
+  } finally {
+    window._isUpdatingModalFocus = false;
+  }
 }
 window.bringModalToFront = bringModalToFront;
 
 function updateTopmostModalFocus() {
+  if (window._isUpdatingModalFocus) return;
   const activeOverlays = Array.from(document.querySelectorAll('.modal-overlay.active'))
     .filter(ov => ov.id !== 'closeAppOverlay' && ov.style.display !== 'none');
   
@@ -19470,27 +19478,30 @@ function setupModalWindowManager() {
   window._modalWmObserverAttached = true;
 
   const observer = new MutationObserver((mutations) => {
-    mutations.forEach(mutation => {
+    if (window._isUpdatingModalFocus) return;
+    for (const mutation of mutations) {
       const target = mutation.target;
-      if (!target || !target.classList) return;
-      if (target.classList.contains('modal-overlay') && target.id !== 'closeAppOverlay') {
-        const isNowActive = target.classList.contains('active') && target.style.display !== 'none';
+      if (!target || !target.classList || target.id === 'closeAppOverlay') continue;
+      const oldClass = mutation.oldValue || '';
+      const wasActive = oldClass.includes('active');
+      const isNowActive = target.classList.contains('active') && target.style.display !== 'none';
+      
+      // Dispara APENAS quando a classe 'active' muda de estado (abrir ou fechar)
+      if (wasActive !== isNowActive) {
         if (isNowActive) {
           bringModalToFront(target);
         } else {
-          setTimeout(updateTopmostModalFocus, 30);
+          updateTopmostModalFocus();
         }
       }
-    });
+    }
   });
 
   document.querySelectorAll('.modal-overlay').forEach(ov => {
     if (ov.id !== 'closeAppOverlay') {
-      observer.observe(ov, { attributes: true, attributeFilter: ['class', 'style'] });
+      observer.observe(ov, { attributes: true, attributeFilter: ['class'], attributeOldValue: true });
     }
   });
-
-  updateTopmostModalFocus();
 }
 window.setupModalWindowManager = setupModalWindowManager;
 
