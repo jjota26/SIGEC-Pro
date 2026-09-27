@@ -20144,7 +20144,7 @@ function sanitizeUtf8String(str) {
     }
   } catch(e) {}
   
-  // 1. Descodificação direta de artefactos Mojibake UTF-8
+  // 1. Descodificação direta de artefactos Mojibake UTF-8 (Multilíngue: PT, ES, FR, PL, DE, IT)
   res = res
     .replace(/Jos[ÃÂ][©\u00A9]/g, 'José')
     .replace(/Cent[ÃÂ][º\u00BA]rio/g, 'Centúrio')
@@ -20155,39 +20155,47 @@ function sanitizeUtf8String(str) {
     .replace(/TransferÃªncia/g, 'Transferência')
     .replace(/orÃ§amentos/g, 'orçamentos')
     .replace(/interaÃ§Ãµes/g, 'interações')
-    .replace(/Ã¡/g, 'á').replace(/Ã /g, 'à').replace(/Ã£/g, 'ã').replace(/Ã¢/g, 'â')
-    .replace(/Ã©/g, 'é').replace(/Ãª/g, 'ê')
-    .replace(/Ã­/g, 'í')
-    .replace(/Ã³/g, 'ó').replace(/Ãµ/g, 'õ').replace(/Ã´/g, 'ô')
-    .replace(/Ãº/g, 'ú').replace(/Ã§/g, 'ç').replace(/Ã±/g, 'ñ')
-    .replace(/Ã /g, 'Á').replace(/Ã€/g, 'À').replace(/Ãƒ/g, 'Ã').replace(/Ã‚/g, 'Â')
-    .replace(/Ã‰/g, 'É').replace(/ÃŠ/g, 'Ê').replace(/Ã /g, 'Í')
-    .replace(/Ã“/g, 'Ó').replace(/Ã•/g, 'Õ').replace(/Ã”/g, 'Ô').replace(/Ãš/g, 'Ú').replace(/Ã‡/g, 'Ç')
+    // Vogais e consoantes minúsculas (Português, Espanhol, Francês, Alemão, Italiano)
+    .replace(/Ã¡/g, 'á').replace(/Ã /g, 'à').replace(/Ã£/g, 'ã').replace(/Ã¢/g, 'â').replace(/Ã¤/g, 'ä').replace(/Ã¥/g, 'å')
+    .replace(/Ã©/g, 'é').replace(/Ã¨/g, 'è').replace(/Ãª/g, 'ê').replace(/Ã«/g, 'ë')
+    .replace(/Ã­/g, 'í').replace(/Ã¬/g, 'ì').replace(/Ã®/g, 'î').replace(/Ã¯/g, 'ï')
+    .replace(/Ã³/g, 'ó').replace(/Ã²/g, 'ò').replace(/Ãµ/g, 'õ').replace(/Ã´/g, 'ô').replace(/Ã¶/g, 'ö')
+    .replace(/Ãº/g, 'ú').replace(/Ã¹/g, 'ù').replace(/Ã»/g, 'û').replace(/Ã¼/g, 'ü')
+    .replace(/Ã§/g, 'ç').replace(/Ã±/g, 'ñ').replace(/ÃŸ/g, 'ß')
+    // Caracteres ligados franceses
+    .replace(/Å“/g, 'œ').replace(/Ã¦/g, 'æ').replace(/Å’/g, 'Œ').replace(/Ã†/g, 'Æ')
+    // Vogais e consoantes maiúsculas (PT, ES, FR, DE, IT)
+    .replace(/Ã /g, 'Á').replace(/Ã€/g, 'À').replace(/Ãƒ/g, 'Ã').replace(/Ã‚/g, 'Â').replace(/Ã„/g, 'Ä').replace(/Ã…/g, 'Å')
+    .replace(/Ã‰/g, 'É').replace(/Ãˆ/g, 'È').replace(/ÃŠ/g, 'Ê').replace(/Ã‹/g, 'Ë')
+    .replace(/Ã /g, 'Í').replace(/ÃŒ/g, 'Ì').replace(/ÃŽ/g, 'Î').replace(/Ã /g, 'Ï')
+    .replace(/Ã“/g, 'Ó').replace(/Ã’/g, 'Ò').replace(/Ã•/g, 'Õ').replace(/Ã”/g, 'Ô').replace(/Ã–/g, 'Ö')
+    .replace(/Ãš/g, 'Ú').replace(/Ã™/g, 'Ù').replace(/Ã›/g, 'Û').replace(/Ãœ/g, 'Ü')
+    .replace(/Ã‡/g, 'Ç').replace(/Ã‘/g, 'Ñ')
+    // Polaco (PL) - letras específicas minúsculas e maiúsculas
+    .replace(/Ä…/g, 'ą').replace(/Ä„/g, 'Ą')
+    .replace(/Ä‡/g, 'ć').replace(/Ä†/g, 'Ć')
+    .replace(/Ä™/g, 'ę').replace(/Ä˜/g, 'Ę')
+    .replace(/Å‚/g, 'ł').replace(/Å /g, 'Ł')
+    .replace(/Å„/g, 'ń').replace(/Åƒ/g, 'Ń')
+    .replace(/Å›/g, 'ś').replace(/Åš/g, 'Ś')
+    .replace(/Åº/g, 'ź').replace(/Å¹/g, 'Ź')
+    .replace(/Å¼/g, 'ż').replace(/Å»/g, 'Ż')
+    // Pontuação, símbolos tipográficos e moedas europeias
+    .replace(/â‚¬/g, '€').replace(/Â¿/g, '¿').replace(/Â¡/g, '¡')
+    .replace(/Â«/g, '«').replace(/Â»/g, '»')
+    .replace(/â€œ/g, '“').replace(/â€/g, '”')
+    .replace(/â€™/g, '’').replace(/â€˜/g, '‘')
+    .replace(/â€“/g, '–').replace(/â€”/g, '—')
+    .replace(/Â°/g, '°')
     .replace(/Âº/g, 'º').replace(/Âª/g, 'ª').replace(/Ã‚Âº/g, 'º');
 
   // 2. Normalização de numeração e ordinais (Rua, Piso, Andar, Lote, NIF)
   res = res
     .replace(/\b[nN]\.[\uFFFD?ºª]*\s*(\d+)/g, 'n.º $1')
-    .replace(/(\d+)\s*[\uFFFD?]\s*(andar|piso|fase|gaveta|sala|bloco|lote)/gi, '$1.º $2')
+    .replace(/(\d+)\s*[\uFFFD?ºª\.]*\s*(andar|piso|fase|gaveta|sala|bloco|lote)\b/gi, '$1.º $2')
     .replace(/(\d+)[\u00BAº](\d+)/g, '$1$2')
     .replace(/500001462\u00BA/g, '500001462')
     .replace(/2\u00BA134567\u00BA89/g, '213456789');
-
-  // 3. Heurística algorítmica para sufixos corrompidos de substantivos portugueses (-ção e -ções)
-  res = res
-    .replace(/([a-zA-Z]{1,})[\uFFFD?]{1,4}es\b/gi, (m, root) => {
-      const isCap = root[0] === root[0].toUpperCase();
-      const fixed = root + 'ções';
-      return isCap ? fixed.charAt(0).toUpperCase() + fixed.slice(1) : fixed;
-    })
-    .replace(/([a-zA-Z]{1,})[\uFFFD?]{1,2}o\b/gi, (m, root) => {
-      const isCap = root[0] === root[0].toUpperCase();
-      let fixed = root + 'ção';
-      if (/([sS]ess|[mM]iss|[vV]is|[cC]omiss|[eE]miss|[pP]ermiss|[dD]ecis|[eE]xtens|[eE]xpans|[rR]euni|[oO]pini|[vV]ers|[pP]adr|[cC]art|[bB]ot|[rR]az|[cC]oraz|[cC]apit|[cC]idad|[iI]rm|[sS]er|[eE]st|[tT]er|[fF]ar|[dD]ir)$/.test(root)) {
-        return m;
-      }
-      return isCap ? fixed.charAt(0).toUpperCase() + fixed.slice(1) : fixed;
-    });
 
   // 4. Dicionário de saneamento de palavras com caracteres corrompidos (\uFFFD e ?)
   const wordFixes = [
@@ -20325,7 +20333,41 @@ function sanitizeUtf8String(str) {
     [/cora[\uFFFD?]o/gi, 'coração'],
     [/padr[\uFFFD?]o/gi, 'padrão'],
     [/cart[\uFFFD?]o/gi, 'cartão'],
-    [/bot[\uFFFD?]o/gi, 'botão']
+    [/bot[\uFFFD?]o/gi, 'botão'],
+
+    // Espanhol (ES)
+    [/espa[\uFFFD?]ol/gi, 'español'],
+    [/espa[\uFFFD?]ola/gi, 'española'],
+    [/espa[\uFFFD?]oles/gi, 'españoles'],
+    [/a[\uFFFD?]o\b/gi, 'año'],
+    [/a[\uFFFD?]os\b/gi, 'años'],
+    [/compa[\uFFFD?]{1,2}[\u00EDi\uFFFD?]a/gi, 'compañía'],
+    [/dise[\uFFFD?]o/gi, 'diseño'],
+    [/peque[\uFFFD?]o/gi, 'pequeño'],
+    [/peque[\uFFFD?]a/gi, 'pequeña'],
+    [/se[\uFFFD?]or\b/gi, 'señor'],
+    [/se[\uFFFD?]ora\b/gi, 'señora'],
+
+    // Francês (FR)
+    [/soci[\uFFFD?]t[\uFFFD?]/gi, 'société'],
+    [/activit[\uFFFD?]/gi, 'activité'],
+    [/qualit[\uFFFD?]/gi, 'qualité'],
+    [/g[\uFFFD?]n[\uFFFD?]ral/gi, 'général'],
+    [/syst[\uFFFD?]me/gi, 'système'],
+    [/fran[\uFFFD?]ais/gi, 'français'],
+    [/fran[\uFFFD?]aise/gi, 'française'],
+    [/b[\uFFFD?]timent/gi, 'bâtiment'],
+    [/d[\uFFFD?]j[\uFFFD?]/gi, 'déjà'],
+    [/s[\uFFFD?]curit[\uFFFD?]/gi, 'sécurité'],
+
+    // Polaco (PL)
+    [/Krak[\uFFFD?]w/gi, 'Kraków'],
+    [/Pozna[\uFFFD?]/gi, 'Poznań'],
+    [/Wroc[\uFFFD?]aw/gi, 'Wrocław'],
+    [/Gda[\uFFFD?]sk/gi, 'Gdańsk'],
+    [/sp[\uFFFD?]{1,2}ka/gi, 'spółka'],
+    [/przedsi[\uFFFD?]biorstwo/gi, 'przedsiębiorstwo'],
+    [/wojew[\uFFFD?]dztwo/gi, 'województwo']
   ];
 
   wordFixes.forEach(([pattern, repl]) => {
@@ -20336,6 +20378,35 @@ function sanitizeUtf8String(str) {
       return repl.charAt(0).toLowerCase() + repl.slice(1);
     });
   });
+
+  // 4. Heurística algorítmica para sufixos corrompidos de substantivos portugueses (-ção e -ções)
+  res = res
+    .replace(/([a-zA-Z]{1,})[\uFFFD?]{1,4}es\b/gi, (m, root) => {
+      const isCap = root[0] === root[0].toUpperCase();
+      const fixed = root + 'ções';
+      return isCap ? fixed.charAt(0).toUpperCase() + fixed.slice(1) : fixed;
+    })
+    .replace(/([a-zA-Z]{1,})[\uFFFD?]{1,2}o\b/gi, (m, root) => {
+      const isCap = root[0] === root[0].toUpperCase();
+      let fixed = root + 'ção';
+      if (/([sS]ess|[mM]iss|[vV]is|[cC]omiss|[eE]miss|[pP]ermiss|[dD]ecis|[eE]xtens|[eE]xpans|[rR]euni|[oO]pini|[vV]ers|[pP]adr|[cC]art|[bB]ot|[rR]az|[cC]oraz|[cC]apit|[cC]idad|[iI]rm|[sS]er|[eE]st|[tT]er|[fF]ar|[dD]ir)$/.test(root)) {
+        return m;
+      }
+      return isCap ? fixed.charAt(0).toUpperCase() + fixed.slice(1) : fixed;
+    });
+
+  // Heurística para sufixos corrompidos em Espanhol (-ción, -ciones, -sión, -siones, -tión, -tiones, -xión, -xiones)
+  res = res
+    .replace(/([a-zA-Z]{1,})(ci|si|xi|ti)[\uFFFD?]{1,4}nes\b/gi, (m, root, typ) => {
+      const isCap = root[0] === root[0].toUpperCase();
+      const fixed = root + typ + 'ones';
+      return isCap ? fixed.charAt(0).toUpperCase() + fixed.slice(1) : fixed;
+    })
+    .replace(/([a-zA-Z]{1,})(ci|si|xi|ti)[\uFFFD?]n\b/gi, (m, root, typ) => {
+      const isCap = root[0] === root[0].toUpperCase();
+      const fixed = root + typ + 'ón';
+      return isCap ? fixed.charAt(0).toUpperCase() + fixed.slice(1) : fixed;
+    });
 
   return res;
 }

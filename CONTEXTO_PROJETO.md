@@ -13,7 +13,13 @@
   1. `index.html`: Inserido o novo card 'Correção de Caracteres' (`#cfgCardCharsRepair`) exatamente entre a janela de 'Normalização de Fichas' e 'Atualizações Nuvem'. Grelha de configuração ajustada para 4 colunas responsivas (`minmax(230px, 1fr)`).
   2. Todas as referências textuais a "IA", "AI" ou "Inteligência Artificial" foram totalmente expurgadas de cartões, badges e botões em todo o sistema (`Normalização de Fichas`, badge `Automático`, botão `Normalizar Fichas`, etc.).
   3. `i18n.js`: Adicionadas as traduções completas nas 5 línguas (PT, ES, EN, FR, PL) para o novo card e botão, e removidas menções a IA em todas as línguas.
-  4. `app.js`: Implementada a função `repairCorruptedCharactersDatabase(interactive)` e expandida a heurística inteligente `sanitizeUtf8String` (Mojibake, ordinais de moradas e NIFs, heurística de sufixos portugueses como `-ção`, `-ções`, adjetivos em `-vel`/`-veis`, e dicionário fonético com preservação de caixa alta/baixa).
+  4. `app.js`: Implementada a função `repairCorruptedCharactersDatabase(interactive)` e expandida a heurística inteligente `sanitizeUtf8String` com cobertura multilíngue integral:
+     - **Português (PT):** Mojibake, sufixos `-ção`/`-ções`, adjetivos `-vel`/`-veis`, nomes próprios e vocabulário com acentuação.
+     - **Espanhol (ES):** Letras `ñ`, `Ñ`, `á`, `é`, `í`, `ó`, `ú`, `ü`, `Ü`, pontuação `¿`, `¡`, sufixos `-ción`/`-ciones`, `-sión`/`-siones`, `-tión`, `-xión` e vocabulário comum (`español`, `año`, `compañía`, `diseño`, `pequeño`, `señor`).
+     - **Francês (FR):** `é`, `è`, `ê`, `ë`, `à`, `â`, `ç`, `î`, `ï`, `ô`, `ù`, `û`, `ü`, ligados `œ`, `æ`, maiúsculas e termos corporativos (`société`, `activité`, `système`, `bâtiment`, etc.).
+     - **Polaco (PL):** Caracteres específicos `ą`, `ć`, `ę`, `ł`, `ń`, `ó`, `ś`, `ź`, `ż` e maiúsculas `Ą`, `Ć`, `Ę`, `Ł`, `Ń`, `Ó`, `Ś`, `Ź`, `Ż`, termos empresariais e cidades (`Kraków`, `Poznań`, `Wrocław`, `Gdańsk`, `spółka`, etc.).
+     - **Alemão (DE) / Italiano (IT):** Diacríticos `ä`, `ö`, `ü`, `ß` e acentos graves/agudos.
+     - **Tipografia e Moedas:** Símbolo do Euro `€`, aspas curvas `“`, `”`, `«`, `»`, apóstrofos `’`, travessões `–`, `—`, graus `°` e ordinais em moradas (`n.º 10`, `2.º andar`).
   5. Testes automatizados executados e validados a 100% de sucesso.
 
 ## 00000000000000000000000. Otimização Crítica de Desempenho e Eliminação de Loops Pesados (25/09/2026 13:50)
