@@ -19349,8 +19349,81 @@ function saveTransferContact(e) {
 }
 
 // ==========================================
-// 19. REDIMENSIONAMENTO DE JANELAS POP-UP COM O RATO
+// 19. SISTEMA MULTI-JANELAS FLUTUANTES E REDIMENSIONAMENTO COM O RATO
 // ==========================================
+
+let currentGlobalModalZIndex = 1000;
+
+function bringModalToFront(modalEl) {
+  if (!modalEl) return;
+  const overlay = (modalEl.classList && modalEl.classList.contains('modal-overlay'))
+    ? modalEl
+    : modalEl.closest('.modal-overlay');
+  if (!overlay || overlay.id === 'closeAppOverlay') return;
+
+  // Encontrar o maior z-index atual entre as janelas abertas
+  let maxZ = 1000;
+  document.querySelectorAll('.modal-overlay.active').forEach(ov => {
+    if (ov !== overlay && ov.id !== 'closeAppOverlay') {
+      const z = parseInt(ov.style.zIndex || window.getComputedStyle(ov).zIndex, 10);
+      if (!isNaN(z) && z > maxZ && z < 900000) maxZ = z;
+    }
+  });
+
+  currentGlobalModalZIndex = Math.max(currentGlobalModalZIndex + 2, maxZ + 2);
+  overlay.style.zIndex = currentGlobalModalZIndex;
+
+  // Se outras janelas já estiverem abertas e esta não tiver posição fixa, aplicar cascata subtil
+  const activeOverlays = Array.from(document.querySelectorAll('.modal-overlay.active'))
+    .filter(ov => ov !== overlay && ov.id !== 'closeAppOverlay' && ov.style.display !== 'none');
+  if (activeOverlays.length > 0) {
+    const win = overlay.querySelector('.modal-window, .modal-card');
+    if (win && (!win.style.left || win.style.left === '') && !win.dataset.cascadeOffsetApplied) {
+      win.dataset.cascadeOffsetApplied = 'true';
+      const offsetIndex = (activeOverlays.length % 5);
+      if (offsetIndex > 0) {
+        win.style.transform = `translate(${offsetIndex * 26}px, ${offsetIndex * 26}px)`;
+      }
+    }
+  }
+
+  // Atualizar classes visuais de janela ativa vs inativa em segundo plano
+  document.querySelectorAll('.modal-overlay.active').forEach(ov => {
+    if (ov.id === 'closeAppOverlay') return;
+    const win = ov.querySelector('.modal-window, .modal-card');
+    if (ov === overlay) {
+      ov.classList.add('modal-focused');
+      if (win) {
+        win.classList.add('modal-window-active');
+        win.classList.remove('modal-window-inactive');
+      }
+    } else {
+      ov.classList.remove('modal-focused');
+      if (win) {
+        win.classList.remove('modal-window-active');
+        win.classList.add('modal-window-inactive');
+      }
+    }
+  });
+}
+window.bringModalToFront = bringModalToFront;
+
+function updateTopmostModalFocus() {
+  const activeOverlays = Array.from(document.querySelectorAll('.modal-overlay.active'))
+    .filter(ov => ov.id !== 'closeAppOverlay' && ov.style.display !== 'none');
+  
+  if (activeOverlays.length === 0) return;
+
+  activeOverlays.sort((a, b) => {
+    const za = parseInt(a.style.zIndex || window.getComputedStyle(a).zIndex, 10) || 0;
+    const zb = parseInt(b.style.zIndex || window.getComputedStyle(b).zIndex, 10) || 0;
+    return za - zb;
+  });
+
+  const topmost = activeOverlays[activeOverlays.length - 1];
+  bringModalToFront(topmost);
+}
+window.updateTopmostModalFocus = updateTopmostModalFocus;
 
 function initModalResizing() {
   const modalWindows = document.querySelectorAll('.modal-window, .modal-card');
@@ -19376,9 +19449,50 @@ function initModalResizing() {
       header.style.cursor = 'grab';
       header.addEventListener('mousedown', (e) => startDraggingModal(e, win, header));
     }
+
+    // 3. Sistema Multi-Janelas: Ao Tocar ou Clicar na Janela, Passa Automaticamente para a Frente
+    if (!win.dataset.wmAttached) {
+      win.dataset.wmAttached = 'true';
+      const onActivateWindow = () => {
+        bringModalToFront(win);
+      };
+      win.addEventListener('mousedown', onActivateWindow, true);
+      win.addEventListener('touchstart', onActivateWindow, { capture: true, passive: true });
+    }
   });
+
+  setupModalWindowManager();
 }
 window.initModalResizing = initModalResizing;
+
+function setupModalWindowManager() {
+  if (window._modalWmObserverAttached) return;
+  window._modalWmObserverAttached = true;
+
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach(mutation => {
+      const target = mutation.target;
+      if (!target || !target.classList) return;
+      if (target.classList.contains('modal-overlay') && target.id !== 'closeAppOverlay') {
+        const isNowActive = target.classList.contains('active') && target.style.display !== 'none';
+        if (isNowActive) {
+          bringModalToFront(target);
+        } else {
+          setTimeout(updateTopmostModalFocus, 30);
+        }
+      }
+    });
+  });
+
+  document.querySelectorAll('.modal-overlay').forEach(ov => {
+    if (ov.id !== 'closeAppOverlay') {
+      observer.observe(ov, { attributes: true, attributeFilter: ['class', 'style'] });
+    }
+  });
+
+  updateTopmostModalFocus();
+}
+window.setupModalWindowManager = setupModalWindowManager;
 
 function startDraggingModal(e, win, header) {
   // Ignorar cliques em botões, links, inputs, selects, textareas e ícones de ação
@@ -19387,6 +19501,7 @@ function startDraggingModal(e, win, header) {
   }
 
   e.preventDefault();
+  bringModalToFront(win);
 
   const startMouseX = e.clientX;
   const startMouseY = e.clientY;
@@ -19441,6 +19556,7 @@ window.startDraggingModal = startDraggingModal;
 function startResizingModal(e, win, handle) {
   e.preventDefault();
   e.stopPropagation();
+  bringModalToFront(win);
 
   const startX = e.clientX;
   const startY = e.clientY;

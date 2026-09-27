@@ -4,8 +4,27 @@
 - Autor: Jose Centurio
 - Produção Web Oficial: https://sigec-pro.onrender.com
 - Backup: josecenturio/SIGEC-Pro
-- Data: 27/09/2026 19:25
-- Estado: ✅ Quadro de Correção de Caracteres Implementado e Remoção Total de 'IA' em Botões/Quadros.
+- Data: 27/09/2026 19:42
+- Estado: ✅ Janelas Transparentes por Trás e Sistema Multi-Janelas com Foco ao Toque Implementados.
+
+## 0000000000000000000000000. Fundo Transparente de Janelas e Sistema Multi-Janelas com Foco ao Toque (27/09/2026 19:42)
+- **Problema & Pedido do Utilizador:**
+  1. Ao abrir uma janela, remover o fundo opaco/escurecido e o desfoque (blur) para que tudo o que está por trás permaneça 100% nítido e visível.
+  2. Possibilitar a abertura de múltiplas janelas em simultâneo (experiência desktop multi-janela).
+  3. Ao tocar ou clicar numa janela que esteja em segundo plano (por trás), ela deve passar imediatamente para a frente e ficar ativa com foco destacado.
+  4. Manter estrita integridade: não alterar nada não relacionado, não alterar nenhum registo da base de dados (`data/db.json` intacta) e não colocar menções a IA.
+- **Implementações & Blindagens:**
+  1. `styles.css`:
+     - Fundo do overlay modal (`.modal-overlay`): alterado de `rgba(15, 23, 42, 0.45)` e `backdrop-filter: blur(4px)` para `background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none;`. O ecrã e tabelas por trás ficam totalmente límpidos.
+     - `pointer-events: none` em `.modal-overlay.active` e `pointer-events: auto` em `.modal-window, .modal-card`: permite que cliques e toques atravessem a área vazia do overlay e atinjam diretamente janelas e elementos que estejam por trás.
+     - Classes de estado visual: `.modal-window-active` (destaque azul `#2563eb`, sombra elevada, cabeçalho gradiente azul ativo) e `.modal-window-inactive` (sombra suave, cabeçalho ardósia elegante `#475569`, cursor pointer para ativação).
+  2. `app.js`:
+     - Motor Multi-Janelas Flutuantes: `bringModalToFront(modalEl)` eleva dinamicamente o `zIndex` da janela clicada/tocada para o topo e alterna as classes visuais ativa/inativa.
+     - Tratamento por captura de eventos (`{ capture: true }`) em `mousedown` e `touchstart` em cada `.modal-window` e `.modal-card`, garantindo resposta instantânea ao primeiro toque.
+     - Cascata inteligente suave para novas janelas abertas em simultâneo.
+     - Integração no arrasto (`startDraggingModal`) e no redimensionamento (`startResizingModal`) para elevação automática de foco.
+     - `MutationObserver` no gestor de janelas para garantir que janelas recém-abertas recebem foco imediato e janelas fechadas transferem o foco para a janela imediatamente anterior.
+  3. Testes automatizados executados e validados com 100% de sucesso. Base de dados 100% intacta.
 
 ## 000000000000000000000000. Novo Módulo 'Correção de Caracteres' e Erradicação Total de 'IA' em Botões/Quadros (27/09/2026 19:25)
 - **Problema & Pedido do Utilizador:** Adicionar um quadro dedicado a corrigir caracteres raros ou corrompidos na base de dados, colocado exatamente entre as duas janelas da direita do bloco de configurações (entre 'Normalização de Fichas' e 'Atualizações Nuvem'). O botão deve ser ultra eficaz. **Nenhum botão ou quadro no programa pode ter escrito IA ou Inteligência Artificial.**

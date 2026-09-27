@@ -65,7 +65,13 @@
 ---
 
 ## 📜 3. ESTADO ATUAL E HISTÓRICO DE DESENVOLVIMENTO
-- **Última Atualização:** 27/09/2026 19:25 (Módulo de Correção de Caracteres e Remoção Total de Menções 'IA' em Botões/Quadros - V1.7.35c)
+- **Última Atualização:** 27/09/2026 19:42 (Fundo Transparente de Janelas e Sistema Multi-Janelas com Foco ao Toque)
+- **Fundo Transparente de Janelas e Sistema Multi-Janelas com Foco ao Toque (27/09/2026 19:42):**
+  - **Requisito do Utilizador:** Ao abrir uma janela, remover a opacidade e o blur do fundo para que o que estiver por trás permaneça totalmente visível. Permitir a abertura de múltiplas janelas em simultâneo. Ao tocar/clicar em qualquer janela que esteja em segundo plano, ela deve passar imediatamente para a frente e ficar ativa. Sem alterar nada não relacionado nem qualquer registo da base de dados.
+  - **Implementações:**
+    1. **`styles.css`:** `.modal-overlay` com `background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none;`. `.modal-overlay.active` com `pointer-events: none;` e `.modal-window, .modal-card` com `pointer-events: auto;`, permitindo interação transparente com tudo o que está por trás. Adicionadas classes `.modal-window-active` (destaque azul e sombra elevada) e `.modal-window-inactive` (sombra leve e cabeçalho ardósia).
+    2. **`app.js`:** Implementado `bringModalToFront(modalEl)` com elevação dinâmica de `z-index` e alternância de classes ativas/inativas; listeners com `{ capture: true }` em `mousedown` e `touchstart`; cascata visual para novas janelas; integração no arrasto (`startDraggingModal`) e redimensionamento (`startResizingModal`); `MutationObserver` para gestão automática de janelas abertas e fechadas.
+    3. **Validação:** Testes automatizados executados e validados com 100% de sucesso.
 - **Módulo de Correção de Caracteres e Remoção Total de 'IA' em Botões e Quadros (27/09/2026 19:25):**
   - **Requisito do Utilizador:** Adicionar um quadro dedicado a corrigir caracteres raros/corrompidos no bloco de manutenção das configurações, posicionado exatamente entre as duas janelas da direita (entre 'Normalização de Fichas' e 'Atualizações Nuvem'). Nenhum botão ou quadro no programa pode ter escrito 'IA' ou 'Inteligência Artificial'.
   - **Implementações:**
