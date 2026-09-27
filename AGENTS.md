@@ -58,10 +58,21 @@
 7. **Idioma:**
    - Comunicação com o utilizador SEMPRE em Português de Portugal.
 
+8. **PROIBIÇÃO ABSOLUTA DE 'IA' OU 'INTELIGÊNCIA ARTIFICIAL' EM BOTÕES OU QUADROS:**
+   - **Nenhum botão ou quadro (card/janela) no programa deve ter escrito 'IA', 'AI' ou 'Inteligência Artificial'.**
+   - Todos os botões, cartões e badges devem usar termos elegantes e profissionais (ex: 'Normalização de Fichas', 'Automático', 'Normalizar Fichas', 'Correção de Caracteres', 'Universal', 'Corrigir Caracteres').
+
 ---
 
 ## 📜 3. ESTADO ATUAL E HISTÓRICO DE DESENVOLVIMENTO
-- **Última Atualização:** 25/09/2026 13:50 (Otimização Crítica de Desempenho: Desativação de Polling Agressivo e Gzip no Servidor V1.7.35b)
+- **Última Atualização:** 27/09/2026 19:25 (Módulo de Correção de Caracteres e Remoção Total de Menções 'IA' em Botões/Quadros - V1.7.35c)
+- **Módulo de Correção de Caracteres e Remoção Total de 'IA' em Botões e Quadros (27/09/2026 19:25):**
+  - **Requisito do Utilizador:** Adicionar um quadro dedicado a corrigir caracteres raros/corrompidos no bloco de manutenção das configurações, posicionado exatamente entre as duas janelas da direita (entre 'Normalização de Fichas' e 'Atualizações Nuvem'). Nenhum botão ou quadro no programa pode ter escrito 'IA' ou 'Inteligência Artificial'.
+  - **Implementações:**
+    1. **`index.html`:** Adicionado o cartão 'Correção de Caracteres' entre 'Normalização de Fichas' e 'Atualizações Nuvem', com badge 'Universal' e botão com ícone `fa-spell-check` chamando `repairCorruptedCharactersDatabase(true)`. A grelha de manutenção foi adaptada para 4 colunas equilibradas. Removidas todas as menções 'IA' de cartões e botões existentes (ex: 'Normalização (IA)' passou a 'Normalização de Fichas', 'IA Ativa' para 'Automático', 'Normalizar com IA' para 'Normalizar Fichas').
+    2. **`i18n.js`:** Criadas novas chaves multilingues (`cfg_card_chars_repair_title`, `cfg_badge_chars_repair`, etc.) em PT, ES, EN, FR, PL. Eliminadas todas as ocorrências de IA/AI em botões e títulos em todas as línguas.
+    3. **`app.js`:** Motor de correção `sanitizeUtf8String` e `repairCorruptedCharactersDatabase(interactive)` dotados de heurísticas avançadas de descodificação Mojibake, resolução de ordinais e números, sufixos portugueses (`-ções`, `-ção`), adjetivos em `-vel`/`-veis` e dicionário robusto de substituição preservando maiúsculas/minúsculas.
+    4. **Validação:** Testes automatizados executados e verificados a 100% de sucesso.
 - **Otimização Crítica de Desempenho e Eliminação de Loops Pesados (25/09/2026 13:50):**
   - **Problema Reportado pelo Utilizador:** Página com lentidão extrema ("brutalmente lenta").
   - **Causa Raiz Identificada:**

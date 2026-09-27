@@ -392,11 +392,11 @@ const SIGEC_I18N = {
     "Polski": "Wyczyść i Zoptymalizuj"
   },
   cfg_card_ai_norm_title: {
-    "Português": "Normalização (IA)",
-    "Español": "Normalización (IA)",
-    "English": "Normalization (AI)",
-    "Français": "Normalisation (IA)",
-    "Polski": "Normalizacja (AI)"
+    "Português": "Normalização de Fichas",
+    "Español": "Normalización de Fichas",
+    "English": "Records Normalization",
+    "Français": "Normalisation des Fiches",
+    "Polski": "Normalizacja Kart"
   },
   cfg_card_ai_norm_subtitle: {
     "Português": "Nomes compostos e moradas",
@@ -406,11 +406,11 @@ const SIGEC_I18N = {
     "Polski": "Złożone nazwiska i adresy"
   },
   cfg_badge_ai_active: {
-    "Português": "IA Ativa",
-    "Español": "IA Activa",
-    "English": "Active AI",
-    "Français": "IA Active",
-    "Polski": "Aktywne AI"
+    "Português": "Automático",
+    "Español": "Automático",
+    "English": "Automatic",
+    "Français": "Automatique",
+    "Polski": "Automatyczny"
   },
   cfg_card_ai_norm_desc: {
     "Português": "Decompõe moradas completas (Rua, Nº, Código Postal, Localidade) e separa nomes compostos em todas as fichas existentes.",
@@ -420,11 +420,46 @@ const SIGEC_I18N = {
     "Polski": "Rozkłada pełne adresy (Ulica, Nr, Kod Pocztowy, Miejscowość) i dzieli imiona złożone we wszystkich istniejących kartach."
   },
   cfg_btn_ai_normalize: {
-    "Português": "Normalizar com IA",
-    "Español": "Normalizar con IA",
-    "English": "Normalize with AI",
-    "Français": "Normaliser avec l'IA",
-    "Polski": "Normalizuj za pomocą AI"
+    "Português": "Normalizar Fichas",
+    "Español": "Normalizar Fichas",
+    "English": "Normalize Records",
+    "Français": "Normaliser les Fiches",
+    "Polski": "Normalizuj Karty"
+  },
+  cfg_card_chars_repair_title: {
+    "Português": "Correção de Caracteres",
+    "Español": "Corrección de Caracteres",
+    "English": "Character Correction",
+    "Français": "Correction des Caractères",
+    "Polski": "Korekta Znaków"
+  },
+  cfg_card_chars_repair_subtitle: {
+    "Português": "Acentos e codificação UTF-8",
+    "Español": "Acentos y codificación UTF-8",
+    "English": "Accents and UTF-8 encoding",
+    "Français": "Accents et encodage UTF-8",
+    "Polski": "Akcenty i kodowanie UTF-8"
+  },
+  cfg_badge_chars_repair: {
+    "Português": "Universal",
+    "Español": "Universal",
+    "English": "Universal",
+    "Français": "Universel",
+    "Polski": "Uniwersalny"
+  },
+  cfg_card_chars_repair_desc: {
+    "Português": "Deteta e repara automaticamente caracteres estranhos, acentos corrompidos e falhas de codificação em todas as fichas e moradas.",
+    "Español": "Detecta y repara automáticamente caracteres extraños, acentos dañados y fallos de codificación en todas las fichas y direcciones.",
+    "English": "Automatically detects and repairs corrupted characters, broken accents, and encoding errors in all records and addresses.",
+    "Français": "Détecte et répare automatiquement les caractères corrompus, les accents endommagés et les erreurs d'encodage dans toutes les fiches.",
+    "Polski": "Automatycznie wykrywa i naprawia uszkodzone znaki, błędne akcenty i błędy kodowania we wszystkich kartach i adresach."
+  },
+  cfg_btn_chars_repair: {
+    "Português": "Corrigir Caracteres",
+    "Español": "Corregir Caracteres",
+    "English": "Repair Characters",
+    "Français": "Corriger Caractères",
+    "Polski": "Napraw Znaki"
   },
   cfg_card_updates_title: {
     "Português": "Atualizações Nuvem",
@@ -1782,11 +1817,17 @@ const SIGEC_PHRASES_MAP = {
   "Limpeza & Otimização": { "Português": "Limpeza & Otimização", "Español": "Limpieza y Optimización", "English": "Cleanup & Optimization", "Français": "Nettoyage & Optimisation", "Polski": "Czyszczenie i Optymalizacja" },
   "Libertar memória local": { "Português": "Libertar memória local", "Español": "Liberar memoria local", "English": "Free up local memory", "Français": "Libérer la mémoire locale", "Polski": "Zwolnij pamięć lokalną" },
   "Seguro": { "Português": "Seguro", "Español": "Seguro", "English": "Safe", "Français": "Sécurisé", "Polski": "Bezpieczny" },
-  "Limpar e Otimizar": { "Português": "Limpar e Otimizar", "Español": "Limpiar y Optimizar", "English": "Clean & Optimize", "Français": "Nettoyer et Optimiser", "Polski": "Wyczyść i Zoptymalizuj" },
-  "Normalização (IA)": { "Português": "Normalização (IA)", "Español": "Normalización (IA)", "English": "Normalization (AI)", "Français": "Normalisation (IA)", "Polski": "Normalizacja (AI)" },
+  "Normalização de Fichas": { "Português": "Normalização de Fichas", "Español": "Normalización de Fichas", "English": "Records Normalization", "Français": "Normalisation des Fiches", "Polski": "Normalizacja Kart" },
+  "Normalização (IA)": { "Português": "Normalização de Fichas", "Español": "Normalización de Fichas", "English": "Records Normalization", "Français": "Normalisation des Fiches", "Polski": "Normalizacja Kart" },
   "Nomes compostos e moradas": { "Português": "Nomes compostos e moradas", "Español": "Nombres compuestos y direcciones", "English": "Compound names and addresses", "Français": "Noms composés et adresses", "Polski": "Złożone nazwiska i adresy" },
-  "IA Ativa": { "Português": "IA Ativa", "Español": "IA Activa", "English": "Active AI", "Français": "IA Active", "Polski": "Aktywne AI" },
-  "Normalizar com IA": { "Português": "Normalizar com IA", "Español": "Normalizar con IA", "English": "Normalize with AI", "Français": "Normaliser avec l'IA", "Polski": "Normalizuj za pomocą AI" },
+  "Automático": { "Português": "Automático", "Español": "Automático", "English": "Automatic", "Français": "Automatique", "Polski": "Automatyczny" },
+  "IA Ativa": { "Português": "Automático", "Español": "Automático", "English": "Automatic", "Français": "Automatique", "Polski": "Automatyczny" },
+  "Normalizar Fichas": { "Português": "Normalizar Fichas", "Español": "Normalizar Fichas", "English": "Normalize Records", "Français": "Normaliser les Fiches", "Polski": "Normalizuj Karty" },
+  "Normalizar com IA": { "Português": "Normalizar Fichas", "Español": "Normalizar Fichas", "English": "Normalize Records", "Français": "Normaliser les Fiches", "Polski": "Normalizuj Karty" },
+  "Correção de Caracteres": { "Português": "Correção de Caracteres", "Español": "Corrección de Caracteres", "English": "Character Correction", "Français": "Correction des Caractères", "Polski": "Korekta Znaków" },
+  "Acentos e codificação UTF-8": { "Português": "Acentos e codificação UTF-8", "Español": "Acentos y codificación UTF-8", "English": "Accents and UTF-8 encoding", "Français": "Accents et encodage UTF-8", "Polski": "Akcenty i kodowanie UTF-8" },
+  "Universal": { "Português": "Universal", "Español": "Universal", "English": "Universal", "Français": "Universel", "Polski": "Uniwersalny" },
+  "Corrigir Caracteres": { "Português": "Corrigir Caracteres", "Español": "Corregir Caracteres", "English": "Repair Characters", "Français": "Corriger Caractères", "Polski": "Napraw Znaki" },
   "Atualizações Nuvem": { "Português": "Atualizações Nuvem", "Español": "Actualizaciones en la Nube", "English": "Cloud Updates", "Français": "Mises à Jour Cloud", "Polski": "Aktualizacje w Chmurze" },
   "Verificação online": { "Português": "Verificação online", "Español": "Verificación en línea", "English": "Online check", "Français": "Vérification en ligne", "Polski": "Weryfikacja online" },
   "Procurar Atualizações": { "Português": "Procurar Atualizações", "Español": "Buscar Actualizaciones", "English": "Check for Updates", "Français": "Rechercher des Mises à Jour", "Polski": "Sprawdź Aktualizacje" },

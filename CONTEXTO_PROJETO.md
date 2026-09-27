@@ -1,11 +1,20 @@
 # CONTEXTO DO PROJETO SIGEC-Pro
 
-- Versao: V1.7.35b
+- Versao: V1.7.35c
 - Autor: Jose Centurio
 - Produção Web Oficial: https://sigec-pro.onrender.com
 - Backup: josecenturio/SIGEC-Pro
-- Data: 25/09/2026 13:50
-- Estado: ✅ Otimização Crítica de Desempenho e Eliminação de Loops Pesados Concluída e Ativa.
+- Data: 27/09/2026 19:25
+- Estado: ✅ Quadro de Correção de Caracteres Implementado e Remoção Total de 'IA' em Botões/Quadros.
+
+## 000000000000000000000000. Novo Módulo 'Correção de Caracteres' e Erradicação Total de 'IA' em Botões/Quadros (27/09/2026 19:25)
+- **Problema & Pedido do Utilizador:** Adicionar um quadro dedicado a corrigir caracteres raros ou corrompidos na base de dados, colocado exatamente entre as duas janelas da direita do bloco de configurações (entre 'Normalização de Fichas' e 'Atualizações Nuvem'). O botão deve ser ultra eficaz. **Nenhum botão ou quadro no programa pode ter escrito IA ou Inteligência Artificial.**
+- **Implementações & Blindagens:**
+  1. `index.html`: Inserido o novo card 'Correção de Caracteres' (`#cfgCardCharsRepair`) exatamente entre a janela de 'Normalização de Fichas' e 'Atualizações Nuvem'. Grelha de configuração ajustada para 4 colunas responsivas (`minmax(230px, 1fr)`).
+  2. Todas as referências textuais a "IA", "AI" ou "Inteligência Artificial" foram totalmente expurgadas de cartões, badges e botões em todo o sistema (`Normalização de Fichas`, badge `Automático`, botão `Normalizar Fichas`, etc.).
+  3. `i18n.js`: Adicionadas as traduções completas nas 5 línguas (PT, ES, EN, FR, PL) para o novo card e botão, e removidas menções a IA em todas as línguas.
+  4. `app.js`: Implementada a função `repairCorruptedCharactersDatabase(interactive)` e expandida a heurística inteligente `sanitizeUtf8String` (Mojibake, ordinais de moradas e NIFs, heurística de sufixos portugueses como `-ção`, `-ções`, adjetivos em `-vel`/`-veis`, e dicionário fonético com preservação de caixa alta/baixa).
+  5. Testes automatizados executados e validados a 100% de sucesso.
 
 ## 00000000000000000000000. Otimização Crítica de Desempenho e Eliminação de Loops Pesados (25/09/2026 13:50)
 - **Problema Solucionado:** Página apresentava extrema lentidão devido a polling contínuo a cada 10s e 20s descarregando 3MB de JSON e re-renderizando o DOM, heartbeat de 3s e envio de ficheiros estáticos sem compressão.

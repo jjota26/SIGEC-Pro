@@ -20143,7 +20143,9 @@ function sanitizeUtf8String(str) {
       if (fixed && !fixed.includes('\uFFFD')) res = fixed;
     }
   } catch(e) {}
-  return res
+  
+  // 1. Descodificação direta de artefactos Mojibake UTF-8
+  res = res
     .replace(/Jos[ÃÂ][©\u00A9]/g, 'José')
     .replace(/Cent[ÃÂ][º\u00BA]rio/g, 'Centúrio')
     .replace(/Funda[ÃÂ][§\u00A7][ÃÂ][£\u00A3]o/g, 'Fundação')
@@ -20153,71 +20155,195 @@ function sanitizeUtf8String(str) {
     .replace(/TransferÃªncia/g, 'Transferência')
     .replace(/orÃ§amentos/g, 'orçamentos')
     .replace(/interaÃ§Ãµes/g, 'interações')
-    .replace(/2Âº/g, '2º')
-    .replace(/7Âº/g, '7º')
-    .replace(/Ã¡/g, 'á')
-    .replace(/Ã /g, 'à')
-    .replace(/Ã£/g, 'ã')
-    .replace(/Ã¢/g, 'â')
-    .replace(/Ã©/g, 'é')
-    .replace(/Ãª/g, 'ê')
+    .replace(/Ã¡/g, 'á').replace(/Ã /g, 'à').replace(/Ã£/g, 'ã').replace(/Ã¢/g, 'â')
+    .replace(/Ã©/g, 'é').replace(/Ãª/g, 'ê')
     .replace(/Ã­/g, 'í')
-    .replace(/Ã³/g, 'ó')
-    .replace(/Ãµ/g, 'õ')
-    .replace(/Ã´/g, 'ô')
-    .replace(/Ãº/g, 'ú')
-    .replace(/Ã§/g, 'ç')
-    // Higienização de \uFFFD (replacement char) e artefatos de interrogação
-    .replace(/Neg[\uFFFD?]cios/g, 'Negócios')
-    .replace(/Am[\uFFFD?]lcar/g, 'Amílcar')
-    .replace(/Funda[\uFFFD?]{1,2}o/g, 'Fundação')
-    .replace(/Jer[\uFFFD?]nimo/g, 'Jerónimo')
-    .replace(/Ant[\uFFFD?]nio/g, 'António')
-    .replace(/Jos[\uFFFD?] Cent[\uFFFD?]rio/g, 'José Centúrio')
-    .replace(/Jos[\uFFFD?]\s/g, 'José ')
-    .replace(/Cent[\uFFFD?]rio/g, 'Centúrio')
-    .replace(/Am[\uFFFD?]rica/g, 'América')
-    .replace(/Bras[\uFFFD?]lia/g, 'Brasília')
-    .replace(/Comunica[\uFFFD?]{1,2}o/g, 'Comunicação')
-    .replace(/Comunicaci[\uFFFD?]n/g, 'Comunicación')
-    .replace(/Gon[\uFFFD?]alo/g, 'Gonçalo')
-    .replace(/Ven[\uFFFD?]ncio/g, 'Venâncio')
-    .replace(/energ[\uFFFD?]a/g, 'energía')
-    .replace(/petr[\uFFFD?]leo/g, 'petróleo')
-    .replace(/transici[\uFFFD?]n/g, 'transición')
-    .replace(/descarbonizaci[\uFFFD?]n/g, 'descarbonización')
-    .replace(/Educaci[\uFFFD?]n/g, 'Educación')
-    .replace(/Protecci[\uFFFD?]n/g, 'Protección')
-    .replace(/situaci[\uFFFD?]{1,2}n/g, 'situación')
-    .replace(/televisi[\uFFFD?]n/g, 'televisión')
-    .replace(/telefon[\uFFFD?]a/g, 'telefonía')
-    .replace(/m[\uFFFD?]vil/g, 'móvil')
-    .replace(/tecnolog[\uFFFD?]a/g, 'tecnología')
-    .replace(/Gest[\uFFFD?]o/g, 'Gestão')
-    .replace(/Patroc[\uFFFD?]nios/g, 'Patrocínios')
-    .replace(/Ativa[\uFFFD?]{1,2}o/g, 'Ativação')
-    .replace(/transmisi[\uFFFD?]n/g, 'transmisión')
-    .replace(/Lu[\uFFFD?]s/g, 'Luís')
-    .replace(/construcci[\uFFFD?]n/g, 'construcción')
-    .replace(/ingenier[\uFFFD?]a/g, 'ingeniería')
-    .replace(/gesti[\uFFFD?]n/g, 'gestión')
-    .replace(/Am[\uFFFD?]lia/g, 'Amélia')
-    .replace(/educaci[\uFFFD?]n/g, 'educación')
-    .replace(/In[\uFFFD?]s/g, 'Inês')
-    .replace(/decis[\uFFFD?]o/g, 'decisão')
-    .replace(/administra[\uFFFD?]{1,2}o/g, 'administração')
-    .replace(/apresenta[\uFFFD?]{1,2}o/g, 'apresentação')
-    .replace(/Edi[\uFFFD?]{1,2}o/g, 'Edição')
-    .replace(/altera[\uFFFD?]{1,4}es/g, 'alterações')
+    .replace(/Ã³/g, 'ó').replace(/Ãµ/g, 'õ').replace(/Ã´/g, 'ô')
+    .replace(/Ãº/g, 'ú').replace(/Ã§/g, 'ç').replace(/Ã±/g, 'ñ')
+    .replace(/Ã /g, 'Á').replace(/Ã€/g, 'À').replace(/Ãƒ/g, 'Ã').replace(/Ã‚/g, 'Â')
+    .replace(/Ã‰/g, 'É').replace(/ÃŠ/g, 'Ê').replace(/Ã /g, 'Í')
+    .replace(/Ã“/g, 'Ó').replace(/Ã•/g, 'Õ').replace(/Ã”/g, 'Ô').replace(/Ãš/g, 'Ú').replace(/Ã‡/g, 'Ç')
+    .replace(/Âº/g, 'º').replace(/Âª/g, 'ª').replace(/Ã‚Âº/g, 'º');
+
+  // 2. Normalização de numeração e ordinais (Rua, Piso, Andar, Lote, NIF)
+  res = res
+    .replace(/\b[nN]\.[\uFFFD?ºª]*\s*(\d+)/g, 'n.º $1')
+    .replace(/(\d+)\s*[\uFFFD?]\s*(andar|piso|fase|gaveta|sala|bloco|lote)/gi, '$1.º $2')
+    .replace(/(\d+)[\u00BAº](\d+)/g, '$1$2')
     .replace(/500001462\u00BA/g, '500001462')
-    .replace(/2\u00BA134567\u00BA89/g, '213456789')
-    .replace(/n\.[\uFFFD?º]\s*44/g, 'n.º 44');
+    .replace(/2\u00BA134567\u00BA89/g, '213456789');
+
+  // 3. Heurística algorítmica para sufixos corrompidos de substantivos portugueses (-ção e -ções)
+  res = res
+    .replace(/([a-zA-Z]{1,})[\uFFFD?]{1,4}es\b/gi, (m, root) => {
+      const isCap = root[0] === root[0].toUpperCase();
+      const fixed = root + 'ções';
+      return isCap ? fixed.charAt(0).toUpperCase() + fixed.slice(1) : fixed;
+    })
+    .replace(/([a-zA-Z]{1,})[\uFFFD?]{1,2}o\b/gi, (m, root) => {
+      const isCap = root[0] === root[0].toUpperCase();
+      let fixed = root + 'ção';
+      if (/([sS]ess|[mM]iss|[vV]is|[cC]omiss|[eE]miss|[pP]ermiss|[dD]ecis|[eE]xtens|[eE]xpans|[rR]euni|[oO]pini|[vV]ers|[pP]adr|[cC]art|[bB]ot|[rR]az|[cC]oraz|[cC]apit|[cC]idad|[iI]rm|[sS]er|[eE]st|[tT]er|[fF]ar|[dD]ir)$/.test(root)) {
+        return m;
+      }
+      return isCap ? fixed.charAt(0).toUpperCase() + fixed.slice(1) : fixed;
+    });
+
+  // 4. Dicionário de saneamento de palavras com caracteres corrompidos (\uFFFD e ?)
+  const wordFixes = [
+    [/Neg[\uFFFD?]cios/gi, 'Negócios'],
+    [/Am[\uFFFD?]lcar/gi, 'Amílcar'],
+    [/Funda[\uFFFD?]{1,2}o/gi, 'Fundação'],
+    [/Jer[\uFFFD?]nimo/gi, 'Jerónimo'],
+    [/Ant[\uFFFD?]nio/gi, 'António'],
+    [/Jos[\uFFFD?](?=[^a-zA-Z]|$)/g, 'José'],
+    [/Cent[\uFFFD?]rio/gi, 'Centúrio'],
+    [/Am[\uFFFD?]rica/gi, 'América'],
+    [/Bras[\uFFFD?]lia/gi, 'Brasília'],
+    [/Comunica[\uFFFD?]{1,2}o/gi, 'Comunicação'],
+    [/Comunicaci[\uFFFD?]n/gi, 'Comunicación'],
+    [/Gon[\uFFFD?]alo/gi, 'Gonçalo'],
+    [/Ven[\uFFFD?]ncio/gi, 'Venâncio'],
+    [/energ[\uFFFD?]a/gi, 'energía'],
+    [/petr[\uFFFD?]leo/gi, 'petróleo'],
+    [/transici[\uFFFD?]n/gi, 'transición'],
+    [/descarbonizaci[\uFFFD?]n/gi, 'descarbonización'],
+    [/Educaci[\uFFFD?]n/gi, 'Educación'],
+    [/Protecci[\uFFFD?]n/gi, 'Protección'],
+    [/situaci[\uFFFD?]{1,2}n/gi, 'situación'],
+    [/televisi[\uFFFD?]n/gi, 'televisión'],
+    [/telefon[\uFFFD?]a/gi, 'telefonía'],
+    [/m[\uFFFD?]vil/gi, 'móvil'],
+    [/tecnolog[\uFFFD?]a/gi, 'tecnología'],
+    [/Gest[\uFFFD?]o/gi, 'Gestão'],
+    [/Patroc[\uFFFD?]nios/gi, 'Patrocínios'],
+    [/Ativa[\uFFFD?]{1,2}o/gi, 'Ativação'],
+    [/transmisi[\uFFFD?]n/gi, 'transmisión'],
+    [/Lu[\uFFFD?]s(?=[^a-zA-Z]|$)/g, 'Luís'],
+    [/construcci[\uFFFD?]n/gi, 'construcción'],
+    [/ingenier[\uFFFD?]a/gi, 'ingeniería'],
+    [/gesti[\uFFFD?]n/gi, 'gestión'],
+    [/Am[\uFFFD?]lia/gi, 'Amélia'],
+    [/educaci[\uFFFD?]n/gi, 'educación'],
+    [/In[\uFFFD?]s(?=[^a-zA-Z]|$)/g, 'Inês'],
+    [/decis[\uFFFD?]o/gi, 'decisão'],
+    [/administra[\uFFFD?]{1,2}o/gi, 'administração'],
+    [/apresenta[\uFFFD?]{1,2}o/gi, 'apresentação'],
+    [/Edi[\uFFFD?]{1,2}o/gi, 'Edição'],
+    [/altera[\uFFFD?]{1,4}es/gi, 'alterações'],
+    [/opera[\uFFFD?]{1,4}es/gi, 'operações'],
+    [/solu[\uFFFD?]{1,4}es/gi, 'soluções'],
+    [/informa[\uFFFD?]{1,4}es/gi, 'informações'],
+    [/informa[\uFFFD?]{1,2}o/gi, 'informação'],
+    [/dire[\uFFFD?]{1,4}es/gi, 'direções'],
+    [/dire[\uFFFD?]{1,2}o/gi, 'direção'],
+    [/rela[\uFFFD?]{1,4}es/gi, 'relações'],
+    [/institui[\uFFFD?]{1,4}es/gi, 'instituições'],
+    [/instala[\uFFFD?]{1,4}es/gi, 'instalações'],
+    [/manuten[\uFFFD?]{1,4}es/gi, 'manutenções'],
+    [/manuten[\uFFFD?]{1,2}o/gi, 'manutenção'],
+    [/condi[\uFFFD?]{1,4}es/gi, 'condições'],
+    [/condi[\uFFFD?]{1,2}o/gi, 'condição'],
+    [/comunica[\uFFFD?]{1,4}es/gi, 'comunicações'],
+    [/aprova[\uFFFD?]{1,4}es/gi, 'aprovações'],
+    [/aprova[\uFFFD?]{1,2}o/gi, 'aprovação'],
+    [/interven[\uFFFD?]{1,4}es/gi, 'intervenções'],
+    [/\ba[\uFFFD?]{1,4}es\b/gi, 'ações'],
+    [/elei[\uFFFD?]{1,4}es/gi, 'eleições'],
+    [/sec[\uFFFD?]{1,4}es/gi, 'secções'],
+    [/raz[\uFFFD?]{1,2}es/gi, 'razões'],
+    [/cora[\uFFFD?]{1,2}es/gi, 'corações'],
+    [/cart[\uFFFD?]{1,2}es/gi, 'cartões'],
+    [/bot[\uFFFD?]{1,2}es/gi, 'botões'],
+    [/cami[\uFFFD?]{1,2}es/gi, 'camiões'],
+    [/ve[\uFFFD?]culo/gi, 'veículo'],
+    [/ve[\uFFFD?]culos/gi, 'veículos'],
+    [/el[\uFFFD?]ctrico/gi, 'eléctrico'],
+    [/el[\uFFFD?]trico/gi, 'elétrico'],
+    [/aut[\uFFFD?]nomo/gi, 'autónomo'],
+    [/m[\uFFFD?]dulo/gi, 'módulo'],
+    [/n[\uFFFD?]cleo/gi, 'núcleo'],
+    [/t[\uFFFD?]cnico/gi, 'técnico'],
+    [/t[\uFFFD?]cnica/gi, 'técnica'],
+    [/p[\uFFFD?]blico/gi, 'público'],
+    [/p[\uFFFD?]blica/gi, 'pública'],
+    [/pr[\uFFFD?]prio/gi, 'próprio'],
+    [/pr[\uFFFD?]pria/gi, 'própria'],
+    [/relat[\uFFFD?]rio/gi, 'relatório'],
+    [/matr[\uFFFD?]cula/gi, 'matrícula'],
+    [/hist[\uFFFD?]rico/gi, 'histórico'],
+    [/c[\uFFFD?]digo/gi, 'código'],
+    [/n[\uFFFD?]mero/gi, 'número'],
+    [/p[\uFFFD?]gina/gi, 'página'],
+    [/per[\uFFFD?]odo/gi, 'período'],
+    [/an[\uFFFD?]lise/gi, 'análise'],
+    [/d[\uFFFD?]vida/gi, 'dúvida'],
+    [/sustent[\uFFFD?]vel/gi, 'sustentável'],
+    [/sustent[\uFFFD?]veis/gi, 'sustentáveis'],
+    [/respons[\uFFFD?]vel/gi, 'responsável'],
+    [/respons[\uFFFD?]veis/gi, 'responsáveis'],
+    [/compat[\uFFFD?]vel/gi, 'compatível'],
+    [/compat[\uFFFD?]veis/gi, 'compatíveis'],
+    [/poss[\uFFFD?]vel/gi, 'possível'],
+    [/poss[\uFFFD?]veis/gi, 'possíveis'],
+    [/n[\uFFFD?]vel/gi, 'nível'],
+    [/n[\uFFFD?]veis/gi, 'níveis'],
+    [/vari[\uFFFD?]vel/gi, 'variável'],
+    [/vari[\uFFFD?]veis/gi, 'variáveis'],
+    [/prov[\uFFFD?]vel/gi, 'provável'],
+    [/prov[\uFFFD?]veis/gi, 'prováveis'],
+    [/sa[\uFFFD?]de/gi, 'saúde'],
+    [/\bpa[\uFFFD?]s\b/gi, 'país'],
+    [/pa[\uFFFD?]ses/gi, 'países'],
+    [/or[\uFFFD?]{1,2}amento/gi, 'orçamento'],
+    [/or[\uFFFD?]{1,4}amentos/gi, 'orçamentos'],
+    [/endere[\uFFFD?]o/gi, 'endereço'],
+    [/servi[\uFFFD?]o/gi, 'serviço'],
+    [/pre[\uFFFD?]o/gi, 'preço'],
+    [/pra[\uFFFD?]a/gi, 'praça'],
+    [/espa[\uFFFD?]o/gi, 'espaço'],
+    [/pe[\uFFFD?]a/gi, 'peça'],
+    [/for[\uFFFD?]a/gi, 'força'],
+    [/avan[\uFFFD?]o/gi, 'avanço'],
+    [/come[\uFFFD?]o/gi, 'começo'],
+    [/balan[\uFFFD?]o/gi, 'balanço'],
+    [/lan[\uFFFD?]amento/gi, 'lançamento'],
+    [/seguran[\uFFFD?]a/gi, 'segurança'],
+    [/confian[\uFFFD?]a/gi, 'confiança'],
+    [/lideran[\uFFFD?]a/gi, 'liderança'],
+    [/heran[\uFFFD?]a/gi, 'herança'],
+    [/crian[\uFFFD?]a/gi, 'criança'],
+    [/Fran[\uFFFD?]a/gi, 'França'],
+    [/Espan[\uFFFD?]a/gi, 'Espanha'],
+    [/Alem[\uFFFD?]o/gi, 'Alemão'],
+    [/Alem[\uFFFD?]a/gi, 'Alemã'],
+    [/capit[\uFFFD?]o/gi, 'capitão'],
+    [/cidad[\uFFFD?]o/gi, 'cidadão'],
+    [/irm[\uFFFD?]o/gi, 'irmão'],
+    [/\bm[\uFFFD?]o\b/gi, 'mão'],
+    [/raz[\uFFFD?]o/gi, 'razão'],
+    [/cora[\uFFFD?]o/gi, 'coração'],
+    [/padr[\uFFFD?]o/gi, 'padrão'],
+    [/cart[\uFFFD?]o/gi, 'cartão'],
+    [/bot[\uFFFD?]o/gi, 'botão']
+  ];
+
+  wordFixes.forEach(([pattern, repl]) => {
+    res = res.replace(pattern, (match) => {
+      if (match && match.length > 0 && match[0] === match[0].toUpperCase() && match[0] !== match[0].toLowerCase()) {
+        return repl.charAt(0).toUpperCase() + repl.slice(1);
+      }
+      return repl.charAt(0).toLowerCase() + repl.slice(1);
+    });
+  });
+
+  return res;
 }
 window.sanitizeUtf8String = sanitizeUtf8String;
 
 function sanitizeAllDatabaseEntities() {
   if (typeof db !== 'object' || !db) return;
-  const stringKeys = ['nome', 'apelido', 'empresa', 'cargo', 'direcao1', 'direcao2', 'localidade', 'tipoCliente', 'comercial', 'comercialAtribuidoNome', 'notas', 'descricao', 'contribuinte', 'telefone'];
+  const stringKeys = ['nome', 'apelido', 'empresa', 'cargo', 'direcao1', 'direcao2', 'localidade', 'tipoCliente', 'ministerio', 'secretariaEstado', 'departamento', 'comercial', 'comercialAtribuidoNome', 'notas', 'descricao', 'assunto', 'titulo', 'contribuinte', 'telefone'];
 
   ['clientes', 'contactos', 'usuarios', 'interacoes', 'projetos'].forEach(coll => {
     if (Array.isArray(db[coll])) {
@@ -20234,6 +20360,75 @@ function sanitizeAllDatabaseEntities() {
   });
 }
 window.sanitizeAllDatabaseEntities = sanitizeAllDatabaseEntities;
+
+// Função de Saneamento e Correção de Caracteres Raros na Base de Dados
+function repairCorruptedCharactersDatabase(interactive = true) {
+  if (typeof db === 'undefined' || !db) {
+    if (interactive && typeof showToast === 'function') showToast('Base de dados não disponível.', 'warning');
+    return { fieldsRepaired: 0, entitiesUpdated: 0 };
+  }
+
+  let fieldsRepaired = 0;
+  let entitiesUpdated = 0;
+  const stringKeys = [
+    'nome', 'apelido', 'empresa', 'cargo', 'direcao1', 'direcao2', 'localidade',
+    'tipoCliente', 'ministerio', 'secretariaEstado', 'departamento', 'comercial',
+    'comercialAtribuidoNome', 'notas', 'descricao', 'assunto', 'titulo', 'contribuinte',
+    'telefone', 'telemovel', 'email', 'website', 'pais', 'paisOrigem'
+  ];
+
+  ['clientes', 'contactos', 'projetos', 'interacoes', 'interacoesProjetos', 'usuarios', 'orcamentos'].forEach(coll => {
+    if (Array.isArray(db[coll])) {
+      db[coll].forEach(item => {
+        if (item && typeof item === 'object') {
+          let itemChanged = false;
+          stringKeys.forEach(k => {
+            if (item[k] && typeof item[k] === 'string') {
+              const original = item[k];
+              const cleaned = sanitizeUtf8String(original);
+              if (cleaned !== original) {
+                item[k] = cleaned;
+                fieldsRepaired++;
+                itemChanged = true;
+              }
+            }
+          });
+          if (itemChanged) {
+            entitiesUpdated++;
+          }
+        }
+      });
+    }
+  });
+
+  if (fieldsRepaired > 0) {
+    if (typeof saveDatabase === 'function') {
+      saveDatabase(true);
+    }
+    try {
+      if (typeof renderClientsTable === 'function') renderClientsTable();
+      if (typeof renderContactsTable === 'function') renderContactsTable();
+      if (typeof renderProjectsTable === 'function') renderProjectsTable();
+      if (typeof renderHomeDashboard === 'function') renderHomeDashboard();
+      if (typeof renderClientInteractionsGrid === 'function') renderClientInteractionsGrid();
+      if (typeof renderContactInteractionsGrid === 'function') renderContactInteractionsGrid();
+      if (typeof updateBadgeCounters === 'function') updateBadgeCounters();
+    } catch(e) {}
+
+    const msg = `Correção concluída: ${fieldsRepaired} campo(s) reparado(s) em ${entitiesUpdated} ficha(s) com sucesso!`;
+    if (interactive && typeof showToast === 'function') {
+      showToast(msg, 'success');
+    }
+    console.log('[Character Repair]', msg);
+  } else {
+    if (interactive && typeof showToast === 'function') {
+      showToast('Verificação concluída: Todas as fichas e moradas já se encontram limpas e perfeitamente codificadas.', 'info');
+    }
+  }
+
+  return { fieldsRepaired, entitiesUpdated };
+}
+window.repairCorruptedCharactersDatabase = repairCorruptedCharactersDatabase;
 
 function ensureUsersInitialized() {
   loadDeletedRegistry();
@@ -31847,6 +32042,17 @@ Devolve APENAS este JSON exato (sem texto extra, sem markdown):
     if (smartInput) smartInput.value = "";
     const successEl = document.getElementById("aiSmartPasteSuccessMsg");
     if (successEl) successEl.style.display = "none";
+
+    // Saneamento defensivo de todos os candidatos contra caracteres corrompidos
+    availableAiCandidates = availableAiCandidates.map(cand => {
+      if (!cand || typeof cand !== 'object') return cand;
+      ['nome', 'direcao1', 'direcao2', 'numero', 'andar', 'codigoPostal', 'localidade', 'pais', 'telefone', 'website'].forEach(k => {
+        if (cand[k] && typeof cand[k] === 'string') {
+          cand[k] = (typeof sanitizeUtf8String === 'function') ? sanitizeUtf8String(cand[k]) : cand[k];
+        }
+      });
+      return cand;
+    });
 
     if (availableAiCandidates.length === 0) {
       if (loadingState) loadingState.style.display = "none";
