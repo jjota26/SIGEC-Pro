@@ -3024,7 +3024,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "subTabIndex": 0,
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Galp Energia, SGPS, S.A."
     },
     {
       "id": "con-imp-006",
@@ -3088,7 +3089,7 @@
     },
     {
       "id": "con-imp-009",
-      "clienteId": "cli-1790067734899-316",
+      "clienteId": "cli-imp-003",
       "nome": "Pedro",
       "apelido": "Rio",
       "cargo": "Responsável de Relação com os Media",
@@ -3101,7 +3102,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdById": "usr-admin-001",
-      "empresa": "Jerónimo Martins, SGPS, S.A.",
+      "empresa": "Jerónimo Martins",
       "subTabIndex": 0,
       "extensao": "",
       "updatedAt": "2026-09-22T09:02:14.899Z"
@@ -3121,7 +3122,8 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdById": "usr-admin-001",
-      "subTabIndex": 0
+      "subTabIndex": 0,
+      "empresa": "Jerónimo Martins, SGPS, S.A."
     },
     {
       "id": "con-imp-011",
@@ -3205,7 +3207,7 @@
     },
     {
       "id": "con-imp-015",
-      "clienteId": "cli-imp-005",
+      "clienteId": "cli-imp-076",
       "nome": "Ana",
       "apelido": "Guimaraes",
       "cargo": "Head of Sponsorships and Events",
@@ -3216,7 +3218,7 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "empresa": "MEO",
+      "empresa": "Altice Portugal",
       "subTabIndex": 0,
       "inativo": false,
       "updatedAt": "2026-09-23T12:10:58.718Z",
@@ -3438,7 +3440,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Mota Engil"
     },
     {
       "id": "con-imp-029",
@@ -3454,7 +3457,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Mota Engil"
     },
     {
       "id": "con-imp-030",
@@ -3470,7 +3474,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Mota Engil"
     },
     {
       "id": "con-imp-031",
@@ -3486,7 +3491,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Mota Engil"
     },
     {
       "id": "con-imp-032",
@@ -3582,7 +3588,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Fundação Vodafone Portugal"
     },
     {
       "id": "con-imp-039",
@@ -3616,7 +3623,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Fundação António Cupertino da Miranda"
     },
     {
       "id": "con-imp-041",
@@ -3691,7 +3699,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Fundação Ilídio Pinho"
     },
     {
       "id": "con-imp-045",
@@ -3747,7 +3756,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Fundação Belmiro de Azevedo"
     },
     {
       "id": "con-imp-048",
@@ -3763,7 +3773,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Fundação Manuel António da Mota"
     },
     {
       "id": "con-imp-049",
@@ -3779,7 +3790,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Fundação José Neves"
     },
     {
       "id": "con-imp-051",
@@ -3795,7 +3807,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Fundação Luso"
     },
     {
       "id": "con-imp-052",
@@ -3811,7 +3824,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Fundação Aga Khan Portugal"
     },
     {
       "id": "con-imp-053",
@@ -3827,7 +3841,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Fundação Montepio"
     },
     {
       "id": "con-imp-054",
@@ -3843,7 +3858,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Fundação Oriente"
     },
     {
       "id": "con-imp-055",
@@ -3859,7 +3875,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Fundação Mestre Casais"
     },
     {
       "id": "con-imp-056",
@@ -3895,7 +3912,8 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Ministério da Saúde"
     },
     {
       "id": "con-imp-058",
@@ -3931,7 +3949,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério do Ambiente e Energia"
     },
     {
       "id": "con-imp-061",
@@ -3948,7 +3967,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério do Ambiente e Energia"
     },
     {
       "id": "con-imp-062",
@@ -3984,11 +4004,12 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério da Agricultura e Mar"
     },
     {
       "id": "con-imp-064",
-      "clienteId": "cli-imp-038",
+      "clienteId": "cli-imp-037",
       "nome": "Joao",
       "apelido": "Moura",
       "cargo": "Secretario de estado de agricultura",
@@ -4003,7 +4024,7 @@
       "createdById": "usr-admin-001",
       "subTabIndex": 1,
       "separadorId": "sep-1789588145147-99",
-      "empresa": "MINISTÉRIO DA AGRICULTURA E DO MAR - MINISTÉRIO DA AGRICULTURA E DO MAR"
+      "empresa": "Ministério da Agricultura e Mar"
     },
     {
       "id": "con-imp-065",
@@ -4020,7 +4041,8 @@
       "comercialAtribuidoId": "usr-admin-001",
       "subTabIndex": 2,
       "createdById": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "empresa": "MINISTERIO DE AGRICULTURA Y MAR / Dirección general agricultura y desenvolvimiento rural"
     },
     {
       "id": "con-imp-066",
@@ -4037,7 +4059,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério da Cultura, Juventude e Desporto"
     },
     {
       "id": "con-imp-067",
@@ -4054,7 +4077,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "createdById": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio"
+      "comercialAtribuidoNome": "José Centúrio",
+      "empresa": "Ministério da Cultura, Juventude e Desporto"
     },
     {
       "id": "con-imp-068",
@@ -4091,7 +4115,8 @@
       "comercialAtribuidoId": "usr-admin-001",
       "subTabIndex": 3,
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério da Cultura, Juventude e Desporto"
     },
     {
       "id": "con-imp-070",
@@ -4107,11 +4132,12 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério da Educação, Ciência e Inovação"
     },
     {
       "id": "con-imp-071",
-      "clienteId": "cli-imp-045",
+      "clienteId": "cli-imp-044",
       "nome": "Alexandre",
       "apelido": "Homem Cristo",
       "cargo": "Secretário de estado adjunto e de educação",
@@ -4126,7 +4152,7 @@
       "createdById": "usr-admin-001",
       "subTabIndex": 2,
       "separadorId": "sep-1789585300557-246",
-      "empresa": "Ministério da Educação, Ciência e Inovação - Ministério da Educação, Ciência e Inovação"
+      "empresa": "Ministério da Educação, Ciência e Inovação"
     },
     {
       "id": "con-imp-072",
@@ -4161,11 +4187,12 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério do Trabalho, Solidariedade e Segurança Social"
     },
     {
       "id": "con-imp-074",
-      "clienteId": "cli-imp-048",
+      "clienteId": "cli-imp-047",
       "subTabIndex": 1,
       "nome": "Clara",
       "apelido": "Marques Mendes",
@@ -4180,11 +4207,12 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério do Trabalho, Solidariedade e Segurança Social"
     },
     {
       "id": "con-imp-075",
-      "clienteId": "cli-imp-048",
+      "clienteId": "cli-imp-047",
       "nome": "Susana",
       "apelido": "Lamas",
       "cargo": "Chefe de Gabinete - Secretaria de estado de acción social y de inclusión",
@@ -4199,12 +4227,12 @@
       "createdById": "usr-admin-001",
       "subTabIndex": 1,
       "separadorId": "sep-1789588506546-567",
-      "empresa": "Ministério do Trabalho, Solidariedade e Segurança Social - Ministério do Trabalho, Solidariedade e Segurança Social"
+      "empresa": "Ministério do Trabalho, Solidariedade e Segurança Social"
     },
     {
       "id": "con-imp-076",
-      "clienteId": "cli-imp-047",
-      "empresa": "Ministério do Trabalho, Solidariedade e Segurança Social",
+      "clienteId": "cli-imp-049",
+      "empresa": "MINISTERIO DE TRABAJO, SOLIDARIDAD Y SEGURIDAD SOCIAL / Dirección general de seguridad social",
       "subTabIndex": 2,
       "nome": "João Manuel",
       "apelido": "Grossinho Gonçalves",
@@ -4224,7 +4252,7 @@
     },
     {
       "id": "con-imp-077",
-      "clienteId": "cli-imp-051",
+      "clienteId": "cli-imp-050",
       "subTabIndex": 0,
       "nome": "Luís",
       "apelido": "Neves",
@@ -4239,11 +4267,12 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério da Administração Interna"
     },
     {
       "id": "con-imp-078",
-      "clienteId": "cli-imp-051",
+      "clienteId": "cli-imp-050",
       "nome": "Joana",
       "apelido": "Espírito Santo de Araújo",
       "cargo": "Chefe de Gabinete",
@@ -4256,13 +4285,13 @@
       "comercialAtribuidoId": "usr-admin-001",
       "subTabIndex": 0,
       "separadorId": "sep-1786699638045-482",
-      "empresa": "Ministério da Administração Interna - Ministério da Administração Interna",
+      "empresa": "Ministério da Administração Interna",
       "comercialAtribuidoNome": "José Centúrio",
       "createdById": "usr-admin-001"
     },
     {
       "id": "con-imp-079",
-      "clienteId": "cli-imp-051",
+      "clienteId": "cli-imp-050",
       "nome": "Telmo",
       "apelido": "Correia",
       "cargo": "Secretaria del estado de administración interna",
@@ -4275,13 +4304,13 @@
       "comercialAtribuidoId": "usr-admin-001",
       "subTabIndex": 0,
       "separadorId": "sep-1786699638045-482",
-      "empresa": "Ministério da Administração Interna - Ministério da Administração Interna",
+      "empresa": "Ministério da Administração Interna",
       "comercialAtribuidoNome": "José Centúrio",
       "createdById": "usr-admin-001"
     },
     {
       "id": "con-imp-080",
-      "clienteId": "cli-imp-051",
+      "clienteId": "cli-imp-050",
       "nome": "Rui",
       "apelido": "Ribeiro",
       "cargo": "Chefe de Gabinete - Secretaria del estado de administración interna",
@@ -4294,7 +4323,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "subTabIndex": 0,
       "separadorId": "sep-1786699638045-482",
-      "empresa": "Ministério da Administração Interna - Ministério da Administração Interna",
+      "empresa": "Ministério da Administração Interna",
       "comercialAtribuidoNome": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -4306,13 +4335,14 @@
       "cargo": "Ministro",
       "telefone": "gabinete.mih@mih.gov.pt",
       "telemovel": "",
-      "email": "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
-      "notas": "",
+      "email": "gabinete.mih@mih.gov.pt",
+      "notas": "Morada: Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério das Infraestruturas e Habitação"
     },
     {
       "id": "con-imp-082",
@@ -4322,13 +4352,14 @@
       "cargo": "Chefe de Gabinete",
       "telefone": "gabinete.mih@mih.gov.pt",
       "telemovel": "",
-      "email": "Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
-      "notas": "",
+      "email": "gabinete.mih@mih.gov.pt",
+      "notas": "Morada: Campus XXI, Avenida João XXI, 63 1000-300 LISBOA",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério das Infraestruturas e Habitação"
     },
     {
       "id": "con-imp-083",
@@ -4405,7 +4436,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério da Justiça"
     },
     {
       "id": "con-imp-087",
@@ -4419,11 +4451,12 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Ministério da Justiça"
     },
     {
       "id": "con-imp-088",
-      "clienteId": "cli-imp-055",
+      "clienteId": "cli-imp-054",
       "nome": "Ana Luísa",
       "apelido": "Machado",
       "cargo": "Secretaría del estado de justicia",
@@ -4436,11 +4469,11 @@
       "comercialAtribuidoId": "usr-admin-001",
       "subTabIndex": 2,
       "separadorId": "sep-1789840976632-127",
-      "empresa": "Ministério da Justiça - Ministério da Justiça"
+      "empresa": "Ministério da Justiça"
     },
     {
       "id": "con-imp-089",
-      "clienteId": "cli-imp-055",
+      "clienteId": "cli-imp-054",
       "nome": "João",
       "apelido": "Galvão Teles",
       "cargo": "Chefe de Gabinete - Secretaría del estado de justicia",
@@ -4453,7 +4486,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "subTabIndex": 2,
       "separadorId": "sep-1789840976632-127",
-      "empresa": "Ministério da Justiça - Ministério da Justiça"
+      "empresa": "Ministério da Justiça"
     },
     {
       "id": "con-imp-090",
@@ -4469,7 +4502,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério da Defesa Nacional"
     },
     {
       "id": "con-imp-091",
@@ -4485,12 +4519,13 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério da Defesa Nacional"
     },
     {
       "id": "con-imp-092",
-      "clienteId": "cli-imp-056",
-      "empresa": "Ministério da Defesa Nacional",
+      "clienteId": "cli-imp-057",
+      "empresa": "Direção Geral dos recursos da Defesa Nacional",
       "subTabIndex": 1,
       "nome": "Vasco",
       "apelido": "Hilário",
@@ -4521,7 +4556,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério dos Assuntos Parlamentares"
     },
     {
       "id": "con-imp-094",
@@ -4535,7 +4571,8 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Ministério dos Assuntos Parlamentares"
     },
     {
       "id": "con-imp-095",
@@ -4551,7 +4588,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério da Reforma do Estado"
     },
     {
       "id": "con-imp-096",
@@ -4567,7 +4605,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério da Reforma do Estado"
     },
     {
       "id": "con-imp-097",
@@ -4646,7 +4685,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério da Economia e Coesão Territorial"
     },
     {
       "id": "con-imp-103",
@@ -4662,11 +4702,12 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério da Economia e Coesão Territorial"
     },
     {
       "id": "con-imp-104",
-      "clienteId": "cli-imp-063",
+      "clienteId": "cli-imp-062",
       "nome": "Pedro",
       "apelido": "Machado",
       "cargo": "Secretaría del estado de turismo, comercio y servicios",
@@ -4679,13 +4720,13 @@
       "comercialAtribuidoId": "usr-admin-001",
       "subTabIndex": 3,
       "separadorId": "sep-1789840340163-856",
-      "empresa": "Ministério da Economia e Coesão Territorial - Ministério da Economia e Coesão Territorial",
+      "empresa": "Ministério da Economia e Coesão Territorial",
       "comercialAtribuidoNome": "José Centúrio",
       "createdById": "usr-admin-001"
     },
     {
       "id": "con-imp-105",
-      "clienteId": "cli-imp-063",
+      "clienteId": "cli-imp-062",
       "nome": "Mafalda",
       "apelido": "Torre",
       "cargo": "Chefe de Gabinete - Secretaría del estado de turismo, comercio y servicios",
@@ -4698,7 +4739,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "subTabIndex": 3,
       "separadorId": "sep-1789672673155-208",
-      "empresa": "Ministério da Economia e Coesão Territorial - Ministério da Economia e Coesão Territorial",
+      "empresa": "Ministério da Economia e Coesão Territorial",
       "comercialAtribuidoNome": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -4714,7 +4755,8 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Ministério da Presidência"
     },
     {
       "id": "con-imp-107",
@@ -4728,11 +4770,12 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Ministério da Presidência"
     },
     {
       "id": "con-imp-108",
-      "clienteId": "cli-imp-065",
+      "clienteId": "cli-imp-066",
       "nome": "Paulo",
       "apelido": "Rangel",
       "cargo": "Ministro",
@@ -4745,7 +4788,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "subTabIndex": 0,
       "separadorId": "sep-1789675033477-239",
-      "empresa": "MINISTÉRIO DE ESTADO E DOS NEGÓCIOS ESTRANGEIROS / Secretaria de Estado dos Negócios Estrangeiros e Cooperação - MINISTÉRIO DE ESTADO E DOS NEGÓCIOS ESTRANGEIROS / Secretaria de Estado dos Negócios Estrangeiros e Cooperação",
+      "empresa": "Ministério Negócios Estrangeiros e Cooperação",
       "comercialAtribuidoNome": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -4781,7 +4824,8 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Ministério das Finanças"
     },
     {
       "id": "con-imp-111",
@@ -4934,7 +4978,8 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "CTT - Correios de Portugal, S.A."
     },
     {
       "id": "con-imp-125",
@@ -5037,7 +5082,8 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "EDP - ENERGIAS DE PORTUGAL, S.A."
     },
     {
       "id": "con-imp-133",
@@ -5051,7 +5097,8 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "EDP - ENERGIAS DE PORTUGAL, S.A."
     },
     {
       "id": "con-imp-134",
@@ -5065,12 +5112,13 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "EDP - ENERGIAS DE PORTUGAL, S.A."
     },
     {
       "id": "con-imp-136",
-      "clienteId": "cli-imp-062",
-      "empresa": "Ministério da Economia e Coesão Territorial",
+      "clienteId": "cli-imp-084",
+      "empresa": "CCDR-N (Comissão de Coordenação e Desenvolvimento Regional do Norte)",
       "subTabIndex": 2,
       "nome": "Gabriela",
       "apelido": "Leite",
@@ -5123,7 +5171,8 @@
       "notas": "",
       "createdAt": "2026-07-31T16:12:49.863Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Huawei Technologies Portugal"
     },
     {
       "id": "con-1785515106421-857",
@@ -5201,7 +5250,8 @@
       "notas": "",
       "createdAt": "2026-08-04T06:33:34.405Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Huawei Technologies Portugal"
     },
     {
       "id": "con-1785826295654-612",
@@ -5215,7 +5265,8 @@
       "notas": "",
       "createdAt": "2026-08-04T06:51:35.654Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Huawei Technologies Portugal"
     },
     {
       "id": "con-1786605035080-194",
@@ -5230,7 +5281,8 @@
       "notas": "",
       "createdAt": "2026-08-13T07:10:35.080Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Banco Comercial do Atlântico - BCA"
     },
     {
       "id": "con-imp-004",
@@ -5245,7 +5297,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "subTabIndex": 0,
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Galp Energia, SGPS, S.A."
     },
     {
       "id": "con-imp-035",
@@ -5260,7 +5313,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "subTabIndex": 1,
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "NOS, SGPS, S.A."
     },
     {
       "id": "con-imp-050",
@@ -5274,11 +5328,12 @@
       "notas": "Temas: culture, fostering environmental awareness a través del arte",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Fundação Serralves"
     },
     {
       "id": "con-imp-100",
-      "clienteId": "cli-imp-061",
+      "clienteId": "cli-imp-059",
       "nome": "Maria Joao",
       "apelido": "Santos",
       "cargo": "Chefe de Gabinete - Secretaría del estado para la simplificación",
@@ -5288,7 +5343,8 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Ministério da Reforma do Estado"
     },
     {
       "id": "con-imp-101",
@@ -5302,7 +5358,8 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Ministério da Reforma do Estado"
     },
     {
       "id": "con-imp-112",
@@ -5316,7 +5373,8 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Fundação EDP"
     },
     {
       "id": "con-imp-115",
@@ -5330,7 +5388,8 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Fundação Millenium BCP"
     },
     {
       "id": "con-imp-116",
@@ -5345,7 +5404,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "subTabIndex": 0,
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Fundação Galp"
     },
     {
       "id": "con-imp-120",
@@ -5360,7 +5420,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "subTabIndex": 0,
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "SONAE, SGPS, S.A."
     },
     {
       "id": "con-imp-128",
@@ -5374,7 +5435,8 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Altice Portugal (Altice Labs)"
     },
     {
       "id": "con-imp-130",
@@ -5388,7 +5450,8 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "Galp Energia, SGPS, S.A."
     },
     {
       "id": "con-imp-135",
@@ -5402,7 +5465,8 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "empresa": "EDP - ENERGIAS DE PORTUGAL, S.A."
     },
     {
       "id": "con-1789673981691-405",
@@ -5421,7 +5485,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério da Reforma do Estado"
     },
     {
       "id": "con-1789674192313-904",
@@ -5440,7 +5505,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério da Reforma do Estado"
     },
     {
       "id": "con-1789675675222-909",
@@ -5459,7 +5525,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Ministério Negócios Estrangeiros e Cooperação"
     },
     {
       "id": "con-1789987705330-348",
@@ -5667,8 +5734,8 @@
     },
     {
       "id": "con-1790067734898-846",
-      "clienteId": "cli-1786727373519-853",
-      "empresa": "Fundação Galp",
+      "clienteId": "cli-imp-011",
+      "empresa": "Fundação Calouste Gulbenkian",
       "subTabIndex": 0,
       "nome": "Saliu",
       "apelido": "Djau",
@@ -5708,8 +5775,8 @@
     },
     {
       "id": "con-1790067734898-528",
-      "clienteId": "cli-imp-016",
-      "empresa": "Fundação EDP",
+      "clienteId": "cli-imp-024",
+      "empresa": "Fundação Serralves",
       "subTabIndex": 0,
       "nome": "Diana",
       "apelido": "Castro",
@@ -5728,8 +5795,8 @@
     },
     {
       "id": "con-1790067734898-85",
-      "clienteId": "cli-imp-016",
-      "empresa": "Fundação EDP",
+      "clienteId": "cli-imp-024",
+      "empresa": "Fundação Serralves",
       "subTabIndex": 0,
       "nome": "Manuela",
       "apelido": "Ferreira",
@@ -9157,6 +9224,5 @@
     "interacoesProjetos": [],
     "orcamentos": [],
     "usuarios": []
-  },
-  "ignoredDuplicates": []
+  }
 }

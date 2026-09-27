@@ -65,7 +65,12 @@
 ---
 
 ## 📜 3. ESTADO ATUAL E HISTÓRICO DE DESENVOLVIMENTO
-- **Última Atualização:** 27/09/2026 20:00 (Módulo 'Correção de Caracteres' Universalizado: BD, Interface, Botões, Nomes e Textos)
+- **Última Atualização:** 27/09/2026 20:20 (Alinhamento de Contactos por Domínio do Email)
+- **Alinhamento de Contactos por Domínio do Email (27/09/2026 20:20):**
+  - **Requisito do Utilizador:** Os contactos devem ficar associados ao cliente correspondente ao domínio do seu email.
+  - **Implementações:**
+    1. **`data/db.json`:** Realinhados 24 contactos para os clientes exatos correspondentes ao domínio do seu email (ex: `@gulbenkian.pt` para Fundação Calouste Gulbenkian, `@serralves.pt` para Fundação Serralves, `@telecom.pt` para Altice Portugal, `@ccdr-n.pt` para CCDR-N, e respetivos ministérios de acordo com os domínios `.gov.pt`). Preenchidos 62 campos de empresa vazios com base no cliente oficial.
+    2. **Validação:** Base de dados validada: 76 clientes, 161 contactos e 4 projetos 100% íntegros.
 - **Universalização do Botão 'Correção de Caracteres' (27/09/2026 20:00):**
   - **Requisito do Utilizador:** O botão não é só para moradas. É para tudo o que esteja com caracteres raros no programa: moradas, nomes, botões, tabelas, títulos, etc. Seja o que for.
   - **Implementações:**

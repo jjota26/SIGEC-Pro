@@ -4,8 +4,18 @@
 - Autor: Jose Centurio
 - Produção Web Oficial: https://sigec-pro.onrender.com
 - Backup: josecenturio/SIGEC-Pro
-- Data: 27/09/2026 20:00
-- Estado: ✅ Módulo 'Correção de Caracteres' Universalizado: Saneamento Profundo em Base de Dados, Interface, Botões, Moradas, Nomes e Textos.
+- Data: 27/09/2026 20:20
+- Estado: ✅ Contactos Realinhados ao Cliente Correspondente com Base no Domínio do Email.
+
+## 000000000000000000000000000. Alinhamento de Contactos por Domínio do Email (27/09/2026 20:20)
+- **Problema & Pedido do Utilizador:** Os contactos devem ficar obrigatoriamente associados ao cliente referente ao domínio do seu email.
+- **Implementações & Blindagens:**
+  1. Varredura rigorosa de todos os 161 contactos e 76 clientes em `data/db.json`:
+     - **Fundações:** Saliu Djau (`sdjau@gulbenkian.pt`) transferido de Fundação Galp para **Fundação Calouste Gulbenkian**; Diana Castro e Manuela Ferreira (`@serralves.pt`) transferidas de Fundação EDP para **Fundação Serralves**.
+     - **Grandes Empresas:** Ana Guimarães (`@telecom.pt`) associada a **Altice Portugal**; Pedro Rio associado a **Jerónimo Martins**; contactos da Galp e EDP distinguidos com precisão entre fundações e empresas comerciais.
+     - **Organismos e Ministérios:** Alexandre Homem Cristo (`@meci.gov.pt`), Clara Marques Mendes e Susana Lamas (`@mtsss.gov.pt`), Luís Neves, Joana Espírito Santo, Telmo Correia, Rui Ribeiro (`@mai.gov.pt`), Ana Luísa Machado e João Galvão Teles (`@mj.gov.pt`), Pedro Machado e Mafalda Torre (`@mect.gov.pt`), Paulo Rangel (`@mne.gov.pt`), João Manuel Grossinho Gonçalves (`@seg-social.pt`), Vasco Hilário (`@defesa.pt`), Gabriela Leite (`@ccdr-n.pt`) e Maria João Santos (`@mare.gov.pt`) alinhados aos respetivos Ministérios e Direções-Gerais.
+     - **Retificação de Campos:** Miguel Pinto Luz e Gustavo Madeira atualizados com o email oficial do ministério (`gabinete.mih@mih.gov.pt`) e morada preservada nas notas. Preenchidos 62 campos de empresa que estavam como `undefined` com base no cliente válido.
+  2. Validação estrita: 76 clientes, 161 contactos e 4 projetos 100% preservados.
 
 ## 00000000000000000000000000. Universalização do Botão 'Correção de Caracteres' (27/09/2026 20:00)
 - **Problema & Pedido do Utilizador:** O botão de correção de caracteres não é só para moradas. É para tudo o que esteja com caracteres raros no programa: moradas, nomes, botões, títulos, tabelas, etc. Seja o que for.
