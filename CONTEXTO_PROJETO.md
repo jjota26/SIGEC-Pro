@@ -233,7 +233,7 @@
   2. **Fecho Imediato da Janela Modal:** Inclusão explícita de `closeUserProfileModal()` logo após a persistência dos dados em memória e `localStorage`;
   3. **Feedback Ágil (Toast):** Substituição de alertas bloqueantes por toast elegante (`showToast`) informando que os dados foram guardados e a sincronização está em curso;
   4. **Autorização de Chefia Livre para o Administrador:** `openUserProfileModal()` garante `chefiaCheckbox.disabled = false`, permitindo conceder ou revogar autorização de chefia a qualquer utilizador;
-  5. **Sincronização em Tempo Real Multi-Endpoint:** Disparo em background com `Promise.allSettled` via POST para os 4 endpoints centrais (`/api/save-db-json`, `https://sigec-pro.onrender.com/api/save-db-json`, `https://sigec-pro-app.onrender.com/api/save-db-json`, `http://127.0.0.1:59124/api/save-db-json`) e sincronização direta no Hugging Face Space & Dataset (`syncDatabaseToHuggingFace`);
+  5. **Sincronização em Tempo Real Multi-Endpoint:** Disparo em background com `Promise.allSettled` via POST para os endpoints centrais (`/api/save-db-json`, `https://sigec-pro.onrender.com/api/save-db-json`, `http://127.0.0.1:59124/api/save-db-json`) e sincronização direta no Hugging Face Space & Dataset (`syncDatabaseToHuggingFace`);
   6. **Testes Automatizados 100% Aprovados:** Validação rigorosa em PowerShell e Edge Headless confirmando integridade de dados (75 clientes, 161 contactos, 4 projetos, 3 utilizadores), persistência e DOM ativo.
 - **Problema:** Ao alterar dados na ficha de utilizador (nome, email, cargo, permissões/chefia, estado ativo/inativo, idioma, palavra-passe/PIN), as alterações precisavam de ficar imediatamente ativas, ser enviadas sem atraso para o servidor central e aplicadas aos utilizadores sem requerer reinicializações.
 - **Diagnóstico:**
@@ -241,7 +241,7 @@
   2. Em `ensureUsersInitialized`, existia uma sobreposição legada que forçava `u.idioma = 'Español'`, anulando a escolha que o Administrador fizesse no perfil;
   3. No ecrã de login (`verifyLoginPin`), caso a palavra-passe tivesse sido recentemente alterada pelo Administrador, o utilizador podia ter o acesso rejeitado se o seu navegador ainda não tivesse reconciliado a nova senha.
 - **Resolução Implementada:**
-  1. **Envio Síncrono Imediato (`handleSaveUserProfile`):** `await Promise.allSettled` para `/api/save-db-json`, `https://sigec-pro.onrender.com/api/save-db-json`, `https://sigec-pro-app.onrender.com/api/save-db-json` e `http://127.0.0.1:59124/api/save-db-json` acompanhado de `await syncDatabaseToHuggingFace(true, true)`;
+  1. **Envio Síncrono Imediato (`handleSaveUserProfile`):** `await Promise.allSettled` para `/api/save-db-json`, `https://sigec-pro.onrender.com/api/save-db-json` e `http://127.0.0.1:59124/api/save-db-json` acompanhado de `await syncDatabaseToHuggingFace(true, true)`;
   2. **Preservação de Idioma e Escolhas:** Removida a sobreposição rígida em `ensureUsersInitialized`, garantindo que o idioma selecionado pelo Administrador nunca é revertido;
   3. **Ativação Imediata Local:** Se o utilizador com sessão aberta for o editado, o sistema aplica instantaneamente o novo idioma (`applyUserLanguage`), permissões (`applyUserPermissions`), badge no cabeçalho ou encerra a sessão de imediato se a conta tiver sido desativada;
   4. **Ativação Remota em Tempo Real (`mergeCloudDatabaseSafely`):** Em outros computadores, a rotina de reconciliação deteta alterações em `active`, `role`, `cargo`, `idioma`, `nome`, `pin` e aplica-as de imediato ao utilizador ativo;
