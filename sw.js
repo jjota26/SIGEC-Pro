@@ -1,7 +1,8 @@
 ﻿/* ============================================================
    SIGEC-Pro — Service Worker PWA de Alto Desempenho
-   Estratégia: Stale-While-Revalidate com Cache-First Inteligente
-   Garante carregamento instantâneo (<50ms) e fluidez em todos os computadores.
+   Estratégia: Stale-While-Revalidate para Recursos Estáticos (Código/Estilos)
+   REDE DIRETA EM TEMPO REAL para Base de Dados e APIs.
+   Garante máxima velocidade de interface E sincronização instantânea de dados.
    ============================================================ */
 
 const CACHE_NAME = 'sigec-pro-v1.7.36';
@@ -17,7 +18,7 @@ const CORE_ASSETS = [
   "/manifest.json"
 ];
 
-/* Instalação: pré-carrega os recursos principais com verificação resiliente */
+/* Instalação: pré-carrega apenas código e estilos estáticos */
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(async cache => {
@@ -37,7 +38,7 @@ self.addEventListener("install", event => {
   self.skipWaiting();
 });
 
-/* Ativação: limpa caches antigas imediatamente */
+/* Ativação: limpa caches antigas */
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -52,27 +53,35 @@ self.addEventListener("activate", event => {
   self.clients.claim();
 });
 
-/* Fetch: Otimizado para velocidade máxima */
+/* Fetch: Separação estrita entre Interface e Dados */
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
 
   const url = new URL(event.request.url);
 
-  // 1. Pedidos à API (/api/*) e domínios externos: direto à rede sem cache
-  if (url.pathname.startsWith('/api/') || !url.origin.includes(self.location.origin)) {
-    return;
+  // 1. DADOS E SINCRONIZAÇÃO EM TEMPO REAL:
+  // Base de dados (/data/*, db.json), APIs (/api/*) e domínios externos (Hugging Face)
+  // VÃO SEMPRE 100% DIRETO À REDE - NUNCA PASSAM PELA CACHE
+  if (
+    url.pathname.startsWith('/api/') ||
+    url.pathname.includes('/data/') ||
+    url.pathname.includes('db.json') ||
+    !url.origin.includes(self.location.origin)
+  ) {
+    return; // Passa direto à rede em frações de segundos
   }
 
-  // 2. Ficheiros estáticos (.js, .css, imagens, fontes, manifest): Stale-While-Revalidate
-  const isStatic = url.pathname.endsWith('.js') ||
-                   url.pathname.endsWith('.css') ||
-                   url.pathname.endsWith('.png') ||
-                   url.pathname.endsWith('.svg') ||
-                   url.pathname.endsWith('.ico') ||
-                   url.pathname.endsWith('.json') ||
-                   url.pathname.endsWith('.woff2');
+  // 2. Ficheiros de Código e Interface (.js, .css, imagens, manifest):
+  // Carregamento instantâneo (<50ms) com atualização silenciosa
+  const isStaticAsset = url.pathname.endsWith('.js') ||
+                        url.pathname.endsWith('.css') ||
+                        url.pathname.endsWith('.png') ||
+                        url.pathname.endsWith('.svg') ||
+                        url.pathname.endsWith('.ico') ||
+                        url.pathname.endsWith('manifest.json') ||
+                        url.pathname.endsWith('.woff2');
 
-  if (isStatic) {
+  if (isStaticAsset) {
     event.respondWith(
       caches.match(event.request, { ignoreSearch: true }).then(cachedResponse => {
         const fetchPromise = fetch(event.request).then(networkResponse => {
@@ -89,7 +98,7 @@ self.addEventListener("fetch", event => {
     return;
   }
 
-  // 3. Documento HTML principal (/ ou index.html): Network-First rápido com fallback para cache
+  // 3. Documento HTML principal: Network-First rápido com fallback
   if (event.request.mode === 'navigate' || url.pathname === '/' || url.pathname.endsWith('.html')) {
     event.respondWith(
       fetch(event.request)

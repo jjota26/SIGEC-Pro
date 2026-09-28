@@ -718,8 +718,10 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
         'Content-Type': contentType
       };
 
-      if (ext === '.html' || safePath === '/index.html') {
-        responseHeaders['Cache-Control'] = 'no-cache';
+      if (ext === '.html' || safePath === '/index.html' || safePath.includes('db.json') || safePath.includes('/data/')) {
+        responseHeaders['Cache-Control'] = 'no-cache, no-store, must-revalidate';
+        responseHeaders['Pragma'] = 'no-cache';
+        responseHeaders['Expires'] = '0';
       } else if (['.js', '.css', '.png', '.jpg', '.jpeg', '.svg', '.ico', '.woff2', '.xlsx'].includes(ext)) {
         responseHeaders['Cache-Control'] = 'public, max-age=604800, stale-while-revalidate=86400';
       }
