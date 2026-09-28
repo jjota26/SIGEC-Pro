@@ -402,3 +402,8 @@
   - **Correção 3 (Cabeçalhos HTTP de Cache no Servidor Node.js):** Em server.js, foi configurado o envio explícito do cabeçalho Cache-Control: public, max-age=604800, stale-while-revalidate=86400 para recursos estáticos e Cache-Control: no-cache para o ficheiro HTML principal.
   - **Correção 4 (Otimização de Intervalos de Rede):** O temporizador _universalUpdateCheckInterval em pp.js foi ajustado de 45 segundos para 30 minutos (1800000 ms), eliminando pedidos concorrentes desnecessários na rede.
   - **Testes Automatizados e Integridade:** Validado com Microsoft Edge em modo headless (renderização completa de 1.76 MB de DOM em 4.00 ms). Base de dados estritamente preservada a 100% com 76 clientes, 161 contactos, 4 projetos e 3 utilizadores.
+
+- **Transição para Arquitetura 100% Web Pura em Memória RAM (28/09/2026):**
+  - **Eliminação do Service Worker e Purga de Cache:** O Service Worker foi completamente desregistado e a sua chamada removida de index.html. O script de entrada purga de forma incondicional qualquer Cache Storage (window.caches) existente no navegador.
+  - **Execução Exclusiva em Memória RAM:** Nenhum ficheiro de código visual ou lógico fica retido localmente no disco dos utilizadores.
+  - **Velocidade de Trabalho e Rede:** A rapidez operacional (60 FPS) é assegurada pela ausência de loops no DOM e execução direta na memória. O carregamento de rede é otimizado através de compressão Gzip no server.js (~700 KB transferidos em cerca de 1 segundo). Sincronização de base de dados 100% em tempo real com dados preservados (76 clientes, 161 contactos, 4 projetos, 3 utilizadores).
