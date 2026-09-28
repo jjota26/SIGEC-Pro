@@ -1,4 +1,4 @@
-const http = require('http');
+﻿const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const net = require('net');
@@ -714,22 +714,30 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
                              contentType.includes('json') ||
                              contentType.includes('svg');
 
+      const responseHeaders = {
+        'Content-Type': contentType
+      };
+
+      if (ext === '.html' || safePath === '/index.html') {
+        responseHeaders['Cache-Control'] = 'no-cache';
+      } else if (['.js', '.css', '.png', '.jpg', '.jpeg', '.svg', '.ico', '.woff2', '.xlsx'].includes(ext)) {
+        responseHeaders['Cache-Control'] = 'public, max-age=604800, stale-while-revalidate=86400';
+      }
+
       if (acceptEncoding.includes('gzip') && isCompressible) {
         zlib.gzip(content, (gzErr, zipped) => {
           if (!gzErr && zipped) {
-            res.writeHead(200, {
-              'Content-Type': contentType,
-              'Content-Encoding': 'gzip',
-              'Vary': 'Accept-Encoding'
-            });
+            responseHeaders['Content-Encoding'] = 'gzip';
+            responseHeaders['Vary'] = 'Accept-Encoding';
+            res.writeHead(200, responseHeaders);
             res.end(zipped);
           } else {
-            res.writeHead(200, { 'Content-Type': contentType });
+            res.writeHead(200, responseHeaders);
             res.end(content);
           }
         });
       } else {
-        res.writeHead(200, { 'Content-Type': contentType });
+        res.writeHead(200, responseHeaders);
         res.end(content);
       }
     });

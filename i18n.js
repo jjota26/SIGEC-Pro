@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ====================================================================
  * SIGEC-Pro - MÓDULO DE INTERNACIONALIZAÇÃO E TRADUÇÃO DINÂMICA (i18n)
  * Suporte completo para: Português, Español, English, Français, Polski
@@ -2616,9 +2616,17 @@ let currentSystemLanguage = 'Português';
 /**
  * Normaliza o nome do idioma para os 5 suportados
  */
+function isPortugueseLanguage(lang) {
+  if (!lang) return true;
+  const l = String(lang).trim().toLowerCase();
+  return l.startsWith('port') || l === 'pt' || l === 'pt-pt' || l === 'pt-br' || l.includes('portug');
+}
+window.isPortugueseLanguage = isPortugueseLanguage;
+
 function normalizeLanguageName(lang) {
   if (!lang) return 'Português';
   const l = String(lang).trim().toLowerCase();
+  if (isPortugueseLanguage(l)) return 'Português';
   if (l.startsWith('es') || l.includes('espan')) return 'Español';
   if (l.startsWith('en') || l.includes('engl') || l.includes('ingl')) return 'English';
   if (l.startsWith('fr') || l.includes('fran')) return 'Français';
@@ -2791,7 +2799,8 @@ window.translateDOMTree = translateDOMTree;
  */
 function applyModalLanguage(modalEl, langName) {
   if (!modalEl) return;
-  langName = normalizeLanguageName(langName);
+  langName = normalizeLanguageName(langName || currentSystemLanguage);
+  if (isPortugueseLanguage(langName)) return;
 
   // 1. Atualizar atributos data-i18n dentro do modal
   modalEl.querySelectorAll('[data-i18n]').forEach(el => {
@@ -2894,8 +2903,9 @@ function applyUserLanguage(langName) {
     // 4. Traduzir elementos estruturais específicos da interface
     translateSpecificInterfaceElements(langName);
 
-    // 5. Traduzir árvore profunda do DOM
-    if (document.body) {
+    // 5. Traduzir árvore profunda apenas para idiomas estrangeiros
+    const isPt = isPortugueseLanguage(langName);
+    if (!isPt && document.body) {
       translateDOMTree(document.body, langName);
     }
   }
@@ -3380,18 +3390,9 @@ let i18nObserverTimeout = null;
 let isApplyingI18n = false;
 
 function setupI18nMutationObserver() {
-  if (typeof MutationObserver === 'undefined') return;
-  const observer = new MutationObserver((mutations) => {
-    if (currentSystemLanguage !== 'Português' && !isApplyingI18n) {
-      if (i18nObserverTimeout) clearTimeout(i18nObserverTimeout);
-      i18nObserverTimeout = setTimeout(() => {
-        isApplyingI18n = true;
-        applyUserLanguage(currentSystemLanguage);
-        setTimeout(() => { isApplyingI18n = false; }, 50);
-      }, 60);
-    }
-  });
-  observer.observe(document.body, { childList: true, subtree: true });
+  // DESATIVADO DEFINITIVAMENTE: A observação contínua de document.body criava loops de mutação infinitos e sobrecarga da CPU.
+  // A interface é nativa em Português e as traduções ocorrem de forma pontual no carregamento inicial, troca de idioma e abertura de modais.
+  return;
 }
 
 // Iniciar ao carregar o documento
