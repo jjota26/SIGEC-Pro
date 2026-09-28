@@ -9,13 +9,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SIGEC-Pro - Sistema de Gestão</title>
   <script>
+    // Purga total incondicional de qualquer Cache Storage local no navegador
     if ('caches' in window) {
       caches.keys().then(function(keys) {
         keys.forEach(function(k) {
-          if (k !== 'sigec-pro-v1.7.36') {
-            console.log('[PWA] Purga imediata de cache antiga:', k);
-            caches.delete(k);
-          }
+          caches.delete(k);
+        });
+      });
+    }
+    // Desativação e desregisto imediato de qualquer Service Worker anterior
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(regs) {
+        regs.forEach(function(r) {
+          r.unregister();
         });
       });
     }
@@ -6513,20 +6519,13 @@
 
 </body>
 
-<!-- PWA: Registo do Service Worker com Auto-Update -->
+<!-- Aplicação 100% Web Pura em Memória RAM: Desregisto de Service Worker -->
 <script>
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js?v=1.7.36')
-        .then(function (reg) {
-          if (typeof reg.update === 'function') {
-            reg.update();
-          }
-          console.log('[PWA] Service Worker registado e atualizado. Scope:', reg.scope);
-        })
-        .catch(function (err) {
-          console.warn('[PWA] Falha no registo do Service Worker:', err);
-        });
+    navigator.serviceWorker.getRegistrations().then(function(regs) {
+      for (var i = 0; i < regs.length; i++) {
+        regs[i].unregister();
+      }
     });
   }
 </script>

@@ -1,119 +1,25 @@
 ﻿/* ============================================================
-   SIGEC-Pro — Service Worker PWA de Alto Desempenho
-   Estratégia: Stale-While-Revalidate para Recursos Estáticos (Código/Estilos)
-   REDE DIRETA EM TEMPO REAL para Base de Dados e APIs.
-   Garante máxima velocidade de interface E sincronização instantânea de dados.
+   SIGEC-Pro — Service Worker: Desativação e Auto-Remoção
+   Aplicação 100% Web Pura em Memória RAM sem retenção local no disco.
    ============================================================ */
 
-const CACHE_NAME = 'sigec-pro-v1.7.36';
-const CORE_ASSETS = [
-  "/",
-  "/index.html",
-  "/styles.css",
-  "/app.js",
-  "/i18n.js",
-  "/duplicatesManager.js",
-  "/icon-192.png",
-  "/icon-512.png",
-  "/manifest.json"
-];
-
-/* Instalação: pré-carrega apenas código e estilos estáticos */
 self.addEventListener("install", event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(async cache => {
-      console.log("[SW] Pre-caching core assets...");
-      for (const asset of CORE_ASSETS) {
-        try {
-          const res = await fetch(asset, { cache: 'no-cache' });
-          if (res && res.ok) {
-            await cache.put(asset, res);
-          }
-        } catch (e) {
-          console.warn("[SW] Erro ao pré-carregar:", asset, e);
-        }
-      }
-    })
-  );
   self.skipWaiting();
 });
 
-/* Ativação: limpa caches antigas */
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
-      Promise.all(
-        keys.filter(k => k !== CACHE_NAME).map(k => {
-          console.log("[SW] Removendo cache antiga:", k);
-          return caches.delete(k);
-        })
-      )
-    )
+      Promise.all(keys.map(k => caches.delete(k)))
+    ).then(() => {
+      return self.registration.unregister();
+    }).then(() => {
+      return self.clients.claim();
+    })
   );
-  self.clients.claim();
 });
 
-/* Fetch: Separação estrita entre Interface e Dados */
+// Sem interceção de fetch: todos os pedidos seguem diretamente para a rede
 self.addEventListener("fetch", event => {
-  if (event.request.method !== "GET") return;
-
-  const url = new URL(event.request.url);
-
-  // 1. DADOS E SINCRONIZAÇÃO EM TEMPO REAL:
-  // Base de dados (/data/*, db.json), APIs (/api/*) e domínios externos (Hugging Face)
-  // VÃO SEMPRE 100% DIRETO À REDE - NUNCA PASSAM PELA CACHE
-  if (
-    url.pathname.startsWith('/api/') ||
-    url.pathname.includes('/data/') ||
-    url.pathname.includes('db.json') ||
-    !url.origin.includes(self.location.origin)
-  ) {
-    return; // Passa direto à rede em frações de segundos
-  }
-
-  // 2. Ficheiros de Código e Interface (.js, .css, imagens, manifest):
-  // Carregamento instantâneo (<50ms) com atualização silenciosa
-  const isStaticAsset = url.pathname.endsWith('.js') ||
-                        url.pathname.endsWith('.css') ||
-                        url.pathname.endsWith('.png') ||
-                        url.pathname.endsWith('.svg') ||
-                        url.pathname.endsWith('.ico') ||
-                        url.pathname.endsWith('manifest.json') ||
-                        url.pathname.endsWith('.woff2');
-
-  if (isStaticAsset) {
-    event.respondWith(
-      caches.match(event.request, { ignoreSearch: true }).then(cachedResponse => {
-        const fetchPromise = fetch(event.request).then(networkResponse => {
-          if (networkResponse && networkResponse.status === 200) {
-            const clone = networkResponse.clone();
-            caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-          }
-          return networkResponse;
-        }).catch(() => null);
-
-        return cachedResponse || fetchPromise;
-      })
-    );
-    return;
-  }
-
-  // 3. Documento HTML principal: Network-First rápido com fallback
-  if (event.request.mode === 'navigate' || url.pathname === '/' || url.pathname.endsWith('.html')) {
-    event.respondWith(
-      fetch(event.request)
-        .then(response => {
-          if (response && response.status === 200) {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-          }
-          return response;
-        })
-        .catch(() => {
-          return caches.match(event.request, { ignoreSearch: true }).then(cached => {
-            return cached || caches.match('/index.html', { ignoreSearch: true });
-          });
-        })
-    );
-  }
+  return;
 });
