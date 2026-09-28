@@ -407,3 +407,11 @@
   - **Eliminação do Service Worker e Purga de Cache:** O Service Worker foi completamente desregistado e a sua chamada removida de index.html. O script de entrada purga de forma incondicional qualquer Cache Storage (window.caches) existente no navegador.
   - **Execução Exclusiva em Memória RAM:** Nenhum ficheiro de código visual ou lógico fica retido localmente no disco dos utilizadores.
   - **Velocidade de Trabalho e Rede:** A rapidez operacional (60 FPS) é assegurada pela ausência de loops no DOM e execução direta na memória. O carregamento de rede é otimizado através de compressão Gzip no server.js (~700 KB transferidos em cerca de 1 segundo). Sincronização de base de dados 100% em tempo real com dados preservados (76 clientes, 161 contactos, 4 projetos, 3 utilizadores).
+
+- **Versão V1.7.37 - Solução Definitiva de Alto Desempenho e Velocidade Instantânea (28/09/2026):**
+  - **Service Worker Otimizado com Separação Rigorosa:** Ativado sw.js com estratégia Stale-While-Revalidate e { ignoreSearch: true } exclusivo para código visual e assets (pp.js, styles.css, i18n.js), garantindo carregamento local a partir da cache (sigec-pro-v1.7.37) em frações de segundo.
+  - **Bypass Direto de Dados:** Toda a base de dados (/data/db.json e /api/*) ignora a cache a 100%, sincronizando em frações de segundo em tempo real.
+  - **Eliminação de Bloqueio no Cabeçalho:** Adicionado atributo defer às 4 bibliotecas pesadas de terceiros (SheetJS XLSX, Mammoth Word, jsPDF e AutoTable = 2.5 MB) no index.html, permitindo renderização imediata do ecrã de entrada.
+  - **Diferimento de Tarefas Pesadas de CPU:** O cálculo de 12.880 comparações de duplicados (updateDuplicateBadges) e contadores de orçamento foram diferidos para 5 segundos após o arranque, libertando a CPU no momento do login.
+  - **Otimização de Sincronização no Arranque:** Eliminado envio concorrente de commits desnecessários para a nuvem em utoSyncServerOnStartup.
+  - **Base de Dados:** 100% preservada com 76 clientes, 161 contactos, 4 projetos e 3 utilizadores.
