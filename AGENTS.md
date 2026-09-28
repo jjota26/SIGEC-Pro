@@ -1,4 +1,4 @@
-# AGENTS.md - DIRETRIZES E MEMÓRIA PERMANENTE DO PROJETO SIGEC-Pro
+﻿# AGENTS.md - DIRETRIZES E MEMÓRIA PERMANENTE DO PROJETO SIGEC-Pro
 
 > **REGRA FUNDAMENTAL DO SISTEMA ANTIGRAVITY:**
 > Este ficheiro é carregado AUTOMATICAMENTE pelo Antigravity no início de TODAS as sessões em qualquer computador.
@@ -420,3 +420,8 @@
   - **Identificação:** Detetou-se que no domingo (27/09 às 18:21, commit 803e4327) tinha sido executado um script indevido de realinhamento automático que alterou empresas e associações de contactos (ex: Fundação EDP, Fundação Galp, ministérios).
   - **Reposição Total:** O ficheiro data/db.json foi revertido e restaurado com rigor absoluto para o estado original de sexta-feira de manhã (58aded2), anulando 100% das alterações indevidas.
   - **Estado Confirmado:** 76 clientes, 161 contactos (com empresas e vínculos originais), 4 projetos e 3 utilizadores.
+- **Atualização Autorizada de Nomes e Cargos Ministeriais para Português (PT-PT) (28/09/2026):**
+  - **Autorização Expressa:** Executado mediante confirmação expressa do utilizador ("Sim. E os contactos também.").
+  - **Clientes:** 14 clientes ministeriais/estatais e seus respetivos separadores atualizados com as designações oficiais em Português de Portugal (ex.: Ministério da Agricultura e do Mar, Direção-Geral de Agricultura e Desenvolvimento Rural, Ministério das Infraestruturas e Habitação, Ministério da Educação, Ciência e Inovação, Ministério do Trabalho, Solidariedade e Segurança Social, Ministério da Justiça, Ministério da Reforma do Estado, Ministério da Economia e da Coesão Territorial, Ministério de Estado e dos Negócios Estrangeiros).
+  - **Contactos:** 27 cargos de contactos governamentais (ex.: Direção-Geral, Secretaria-Geral, Secretário de Estado, Chefe de Gabinete), 1 empresa e 8 campos de notas traduzidos com fidelidade para Português de Portugal.
+  - **Integridade da Base de Dados:** Estrutura e integridade 100% intactas: exatamente 76 clientes, 161 contactos, 4 projetos e 3 utilizadores (commit d09e3428).
