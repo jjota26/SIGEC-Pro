@@ -415,3 +415,8 @@
   - **Diferimento de Tarefas Pesadas de CPU:** O cálculo de 12.880 comparações de duplicados (updateDuplicateBadges) e contadores de orçamento foram diferidos para 5 segundos após o arranque, libertando a CPU no momento do login.
   - **Otimização de Sincronização no Arranque:** Eliminado envio concorrente de commits desnecessários para a nuvem em utoSyncServerOnStartup.
   - **Base de Dados:** 100% preservada com 76 clientes, 161 contactos, 4 projetos e 3 utilizadores.
+
+- **Rollback Imediato da Base de Dados para a Versão Original de Sexta-feira b58aded2 (28/09/2026):**
+  - **Identificação:** Detetou-se que no domingo (27/09 às 18:21, commit 803e4327) tinha sido executado um script indevido de realinhamento automático que alterou empresas e associações de contactos (ex: Fundação EDP, Fundação Galp, ministérios).
+  - **Reposição Total:** O ficheiro data/db.json foi revertido e restaurado com rigor absoluto para o estado original de sexta-feira de manhã (58aded2), anulando 100% das alterações indevidas.
+  - **Estado Confirmado:** 76 clientes, 161 contactos (com empresas e vínculos originais), 4 projetos e 3 utilizadores.
