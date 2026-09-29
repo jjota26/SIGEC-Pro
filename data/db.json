@@ -5725,6 +5725,8 @@
       "nome": "Estratégia Norte 2040",
       "tipo": "Aluguer UM",
       "clienteId": "cli-imp-062",
+      "separadorId": "sep-1786701644893-214",
+      "subTabIndex": 2,
       "contacto1Id": "con-1785515478798-243",
       "contacto2Id": "con-imp-136",
       "dataInicio": "2026-07-31",
@@ -5732,15 +5734,13 @@
       "estado": "Aguardar",
       "viatura": "",
       "matricula": "",
+      "orcamentos": [],
       "documents": [],
       "media": [],
       "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-09-29T11:43:38.767Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "separadorId": "sep-1786701644893-214",
-      "subTabIndex": 2,
-      "orcamentos": [],
-      "updatedAt": "2026-09-29T10:40:11.867Z"
+      "comercialAtribuidoId": "usr-admin-001"
     },
     {
       "id": "proj-rec-bcn",
@@ -7200,6 +7200,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790682218777-52552",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Projeto",
+      "tipoAcao": "Edição de Projeto",
+      "descricao": "Ficha do projeto \"Estratégia Norte 2040\" atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Estratégia Norte 2040",
+        "tipo": "Aluguer UM",
+        "estado": "Aguardar",
+        "cliente": "Ministério da Economia e Coesão Territorial",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Estratégia Norte 2040",
+        "tipo": "Aluguer UM",
+        "estado": "Aguardar",
+        "cliente": "Ministério da Economia e Coesão Territorial",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T11:43:38.777Z"
+    },
     {
       "id": "log-1790681825755-3771",
       "usuarioId": "usr-admin-001",
