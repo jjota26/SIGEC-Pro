@@ -460,11 +460,11 @@
     },
     {
       "id": "cli-imp-024",
-      "tipoCliente": "Estatal",
-      "ministerio": "Fundação Serralves",
-      "secretariaEstado": "Fundação Serralves, Fundação Serralves",
+      "tipoCliente": "Fundação",
+      "ministerio": "",
+      "secretariaEstado": "",
       "nome": "Fundação Serralves",
-      "contribuinte": "500001173",
+      "contribuinte": "000000000",
       "direcao1": "Rua Dom João de Castro",
       "direcao2": "",
       "numero": "210",
@@ -472,55 +472,17 @@
       "codigoPostal": "4150-417",
       "localidade": "Porto",
       "pais": "Portugal",
-      "telefone": "226156500",
+      "telefone": "+351 226 156 500",
       "telemovel": "",
-      "email": "serralves@serralves.pt",
-      "website": "",
+      "email": "",
+      "website": "https://www.serralves.pt",
       "notas": "",
       "proximoContacto": null,
-      "separadores": [
-        {
-          "id": "sep-1790672594794-666",
-          "tipoSeparador": "Fundação Serralves",
-          "nomePersonalizado": "",
-          "nome": "Fundação Serralves",
-          "contribuinte": "500001173",
-          "direcao1": "Rua Dom João de Castro",
-          "direcao2": "",
-          "numero": "210",
-          "andar": "",
-          "codigoPostal": "4150-417",
-          "localidade": "Porto",
-          "telefone": "226156500",
-          "telemovel": "",
-          "email": "serralves@serralves.pt",
-          "pais": "Portugal",
-          "website": ""
-        },
-        {
-          "id": "sep-1790672594794-19",
-          "tipoSeparador": "Fundação Serralves",
-          "nomePersonalizado": "",
-          "nome": "Fundação Serralves",
-          "contribuinte": "000000000",
-          "direcao1": "",
-          "direcao2": "",
-          "numero": "",
-          "andar": "",
-          "codigoPostal": "",
-          "localidade": "",
-          "telefone": "",
-          "telemovel": "",
-          "email": "",
-          "pais": "Portugal",
-          "website": ""
-        }
-      ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-29T09:03:25.195Z",
+      "updatedAt": "2026-09-29T09:07:22.892Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -4429,7 +4391,11 @@
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-29T09:07:18.027Z"
+      "updatedAt": "2026-09-29T09:07:18.027Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-imp-114",
@@ -6790,6 +6756,17 @@
       "userName": "José Centúrio",
       "createdAt": "2026-09-29T09:03:07.042Z",
       "createdById": "usr-admin-001"
+    },
+    {
+      "id": "int-1790672958881-866",
+      "clienteId": "cli-imp-016",
+      "separadorId": null,
+      "subTabIndex": null,
+      "data": "2026-07-10T10:57",
+      "descricao": "Enviado email de apresentação",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-09-29T09:09:18.881Z"
     }
   ],
   "interacoesProjetos": [],
@@ -6844,6 +6821,86 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790672842893-17856",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Fundação Serralves\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Serralves",
+        "contribuinte": "000000000",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "NIF/Contribuinte",
+            "anterior": "500001173",
+            "novo": "000000000"
+          },
+          {
+            "campo": "Email",
+            "anterior": "serralves@serralves.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "226156500",
+            "novo": "+351 226 156 500"
+          },
+          {
+            "campo": "Tipo de Cliente",
+            "anterior": "Estatal",
+            "novo": "Fundação"
+          },
+          {
+            "campo": "Ministério",
+            "anterior": "Fundação Serralves",
+            "novo": "(vazio)"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Serralves",
+        "contribuinte": "000000000",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "NIF/Contribuinte",
+            "anterior": "500001173",
+            "novo": "000000000"
+          },
+          {
+            "campo": "Email",
+            "anterior": "serralves@serralves.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "226156500",
+            "novo": "+351 226 156 500"
+          },
+          {
+            "campo": "Tipo de Cliente",
+            "anterior": "Estatal",
+            "novo": "Fundação"
+          },
+          {
+            "campo": "Ministério",
+            "anterior": "Fundação Serralves",
+            "novo": "(vazio)"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T09:07:22.893Z"
+    },
     {
       "id": "log-1790672605195-63031",
       "usuarioId": "usr-admin-001",
