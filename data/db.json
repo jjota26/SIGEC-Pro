@@ -5803,7 +5803,7 @@
       "contacto1Id": "con-1785515106421-857",
       "contacto2Id": "con-imp-137",
       "dataInicio": "2026-07-27",
-      "dataFim": "2026-08-31",
+      "dataFim": "2026-10-30",
       "estado": "Aguarda decisão",
       "viatura": "Iveco Daily 5000Kg",
       "matricula": "",
@@ -5821,7 +5821,7 @@
       ],
       "media": [],
       "createdAt": "2026-08-13T07:50:04.702Z",
-      "updatedAt": "2026-09-29T11:44:56.468Z",
+      "updatedAt": "2026-09-29T11:48:40.075Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001"
     },
@@ -5853,7 +5853,7 @@
       "documents": [],
       "media": [],
       "createdAt": "2026-09-29T10:29:06.784Z",
-      "updatedAt": "2026-09-29T11:43:48.083Z",
+      "updatedAt": "2026-09-29T11:48:10.988Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001"
     }
@@ -7208,6 +7208,86 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790682520078-22210",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Projeto",
+      "tipoAcao": "Edição de Projeto",
+      "descricao": "Ficha do projeto \"Unidade Móvel Bancária - Furgão\" atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Unidade Móvel Bancária - Furgão",
+        "tipo": "Compra UM",
+        "estado": "Aguarda decisão",
+        "cliente": "Banco Caboverdiano de Negócios - BCN",
+        "camposAlterados": [
+          {
+            "campo": "Data de Fim",
+            "anterior": "2026-08-31",
+            "novo": "2026-10-30"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Unidade Móvel Bancária - Furgão",
+        "tipo": "Compra UM",
+        "estado": "Aguarda decisão",
+        "cliente": "Banco Caboverdiano de Negócios - BCN",
+        "camposAlterados": [
+          {
+            "campo": "Data de Fim",
+            "anterior": "2026-08-31",
+            "novo": "2026-10-30"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T11:48:40.078Z"
+    },
+    {
+      "id": "log-1790682490991-64428",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Projeto",
+      "tipoAcao": "Edição de Projeto",
+      "descricao": "Ficha do projeto \"Campanha de Digitalização\" atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Campanha de Digitalização",
+        "tipo": "Aluguer UM",
+        "estado": "Aguarda decisão",
+        "cliente": "Ministério da Reforma do Estado",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Campanha de Digitalização",
+        "tipo": "Aluguer UM",
+        "estado": "Aguarda decisão",
+        "cliente": "Ministério da Reforma do Estado",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T11:48:10.991Z"
+    },
     {
       "id": "log-1790682391382-70841",
       "usuarioId": "usr-admin-001",
