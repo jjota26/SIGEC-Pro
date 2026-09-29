@@ -1916,14 +1916,20 @@
       "andar": "",
       "codigoPostal": "",
       "localidade": "Maia",
+      "pais": "Portugal",
       "telefone": "+351 21 782 47 00",
       "telemovel": "",
       "email": "ines.s.pina@nos.pt",
-      "createdAt": "2026-07-31T16:30:00.000Z",
+      "website": "",
+      "notas": "",
+      "proximoContacto": null,
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "Portugal"
+      "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-09-29T09:29:17.578Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-imp-085",
@@ -4525,7 +4531,9 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "subTabIndex": 0,
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-imp-122",
@@ -4682,6 +4690,8 @@
     {
       "id": "con-imp-131",
       "clienteId": "cli-imp-082",
+      "empresa": "Sonae, SGPS, S.A. (Sonae MC)",
+      "subTabIndex": 0,
       "nome": "Mafalda",
       "apelido": "Guedes",
       "cargo": "Head of Brand Engagement",
@@ -4689,12 +4699,10 @@
       "telemovel": "",
       "email": "comunicacao@sonae.pt",
       "notas": "",
+      "inativo": false,
+      "proximoContacto": null,
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "subTabIndex": 0,
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "empresa": "Sonae, SGPS, S.A. (Sonae MC)",
-      "updatedAt": "2026-09-22T09:02:14.899Z"
+      "updatedAt": "2026-09-29T09:30:36.113Z"
     },
     {
       "id": "con-imp-132",
@@ -5659,6 +5667,27 @@
       "proximoContacto": null,
       "createdAt": "2026-09-28T11:49:57.493Z",
       "updatedAt": "2026-09-28T11:51:14.364Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
+    },
+    {
+      "id": "con-1790673813506-585",
+      "clienteId": "cli-imp-082",
+      "empresa": "Sonae, SGPS, S.A. (Sonae MC)",
+      "subTabIndex": 0,
+      "nome": "Maria João",
+      "apelido": "Oliveira",
+      "cargo": "Comunicação Externa",
+      "telefone": "22 010 4000",
+      "telemovel": "",
+      "email": "majfoliveira@sonae.pt",
+      "notas": "",
+      "inativo": false,
+      "proximoContacto": null,
+      "createdAt": "2026-09-29T09:29:12.352Z",
+      "updatedAt": "2026-09-29T09:29:12.352Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
@@ -6856,15 +6885,29 @@
     {
       "id": "cpi-1790674144824-888",
       "contactoId": "con-1790673813506-585",
-      "contactoNome": "",
+      "contactoNome": "Maria João Oliveira",
       "clienteId": "cli-imp-082",
       "separadorId": null,
-      "subTabIndex": null,
+      "subTabIndex": 0,
       "data": "2026-07-01T11:23",
       "descricao": "Enviado email de apresentação",
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
-      "createdAt": "2026-09-29T09:29:04.825Z"
+      "createdAt": "2026-09-29T09:29:04.825Z",
+      "createdById": "usr-admin-001"
+    },
+    {
+      "id": "cpi-1790674234242-597",
+      "contactoId": "con-imp-131",
+      "contactoNome": "Mafalda Guedes",
+      "clienteId": "cli-imp-082",
+      "separadorId": null,
+      "subTabIndex": 0,
+      "data": "2026-07-01T11:30",
+      "descricao": "Enviado email de apresentação",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-09-29T09:30:34.243Z"
     }
   ],
   "interacoesProjetos": [],
@@ -6919,6 +6962,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790674157578-46326",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Sonae, SGPS, S.A. (Sonae MC)\" (NIF: 500000170) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Sonae, SGPS, S.A. (Sonae MC)",
+        "contribuinte": "500000170",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Sonae, SGPS, S.A. (Sonae MC)",
+        "contribuinte": "500000170",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T09:29:17.578Z"
+    },
     {
       "id": "log-1790673558044-65639",
       "usuarioId": "usr-admin-001",
