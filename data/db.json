@@ -160,7 +160,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "updatedAt": "2026-09-17T20:24:15.245Z",
       "comercial": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "proximoContacto": "2026-10-01"
     },
     {
       "id": "cli-imp-011",
@@ -1803,15 +1804,20 @@
       "andar": "14º",
       "codigoPostal": "1643-001",
       "localidade": "Lisboa",
+      "pais": "Portugal",
       "telefone": "210471616",
       "telemovel": "",
       "email": "informacao@ctt.pt",
-      "createdAt": "2026-07-31T16:30:00.000Z",
+      "website": "",
+      "notas": "",
+      "proximoContacto": "2026-10-01",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "Portugal",
-      "proximoContacto": "2026-10-01"
+      "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-09-29T09:17:12.472Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-imp-079",
@@ -1826,14 +1832,20 @@
       "andar": "",
       "codigoPostal": "1249-001",
       "localidade": "Lisboa",
+      "pais": "Portugal",
       "telefone": "217948800",
       "telemovel": "",
       "email": "apoiocliente@fidelidade.pt",
-      "createdAt": "2026-07-31T16:30:00.000Z",
+      "website": "",
+      "notas": "",
+      "proximoContacto": "2026-10-01",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "Portugal"
+      "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-09-29T09:18:05.044Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-imp-080",
@@ -4560,7 +4572,9 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-imp-125",
@@ -4578,7 +4592,9 @@
       "empresa": "Fidelidade - Companhia de Seguros, S.A.",
       "subTabIndex": 0,
       "extensao": "",
-      "updatedAt": "2026-09-22T09:02:14.899Z"
+      "updatedAt": "2026-09-22T09:02:14.899Z",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-imp-126",
@@ -6881,6 +6897,86 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790673485044-71796",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Fidelidade - Companhia de Seguros, S.A.\" (NIF: 500001360) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fidelidade - Companhia de Seguros, S.A.",
+        "contribuinte": "500001360",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fidelidade - Companhia de Seguros, S.A.",
+        "contribuinte": "500001360",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T09:18:05.044Z"
+    },
+    {
+      "id": "log-1790673432472-71566",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"CTT - Correios de Portugal, S.A.\" (NIF: 500001343) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "CTT - Correios de Portugal, S.A.",
+        "contribuinte": "500001343",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "CTT - Correios de Portugal, S.A.",
+        "contribuinte": "500001343",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T09:17:12.472Z"
+    },
     {
       "id": "log-1790673368064-60638",
       "usuarioId": "usr-admin-001",
