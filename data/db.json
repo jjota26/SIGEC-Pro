@@ -266,7 +266,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-29T09:01:31.252Z",
+      "updatedAt": "2026-09-29T09:02:11.680Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -2338,7 +2338,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-09-22T09:02:14.898Z",
-      "updatedAt": "2026-09-29T09:00:53.044Z",
+      "updatedAt": "2026-09-29T09:02:23.315Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -5258,7 +5258,7 @@
     },
     {
       "id": "con-1790067734898-85",
-      "clienteId": "cli-imp-016",
+      "clienteId": "cli-imp-024",
       "empresa": "Fundação EDP",
       "subTabIndex": 0,
       "nome": "Manuela",
@@ -6769,6 +6769,17 @@
       "userName": "José Centúrio",
       "createdAt": "2026-09-29T08:59:14.398Z",
       "createdById": "usr-admin-001"
+    },
+    {
+      "id": "int-1790672587041-588",
+      "clienteId": "cli-1790067734898-26",
+      "separadorId": null,
+      "subTabIndex": null,
+      "data": "2026-07-21T10:57",
+      "descricao": "Enviado email de apresentação",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-09-29T09:03:07.042Z"
     }
   ],
   "interacoesProjetos": [],
@@ -6823,6 +6834,86 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790672543316-78680",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Fundação de Serralves\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação de Serralves",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação de Serralves",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T09:02:23.316Z"
+    },
+    {
+      "id": "log-1790672531680-27945",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Fundação EDP\" (NIF: 500000289) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação EDP",
+        "contribuinte": "500000289",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação EDP",
+        "contribuinte": "500000289",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T09:02:11.680Z"
+    },
     {
       "id": "log-1790672491252-31356",
       "usuarioId": "usr-admin-001",
