@@ -579,15 +579,15 @@
             alt="Centauro SIGEC-Pro" style="width: 60px; height: 60px; object-fit: contain; border-radius: 50%;">
         </div>
         <h2 style="color: #0f172a; font-size: 1.5rem; font-weight: 700; margin: 0.75rem 0 0.25rem 0;">SIGEC-Pro</h2>
-        <p id="loginSubtitle" style="color: #64748b; font-size: 0.88rem; margin: 0; display: none;" data-i18n="lbl_app_subtitle">Sistema de Gestão Empresarial</p>
+                <p id="loginSubtitle" style="color: #64748b; font-size: 0.88rem; margin: 0; display: block;" data-i18n="lbl_app_subtitle">Sistema de Gestão Empresarial</p>
         
-        <div id="loginLoadingState" style="margin-top: 1.15rem; display: flex; align-items: center; justify-content: center; gap: 0.65rem; color: #0284c7; font-weight: 600; font-size: 0.95rem;">
+        <div id="loginLoadingState" style="margin-top: 1.15rem; display: none; align-items: center; justify-content: center; gap: 0.65rem; color: #0284c7; font-weight: 600; font-size: 0.95rem;">
           <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 1.25rem; color: #0284c7;"></i>
           <span id="loginLoadingText" data-i18n="lbl_atualizando">Atualizando...</span>
         </div>
       </div>
 
-      <div id="loginFormContainer" style="margin-top: 1.25rem; display: none;">
+      <div id="loginFormContainer" style="margin-top: 1.25rem; display: block; opacity: 1;">
       <script>
         // Failsafe automático de transição de arranque do SIGEC-Pro
         setTimeout(function() {
