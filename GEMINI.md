@@ -1,53 +1,56 @@
-# GEMINI.md — DIRETRIZES E REGRAS PERMANENTES DO PROJETO SIGEC-Pro
+# SIGEC-Pro — Regras Obrigatórias e Diretrizes do Projeto
 
-Este repositório contém o código-fonte, a interface web PWA, a lógica de negócio e os módulos de dados do **SIGEC-Pro**.
-
----
-
-## 🌍 REGRA INVIOLÁVEL DE PARIDADE MULTILÍNGUE (i18n)
-
-> [!IMPORTANT]
-> **ESTA REGRA NUNCA PODE DEIXAR DE SER APLICADA:**
-> Sempre que se faz qualquer alteração no software (nova funcionalidade, ajuste de layout, novo botão, novo campo, mensagem de alerta, notificação toast, modal ou relatório), ela **TEM DE SER OBRIGATORIAMENTE EFETIVA E COMPLETA EM TODOS OS 5 IDIOMAS SUPORTADOS**.
-> 
-> **Exceção Única:** Apenas se o utilizador solicitar explicitamente uma alteração concreta e exclusiva para um idioma específico.
-
-### Idiomas Obrigatórios:
-1. **Português (PT)**
-2. **Español (ES)**
-3. **English (EN)**
-4. **Français (FR)**
-5. **Polski (PL)**
-
-### Procedimento Técnico de Implementação Obrigatório:
-1. **Elementos na Interface HTML (`index.html`):**
-   - Todos os novos botões, títulos, subtítulos, badges e textos devem incluir o respetivo atributo `data-i18n="chave_identificadora"`.
-2. **Dicionário Central de Internacionalização (`i18n.js`):**
-   - Adicionar a nova chave a `SIGEC_I18N` com a tradução completa para os 5 idiomas (`Português`, `Español`, `English`, `Français`, `Polski`).
-   - Adicionar o termo/frase a `SIGEC_PHRASES_MAP` para suportar tradução direta e recursiva da árvore DOM (`translateDOMTree`).
-3. **Geração Dinâmica de Texto e Mensagens em JavaScript (`app.js` / `duplicatesManager.js`):**
-   - Sempre que o código gerar HTML dinâmico, alertas (`showToast`, modais, `confirm`, `alert`), deve recorrer obrigatoriamente a `t('chave', 'Texto Padrão')` ou `translateSystemTerm(...)`.
+Este ficheiro define as regras estritas e permanentes para qualquer agente de IA que opere neste projeto (`SIGEC-Pro`). O cumprimento destas regras é obrigatório em todas as sessões.
 
 ---
 
-## 🔁 REGRA PERMANENTE: PERSISTÊNCIA ABSOLUTA DE DECISÕES NO GESTOR DE DUPLICADOS
-
-> [!IMPORTANT]
-> **REGRA DE NÃO REAPARECIMENTO DE COMPARAÇÕES JÁ DECIDIDAS:**
-> Sempre que no separador **Duplicados**, o utilizador determinar o que fazer com registos de Clientes, Contactos ou Projetos (seja através de **Fundir Registos**, **Manter Ambos**, **Manter Apenas Um** ou **Eliminar**):
-> 1. **Essa comparação NUNCA MAIS PODE VOLTAR A APARECER**, porque já foi anteriormente estabelecido pelo utilizador como proceder.
-> 2. **Persistência Global e Sincronizada:** A decisão deve ficar registada de forma perene tanto na base de dados central (`db.ignoredDuplicates`), como nas cópias locais (`localStorage`), sendo automaticamente sincronizada entre todos os computadores, instâncias e na nuvem para que nenhum outro dispositivo volte a sugerir o mesmo par/grupo.
-> 3. **Remoção Imediata da Interface:** Assim que a ação for confirmada, o grupo resolvido deve ser imediatamente expurgado da lista ativa do separador Duplicados e os contadores de badge devem ser decrementados em tempo real, sem necessidade de recarregar a página.
+## 🛑 1. Explicar Sempre Antes de Começar
+* **Regra:** Nunca iniciar execuções de comandos, modificações profundas ou alterações de dados sem explicar claramente o plano ao utilizador.
+* **Ação:** Apresentar um resumo claro do que foi identificado e do que vai ser feito, aguardando a confirmação do utilizador.
 
 ---
 
-## 🔒 OUTRAS REGRAS CRÍTICAS DE DESENVOLVIMENTO
+## 🚫 2. NUNCA Fazer Reposição de Backup por Iniciativa Própria
+* **Regra:** NUNCA restaurar backups ou reverter a base de dados a menos que o utilizador dê uma ordem expressa e inequívoca para o fazer.
+* **Motivo:** O utilizador pode ter inserido dados recentes que seriam irremediavelmente destruídos por uma reposição de cópia de segurança anterior.
 
-1. **Preservação Absoluta de Dados:**
-   - Nenhuma alteração, limpeza de ficheiros temporários ou atualização de software pode apagar, substituir ou corromper registos existentes de Clientes, Contactos, Projetos, Orçamentos ou Utilizadores.
-2. **Sincronização Contínua:**
-   - Todas as alterações validadas devem ser mantidas sincronizadas entre a base de trabalho, o mirror local (`%LOCALAPPDATA%\SIGEC-Pro`) e o repositório remoto GitHub (`main`).
-3. **Controlo de Cache PWA:**
-   - Sempre que `index.html`, `app.js`, `i18n.js` ou `styles.css` forem alterados, avançar a versão da cache no Service Worker (`sw.js`) e atualizar os parâmetros buster (`?v=...`) para garantir propagação instantânea.
-4. **Comunicação com o Utilizador:**
-   - Comunicação clara e estritamente em **Português de Portugal**.
+---
+
+## 🛡️ 3. NUNCA Apagar, Alterar ou Reduzir Dados do Utilizador
+* **Regra:** A integridade dos dados existentes é inviolável. É expressamente proibido fazer desaparecer clientes, contactos, projetos, interações ou utilizadores.
+* **Cuidado:** Nunca assumir que ficheiros locais antigos contêm a verdade. O estado ativo mais recente do utilizador deve ser sempre respeitado.
+
+---
+
+## 🔄 4. Sincronização em Tempo Real (GitHub + Hugging Face + Render)
+* **Regra:** Os dados no GitHub (`data/db.json`), Hugging Face Space/Dataset e Render têm de estar rigorosamente alinhados e sincronizados em tempo real.
+* **Mecanismo:** Qualquer persistência de base de dados deve propagar de forma segura para os destinos configurados sem perdas.
+
+---
+
+## ⚡ 5. Disponibilidade Imediata Multidispositivo
+* **Regra:** Quando o utilizador guarda ou sincroniza dados, estes devem ser enviados e gravados de imediato no servidor para estarem acessíveis instantaneamente noutros computadores.
+
+---
+
+## 🚫 6. Política de Zero Cache
+* **Regra:** Não permitir que dados fiquem retidos em cache de navegador, Service Workers desatualizados ou caches intermediárias.
+* **Ação:** Manter cabeçalhos `no-cache, no-store, must-revalidate` e `_t=${Date.now()}` nas comunicações com APIs e ficheiros de dados.
+
+---
+
+## 🎯 7. Corrigir Apenas o que Foi Pedido (Mínimo Impacto)
+* **Regra:** Não alterar estruturas de UI, não mudar formatos visuais e não reorganizar módulos a menos que expressamente solicitado.
+* **Ação:** Focar as alterações cirurgicamente no problema reportado, preservando todo o restante comportamento e integridade funcional.
+
+---
+
+## 🧱 8. Separação Absoluta entre Código e Dados
+* **Regra:** Ao atualizar ou cometer ficheiros de código (`app.js`, `index.html`, `server.js`, estilos, etc.), NUNCA sobrepor ou enviar dados locais antigos para `/api/save-db-json` ou para `data/db.json`.
+* **Motivo:** Operações de código não podem afetar ou regredir a base de dados viva da aplicação.
+
+---
+
+## 💾 9. Suporte a Ficheiros de Backup Grandes (> 10 MB via LFS)
+* **Regra:** O Hugging Face rejeita commits padrão para ficheiros superiores a 10 MiB.
+* **Ação:** Todos os backups ou carregamentos volumosos devem utilizar Git LFS (`uploadFileToHuggingFaceLFS`) e descarregamento via URLs `/resolve/main/`.
