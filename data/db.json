@@ -2315,11 +2315,12 @@
     {
       "id": "cli-1790067734898-26",
       "tipoCliente": "Privado",
-      "nome": "Fundação de Serralves",
       "ministerio": "",
-      "separadores": [],
+      "secretariaEstado": "",
+      "nome": "Fundação de Serralves",
       "contribuinte": "",
       "direcao1": "",
+      "direcao2": "",
       "numero": "",
       "andar": "",
       "codigoPostal": "",
@@ -2328,12 +2329,16 @@
       "telefone": "",
       "telemovel": "",
       "email": "",
+      "website": "",
+      "notas": "",
+      "proximoContacto": null,
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-09-22T09:02:14.898Z",
-      "updatedAt": "2026-09-22T09:02:14.898Z",
-      "direcao2": ""
+      "updatedAt": "2026-09-29T08:59:02.930Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1790067734899-316",
@@ -2468,34 +2473,6 @@
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-09-28T10:12:38.845Z",
       "updatedAt": "2026-09-28T10:19:33.352Z",
-      "comercial": "José Centúrio",
-      "createdById": "usr-admin-001"
-    },
-    {
-      "id": "cli-1790672260599-406",
-      "tipoCliente": "Privado",
-      "ministerio": "",
-      "secretariaEstado": "",
-      "nome": "Fundação António Cupertino de Miranda",
-      "contribuinte": "",
-      "direcao1": "",
-      "direcao2": "",
-      "numero": "",
-      "andar": "",
-      "codigoPostal": "",
-      "localidade": "",
-      "pais": "",
-      "telefone": "",
-      "telemovel": "",
-      "email": "",
-      "website": "",
-      "notas": "",
-      "proximoContacto": null,
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdAt": "2026-09-29T08:57:40.600Z",
-      "updatedAt": "2026-09-29T08:57:40.600Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     }
@@ -6834,6 +6811,70 @@
   ],
   "userLogs": [
     {
+      "id": "log-1790672342931-46483",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Fundação de Serralves\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação de Serralves",
+        "contribuinte": "",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação de Serralves",
+        "contribuinte": "",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T08:59:02.931Z"
+    },
+    {
+      "id": "log-1790672271856-30234",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Eliminação de Cliente",
+      "tipoAcao": "Eliminação de Cliente",
+      "descricao": "Cliente \"Fundação António Cupertino de Miranda\" (NIF: ) eliminado da base de dados.",
+      "detalhes": {
+        "acao": "Eliminação",
+        "ficha": "Cliente",
+        "nome": "Fundação António Cupertino de Miranda",
+        "contribuinte": "",
+        "tipoCliente": "Privado"
+      },
+      "extra": {
+        "acao": "Eliminação",
+        "ficha": "Cliente",
+        "nome": "Fundação António Cupertino de Miranda",
+        "contribuinte": "",
+        "tipoCliente": "Privado"
+      },
+      "timestamp": "2026-09-29T08:57:51.856Z"
+    },
+    {
       "id": "log-1790672260600-48075",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
@@ -10146,7 +10187,9 @@
   "ignoredDuplicates": [],
   "_spcfg": "Oy8YIjNnAhQeYisIFV9ZVHlHfwgUDQY5HQU5ODMLES1bIz0naQ==",
   "_deletedRegistry": {
-    "clientes": [],
+    "clientes": [
+      "cli-1790672260599-406"
+    ],
     "contactos": [],
     "projetos": [],
     "interacoes": [],
