@@ -4398,7 +4398,7 @@ function loadClientIntoForm(clientId, skipDirtyCheck = false, skipTabSwitch = fa
   }
 
   const proxElLoad = document.getElementById('clientProximoContacto');
-  if (proxElLoad) proxElLoad.value = client.proximoContacto || '';
+  if (proxElLoad) proxElLoad.value = (client.proximoContacto && typeof client.proximoContacto === 'string') ? client.proximoContacto.trim().slice(0, 10) : '';
 
   const notasEl = document.getElementById('clientNotas');
   if (notasEl) notasEl.value = client.notas || '';
@@ -5642,6 +5642,8 @@ function saveClient(e) {
     }
     const cpRegex = /^\d{4}-\d{3}$/;
     const notasVal = document.getElementById('clientNotas') ? document.getElementById('clientNotas').value.trim() : '';
+    const proxEl = document.getElementById('clientProximoContacto');
+    const proximoContacto = (proxEl && proxEl.value) ? proxEl.value.trim().slice(0, 10) : null;
 
     let clientObj = {};
 
@@ -5708,6 +5710,7 @@ function saveClient(e) {
         email: cleanStr(primarySep.email),
         website: cleanStr(primarySep.website),
         notas: notasVal,
+        proximoContacto: proximoContacto,
         separadores: currentEstatalSeparadores.map(s => s ? {
           ...s,
           nome: cleanStr(s.nome),
@@ -5783,6 +5786,7 @@ function saveClient(e) {
         email,
         website,
         notas: notasVal,
+        proximoContacto: proximoContacto,
         userId: comercialId,
         comercialAtribuidoId: comercialId,
         comercialAtribuidoNome: comercialNome,
@@ -6181,7 +6185,7 @@ function openContactModalForEdit(contactId) {
   document.getElementById('contactEmail').value = contact.email || '';
   document.getElementById('contactNotas').value = contact.notas || '';
   const proxElLoad = document.getElementById('contactProximoContacto');
-  if (proxElLoad) proxElLoad.value = contact.proximoContacto || '';
+  if (proxElLoad) proxElLoad.value = (contact.proximoContacto && typeof contact.proximoContacto === 'string') ? contact.proximoContacto.trim().slice(0, 10) : '';
   const inativoLoad = document.getElementById('contactInativo');
   if (inativoLoad) inativoLoad.checked = !!contact.inativo;
 
@@ -6277,7 +6281,7 @@ function saveContact(e) {
     extensao,
     telemovel,
     email,
-    proximoContacto: (document.getElementById('contactProximoContacto')?.value?.trim() || (existingContact ? existingContact.proximoContacto : null)) || null,
+    proximoContacto: (document.getElementById('contactProximoContacto')?.value?.trim() ? document.getElementById('contactProximoContacto').value.trim().slice(0, 10) : null),
     inativo: inativo,
     notas,
     createdAt: existingContact ? (existingContact.createdAt || new Date().toISOString()) : new Date().toISOString(),
@@ -6614,33 +6618,37 @@ function deleteInteractionInline(id) {
 }
 
 function saveContactNextContactDate(newDate) {
-  if (!currentContactIdForModal) return;
-  const contact = (db.contactos || []).find(c => c.id === currentContactIdForModal);
+  const targetContactId = (typeof currentContactIdForModal !== 'undefined' && currentContactIdForModal) 
+    ? currentContactIdForModal 
+    : document.getElementById('contactId')?.value;
+  if (!targetContactId) return;
+  const contact = (db.contactos || []).find(c => String(c.id).trim() === String(targetContactId).trim());
   if (contact) {
-    contact.proximoContacto = newDate ? String(newDate).trim() : null;
+    contact.proximoContacto = newDate ? String(newDate).trim().slice(0, 10) : null;
     saveDatabase();
     if (typeof renderHomeDashboard === 'function') renderHomeDashboard();
     if (typeof renderContactPageMainGrid === 'function') renderContactPageMainGrid();
     if (typeof syncDatabaseToHuggingFace === 'function') {
       syncDatabaseToHuggingFace(true, true).catch(() => {});
     }
-    showToast(t('Data de prÃ³ximo contacto atualizada com sucesso!'));
+    showToast(typeof t === 'function' ? t('Data de próximo contacto atualizada com sucesso!') : 'Data de próximo contacto atualizada com sucesso!');
   }
 }
 window.saveContactNextContactDate = saveContactNextContactDate;
 
 function saveClientNextContactDate(newDate) {
-  if (!currentClientId) return;
-  const client = (db.clientes || []).find(c => c.id === currentClientId);
+  const targetId = currentClientId || document.getElementById('clientId')?.value;
+  if (!targetId) return;
+  const client = (db.clientes || []).find(c => String(c.id).trim() === String(targetId).trim());
   if (client) {
-    client.proximoContacto = newDate ? String(newDate).trim() : null;
+    client.proximoContacto = newDate ? String(newDate).trim().slice(0, 10) : null;
     saveDatabase();
     if (typeof renderHomeDashboard === 'function') renderHomeDashboard();
     if (typeof renderClientPageMainGrid === 'function') renderClientPageMainGrid();
     if (typeof syncDatabaseToHuggingFace === 'function') {
       syncDatabaseToHuggingFace(true, true).catch(() => {});
     }
-    showToast(t('Data de próximo contacto atualizada com sucesso!'));
+    showToast(typeof t === 'function' ? t('Data de próximo contacto atualizada com sucesso!') : 'Data de próximo contacto atualizada com sucesso!');
   }
 }
 window.saveClientNextContactDate = saveClientNextContactDate;

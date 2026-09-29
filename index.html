@@ -5079,7 +5079,7 @@
       }
 
       var proxEl = document.getElementById('contactProximoContacto');
-      var proximoContacto = (proxEl && proxEl.value) ? proxEl.value.trim() : (existingIndex >= 0 ? db.contactos[existingIndex].proximoContacto : null);
+      var proximoContacto = (proxEl && proxEl.value) ? proxEl.value.trim().slice(0, 10) : null;
       var inativoEl = document.getElementById('contactInativo');
       var inativo = inativoEl ? inativoEl.checked : (existingIndex >= 0 ? !!db.contactos[existingIndex].inativo : false);
 
