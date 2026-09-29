@@ -1254,6 +1254,7 @@
       "email": "gabinete.ministro@mare.gov.pt",
       "website": "",
       "notas": "",
+      "proximoContacto": null,
       "separadores": [
         {
           "id": "sep-1789673366279-374",
@@ -1332,7 +1333,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-28T12:15:42.140Z",
+      "updatedAt": "2026-09-29T10:53:10.186Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -5686,7 +5687,7 @@
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-09-28T11:49:57.493Z",
-      "updatedAt": "2026-09-28T11:51:14.364Z",
+      "updatedAt": "2026-09-29T10:53:06.359Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
@@ -6998,7 +6999,8 @@
       "descricao": "Reunião online",
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
-      "createdAt": "2026-09-29T10:53:03.992Z"
+      "createdAt": "2026-09-29T10:53:03.992Z",
+      "createdById": "usr-admin-001"
     }
   ],
   "interacoesProjetos": [],
@@ -7053,6 +7055,64 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790679500331-55692",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Gravação Manual",
+      "tipoAcao": "Gravação Manual",
+      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-09-29T10:58:20.331Z"
+    },
+    {
+      "id": "log-1790679190198-32716",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Ministério da Reforma do Estado\" (NIF: 500001020) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Ministério da Reforma do Estado",
+        "contribuinte": "500001020",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Ministério da Reforma do Estado",
+        "contribuinte": "500001020",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T10:53:10.198Z"
+    },
     {
       "id": "log-1790679068817-87776",
       "usuarioId": "usr-admin-001",
@@ -10080,56 +10140,6 @@
       "detalhes": {},
       "extra": {},
       "timestamp": "2026-09-20T01:47:51.783Z"
-    },
-    {
-      "id": "log-1789868871781-17045",
-      "usuarioId": "usr-1789862031944",
-      "usuarioNome": "José Maria",
-      "usuarioEmail": "jjota26@gmail.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Alegria Activity, S.L.\" (NIF: ) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "País",
-            "anterior": "España",
-            "novo": "Espanha"
-          },
-          {
-            "campo": "Comercial Atribuído",
-            "anterior": "José Maria",
-            "novo": "José Centúrio"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "País",
-            "anterior": "España",
-            "novo": "Espanha"
-          },
-          {
-            "campo": "Comercial Atribuído",
-            "anterior": "José Maria",
-            "novo": "José Centúrio"
-          }
-        ]
-      },
-      "timestamp": "2026-09-20T01:47:51.781Z"
     }
   ],
   "orcamentos": [],
