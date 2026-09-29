@@ -1633,7 +1633,8 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "updatedAt": "2026-09-17T17:43:29.624Z",
       "comercial": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "proximoContacto": "2026-09-29"
     },
     {
       "id": "cli-imp-070",
