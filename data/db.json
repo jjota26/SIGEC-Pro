@@ -5825,10 +5825,10 @@
       "subTabIndex": 1,
       "contacto1Id": "con-1790596085073-783",
       "contacto2Id": "con-1790595958848-711",
-      "dataInicio": "2026-09-29",
+      "dataInicio": "2026-09-24",
       "dataFim": "",
-      "estado": "Aguarda Orçamento",
-      "viatura": "",
+      "estado": "Aguarda decisão",
+      "viatura": "Eprinsa",
       "matricula": "",
       "orcamentos": [
         {
@@ -5844,7 +5844,7 @@
       "documents": [],
       "media": [],
       "createdAt": "2026-09-29T10:29:06.784Z",
-      "updatedAt": "2026-09-29T10:29:06.784Z",
+      "updatedAt": "2026-09-29T10:33:19.617Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001"
     }
@@ -7094,6 +7094,106 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790677999619-48602",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Projeto",
+      "tipoAcao": "Edição de Projeto",
+      "descricao": "Ficha do projeto \"Campanha de Digitalização\" atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Campanha de Digitalização",
+        "tipo": "Aluguer UM",
+        "estado": "Aguarda decisão",
+        "cliente": "Ministério da Reforma do Estado",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Campanha de Digitalização",
+        "tipo": "Aluguer UM",
+        "estado": "Aguarda decisão",
+        "cliente": "Ministério da Reforma do Estado",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T10:33:19.619Z"
+    },
+    {
+      "id": "log-1790677963526-73237",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Projeto",
+      "tipoAcao": "Edição de Projeto",
+      "descricao": "Ficha do projeto \"Campanha de Digitalização\" atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Campanha de Digitalização",
+        "tipo": "Aluguer UM",
+        "estado": "Aguarda decisão",
+        "cliente": "Ministério da Reforma do Estado",
+        "camposAlterados": [
+          {
+            "campo": "Estado",
+            "anterior": "Aguarda Orçamento",
+            "novo": "Aguarda decisão"
+          },
+          {
+            "campo": "Data de Início",
+            "anterior": "2026-09-29",
+            "novo": "2026-09-24"
+          },
+          {
+            "campo": "Viatura",
+            "anterior": "(vazio)",
+            "novo": "Eprinsa"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Campanha de Digitalização",
+        "tipo": "Aluguer UM",
+        "estado": "Aguarda decisão",
+        "cliente": "Ministério da Reforma do Estado",
+        "camposAlterados": [
+          {
+            "campo": "Estado",
+            "anterior": "Aguarda Orçamento",
+            "novo": "Aguarda decisão"
+          },
+          {
+            "campo": "Data de Início",
+            "anterior": "2026-09-29",
+            "novo": "2026-09-24"
+          },
+          {
+            "campo": "Viatura",
+            "anterior": "(vazio)",
+            "novo": "Eprinsa"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T10:32:43.526Z"
+    },
     {
       "id": "log-1790677746785-89561",
       "usuarioId": "usr-admin-001",
@@ -10090,68 +10190,6 @@
         ]
       },
       "timestamp": "2026-09-20T02:25:55.115Z"
-    },
-    {
-      "id": "log-1789869924765-74639",
-      "usuarioId": "usr-1789862031944",
-      "usuarioNome": "José Maria",
-      "usuarioEmail": "jjota26@gmail.com",
-      "acao": "Transferência de Cliente",
-      "tipoAcao": "Transferência de Cliente",
-      "descricao": "Cliente \"Alegria Activity, S.L.\" transferido de José Maria para José Centúrio com todos os seus contactos, projetos, orçamentos e interações.",
-      "detalhes": {},
-      "extra": {},
-      "timestamp": "2026-09-20T02:05:24.765Z"
-    },
-    {
-      "id": "log-1789869924763-75996",
-      "usuarioId": "usr-1789862031944",
-      "usuarioNome": "José Maria",
-      "usuarioEmail": "jjota26@gmail.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Alegria Activity, S.L.\" (NIF: ) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "País",
-            "anterior": "España",
-            "novo": "Espanha"
-          },
-          {
-            "campo": "Comercial Atribuído",
-            "anterior": "José Maria",
-            "novo": "José Centúrio"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "País",
-            "anterior": "España",
-            "novo": "Espanha"
-          },
-          {
-            "campo": "Comercial Atribuído",
-            "anterior": "José Maria",
-            "novo": "José Centúrio"
-          }
-        ]
-      },
-      "timestamp": "2026-09-20T02:05:24.763Z"
     }
   ],
   "orcamentos": [],
