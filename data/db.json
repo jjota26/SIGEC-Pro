@@ -1810,7 +1810,8 @@
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "Portugal"
+      "pais": "Portugal",
+      "proximoContacto": "2026-10-01"
     },
     {
       "id": "cli-imp-079",
@@ -2447,14 +2448,14 @@
       "email": "cccam@creditoagricola.pt",
       "website": "https://www.creditoagricola.pt",
       "notas": "",
+      "proximoContacto": "2026-09-30",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-09-28T10:12:38.845Z",
-      "updatedAt": "2026-09-28T10:19:33.352Z",
+      "updatedAt": "2026-09-29T09:16:08.063Z",
       "comercial": "José Centúrio",
-      "createdById": "usr-admin-001",
-      "proximoContacto": "2026-09-30"
+      "createdById": "usr-admin-001"
     }
   ],
   "contactos": [
@@ -5527,7 +5528,11 @@
       "inativo": false,
       "proximoContacto": "2026-09-30",
       "createdAt": "2026-09-28T10:19:04.891Z",
-      "updatedAt": "2026-09-29T09:15:03.674Z"
+      "updatedAt": "2026-09-29T09:15:03.674Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-1790593369230-64",
@@ -6876,6 +6881,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790673368064-60638",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Caixa Agricola\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Caixa Agricola",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Caixa Agricola",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T09:16:08.064Z"
+    },
     {
       "id": "log-1790673258528-60464",
       "usuarioId": "usr-admin-001",
