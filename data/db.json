@@ -7146,7 +7146,17 @@
       "usuarioId": "usr-admin-001"
     }
   ],
-  "interacoesProjetos": [],
+  "interacoesProjetos": [
+    {
+      "id": "pint-1790682453204-404",
+      "projectId": "proj-1790677746784-58",
+      "data": "2026-09-24T13:43",
+      "descricao": "Enviei email com a proposta para Claudia Ferreira",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-09-29T11:47:33.205Z"
+    }
+  ],
   "usuarios": [
     {
       "id": "usr-1789862031944",
