@@ -1906,11 +1906,12 @@
       "email": "contacto@bcn.cv",
       "website": "",
       "notas": "",
+      "proximoContacto": "2026-10-02",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-28T08:05:09.022Z",
+      "updatedAt": "2026-09-29T08:39:27.683Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -4821,9 +4822,9 @@
       "email": "paulo.lima@bcn.cv",
       "notas": "",
       "inativo": false,
-      "proximoContacto": "2026-09-25",
+      "proximoContacto": "2026-10-02",
       "createdAt": "2026-07-31T16:25:06.422Z",
-      "updatedAt": "2026-09-25T09:51:48.437Z",
+      "updatedAt": "2026-09-29T08:38:25.333Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
@@ -5688,7 +5689,9 @@
       "separadorId": null,
       "subTabIndex": null,
       "orcamentos": [],
-      "updatedAt": "2026-09-17T21:08:28.630Z"
+      "updatedAt": "2026-09-17T21:08:28.630Z",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "proj-camp-001",
@@ -5735,7 +5738,9 @@
       "media": [],
       "createdAt": "2026-08-13T07:50:04.702Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     }
   ],
   "interacoes": [
@@ -6655,7 +6660,8 @@
       "descricao": "responde a informar que por causa dos custos aduaneiros, não terão possibilidade de aquisição das viaturas. Respondo e pergunto qual a escolha e a informar do Cabo Verde TradeInvest. Aguardo resposta.",
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
-      "createdAt": "2026-09-29T08:38:16.505Z"
+      "createdAt": "2026-09-29T08:38:16.505Z",
+      "createdById": "usr-admin-001"
     }
   ],
   "interacoesProjetos": [],
@@ -6710,6 +6716,126 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790671167684-20475",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Banco Caboverdiano de Negócios - BCN\" (NIF: 500001462) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Banco Caboverdiano de Negócios - BCN",
+        "contribuinte": "500001462",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Banco Caboverdiano de Negócios - BCN",
+        "contribuinte": "500001462",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T08:39:27.684Z"
+    },
+    {
+      "id": "log-1790671136507-93893",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Banco Caboverdiano de Negócios - BCN\" (NIF: 500001462) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Banco Caboverdiano de Negócios - BCN",
+        "contribuinte": "500001462",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Banco Caboverdiano de Negócios - BCN",
+        "contribuinte": "500001462",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T08:38:56.507Z"
+    },
+    {
+      "id": "log-1790671114220-72769",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Banco Caboverdiano de Negócios - BCN\" (NIF: 500001462) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Banco Caboverdiano de Negócios - BCN",
+        "contribuinte": "500001462",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Banco Caboverdiano de Negócios - BCN",
+        "contribuinte": "500001462",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T08:38:34.220Z"
+    },
     {
       "id": "log-1790670894289-16040",
       "usuarioId": "usr-admin-001",
