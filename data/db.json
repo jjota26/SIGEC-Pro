@@ -46,11 +46,12 @@
       "email": "geral@fundacao-jeronimomartins.com",
       "website": "https://www.fundacao-jeronimomartins.com/",
       "notas": "",
+      "proximoContacto": null,
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-28T11:05:27.472Z",
+      "updatedAt": "2026-09-29T09:49:11.308Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -5188,8 +5189,9 @@
       "email": "rita.lopes@fundacao-jeronimomartins.com",
       "notas": "",
       "inativo": false,
+      "proximoContacto": null,
       "createdAt": "2026-09-22T09:02:14.898Z",
-      "updatedAt": "2026-09-28T10:32:09.186Z",
+      "updatedAt": "2026-09-29T09:49:08.977Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
@@ -5351,20 +5353,16 @@
       "empresa": "Fundação Eugénio de Almeida",
       "subTabIndex": 0,
       "nome": "Alexandre",
-      "apelido": "Barrigo",
+      "apelido": "Barrigó",
       "cargo": "Responsável de Controlo de Gestão",
       "telefone": "",
       "telemovel": "",
       "email": "alexandre.barrigo@fea.pt",
-      "notas": "",
+      "notas": "Controller de Gestão da empresa Esporão S.A.",
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-09-22T09:02:14.899Z",
-      "updatedAt": "2026-09-29T09:11:25.226Z",
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "updatedAt": "2026-09-29T09:52:08.376Z"
     },
     {
       "id": "con-1790067734899-36",
@@ -6857,7 +6855,7 @@
     {
       "id": "cpi-1790673084275-228",
       "contactoId": "con-1790067734899-563",
-      "contactoNome": "Alexandre Barrigo",
+      "contactoNome": "Alexandre Barrigó",
       "clienteId": "cli-imp-019",
       "separadorId": null,
       "subTabIndex": 0,
@@ -6957,7 +6955,8 @@
       "descricao": "Enviado email de apresentação",
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
-      "createdAt": "2026-09-29T09:49:07.562Z"
+      "createdAt": "2026-09-29T09:49:07.562Z",
+      "createdById": "usr-admin-001"
     }
   ],
   "interacoesProjetos": [],
@@ -7012,6 +7011,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790675351308-25016",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Fundação Jerónimo Martins\" (NIF: 500000085) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Jerónimo Martins",
+        "contribuinte": "500000085",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Jerónimo Martins",
+        "contribuinte": "500000085",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T09:49:11.308Z"
+    },
     {
       "id": "log-1790675214797-79174",
       "usuarioId": "usr-admin-001",
