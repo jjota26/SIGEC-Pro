@@ -1687,13 +1687,7 @@
   };
 
   // Auto-inicializar após carregamento completo da página e do db
-  window.addEventListener('DOMContentLoaded', function () {
-    setTimeout(function () {
-      const isAuth = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('sigec_pro_authenticated') === 'true';
-      if (isAuth && typeof db !== 'undefined' && Array.isArray(db.clientes) && db.clientes.length > 0) {
-        scanAllDuplicates();
-      }
-    }, 5000);
-  });
+  // Auto-scan desativado no arranque para garantir velocidade maxima e zero congelamentos.
+  // A analise de duplicados corre exclusivamente a pedido do utilizador ao abrir o painel de Duplicados.
 
 })();

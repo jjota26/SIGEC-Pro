@@ -462,7 +462,7 @@ function loadDatabase() {
       sanitizeAllDatabaseEntities();
     }
 
-    saveDatabase();
+    // saveDatabase removed from loadDatabase
   } catch (err) {
     console.error('Erro ao carregar base de dados:', err);
     if (typeof INITIAL_EXCEL_DATABASE !== 'undefined') {
@@ -471,7 +471,7 @@ function loadDatabase() {
       db.projetos = filterDeletedProjects([...(INITIAL_EXCEL_DATABASE.projetos || [])]);
       db.interacoes = [];
       db.interacoesProjetos = [];
-      saveDatabase();
+      // saveDatabase removed
     }
   }
 }
@@ -2724,38 +2724,38 @@ async function syncDatabaseFromServerImmediately(isSilent = false) {
 window.syncDatabaseFromServerImmediately = syncDatabaseFromServerImmediately;
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Carregar base de dados para memoria de imediato (< 3ms)
+  // 1. Carregar base de dados em memoria (< 3ms)
   loadDatabase();
-  if (typeof syncDatabaseFromServerImmediately === 'function') syncDatabaseFromServerImmediately();
+
+  // 2. Inicializar listeners essenciais e verificacao de autenticacao
+  initFormListeners();
+  if (typeof updateAdminNavButtons === 'function') updateAdminNavButtons();
+  if (typeof initSecurityAuthCheck === 'function') initSecurityAuthCheck();
+
   const isAuth = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('sigec_pro_authenticated') === 'true';
   const activeUserId = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('sigec_pro_active_user_id');
 
-  // Inicializar listeners essenciais e controlo de autenticacao
-  initFormListeners();
-  if (typeof initSecurityAuthCheck === 'function') {
-    initSecurityAuthCheck();
-  }
-
-  // SE O UTILIZADOR NAO ESTA AUTENTICADO: PARAR AQUI! O ecra de login fica 100% fluido e instantaneo (0% CPU)
+  // SE O UTILIZADOR NAO ESTA AUTENTICADO: PARAR AQUI! Login 100% rapido e sem congelamento
   if (!isAuth || !activeUserId) {
-    console.info('[SIGEC-Pro] Ecrã de Login ativo e fluido (CPU livre).');
+    console.info('[SIGEC-Pro] Ecrã de Login ativo e fluido.');
     return;
   }
 
-  // SE JA ESTA AUTENTICADO: Carregar e renderizar toda a aplicacao
-  loadDatabase();
-  if (typeof syncDatabaseFromServerImmediately === 'function') syncDatabaseFromServerImmediately();
+  // SE JA ESTA AUTENTICADO: Renderizar cada painel uma unica vez
   if (typeof updateHeaderActiveUserBadge === 'function') updateHeaderActiveUserBadge();
-  if (typeof updateAdminNavButtons === 'function') updateAdminNavButtons();
   renderDatabaseOverview();
   renderClientPageMainGrid();
   renderProjectPageMainGrid();
   renderContactPageMainGrid();
   renderHomeDashboard();
   if (typeof populateBudgetClientsSelect === 'function') populateBudgetClientsSelect();
-  if (typeof autoSyncServerOnStartup === 'function') autoSyncServerOnStartup();
-  if (typeof initUniversalUpdateNotifier === 'function') initUniversalUpdateNotifier();
-  if (typeof initPeriodicBackgroundSync === 'function') initPeriodicBackgroundSync();
+
+  // Sincronizacao suave em segundo plano apos 2s (sem congelar a navegacao)
+  setTimeout(() => {
+    if (typeof syncDatabaseFromServerImmediately === 'function') {
+      syncDatabaseFromServerImmediately(true);
+    }
+  }, 2000);
 
   // Escutar alterações nos campos para controlo de confirmação de edições (apenas dentro de modais de formulário ativos)
   document.addEventListener('input', (e) => {
@@ -23147,7 +23147,7 @@ function handleSaveEmailNotifySettings(showToastMsg = false) {
     db.config.smtpPass = smtpPass;
     db.config.emailWebhookUrl = webhookUrl;
     if (typeof saveDatabase === 'function') {
-      saveDatabase();
+      // saveDatabase removed
     }
     if (typeof syncDatabaseToHuggingFace === 'function') {
       syncDatabaseToHuggingFace(true, true).catch(() => {});
