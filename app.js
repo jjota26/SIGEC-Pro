@@ -2447,7 +2447,82 @@ function getUserBackupFolderName(user) {
 }
 window.getUserBackupFolderName = getUserBackupFolderName;
 
-async function commitFileToHuggingFace(pathInRepo, contentBase64, commitSummary = 'Atualização SIGEC-Pro') {
+async function uploadFileToHuggingFaceLFS(repoType, repo, pathInRepo, contentBase64, token, summary) {
+  try {
+    const binaryStr = atob(contentBase64);
+    const len = binaryStr.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+      bytes[i] = binaryStr.charCodeAt(i);
+    }
+
+    const hashBuffer = await crypto.subtle.digest('SHA-256', bytes);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const sha256 = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+    const lfsBatchUrl = `https://huggingface.co/${repoType}/${repo}.git/info/lfs/objects/batch`;
+    const batchRes = await fetch(lfsBatchUrl, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.git-lfs+json'
+      },
+      body: JSON.stringify({
+        operation: 'upload',
+        transfers: ['basic'],
+        objects: [{ oid: sha256, size: len }]
+      })
+    });
+    if (!batchRes.ok) return false;
+    const batchData = await batchRes.json();
+    const obj = batchData && batchData.objects ? batchData.objects[0] : null;
+    if (!obj) return false;
+
+    if (obj.actions && obj.actions.upload && obj.actions.upload.href) {
+      const putRes = await fetch(obj.actions.upload.href, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/octet-stream' },
+        body: bytes
+      });
+      if (!putRes.ok) return false;
+
+      if (obj.actions.verify && obj.actions.verify.href) {
+        await fetch(obj.actions.verify.href, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.git-lfs+json'
+          },
+          body: JSON.stringify({ oid: sha256, size: len })
+        });
+      }
+    }
+
+    const pointer = `version https://git-lfs.github.com/spec/v1\noid sha256:${sha256}\nsize ${len}\n`;
+    const pointerB64 = btoa(pointer);
+    const commitUrl = `https://huggingface.co/api/${repoType}/${repo}/commit/main`;
+    const commitRes = await fetch(commitUrl, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        summary: `[SIGEC-Pro] ${summary || 'Upload LFS'}`,
+        files: [{ path: pathInRepo, content: pointerB64, encoding: 'base64' }]
+      })
+    });
+    return commitRes.ok;
+  } catch(errLfs) {
+    console.warn('[SIGEC-Pro] Erro no upload LFS:', errLfs);
+    return false;
+  }
+}
+window.uploadFileToHuggingFaceLFS = uploadFileToHuggingFaceLFS;
+
+async function commitFileToHuggingFace(pathInRepo, contentBase64, commitSummary = 'Atualizacao SIGEC-Pro') {
   const cfg = typeof getHuggingFaceConfig === 'function' ? getHuggingFaceConfig() : {
     token: DEFAULT_SYSTEM_HF_TOKEN,
     space: DEFAULT_SYSTEM_HF_SPACE
@@ -2461,7 +2536,15 @@ async function commitFileToHuggingFace(pathInRepo, contentBase64, commitSummary 
   let okDataset = false;
   let okSpace = false;
 
-  // 1. Gravação no DATASET (https://huggingface.co/datasets/josecenturio/SIGEC-Pro/tree/main/Programa%20SIGEC-Pro/Backup)
+  const isLarge = contentBase64 && contentBase64.length > 9 * 1024 * 1024;
+
+  if (isLarge) {
+    okSpace = await uploadFileToHuggingFaceLFS('spaces', space, cleanPath, contentBase64, token, commitSummary);
+    okDataset = await uploadFileToHuggingFaceLFS('datasets', space, `Programa SIGEC-Pro/${cleanPath}`, contentBase64, token, commitSummary);
+    return okSpace || okDataset;
+  }
+
+  // 1. Gravacao no DATASET
   try {
     const datasetPayload = {
       summary: `[SIGEC-Pro] ${commitSummary} no Dataset`,
@@ -2481,12 +2564,14 @@ async function commitFileToHuggingFace(pathInRepo, contentBase64, commitSummary 
     });
     if (resDataset && (resDataset.ok || resDataset.status === 200 || resDataset.status === 201)) {
       okDataset = true;
+    } else if (resDataset && resDataset.status === 400) {
+      okDataset = await uploadFileToHuggingFaceLFS('datasets', space, `Programa SIGEC-Pro/${cleanPath}`, contentBase64, token, commitSummary);
     }
   } catch(e1) {
     console.warn('[SIGEC-Pro] Aviso no commit para Dataset:', e1);
   }
 
-  // 2. Gravação no SPACE (https://huggingface.co/spaces/josecenturio/SIGEC-Pro/tree/main/Backup)
+  // 2. Gravacao no SPACE
   try {
     const spacePayload = {
       summary: `[SIGEC-Pro] ${commitSummary} no Space`,
@@ -2503,13 +2588,11 @@ async function commitFileToHuggingFace(pathInRepo, contentBase64, commitSummary 
       },
       body: JSON.stringify(spacePayload)
     });
-            // 3. Sincronizacao em tempo real no GITHUB (jjota26/SIGEC-Pro/data/db.json)
-        try {
-          await syncDatabaseToGitHub(dbString);
-        } catch(eGh) {}
 
-        if (resSpace && (resSpace.ok || resSpace.status === 200 || resSpace.status === 201)) {
+    if (resSpace && (resSpace.ok || resSpace.status === 200 || resSpace.status === 201)) {
       okSpace = true;
+    } else if (resSpace && resSpace.status === 400) {
+      okSpace = await uploadFileToHuggingFaceLFS('spaces', space, cleanPath, contentBase64, token, commitSummary);
     }
   } catch(e2) {
     console.warn('[SIGEC-Pro] Aviso no commit para Space:', e2);
@@ -17912,10 +17995,19 @@ async function handleServerBackupOptionChanged(indexStr) {
 
     const res = await fetch(selectedBackup.rawUrl, { headers: headers, cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const backupJson = await res.json();
+
+    let backupJson = null;
+    const textData = await res.text();
+    if (textData.startsWith('version https://git-lfs.github.com')) {
+      const resolveUrl = selectedBackup.rawUrl.replace('/raw/main/', '/resolve/main/');
+      const resLfs = await fetch(resolveUrl, { headers: headers, cache: 'no-store' });
+      backupJson = await resLfs.json();
+    } else {
+      backupJson = JSON.parse(textData);
+    }
 
     updateBackupRestoreModalUI(backupJson, selectedBackup.fileName, 'huggingface', 'Programa SIGEC-Pro / Backup', selectedBackup.dateStr);
-    showToast(`Cópia selecionada: ${selectedBackup.fileName}`);
+    showToast(`Copia selecionada: ${selectedBackup.fileName}`);
   } catch (err) {
     console.error('Erro ao descarregar backup selecionado:', err);
     showToast('Erro ao carregar ficheiro de backup selecionado.', 'danger');
@@ -17934,7 +18026,7 @@ async function triggerDatabaseRestore() {
   const token = (cfg.token || DEFAULT_SYSTEM_HF_TOKEN).trim();
   const space = (cfg.space || DEFAULT_SYSTEM_HF_SPACE || "josecenturio/SIGEC-Pro").trim();
 
-  showToast('A obter a lista dos últimos backups do Servidor...', 'info');
+  showToast('A obter a lista dos ultimos backups do Servidor...', 'info');
 
   try {
     const treeUrls = [
@@ -17963,7 +18055,7 @@ async function triggerDatabaseRestore() {
               const fileName = it.path.split('/').pop();
               if (!fileMap.has(fileName)) {
                 const isDataset = treeUrl.includes('/api/datasets/');
-                const rawBase = isDataset ? `https://huggingface.co/datasets/${space}/raw/main/` : `https://huggingface.co/spaces/${space}/raw/main/`;
+                const rawBase = isDataset ? `https://huggingface.co/datasets/${space}/resolve/main/` : `https://huggingface.co/spaces/${space}/resolve/main/`;
                 const rawUrl = rawBase + encodeURIComponent(it.path).replace(/%2F/g, '/') + `?_t=${Date.now()}`;
 
                 const m = fileName.match(/(\d{2})-(\d{2})-(\d{4})_(\d{2})-(\d{2})-(\d{2})/);
@@ -18022,18 +18114,33 @@ async function triggerDatabaseRestore() {
       }
 
       if (countBadge) {
-        countBadge.textContent = `${last15Backups.length} ${last15Backups.length === 1 ? 'disponível' : 'disponíveis'}`;
+        countBadge.textContent = `${last15Backups.length} ${last15Backups.length === 1 ? 'disponivel' : 'disponiveis'}`;
       }
       if (selectContainer) {
         selectContainer.style.display = 'block';
       }
 
-      // Descarrega inicialmente a cópia mais recente (índice 0)
+      // Descarrega inicialmente a copia mais recente (indice 0)
       const latestBackup = last15Backups[0];
-      const rawRes = await fetch(latestBackup.rawUrl, { headers: headers, cache: 'no-store' });
-      if (rawRes && rawRes.ok) {
-        const backupJson = await rawRes.json();
-        showToast(`Lista de ${last15Backups.length} cópias de segurança obtida com sucesso!`, 'success');
+      let backupJson = null;
+      try {
+        const rawRes = await fetch(latestBackup.rawUrl, { headers: headers, cache: 'no-store' });
+        if (rawRes && rawRes.ok) {
+          const textData = await rawRes.text();
+          if (textData.startsWith('version https://git-lfs.github.com')) {
+            const resolveUrl = latestBackup.rawUrl.replace('/raw/main/', '/resolve/main/');
+            const resLfs = await fetch(resolveUrl, { headers: headers, cache: 'no-store' });
+            backupJson = await resLfs.json();
+          } else {
+            backupJson = JSON.parse(textData);
+          }
+        }
+      } catch(eFetchLatest) {
+        console.warn('Aviso no fetch inicial de backup:', eFetchLatest);
+      }
+
+      if (backupJson) {
+        showToast(`Lista de ${last15Backups.length} copias de seguranca obtida com sucesso!`, 'success');
         openBackupRestoreModalWithData(backupJson, latestBackup.fileName, 'huggingface', 'Programa SIGEC-Pro / Backup', latestBackup.dateStr);
         return;
       }
@@ -18042,8 +18149,8 @@ async function triggerDatabaseRestore() {
     console.warn('[SIGEC-Pro] Aviso na pesquisa de backups no servidor:', err);
   }
 
-  // Fallback se não encontrar cópias no servidor ou sem ligação
-  showToast('Nenhuma cópia detetada no servidor. Selecione um ficheiro local...', 'info');
+  // Fallback se nao encontrar copias no servidor ou sem ligacao
+  showToast('Nenhuma copia detetada no servidor. Selecione um ficheiro local...', 'info');
   triggerLocalBackupFileSelect();
 }
 
