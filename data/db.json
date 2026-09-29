@@ -1009,7 +1009,7 @@
     {
       "id": "cli-imp-052",
       "tipoCliente": "Estatal",
-      "ministerio": "MINISTÉRIO DAS INFRAESTRUTURAS E HABITAÇÁO",
+      "ministerio": "Ministério das Infraestruturas e Habitação",
       "secretariaEstado": "Ministério, Secretaria de Estado das Infraestruturas, Instituto da Habitação e Reabilitação Urbana",
       "nome": "Ministério das Infraestruturas e Habitação",
       "contribuinte": "500000901",
@@ -1023,7 +1023,9 @@
       "telefone": "gabinete.mih@mih.gov.pt",
       "telemovel": "",
       "email": ", , 63 1000-300 LISBOA",
+      "website": "",
       "notas": "",
+      "proximoContacto": null,
       "separadores": [
         {
           "id": "sep-1789674397433-595",
@@ -1040,7 +1042,8 @@
           "pais": "Portugal",
           "telefone": "gabinete.mih@mih.gov.pt",
           "telemovel": "",
-          "email": ", , 63 1000-300 LISBOA"
+          "email": ", , 63 1000-300 LISBOA",
+          "website": ""
         },
         {
           "id": "sep-1789674869118-828",
@@ -1057,7 +1060,8 @@
           "telefone": "+351 217 231 500",
           "telemovel": "",
           "email": "geral@ihru.pt",
-          "pais": "Portugal"
+          "pais": "Portugal",
+          "website": ""
         },
         {
           "id": "sep-1789674453552-479",
@@ -1074,14 +1078,15 @@
           "telefone": "+351 217 231 500",
           "telemovel": "",
           "email": "geral@ihru.pt",
-          "pais": "Portugal"
+          "pais": "Portugal",
+          "website": ""
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-17T20:26:28.958Z",
+      "updatedAt": "2026-09-29T12:01:27.808Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -3912,7 +3917,9 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-imp-082",
@@ -3926,7 +3933,9 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-imp-083",
@@ -7212,6 +7221,64 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790683731889-78423",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Gravação Manual",
+      "tipoAcao": "Gravação Manual",
+      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-09-29T12:08:51.889Z"
+    },
+    {
+      "id": "log-1790683287821-66775",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Ministério das Infraestruturas e Habitação\" (NIF: 500000901) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Ministério das Infraestruturas e Habitação",
+        "contribuinte": "500000901",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ministério",
+            "anterior": "MINISTÉRIO DAS INFRAESTRUTURAS E HABITAÇÁO",
+            "novo": "Ministério das Infraestruturas e Habitação"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Ministério das Infraestruturas e Habitação",
+        "contribuinte": "500000901",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ministério",
+            "anterior": "MINISTÉRIO DAS INFRAESTRUTURAS E HABITAÇÁO",
+            "novo": "Ministério das Infraestruturas e Habitação"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T12:01:27.821Z"
+    },
     {
       "id": "log-1790683247071-4570",
       "usuarioId": "usr-admin-001",
