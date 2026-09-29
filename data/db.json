@@ -284,12 +284,14 @@
       "telefone": "+351 217 943 000",
       "telemovel": "",
       "email": "fundacao@ageas.pt",
+      "website": "",
       "notas": "",
+      "proximoContacto": null,
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-17T17:42:50.627Z",
+      "updatedAt": "2026-09-29T08:44:29.975Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -3204,6 +3206,8 @@
     {
       "id": "con-imp-043",
       "clienteId": "cli-imp-017",
+      "empresa": "Fundação Ageas",
+      "subTabIndex": 1,
       "nome": "João",
       "apelido": "Machado",
       "cargo": "Presidente",
@@ -3211,16 +3215,14 @@
       "telemovel": "",
       "email": "fundacao@ageas.pt",
       "notas": "Temas: salud, envejecimiento, exclusion social",
+      "inativo": false,
+      "proximoContacto": "2026-09-24",
       "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-09-29T08:43:27.739Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001",
-      "empresa": "Fundação Ageas",
-      "subTabIndex": 1,
-      "inativo": false,
-      "proximoContacto": "2026-09-24",
-      "updatedAt": "2026-09-23T18:40:45.152Z"
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-imp-044",
@@ -6689,7 +6691,8 @@
       "descricao": "Enviado email de apresentação",
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
-      "createdAt": "2026-09-29T08:41:54.032Z"
+      "createdAt": "2026-09-29T08:41:54.032Z",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cpi-1790671403414-293",
@@ -6702,7 +6705,8 @@
       "descricao": "Responde e dá indicação de que se possa contactar Ângela Mónica Rosário da equipa de Comunicação do Grupo Ageas Portugal e responsável por vários dos eventos que o grupo realiza",
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
-      "createdAt": "2026-09-29T08:43:23.416Z"
+      "createdAt": "2026-09-29T08:43:23.416Z",
+      "createdById": "usr-admin-001"
     }
   ],
   "interacoesProjetos": [],
@@ -6757,6 +6761,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790671469975-12684",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Fundação Ageas\" (NIF: 500000306) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Ageas",
+        "contribuinte": "500000306",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Ageas",
+        "contribuinte": "500000306",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T08:44:29.975Z"
+    },
     {
       "id": "log-1790671246368-69073",
       "usuarioId": "usr-admin-001",
