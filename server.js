@@ -642,7 +642,7 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
   }
 
   // Endpoint de Heartbeat
-  if (pathname === '/api/heartbeat') {
+  if (pathname === '/api/heartbeat' || pathname === '/api/ping') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ status: 'ok' }));
     return;
@@ -718,13 +718,10 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
         'Content-Type': contentType
       };
 
-      if (ext === '.html' || safePath === '/index.html' || safePath.includes('db.json') || safePath.includes('/data/')) {
-        responseHeaders['Cache-Control'] = 'no-cache, no-store, must-revalidate';
-        responseHeaders['Pragma'] = 'no-cache';
-        responseHeaders['Expires'] = '0';
-      } else if (['.js', '.css', '.png', '.jpg', '.jpeg', '.svg', '.ico', '.woff2', '.xlsx'].includes(ext)) {
-        responseHeaders['Cache-Control'] = 'public, max-age=604800, stale-while-revalidate=86400';
-      }
+      // ZERO CACHE UNIVERSAL: Nenhum ficheiro (HTML, JS, CSS, JSON) fica retido em cache
+      responseHeaders['Cache-Control'] = 'no-cache, no-store, must-revalidate';
+      responseHeaders['Pragma'] = 'no-cache';
+      responseHeaders['Expires'] = '0';
 
       if (acceptEncoding.includes('gzip') && isCompressible) {
         zlib.gzip(content, (gzErr, zipped) => {
