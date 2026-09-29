@@ -1726,11 +1726,12 @@
       "email": "galp@galp.com",
       "website": "",
       "notas": "",
+      "proximoContacto": null,
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-28T10:43:10.320Z",
+      "updatedAt": "2026-09-29T09:14:18.528Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -2452,7 +2453,8 @@
       "createdAt": "2026-09-28T10:12:38.845Z",
       "updatedAt": "2026-09-28T10:19:33.352Z",
       "comercial": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "proximoContacto": "2026-09-30"
     }
   ],
   "contactos": [
@@ -5523,13 +5525,9 @@
       "email": "",
       "notas": "",
       "inativo": false,
-      "proximoContacto": null,
+      "proximoContacto": "2026-09-30",
       "createdAt": "2026-09-28T10:19:04.891Z",
-      "updatedAt": "2026-09-28T10:19:04.891Z",
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "updatedAt": "2026-09-29T09:15:03.674Z"
     },
     {
       "id": "con-1790593369230-64",
@@ -6822,7 +6820,8 @@
       "descricao": "Enviado email de apresentação",
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
-      "createdAt": "2026-09-29T09:14:05.868Z"
+      "createdAt": "2026-09-29T09:14:05.868Z",
+      "createdById": "usr-admin-001"
     }
   ],
   "interacoesProjetos": [],
@@ -6877,6 +6876,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790673258528-60464",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Galp Energia, SGPS, S.A.\" (NIF: 500001258) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Galp Energia, SGPS, S.A.",
+        "contribuinte": "500001258",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Galp Energia, SGPS, S.A.",
+        "contribuinte": "500001258",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T09:14:18.528Z"
+    },
     {
       "id": "log-1790673108630-76041",
       "usuarioId": "usr-admin-001",
