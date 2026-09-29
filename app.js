@@ -2724,6 +2724,9 @@ async function syncDatabaseFromServerImmediately(isSilent = false) {
 window.syncDatabaseFromServerImmediately = syncDatabaseFromServerImmediately;
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Carregar base de dados para memoria de imediato (< 3ms)
+  loadDatabase();
+  if (typeof syncDatabaseFromServerImmediately === 'function') syncDatabaseFromServerImmediately();
   const isAuth = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('sigec_pro_authenticated') === 'true';
   const activeUserId = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('sigec_pro_active_user_id');
 
@@ -16012,6 +16015,10 @@ async function verifyLoginPin() {
   }
 
   // 2. Renderização Imediata e Obrigatória de Todos os Quadros do Dashboard (Clientes, Contactos, Projetos)
+  loadDatabase();
+  if (typeof syncDatabaseFromServerImmediately === 'function') syncDatabaseFromServerImmediately();
+  if (typeof renderClientPageMainGrid === 'function') renderClientPageMainGrid();
+  if (typeof renderProjectPageMainGrid === 'function') renderProjectPageMainGrid();
   if (typeof renderHomeDashboard === 'function') {
     renderHomeDashboard();
   }
