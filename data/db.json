@@ -161,7 +161,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-29T09:18:45.389Z",
+      "updatedAt": "2026-09-29T10:10:18.262Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -3007,6 +3007,8 @@
     {
       "id": "con-imp-029",
       "clienteId": "cli-imp-008",
+      "empresa": "Mota Engil",
+      "subTabIndex": 0,
       "nome": "Ana",
       "apelido": "Loureiro",
       "cargo": "Director of Corporate Marketing and Internal Communications",
@@ -3014,7 +3016,10 @@
       "telemovel": "",
       "email": "ana.loureiro@mota-engil.pt",
       "notas": "Temas: construcción, infraestructuras, ingeniería, gestión de residuos, concesiones de transporte",
+      "inativo": false,
+      "proximoContacto": "2026-10-06",
       "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-09-29T10:10:15.920Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
@@ -5547,16 +5552,12 @@
       "cargo": "",
       "telefone": "",
       "telemovel": "",
-      "email": "ucm@adene.pt",
+      "email": "adene-ucm@adene.pt",
       "notas": "",
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-09-28T09:35:58.896Z",
-      "updatedAt": "2026-09-28T09:35:58.896Z",
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "updatedAt": "2026-09-29T10:14:45.540Z"
     },
     {
       "id": "con-1790590574957-531",
@@ -6969,12 +6970,13 @@
       "contactoNome": "Ana Loureiro",
       "clienteId": "cli-imp-008",
       "separadorId": null,
-      "subTabIndex": null,
+      "subTabIndex": 0,
       "data": "2026-09-29T11:57",
       "descricao": "Enviado email de apresentação",
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
-      "createdAt": "2026-09-29T10:10:07.799Z"
+      "createdAt": "2026-09-29T10:10:07.799Z",
+      "createdById": "usr-admin-001"
     }
   ],
   "interacoesProjetos": [],
@@ -7029,6 +7031,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790676618263-5740",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Mota Engil\" (NIF: 500000153) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Mota Engil",
+        "contribuinte": "500000153",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Mota Engil",
+        "contribuinte": "500000153",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T10:10:18.263Z"
+    },
     {
       "id": "log-1790675566197-53006",
       "usuarioId": "usr-admin-001",
