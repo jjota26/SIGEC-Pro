@@ -425,3 +425,11 @@
   - **Clientes:** 14 clientes ministeriais/estatais e seus respetivos separadores atualizados com as designações oficiais em Português de Portugal (ex.: Ministério da Agricultura e do Mar, Direção-Geral de Agricultura e Desenvolvimento Rural, Ministério das Infraestruturas e Habitação, Ministério da Educação, Ciência e Inovação, Ministério do Trabalho, Solidariedade e Segurança Social, Ministério da Justiça, Ministério da Reforma do Estado, Ministério da Economia e da Coesão Territorial, Ministério de Estado e dos Negócios Estrangeiros).
   - **Contactos:** 27 cargos de contactos governamentais (ex.: Direção-Geral, Secretaria-Geral, Secretário de Estado, Chefe de Gabinete), 1 empresa e 8 campos de notas traduzidos com fidelidade para Português de Portugal.
   - **Integridade da Base de Dados:** Estrutura e integridade 100% intactas: exatamente 76 clientes, 161 contactos, 4 projetos e 3 utilizadores (commit d09e3428).
+- **Arquitetura Zero-Cache Universal e Sincronização em Tempo Real (29/09/2026):**
+  - **Eliminação Total de Cache:** O Service Worker foi completamente desativado (sw.js com auto-desregisto e purga de caches). No arranque de index.html, qualquer Service Worker ativo é forçado a desregistar e todas as caches do browser são apagadas.
+  - **Cabeçalhos HTTP Anti-Retenção:** Em server.js, todos os ficheiros (HTML, JS, CSS, JSON) são servidos com Cache-Control: no-cache, no-store, must-revalidate, garantindo que nenhum dispositivo fica com código ou dados obsoletos em cache.
+  - **Emagrecimento Crítico do pp.js:** Removida a constante obsoleta INITIAL_EXCEL_DATABASE (>5.000 linhas de JSON estático embutido). O ficheiro foi reduzido de 4.3 MB para 1.3 MB, eliminando bloqueios de memória em telemóveis e redes móveis.
+  - **Formulário de Login Instantâneo:** O ecrã de login passa a estar visível por omissão (display: block; opacity: 1), eliminando a espera pelo temporizador de "Atualizando...".
+  - **Sincronização Direta Multi-Dispositivo:** Implementada a rotina syncDatabaseFromServerImmediately(), que no arranque faz etch('/data/db.json?_t=...') diretamente ao servidor com 
+o-store. Qualquer registo guardado num computador fica imediatamente disponível em qualquer outro dispositivo.
+  - **Base de Dados 100% Preservada:** Todos os 76 clientes, 161 contactos, 4 projetos e 3 utilizadores mantidos com rigor absoluto.
