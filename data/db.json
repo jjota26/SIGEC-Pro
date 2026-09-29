@@ -5731,14 +5731,14 @@
       "contacto2Id": "con-imp-136",
       "dataInicio": "2026-07-31",
       "dataFim": "",
-      "estado": "Aguardar",
+      "estado": "Aguarda Orçamento",
       "viatura": "",
       "matricula": "",
       "orcamentos": [],
       "documents": [],
       "media": [],
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-29T11:43:38.767Z",
+      "updatedAt": "2026-09-29T11:44:11.363Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001"
     },
@@ -5747,13 +5747,16 @@
       "nome": "Unidade Móvel Bancária - Camião",
       "tipo": "Compra UM",
       "clienteId": "cli-imp-085",
+      "separadorId": null,
+      "subTabIndex": null,
       "contacto1Id": "con-1785515106421-857",
       "contacto2Id": "con-imp-137",
       "dataInicio": "2026-07-27",
       "dataFim": "2026-08-31",
-      "estado": "Em Orçamento",
+      "estado": "Aguarda decisão",
       "viatura": "Iveco Eurocargo 12000Kg",
       "matricula": "",
+      "orcamentos": [],
       "documents": [
         {
           "id": "doc-1786534173427-80i9w",
@@ -5767,14 +5770,9 @@
       ],
       "media": [],
       "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-09-29T11:44:48.602Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "separadorId": null,
-      "subTabIndex": null,
-      "orcamentos": [],
-      "updatedAt": "2026-09-17T21:08:28.630Z",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001"
     },
     {
       "id": "proj-camp-001",
@@ -5853,11 +5851,9 @@
       "documents": [],
       "media": [],
       "createdAt": "2026-09-29T10:29:06.784Z",
-      "updatedAt": "2026-09-29T10:36:13.677Z",
+      "updatedAt": "2026-09-29T11:43:48.083Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001"
     }
   ],
   "interacoes": [
@@ -7200,6 +7196,126 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790682288605-18336",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Projeto",
+      "tipoAcao": "Edição de Projeto",
+      "descricao": "Ficha do projeto \"Unidade Móvel Bancária - Camião\" atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Unidade Móvel Bancária - Camião",
+        "tipo": "Compra UM",
+        "estado": "Aguarda decisão",
+        "cliente": "Banco Caboverdiano de Negócios - BCN",
+        "camposAlterados": [
+          {
+            "campo": "Estado",
+            "anterior": "Em Orçamento",
+            "novo": "Aguarda decisão"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Unidade Móvel Bancária - Camião",
+        "tipo": "Compra UM",
+        "estado": "Aguarda decisão",
+        "cliente": "Banco Caboverdiano de Negócios - BCN",
+        "camposAlterados": [
+          {
+            "campo": "Estado",
+            "anterior": "Em Orçamento",
+            "novo": "Aguarda decisão"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T11:44:48.605Z"
+    },
+    {
+      "id": "log-1790682251366-10446",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Projeto",
+      "tipoAcao": "Edição de Projeto",
+      "descricao": "Ficha do projeto \"Estratégia Norte 2040\" atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Estratégia Norte 2040",
+        "tipo": "Aluguer UM",
+        "estado": "Aguarda Orçamento",
+        "cliente": "Ministério da Economia e Coesão Territorial",
+        "camposAlterados": [
+          {
+            "campo": "Estado",
+            "anterior": "Aguardar",
+            "novo": "Aguarda Orçamento"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Estratégia Norte 2040",
+        "tipo": "Aluguer UM",
+        "estado": "Aguarda Orçamento",
+        "cliente": "Ministério da Economia e Coesão Territorial",
+        "camposAlterados": [
+          {
+            "campo": "Estado",
+            "anterior": "Aguardar",
+            "novo": "Aguarda Orçamento"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T11:44:11.366Z"
+    },
+    {
+      "id": "log-1790682228085-29589",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Projeto",
+      "tipoAcao": "Edição de Projeto",
+      "descricao": "Ficha do projeto \"Campanha de Digitalização\" atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Campanha de Digitalização",
+        "tipo": "Aluguer UM",
+        "estado": "Aguarda decisão",
+        "cliente": "Ministério da Reforma do Estado",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Campanha de Digitalização",
+        "tipo": "Aluguer UM",
+        "estado": "Aguarda decisão",
+        "cliente": "Ministério da Reforma do Estado",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T11:43:48.085Z"
+    },
     {
       "id": "log-1790682218777-52552",
       "usuarioId": "usr-admin-001",
