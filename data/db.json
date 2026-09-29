@@ -5550,8 +5550,8 @@
       "clienteId": "cli-1790584361272-488",
       "empresa": "ADENE – Agência para a Energia",
       "subTabIndex": 0,
-      "nome": "UCM- Unidade de Comunicação e Marketing",
-      "apelido": "",
+      "nome": "UCM-",
+      "apelido": "Unidade de Comunicação e Marketing",
       "cargo": "",
       "telefone": "",
       "telemovel": "",
@@ -7052,6 +7052,24 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790677489519-69411",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Gravação Manual",
+      "tipoAcao": "Gravação Manual",
+      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-09-29T10:24:49.519Z"
+    },
     {
       "id": "log-1790677361212-2933",
       "usuarioId": "usr-admin-001",
@@ -11799,6 +11817,15 @@
   ],
   "orcamentos": [],
   "ignoredDuplicates": [],
+  "config": {
+    "emailNotifyAddress": "jmcenturio@alegria-activity.com",
+    "emailNotifyEnabled": true,
+    "smtpHost": "smtp.gmail.com",
+    "smtpPort": "587",
+    "smtpUser": "jjota26@gmail.com",
+    "smtpPass": "ytvh jzde vfcq mpoh",
+    "emailWebhookUrl": "https://script.google.com/macros/s/AKfycbxV-5cjwpuC-BLJpHaZk8g0234D9apiu5SlTX9VjdeHQG2L0DyoMBWHDbf0_Jo9Kr1LnA/exec"
+  },
   "_spcfg": "Oy8YIjNnAhQeYisIFV9ZVHlHfwgUDQY5HQU5ODMLES1bIz0naQ==",
   "_deletedRegistry": {
     "clientes": [
