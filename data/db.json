@@ -6986,6 +6986,19 @@
       "userName": "José Centúrio",
       "createdAt": "2026-09-29T10:19:11.734Z",
       "createdById": "usr-admin-001"
+    },
+    {
+      "id": "cpi-1790679183992-449",
+      "contactoId": "con-1790596085073-783",
+      "contactoNome": "Claudia Ferreira",
+      "clienteId": "cli-imp-059",
+      "separadorId": "sep-1789673380919-176",
+      "subTabIndex": 1,
+      "data": "2026-07-30T12:52",
+      "descricao": "Reunião online",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-09-29T10:53:03.992Z"
     }
   ],
   "interacoesProjetos": [],
@@ -10117,18 +10130,6 @@
         ]
       },
       "timestamp": "2026-09-20T01:47:51.781Z"
-    },
-    {
-      "id": "log-1789867843130-41696",
-      "usuarioId": "usr-1789862031944",
-      "usuarioNome": "José Maria",
-      "usuarioEmail": "jjota26@gmail.com",
-      "acao": "TransferÃªncia de Cliente",
-      "tipoAcao": "TransferÃªncia de Cliente",
-      "descricao": "Cliente \"Alegria Activity, S.L.\" transferido de José Maria para José Centúrio com todos os seus contactos, projetos, orÃ§amentos e interaÃ§Ãµes.",
-      "detalhes": {},
-      "extra": {},
-      "timestamp": "2026-09-20T01:30:43.130Z"
     }
   ],
   "orcamentos": [],
