@@ -1740,12 +1740,14 @@
       "telefone": "215003500",
       "telemovel": "",
       "email": "media@altice.pt",
+      "website": "",
       "notas": "",
+      "proximoContacto": null,
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-17T20:57:25.394Z",
+      "updatedAt": "2026-09-29T08:53:26.424Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -6774,6 +6776,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790672006425-40152",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Altice Portugal\" (NIF: 500001309) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Altice Portugal",
+        "contribuinte": "500001309",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Altice Portugal",
+        "contribuinte": "500001309",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T08:53:26.425Z"
+    },
     {
       "id": "log-1790671469975-12684",
       "usuarioId": "usr-admin-001",
