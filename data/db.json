@@ -341,12 +341,14 @@
       "telefone": "+351 266 748 300",
       "telemovel": "",
       "email": "geral@fea.pt",
+      "website": "",
       "notas": "",
+      "proximoContacto": null,
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-17T17:43:39.457Z",
+      "updatedAt": "2026-09-29T09:11:48.630Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -5310,8 +5312,9 @@
       "email": "alexandre.barrigo@fea.pt",
       "notas": "",
       "inativo": false,
+      "proximoContacto": null,
       "createdAt": "2026-09-22T09:02:14.899Z",
-      "updatedAt": "2026-09-22T10:18:44.962Z",
+      "updatedAt": "2026-09-29T09:11:25.226Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
@@ -5350,8 +5353,9 @@
       "email": "nicole.antunes@fea.pt",
       "notas": "",
       "inativo": false,
+      "proximoContacto": null,
       "createdAt": "2026-09-22T09:02:14.899Z",
-      "updatedAt": "2026-09-22T10:18:39.938Z",
+      "updatedAt": "2026-09-29T09:10:58.993Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
@@ -6780,7 +6784,45 @@
       "descricao": "Enviado email de apresentação",
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
-      "createdAt": "2026-09-29T09:10:57.963Z"
+      "createdAt": "2026-09-29T09:10:57.963Z",
+      "createdById": "usr-admin-001"
+    },
+    {
+      "id": "cpi-1790673084275-228",
+      "contactoId": "con-1790067734899-563",
+      "contactoNome": "Alexandre Barrigo",
+      "clienteId": "cli-imp-019",
+      "separadorId": null,
+      "subTabIndex": 0,
+      "data": "2026-07-21T11:11",
+      "descricao": "Enviado email de apresentação",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-09-29T09:11:24.277Z",
+      "createdById": "usr-admin-001"
+    },
+    {
+      "id": "int-1790673106633-354",
+      "clienteId": "cli-imp-019",
+      "separadorId": null,
+      "subTabIndex": null,
+      "data": "2026-07-10T10:57",
+      "descricao": "Enviado email de apresentação",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-09-29T09:11:46.633Z",
+      "createdById": "usr-admin-001"
+    },
+    {
+      "id": "int-1790673245866-70",
+      "clienteId": "cli-imp-073",
+      "separadorId": null,
+      "subTabIndex": null,
+      "data": "2026-06-29T10:57",
+      "descricao": "Enviado email de apresentação",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-09-29T09:14:05.868Z"
     }
   ],
   "interacoesProjetos": [],
@@ -6835,6 +6877,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790673108630-76041",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Fundação Eugénio de Almeida\" (NIF: 500000340) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Eugénio de Almeida",
+        "contribuinte": "500000340",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Eugénio de Almeida",
+        "contribuinte": "500000340",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T09:11:48.630Z"
+    },
     {
       "id": "log-1790672960138-47335",
       "usuarioId": "usr-admin-001",
