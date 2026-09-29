@@ -2724,37 +2724,35 @@ async function syncDatabaseFromServerImmediately(isSilent = false) {
 window.syncDatabaseFromServerImmediately = syncDatabaseFromServerImmediately;
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (typeof syncDatabaseFromServerImmediately === 'function') syncDatabaseFromServerImmediately();
-  loadDatabase();
-  if (typeof updateHeaderActiveUserBadge === 'function') {
-    updateHeaderActiveUserBadge();
-  }
-  if (typeof updateAdminNavButtons === 'function') {
-    updateAdminNavButtons();
-  }
+  const isAuth = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('sigec_pro_authenticated') === 'true';
+  const activeUserId = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('sigec_pro_active_user_id');
+
+  // Inicializar listeners essenciais e controlo de autenticacao
+  initFormListeners();
   if (typeof initSecurityAuthCheck === 'function') {
     initSecurityAuthCheck();
   }
-  initFormListeners();
+
+  // SE O UTILIZADOR NAO ESTA AUTENTICADO: PARAR AQUI! O ecra de login fica 100% fluido e instantaneo (0% CPU)
+  if (!isAuth || !activeUserId) {
+    console.info('[SIGEC-Pro] Ecrã de Login ativo e fluido (CPU livre).');
+    return;
+  }
+
+  // SE JA ESTA AUTENTICADO: Carregar e renderizar toda a aplicacao
+  loadDatabase();
+  if (typeof syncDatabaseFromServerImmediately === 'function') syncDatabaseFromServerImmediately();
+  if (typeof updateHeaderActiveUserBadge === 'function') updateHeaderActiveUserBadge();
+  if (typeof updateAdminNavButtons === 'function') updateAdminNavButtons();
   renderDatabaseOverview();
   renderClientPageMainGrid();
   renderProjectPageMainGrid();
   renderContactPageMainGrid();
   renderHomeDashboard();
   if (typeof populateBudgetClientsSelect === 'function') populateBudgetClientsSelect();
-
-  // Sincroniza automaticamente os dados salvaguardados no Servidor Hugging Face ao carregar a página se disponível
-  if (typeof autoSyncServerOnStartup === 'function') {
-    autoSyncServerOnStartup();
-  }
-  if (typeof initUniversalUpdateNotifier === 'function') {
-    initUniversalUpdateNotifier();
-  }
-
-  // Inicia a rotina de sincronização automática em segundo plano a cada 10 minutos (100% silenciosa)
-  if (typeof initPeriodicBackgroundSync === 'function') {
-    initPeriodicBackgroundSync();
-  }
+  if (typeof autoSyncServerOnStartup === 'function') autoSyncServerOnStartup();
+  if (typeof initUniversalUpdateNotifier === 'function') initUniversalUpdateNotifier();
+  if (typeof initPeriodicBackgroundSync === 'function') initPeriodicBackgroundSync();
 
   // Escutar alterações nos campos para controlo de confirmação de edições (apenas dentro de modais de formulário ativos)
   document.addEventListener('input', (e) => {

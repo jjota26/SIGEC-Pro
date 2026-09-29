@@ -1,4 +1,4 @@
-/**
+﻿/**
  * duplicatesManager.js - Módulo Especialista de Deteção, Prevenção e Fusão de Duplicados
  * SIGEC-Pro - alegria-activity, S.L.
  *
@@ -1689,10 +1689,11 @@
   // Auto-inicializar após carregamento completo da página e do db
   window.addEventListener('DOMContentLoaded', function () {
     setTimeout(function () {
-      if (typeof db !== 'undefined') {
+      const isAuth = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('sigec_pro_authenticated') === 'true';
+      if (isAuth && typeof db !== 'undefined' && Array.isArray(db.clientes) && db.clientes.length > 0) {
         scanAllDuplicates();
       }
-    }, 800);
+    }, 5000);
   });
 
 })();
