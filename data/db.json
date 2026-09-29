@@ -2362,7 +2362,7 @@
       "ministerio": "",
       "secretariaEstado": "",
       "nome": "Jerónimo Martins, SGPS, S.A.",
-      "contribuinte": "",
+      "contribuinte": "000000000",
       "direcao1": "",
       "direcao2": "",
       "numero": "",
@@ -2375,11 +2375,12 @@
       "email": "",
       "website": "",
       "notas": "",
+      "proximoContacto": null,
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-09-22T09:02:14.899Z",
-      "updatedAt": "2026-09-28T10:45:25.829Z",
+      "updatedAt": "2026-09-29T12:00:47.056Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -7211,6 +7212,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790683247071-4570",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Jerónimo Martins, SGPS, S.A.\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Jerónimo Martins, SGPS, S.A.",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "NIF/Contribuinte",
+            "anterior": "(vazio)",
+            "novo": "000000000"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Jerónimo Martins, SGPS, S.A.",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "NIF/Contribuinte",
+            "anterior": "(vazio)",
+            "novo": "000000000"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T12:00:47.071Z"
+    },
     {
       "id": "log-1790682616562-49324",
       "usuarioId": "usr-admin-001",
