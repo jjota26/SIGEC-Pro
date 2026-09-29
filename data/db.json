@@ -6931,6 +6931,17 @@
       "userName": "José Centúrio",
       "createdAt": "2026-09-29T09:30:47.369Z",
       "createdById": "usr-admin-001"
+    },
+    {
+      "id": "int-1790675210314-154",
+      "clienteId": "cli-imp-027",
+      "separadorId": null,
+      "subTabIndex": null,
+      "data": "2026-07-13T10:57",
+      "descricao": "Enviado email de apresentação",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-09-29T09:46:50.316Z"
     }
   ],
   "interacoesProjetos": [],
