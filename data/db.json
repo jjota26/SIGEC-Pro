@@ -365,12 +365,14 @@
       "telefone": "+351 215 003 500",
       "telemovel": "",
       "email": "fundacao@altice.pt",
+      "website": "",
       "notas": "",
+      "proximoContacto": null,
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-17T17:42:55.936Z",
+      "updatedAt": "2026-09-29T08:54:47.836Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -391,12 +393,14 @@
       "telefone": "+351 22 607 77 40",
       "telemovel": "",
       "email": "geral@fba.org.pt",
+      "website": "",
       "notas": "",
+      "proximoContacto": null,
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-17T17:43:19.984Z",
+      "updatedAt": "2026-09-29T08:55:14.231Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -2464,6 +2468,34 @@
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-09-28T10:12:38.845Z",
       "updatedAt": "2026-09-28T10:19:33.352Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
+    },
+    {
+      "id": "cli-1790672260599-406",
+      "tipoCliente": "Privado",
+      "ministerio": "",
+      "secretariaEstado": "",
+      "nome": "Fundação António Cupertino de Miranda",
+      "contribuinte": "",
+      "direcao1": "",
+      "direcao2": "",
+      "numero": "",
+      "andar": "",
+      "codigoPostal": "",
+      "localidade": "",
+      "pais": "",
+      "telefone": "",
+      "telemovel": "",
+      "email": "",
+      "website": "",
+      "notas": "",
+      "proximoContacto": null,
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdAt": "2026-09-29T08:57:40.600Z",
+      "updatedAt": "2026-09-29T08:57:40.600Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     }
@@ -6733,7 +6765,20 @@
       "descricao": "Enviado email de apresentação",
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
-      "createdAt": "2026-09-29T08:54:46.436Z"
+      "createdAt": "2026-09-29T08:54:46.436Z",
+      "createdById": "usr-admin-001"
+    },
+    {
+      "id": "int-1790672113436-557",
+      "clienteId": "cli-imp-021",
+      "separadorId": null,
+      "subTabIndex": null,
+      "data": "2026-07-13T10:50",
+      "descricao": "Enviado email de apresentação",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-09-29T08:55:13.437Z",
+      "createdById": "usr-admin-001"
     }
   ],
   "interacoesProjetos": [],
@@ -6788,6 +6833,116 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790672260600-48075",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Criação de Cliente",
+      "tipoAcao": "Criação de Cliente",
+      "descricao": "Novo cliente \"Fundação António Cupertino de Miranda\" (NIF: ) registado na base de dados (Comercial: José Centúrio).",
+      "detalhes": {
+        "acao": "Criação",
+        "ficha": "Cliente",
+        "nome": "Fundação António Cupertino de Miranda",
+        "contribuinte": "",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "email": "",
+        "telefone": ""
+      },
+      "extra": {
+        "acao": "Criação",
+        "ficha": "Cliente",
+        "nome": "Fundação António Cupertino de Miranda",
+        "contribuinte": "",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "email": "",
+        "telefone": ""
+      },
+      "timestamp": "2026-09-29T08:57:40.600Z"
+    },
+    {
+      "id": "log-1790672114232-66198",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Fundação Belmiro de Azevedo\" (NIF: 500000374) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Belmiro de Azevedo",
+        "contribuinte": "500000374",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Belmiro de Azevedo",
+        "contribuinte": "500000374",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T08:55:14.232Z"
+    },
+    {
+      "id": "log-1790672087836-70119",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Fundação Altice Portugal\" (NIF: 500000357) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Altice Portugal",
+        "contribuinte": "500000357",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Altice Portugal",
+        "contribuinte": "500000357",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T08:54:47.836Z"
+    },
     {
       "id": "log-1790672029968-90502",
       "usuarioId": "usr-admin-001",
