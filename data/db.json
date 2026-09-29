@@ -5798,13 +5798,16 @@
       "nome": "Unidade Móvel Bancária - Furgão",
       "tipo": "Compra UM",
       "clienteId": "cli-imp-085",
+      "separadorId": null,
+      "subTabIndex": null,
       "contacto1Id": "con-1785515106421-857",
       "contacto2Id": "con-imp-137",
       "dataInicio": "2026-07-27",
       "dataFim": "2026-08-31",
-      "estado": "Em Orçamento",
+      "estado": "Aguarda decisão",
       "viatura": "Iveco Daily 5000Kg",
       "matricula": "",
+      "orcamentos": [],
       "documents": [
         {
           "id": "doc-1786607440055-q00ws",
@@ -5818,10 +5821,9 @@
       ],
       "media": [],
       "createdAt": "2026-08-13T07:50:04.702Z",
+      "updatedAt": "2026-09-29T11:44:56.468Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001"
     },
     {
       "id": "proj-1790677746784-58",
@@ -7196,6 +7198,64 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790682391382-70841",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Gravação Manual",
+      "tipoAcao": "Gravação Manual",
+      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-09-29T11:46:31.382Z"
+    },
+    {
+      "id": "log-1790682296471-66001",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Projeto",
+      "tipoAcao": "Edição de Projeto",
+      "descricao": "Ficha do projeto \"Unidade Móvel Bancária - Furgão\" atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Unidade Móvel Bancária - Furgão",
+        "tipo": "Compra UM",
+        "estado": "Aguarda decisão",
+        "cliente": "Banco Caboverdiano de Negócios - BCN",
+        "camposAlterados": [
+          {
+            "campo": "Estado",
+            "anterior": "Em Orçamento",
+            "novo": "Aguarda decisão"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Unidade Móvel Bancária - Furgão",
+        "tipo": "Compra UM",
+        "estado": "Aguarda decisão",
+        "cliente": "Banco Caboverdiano de Negócios - BCN",
+        "camposAlterados": [
+          {
+            "campo": "Estado",
+            "anterior": "Em Orçamento",
+            "novo": "Aguarda decisão"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T11:44:56.471Z"
+    },
     {
       "id": "log-1790682288605-18336",
       "usuarioId": "usr-admin-001",
