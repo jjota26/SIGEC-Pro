@@ -6690,6 +6690,19 @@
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
       "createdAt": "2026-09-29T08:41:54.032Z"
+    },
+    {
+      "id": "cpi-1790671403414-293",
+      "contactoId": "con-imp-043",
+      "contactoNome": "João Machado",
+      "clienteId": "cli-imp-017",
+      "separadorId": null,
+      "subTabIndex": 1,
+      "data": "2026-09-24T10:41",
+      "descricao": "Responde e dá indicação de que se possa contactar Ângela Mónica Rosário da equipa de Comunicação do Grupo Ageas Portugal e responsável por vários dos eventos que o grupo realiza",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-09-29T08:43:23.416Z"
     }
   ],
   "interacoesProjetos": [],
