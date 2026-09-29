@@ -7032,7 +7032,17 @@
       "createdById": "usr-admin-001"
     }
   ],
-  "interacoesProjetos": [],
+  "interacoesProjetos": [
+    {
+      "id": "pint-1790677910786-581",
+      "projectId": "proj-1790677746784-58",
+      "data": "2026-09-24T12:28",
+      "descricao": "Envio por email, para a Cláudia Ferreira, a estimativa dos valores para a campanha",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-09-29T10:31:50.787Z"
+    }
+  ],
   "usuarios": [
     {
       "id": "usr-admin-001",
