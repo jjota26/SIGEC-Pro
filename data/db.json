@@ -1333,7 +1333,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-29T10:34:58.838Z",
+      "updatedAt": "2026-09-29T10:36:17.100Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -5687,7 +5687,7 @@
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-09-28T11:49:57.493Z",
-      "updatedAt": "2026-09-28T11:51:14.364Z",
+      "updatedAt": "2026-09-29T10:35:42.982Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
@@ -5720,17 +5720,21 @@
       "id": "proj-rec-ccdrn",
       "nome": "Estratégia Norte 2040",
       "tipo": "Aluguer UM",
-      "clienteId": "cli-imp-084",
-      "contacto1Id": "con-imp-136",
-      "contacto2Id": "con-1785515478798-243",
+      "clienteId": "cli-imp-062",
+      "separadorId": "sep-1786701644893-214",
+      "subTabIndex": 2,
+      "contacto1Id": "con-1785515478798-243",
+      "contacto2Id": "con-imp-136",
       "dataInicio": "2026-07-31",
       "dataFim": "2026-12-31",
       "estado": "Aguardar",
       "viatura": "",
       "matricula": "",
+      "orcamentos": [],
       "documents": [],
       "media": [],
       "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-09-29T10:38:46.200Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001"
     },
@@ -5845,7 +5849,7 @@
       "documents": [],
       "media": [],
       "createdAt": "2026-09-29T10:29:06.784Z",
-      "updatedAt": "2026-09-29T10:33:19.617Z",
+      "updatedAt": "2026-09-29T10:36:13.677Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
@@ -6719,18 +6723,6 @@
       "createdById": "usr-admin-001"
     },
     {
-      "id": "int-1790595217710-168",
-      "clienteId": "cli-imp-059",
-      "separadorId": "sep-1789673380919-176",
-      "subTabIndex": 1,
-      "data": "2026-07-30T12:43",
-      "descricao": "Reunião com Claudia Ferreira,",
-      "userId": "usr-admin-001",
-      "userName": "José Centúrio",
-      "createdAt": "2026-09-28T11:33:37.711Z",
-      "createdById": "usr-admin-001"
-    },
-    {
       "id": "cpi-1790596044435-643",
       "contactoId": "con-1790595958848-711",
       "contactoNome": "Isabel Vasconcelos",
@@ -7057,7 +7049,8 @@
       "descricao": "Reunião online",
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
-      "createdAt": "2026-09-29T10:35:39.690Z"
+      "createdAt": "2026-09-29T10:35:39.690Z",
+      "createdById": "usr-admin-001"
     }
   ],
   "interacoesProjetos": [
@@ -7122,6 +7115,126 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790678326201-75835",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Projeto",
+      "tipoAcao": "Edição de Projeto",
+      "descricao": "Ficha do projeto \"Estratégia Norte 2040\" atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Estratégia Norte 2040",
+        "tipo": "Aluguer UM",
+        "estado": "Aguardar",
+        "cliente": "Ministério da Economia e Coesão Territorial",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Estratégia Norte 2040",
+        "tipo": "Aluguer UM",
+        "estado": "Aguardar",
+        "cliente": "Ministério da Economia e Coesão Territorial",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T10:38:46.201Z"
+    },
+    {
+      "id": "log-1790678177101-48790",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Ministério da Reforma do Estado\" (NIF: 500001020) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Ministério da Reforma do Estado",
+        "contribuinte": "500001020",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Ministério da Reforma do Estado",
+        "contribuinte": "500001020",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T10:36:17.101Z"
+    },
+    {
+      "id": "log-1790678173678-86851",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Projeto",
+      "tipoAcao": "Edição de Projeto",
+      "descricao": "Ficha do projeto \"Campanha de Digitalização\" atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Campanha de Digitalização",
+        "tipo": "Aluguer UM",
+        "estado": "Aguarda decisão",
+        "cliente": "Ministério da Reforma do Estado",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Campanha de Digitalização",
+        "tipo": "Aluguer UM",
+        "estado": "Aguarda decisão",
+        "cliente": "Ministério da Reforma do Estado",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T10:36:13.678Z"
+    },
     {
       "id": "log-1790678098846-20847",
       "usuarioId": "usr-admin-001",
@@ -10116,98 +10229,6 @@
       "detalhes": {},
       "extra": {},
       "timestamp": "2026-09-20T02:41:31.381Z"
-    },
-    {
-      "id": "log-1789872091379-19812",
-      "usuarioId": "usr-1789862031944",
-      "usuarioNome": "José Maria",
-      "usuarioEmail": "jjota26@gmail.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Alegria Activity, S.L.\" (NIF: ) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Comercial Atribuído",
-            "anterior": "José Maria",
-            "novo": "José Centúrio"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Comercial Atribuído",
-            "anterior": "José Maria",
-            "novo": "José Centúrio"
-          }
-        ]
-      },
-      "timestamp": "2026-09-20T02:41:31.379Z"
-    },
-    {
-      "id": "log-1789872047314-36036",
-      "usuarioId": "usr-1789862031944",
-      "usuarioNome": "José Maria",
-      "usuarioEmail": "jjota26@gmail.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Alegria Activity, S.L.\" (NIF: ) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Maria",
-        "camposAlterados": [
-          {
-            "campo": "País",
-            "anterior": "España",
-            "novo": "Espanha"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Maria",
-        "camposAlterados": [
-          {
-            "campo": "País",
-            "anterior": "España",
-            "novo": "Espanha"
-          }
-        ]
-      },
-      "timestamp": "2026-09-20T02:40:47.314Z"
-    },
-    {
-      "id": "log-1789871155116-49297",
-      "usuarioId": "usr-1789862031944",
-      "usuarioNome": "José Maria",
-      "usuarioEmail": "jjota26@gmail.com",
-      "acao": "Transferência de Cliente",
-      "tipoAcao": "Transferência de Cliente",
-      "descricao": "Cliente \"Alegria Activity, S.L.\" transferido de José Maria para José Centúrio com todos os seus contactos, projetos, orçamentos e interações.",
-      "detalhes": {},
-      "extra": {},
-      "timestamp": "2026-09-20T02:25:55.117Z"
     }
   ],
   "orcamentos": [
@@ -10250,7 +10271,9 @@
     ],
     "contactos": [],
     "projetos": [],
-    "interacoes": [],
+    "interacoes": [
+      "int-1790595217710-168"
+    ],
     "interacoesProjetos": [],
     "orcamentos": [],
     "usuarios": []
