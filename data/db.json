@@ -5815,6 +5815,28 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdById": "usr-admin-001"
+    },
+    {
+      "id": "proj-1790677746784-58",
+      "nome": "Campanha de Digitalização",
+      "tipo": "Aluguer UM",
+      "clienteId": "cli-imp-059",
+      "separadorId": "sep-1789673380919-176",
+      "subTabIndex": 1,
+      "contacto1Id": "con-1790596085073-783",
+      "contacto2Id": "con-1790595958848-711",
+      "dataInicio": "2026-09-29",
+      "dataFim": "",
+      "estado": "Aguarda Orçamento",
+      "viatura": "",
+      "matricula": "",
+      "orcamentos": [],
+      "documents": [],
+      "media": [],
+      "createdAt": "2026-09-29T10:29:06.784Z",
+      "updatedAt": "2026-09-29T10:29:06.784Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001"
     }
   ],
   "interacoes": [
@@ -7052,6 +7074,67 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790677746785-89561",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Criação de Projeto",
+      "tipoAcao": "Criação de Projeto",
+      "descricao": "Novo projeto \"Campanha de Digitalização\" (Aluguer UM) criado para o cliente \"Ministério da Reforma do Estado\".",
+      "detalhes": {
+        "acao": "Criação",
+        "ficha": "Projeto",
+        "nome": "Campanha de Digitalização",
+        "tipo": "Aluguer UM",
+        "estado": "Aguarda Orçamento",
+        "dataInicio": "2026-09-29",
+        "dataFim": "",
+        "viatura": "",
+        "matricula": "",
+        "cliente": "Ministério da Reforma do Estado"
+      },
+      "extra": {
+        "acao": "Criação",
+        "ficha": "Projeto",
+        "nome": "Campanha de Digitalização",
+        "tipo": "Aluguer UM",
+        "estado": "Aguarda Orçamento",
+        "dataInicio": "2026-09-29",
+        "dataFim": "",
+        "viatura": "",
+        "matricula": "",
+        "cliente": "Ministério da Reforma do Estado"
+      },
+      "timestamp": "2026-09-29T10:29:06.785Z"
+    },
+    {
+      "id": "log-1790677558868-64573",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Notificação por Email",
+      "tipoAcao": "Notificação por Email",
+      "descricao": "Alerta de registo emitido para jmcenturio@alegria-activity.com (José Centúrio (Teste de Notificação)).",
+      "detalhes": {},
+      "extra": {},
+      "timestamp": "2026-09-29T10:25:58.868Z"
+    },
+    {
+      "id": "log-1790677558867-3294",
+      "timestamp": "2026-09-29T10:25:58.868Z",
+      "categoria": "Email / Notificação",
+      "acao": "Notificação por Email",
+      "tipoAcao": "Notificação por Email",
+      "descricao": "Notificação para jmcenturio@alegria-activity.com (\"[SIGEC-Pro Teste] Confirmação de Notificação por Email - 29/09/2026, 12:25:57\"). Estado: Enviado",
+      "detalhes": {
+        "destinatario": "jmcenturio@alegria-activity.com",
+        "assunto": "[SIGEC-Pro Teste] Confirmação de Notificação por Email - 29/09/2026, 12:25:57",
+        "estado": "Enviado com Sucesso via SMTP",
+        "mensagem": "Email enviado com sucesso via Google Workspace Gateway!",
+        "resumo": "Assunto: [SIGEC-Pro Teste] Confirmação de Notificação por Email - 29/09/2026, 12:25:57\nNome do Utilizador: José Centúrio (Teste de Notificação)\nEmail: jmcenturio@alegria-activity.com\nCargo / Função: Administrador do Sistema\nIdioma: Português\nPalavra-Passe / PIN: Admin#2026\nPerfil Atribuído: Administrador\nEstado da Conta: Ativo (Teste de Notificação)\nData e Hora do Registo: 29/09/2026, 12:25:57\nDispositivo: Computador\nInstruções para o Administrador: Este é um email de teste para validar o canal SMTP e a receção de alertas no sistema SIGEC-Pro.\nSistema: SIGEC-Pro • Sistema Integrado de Clientes & Projetos\nempresa: SIGEC-Pro • Sistema Integrado de Clientes & Projetos"
+      }
+    },
     {
       "id": "log-1790677489519-69411",
       "usuarioId": "usr-admin-001",
