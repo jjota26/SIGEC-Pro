@@ -153,15 +153,16 @@
       "telefone": "+351 225 190 300",
       "telemovel": "",
       "email": "mota-engil@mota-engil.com",
+      "website": "",
       "notas": "",
+      "proximoContacto": "2026-10-01",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-17T20:24:15.245Z",
+      "updatedAt": "2026-09-29T09:18:45.389Z",
       "comercial": "José Centúrio",
-      "createdById": "usr-admin-001",
-      "proximoContacto": "2026-10-01"
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-imp-011",
@@ -1887,14 +1888,20 @@
       "andar": "",
       "codigoPostal": "2664-502",
       "localidade": "São Julião do Tojal-Loures",
+      "pais": "Portugal",
       "telefone": "219737000",
       "telemovel": "",
       "email": "geral.pt@omexom.com",
-      "createdAt": "2026-07-31T16:30:00.000Z",
+      "website": "",
+      "notas": "",
+      "proximoContacto": "2026-10-01",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "Portugal"
+      "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-09-29T09:19:18.043Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-imp-082",
@@ -4668,7 +4675,9 @@
       "empresa": "Omexom Portugal (Sotécnica, S.A.)",
       "subTabIndex": 0,
       "extensao": "",
-      "updatedAt": "2026-09-22T09:02:14.899Z"
+      "updatedAt": "2026-09-22T09:02:14.899Z",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-imp-131",
@@ -6843,6 +6852,19 @@
       "userName": "José Centúrio",
       "createdAt": "2026-09-29T09:14:05.868Z",
       "createdById": "usr-admin-001"
+    },
+    {
+      "id": "cpi-1790674144824-888",
+      "contactoId": "con-1790673813506-585",
+      "contactoNome": "",
+      "clienteId": "cli-imp-082",
+      "separadorId": null,
+      "subTabIndex": null,
+      "data": "2026-07-01T11:23",
+      "descricao": "Enviado email de apresentação",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-09-29T09:29:04.825Z"
     }
   ],
   "interacoesProjetos": [],
@@ -6897,6 +6919,104 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790673558044-65639",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Omexom Portugal (Sotécnica, S.A.)\" (NIF: 500001394) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Omexom Portugal (Sotécnica, S.A.)",
+        "contribuinte": "500001394",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Omexom Portugal (Sotécnica, S.A.)",
+        "contribuinte": "500001394",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T09:19:18.044Z"
+    },
+    {
+      "id": "log-1790673528043-11376",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Gravação Manual",
+      "tipoAcao": "Gravação Manual",
+      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-09-29T09:18:48.043Z"
+    },
+    {
+      "id": "log-1790673525391-45779",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Mota Engil\" (NIF: 500000153) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Mota Engil",
+        "contribuinte": "500000153",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Mota Engil",
+        "contribuinte": "500000153",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T09:18:45.391Z"
+    },
     {
       "id": "log-1790673485044-71796",
       "usuarioId": "usr-admin-001",
