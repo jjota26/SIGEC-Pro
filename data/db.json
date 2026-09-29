@@ -5726,7 +5726,7 @@
       "contacto1Id": "con-1785515478798-243",
       "contacto2Id": "con-imp-136",
       "dataInicio": "2026-07-31",
-      "dataFim": "2026-12-31",
+      "dataFim": "",
       "estado": "Aguardar",
       "viatura": "",
       "matricula": "",
@@ -5734,7 +5734,7 @@
       "documents": [],
       "media": [],
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-29T10:38:46.200Z",
+      "updatedAt": "2026-09-29T10:40:11.867Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001"
     },
@@ -7115,6 +7115,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790678411871-78336",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Projeto",
+      "tipoAcao": "Edição de Projeto",
+      "descricao": "Ficha do projeto \"Estratégia Norte 2040\" atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Estratégia Norte 2040",
+        "tipo": "Aluguer UM",
+        "estado": "Aguardar",
+        "cliente": "Ministério da Economia e Coesão Territorial",
+        "camposAlterados": [
+          {
+            "campo": "Data de Fim",
+            "anterior": "2026-12-31",
+            "novo": "(vazio)"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Estratégia Norte 2040",
+        "tipo": "Aluguer UM",
+        "estado": "Aguardar",
+        "cliente": "Ministério da Economia e Coesão Territorial",
+        "camposAlterados": [
+          {
+            "campo": "Data de Fim",
+            "anterior": "2026-12-31",
+            "novo": "(vazio)"
+          }
+        ]
+      },
+      "timestamp": "2026-09-29T10:40:11.871Z"
+    },
     {
       "id": "log-1790678326201-75835",
       "usuarioId": "usr-admin-001",
@@ -10217,18 +10257,6 @@
         "userId": "usr-1789862031944"
       },
       "timestamp": "2026-09-20T02:49:06.209Z"
-    },
-    {
-      "id": "log-1789872091381-16896",
-      "usuarioId": "usr-1789862031944",
-      "usuarioNome": "José Maria",
-      "usuarioEmail": "jjota26@gmail.com",
-      "acao": "Transferência de Cliente",
-      "tipoAcao": "Transferência de Cliente",
-      "descricao": "Cliente \"Alegria Activity, S.L.\" transferido de José Maria para José Centúrio com todos os seus contactos, projetos, orçamentos e interações.",
-      "detalhes": {},
-      "extra": {},
-      "timestamp": "2026-09-20T02:41:31.381Z"
     }
   ],
   "orcamentos": [
@@ -10255,15 +10283,6 @@
     }
   ],
   "ignoredDuplicates": [],
-  "config": {
-    "emailNotifyAddress": "jmcenturio@alegria-activity.com",
-    "emailNotifyEnabled": true,
-    "smtpHost": "smtp.gmail.com",
-    "smtpPort": "587",
-    "smtpUser": "jjota26@gmail.com",
-    "smtpPass": "ytvh jzde vfcq mpoh",
-    "emailWebhookUrl": "https://script.google.com/macros/s/AKfycbxV-5cjwpuC-BLJpHaZk8g0234D9apiu5SlTX9VjdeHQG2L0DyoMBWHDbf0_Jo9Kr1LnA/exec"
-  },
   "_spcfg": "Oy8YIjNnAhQeYisIFV9ZVHlHfwgUDQY5HQU5ODMLES1bIz0naQ==",
   "_deletedRegistry": {
     "clientes": [
