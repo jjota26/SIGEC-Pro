@@ -15905,7 +15905,7 @@ function logUserActivity(acao, detalhes, extra = {}) {
                        (Array.isArray(db.usuarios) ? db.usuarios.find(u => u && (u.role === 'admin' || u.id === 'usr-admin-001')) : null);
     
     const userName = (extra && extra.utilizador) || (activeUser ? activeUser.nome : 'José Centúrio');
-    const userEmail = (extra && extra.email) || (activeUser ? activeUser.email : 'jmcenturio@alegria-activity.com');
+    const userEmail = (extra && extra.email) || (activeUser ? activeUser.email : '');
 
     const descStr = (typeof detalhes === 'string') 
       ? detalhes 
@@ -17217,7 +17217,7 @@ function sendPasswordResetEmailToUser() {
   }
 
   const adminUser = db.usuarios.find(u => u.role === 'admin') || db.usuarios[0];
-  const adminEmail = adminUser ? adminUser.email : 'jmcenturio@alegria-activity.com';
+  const adminEmail = adminUser ? adminUser.email : '';
   const adminName = adminUser ? adminUser.nome : 'Administrador do Sistema';
 
   const userEmail = emailInput.value.trim();
@@ -23311,7 +23311,7 @@ function renderEmailNotifySettingsUI() {
   const webhookEl = document.getElementById('cfgEmailWebhook');
 
   if (enabledEl) enabledEl.checked = settings.enabled;
-  if (addressEl) addressEl.value = settings.email || 'jmcenturio@alegria-activity.com';
+  if (addressEl) addressEl.value = settings.email || '';
   if (hostEl) hostEl.value = settings.smtpHost || 'smtp.gmail.com';
   if (portEl) portEl.value = settings.smtpPort || '587';
   if (userEl) userEl.value = settings.smtpUser || '';
@@ -23478,7 +23478,7 @@ async function dispatchDirectEmail(targetEmail, subject, fields = {}) {
   const settings = typeof getEmailNotifySettings === 'function' ? getEmailNotifySettings() : {
     smtpHost: 'smtp.gmail.com',
     smtpPort: '587',
-    smtpUser: 'jmcenturio@alegria-activity.com',
+    smtpUser: '',
     smtpPass: ''
   };
 
@@ -23635,7 +23635,7 @@ window.toggleSmtpPassVisibility = toggleSmtpPassVisibility;
 async function sendNewUserRegistrationEmailNotification(userData, isTest = false) {
   const settings = getEmailNotifySettings();
   if (!settings.enabled && !isTest) return false;
-  const targetEmail = (settings.email || 'jmcenturio@alegria-activity.com').trim();
+  const targetEmail = (settings.email || '').trim();
   if (!targetEmail) return false;
 
   const userName = userData.nome || 'Novo Utilizador';
@@ -23683,7 +23683,7 @@ window.sendNewUserRegistrationEmailNotification = sendNewUserRegistrationEmailNo
 async function sendTestEmailNotification() {
   handleSaveEmailNotifySettings(false);
   const settings = getEmailNotifySettings();
-  const targetEmail = (settings.email || 'jmcenturio@alegria-activity.com').trim();
+  const targetEmail = (settings.email || '').trim();
 
   if (!targetEmail) {
     showToast('Por favor insira um email de destino válido nas definições.', 'warning');
@@ -23726,7 +23726,7 @@ async function sendTestEmailNotification() {
           'Email de Teste do Sistema SIGEC-Pro\n' +
           '====================================\n\n' +
           'Destinatário: ' + targetEmail + '\n' +
-          'Remetente: ' + (settings.smtpUser || 'jmcenturio@alegria-activity.com') + '\n' +
+          'Remetente: ' + (settings.smtpUser || '') + '\n' +
           'Data/Hora: ' + new Date().toLocaleString('pt-PT') + '\n\n' +
           'Este email confirma a configuração correta do sistema SIGEC-Pro.\n\n' +
           'SIGEC-Pro • Sistema Integrado de Clientes & Projetos\n' +
