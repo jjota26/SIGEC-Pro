@@ -5740,6 +5740,23 @@
       "proximoContacto": null,
       "createdAt": "2026-09-30T08:29:01.923Z",
       "updatedAt": "2026-09-30T08:29:01.923Z"
+    },
+    {
+      "id": "con-1790756946474-859",
+      "clienteId": "cli-imp-069",
+      "empresa": "Fundação Champalimaud",
+      "subTabIndex": 0,
+      "nome": "Hedi",
+      "apelido": "Young",
+      "cargo": "Digital Content & Social Media Editor",
+      "telefone": "",
+      "telemovel": "",
+      "email": "",
+      "notas": "Gestão de canais digitais, redes sociais e vídeo",
+      "inativo": false,
+      "proximoContacto": null,
+      "createdAt": "2026-09-30T08:30:07.976Z",
+      "updatedAt": "2026-09-30T08:30:07.976Z"
     }
   ],
   "projetos": [
