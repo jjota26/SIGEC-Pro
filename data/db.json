@@ -5834,6 +5834,23 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdById": "usr-admin-001"
+    },
+    {
+      "id": "con-1790770673793-637",
+      "clienteId": "cli-imp-012",
+      "empresa": "Fundação Vodafone Portugal",
+      "subTabIndex": 0,
+      "nome": "Leonor",
+      "apelido": "Garcia Marques",
+      "cargo": "Administradora da Fundação Vodafone e Diretora de Marca da Vodafone Portugal",
+      "telefone": "",
+      "telemovel": "",
+      "email": "leonor.marques@vodafone.com",
+      "notas": "",
+      "inativo": false,
+      "proximoContacto": null,
+      "createdAt": "2026-09-30T12:18:47.779Z",
+      "updatedAt": "2026-09-30T12:18:47.779Z"
     }
   ],
   "projetos": [
