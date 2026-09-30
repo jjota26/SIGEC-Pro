@@ -5723,6 +5723,23 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdById": "usr-admin-001"
+    },
+    {
+      "id": "con-1790756820369-468",
+      "clienteId": "cli-imp-069",
+      "empresa": "Fundação Champalimaud",
+      "subTabIndex": 0,
+      "nome": "Carla Emilie",
+      "apelido": "Pereira",
+      "cargo": "Communication Designer",
+      "telefone": "",
+      "telemovel": "",
+      "email": "",
+      "notas": "Responsável pela identidade visual, paginação e materiais gráficos",
+      "inativo": false,
+      "proximoContacto": null,
+      "createdAt": "2026-09-30T08:29:01.923Z",
+      "updatedAt": "2026-09-30T08:29:01.923Z"
     }
   ],
   "projetos": [
