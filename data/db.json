@@ -2435,12 +2435,12 @@
       "email": "geral@adene.pt",
       "website": "https://www.adene.pt/",
       "notas": "",
-      "proximoContacto": "2026-09-30",
+      "proximoContacto": "2026-10-07",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-09-28T08:32:41.272Z",
-      "updatedAt": "2026-09-29T10:15:45.218Z",
+      "updatedAt": "2026-09-30T07:56:58.327Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -4456,23 +4456,19 @@
     {
       "id": "con-imp-114",
       "clienteId": "cli-imp-069",
+      "empresa": "Fundação Champalimaud",
+      "subTabIndex": 0,
       "nome": "Teresa",
       "apelido": "Fernandes",
-      "cargo": "Co-coordenadora de Comunicação, Eventos & Outreach",
+      "cargo": "Coordenadora de Comunicação, Eventos & Outreach",
       "telefone": "210480200",
       "telemovel": "",
       "email": "info@fundacaochampalimaud.pt",
       "notas": "",
-      "createdAt": "2026-07-31T16:30:00.000Z",
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001",
-      "empresa": "Fundação Champalimaud",
-      "subTabIndex": 0,
       "inativo": false,
-      "updatedAt": "2026-09-22T09:02:14.898Z",
-      "extensao": ""
+      "proximoContacto": null,
+      "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-09-30T08:23:40.336Z"
     },
     {
       "id": "con-imp-115",
@@ -7221,6 +7217,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790755018339-78016",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"ADENE – Agência para a Energia\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "ADENE – Agência para a Energia",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "ADENE – Agência para a Energia",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-30T07:56:58.339Z"
+    },
     {
       "id": "log-1790754999303-45527",
       "usuarioId": "usr-admin-001",
