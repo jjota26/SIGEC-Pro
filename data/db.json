@@ -216,7 +216,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-30T12:16:17.869Z",
+      "updatedAt": "2026-09-30T12:19:43.911Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -5829,11 +5829,7 @@
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-09-30T12:03:50.676Z",
-      "updatedAt": "2026-09-30T12:03:50.676Z",
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "updatedAt": "2026-09-30T12:19:47.757Z"
     },
     {
       "id": "con-1790770673793-637",
@@ -5850,7 +5846,7 @@
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-09-30T12:18:47.779Z",
-      "updatedAt": "2026-09-30T12:18:47.779Z"
+      "updatedAt": "2026-09-30T12:20:12.588Z"
     }
   ],
   "projetos": [
@@ -7371,6 +7367,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790770783924-67319",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Fundação Vodafone Portugal\" (NIF: 500000221) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Vodafone Portugal",
+        "contribuinte": "500000221",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Vodafone Portugal",
+        "contribuinte": "500000221",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-30T12:19:43.925Z"
+    },
     {
       "id": "log-1790770577885-3465",
       "usuarioId": "usr-admin-001",
