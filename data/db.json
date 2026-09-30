@@ -5846,7 +5846,7 @@
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-09-30T12:18:47.779Z",
-      "updatedAt": "2026-09-30T12:20:12.588Z"
+      "updatedAt": "2026-09-30T12:26:12.601Z"
     }
   ],
   "projetos": [
@@ -7316,6 +7316,19 @@
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
       "createdAt": "2026-09-30T12:26:11.201Z"
+    },
+    {
+      "id": "cpi-1790771235002-405",
+      "contactoId": "con-imp-038",
+      "contactoNome": "Luís Lopes",
+      "clienteId": "cli-imp-012",
+      "separadorId": null,
+      "subTabIndex": null,
+      "data": "2026-09-30T14:26",
+      "descricao": "Enviado email de apresentação, ao cuidado do Presidente do Conselho de Administração",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-09-30T12:27:15.004Z"
     }
   ],
   "interacoesProjetos": [
