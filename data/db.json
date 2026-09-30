@@ -1623,7 +1623,7 @@
       "secretariaEstado": "",
       "nome": "Fundação Champalimaud",
       "contribuinte": "500001190",
-      "direcao1": "Avenida de Brasília",
+      "direcao1": "Avenida Brasília",
       "direcao2": "",
       "numero": "",
       "andar": "",
@@ -1633,14 +1633,14 @@
       "telefone": "210480200",
       "telemovel": "",
       "email": "info@fundacaochampalimaud.pt",
-      "website": "",
+      "website": "https://fchampalimaud.org",
       "notas": "",
       "proximoContacto": "2026-10-07",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-30T08:32:16.377Z",
+      "updatedAt": "2026-09-30T09:06:04.401Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -4468,7 +4468,11 @@
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-30T09:05:58.044Z"
+      "updatedAt": "2026-09-30T09:05:58.044Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-imp-115",
@@ -5786,6 +5790,23 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdById": "usr-admin-001"
+    },
+    {
+      "id": "con-1790759863388-55",
+      "clienteId": "cli-imp-069",
+      "empresa": "Fundação Champalimaud",
+      "subTabIndex": 0,
+      "nome": "Ana",
+      "apelido": "Vital Melo",
+      "cargo": "Diretora do Champimóvel",
+      "telefone": "",
+      "telemovel": "",
+      "email": "anavitalmelo@fundacaochampalimaud.pt",
+      "notas": "• Jurista: Desempenha funções na assessoria jurídica da Fundação Champalimaud.\n• Diretora do Champimóvel: O facto mais interessante para a Alegria Activity é que a Ana Vital Melo assumiu a direção do Champimóvel, o projeto de divulgação científica itinerante mais emblemático da Fundação. O Champimóvel é precisamente um simulador móvel que viaja pelo país para ensinar ciência e saúde às crianças — o que se alinha perfeitamente com o modelo de veículos especiais e campanhas itinerantes que a sua empresa desenvolve.\n2. Destaque no Dirigismo Desportivo Nacional e Internacional\nFora do âmbito da fundação, é uma das figuras femininas mais influentes no desporto em Portugal:\n• Vice-Presidente do Tribunal Arbitral do Desporto (TAD): Foi eleita vice-presidente do Conselho de Arbitragem Desportiva deste tribunal.\n• Federação de Kickboxing e Muaythai: Foi a primeira mulher em Portugal a presidir a uma federação desportiva (a Federação Portuguesa de Kickboxing e Muaythai), mantendo cargos de alta direção nacional e internacional nestas modalidades.\n• Confederação do Desporto de Portugal (CDP): Atuou também como vice-presidente desta confederação\n\n- https://www.facebook.com/kikiVitalMelo?__cft__[0]=AZh4AMgEM92nT5UwAuakZkxpOPbSGx6UL5v85XSci2xOq_DqnWcpE6e9ikqx6J8oTkazq5pqEX9uIaOjw84yihWLZj6KK-QX4IH3Bp0LMtHeo25fUrKpxxxk8anC0oRXtFWXMLKMxtWpczGy4POlAjq5qK_L6ed3&__tn__=R]-R",
+      "inativo": false,
+      "proximoContacto": null,
+      "createdAt": "2026-09-30T09:28:11.900Z",
+      "updatedAt": "2026-09-30T09:28:11.900Z"
     }
   ],
   "projetos": [
@@ -7292,6 +7313,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790759164415-4546",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Fundação Champalimaud\" (NIF: 500001190) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Champalimaud",
+        "contribuinte": "500001190",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Morada",
+            "anterior": "Avenida de Brasília",
+            "novo": "Avenida Brasília"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Champalimaud",
+        "contribuinte": "500001190",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Morada",
+            "anterior": "Avenida de Brasília",
+            "novo": "Avenida Brasília"
+          }
+        ]
+      },
+      "timestamp": "2026-09-30T09:06:04.415Z"
+    },
     {
       "id": "log-1790757189840-66473",
       "usuarioId": "usr-admin-001",
