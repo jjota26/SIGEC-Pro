@@ -1635,12 +1635,12 @@
       "email": "info@fundacaochampalimaud.pt",
       "website": "",
       "notas": "",
-      "proximoContacto": "2026-09-30",
+      "proximoContacto": "2026-10-07",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-30T08:30:11.556Z",
+      "updatedAt": "2026-09-30T08:32:16.377Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -5785,7 +5785,11 @@
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-09-30T08:31:16.289Z",
-      "updatedAt": "2026-09-30T08:31:16.289Z"
+      "updatedAt": "2026-09-30T08:31:16.289Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     }
   ],
   "projetos": [
@@ -7216,6 +7220,18 @@
       "createdAt": "2026-09-29T10:35:39.690Z",
       "createdById": "usr-admin-001",
       "usuarioId": "usr-admin-001"
+    },
+    {
+      "id": "int-1790757133271-690",
+      "clienteId": "cli-imp-069",
+      "separadorId": null,
+      "subTabIndex": null,
+      "data": "2026-09-30T09:54",
+      "descricao": "Envio email de apresentação.",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-09-30T08:32:13.271Z",
+      "createdById": "usr-admin-001"
     }
   ],
   "interacoesProjetos": [
@@ -7280,6 +7296,86 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790757136404-91207",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Fundação Champalimaud\" (NIF: 500001190) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Champalimaud",
+        "contribuinte": "500001190",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Champalimaud",
+        "contribuinte": "500001190",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-30T08:32:16.404Z"
+    },
+    {
+      "id": "log-1790757114519-50612",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Fundação Champalimaud\" (NIF: 500001190) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Champalimaud",
+        "contribuinte": "500001190",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Champalimaud",
+        "contribuinte": "500001190",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-09-30T08:31:54.519Z"
+    },
     {
       "id": "log-1790757011574-57136",
       "usuarioId": "usr-admin-001",
