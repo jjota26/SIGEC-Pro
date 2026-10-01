@@ -1001,15 +1001,26 @@ function _showMissingTokenBanner() {
 }
 function utf8ToBase64(str) {
   try {
+    // Usar chunks de 8192 para nao bloquear o thread principal do browser
     const bytes = new TextEncoder().encode(str);
     let bin = '';
-    const len = bytes.byteLength;
-    for (let i = 0; i < len; i++) {
-      bin += String.fromCharCode(bytes[i]);
+    const CHUNK = 8192;
+    for (let i = 0; i < bytes.byteLength; i += CHUNK) {
+      bin += String.fromCharCode.apply(null, bytes.subarray(i, i + CHUNK));
     }
     return window.btoa(bin);
   } catch (e) {
-    return window.btoa(unescape(encodeURIComponent(str)));
+    try {
+      const bytes2 = new TextEncoder().encode(str);
+      const CHUNK2 = 1024;
+      let bin2 = '';
+      for (let i = 0; i < bytes2.byteLength; i += CHUNK2) {
+        bin2 += String.fromCharCode.apply(null, bytes2.subarray(i, i + CHUNK2));
+      }
+      return window.btoa(bin2);
+    } catch(e2) {
+      return window.btoa(unescape(encodeURIComponent(str)));
+    }
   }
 }
 
