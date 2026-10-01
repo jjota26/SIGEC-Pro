@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt">
 
 <head>
@@ -20,6 +20,14 @@
         for (var j = 0; j < keys.length; j++) { caches.delete(keys[j]); }
       });
     }
+    try {
+      var rawP = localStorage.getItem('sigec_pro_db_projetos_v6');
+      if (rawP === '[]' || rawP === null) {
+        localStorage.removeItem('sigec_pro_db_projetos_v6');
+        localStorage.removeItem('centauro_db_deleted_projetos_v6');
+        localStorage.removeItem('sigec_pro_db_deleted_projetos_v6');
+      }
+    } catch(e) {}
   </script>
 
   <!-- PWA: Manifesto e Ícones -->
@@ -4906,7 +4914,7 @@
   <!-- Internationalization & Translations Engine -->
   <script src="i18n.js?v=2.0.0"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=2.0.0"></script>
+  <script src="app.js?v=2.2.0_20261001_1355"></script>
   <!-- Duplicates Management Engine -->
   <script src="duplicatesManager.js?v=2.0.0"></script>
 

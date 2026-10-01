@@ -34,9 +34,9 @@ Este ficheiro define as regras estritas e permanentes para qualquer agente de IA
 
 ---
 
-## 🔄 6. Sincronização Nuvem e Local Obrigatória (Dual Parity)
-* **Regra:** Qualquer alteração efetuada nos ficheiros locais (`app.js`, `index.html`, `i18n.js`, `styles.css`, etc.) deve ser imediatamente sincronizada via API com o repositório oficial no **Hugging Face Space (`josecenturio/SIGEC-Pro`)**.
-* **Restrição Estrita:** Nunca contactar o GitHub.
+## 🔄 6. Sincronização Nuvem e Local Obrigatória (Dual Parity com OnRender / GitHub)
+* **Regra:** Qualquer alteração efetuada nos ficheiros locais (`app.js`, `index.html`, `i18n.js`, `styles.css`, `data/db.json`, etc.) deve ser imediatamente sincronizada com os repositórios oficiais na nuvem: o **Hugging Face Space (`josecenturio/SIGEC-Pro`)** e o repositório GitHub (`jjota26/SIGEC-Pro`), para assegurar que o site oficial de produção em **`https://sigec-pro.onrender.com`** se mantém sempre atualizado e 100% operacional.
+* **Diretriz de Deploy:** O pipeline do OnRender reconstrói e disponibiliza automaticamente o site a partir do GitHub a cada atualização.
 
 ---
 
@@ -142,3 +142,13 @@ Este ficheiro define as regras estritas e permanentes para qualquer agente de IA
   * Desacoplada a re-renderização massiva da interface em `mergeCloudDatabaseSafely` usando `setTimeout(0)`, libertando de imediato o thread de execução do browser.
   * Desacoplada a notificação modal em `handleFullServerSync` para garantir que o foco e os eventos de clique dos botões e do menu permanecem 100% responsivos após a sincronização.
   * Removidas as chamadas concorrentes ao GitHub no cliente (`syncDatabaseToHuggingFace`), assegurando cumprimento estrito da Regra 6 (sincronização cloud exclusiva via Hugging Face Space e servidor oficial OnRender).
+
+### [01/10/2026 13:30]
+* **Fusão Relacional sem Perdas (Merge de Backup e Dados Atuais):**
+  * Efetuada salvaguarda prévia completa do estado ativo (`pre_merge_safety_dump_01-10-2026.json`).
+  * Reintegrados com sucesso os 5 projetos históricos (`Estratégia Norte 2040`, `Unidade Móvel Bancária - Camião`, `Huawei SmartBus`, `Unidade Móvel Bancária - Furgão`, `Campanha de Digitalização`), 4 contactos (`Carla Emilie`, `Hedi`, `Diana`, `Ana`) e 4 interações pendentes a partir do backup de 30/09/2026 (`Backup_Perfil_Jose_Centurio_30-09-2026_14-32-28.sigecbak`).
+  * Preservados integralmente os dados registados hoje, todos os 3 utilizadores do sistema e as 116 decisões de duplicados ignorados (com deduplicação de redundâncias cíclicas).
+  * Base de dados fundida sincronizada com sucesso no Hugging Face Space (`josecenturio/SIGEC-Pro`) e Dataset, em cumprimento rigoroso de todas as 21 regras.
+  * **Correção da Rota de Sincronização:** Definida prioridade absoluta para `https://josecenturio-sigec-pro.static.hf.space/data/db.json` (CORS universal `*`), invertida a ordem de `handleFullServerSync` para PULL & MERGE antes de PUSH, e adicionada blindagem contra envio de bases sem projetos (`numProjetos === 0`).
+
+

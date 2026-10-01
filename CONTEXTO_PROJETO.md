@@ -18,9 +18,9 @@
 
 ## 3. Estado Atual da Base de Dados (Referência Ativa)
 * **Clientes:** 60
-* **Contactos:** 169
+* **Contactos:** 173
 * **Projetos:** 5 (`Estratégia Norte 2040`, `Unidade Móvel Bancária - Camião`, `Huawei SmartBus`, `Unidade Móvel Bancária - Furgão`, `Campanha de Digitalização`)
-* **Interações:** 92
+* **Interações:** 96
 * **Utilizadores:** 3 (José Centúrio, José Maria, Victoria Schwab Vilte)
 
 ---
@@ -38,3 +38,13 @@
   * Re-renderização da interface desacoplada com `setTimeout(0)` em `mergeCloudDatabaseSafely`.
   * Alerta de sincronização concluída diferido em `handleFullServerSync` para manter todos os botões e navegação do sistema 100% responsivos.
   * Removidas as chamadas redundantes ao GitHub em `syncDatabaseToHuggingFace` no browser (cumprimento estrito da Regra 6).
+
+### [01/10/2026 13:30]
+* **Fusão Relacional sem Perdas (Merge de Backup e Dados Atuais):**
+  * Efetuada salvaguarda prévia completa do estado ativo (`pre_merge_safety_dump_01-10-2026.json`).
+  * Fundidos os registos do backup de 30/09/2026 (`Backup_Perfil_Jose_Centurio_30-09-2026_14-32-28.sigecbak`) com a base viva: reintegrados os 5 projetos históricos, 4 novos contactos e 4 interações pendentes, com prevalência estrita do registo mais recente/atualizado por ID.
+  * Preservados integralmente os 3 utilizadores do sistema e as 116 decisões de duplicados ignorados (com deduplicação de redundâncias cíclicas).
+  * Base de dados fundida sincronizada com sucesso no Hugging Face Space (`josecenturio/SIGEC-Pro`) e Dataset, respeitando ordenação alfabética em língua portuguesa (Regra 13) e integridade inviolável (Regra 3).
+  * **Correção da Rota de Sincronização:** Definida prioridade absoluta para `https://josecenturio-sigec-pro.static.hf.space/data/db.json` (CORS universal `*`), invertida a ordem de `handleFullServerSync` para PULL & MERGE antes de PUSH, e adicionada blindagem contra envio de bases sem projetos (`numProjetos === 0`).
+
+

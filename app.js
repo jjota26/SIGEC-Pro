@@ -1,4 +1,4 @@
-﻿function updateAdminNavButtons() {
+function updateAdminNavButtons() {
   const user = typeof getActiveLoggedInUser === 'function' ? getActiveLoggedInUser() : null;
   const canCfg = typeof hasConfigAccess === 'function' ? hasConfigAccess(user) : true;
   const canCons = typeof hasConsultasAccess === 'function' ? hasConsultasAccess(user) : true;
@@ -1144,19 +1144,23 @@ async function handleFullServerSync(silent = false) {
 
   if (!silent) showToast('A sincronizar com o Servidor...', 'info');
 
-  // 1. Enviar dados para o servidor (push)
+  // 1. PULL BIDIRECIONAL PRIMEIRO: descarregar e fundir dados mais recentes do Servidor Hugging Face
+  let loadOk = false;
+  try {
+    loadOk = await loadDatabaseFromHuggingFace(true, true);
+  } catch(eLoad) {}
+
+  // Garantir que a interface e estatísticas refletem imediatamente os dados fundidos
+  if (typeof renderDatabaseOverview === 'function') renderDatabaseOverview();
+
+  // 2. PUSH: Enviar dados fundidos para o servidor
   let pushOk = false;
   try {
     pushOk = await syncDatabaseToHuggingFace(true, true);
   } catch(ePush) {}
-  // Garantir que o flag de sincronizacao fica limpo antes de prosseguir
+
+  // Garantir que o flag de sincronizacao fica limpo
   isSyncingToHuggingFace = false;
-  // 2. Pull bidirecional: receber dados do servidor (force=false para respeitar salvaguardas)
-  // O flag isSyncingToHuggingFace ja foi limpo acima - o pull pode correr sem bloqueio
-  let loadOk = false;
-  try {
-    loadOk = await loadDatabaseFromHuggingFace(true, false);
-  } catch(eLoad) {}
 
   // 3. Notificacao de resultado desacoplada para libertar imediatamente o thread e cliques
   if (!silent) {
@@ -1164,19 +1168,21 @@ async function handleFullServerSync(silent = false) {
     const numCnt = (db.contactos || []).length;
     const numPrj = (db.projetos || []).length;
     setTimeout(() => {
-      if (pushOk || loadOk) {
+      if (loadOk || pushOk) {
         showToast('Sincronizacao bidirecional concluida com sucesso!', 'success');
         alert('Sincronizacao Concluida com Sucesso!\n\nDados sincronizados com o servidor:\n- ' + numCli + ' Clientes\n- ' + numCnt + ' Contactos\n- ' + numPrj + ' Projetos');
       } else {
         showToast('Sincronizacao concluida (armazenamento local).', 'info');
         alert('Sincronizacao Concluida!\n\nDados guardados no armazenamento local.\nVerifique a ligacao a Internet.');
       }
+      if (typeof renderDatabaseOverview === 'function') renderDatabaseOverview();
       if (typeof renderHuggingFaceSettingsForm === 'function') renderHuggingFaceSettingsForm();
     }, 40);
   } else {
+    if (typeof renderDatabaseOverview === 'function') renderDatabaseOverview();
     if (typeof renderHuggingFaceSettingsForm === 'function') renderHuggingFaceSettingsForm();
   }
-  return pushOk || loadOk;
+  return loadOk || pushOk;
 }
 window.handleFullServerSync = handleFullServerSync;
 
@@ -1200,8 +1206,13 @@ async function syncDatabaseToHuggingFace(silent = false, force = false) {
   // Nunca enviar à nuvem se a base local estiver incompleta (mínimo 50 clientes e 3 utilizadores)
   const numClientes = (typeof db !== 'undefined' && Array.isArray(db.clientes)) ? db.clientes.length : 0;
   const numUsuarios = (typeof db !== 'undefined' && Array.isArray(db.usuarios)) ? db.usuarios.length : 0;
+  const numProjetos = (typeof db !== 'undefined' && Array.isArray(db.projetos)) ? db.projetos.length : 0;
   if (numClientes < 50 || numUsuarios < 3) {
     console.warn(`[SIGEC-Pro Sync Shield] Envio para Hugging Face bloqueado para proteção: base local incompleta (${numClientes} clientes, ${numUsuarios} utilizadores).`);
+    return false;
+  }
+  if (numProjetos === 0) {
+    console.warn('[SIGEC-Pro Sync Shield] Envio para Hugging Face bloqueado para proteção: base local sem projetos (0 projetos).');
     return false;
   }
 
@@ -1628,14 +1639,16 @@ async function loadDatabaseFromHuggingFace(silent = false, force = false) {
   try {
     let rawText = null;
 
-    // Prioridade de leitura: Servidor OnRender -> Space Estático público (CORS livre) -> Raw Space -> Raw Dataset
+    // Prioridade de leitura: Hugging Face Space Estático (CORS livre universal) -> Raw Space -> Raw Dataset -> Servidor OnRender
+    const staticSub = (space || "josecenturio/SIGEC-Pro").replace('/', '-').toLowerCase();
     const dbEndpoints = [
-      `/data/db.json?_t=${Date.now()}_${Math.random()}`,
-      `https://sigec-pro.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
-      `https://josecenturio-sigec-pro.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`,
+      `https://${staticSub}.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`,
+      `https://${staticSub}.static.hf.space/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`,
       `https://huggingface.co/spaces/${space}/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
       `https://huggingface.co/spaces/${space}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`,
-      `https://huggingface.co/datasets/${space}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`
+      `https://huggingface.co/datasets/${space}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`,
+      `/data/db.json?_t=${Date.now()}_${Math.random()}`,
+      `https://sigec-pro.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`
     ];
 
     const headers = { 'Cache-Control': 'no-cache, no-store' };
@@ -1645,8 +1658,9 @@ async function loadDatabaseFromHuggingFace(silent = false, force = false) {
       try {
         const res = await fetch(ep, { headers: headers, cache: 'no-store' }).catch(() => null);
         if (res && res.ok) {
-          const text = await res.text();
-          if (text && text.trim().startsWith('{') && (text.includes('clientes') || text.includes('contactos') || text.includes('usuarios'))) {
+          let text = await res.text();
+          if (text) text = text.replace(/^\uFEFF/, '').trim();
+          if (text && text.startsWith('{') && (text.includes('clientes') || text.includes('contactos') || text.includes('usuarios'))) {
             rawText = text;
             break;
           }
@@ -2872,6 +2886,17 @@ window.handleUserProfileBackupFileSelected = handleUserProfileBackupFileSelected
 // ==========================================
 async function syncDatabaseFromServerImmediately(isSilent = false) {
   try {
+    if (typeof loadDatabaseFromHuggingFace === 'function') {
+      const hfOk = await loadDatabaseFromHuggingFace(true, true);
+      if (hfOk) {
+        if (typeof renderDatabaseOverview === 'function') renderDatabaseOverview();
+        if (typeof updateCloudSyncStatusBadge === 'function') updateCloudSyncStatusBadge(true);
+        console.info(`[SIGEC-Pro Server Sync] Base de dados sincronizada com sucesso da nuvem (${(db.clientes || []).length} clientes, ${(db.contactos || []).length} contactos, ${(db.projetos || []).length} projetos).`);
+        return true;
+      }
+    }
+    
+    // Fallback secundario com fusao estrita sem perdas
     const origin = (typeof window !== 'undefined' && window.location && window.location.origin && window.location.protocol.startsWith('http')) 
       ? window.location.origin 
       : 'https://sigec-pro.onrender.com';
@@ -2884,29 +2909,10 @@ async function syncDatabaseFromServerImmediately(isSilent = false) {
     
     if (res && res.ok) {
       const serverDb = await res.json();
-      if (serverDb && Array.isArray(serverDb.clientes) && serverDb.clientes.length > 0) {
-        db.clientes = serverDb.clientes;
-        if (Array.isArray(serverDb.contactos)) db.contactos = serverDb.contactos;
-        if (Array.isArray(serverDb.projetos)) db.projetos = serverDb.projetos;
-        if (Array.isArray(serverDb.interacoes)) db.interacoes = serverDb.interacoes;
-        if (Array.isArray(serverDb.interacoesProjetos)) db.interacoesProjetos = serverDb.interacoesProjetos;
-        if (Array.isArray(serverDb.usuarios)) db.usuarios = serverDb.usuarios;
-        if (Array.isArray(serverDb.orcamentos)) db.orcamentos = serverDb.orcamentos;
-        if (Array.isArray(serverDb.userLogs)) db.userLogs = serverDb.userLogs;
-        
-        // Guardar no localStorage deste dispositivo para acesso offline imediato
-        if (typeof saveDatabaseLocalOnly === 'function') saveDatabaseLocalOnly();
-        
-        // Atualizar interface em direto
-        if (typeof renderHomeDashboard === 'function') renderHomeDashboard();
-        if (typeof renderClientPageMainGrid === 'function') renderClientPageMainGrid();
-        if (typeof renderContactPageMainGrid === 'function') renderContactPageMainGrid();
-        if (typeof renderProjectPageMainGrid === 'function') renderProjectPageMainGrid();
+      if (serverDb && typeof mergeCloudDatabaseSafely === 'function') {
+        mergeCloudDatabaseSafely(serverDb);
         if (typeof renderDatabaseOverview === 'function') renderDatabaseOverview();
-        if (typeof updateHeaderActiveUserBadge === 'function') updateHeaderActiveUserBadge();
         if (typeof updateCloudSyncStatusBadge === 'function') updateCloudSyncStatusBadge(true);
-        
-        console.info(`[SIGEC-Pro Server Sync] Base de dados sincronizada com sucesso em direto (${db.clientes.length} clientes, ${db.contactos.length} contactos).`);
         return true;
       }
     }
