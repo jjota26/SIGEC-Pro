@@ -1152,32 +1152,21 @@ async function handleFullServerSync(silent = false) {
   // Garantir que o flag de sincronizacao fica limpo antes de prosseguir
   isSyncingToHuggingFace = false;
 
-  // 2. Pequena pausa para deixar o servidor processar o commit
-  await new Promise(r => setTimeout(r, 800));
-
-  // 3. Carregar dados do servidor (pull) com force=true para ignorar o flag
-  let loadOk = false;
-  try {
-    loadOk = await loadDatabaseFromHuggingFace(true, true);
-  } catch(eLoad) {}
-
-  // 4. Notificacao de resultado — mostrar sempre
+  // 2. Notificacao de resultado — sempre visivel
   if (!silent) {
-    if (pushOk || loadOk) {
-      const numCli = (db.clientes || []).length;
-      const numCnt = (db.contactos || []).length;
-      const numPrj = (db.projetos || []).length;
+    const numCli = (db.clientes || []).length;
+    const numCnt = (db.contactos || []).length;
+    const numPrj = (db.projetos || []).length;
+    if (pushOk) {
       showToast('Sincronizacao concluida com sucesso!', 'success');
-      alert('Sincronizacao Concluida com Sucesso!\n\nDados atualizados com o servidor:\n- ' + numCli + ' Clientes\n- ' + numCnt + ' Contactos\n- ' + numPrj + ' Projetos');
+      alert('Sincronizacao Concluida com Sucesso!\n\nDados enviados para o servidor:\n- ' + numCli + ' Clientes\n- ' + numCnt + ' Contactos\n- ' + numPrj + ' Projetos');
     } else {
-      showToast('Sincronizacao concluida a partir do armazenamento local.', 'info');
-      alert('Sincronizacao Concluida!\n\nDados sincronizados a partir do armazenamento local.\nVerifique a sua ligacao a Internet se pretender sincronizar com o servidor.');
+      showToast('Sincronizacao concluida (armazenamento local).', 'info');
+      alert('Sincronizacao Concluida!\n\nDados guardados no armazenamento local.\nVerifique a ligacao a Internet.');
     }
   }
-
   if (typeof renderHuggingFaceSettingsForm === 'function') renderHuggingFaceSettingsForm();
-  return pushOk || loadOk;
-}
+  return pushOk;
 window.handleFullServerSync = handleFullServerSync;
 
 let isSyncingToHuggingFace = false;
@@ -1604,19 +1593,13 @@ function mergeCloudDatabaseSafely(cloudData) {
       if (typeof renderUserManagementGrid === 'function') renderUserManagementGrid();
       if (typeof renderUserSelectOptions === 'function') renderUserSelectOptions();
       if (typeof updateHeaderActiveUserBadge === 'function') updateHeaderActiveUserBadge();
-      if (typeof scanAllDuplicates === 'function') scanAllDuplicates();
+      if (typeof scanAllDuplicates === 'function') setTimeout(() => { try { scanAllDuplicates(); } catch(e){} }, 0);
       if (typeof updateBadgeCounters === 'function') updateBadgeCounters();
     } catch(uiSyncErr) {}
   }
 
   // Se o cliente local tem alterações mais recentes que a nuvem, sincronizar para a nuvem
-  if (hasLocalNewerChanges && !isSyncingToHuggingFace) {
-    setTimeout(() => {
-      if (typeof syncDatabaseToHuggingFace === 'function') {
-        syncDatabaseToHuggingFace(true, true).catch(() => {});
-      }
-    }, 1000);
-  }
+  // Nota: sync automatico removido do merge para evitar ciclos
 
   return true;
 }
