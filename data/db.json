@@ -7057,6 +7057,64 @@
   ],
   "userLogs": [
     {
+      "id": "log-1790831700384-81999",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Início de Sessão",
+      "tipoAcao": "Início de Sessão",
+      "descricao": "Acesso autorizado efetuado por José Centúrio (jmcenturio@alegria-activity.com).",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "email": "jmcenturio@alegria-activity.com",
+        "cargo": "Administrador do Sistema",
+        "dispositivo": "Computador"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "email": "jmcenturio@alegria-activity.com",
+        "cargo": "Administrador do Sistema",
+        "dispositivo": "Computador"
+      },
+      "timestamp": "2026-10-01T05:15:00.384Z"
+    },
+    {
+      "id": "log-1790831321085-12119",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Gravação Manual",
+      "tipoAcao": "Gravação Manual",
+      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-10-01T05:08:41.085Z"
+    },
+    {
+      "id": "log-1790831313395-23825",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Gravação Manual",
+      "tipoAcao": "Gravação Manual",
+      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-10-01T05:08:33.395Z"
+    },
+    {
       "id": "log-1790831212823-64269",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
@@ -9464,7 +9522,7 @@
         "camposAlterados": [
           {
             "campo": "Morada",
-            "anterior": "Avenida Amílcar Cabral, n.Âº 44",
+            "anterior": "Avenida Amílcar Cabral, n.º 44",
             "novo": "Avenida Amílcar Cabral"
           }
         ]
@@ -9479,7 +9537,7 @@
         "camposAlterados": [
           {
             "campo": "Morada",
-            "anterior": "Avenida Amílcar Cabral, n.Âº 44",
+            "anterior": "Avenida Amílcar Cabral, n.º 44",
             "novo": "Avenida Amílcar Cabral"
           }
         ]
@@ -9992,110 +10050,6 @@
         "userId": "usr-1789862031944"
       },
       "timestamp": "2026-09-20T02:49:06.209Z"
-    },
-    {
-      "id": "log-1789872091381-16896",
-      "usuarioId": "usr-1789862031944",
-      "usuarioNome": "José Maria",
-      "usuarioEmail": "jjota26@gmail.com",
-      "acao": "TransferÃªncia de Cliente",
-      "tipoAcao": "TransferÃªncia de Cliente",
-      "descricao": "Cliente \"Alegria Activity, S.L.\" transferido de José Maria para José Centúrio com todos os seus contactos, projetos, orÃ§amentos e interaÃ§Ãµes.",
-      "detalhes": {},
-      "extra": {},
-      "timestamp": "2026-09-20T02:41:31.381Z"
-    },
-    {
-      "id": "log-1789872091379-19812",
-      "usuarioId": "usr-1789862031944",
-      "usuarioNome": "José Maria",
-      "usuarioEmail": "jjota26@gmail.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Alegria Activity, S.L.\" (NIF: ) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Comercial Atribuído",
-            "anterior": "José Maria",
-            "novo": "José Centúrio"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Comercial Atribuído",
-            "anterior": "José Maria",
-            "novo": "José Centúrio"
-          }
-        ]
-      },
-      "timestamp": "2026-09-20T02:41:31.379Z"
-    },
-    {
-      "id": "log-1789872047314-36036",
-      "usuarioId": "usr-1789862031944",
-      "usuarioNome": "José Maria",
-      "usuarioEmail": "jjota26@gmail.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Alegria Activity, S.L.\" (NIF: ) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Maria",
-        "camposAlterados": [
-          {
-            "campo": "País",
-            "anterior": "España",
-            "novo": "Espanha"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Maria",
-        "camposAlterados": [
-          {
-            "campo": "País",
-            "anterior": "España",
-            "novo": "Espanha"
-          }
-        ]
-      },
-      "timestamp": "2026-09-20T02:40:47.314Z"
-    },
-    {
-      "id": "log-1789871155116-49297",
-      "usuarioId": "usr-1789862031944",
-      "usuarioNome": "José Maria",
-      "usuarioEmail": "jjota26@gmail.com",
-      "acao": "TransferÃªncia de Cliente",
-      "tipoAcao": "TransferÃªncia de Cliente",
-      "descricao": "Cliente \"Alegria Activity, S.L.\" transferido de José Maria para José Centúrio com todos os seus contactos, projetos, orÃ§amentos e interaÃ§Ãµes.",
-      "detalhes": {},
-      "extra": {},
-      "timestamp": "2026-09-20T02:25:55.117Z"
     }
   ],
   "orcamentos": [],
@@ -108625,15 +108579,6 @@
       "decidedBy": "Utilizador"
     }
   ],
-  "config": {
-    "emailNotifyAddress": "jmcenturio@alegria-activity.com",
-    "emailNotifyEnabled": true,
-    "smtpHost": "smtp.gmail.com",
-    "smtpPort": "587",
-    "smtpUser": "",
-    "smtpPass": "",
-    "emailWebhookUrl": "https://script.google.com/macros/s/AKfycbxV-5cjwpuC-BLJpHaZk8g0234D9apiu5SlTX9VjdeHQG2L0DyoMBWHDbf0_Jo9Kr1LnA/exec"
-  },
   "_spcfg": "Oy8YIjNnAhQeYisIFV9ZVHlHfwgUDQY5HQU5ODMLES1bIz0naQ==",
   "_deletedRegistry": {
     "clientes": [
