@@ -7057,7 +7057,7 @@
   ],
   "userLogs": [
     {
-      "id": "log-1790831782562-44780",
+      "id": "log-1790832171409-47115",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
       "usuarioEmail": "jmcenturio@alegria-activity.com",
@@ -7076,7 +7076,7 @@
         "cargo": "Administrador do Sistema",
         "dispositivo": "Computador"
       },
-      "timestamp": "2026-10-01T05:16:22.562Z"
+      "timestamp": "2026-10-01T05:22:51.409Z"
     },
     {
       "id": "log-1790831700384-81999",
