@@ -7057,6 +7057,28 @@
   ],
   "userLogs": [
     {
+      "id": "log-1790832981275-93884",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Início de Sessão",
+      "tipoAcao": "Início de Sessão",
+      "descricao": "Acesso autorizado efetuado por José Centúrio (jmcenturio@alegria-activity.com).",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "email": "jmcenturio@alegria-activity.com",
+        "cargo": "Administrador do Sistema",
+        "dispositivo": "Computador"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "email": "jmcenturio@alegria-activity.com",
+        "cargo": "Administrador do Sistema",
+        "dispositivo": "Computador"
+      },
+      "timestamp": "2026-10-01T05:36:21.275Z"
+    },
+    {
       "id": "log-1790832171409-47115",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
@@ -10032,28 +10054,6 @@
         ]
       },
       "timestamp": "2026-09-22T08:19:32.031Z"
-    },
-    {
-      "id": "log-1790064208504-72374",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Início de Sessão",
-      "tipoAcao": "Início de Sessão",
-      "descricao": "Acesso autorizado efetuado por José Centúrio (jmcenturio@alegria-activity.com).",
-      "detalhes": {
-        "utilizador": "José Centúrio",
-        "email": "jmcenturio@alegria-activity.com",
-        "cargo": "Administrador do Sistema",
-        "dispositivo": "Computador"
-      },
-      "extra": {
-        "utilizador": "José Centúrio",
-        "email": "jmcenturio@alegria-activity.com",
-        "cargo": "Administrador do Sistema",
-        "dispositivo": "Computador"
-      },
-      "timestamp": "2026-09-22T08:03:28.504Z"
     }
   ],
   "orcamentos": [],
