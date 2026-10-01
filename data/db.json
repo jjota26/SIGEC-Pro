@@ -7057,6 +7057,28 @@
   ],
   "userLogs": [
     {
+      "id": "log-1790831782562-44780",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Início de Sessão",
+      "tipoAcao": "Início de Sessão",
+      "descricao": "Acesso autorizado efetuado por José Centúrio (jmcenturio@alegria-activity.com).",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "email": "jmcenturio@alegria-activity.com",
+        "cargo": "Administrador do Sistema",
+        "dispositivo": "Computador"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "email": "jmcenturio@alegria-activity.com",
+        "cargo": "Administrador do Sistema",
+        "dispositivo": "Computador"
+      },
+      "timestamp": "2026-10-01T05:16:22.562Z"
+    },
+    {
       "id": "log-1790831700384-81999",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
@@ -10032,24 +10054,6 @@
         "dispositivo": "Computador"
       },
       "timestamp": "2026-09-22T08:03:28.504Z"
-    },
-    {
-      "id": "log-1789872546209-36796",
-      "usuarioId": "usr-1789862031944",
-      "usuarioNome": "José Maria",
-      "usuarioEmail": "jjota26@gmail.com",
-      "acao": "Encerramento",
-      "tipoAcao": "Encerramento",
-      "descricao": "Sessão encerrada com gravação segura de todos os dados do perfil de José Maria.",
-      "detalhes": {
-        "utilizador": "José Maria",
-        "userId": "usr-1789862031944"
-      },
-      "extra": {
-        "utilizador": "José Maria",
-        "userId": "usr-1789862031944"
-      },
-      "timestamp": "2026-09-20T02:49:06.209Z"
     }
   ],
   "orcamentos": [],
