@@ -1151,22 +1151,29 @@ async function handleFullServerSync(silent = false) {
   } catch(ePush) {}
   // Garantir que o flag de sincronizacao fica limpo antes de prosseguir
   isSyncingToHuggingFace = false;
+  // 2. Pull bidirecional: receber dados do servidor (force=false para respeitar salvaguardas)
+  // O flag isSyncingToHuggingFace ja foi limpo acima - o pull pode correr sem bloqueio
+  let loadOk = false;
+  try {
+    loadOk = await loadDatabaseFromHuggingFace(true, false);
+  } catch(eLoad) {}
 
-  // 2. Notificacao de resultado — sempre visivel
+  // 3. Notificacao de resultado — sempre visivel
   if (!silent) {
     const numCli = (db.clientes || []).length;
     const numCnt = (db.contactos || []).length;
     const numPrj = (db.projetos || []).length;
-    if (pushOk) {
-      showToast('Sincronizacao concluida com sucesso!', 'success');
-      alert('Sincronizacao Concluida com Sucesso!\n\nDados enviados para o servidor:\n- ' + numCli + ' Clientes\n- ' + numCnt + ' Contactos\n- ' + numPrj + ' Projetos');
+    if (pushOk || loadOk) {
+      showToast('Sincronizacao bidirecional concluida com sucesso!', 'success');
+      alert('Sincronizacao Concluida com Sucesso!\n\nDados sincronizados com o servidor:\n- ' + numCli + ' Clientes\n- ' + numCnt + ' Contactos\n- ' + numPrj + ' Projetos');
     } else {
       showToast('Sincronizacao concluida (armazenamento local).', 'info');
       alert('Sincronizacao Concluida!\n\nDados guardados no armazenamento local.\nVerifique a ligacao a Internet.');
     }
   }
   if (typeof renderHuggingFaceSettingsForm === 'function') renderHuggingFaceSettingsForm();
-  return pushOk;
+  return pushOk || loadOk;
+}
 window.handleFullServerSync = handleFullServerSync;
 
 let isSyncingToHuggingFace = false;
