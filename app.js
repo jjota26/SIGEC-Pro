@@ -1158,20 +1158,24 @@ async function handleFullServerSync(silent = false) {
     loadOk = await loadDatabaseFromHuggingFace(true, false);
   } catch(eLoad) {}
 
-  // 3. Notificacao de resultado — sempre visivel
+  // 3. Notificacao de resultado desacoplada para libertar imediatamente o thread e cliques
   if (!silent) {
     const numCli = (db.clientes || []).length;
     const numCnt = (db.contactos || []).length;
     const numPrj = (db.projetos || []).length;
-    if (pushOk || loadOk) {
-      showToast('Sincronizacao bidirecional concluida com sucesso!', 'success');
-      alert('Sincronizacao Concluida com Sucesso!\n\nDados sincronizados com o servidor:\n- ' + numCli + ' Clientes\n- ' + numCnt + ' Contactos\n- ' + numPrj + ' Projetos');
-    } else {
-      showToast('Sincronizacao concluida (armazenamento local).', 'info');
-      alert('Sincronizacao Concluida!\n\nDados guardados no armazenamento local.\nVerifique a ligacao a Internet.');
-    }
+    setTimeout(() => {
+      if (pushOk || loadOk) {
+        showToast('Sincronizacao bidirecional concluida com sucesso!', 'success');
+        alert('Sincronizacao Concluida com Sucesso!\n\nDados sincronizados com o servidor:\n- ' + numCli + ' Clientes\n- ' + numCnt + ' Contactos\n- ' + numPrj + ' Projetos');
+      } else {
+        showToast('Sincronizacao concluida (armazenamento local).', 'info');
+        alert('Sincronizacao Concluida!\n\nDados guardados no armazenamento local.\nVerifique a ligacao a Internet.');
+      }
+      if (typeof renderHuggingFaceSettingsForm === 'function') renderHuggingFaceSettingsForm();
+    }, 40);
+  } else {
+    if (typeof renderHuggingFaceSettingsForm === 'function') renderHuggingFaceSettingsForm();
   }
-  if (typeof renderHuggingFaceSettingsForm === 'function') renderHuggingFaceSettingsForm();
   return pushOk || loadOk;
 }
 window.handleFullServerSync = handleFullServerSync;
@@ -1275,10 +1279,7 @@ async function syncDatabaseToHuggingFace(silent = false, force = false) {
           body: JSON.stringify(spacePayload)
         }).catch(() => null);
 
-                // 3. Sincronizacao em tempo real no GITHUB (jjota26/SIGEC-Pro/data/db.json)
-        try {
-          await syncDatabaseToGitHub(dbString);
-        } catch(eGh) {}
+                // Sincronizacao no Hugging Face e Servidor Web ativo (Regra 6: sem chamadas GitHub diretas)
 
         if (resSpace && (resSpace.ok || resSpace.status === 200 || resSpace.status === 201)) {
           pushSuccess = true;
@@ -1588,21 +1589,20 @@ function mergeCloudDatabaseSafely(cloudData) {
     if (typeof saveDatabaseLocalOnly === 'function') {
       saveDatabaseLocalOnly();
     }
-    if (typeof refreshActivePanel === 'function') {
-      refreshActivePanel();
-    }
-    try {
-      if (typeof renderClientPageMainGrid === 'function') renderClientPageMainGrid();
-      if (typeof renderContactPageMainGrid === 'function') renderContactPageMainGrid();
-      if (typeof renderProjectPageMainGrid === 'function') renderProjectPageMainGrid();
-      if (typeof renderHomeDashboard === 'function') renderHomeDashboard();
-      if (typeof renderDatabaseOverview === 'function') renderDatabaseOverview();
-      if (typeof renderUserManagementGrid === 'function') renderUserManagementGrid();
-      if (typeof renderUserSelectOptions === 'function') renderUserSelectOptions();
-      if (typeof updateHeaderActiveUserBadge === 'function') updateHeaderActiveUserBadge();
-      if (typeof scanAllDuplicates === 'function') setTimeout(() => { try { scanAllDuplicates(); } catch(e){} }, 0);
-      if (typeof updateBadgeCounters === 'function') updateBadgeCounters();
-    } catch(uiSyncErr) {}
+    // Re-renderizacao da UI desacoplada com setTimeout(0) para nao bloquear o thread da aplicacao
+    setTimeout(() => {
+      try {
+        if (typeof refreshActivePanel === 'function') refreshActivePanel();
+        if (typeof renderClientPageMainGrid === 'function') renderClientPageMainGrid();
+        if (typeof renderContactPageMainGrid === 'function') renderContactPageMainGrid();
+        if (typeof renderProjectPageMainGrid === 'function') renderProjectPageMainGrid();
+        if (typeof renderHomeDashboard === 'function') renderHomeDashboard();
+        if (typeof renderDatabaseOverview === 'function') renderDatabaseOverview();
+        if (typeof renderUserManagementGrid === 'function') renderUserManagementGrid();
+        if (typeof renderUserSelectOptions === 'function') renderUserSelectOptions();
+        if (typeof updateHeaderActiveUserBadge === 'function') updateHeaderActiveUserBadge();
+      } catch(uiSyncErr) {}
+    }, 0);
   }
 
   // Se o cliente local tem alterações mais recentes que a nuvem, sincronizar para a nuvem
