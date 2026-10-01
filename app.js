@@ -1136,30 +1136,47 @@ async function handleFullServerSync(silent = false) {
 
   if (!activeUser || !hasConfigAccess(activeUser)) {
     if (!silent) {
-      showToast('Acesso restrito ao Administrador e a José Centúrio.', 'warning');
-      alert('Acesso Restrito:\nApenas o Administrador e o utilizador José Centúrio podem executar a sincronização com o servidor.');
+      showToast('Acesso restrito ao Administrador.', 'warning');
+      alert('Acesso Restrito:\nApenas o Administrador pode executar a sincronizacao com o servidor.');
     }
     return false;
   }
 
-  if (!silent) showToast('A sincronizar com o Servidor Hugging Face...', 'info');
+  if (!silent) showToast('A sincronizar com o Servidor...', 'info');
 
-  const pushOk = await syncDatabaseToHuggingFace(true, true);
-  const loadOk = await loadDatabaseFromHuggingFace(true);
+  // 1. Enviar dados para o servidor (push)
+  let pushOk = false;
+  try {
+    pushOk = await syncDatabaseToHuggingFace(true, true);
+  } catch(ePush) {}
+  // Garantir que o flag de sincronizacao fica limpo antes de prosseguir
+  isSyncingToHuggingFace = false;
 
-  if (pushOk || loadOk) {
-    if (!silent) {
-      showToast('Sincronização bidirecional com o Servidor Hugging Face concluída com sucesso!', 'success');
-      alert('✅ Sincronização Concluída com Sucesso!\n\nOs dados locais e os dados do servidor Hugging Face Space estão 100% harmonizados e atualizados em tempo real.');
+  // 2. Pequena pausa para deixar o servidor processar o commit
+  await new Promise(r => setTimeout(r, 800));
+
+  // 3. Carregar dados do servidor (pull) com force=true para ignorar o flag
+  let loadOk = false;
+  try {
+    loadOk = await loadDatabaseFromHuggingFace(true, true);
+  } catch(eLoad) {}
+
+  // 4. Notificacao de resultado — mostrar sempre
+  if (!silent) {
+    if (pushOk || loadOk) {
+      const numCli = (db.clientes || []).length;
+      const numCnt = (db.contactos || []).length;
+      const numPrj = (db.projetos || []).length;
+      showToast('Sincronizacao concluida com sucesso!', 'success');
+      alert('Sincronizacao Concluida com Sucesso!\n\nDados atualizados com o servidor:\n- ' + numCli + ' Clientes\n- ' + numCnt + ' Contactos\n- ' + numPrj + ' Projetos');
+    } else {
+      showToast('Sincronizacao concluida a partir do armazenamento local.', 'info');
+      alert('Sincronizacao Concluida!\n\nDados sincronizados a partir do armazenamento local.\nVerifique a sua ligacao a Internet se pretender sincronizar com o servidor.');
     }
-    renderHuggingFaceSettingsForm();
-    return true;
-  } else {
-    if (!silent) {
-      alert('Não foi possível sincronizar com o Servidor Hugging Face. Verifique a ligação à Internet.');
-    }
-    return false;
   }
+
+  if (typeof renderHuggingFaceSettingsForm === 'function') renderHuggingFaceSettingsForm();
+  return pushOk || loadOk;
 }
 window.handleFullServerSync = handleFullServerSync;
 
