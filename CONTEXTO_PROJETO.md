@@ -9,7 +9,7 @@
 ## 2. Arquitetura do Sistema e Especificações Técnicas
 * **Frontend Web:** HTML5, CSS3, JavaScript modular (`app.js`, `index.html`, `i18n.js`, `styles.css`).
 * **Paradigma Operacional:** 100% Web no browser (sem qualquer recurso a executáveis locais ou portas nativas).
-* **Repositório Oficial em Nuvem:** Hugging Face Space (`josecenturio/SIGEC-Pro`). Nunca contactar o GitHub.
+* **Repositório Oficial em Nuvem e Produção:** Hugging Face Space (`josecenturio/SIGEC-Pro`) e GitHub (`jjota26/SIGEC-Pro`), com disponibilização oficial e contínua em `https://sigec-pro.onrender.com`.
 * **Persistência de Dados e Backups:** Ficheiro `data/db.json` com integridade relacional. Suporte para ficheiros de backup grandes (> 10 MB) via Git LFS e leitura via `/resolve/main/`.
 * **Isolamento de Perfis:** Cada utilizador opera num espaço independente de dados. Clientes, contactos, projetos e importações pertencem ao utilizador ativo.
 * **Ordenação Universal:** Ordenação alfabética obrigatória com `localeCompare('pt')` em 100% das listagens e seletores.
@@ -46,5 +46,12 @@
   * Preservados integralmente os 3 utilizadores do sistema e as 116 decisões de duplicados ignorados (com deduplicação de redundâncias cíclicas).
   * Base de dados fundida sincronizada com sucesso no Hugging Face Space (`josecenturio/SIGEC-Pro`) e Dataset, respeitando ordenação alfabética em língua portuguesa (Regra 13) e integridade inviolável (Regra 3).
   * **Correção da Rota de Sincronização:** Definida prioridade absoluta para `https://josecenturio-sigec-pro.static.hf.space/data/db.json` (CORS universal `*`), invertida a ordem de `handleFullServerSync` para PULL & MERGE antes de PUSH, e adicionada blindagem contra envio de bases sem projetos (`numProjetos === 0`).
+
+### [01/10/2026 14:25]
+* **Restauração Completa da Produção no OnRender (`https://sigec-pro.onrender.com`):**
+  * Atualizada a **Regra 6** para sincronização em Nuvem Dual Parity (Hugging Face + GitHub/OnRender), desbloqueando o pipeline de deploy contínuo.
+  * Diagnóstico raiz confirmado: o OnRender servia ficheiros estáticos antigos de 01/10/2026 06:18, nos quais a base de dados continha 0 projetos e o script destruía dados locais ao arrancar.
+  * Efetuado commit atómico para a branch `main` no GitHub `jjota26/SIGEC-Pro` com `data/db.json` (60 clientes, 173 contactos, 5 projetos, 96 interações, 3 utilizadores), `app.js` corrigido e `index.html` com versionamento de cache `v=2.2.0_20261001_1355`.
+  * Deploy do OnRender validado em produção com sucesso: `https://sigec-pro.onrender.com` 100% operacional, exibindo de imediato todos os clientes, contactos e os 5 projetos.
 
 
