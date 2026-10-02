@@ -5637,27 +5637,6 @@
       "createdById": "usr-admin-001"
     },
     {
-      "id": "con-1790593369230-64",
-      "clienteId": "cli-imp-077",
-      "empresa": "NOS, SGPS, S.A.",
-      "subTabIndex": 0,
-      "nome": "Luis",
-      "apelido": "Costa",
-      "cargo": "Head of Product Marketing",
-      "telefone": "+351 21 782 47 00",
-      "telemovel": "",
-      "email": "",
-      "notas": "",
-      "inativo": false,
-      "proximoContacto": null,
-      "createdAt": "2026-09-28T11:03:38.189Z",
-      "updatedAt": "2026-09-28T11:04:30.405Z",
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
-    },
-    {
       "id": "con-1790594354003-392",
       "clienteId": "cli-1789988258292-590",
       "empresa": "TURISMO DE PORTUGAL, I.P.",
@@ -7547,6 +7526,51 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790931885923-46260",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Gravação Manual",
+      "tipoAcao": "Gravação Manual",
+      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-10-02T09:04:45.923Z"
+    },
+    {
+      "id": "log-1790931838969-83895",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Gestão de Utilizadores",
+      "tipoAcao": "Gestão de Utilizadores",
+      "descricao": "Estado do utilizador José Maria (jjota26@gmail.com) alterado para Ativo / Aprovado.",
+      "detalhes": {},
+      "extra": {},
+      "timestamp": "2026-10-02T09:03:58.969Z"
+    },
+    {
+      "id": "log-1790931831319-1403",
+      "timestamp": "2026-10-02T09:03:51.319Z",
+      "categoria": "Email / Notificação",
+      "acao": "Notificação por Email",
+      "tipoAcao": "Notificação por Email",
+      "descricao": "Notificação para jjota26@gmail.com (\"[SIGEC-Pro] ¡Su cuenta ya está activa!\"). Estado: Enviado",
+      "detalhes": {
+        "destinatario": "jjota26@gmail.com",
+        "assunto": "[SIGEC-Pro] ¡Su cuenta ya está activa!",
+        "estado": "Enviado com Sucesso via SMTP",
+        "mensagem": "Email enviado com sucesso via Google Workspace Gateway!",
+        "resumo": "is_user_email: true\npara_usuario: true\nmensagem_titulo: Su cuenta ya está activa en SIGEC-Pro\nsaudacao: Estimado/a José Maria,\nmensagem: Su cuenta de usuario en el sistema SIGEC-Pro ha sido activada con éxito por el Administrador. Ya puede iniciar sesión en el programa con su Correo Electrónico y Contraseña / PIN.\nNombre Completo: José Maria\nCorreo Electrónico de Acceso: jjota26@gmail.com\nCargo / Función: Comercial\nIdioma de Trabalho: Español\nContraseña / PIN de Acceso: J*cen*1971\nEstado de la Cuenta: Activo / Aprovado\nFecha de Activación: 02/10/2026, 11:03:49\nempresa: SIGEC-Pro • Sistema Integrado de Clientes & Projetos\nuser_lang: Español"
+      }
+    },
     {
       "id": "log-1790931727921-52319",
       "usuarioId": "usr-admin-001",
@@ -10347,126 +10371,6 @@
         ]
       },
       "timestamp": "2026-09-29T09:03:25.195Z"
-    },
-    {
-      "id": "log-1790672597996-16658",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Fundação Serralves\" (NIF: 500001173) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fundação Serralves",
-        "contribuinte": "500001173",
-        "tipoCliente": "Estatal",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fundação Serralves",
-        "contribuinte": "500001173",
-        "tipoCliente": "Estatal",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-09-29T09:03:17.996Z"
-    },
-    {
-      "id": "log-1790672543316-78680",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Fundação de Serralves\" (NIF: 000000000) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fundação de Serralves",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fundação de Serralves",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-09-29T09:02:23.316Z"
-    },
-    {
-      "id": "log-1790672531680-27945",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Fundação EDP\" (NIF: 500000289) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fundação EDP",
-        "contribuinte": "500000289",
-        "tipoCliente": "Fundação",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fundação EDP",
-        "contribuinte": "500000289",
-        "tipoCliente": "Fundação",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-09-29T09:02:11.680Z"
     }
   ],
   "orcamentos": [],
@@ -108994,6 +108898,42 @@
       "id2": "cli-imp-030",
       "decidedAt": "2026-09-28T06:21:43.035Z",
       "decidedBy": "Utilizador"
+    },
+    {
+      "type": "duplicados",
+      "key": "con-imp-119:::con-imp-130",
+      "id1": "con-imp-119",
+      "id2": "con-imp-130",
+      "decidedAt": "2026-10-02T09:04:15.788Z",
+      "decidedBy": "Utilizador"
+    },
+    {
+      "type": "duplicados",
+      "key": "con-1790593369230-64:::con-imp-035",
+      "id1": "con-1790593369230-64",
+      "id2": "con-imp-035",
+      "decidedAt": "2026-10-02T09:04:41.755Z",
+      "decidedBy": "Utilizador"
+    }
+  ],
+  "activityHistory": [
+    {
+      "id": "act-1790931881933",
+      "userId": "usr-admin-001",
+      "action": "DUPLICATE_KEEP_BOTH",
+      "entity": "duplicados",
+      "entityId": "con-1790593369230-64,con-imp-035",
+      "details": "Decidido manter ambos os registos (con-1790593369230-64, con-imp-035).",
+      "timestamp": "2026-10-02T09:04:41.933Z"
+    },
+    {
+      "id": "act-1790931855977",
+      "userId": "usr-admin-001",
+      "action": "DUPLICATE_KEEP_BOTH",
+      "entity": "duplicados",
+      "entityId": "con-imp-119,con-imp-130",
+      "details": "Decidido manter ambos os registos (con-imp-119, con-imp-130).",
+      "timestamp": "2026-10-02T09:04:15.977Z"
     }
   ],
   "_spcfg": "Oy8YIjNnAhQeYisIFV9ZVHlHfwgUDQY5HQU5ODMLES1bIz0naQ==",
@@ -109151,7 +109091,8 @@
       "con-1789667264258-782",
       "con-1789667264257-62",
       "con-1789667264257-859",
-      "con-imp-101"
+      "con-imp-101",
+      "con-1790593369230-64"
     ],
     "projetos": [],
     "interacoes": [
