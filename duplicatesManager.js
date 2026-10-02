@@ -1,4 +1,4 @@
-﻿/**
+/**
  * duplicatesManager.js - Módulo Especialista de Deteção, Prevenção e Fusão de Duplicados
  * SIGEC-Pro - alegria-activity, S.L.
  *
@@ -22,28 +22,46 @@
   // Grupo ativo no modal (referência estável para confirmExecuteKeep*)
   let currentActiveGroup = null;
 
+  let _cachedIgnoredKeys = null;
+  let _lastIgnoredDbRef = null;
+
+  function invalidateIgnoredDuplicateKeysCache() {
+    _cachedIgnoredKeys = null;
+    _lastIgnoredDbRef = null;
+  }
+  window.invalidateIgnoredDuplicateKeysCache = invalidateIgnoredDuplicateKeysCache;
+
   function getIgnoredDuplicateKeys() {
+    if (_cachedIgnoredKeys && typeof db !== 'undefined' && db && db.ignoredDuplicates === _lastIgnoredDbRef) {
+      return _cachedIgnoredKeys;
+    }
+
     const keys = new Set();
     // 1. localStorage local
     try {
-      const local = JSON.parse(localStorage.getItem('sigec_pro_dup_ignored') || '[]');
-      if (Array.isArray(local)) {
-        local.forEach(k => {
-          if (typeof k === 'string' && k.trim()) {
-            keys.add(k.trim());
-            keys.add(k.replace(/\|/g, ':::'));
-            keys.add(k.replace(/:::/g, '|'));
-          }
-        });
+      const stored = localStorage.getItem('sigec_pro_dup_ignored');
+      if (stored) {
+        const local = JSON.parse(stored);
+        if (Array.isArray(local)) {
+          local.forEach(k => {
+            if (typeof k === 'string' && k.trim()) {
+              const trimmed = k.trim();
+              keys.add(trimmed);
+              keys.add(trimmed.replace(/\|/g, ':::'));
+              keys.add(trimmed.replace(/:::/g, '|'));
+            }
+          });
+        }
       }
     } catch (e) {}
 
     // 2. Base de dados central db.ignoredDuplicates
     try {
       if (typeof db !== 'undefined' && db && Array.isArray(db.ignoredDuplicates)) {
+        _lastIgnoredDbRef = db.ignoredDuplicates;
         db.ignoredDuplicates.forEach(item => {
           if (!item) return;
-          const k = typeof item === 'object' ? item.key : String(item);
+          const k = typeof item === 'object' ? (item.key || (item.id1 && item.id2 ? `${item.id1}:::${item.id2}` : '')) : String(item);
           if (k) {
             keys.add(k);
             keys.add(k.replace(/\|/g, ':::'));
@@ -57,6 +75,7 @@
       }
     } catch (e) {}
 
+    _cachedIgnoredKeys = keys;
     return keys;
   }
 
@@ -64,8 +83,10 @@
     if (!id1 || !id2) return false;
     try {
       const keys = getIgnoredDuplicateKeys();
-      const k1 = [String(id1), String(id2)].sort().join('|');
-      const k2 = [String(id1), String(id2)].sort().join(':::');
+      const s1 = String(id1);
+      const s2 = String(id2);
+      const k1 = s1 < s2 ? `${s1}|${s2}` : `${s2}|${s1}`;
+      const k2 = s1 < s2 ? `${s1}:::${s2}` : `${s2}:::${s1}`;
       return keys.has(k1) || keys.has(k2);
     } catch (e) {
       return false;
@@ -80,6 +101,9 @@
 
     const keyPipe = [str1, str2].sort().join('|');
     const keyColons = [str1, str2].sort().join(':::');
+
+    // Invalidar cache em memória imediatamente
+    _cachedIgnoredKeys = null;
 
     // 1. Persistir em localStorage
     try {
@@ -98,7 +122,7 @@
         if (!Array.isArray(db.ignoredDuplicates)) db.ignoredDuplicates = [];
         const exists = db.ignoredDuplicates.some(it => {
           if (!it) return false;
-          const k = typeof it === 'object' ? it.key : String(it);
+          const k = typeof it === 'object' ? (it.key || (it.id1 && it.id2 ? `${it.id1}:::${it.id2}` : '')) : String(it);
           return k === keyPipe || k === keyColons;
         });
         if (!exists) {

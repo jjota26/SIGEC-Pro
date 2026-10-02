@@ -1621,13 +1621,31 @@ function mergeCloudDatabaseSafely(cloudData) {
   // Sincronização bidirecional do Registo de Duplicados Decididos / Ignorados
   if (Array.isArray(cloudData.ignoredDuplicates)) {
     if (!Array.isArray(db.ignoredDuplicates)) db.ignoredDuplicates = [];
-    const localIgnoredSet = new Set(db.ignoredDuplicates);
+
+    const getCanonKey = (item) => {
+      if (!item) return '';
+      let raw = (typeof item === 'object') ? (item.key || (item.id1 && item.id2 ? `${item.id1}:::${item.id2}` : '')) : String(item);
+      raw = String(raw).trim();
+      const parts = raw.split(/:::|\|/);
+      if (parts.length === 2) {
+        return parts.sort().join(':::');
+      }
+      return raw;
+    };
+
+    const existingKeys = new Set();
+    db.ignoredDuplicates.forEach(it => {
+      const k = getCanonKey(it);
+      if (k) existingKeys.add(k);
+    });
+
     let anyDupMerged = false;
 
-    cloudData.ignoredDuplicates.forEach(pairKey => {
-      if (pairKey && !localIgnoredSet.has(pairKey)) {
-        db.ignoredDuplicates.push(pairKey);
-        localIgnoredSet.add(pairKey);
+    cloudData.ignoredDuplicates.forEach(pairItem => {
+      const k = getCanonKey(pairItem);
+      if (k && !existingKeys.has(k)) {
+        db.ignoredDuplicates.push(pairItem);
+        existingKeys.add(k);
         anyDupMerged = true;
       }
     });
@@ -1637,10 +1655,11 @@ function mergeCloudDatabaseSafely(cloudData) {
       if (stored) {
         const arr = JSON.parse(stored);
         if (Array.isArray(arr)) {
-          arr.forEach(pairKey => {
-            if (pairKey && !localIgnoredSet.has(pairKey)) {
-              db.ignoredDuplicates.push(pairKey);
-              localIgnoredSet.add(pairKey);
+          arr.forEach(pairItem => {
+            const k = getCanonKey(pairItem);
+            if (k && !existingKeys.has(k)) {
+              db.ignoredDuplicates.push(pairItem);
+              existingKeys.add(k);
               anyDupMerged = true;
             }
           });
@@ -24983,17 +25002,21 @@ function switchCfgSubTab(subTab) {
   });
 
   if (target === 'duplicados') {
-    if (typeof runDuplicatesScan === 'function') {
-      runDuplicatesScan(false);
-    } else if (typeof renderDuplicatesUI === 'function') {
-      renderDuplicatesUI();
-    } else if (typeof scanDuplicates === 'function') {
-      scanDuplicates();
-    }
+    setTimeout(() => {
+      if (typeof runDuplicatesScan === 'function') {
+        runDuplicatesScan(false);
+      } else if (typeof renderDuplicatesUI === 'function') {
+        renderDuplicatesUI();
+      } else if (typeof scanDuplicates === 'function') {
+        scanDuplicates();
+      }
+    }, 10);
   } else {
-    if (typeof renderDatabaseOverview === 'function') {
-      renderDatabaseOverview();
-    }
+    setTimeout(() => {
+      if (typeof renderDatabaseOverview === 'function') {
+        renderDatabaseOverview();
+      }
+    }, 10);
   }
 }
 if (typeof window !== 'undefined') {
