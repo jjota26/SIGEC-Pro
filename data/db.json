@@ -1899,7 +1899,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-10-02T09:57:52.081Z",
+      "updatedAt": "2026-10-02T10:18:05.481Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -7581,6 +7581,46 @@
   ],
   "userLogs": [
     {
+      "id": "log-1790936285506-64158",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Omexom\" (NIF: 500001394) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Omexom",
+        "contribuinte": "500001394",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Omexom",
+        "contribuinte": "500001394",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-02T10:18:05.506Z"
+    },
+    {
       "id": "log-1790935072095-48451",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
@@ -10295,46 +10335,6 @@
         ]
       },
       "timestamp": "2026-09-29T09:31:05.203Z"
-    },
-    {
-      "id": "log-1790674157578-46326",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Sonae, SGPS, S.A. (Sonae MC)\" (NIF: 500000170) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Sonae, SGPS, S.A. (Sonae MC)",
-        "contribuinte": "500000170",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Sonae, SGPS, S.A. (Sonae MC)",
-        "contribuinte": "500000170",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-09-29T09:29:17.578Z"
     }
   ],
   "orcamentos": [],
