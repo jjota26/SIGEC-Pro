@@ -1899,7 +1899,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-10-02T09:39:13.657Z",
+      "updatedAt": "2026-10-02T09:57:52.081Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -5993,8 +5993,8 @@
     },
     {
       "id": "con-1790933617915-111",
-      "clienteId": "cli-imp-081",
-      "empresa": "Omexom",
+      "clienteId": "cli-1790935050803-493",
+      "empresa": "VINCI Energies Portugal",
       "subTabIndex": 0,
       "nome": "Claudio",
       "apelido": "Almeida",
@@ -6006,11 +6006,7 @@
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-10-02T09:37:14.192Z",
-      "updatedAt": "2026-10-02T09:37:47.447Z",
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "updatedAt": "2026-10-02T10:08:17.596Z"
     }
   ],
   "projetos": [
@@ -7584,6 +7580,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790935072095-48451",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Omexom\" (NIF: 500001394) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Omexom",
+        "contribuinte": "500001394",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Omexom",
+        "contribuinte": "500001394",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-02T09:57:52.095Z"
+    },
     {
       "id": "log-1790935050815-28553",
       "usuarioId": "usr-admin-001",
@@ -10299,46 +10335,6 @@
         ]
       },
       "timestamp": "2026-09-29T09:29:17.578Z"
-    },
-    {
-      "id": "log-1790673558044-65639",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Omexom Portugal (Sotécnica, S.A.)\" (NIF: 500001394) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Omexom Portugal (Sotécnica, S.A.)",
-        "contribuinte": "500001394",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Omexom Portugal (Sotécnica, S.A.)",
-        "contribuinte": "500001394",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-09-29T09:19:18.044Z"
     }
   ],
   "orcamentos": [],
