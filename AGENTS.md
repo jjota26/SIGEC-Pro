@@ -200,3 +200,14 @@ Consulte o ficheiro [GEMINI.md](file:///G:/Programa%20SIGEC-Pro/GEMINI.md) para 
   * **Cache O(1) de Alta Performance:** Implementada cache em memoria _cachedIgnoredKeys em duplicatesManager.js com procura instantanea Set.has(), reduzindo o tempo de varrimento de varios minutos de congelamento para apenas 0.2 segundos (227 ms).
   * **Desacoplamento Visual:** A comutacao para o separador de duplicados em switchCfgSubTab foi desacoplada com setTimeout(10), garantindo resposta visual instantanea sem qualquer soluco na interface.
   * **Sincronizacao Nuvem e Deploy:** Alteracoes sincronizadas com sucesso no GitHub (jjota26/SIGEC-Pro), OnRender e Hugging Face Space & Dataset (v=2.7.0_20261002_1055).
+
+### [02/10/2026 13:00]
+* **Enriquecimento Inteligente de Moradas e Integração Google (Google Search AI Parser):**
+  * **Causa Raiz Identificada:** O analisador anterior de moradas (parseSmartAddress) baseava-se em segmentação ingénua por vírgulas, perdendo dados essenciais quando o texto vinha em parágrafos do Google (ex: "A sede da VINCI Energies Portugal fica no Edifício Atlantis, Avenida Dom João II..."), ignorando o edifício, o telefone e o website oficial. Além disso, a atribuição de telefone e website na confirmação continha bloqueios se o campo estivesse previamente preenchido.
+  * **Motor Universal de Decomposição (parseSmartAddress em pp.js):** Desenvolvido motor de alta precisão que identifica e extrai perfeitamente:
+    * Artéria / Rua / Avenida (direcao1), Edifício / Centro Empresarial (direcao2), Número de porta (
+umero), Andar / Piso (ndar), Código Postal (codigoPostal), Localidade (localidade), País (pais), Telefone (+351 / fixo / móvel), Website oficial e NIF/NIPC.
+  * **Interface Enriquecida no Modal (index.html):** Substituído o campo <input> por uma <textarea> multi-linha e adicionado o botão direto **"📋 Colar do Google"** (pasteFromClipboardAndApply()) que lê da área de transferência ou analisa o texto colado num clique.
+  * **Serviço Backend Integrado (server.js):** Atualizada a rota /api/ai-lookup-address para enriquecer e devolver 	elefone, website, direcao2 (Edifício/Parque) e contribuinte.
+  * **Desobstrução na Confirmação:** confirmAndApplyAiAddress atualiza agora diretamente os campos de website, email e telefone na ficha do cliente sem restrições.
+  * **Versionamento de Cache & Deploy:** Versão atualizada para =2.8.0_20261002_1300. Testado rigorosamente no Microsoft Edge Headless e sincronizado em Dual Parity para GitHub (jjota26/SIGEC-Pro), OnRender e Hugging Face Space (josecenturio/SIGEC-Pro). Integridade da base de dados 100% preservada (78 clientes, 179 contactos, 5 projetos, 99 interações, 3 utilizadores).

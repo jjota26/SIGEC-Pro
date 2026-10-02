@@ -1,4 +1,4 @@
-﻿﻿const http = require('http');
+﻿const http = require('http');
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
@@ -738,8 +738,26 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
         }
 
         // Andar
-        const andarMatch = fullText.match(/\b(\d+[ºªo]\s*(?:andar|Dto|Esq|Frt|frente)?|R\/C|rés-do-chão)\b/i);
+        const andarMatch = fullText.match(/\b(\d+[ºªo]\s*(?:andar|Dto|Esq|Frt|frente)?|R\/C|rés-do-chão|Piso\s*\d+)\b/i);
         if (andarMatch) address.andar = andarMatch[1];
+
+        // Direção 2 (Edifício / Zona / Polígono / Parque)
+        const d2Match = fullText.match(/\b((?:Edifício|Edificio|Torre|Bloco|Centro Empresarial|Parque Empresarial|Parque das Nações|Parque|Polígono|Poligono|Zona Industrial|Urbanização|Urbanizacao)\s+[A-Za-zÀ-Úà-ú0-9\s\.\–\-ºª\'’]+?)(?=(?:,\s*|\s+na\s+|\s+em\s+|\s+no\s+|\n|•|;|$))/i);
+        if (d2Match) address.direcao2 = d2Match[1].trim();
+
+        // Telefone
+        const telMatch = fullText.match(/(?:Telefone|Tel|Phone|Mobile|Tlm|Fixo)?[\s:•*-]*((\+351[\s.-]*)?(?:2\d{2}|9[1236]\d)[\s.-]*\d{3}[\s.-]*\d{3})\b/i) ||
+                         fullText.match(/(?:(?:\+|00)34[\s.-]*)?(?:[689]\d{2})[\s.-]*\d{3}[\s.-]*\d{3}\b/);
+        const detectedTelefone = telMatch ? (telMatch[1] || telMatch[0]).trim() : '';
+
+        // Email
+        const emailMatch = fullText.match(/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/);
+        const detectedEmail = emailMatch ? emailMatch[0].trim() : '';
+
+        // Contribuinte (NIF)
+        const nifMatch = fullText.match(/\b(?:NIF|NIPC|Contribuinte|CIF|VAT)[\s:.-]*([A-Z0-9][A-Z0-9\s.-]{7,11}[A-Z0-9])\b/i) ||
+                         fullText.match(/\b([56]\d{8})\b/);
+        const detectedNif = nifMatch ? nifMatch[1].replace(/[\s.-]/g, '').toUpperCase() : (contribuinte || '');
 
         // Localidade Fallback
         if (!address.localidade) {
@@ -755,7 +773,7 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify({
           success: true,
-          provider: 'Web Search Engine',
+          provider: '🔎 Pesquisa Web & Diretórios Oficiais',
           data: {
             website: detectedWebsite,
             direcao1: address.direcao1,
@@ -765,6 +783,9 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
             codigoPostal: address.codigoPostal,
             localidade: address.localidade,
             pais: address.pais || 'Portugal',
+            telefone: detectedTelefone,
+            email: detectedEmail,
+            contribuinte: detectedNif,
             fonteUrl: decodedUrls[0] || 'https://duckduckgo.com'
           }
         }));
