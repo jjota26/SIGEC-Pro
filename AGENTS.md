@@ -186,3 +186,9 @@ Consulte o ficheiro [GEMINI.md](file:///G:/Programa%20SIGEC-Pro/GEMINI.md) para 
     * data/db.json: Saneados 870 campos com resÃ­duos de codificaÃ§Ã£o em clientes, contactos, projetos e interaÃ§Ãµes, mantendo 100% dos dados intactos (60 clientes, 175 contactos, 5 projetos, 96 interaÃ§Ãµes, 3 utilizadores).
   * **Blindagem AutomÃ¡tica ProfilÃ¡tica no Arranque (pp.js):** Integrada a funÃ§Ã£o prophylacticDomSanitize() executada automaticamente no arranque da aplicaÃ§Ã£o (DOMContentLoaded), na navegaÃ§Ã£o entre separadores (switchTab) e apÃ³s a aplicaÃ§Ã£o de idiomas (pplyUserLanguage), eliminando qualquer hipÃ³tese de reaparecimento de caracteres corrompidos.
   * **Versionamento de Cache:** VersÃ£o de cache atualizada para =2.5.0_20261002_0950 em index.html e i18n.js.
+### [02/10/2026 10:15]
+* **Harmonizacao Multi-Dispositivo e Desbloqueio da Nuvem (Zero 404 / LFS Universal):**
+  * **Diagnostico e Correcao de Cabecalho Bearer:** Eliminada a passagem indevida do token do Hugging Face para o GitHub Raw (raw.githubusercontent.com), que devolvia HTTP 404. O cabecalho Authorization: Bearer passa a ser enviado exclusivamente para os dominios huggingface.co.
+  * **Prioridade de Leitura no Servidor Ativo:** A funcao loadDatabaseFromHuggingFace consulta agora primeiramente os endpoints diretos do OnRender (/data/db.json e https://sigec-pro.onrender.com/data/db.json) e GitHub Raw antes dos repositorios secundarios.
+  * **Suporte Completo a Ficheiros > 10MB via Git LFS:** A base de dados (data/db.json com 18.3 MB) foi enviada com sucesso para o Hugging Face Space e Dataset utilizando Git LFS e rota /resolve/main/. Integrado fallback automatico para LFS em syncDatabaseToHuggingFace.
+  * **Paridade Nuvem e Local Total:** Garantida paridade absoluta com 78 clientes, 179 contactos, 5 projetos, 99 interacoes e 3 utilizadores em todos os nos (OnRender, GitHub, Hugging Face e Local). Versao de cache atualizada para v=2.6.0_20261002_1015.
