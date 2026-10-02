@@ -2529,17 +2529,17 @@
           "nomePersonalizado": "",
           "nome": "Secretaria de Estado da Saúde",
           "contribuinte": "000000000",
-          "direcao1": "",
+          "direcao1": "Avenida João Crisóstomo",
           "direcao2": "",
-          "numero": "",
+          "numero": "9",
           "andar": "",
-          "codigoPostal": "",
-          "localidade": "",
-          "telefone": "",
+          "codigoPostal": "1049-062",
+          "localidade": "Lisboa",
+          "telefone": "+351 213 305 000",
           "telemovel": "",
           "email": "",
           "pais": "Portugal",
-          "website": ""
+          "website": "https://www.sns.gov.pt"
         },
         {
           "id": "sep-1786116477741-550",
@@ -2547,24 +2547,24 @@
           "nomePersonalizado": "",
           "nome": "Direção Geral da Saúde",
           "contribuinte": "500000527",
-          "direcao1": "",
+          "direcao1": "Alameda Dom Afonso Henriques",
           "direcao2": "",
-          "numero": "",
+          "numero": "45",
           "andar": "",
-          "codigoPostal": "1000-001",
+          "codigoPostal": "1049-005",
           "localidade": "Lisboa",
           "telefone": "+351 213 305 100",
           "telemovel": "",
           "email": "gabinete.ms@ms.gov.pt",
           "pais": "Portugal",
-          "website": ""
+          "website": "https://www.dgs.pt"
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-10-02T12:03:58.549Z",
+      "updatedAt": "2026-10-02T12:05:29.490Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -7656,6 +7656,46 @@
   ],
   "userLogs": [
     {
+      "id": "log-1790942729504-73037",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Ministério da Saúde\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Ministério da Saúde",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Ministério da Saúde",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-02T12:05:29.504Z"
+    },
+    {
       "id": "log-1790942638562-87769",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
@@ -10474,46 +10514,6 @@
         ]
       },
       "timestamp": "2026-09-29T10:15:45.218Z"
-    },
-    {
-      "id": "log-1790676618263-5740",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Mota Engil\" (NIF: 500000153) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Mota Engil",
-        "contribuinte": "500000153",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Mota Engil",
-        "contribuinte": "500000153",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-09-29T10:10:18.263Z"
     }
   ],
   "orcamentos": [],
