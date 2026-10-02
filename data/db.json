@@ -2488,40 +2488,28 @@
       "id": "cli-imp-030",
       "tipoCliente": "Estatal",
       "ministerio": "Ministério da Saúde",
-      "secretariaEstado": "Secretaria de Estado, Secretaria de Estado",
+      "secretariaEstado": "Ministério da Saúde, Secretaria de Estado, Direção Geral da Saúde",
       "nome": "Ministério da Saúde",
-      "contribuinte": "500000527",
+      "contribuinte": "000000000",
       "direcao1": "",
       "direcao2": "",
       "numero": "",
       "andar": "",
-      "codigoPostal": "1000-001",
-      "localidade": "Lisboa",
-      "telefone": "+351 213 305 100",
+      "codigoPostal": "",
+      "localidade": "",
+      "pais": "Portugal",
+      "telefone": "",
       "telemovel": "",
-      "email": "gabinete.ms@ms.gov.pt",
+      "email": "",
+      "website": "",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
         {
-          "id": "sep-1786116477741-550",
-          "tipoSeparador": "Secretaria de Estado",
+          "id": "sep-1790942419112-320",
+          "tipoSeparador": "Ministério da Saúde",
           "nomePersonalizado": "",
           "nome": "Ministério da Saúde",
-          "contribuinte": "500000527",
-          "direcao1": "",
-          "direcao2": "",
-          "numero": "",
-          "andar": "",
-          "codigoPostal": "1000-001",
-          "localidade": "Lisboa",
-          "telefone": "+351 213 305 100",
-          "telemovel": "",
-          "email": "gabinete.ms@ms.gov.pt"
-        },
-        {
-          "id": "sep-1786116493525-61",
-          "tipoSeparador": "Secretaria de Estado",
-          "nomePersonalizado": "",
-          "nome": "Secretaria de Estado ",
           "contribuinte": "000000000",
           "direcao1": "",
           "direcao2": "",
@@ -2531,14 +2519,54 @@
           "localidade": "",
           "telefone": "",
           "telemovel": "",
-          "email": ""
+          "email": "",
+          "pais": "Portugal",
+          "website": ""
+        },
+        {
+          "id": "sep-1786116493525-61",
+          "tipoSeparador": "Secretaria de Estado",
+          "nomePersonalizado": "",
+          "nome": "Secretaria de Estado",
+          "contribuinte": "000000000",
+          "direcao1": "",
+          "direcao2": "",
+          "numero": "",
+          "andar": "",
+          "codigoPostal": "",
+          "localidade": "",
+          "telefone": "",
+          "telemovel": "",
+          "email": "",
+          "pais": "Portugal",
+          "website": ""
+        },
+        {
+          "id": "sep-1786116477741-550",
+          "tipoSeparador": "Direção Geral da Saúde",
+          "nomePersonalizado": "",
+          "nome": "Direção Geral da Saúde",
+          "contribuinte": "500000527",
+          "direcao1": "",
+          "direcao2": "",
+          "numero": "",
+          "andar": "",
+          "codigoPostal": "1000-001",
+          "localidade": "Lisboa",
+          "telefone": "+351 213 305 100",
+          "telemovel": "",
+          "email": "gabinete.ms@ms.gov.pt",
+          "pais": "Portugal",
+          "website": ""
         }
       ],
-      "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "Portugal"
+      "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-10-02T12:02:45.273Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1790935050803-493",
@@ -3561,7 +3589,7 @@
       "id": "con-imp-057",
       "clienteId": "cli-imp-030",
       "empresa": "Ministério da Saúde",
-      "subTabIndex": 1,
+      "subTabIndex": 2,
       "nome": "Rita",
       "apelido": "Sá Machado",
       "cargo": "Direção-Geral",
@@ -3582,7 +3610,7 @@
       "id": "con-imp-058",
       "clienteId": "cli-imp-030",
       "empresa": "Ministério da Saúde",
-      "subTabIndex": 2,
+      "subTabIndex": 1,
       "nome": "Ana",
       "apelido": "Pedroso",
       "cargo": "Secretaria Geral",
@@ -7627,6 +7655,86 @@
   ],
   "userLogs": [
     {
+      "id": "log-1790942565287-41294",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Ministério da Saúde\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Ministério da Saúde",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "NIF/Contribuinte",
+            "anterior": "500000527",
+            "novo": "000000000"
+          },
+          {
+            "campo": "Email",
+            "anterior": "gabinete.ms@ms.gov.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "+351 213 305 100",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "1000-001",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Lisboa",
+            "novo": "(vazio)"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Ministério da Saúde",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "NIF/Contribuinte",
+            "anterior": "500000527",
+            "novo": "000000000"
+          },
+          {
+            "campo": "Email",
+            "anterior": "gabinete.ms@ms.gov.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "+351 213 305 100",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "1000-001",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Lisboa",
+            "novo": "(vazio)"
+          }
+        ]
+      },
+      "timestamp": "2026-10-02T12:02:45.287Z"
+    },
+    {
       "id": "log-1790941925384-29793",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
@@ -10375,22 +10483,6 @@
         ]
       },
       "timestamp": "2026-09-29T09:52:46.197Z"
-    },
-    {
-      "id": "log-1790675555736-9061",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Interação",
-      "tipoAcao": "Interação",
-      "descricao": "Registo de contacto/interação efetuado para \"Alexandre Barrigó\".",
-      "detalhes": {
-        "contacto": "Alexandre Barrigó"
-      },
-      "extra": {
-        "contacto": "Alexandre Barrigó"
-      },
-      "timestamp": "2026-09-29T09:52:35.736Z"
     }
   ],
   "orcamentos": [],
