@@ -2488,20 +2488,20 @@
       "id": "cli-imp-030",
       "tipoCliente": "Estatal",
       "ministerio": "Ministério da Saúde",
-      "secretariaEstado": "Ministério da Saúde, Secretaria de Estado, Direção Geral da Saúde",
+      "secretariaEstado": "Ministério da Saúde, Secretaria de Estado da Saúde, Direção Geral da Saúde",
       "nome": "Ministério da Saúde",
       "contribuinte": "000000000",
-      "direcao1": "",
+      "direcao1": "Avenida João Crisóstomo",
       "direcao2": "",
-      "numero": "",
+      "numero": "9",
       "andar": "",
-      "codigoPostal": "",
-      "localidade": "",
+      "codigoPostal": "1049-062",
+      "localidade": "Lisboa",
       "pais": "Portugal",
-      "telefone": "",
+      "telefone": "+351 213 305 000",
       "telemovel": "",
       "email": "",
-      "website": "",
+      "website": "https://www.sns.gov.pt",
       "notas": "",
       "proximoContacto": null,
       "separadores": [
@@ -2511,23 +2511,23 @@
           "nomePersonalizado": "",
           "nome": "Ministério da Saúde",
           "contribuinte": "000000000",
-          "direcao1": "",
+          "direcao1": "Avenida João Crisóstomo",
           "direcao2": "",
-          "numero": "",
+          "numero": "9",
           "andar": "",
-          "codigoPostal": "",
-          "localidade": "",
-          "telefone": "",
+          "codigoPostal": "1049-062",
+          "localidade": "Lisboa",
+          "telefone": "+351 213 305 000",
           "telemovel": "",
           "email": "",
           "pais": "Portugal",
-          "website": ""
+          "website": "https://www.sns.gov.pt"
         },
         {
           "id": "sep-1786116493525-61",
-          "tipoSeparador": "Secretaria de Estado",
+          "tipoSeparador": "Secretaria de Estado da Saúde",
           "nomePersonalizado": "",
-          "nome": "Secretaria de Estado",
+          "nome": "Secretaria de Estado da Saúde",
           "contribuinte": "000000000",
           "direcao1": "",
           "direcao2": "",
@@ -2564,7 +2564,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-10-02T12:02:45.273Z",
+      "updatedAt": "2026-10-02T12:03:58.549Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -3619,8 +3619,9 @@
       "email": "sg@sg.min-saude.pt",
       "notas": "",
       "inativo": false,
+      "proximoContacto": null,
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-28T07:54:58.052Z",
+      "updatedAt": "2026-10-02T12:02:50.687Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
@@ -7655,6 +7656,76 @@
   ],
   "userLogs": [
     {
+      "id": "log-1790942638562-87769",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Ministério da Saúde\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Ministério da Saúde",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Telefone",
+            "anterior": "(vazio)",
+            "novo": "+351 213 305 000"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "(vazio)",
+            "novo": "Avenida João Crisóstomo"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "(vazio)",
+            "novo": "1049-062"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "(vazio)",
+            "novo": "Lisboa"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Ministério da Saúde",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Telefone",
+            "anterior": "(vazio)",
+            "novo": "+351 213 305 000"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "(vazio)",
+            "novo": "Avenida João Crisóstomo"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "(vazio)",
+            "novo": "1049-062"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "(vazio)",
+            "novo": "Lisboa"
+          }
+        ]
+      },
+      "timestamp": "2026-10-02T12:03:58.562Z"
+    },
+    {
       "id": "log-1790942565287-41294",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
@@ -10443,46 +10514,6 @@
         ]
       },
       "timestamp": "2026-09-29T10:10:18.263Z"
-    },
-    {
-      "id": "log-1790675566197-53006",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Fundação Eugénio de Almeida\" (NIF: 500000340) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fundação Eugénio de Almeida",
-        "contribuinte": "500000340",
-        "tipoCliente": "Fundação",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fundação Eugénio de Almeida",
-        "contribuinte": "500000340",
-        "tipoCliente": "Fundação",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-09-29T09:52:46.197Z"
     }
   ],
   "orcamentos": [],
