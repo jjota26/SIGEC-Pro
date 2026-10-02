@@ -2564,7 +2564,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-02T09:57:30.803Z",
-      "updatedAt": "2026-10-02T11:33:09.630Z",
+      "updatedAt": "2026-10-02T11:52:05.372Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     }
@@ -3539,7 +3539,7 @@
     },
     {
       "id": "con-imp-056",
-      "clienteId": "cli-1789584673991-289",
+      "clienteId": "cli-imp-030",
       "empresa": "Ministério da Saúde",
       "subTabIndex": 0,
       "nome": "Ana Paula",
@@ -6006,7 +6006,11 @@
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-10-02T09:37:14.192Z",
-      "updatedAt": "2026-10-02T11:48:50.518Z"
+      "updatedAt": "2026-10-02T11:48:50.518Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-1790941841819-431",
@@ -6023,7 +6027,11 @@
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-10-02T11:50:44.973Z",
-      "updatedAt": "2026-10-02T11:51:45.998Z"
+      "updatedAt": "2026-10-02T11:51:45.998Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-1790941858531-48",
@@ -6040,7 +6048,11 @@
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-10-02T11:51:01.909Z",
-      "updatedAt": "2026-10-02T11:52:00.638Z"
+      "updatedAt": "2026-10-02T11:52:00.638Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     }
   ],
   "projetos": [
@@ -7614,6 +7626,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790941925384-29793",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"VINCI Energies Portugal\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "VINCI Energies Portugal",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "VINCI Energies Portugal",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-02T11:52:05.384Z"
+    },
     {
       "id": "log-1790940789643-63825",
       "usuarioId": "usr-admin-001",
@@ -10339,46 +10391,6 @@
         "contacto": "Alexandre Barrigó"
       },
       "timestamp": "2026-09-29T09:52:35.736Z"
-    },
-    {
-      "id": "log-1790675351308-25016",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Fundação Jerónimo Martins\" (NIF: 500000085) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fundação Jerónimo Martins",
-        "contribuinte": "500000085",
-        "tipoCliente": "Fundação",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fundação Jerónimo Martins",
-        "contribuinte": "500000085",
-        "tipoCliente": "Fundação",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-09-29T09:49:11.308Z"
     }
   ],
   "orcamentos": [],
