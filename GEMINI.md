@@ -168,3 +168,10 @@ Este ficheiro define as regras estritas e permanentes para qualquer agente de IA
 
 
 
+
+### [02/10/2026 08:45]
+* **SincronizaÃ§Ã£o Bidirecional em Tempo Real Multi-Dispositivo (Dual Cloud Push):**
+  * **EliminaÃ§Ã£o de Bloqueio Artificial:** Removida a validaÃ§Ã£o numUsuarios < 3 em syncDatabaseToHuggingFace, prevenindo que perfis locais ficassem silenciados sem enviar dados Ã  nuvem.
+  * **Push Ativo Direto ao GitHub (OnRender Deploy AutomÃ¡tico):** Integrada a API Git Data do GitHub diretamente em syncDatabaseToHuggingFace. Qualquer criaÃ§Ã£o, ediÃ§Ã£o ou eliminaÃ§Ã£o local Ã© enviada automaticamente para o Hugging Face e para o GitHub (jjota26/SIGEC-Pro), atualizando sigec-pro.onrender.com de imediato.
+  * **Prioridade de Leitura InstantÃ¢nea:** Adicionado o endpoint pÃºblico do GitHub Raw no topo de dbEndpoints em loadDatabaseFromHuggingFace e no varrimento de checkCloudChangesSilently.
+  * **ReintegraÃ§Ã£o de Contactos:** Reintegrados os contactos TÃ¢nia Alves e Leonor Garcia Marques na base de produÃ§Ã£o (60 clientes, 175 contactos, 5 projetos, 96 interaÃ§Ãµes, 3 utilizadores). VersÃ£o de cache atualizada para v=2.4.0_20261002_0840.
