@@ -6007,6 +6007,23 @@
       "proximoContacto": null,
       "createdAt": "2026-10-02T09:37:14.192Z",
       "updatedAt": "2026-10-02T11:48:50.518Z"
+    },
+    {
+      "id": "con-1790941841819-431",
+      "clienteId": "cli-1790935050803-493",
+      "empresa": "VINCI Energies Portugal",
+      "subTabIndex": 0,
+      "nome": "Laurène Duchene",
+      "apelido": "",
+      "cargo": "",
+      "telefone": "",
+      "telemovel": "",
+      "email": "",
+      "notas": "",
+      "inativo": false,
+      "proximoContacto": null,
+      "createdAt": "2026-10-02T11:50:44.973Z",
+      "updatedAt": "2026-10-02T11:50:44.973Z"
     }
   ],
   "projetos": [
