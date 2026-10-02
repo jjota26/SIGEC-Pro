@@ -2497,7 +2497,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-09-28T10:12:38.845Z",
-      "updatedAt": "2026-09-30T08:32:35.246Z",
+      "updatedAt": "2026-10-02T07:37:03.342Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     }
@@ -7423,6 +7423,46 @@
   ],
   "userLogs": [
     {
+      "id": "log-1790926623379-10538",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Caixa Agricola\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Caixa Agricola",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Caixa Agricola",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-02T07:37:03.379Z"
+    },
+    {
       "id": "log-1790926566456-47565",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
@@ -10340,18 +10380,6 @@
         "mensagem": "Email enviado com sucesso via servidor na nuvem!",
         "resumo": "is_user_email: true\npara_usuario: true\nmensagem_titulo: Su cuenta ya está activa en SIGEC-Pro\nsaudacao: Estimado/a Victoria Schwab Vilte,\nmensagem: Su cuenta de usuario en el sistema SIGEC-Pro ha sido activada con éxito por el Administrador. Ya puede iniciar sesión en el programa con su Correo Electrónico y Contraseña / PIN.\nNombre Completo: Victoria Schwab Vilte\nCorreo Electrónico de Acceso: victoria@alegria-activity.com\nCargo / Función: Gestora de proyectos\nIdioma de Trabalho: Español\nContraseña / PIN de Acceso: Victoria_202\nEstado de la Cuenta: Activo / Aprovado\nFecha de Activación: 23/09/2026, 21:03:53\nempresa: SIGEC-Pro • Sistema Integrado de Clientes & Projetos\nuser_lang: Español"
       }
-    },
-    {
-      "id": "log-1790190233849-70035",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Gestão de Utilizadores",
-      "tipoAcao": "Gestão de Utilizadores",
-      "descricao": "Utilizador Victoria Schwab Vilte (victoria@alegria-activity.com) foi dado de alta e ativado de imediato no servidor pelo Administrador.",
-      "detalhes": {},
-      "extra": {},
-      "timestamp": "2026-09-23T19:03:53.849Z"
     }
   ],
   "orcamentos": [],
