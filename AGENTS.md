@@ -1,4 +1,4 @@
-# SIGEC-Pro — Regras Obrigatórias e Diretrizes do Projeto
+﻿# SIGEC-Pro — Regras Obrigatórias e Diretrizes do Projeto
 
 Este ficheiro define as regras estritas e permanentes para qualquer agente de IA que opere neste projeto (`SIGEC-Pro`). O cumprimento destas regras é obrigatório em todas as sessões.
 
@@ -211,3 +211,15 @@ umero), Andar / Piso (ndar), Código Postal (codigoPostal), Localidade (localid
   * **Serviço Backend Integrado (server.js):** Atualizada a rota /api/ai-lookup-address para enriquecer e devolver 	elefone, website, direcao2 (Edifício/Parque) e contribuinte.
   * **Desobstrução na Confirmação:** confirmAndApplyAiAddress atualiza agora diretamente os campos de website, email e telefone na ficha do cliente sem restrições.
   * **Versionamento de Cache & Deploy:** Versão atualizada para =2.8.0_20261002_1300. Testado rigorosamente no Microsoft Edge Headless e sincronizado em Dual Parity para GitHub (jjota26/SIGEC-Pro), OnRender e Hugging Face Space (josecenturio/SIGEC-Pro). Integridade da base de dados 100% preservada (78 clientes, 179 contactos, 5 projetos, 99 interações, 3 utilizadores).
+
+### [02/10/2026 13:30]
+* **Desbloqueio e OtimizaÃ§Ã£o InstantÃ¢nea do Acesso ao Sistema (Login Zero-Freeze):**
+  * **Causa Raiz Identificada e Corrigida:**
+    * Eliminado erro de sintaxe em `app.js` (delimitadores de string ausentes no array `lookupUrls` que impediam a compilaÃ§Ã£o do JavaScript no browser como RegExp invÃ¡lido).
+    * Corrigido o motor `ensureUsersInitialized()` para garantir incondicionalmente a presenÃ§a do Administrador Principal JosÃ© CentÃºrio (`usr-admin-001`, `jmcenturio@alegria-activity.com`, palavra-passe permanente `J*cen*1971`) com perfil ativo, prevenindo que perfis locais sem dados de sessÃ£o fiquem retidos.
+  * **Feedback Visual e Desacoplamento do Overlay:**
+    * Adicionado `id="btnSubmitLogin"` e feedback visual imediato de progresso (spinner com indicaÃ§Ã£o textual).
+    * OcultaÃ§Ã£o imediata do overlay `#loginOverlay` logo apÃ³s a validaÃ§Ã£o do PIN/palavra-passe, desacoplando a renderizaÃ§Ã£o das grelhas de dados via `setTimeout(..., 10)`.
+    * Timeouts de proteÃ§Ã£o de 2000ms (`AbortSignal.timeout(2000)`) em consultas remotas secundÃ¡rias de utilizador.
+  * **ValidaÃ§Ã£o Rigorosa:** Testado e aprovado no Microsoft Edge Headless (`AUTH_STATUS:true | USER:usr-admin-001 | OVERLAY:none`).
+  * **Versionamento de Cache & Deploy:** VersÃ£o atualizada para `v=2.8.1_20261002_1330`.

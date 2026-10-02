@@ -616,7 +616,7 @@
 
 
       </script>
-        <form id="loginForm" onsubmit="event.preventDefault(); verifyLoginPin(); return false;">
+        <form id="loginForm" onsubmit="event.preventDefault(); verifyLoginPin(event); return false;">
           <div id="loginFormMode">
             <label for="loginUserInput"
               style="display: block; font-size: 0.85rem; font-weight: 600; color: #334155; margin-bottom: 0.4rem; text-align: left;">
@@ -648,7 +648,7 @@
               <i class="fa-solid fa-circle-exclamation"></i> Palavra-passe incorreta. Tente novamente.
             </div>
 
-            <button type="submit" class="btn"
+            <button type="submit" id="btnSubmitLogin" onclick="verifyLoginPin(event)" class="btn"
               style="width: 100%; margin-top: 1.25rem; padding: 0.85rem; background: #0284c7; color: #ffffff; font-weight: 700; font-size: 1rem; justify-content: center; border-radius: 8px; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3); cursor: pointer; border: none;">
               <i class="fa-solid fa-right-to-bracket"></i> Entrar no Sistema
             </button>
@@ -4914,7 +4914,7 @@
   <!-- Internationalization & Translations Engine -->
   <script src="i18n.js?v=2.2.0_20261002_1015"></script>
   <!-- Main JavaScript App -->
-  <script src="app.js?v=2.8.0_20261002_1300"></script>
+  <script src="app.js?v=2.8.1_20261002_1330"></script>
   <!-- Duplicates Management Engine -->
   <script src="duplicatesManager.js?v=2.1.0_20261002_1055"></script>
 
