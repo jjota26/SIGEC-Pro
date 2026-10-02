@@ -1782,11 +1782,12 @@
       "email": "ines.s.pina@nos.pt",
       "website": "",
       "notas": "",
+      "proximoContacto": null,
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-28T11:04:32.914Z",
+      "updatedAt": "2026-10-02T09:09:53.092Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -4641,6 +4642,8 @@
     {
       "id": "con-imp-123",
       "clienteId": "cli-imp-077",
+      "empresa": "NOS, SGPS, S.A.",
+      "subTabIndex": 1,
       "nome": "António",
       "apelido": "Fuzeta da Ponte",
       "cargo": "Diretor de Marca e Comunicação",
@@ -4648,13 +4651,12 @@
       "telemovel": "",
       "email": "secretaria.geral@nos.pt",
       "notas": "",
+      "inativo": false,
+      "proximoContacto": null,
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "subTabIndex": 1,
+      "updatedAt": "2026-10-02T09:09:51.715Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "empresa": "NOS, SGPS, S.A.",
-      "extensao": "",
-      "updatedAt": "2026-09-22T09:02:14.899Z",
       "comercialAtribuidoNome": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -5921,7 +5923,11 @@
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-10-02T09:09:23.541Z"
+      "updatedAt": "2026-10-02T09:09:30.155Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-imp-130",
@@ -7528,6 +7534,104 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790932197101-14488",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Gravação Manual",
+      "tipoAcao": "Gravação Manual",
+      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-10-02T09:09:57.101Z"
+    },
+    {
+      "id": "log-1790932193104-55276",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"NOS, SGPS, S.A.\" (NIF: 500000170) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "NOS, SGPS, S.A.",
+        "contribuinte": "500000170",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "NOS, SGPS, S.A.",
+        "contribuinte": "500000170",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-02T09:09:53.104Z"
+    },
+    {
+      "id": "log-1790932173949-70462",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"NOS, SGPS, S.A.\" (NIF: 500000170) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "NOS, SGPS, S.A.",
+        "contribuinte": "500000170",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "NOS, SGPS, S.A.",
+        "contribuinte": "500000170",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-02T09:09:33.949Z"
+    },
     {
       "id": "log-1790931885923-46260",
       "usuarioId": "usr-admin-001",
@@ -10253,126 +10357,6 @@
         ]
       },
       "timestamp": "2026-09-29T09:09:20.138Z"
-    },
-    {
-      "id": "log-1790672842893-17856",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Fundação Serralves\" (NIF: 000000000) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fundação Serralves",
-        "contribuinte": "000000000",
-        "tipoCliente": "Fundação",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "NIF/Contribuinte",
-            "anterior": "500001173",
-            "novo": "000000000"
-          },
-          {
-            "campo": "Email",
-            "anterior": "serralves@serralves.pt",
-            "novo": "(vazio)"
-          },
-          {
-            "campo": "Telefone",
-            "anterior": "226156500",
-            "novo": "+351 226 156 500"
-          },
-          {
-            "campo": "Tipo de Cliente",
-            "anterior": "Estatal",
-            "novo": "Fundação"
-          },
-          {
-            "campo": "Ministério",
-            "anterior": "Fundação Serralves",
-            "novo": "(vazio)"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fundação Serralves",
-        "contribuinte": "000000000",
-        "tipoCliente": "Fundação",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "NIF/Contribuinte",
-            "anterior": "500001173",
-            "novo": "000000000"
-          },
-          {
-            "campo": "Email",
-            "anterior": "serralves@serralves.pt",
-            "novo": "(vazio)"
-          },
-          {
-            "campo": "Telefone",
-            "anterior": "226156500",
-            "novo": "+351 226 156 500"
-          },
-          {
-            "campo": "Tipo de Cliente",
-            "anterior": "Estatal",
-            "novo": "Fundação"
-          },
-          {
-            "campo": "Ministério",
-            "anterior": "Fundação Serralves",
-            "novo": "(vazio)"
-          }
-        ]
-      },
-      "timestamp": "2026-09-29T09:07:22.893Z"
-    },
-    {
-      "id": "log-1790672605195-63031",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Fundação Serralves\" (NIF: 500001173) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fundação Serralves",
-        "contribuinte": "500001173",
-        "tipoCliente": "Estatal",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fundação Serralves",
-        "contribuinte": "500001173",
-        "tipoCliente": "Estatal",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-09-29T09:03:25.195Z"
     }
   ],
   "orcamentos": [],
