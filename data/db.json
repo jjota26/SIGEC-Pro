@@ -2564,7 +2564,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-02T09:57:30.803Z",
-      "updatedAt": "2026-10-02T11:32:11.543Z",
+      "updatedAt": "2026-10-02T11:33:09.630Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     }
@@ -6006,11 +6006,7 @@
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-10-02T09:37:14.192Z",
-      "updatedAt": "2026-10-02T11:30:27.563Z",
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "updatedAt": "2026-10-02T11:48:50.518Z"
     }
   ],
   "projetos": [
@@ -7584,6 +7580,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790940789643-63825",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"VINCI Energies Portugal\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "VINCI Energies Portugal",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "VINCI Energies Portugal",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-02T11:33:09.643Z"
+    },
     {
       "id": "log-1790940731563-37256",
       "usuarioId": "usr-admin-001",
@@ -10309,46 +10345,6 @@
         ]
       },
       "timestamp": "2026-09-29T09:49:11.308Z"
-    },
-    {
-      "id": "log-1790675214797-79174",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Fundação Montepio\" (NIF: 500000476) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fundação Montepio",
-        "contribuinte": "500000476",
-        "tipoCliente": "Fundação",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fundação Montepio",
-        "contribuinte": "500000476",
-        "tipoCliente": "Fundação",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-09-29T09:46:54.797Z"
     }
   ],
   "orcamentos": [],
