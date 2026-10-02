@@ -1892,14 +1892,14 @@
       "telefone": "219737000",
       "telemovel": "",
       "email": "geral.pt@omexom.com",
-      "website": "",
+      "website": "https://www.omexom.pt/",
       "notas": "",
       "proximoContacto": "2026-10-09",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-10-02T09:30:29.934Z",
+      "updatedAt": "2026-10-02T09:39:13.657Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -5978,7 +5978,11 @@
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-10-02T09:37:14.192Z",
-      "updatedAt": "2026-10-02T09:37:14.192Z"
+      "updatedAt": "2026-10-02T09:37:47.447Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     }
   ],
   "projetos": [
@@ -7552,6 +7556,98 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790933953669-52032",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Omexom\" (NIF: 500001394) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Omexom",
+        "contribuinte": "500001394",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Omexom",
+        "contribuinte": "500001394",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-02T09:39:13.669Z"
+    },
+    {
+      "id": "log-1790933868828-68771",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Omexom\" (NIF: 500001394) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Omexom",
+        "contribuinte": "500001394",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Omexom",
+        "contribuinte": "500001394",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-02T09:37:48.828Z"
+    },
+    {
+      "id": "log-1790933844912-14246",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Associação de Contacto",
+      "tipoAcao": "Associação de Contacto",
+      "descricao": "Contacto \"Claudio Almeida\" associado ao cliente \"Omexom\".",
+      "detalhes": {},
+      "extra": {},
+      "timestamp": "2026-10-02T09:37:24.912Z"
+    },
     {
       "id": "log-1790933429948-19019",
       "usuarioId": "usr-admin-001",
@@ -10203,126 +10299,6 @@
         "userId": "usr-admin-001"
       },
       "timestamp": "2026-09-29T09:18:48.043Z"
-    },
-    {
-      "id": "log-1790673525391-45779",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Mota Engil\" (NIF: 500000153) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Mota Engil",
-        "contribuinte": "500000153",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Mota Engil",
-        "contribuinte": "500000153",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-09-29T09:18:45.391Z"
-    },
-    {
-      "id": "log-1790673485044-71796",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Fidelidade - Companhia de Seguros, S.A.\" (NIF: 500001360) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fidelidade - Companhia de Seguros, S.A.",
-        "contribuinte": "500001360",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fidelidade - Companhia de Seguros, S.A.",
-        "contribuinte": "500001360",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-09-29T09:18:05.044Z"
-    },
-    {
-      "id": "log-1790673432472-71566",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"CTT - Correios de Portugal, S.A.\" (NIF: 500001343) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "CTT - Correios de Portugal, S.A.",
-        "contribuinte": "500001343",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "CTT - Correios de Portugal, S.A.",
-        "contribuinte": "500001343",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-09-29T09:17:12.472Z"
     }
   ],
   "orcamentos": [],
