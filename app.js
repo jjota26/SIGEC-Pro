@@ -1242,53 +1242,62 @@ async function syncDatabaseToHuggingFace(silent = false, force = false) {
     const contentBase64 = typeof utf8ToBase64 === 'function' ? utf8ToBase64(dbString) : btoa(unescape(encodeURIComponent(dbString)));
 
     if (token) {
-      // 1. Gravar no DATASET (https://huggingface.co/datasets/josecenturio/SIGEC-Pro/tree/main/Programa%20SIGEC-Pro/data/db.json)
-      try {
-        const datasetPayload = {
-          summary: `[SIGEC-Pro] Sincronização de dados Dataset - ${new Date().toISOString()}`,
-          files: [
-            { path: 'Programa SIGEC-Pro/data/db.json', content: contentBase64, encoding: 'base64' },
-            { path: 'data/db.json', content: contentBase64, encoding: 'base64' }
-          ]
-        };
+      const isLarge = contentBase64 && contentBase64.length > 9 * 1024 * 1024;
+      if (isLarge && typeof uploadFileToHuggingFaceLFS === 'function') {
+        try {
+          const lfsSpace = await uploadFileToHuggingFaceLFS('spaces', space, 'data/db.json', contentBase64, token, 'Sincronização de base de dados').catch(() => false);
+          const lfsDs = await uploadFileToHuggingFaceLFS('datasets', space, 'data/db.json', contentBase64, token, 'Sincronização de base de dados').catch(() => false);
+          if (lfsSpace || lfsDs) pushSuccess = true;
+        } catch(eLfs) {}
+      } else {
+        // 1. Gravar no DATASET (https://huggingface.co/datasets/josecenturio/SIGEC-Pro/tree/main/Programa%20SIGEC-Pro/data/db.json)
+        try {
+          const datasetPayload = {
+            summary: `[SIGEC-Pro] Sincronização de dados Dataset - ${new Date().toISOString()}`,
+            files: [
+              { path: 'Programa SIGEC-Pro/data/db.json', content: contentBase64, encoding: 'base64' },
+              { path: 'data/db.json', content: contentBase64, encoding: 'base64' }
+            ]
+          };
 
-        const resDataset = await fetch(`https://huggingface.co/api/datasets/${space}/commit/main`, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(datasetPayload)
-        }).catch(() => null);
+          const resDataset = await fetch(`https://huggingface.co/api/datasets/${space}/commit/main`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(datasetPayload)
+          }).catch(() => null);
 
-        if (resDataset && (resDataset.ok || resDataset.status === 200 || resDataset.status === 201)) {
-          pushSuccess = true;
-        }
-      } catch(eDs) {}
+          if (resDataset && (resDataset.ok || resDataset.status === 200 || resDataset.status === 201)) {
+            pushSuccess = true;
+          }
+        } catch(eDs) {}
 
-      // 2. Gravar no SPACE (https://huggingface.co/spaces/josecenturio/SIGEC-Pro/tree/main/data/db.json)
-      try {
-        const spacePayload = {
-          summary: `[SIGEC-Pro] Sincronização de dados Space - ${new Date().toISOString()}`,
-          files: [
-            { path: 'data/db.json', content: contentBase64, encoding: 'base64' },
-            { path: 'Programa SIGEC-Pro/data/db.json', content: contentBase64, encoding: 'base64' }
-          ]
-        };
+        // 2. Gravar no SPACE (https://huggingface.co/spaces/josecenturio/SIGEC-Pro/tree/main/data/db.json)
+        try {
+          const spacePayload = {
+            summary: `[SIGEC-Pro] Sincronização de dados Space - ${new Date().toISOString()}`,
+            files: [
+              { path: 'data/db.json', content: contentBase64, encoding: 'base64' },
+              { path: 'Programa SIGEC-Pro/data/db.json', content: contentBase64, encoding: 'base64' }
+            ]
+          };
 
-        const resSpace = await fetch(`https://huggingface.co/api/spaces/${space}/commit/main`, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(spacePayload)
-        }).catch(() => null);
+          const resSpace = await fetch(`https://huggingface.co/api/spaces/${space}/commit/main`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(spacePayload)
+          }).catch(() => null);
 
-        if (resSpace && (resSpace.ok || resSpace.status === 200 || resSpace.status === 201)) {
-          pushSuccess = true;
-        }
-      } catch(eSp) {}
+          if (resSpace && (resSpace.ok || resSpace.status === 200 || resSpace.status === 201)) {
+            pushSuccess = true;
+          }
+        } catch(eSp) {}
+      }
     }
 
     // PRIORIDADE 3: Commit direto no GitHub (jjota26/SIGEC-Pro) via Git Data API (Deploy OnRender Imediato)
@@ -1694,29 +1703,35 @@ async function loadDatabaseFromHuggingFace(silent = false, force = false) {
   try {
     let rawText = null;
 
-    // Prioridade de leitura: GitHub Raw (Universal e Imediato) -> Hugging Face Space Estático (CORS livre) -> Raw Space -> Raw Dataset -> Servidor OnRender
+    // Prioridade de leitura:
+    // 1. Servidor OnRender Ativo (/data/db.json relativo e https://sigec-pro.onrender.com)
+    // 2. GitHub Raw (Direto e global, sem headers externos)
+    // 3. Hugging Face Space & Dataset (via /resolve/main/ com suporte Git LFS)
     const staticSub = (space || "josecenturio/SIGEC-Pro").replace('/', '-').toLowerCase();
     const dbEndpoints = [
-      `https://raw.githubusercontent.com/jjota26/SIGEC-Pro/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
-      `https://${staticSub}.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`,
-      `https://${staticSub}.static.hf.space/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`,
-      `https://huggingface.co/spaces/${space}/raw/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
-      `https://huggingface.co/spaces/${space}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`,
-      `https://huggingface.co/datasets/${space}/raw/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`,
       `/data/db.json?_t=${Date.now()}_${Math.random()}`,
-      `https://sigec-pro.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`
+      `https://sigec-pro.onrender.com/data/db.json?_t=${Date.now()}_${Math.random()}`,
+      `https://raw.githubusercontent.com/jjota26/SIGEC-Pro/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
+      `https://huggingface.co/spaces/${space}/resolve/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
+      `https://huggingface.co/datasets/${space}/resolve/main/data/db.json?_t=${Date.now()}_${Math.random()}`,
+      `https://huggingface.co/datasets/${space}/resolve/main/Programa%20SIGEC-Pro/data/db.json?_t=${Date.now()}_${Math.random()}`,
+      `https://${staticSub}.static.hf.space/data/db.json?_t=${Date.now()}_${Math.random()}`
     ];
-
-    const headers = { 'Cache-Control': 'no-cache, no-store' };
-    if (token) headers['Authorization'] = `Bearer ${token}`;
 
     for (const ep of dbEndpoints) {
       try {
-        const res = await fetch(ep, { headers: headers, cache: 'no-store' }).catch(() => null);
+        const reqHeaders = { 'Cache-Control': 'no-cache, no-store' };
+        // APENAS enviar token Bearer para domínios Hugging Face (o GitHub Raw e OnRender rejeitam com 404/401 se receberem token externo)
+        if (token && ep.includes('huggingface.co')) {
+          reqHeaders['Authorization'] = `Bearer ${token}`;
+        }
+
+        const res = await fetch(ep, { headers: reqHeaders, cache: 'no-store' }).catch(() => null);
         if (res && res.ok) {
           let text = await res.text();
           if (text) text = text.replace(/^\uFEFF/, '').trim();
-          if (text && text.startsWith('{') && (text.includes('clientes') || text.includes('contactos') || text.includes('usuarios'))) {
+          // Ignorar se for ponteiro LFS
+          if (text && text.startsWith('{') && !text.startsWith('version https://git-lfs') && (text.includes('clientes') || text.includes('contactos') || text.includes('usuarios'))) {
             rawText = text;
             break;
           }
@@ -1848,22 +1863,31 @@ async function checkCloudChangesSilently(force = false) {
     const cfg = getHuggingFaceConfig();
     const space = (cfg.space || DEFAULT_SYSTEM_HF_SPACE || "josecenturio/SIGEC-Pro").trim();
     const staticSub = space.replace('/', '-').toLowerCase();
-    const ghHeadUrl = `https://raw.githubusercontent.com/jjota26/SIGEC-Pro/main/data/db.json?_t=${now}`;
-    const hfHeadUrl = `https://${staticSub}.static.hf.space/data/db.json?_t=${now}`;
+    const isRenderHost = typeof window !== 'undefined' && window.location && window.location.hostname && window.location.hostname.includes('onrender.com');
+    const headEndpoints = [];
+    if (isRenderHost) {
+      headEndpoints.push(`/data/db.json?_t=${now}`);
+    }
+    headEndpoints.push(`https://raw.githubusercontent.com/jjota26/SIGEC-Pro/main/data/db.json?_t=${now}`);
+    headEndpoints.push(`https://${staticSub}.static.hf.space/data/db.json?_t=${now}`);
+    if (!isRenderHost) {
+      headEndpoints.push(`https://sigec-pro.onrender.com/data/db.json?_t=${now}`);
+    }
 
     // Pedido HEAD ultraleve (transfere 0 bytes de dados de corpo, apenas cabeçalhos HTTP com CORS universal *)
-    let headRes = await fetch(ghHeadUrl, {
-      method: 'HEAD',
-      cache: 'no-store',
-      headers: { 'Cache-Control': 'no-cache, no-store' }
-    }).catch(() => null);
-
-    if (!headRes || !headRes.ok) {
-      headRes = await fetch(hfHeadUrl, {
-        method: 'HEAD',
-        cache: 'no-store',
-        headers: { 'Cache-Control': 'no-cache, no-store' }
-      }).catch(() => null);
+    let headRes = null;
+    for (const hUrl of headEndpoints) {
+      try {
+        const r = await fetch(hUrl, {
+          method: 'HEAD',
+          cache: 'no-store',
+          headers: { 'Cache-Control': 'no-cache, no-store' }
+        }).catch(() => null);
+        if (r && r.ok) {
+          headRes = r;
+          break;
+        }
+      } catch(eH) {}
     }
 
     if (!headRes || !headRes.ok) {
