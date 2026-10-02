@@ -577,7 +577,7 @@
     },
     {
       "id": "cli-imp-028",
-      "tipoCliente": "Fundação",
+      "tipoCliente": "Privado",
       "ministerio": "",
       "secretariaEstado": "",
       "nome": "Fundação Oriente",
@@ -592,16 +592,16 @@
       "telefone": "+351 213 585 200",
       "telemovel": "",
       "email": "info@foriente.pt",
+      "website": "",
       "notas": "",
+      "proximoContacto": "2026-10-09",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-09-29T11:37:05.741Z",
+      "updatedAt": "2026-10-02T07:37:21.651Z",
       "comercial": "José Centúrio",
-      "createdById": "usr-admin-001",
-      "website": "",
-      "proximoContacto": "2026-09-30"
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-imp-029",
@@ -1857,7 +1857,7 @@
       "email": "apoiocliente@fidelidade.pt",
       "website": "",
       "notas": "",
-      "proximoContacto": "2026-10-01",
+      "proximoContacto": "2026-10-09",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
@@ -2018,12 +2018,12 @@
       "email": "bca@bca.cv",
       "website": "",
       "notas": "",
-      "proximoContacto": "2026-10-01",
+      "proximoContacto": "2026-10-09",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-08-13T07:03:40.361Z",
-      "updatedAt": "2026-09-29T08:39:54.880Z",
+      "updatedAt": "2026-10-02T07:37:42.052Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -7423,6 +7423,86 @@
   ],
   "userLogs": [
     {
+      "id": "log-1790926662078-64354",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Banco Comercial do Atlântico - BCA\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Banco Comercial do Atlântico - BCA",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Banco Comercial do Atlântico - BCA",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-02T07:37:42.078Z"
+    },
+    {
+      "id": "log-1790926641677-33478",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Fundação Oriente\" (NIF: 500000493) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Oriente",
+        "contribuinte": "500000493",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Tipo de Cliente",
+            "anterior": "Fundação",
+            "novo": "Privado"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Oriente",
+        "contribuinte": "500000493",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Tipo de Cliente",
+            "anterior": "Fundação",
+            "novo": "Privado"
+          }
+        ]
+      },
+      "timestamp": "2026-10-02T07:37:21.677Z"
+    },
+    {
       "id": "log-1790926623379-10538",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
@@ -10353,33 +10433,6 @@
         "telefone": ""
       },
       "timestamp": "2026-09-23T20:54:17.233Z"
-    },
-    {
-      "id": "log-1790192240353-6149",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Ficha do Utilizador",
-      "tipoAcao": "Ficha do Utilizador",
-      "descricao": "Ficha do utilizador José Maria aberta após autenticação de Administrador.",
-      "detalhes": {},
-      "extra": {},
-      "timestamp": "2026-09-23T19:37:20.353Z"
-    },
-    {
-      "id": "log-1790190235951-2980",
-      "timestamp": "2026-09-23T19:03:55.951Z",
-      "categoria": "Email / Notificação",
-      "acao": "Notificação por Email",
-      "tipoAcao": "Notificação por Email",
-      "descricao": "Notificação para victoria@alegria-activity.com (\"[SIGEC-Pro] ¡Su cuenta ya está activa!\"). Estado: Enviado",
-      "detalhes": {
-        "destinatario": "victoria@alegria-activity.com",
-        "assunto": "[SIGEC-Pro] ¡Su cuenta ya está activa!",
-        "estado": "Enviado com Sucesso via SMTP",
-        "mensagem": "Email enviado com sucesso via servidor na nuvem!",
-        "resumo": "is_user_email: true\npara_usuario: true\nmensagem_titulo: Su cuenta ya está activa en SIGEC-Pro\nsaudacao: Estimado/a Victoria Schwab Vilte,\nmensagem: Su cuenta de usuario en el sistema SIGEC-Pro ha sido activada con éxito por el Administrador. Ya puede iniciar sesión en el programa con su Correo Electrónico y Contraseña / PIN.\nNombre Completo: Victoria Schwab Vilte\nCorreo Electrónico de Acceso: victoria@alegria-activity.com\nCargo / Función: Gestora de proyectos\nIdioma de Trabalho: Español\nContraseña / PIN de Acceso: Victoria_202\nEstado de la Cuenta: Activo / Aprovado\nFecha de Activación: 23/09/2026, 21:03:53\nempresa: SIGEC-Pro • Sistema Integrado de Clientes & Projetos\nuser_lang: Español"
-      }
     }
   ],
   "orcamentos": [],
