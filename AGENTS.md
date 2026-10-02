@@ -192,3 +192,11 @@ Consulte o ficheiro [GEMINI.md](file:///G:/Programa%20SIGEC-Pro/GEMINI.md) para 
   * **Prioridade de Leitura no Servidor Ativo:** A funcao loadDatabaseFromHuggingFace consulta agora primeiramente os endpoints diretos do OnRender (/data/db.json e https://sigec-pro.onrender.com/data/db.json) e GitHub Raw antes dos repositorios secundarios.
   * **Suporte Completo a Ficheiros > 10MB via Git LFS:** A base de dados (data/db.json com 18.3 MB) foi enviada com sucesso para o Hugging Face Space e Dataset utilizando Git LFS e rota /resolve/main/. Integrado fallback automatico para LFS em syncDatabaseToHuggingFace.
   * **Paridade Nuvem e Local Total:** Garantida paridade absoluta com 78 clientes, 179 contactos, 5 projetos, 99 interacoes e 3 utilizadores em todos os nos (OnRender, GitHub, Hugging Face e Local). Versao de cache atualizada para v=2.6.0_20261002_1015.
+
+### [02/10/2026 11:00]
+* **Eliminacao Definitiva de Congelamento no Separador Duplicados:**
+  * **Causa Raiz:** O array db.ignoredDuplicates continha 22.436 objetos repetidos (acumulados porque new Set() comparava referencias de objetos em vez de chaves canonicas). Cada varrimento de duplicados fazia mais de 350 milhoes de comparacoes sincronas bloqueando o browser.
+  * **Saneamento sem Perdas:** Deduplicadas as redundancias em data/db.json, preservando integralmente todas as 40 decisoes canonicas unicas do utilizador. O tamanho do ficheiro data/db.json reduziu de 18.3 MB para 8.2 MB.
+  * **Cache O(1) de Alta Performance:** Implementada cache em memoria _cachedIgnoredKeys em duplicatesManager.js com procura instantanea Set.has(), reduzindo o tempo de varrimento de varios minutos de congelamento para apenas 0.2 segundos (227 ms).
+  * **Desacoplamento Visual:** A comutacao para o separador de duplicados em switchCfgSubTab foi desacoplada com setTimeout(10), garantindo resposta visual instantanea sem qualquer soluco na interface.
+  * **Sincronizacao Nuvem e Deploy:** Alteracoes sincronizadas com sucesso no GitHub (jjota26/SIGEC-Pro), OnRender e Hugging Face Space & Dataset (v=2.7.0_20261002_1055).
