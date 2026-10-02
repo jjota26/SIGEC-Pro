@@ -1882,12 +1882,12 @@
       "secretariaEstado": "",
       "nome": "Omexom",
       "contribuinte": "500001394",
-      "direcao1": "Estrada Nacional 115, Km 78.67",
-      "direcao2": "Edifício D",
+      "direcao1": "Estrada Nacional 115",
+      "direcao2": "Km 78.67 - Edifício D",
       "numero": "",
       "andar": "",
       "codigoPostal": "2664-502",
-      "localidade": "São Julião do Tojal-Loures",
+      "localidade": "Berlim",
       "pais": "Portugal",
       "telefone": "219737000",
       "telemovel": "",
@@ -1899,7 +1899,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-10-02T09:28:53.175Z",
+      "updatedAt": "2026-10-02T09:30:29.934Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -7536,6 +7536,56 @@
   ],
   "userLogs": [
     {
+      "id": "log-1790933429948-19019",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Omexom\" (NIF: 500001394) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Omexom",
+        "contribuinte": "500001394",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Morada",
+            "anterior": "Estrada Nacional 115, Km 78.67",
+            "novo": "Estrada Nacional 115"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "São Julião do Tojal-Loures",
+            "novo": "Berlim"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Omexom",
+        "contribuinte": "500001394",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Morada",
+            "anterior": "Estrada Nacional 115, Km 78.67",
+            "novo": "Estrada Nacional 115"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "São Julião do Tojal-Loures",
+            "novo": "Berlim"
+          }
+        ]
+      },
+      "timestamp": "2026-10-02T09:30:29.948Z"
+    },
+    {
       "id": "log-1790933333189-26230",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
@@ -10256,46 +10306,6 @@
         ]
       },
       "timestamp": "2026-09-29T09:17:12.472Z"
-    },
-    {
-      "id": "log-1790673368064-60638",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Caixa Agricola\" (NIF: 000000000) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Caixa Agricola",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Caixa Agricola",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-09-29T09:16:08.064Z"
     }
   ],
   "orcamentos": [],
