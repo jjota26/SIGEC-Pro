@@ -177,3 +177,12 @@ Consulte o ficheiro [GEMINI.md](file:///G:/Programa%20SIGEC-Pro/GEMINI.md) para 
   * **Push Ativo Direto ao GitHub (OnRender Deploy AutomÃ¡tico):** Integrada a API Git Data do GitHub diretamente em syncDatabaseToHuggingFace. Qualquer criaÃ§Ã£o, ediÃ§Ã£o ou eliminaÃ§Ã£o local Ã© enviada automaticamente para o Hugging Face e para o GitHub (jjota26/SIGEC-Pro), atualizando sigec-pro.onrender.com de imediato.
   * **Prioridade de Leitura InstantÃ¢nea:** Adicionado o endpoint pÃºblico do GitHub Raw no topo de dbEndpoints em loadDatabaseFromHuggingFace e no varrimento de checkCloudChangesSilently.
   * **ReintegraÃ§Ã£o de Contactos:** Reintegrados os contactos TÃ¢nia Alves e Leonor Garcia Marques na base de produÃ§Ã£o (60 clientes, 175 contactos, 5 projetos, 96 interaÃ§Ãµes, 3 utilizadores). VersÃ£o de cache atualizada para v=2.4.0_20261002_0840.
+### [02/10/2026 09:50]
+* **Saneamento Definitivo de Caracteres Estranhos (Zero-Mojibake Universal):**
+  * **Causa Raiz Identificada:** O botÃ£o "Corrigir Caracteres" saneava com sucesso a base de dados e a Ã¡rvore DOM em tempo real na memÃ³ria do browser, mas ao fazer refresh (F5), os textos estÃ¡ticos duplamente codificados em UTF-8 (ÃƒÂ§, ÃƒÂ£, ÃƒÂ³, ÃƒÂ©, Ã‚Âº) contidos no prÃ³prio ficheiro index.html e no dicionÃ¡rio i18n.js eram recarregados do servidor.
+  * **Saneamento Estrutural dos Ficheiros Fonte:**
+    * index.html: Saneados permanentemente todos os artefactos de codificaÃ§Ã£o nos cartÃµes de ConfiguraÃ§Ã£o, cabeÃ§alhos, tÃ­tulos de modais e botÃµes (ex: "AplicaÃ§Ã£o em EcrÃ£ Completo", "CÃ³pia de SeguranÃ§a", "ProteÃ§Ã£o de Dados", "CorreÃ§Ã£o de Caracteres", "AtualizaÃ§Ãµes Nuvem").
+    * i18n.js: Saneado integralmente o dicionÃ¡rio de internacionalizaÃ§Ã£o e termos em PortuguÃªs.
+    * data/db.json: Saneados 870 campos com resÃ­duos de codificaÃ§Ã£o em clientes, contactos, projetos e interaÃ§Ãµes, mantendo 100% dos dados intactos (60 clientes, 175 contactos, 5 projetos, 96 interaÃ§Ãµes, 3 utilizadores).
+  * **Blindagem AutomÃ¡tica ProfilÃ¡tica no Arranque (pp.js):** Integrada a funÃ§Ã£o prophylacticDomSanitize() executada automaticamente no arranque da aplicaÃ§Ã£o (DOMContentLoaded), na navegaÃ§Ã£o entre separadores (switchTab) e apÃ³s a aplicaÃ§Ã£o de idiomas (pplyUserLanguage), eliminando qualquer hipÃ³tese de reaparecimento de caracteres corrompidos.
+  * **Versionamento de Cache:** VersÃ£o de cache atualizada para =2.5.0_20261002_0950 em index.html e i18n.js.

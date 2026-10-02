@@ -3287,6 +3287,9 @@ function switchTab(tabId) {
   if (typeof checkCloudChangesSilently === 'function') {
     checkCloudChangesSilently();
   }
+  if (typeof prophylacticDomSanitize === 'function') {
+    prophylacticDomSanitize();
+  }
 }
 
 function switchDbSubTab(subTabName) {
@@ -15903,6 +15906,29 @@ function repairCorruptedCharactersDatabase(interactive = true) {
 }
 window.repairCorruptedCharactersDatabase = repairCorruptedCharactersDatabase;
 
+function prophylacticDomSanitize() {
+  try {
+    if (typeof document === 'undefined' || !document.body) return;
+    const elements = document.body.querySelectorAll('h1, h2, h3, h4, h5, h6, label, button, .btn, th, td, span, p, a, strong, b, .badge');
+    elements.forEach(el => {
+      if (el.tagName === 'SCRIPT' || el.tagName === 'STYLE') return;
+      Array.from(el.childNodes).forEach(node => {
+        if (node.nodeType === 3 && node.nodeValue && (node.nodeValue.includes('Ã') || node.nodeValue.includes('Â'))) {
+          const cleaned = sanitizeUtf8String(node.nodeValue);
+          if (cleaned !== node.nodeValue) {
+            node.nodeValue = cleaned;
+          }
+        }
+      });
+      if (el.title && (el.title.includes('Ã') || el.title.includes('Â'))) {
+        const cleanedTitle = sanitizeUtf8String(el.title);
+        if (cleanedTitle !== el.title) el.title = cleanedTitle;
+      }
+    });
+  } catch(e) {}
+}
+window.prophylacticDomSanitize = prophylacticDomSanitize;
+
 function ensureUsersInitialized() {
   loadDeletedRegistry();
 
@@ -24952,6 +24978,9 @@ if (typeof window !== 'undefined') {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  if (typeof prophylacticDomSanitize === 'function') {
+    prophylacticDomSanitize();
+  }
   const activeUserId = sessionStorage.getItem('sigec_pro_active_user_id');
   const isAuth = sessionStorage.getItem('sigec_pro_authenticated') === 'true';
   if (isAuth && activeUserId) {
