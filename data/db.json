@@ -7584,6 +7584,19 @@
       "createdAt": "2026-09-23T21:49:42.442Z",
       "userId": "usr-admin-001",
       "createdById": "usr-admin-001"
+    },
+    {
+      "id": "cpi-1790942830346-570",
+      "contactoId": "con-1790933617915-111",
+      "contactoNome": "Claudio Almeida",
+      "clienteId": "cli-1790935050803-493",
+      "separadorId": null,
+      "subTabIndex": 0,
+      "data": "2026-10-02T14:06",
+      "descricao": "Envio email de apresentação. Responsável pelas Marcas do grupo",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-10-02T12:07:10.347Z"
     }
   ],
   "interacoesProjetos": [
@@ -7655,6 +7668,24 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1790942751222-46780",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Gravação Manual",
+      "tipoAcao": "Gravação Manual",
+      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-10-02T12:05:51.222Z"
+    },
     {
       "id": "log-1790942729504-73037",
       "usuarioId": "usr-admin-001",
@@ -10474,46 +10505,6 @@
         ]
       },
       "timestamp": "2026-09-29T10:17:18.567Z"
-    },
-    {
-      "id": "log-1790676945218-1278",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"ADENE – Agência para a Energia\" (NIF: 000000000) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "ADENE – Agência para a Energia",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "ADENE – Agência para a Energia",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-09-29T10:15:45.218Z"
     }
   ],
   "orcamentos": [],
