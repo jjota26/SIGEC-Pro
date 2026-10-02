@@ -1756,10 +1756,143 @@ async function autoSyncServerOnStartup() {
 }
 window.autoSyncServerOnStartup = autoSyncServerOnStartup;
 
+// ==========================================
+// SINCRONIZAÇÃO EM SEGUNDO PLANO INTELIGENTE (ZERO-FREEZE UNIVERSAL)
+// ==========================================
+let _lastCloudETag = null;
+let _isCheckingCloud = false;
+let _backgroundSyncTimer = null;
+let _lastCheckTimestamp = 0;
+
+async function checkCloudChangesSilently(force = false) {
+  if (_isCheckingCloud) return false;
+  const now = Date.now();
+  
+  // Throttle: no mínimo 3 segundos entre verificações HEAD
+  if (!force && (now - _lastCheckTimestamp) < 3000) return false;
+  _lastCheckTimestamp = now;
+
+  // Se o utilizador gravou localmente nos últimos 6 segundos, não sobrepor
+  if (window._lastLocalSaveTimestamp && (now - window._lastLocalSaveTimestamp) < 6000) {
+    return false;
+  }
+
+  // Prevenir congelamento e perda de dados: se estiver a digitar ou modal aberto, adiar
+  try {
+    const activeEl = document.activeElement;
+    const isUserTyping = activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable);
+    const isModalOpen = !!document.querySelector('.modal.show, .modal[style*="display: block"]:not([style*="display: none"]), .modal-overlay:not(.hidden)');
+    if (isUserTyping || isModalOpen) {
+      return false;
+    }
+  } catch(eDom) {}
+
+  _isCheckingCloud = true;
+  try {
+    const cfg = getHuggingFaceConfig();
+    const space = (cfg.space || DEFAULT_SYSTEM_HF_SPACE || "josecenturio/SIGEC-Pro").trim();
+    const staticSub = space.replace('/', '-').toLowerCase();
+    const headUrl = `https://${staticSub}.static.hf.space/data/db.json?_t=${now}`;
+
+    // Pedido HEAD ultraleve (transfere 0 bytes de dados de corpo, apenas cabeçalhos HTTP com CORS universal *)
+    const headRes = await fetch(headUrl, {
+      method: 'HEAD',
+      cache: 'no-store',
+      headers: { 'Cache-Control': 'no-cache, no-store' }
+    }).catch(() => null);
+
+    if (!headRes || !headRes.ok) {
+      _isCheckingCloud = false;
+      return false;
+    }
+
+    const newETag = headRes.headers.get('etag') || headRes.headers.get('content-length') || headRes.headers.get('last-modified');
+    if (!newETag) {
+      _isCheckingCloud = false;
+      return false;
+    }
+
+    // Primeira inicialização do ETag em memória
+    if (!_lastCloudETag) {
+      _lastCloudETag = newETag;
+      _isCheckingCloud = false;
+      return false;
+    }
+
+    // Se o ETag for rigorosamente igual, NADA mudou na nuvem: custo de CPU = zero, freeze = zero!
+    if (newETag === _lastCloudETag) {
+      _isCheckingCloud = false;
+      return false;
+    }
+
+    // Se o ETag for diferente: outro dispositivo gravou dados novos na nuvem!
+    console.info('[SIGEC-Pro AutoSync] Nova versão remota detetada (' + newETag + '). A integrar silenciosamente...');
+    _lastCloudETag = newETag;
+
+    const prevCli = (db.clientes || []).length;
+    const prevCon = (db.contactos || []).length;
+    const prevProj = (db.projetos || []).length;
+
+    const loadOk = await loadDatabaseFromHuggingFace(true, true);
+    if (loadOk) {
+      // Re-renderizar apenas o ecrã atualmente visível sem bloquear o thread principal
+      if (typeof refreshActivePanel === 'function') {
+        if (window.requestAnimationFrame) {
+          requestAnimationFrame(refreshActivePanel);
+        } else {
+          setTimeout(refreshActivePanel, 0);
+        }
+      }
+      if (typeof updateCloudSyncStatusBadge === 'function') {
+        updateCloudSyncStatusBadge(true);
+      }
+
+      const diffCli = (db.clientes || []).length - prevCli;
+      const diffCon = (db.contactos || []).length - prevCon;
+      const diffProj = (db.projetos || []).length - prevProj;
+
+      if ((diffCli > 0 || diffCon > 0 || diffProj > 0) && typeof showToast === 'function') {
+        showToast(`Base de dados sincronizada (${diffCli > 0 ? '+' + diffCli + ' clientes ' : ''}${diffCon > 0 ? '+' + diffCon + ' contactos ' : ''}${diffProj > 0 ? '+' + diffProj + ' projetos' : ''})`, 'info');
+      }
+      console.info('[SIGEC-Pro AutoSync] Sincronização em segundo plano concluída com fluidez total.');
+    }
+  } catch (syncErr) {
+    console.warn('[SIGEC-Pro AutoSync] Aviso na verificação:', syncErr);
+  } finally {
+    _isCheckingCloud = false;
+  }
+  return true;
+}
+window.checkCloudChangesSilently = checkCloudChangesSilently;
+
 function initPeriodicBackgroundSync() {
-  // Sincronização periódica contínua desativada para máxima velocidade e fluidez da aplicação web.
-  // A sincronização ocorre de forma eficiente no arranque (autoSyncServerOnStartup) e aquando de gravações ou ações explícitas do utilizador.
-  console.info('[SIGEC-Pro] Sincronização em segundo plano passiva (no arranque e por eventos).');
+  if (window._hasInitializedBackgroundSync) return;
+  window._hasInitializedBackgroundSync = true;
+
+  // 1. Gatilho imediato ao voltar à janela ou mudar de separador do browser
+  window.addEventListener('focus', () => {
+    checkCloudChangesSilently(true);
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      checkCloudChangesSilently(true);
+    }
+  });
+
+  // 2. Temporizador inteligente em loop contínuo (20s quando visível, 60s em segundo plano)
+  function scheduleNextTick() {
+    if (_backgroundSyncTimer) clearTimeout(_backgroundSyncTimer);
+    const interval = document.hidden ? 60000 : 20000;
+    _backgroundSyncTimer = setTimeout(async () => {
+      try {
+        await checkCloudChangesSilently();
+      } catch(e) {}
+      scheduleNextTick();
+    }, interval);
+  }
+  scheduleNextTick();
+
+  console.info('[SIGEC-Pro] Sincronização inteligente em segundo plano (Zero-Freeze) ativada.');
 }
 window.initPeriodicBackgroundSync = initPeriodicBackgroundSync;
 
@@ -2955,6 +3088,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof syncDatabaseFromServerImmediately === 'function') {
       syncDatabaseFromServerImmediately(true);
     }
+    if (typeof initPeriodicBackgroundSync === 'function') {
+      initPeriodicBackgroundSync();
+    }
   }, 2000);
 
   // Escutar alterações nos campos para controlo de confirmação de edições (apenas dentro de modais de formulário ativos)
@@ -3080,6 +3216,11 @@ function switchTab(tabId) {
     if (typeof updateDuplicateBadges === 'function') updateDuplicateBadges();
   } else if (tabId === 'tab-home') {
     renderHomeDashboard();
+  }
+
+  // Verificação ultraleve em segundo plano ao alternar entre separadores
+  if (typeof checkCloudChangesSilently === 'function') {
+    checkCloudChangesSilently();
   }
 }
 
@@ -16241,6 +16382,9 @@ async function verifyLoginPin() {
   }
   if (typeof renderUserManagementGrid === 'function') {
     renderUserManagementGrid();
+  }
+  if (typeof initPeriodicBackgroundSync === 'function') {
+    initPeriodicBackgroundSync();
   }
   if (typeof updateHeaderActiveUserBadge === 'function') {
     updateHeaderActiveUserBadge();

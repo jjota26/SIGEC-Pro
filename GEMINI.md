@@ -158,5 +158,13 @@ Este ficheiro define as regras estritas e permanentes para qualquer agente de IA
   * Efetuado commit atómico para a branch `main` no GitHub `jjota26/SIGEC-Pro` com `data/db.json` (60 clientes, 173 contactos, 5 projetos, 96 interações, 3 utilizadores), `app.js` corrigido e `index.html` com versionamento de cache `v=2.2.0_20261001_1355`.
   * Deploy do OnRender validado em produção com sucesso: `https://sigec-pro.onrender.com` 100% operacional, exibindo de imediato todos os clientes, contactos e os 5 projetos.
 
+### [02/10/2026 08:00]
+* **Implementação de Sincronização Inteligente em Segundo Plano (Zero-Freeze Universal):**
+  * Desenvolvido e integrado motor ultraleve de monitorização por cabeçalhos HTTP `HEAD` e `ETag` (`checkCloudChangesSilently` e `initPeriodicBackgroundSync`) em `app.js`.
+  * Custo de CPU e largura de banda nulos quando não existem alterações remotas (0 bytes transferidos no corpo do pedido).
+  * Gatilhos automáticos de atualização imediata ao retomar o foco da janela (`window.focus`), ao alternar abas de navegador (`visibilitychange`) e ao navegar entre menus da aplicação (`switchTab`).
+  * Blindagem contra congelamento da interface: re-renderização restrita exclusivamente ao painel ativo (`refreshActivePanel`) via `requestAnimationFrame`, com adiamento automático caso o utilizador esteja a preencher formulários ou com janelas modais ativas.
+  * Atualizado o identificador de versão de cache em `index.html` para `v=2.3.0_20261002_0758`.
+
 
 

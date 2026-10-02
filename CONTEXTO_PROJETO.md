@@ -54,4 +54,12 @@
   * Efetuado commit atómico para a branch `main` no GitHub `jjota26/SIGEC-Pro` com `data/db.json` (60 clientes, 173 contactos, 5 projetos, 96 interações, 3 utilizadores), `app.js` corrigido e `index.html` com versionamento de cache `v=2.2.0_20261001_1355`.
   * Deploy do OnRender validado em produção com sucesso: `https://sigec-pro.onrender.com` 100% operacional, exibindo de imediato todos os clientes, contactos e os 5 projetos.
 
+### [02/10/2026 08:00]
+* **Sincronização Inteligente em Segundo Plano (Zero-Freeze Universal):**
+  * Desenvolvido e ativado motor ultraleve de escuta por cabeçalhos HTTP `HEAD` e `ETag` (`checkCloudChangesSilently` e `initPeriodicBackgroundSync`) em `app.js`.
+  * Verificação em tempo real sem qualquer bloqueio de interface (0 bytes de payload de verificação).
+  * Gatilhos instantâneos ao focar a janela (`window.focus`), ao alternar abas (`visibilitychange`) e ao navegar entre menus (`switchTab`).
+  * Proteção do utilizador: re-renderização restrita à área visível (`refreshActivePanel`) diferida se houver digitação ou modais abertos.
+  * Atualizado o cache buster em `index.html` (`v=2.3.0_20261002_0758`).
+
 
