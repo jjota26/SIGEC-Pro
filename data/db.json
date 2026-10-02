@@ -2539,6 +2539,34 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "pais": "Portugal"
+    },
+    {
+      "id": "cli-1790935050803-493",
+      "tipoCliente": "Privado",
+      "ministerio": "",
+      "secretariaEstado": "",
+      "nome": "VINCI Energies Portugal",
+      "contribuinte": "",
+      "direcao1": "",
+      "direcao2": "",
+      "numero": "",
+      "andar": "",
+      "codigoPostal": "",
+      "localidade": "",
+      "pais": "",
+      "telefone": "",
+      "telemovel": "",
+      "email": "",
+      "website": "",
+      "notas": "",
+      "proximoContacto": null,
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdAt": "2026-10-02T09:57:30.803Z",
+      "updatedAt": "2026-10-02T09:57:30.803Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     }
   ],
   "contactos": [
@@ -7557,6 +7585,36 @@
   ],
   "userLogs": [
     {
+      "id": "log-1790935050815-28553",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Criação de Cliente",
+      "tipoAcao": "Criação de Cliente",
+      "descricao": "Novo cliente \"VINCI Energies Portugal\" (NIF: ) registado na base de dados (Comercial: José Centúrio).",
+      "detalhes": {
+        "acao": "Criação",
+        "ficha": "Cliente",
+        "nome": "VINCI Energies Portugal",
+        "contribuinte": "",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "email": "",
+        "telefone": ""
+      },
+      "extra": {
+        "acao": "Criação",
+        "ficha": "Cliente",
+        "nome": "VINCI Energies Portugal",
+        "contribuinte": "",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "email": "",
+        "telefone": ""
+      },
+      "timestamp": "2026-10-02T09:57:30.815Z"
+    },
+    {
       "id": "log-1790933953669-52032",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
@@ -10281,24 +10339,6 @@
         ]
       },
       "timestamp": "2026-09-29T09:19:18.044Z"
-    },
-    {
-      "id": "log-1790673528043-11376",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Gravação Manual",
-      "tipoAcao": "Gravação Manual",
-      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
-      "detalhes": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "extra": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "timestamp": "2026-09-29T09:18:48.043Z"
     }
   ],
   "orcamentos": [],
