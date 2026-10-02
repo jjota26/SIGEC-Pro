@@ -482,47 +482,44 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // Endpoint de Pesquisa e Enriquecimento de Morada com IA
+  // Endpoint de Pesquisa e Enriquecimento de Morada com IA (Suporta GET e POST)
   if (pathname === '/api/ai-lookup-address') {
-    if (req.method !== 'POST') {
-      res.writeHead(405, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: false, message: 'Método não permitido' }));
-      return;
-    }
-
-    let body = '';
-    req.on('data', chunk => body += chunk);
-    req.on('end', async () => {
+    const handleAiLookup = async (payload) => {
       try {
-        const payload = JSON.parse(body || '{}');
-        const entityName = (payload.entityName || '').trim();
+        const entityName = (payload.entityName || payload.nome || '').trim();
         const tipoCliente = payload.tipoCliente || 'Privado';
         const ministerio = (payload.ministerio || '').trim();
         const contribuinte = (payload.contribuinte || '').trim();
-        const existingWebsite = (payload.existingWebsite || '').trim();
+        const existingWebsite = (payload.existingWebsite || payload.website || '').trim();
+        const existingTelefone = (payload.existingTelefone || payload.telefone || '').trim();
+        const existingEmail = (payload.existingEmail || payload.email || '').trim();
+        const existingPais = (payload.pais || 'Portugal').trim();
         const geminiApiKey = (payload.geminiApiKey || process.env.GEMINI_API_KEY || '').trim();
 
         if (!entityName) {
           res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
-          res.end(JSON.stringify({ success: false, message: 'Nome da entidade não fornecido' }));
+          res.end(JSON.stringify({ success: false, message: 'Nome da entidade nÃ£o fornecido' }));
           return;
         }
 
         // 1. Tentar Google Gemini AI com Search Grounding se houver chave
         if (geminiApiKey) {
           try {
-            const prompt = `Pesquisa na web o website oficial e a morada completa da sede de: "${entityName}". Contexto: ${tipoCliente === 'Estatal' ? 'Organismo público em Portugal, Ministério: ' + ministerio : 'Entidade em Portugal'}.
-Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto extra) no formato:
+            const prompt = `Pesquisa na web o website oficial e a morada completa da sede de: "${entityName}". Contexto: ${tipoCliente === 'Estatal' ? 'Organismo pÃºblico em Portugal, MinistÃ©rio: ' + ministerio : 'Entidade em Portugal'}.
+Devolve EXCLUSIVAMENTE um objeto JSON vÃ¡lido (sem blocos markdown e sem texto extra) no formato:
 {
   "website": "url oficial da entidade",
-  "direcao1": "apenas nome da rua, avenida, praça, etc.",
-  "direcao2": "edifício, bloco, etc. se houver",
-  "numero": "número de porta",
-  "andar": "andar ou fração se houver",
-  "codigoPostal": "código postal no formato XXXX-XXX",
+  "telefone": "telefone oficial",
+  "email": "email oficial",
+  "contribuinte": "NIF ou NIPC",
+  "direcao1": "apenas nome da rua, avenida, praÃ§a, etc.",
+  "direcao2": "edifÃ­cio, bloco, parque, polÃ­gono se houver",
+  "numero": "nÃºmero de porta",
+  "andar": "andar ou piso se houver",
+  "codigoPostal": "cÃ³digo postal no formato XXXX-XXX",
   "localidade": "cidade ou localidade",
   "pais": "Portugal",
-  "fonteUrl": "url oficial de onde a morada foi extraída"
+  "fonteUrl": "url oficial de onde a morada foi extraÃ­da"
 }`;
 
             const gResp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
@@ -540,31 +537,36 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
               const jsonMatch = candidateText.match(/\{[\s\S]*\}/);
               if (jsonMatch) {
                 const parsed = JSON.parse(jsonMatch[0]);
-                res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-                res.end(JSON.stringify({
+                const outObj = {
                   success: true,
+                  found: true,
                   provider: 'Google Gemini AI (Google Search Grounding)',
-                  data: {
-                    website: parsed.website || existingWebsite || '',
-                    direcao1: parsed.direcao1 || '',
-                    direcao2: parsed.direcao2 || '',
-                    numero: parsed.numero || '',
-                    andar: parsed.andar || '',
-                    codigoPostal: parsed.codigoPostal || '',
-                    localidade: parsed.localidade || '',
-                    pais: parsed.pais || 'Portugal',
-                    fonteUrl: parsed.fonteUrl || ''
-                  }
-                }));
+                  nome: entityName,
+                  website: parsed.website || existingWebsite || '',
+                  direcao1: parsed.direcao1 || '',
+                  direcao2: parsed.direcao2 || '',
+                  numero: parsed.numero || '',
+                  andar: parsed.andar || '',
+                  codigoPostal: parsed.codigoPostal || '',
+                  localidade: parsed.localidade || '',
+                  pais: parsed.pais || existingPais || 'Portugal',
+                  telefone: parsed.telefone || existingTelefone || '',
+                  email: parsed.email || existingEmail || '',
+                  contribuinte: parsed.contribuinte || contribuinte || '',
+                  fonteUrl: parsed.fonteUrl || ''
+                };
+                outObj.data = { ...outObj };
+                res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+                res.end(JSON.stringify(outObj));
                 return;
               }
             }
           } catch (gErr) {
-            console.warn('[AI Lookup] Erro Gemini, fallback para motor web:', gErr.message);
+            console.warn('[AI Lookup] Erro Gemini, fallback para directÃ³rio oficial:', gErr.message);
           }
         }
 
-        // 2. Consulta a Directórios Oficiais Portugueses (nif.pt / racius.com)
+        // 2. Consulta a DiretÃ³rios Oficiais Portugueses (nif.pt / racius.com)
         try {
           const searchTerm = contribuinte || entityName;
           const nifResp = await fetch('https://www.nif.pt/?q=' + encodeURIComponent(searchTerm), {
@@ -575,34 +577,72 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
           });
           if (nifResp.ok) {
             const nifHtml = await nifResp.text();
+            let nifCp = '';
             const cpMatch = nifHtml.match(/\b(\d{4}-\d{3})\b/);
-            let nifCp = cpMatch ? cpMatch[1] : '';
+            if (cpMatch) nifCp = cpMatch[1];
             let nifLoc = '';
             if (nifCp) {
               const cpIdx = nifHtml.indexOf(nifCp);
               const after = nifHtml.slice(cpIdx + nifCp.length, cpIdx + nifCp.length + 50);
-              const lm = after.match(/^[\s,–—\-]+([A-ZÀ-Úa-zà-ú\s]{3,25})/);
+              const lm = after.match(/^[\s,â€“â€”\-]+([A-ZÃ€-Ãša-zÃ -Ãº\s]{3,25})/);
               if (lm) {
                 nifLoc = lm[1].trim().split(/[<\n\r,;]/)[0].trim();
               }
             }
 
-            const raciusMatch = nifHtml.match(/href='(https:\/\/www\.racius\.com\/[^']+)'/);
+            const raciusMatch = nifHtml.match(/href=["'](https?:\/\/(?:www\.)?racius\.com\/[^"']+)["']/i);
             let nifStreet = '';
             let nifNum = '';
+            let nifAndar = '';
+            let nifBuilding = '';
+            let nifLegalName = '';
+            let nifTaxId = '';
             let raciusUrl = '';
             if (raciusMatch) {
               try {
                 raciusUrl = raciusMatch[1];
                 const rResp = await fetch(raciusUrl, {
-                  headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' }
+                  headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', 'Accept-Language': 'pt-PT,pt;q=0.9' }
                 });
                 if (rResp.ok) {
                   const rHtml = await rResp.text();
-                  const sm = rHtml.match(/\b((?:Rua|Avenida|Av\.?|Praça|Pr\.?|Largo|Travessa|Alameda|Estrada|Calçada|Campo)\s+[A-ZÀ-Úa-zà-ú0-9\s\–\-ºª\'’]+?)(?:,\s*(?:n\.?[ºo]?\s*)?(\d+[A-Za-z]?))?/i);
-                  if (sm) {
-                    nifStreet = sm[1].trim().split(/[<\n\r]/)[0].trim();
-                    if (sm[2]) nifNum = sm[2];
+                  const ldMatch = rHtml.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/i);
+                  if (ldMatch) {
+                    try {
+                      const ld = JSON.parse(ldMatch[1]);
+                      if (ld) {
+                        if (ld.taxID || ld.vatID) nifTaxId = String(ld.taxID || ld.vatID).trim();
+                        if (ld.name || ld.legalName) nifLegalName = (ld.name || ld.legalName).trim();
+                        if (ld.address) {
+                          if (ld.address.postalCode) nifCp = ld.address.postalCode.trim();
+                          if (ld.address.addressLocality) nifLoc = ld.address.addressLocality.trim();
+                          const rawSt = ld.address.streetAddress || '';
+                          if (rawSt) {
+                            const parts = rawSt.split(/[\sâ€“â€”\-]+\s*(?=(?:Avenida|Av\.?|Rua|R\.?|PraÃ§a|Pr\.?|Largo|Estrada|CalÃ§ada|Alameda|Travessa))/i);
+                            if (parts.length > 1) {
+                              nifBuilding = parts[0].trim();
+                              nifStreet = parts[1].trim();
+                            } else {
+                              nifStreet = rawSt.trim();
+                            }
+
+                            const numMatch = nifStreet.match(/,\s*(?:N\.?[Âºo]?\s*|nÂº\s*|n\.\s*)?(\d+[A-Za-z]?(?:\s+[A-Za-z])?)/i);
+                            if (numMatch) nifNum = numMatch[1].trim();
+                            const floorMatch = nifStreet.match(/,\s*(\d+[ÂºÂªo]\s*Andar|Piso\s*\d+|R\/C)/i);
+                            if (floorMatch) nifAndar = floorMatch[1].trim();
+                            nifStreet = nifStreet.replace(/,\s*(?:N\.?[Âºo]?\s*|nÂº\s*|n\.\s*)?\d+[A-Za-z]?.*$/i, '').trim();
+                          }
+                        }
+                      }
+                    } catch(eLd) {}
+                  }
+
+                  if (!nifStreet) {
+                    const sm = rHtml.match(/\b((?:Rua|Avenida|Av\.?|PraÃ§a|Pr\.?|Largo|Travessa|Alameda|Estrada|CalÃ§ada|Campo)\s+[A-ZÃ€-Ãša-zÃ -Ãº0-9\s\â€“\-ÂºÂª\'â€™]+?)(?:,\s*(?:n\.?[Âºo]?\s*)?(\d+[A-Za-z]?))?/i);
+                    if (sm) {
+                      nifStreet = sm[1].trim().split(/[<\n\r]/)[0].trim();
+                      if (sm[2]) nifNum = sm[2];
+                    }
                   }
                 }
               } catch(rErr) {}
@@ -612,22 +652,27 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
               let officialWebsite = existingWebsite || '';
               if (!officialWebsite && tipoCliente === 'Estatal') officialWebsite = 'https://www.gov.pt';
 
-              res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-              res.end(JSON.stringify({
+              const outObj = {
                 success: true,
-                provider: 'Registo Institucional & Web Oficial',
-                data: {
-                  website: officialWebsite,
-                  direcao1: nifStreet,
-                  direcao2: '',
-                  numero: nifNum,
-                  andar: '',
-                  codigoPostal: nifCp,
-                  localidade: nifLoc,
-                  pais: 'Portugal',
-                  fonteUrl: raciusUrl || ('https://www.nif.pt/?q=' + encodeURIComponent(searchTerm))
-                }
-              }));
+                found: true,
+                provider: 'Registo Institucional & DiretÃ³rio Empresarial (NIF.pt / Racius)',
+                nome: nifLegalName || entityName,
+                direcao1: nifStreet,
+                direcao2: nifBuilding,
+                numero: nifNum,
+                andar: nifAndar,
+                codigoPostal: nifCp,
+                localidade: nifLoc,
+                pais: 'Portugal',
+                contribuinte: nifTaxId || contribuinte || '',
+                telefone: existingTelefone || '',
+                email: existingEmail || '',
+                website: officialWebsite,
+                fonteUrl: raciusUrl || ('https://www.nif.pt/?q=' + encodeURIComponent(searchTerm))
+              };
+              outObj.data = { ...outObj };
+              res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+              res.end(JSON.stringify(outObj));
               return;
             }
           }
@@ -635,169 +680,130 @@ Devolve EXCLUSIVAMENTE um objeto JSON válido (sem blocos markdown e sem texto e
           console.warn('[AI Lookup] Erro na consulta NIF.pt:', nErr.message);
         }
 
-        // 3. Motor de Varrimento e Extração Web Alternativo (Server-side)
+        // 3. Fallback DDG / Bing
         let query = `${entityName} morada sede contactos Portugal`;
-        if (tipoCliente === 'Estatal' && ministerio) {
-          query = `${entityName} ${ministerio} morada sede contactos Portugal`;
-        }
-        if (contribuinte) {
-          query += ` NIF ${contribuinte}`;
-        }
+        if (tipoCliente === 'Estatal' && ministerio) query = `${entityName} ${ministerio} morada sede contactos Portugal`;
+        if (contribuinte) query += ` NIF ${contribuinte}`;
 
-        const searchUrl = 'https://html.duckduckgo.com/html/?q=' + encodeURIComponent(query);
-        const sResp = await fetch(searchUrl, {
+        const ddgUrl = 'https://html.duckduckgo.com/html/?q=' + encodeURIComponent(query);
+        const ddgResp = await fetch(ddgUrl, {
           headers: {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Language': 'pt-PT,pt;q=0.9,en;q=0.8'
           }
         });
 
-        const html = await sResp.text();
-        const snippets = [...html.matchAll(/class="result__snippet[^>]*>([\s\S]*?)<\/a>/g)].map(m => m[1].replace(/<[^>]+>/g, '').trim());
-        const rawUrls = [...html.matchAll(/class="result__url"[^>]*href="([^"]+)"/g)].map(m => m[1]);
+        let ddgHtml = '';
+        if (ddgResp.ok) ddgHtml = await ddgResp.text();
 
-        const decodedUrls = rawUrls.map(u => {
-          try {
-            const m = u.match(/uddg=([^&]+)/);
-            return m ? decodeURIComponent(m[1]) : u;
-          } catch (e) { return u; }
-        });
+        const snippets = [];
+        const snippetMatches = ddgHtml.matchAll(/class="result__snippet[^"]*">([\s\S]*?)<\/a>/gi);
+        for (const m of snippetMatches) {
+          snippets.push(m[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim());
+        }
+
+        const rawUrls = [];
+        const urlMatches = ddgHtml.matchAll(/class="result__url"[^>]*href="([^"]+)"/gi);
+        for (const m of urlMatches) rawUrls.push(m[1]);
 
         let detectedWebsite = existingWebsite || '';
         if (!detectedWebsite) {
-          for (const u of decodedUrls) {
-            if (!u.includes('duckduckgo.com') && 
-                !u.includes('google.') && 
-                !u.includes('empresite.') && 
-                !u.includes('racius.') && 
-                !u.includes('einforma.') && 
-                !u.includes('facebook.') && 
-                !u.includes('linkedin.') &&
-                !u.includes('wikipedia.org')) {
-              try {
-                const parsedU = new URL(u);
-                detectedWebsite = parsedU.origin;
-                break;
-              } catch (e) {}
+          for (const u of rawUrls) {
+            if (!u.includes('duckduckgo.com') && !u.includes('google.') && !u.includes('empresite.') && !u.includes('racius.') && !u.includes('einforma.')) {
+              try { detectedWebsite = new URL(u).origin; break; } catch (e) {}
             }
-          }
-          if (!detectedWebsite && decodedUrls[0] && !decodedUrls[0].includes('duckduckgo.com')) {
-            try { detectedWebsite = new URL(decodedUrls[0]).origin; } catch (e) { detectedWebsite = decodedUrls[0]; }
           }
         }
 
         const fullText = snippets.join(' \n ');
-        const address = {
-          direcao1: '',
-          direcao2: '',
-          numero: '',
-          andar: '',
-          codigoPostal: '',
-          localidade: '',
-          pais: 'Portugal'
-        };
+        const address = { direcao1: '', direcao2: '', numero: '', andar: '', codigoPostal: '', localidade: '', pais: 'Portugal' };
 
-        // Código Postal
         const cpMatch = fullText.match(/\b(\d{4}-\d{3})\b/);
         if (cpMatch) {
           address.codigoPostal = cpMatch[1];
           const cpIndex = fullText.indexOf(cpMatch[1]);
           const afterCp = fullText.slice(cpIndex + cpMatch[1].length, cpIndex + cpMatch[1].length + 45);
-          const locMatch = afterCp.match(/^[\s,–—\-]+([A-ZÀ-Úa-zà-ú\s]{3,25})/);
-          if (locMatch) {
-            address.localidade = locMatch[1].trim()
-              .replace(/\b(?:Tel|Telefone|Fax|Email|Contacto|NIF)\b.*/i, '')
-              .replace(/[\.,;].*$/, '')
-              .trim();
-          }
+          const locMatch = afterCp.match(/^[\s,â€“â€”\-]+([A-ZÃ€-Ãša-zÃ -Ãº\s]{3,25})/);
+          if (locMatch) address.localidade = locMatch[1].trim().replace(/\b(?:Tel|Telefone|Fax|Email|Contacto|NIF)\b.*/i, '').replace(/[\.,;].*$/, '').trim();
         }
 
-        // Rua / Avenida / Praça
-        const streetMatch = fullText.match(/\b((?:Rua|Avenida|Av\.?|Praça|Pr\.?|Largo|Travessa|Alameda|Estrada|Calçada|Campo)\s+(?:(?:D\.|S\.|Sto\.|Sta\.|Dr\.|Eng\.|Prof\.)|[A-ZÀ-Úa-zà-ú0-9\s\–\-ºª\'’])+?)(?=(?:,\s*(?:n\.º|\d|andar|\d{4}-\d{3})|,(?!\s*[A-ZÀ-Úa-zà-ú])|\n|\d{4}-\d{3}|$))/i);
+        const streetMatch = fullText.match(/\b((?:Rua|Avenida|Av\.?|PraÃ§a|Pr\.?|Largo|Travessa|Alameda|Estrada|CalÃ§ada|Campo)\s+(?:(?:D\.|S\.|Sto\.|Sta\.|Dr\.|Eng\.|Prof\.)|[A-ZÃ€-Ãša-zÃ -Ãº0-9\s\â€“\-ÂºÂª\'â€™])+?)(?=(?:,\s*(?:n\.Âº|\d|andar|\d{4}-\d{3})|,(?!\s*[A-ZÃ€-Ãša-zÃ -Ãº])|\n|\d{4}-\d{3}|$))/i);
         if (streetMatch) {
           let street = streetMatch[1].trim();
-          const streetDateRegex = /\b(\d{1,2}(?:º)?\s+de\s+(?:Janeiro|Fevereiro|Março|Abril|Maio|Junho|Julho|Agosto|Setembro|Outubro|Novembro|Dezembro))\b/i;
-          const dateMatch = street.match(streetDateRegex);
-          let searchStreet = street;
-          if (dateMatch) {
-            searchStreet = street.replace(dateMatch[0], '###DATE###');
-          }
-          const numInside = searchStreet.match(/\b(?:n\.?[ºo]?\s*)?(\d+[A-Za-z]?)\b/i);
-          if (numInside && !address.numero) {
+          const numInside = street.match(/\b(?:n\.?[Âºo]?\s*)?(\d+[A-Za-z]?)\b/i);
+          if (numInside) {
             address.numero = numInside[1];
             street = street.replace(new RegExp('\\b' + numInside[0] + '\\b'), '').replace(/\s+,$/, '').trim();
           }
           address.direcao1 = street;
         }
 
-        // Número de porta
-        if (!address.numero) {
-          const numMatch = fullText.match(/\b(?:n\.?[ºo]?|número|no\.)\s*(\d+[A-Za-z]?)\b/i) || fullText.match(/,\s*(\d+[A-Za-z]?)\s*,/);
-          if (numMatch) address.numero = numMatch[1];
-        }
-
-        // Andar
-        const andarMatch = fullText.match(/\b(\d+[ºªo]\s*(?:andar|Dto|Esq|Frt|frente)?|R\/C|rés-do-chão|Piso\s*\d+)\b/i);
-        if (andarMatch) address.andar = andarMatch[1];
-
-        // Direção 2 (Edifício / Zona / Polígono / Parque)
-        const d2Match = fullText.match(/\b((?:Edifício|Edificio|Torre|Bloco|Centro Empresarial|Parque Empresarial|Parque das Nações|Parque|Polígono|Poligono|Zona Industrial|Urbanização|Urbanizacao)\s+[A-Za-zÀ-Úà-ú0-9\s\.\–\-ºª\'’]+?)(?=(?:,\s*|\s+na\s+|\s+em\s+|\s+no\s+|\n|•|;|$))/i);
-        if (d2Match) address.direcao2 = d2Match[1].trim();
-
-        // Telefone
-        const telMatch = fullText.match(/(?:Telefone|Tel|Phone|Mobile|Tlm|Fixo)?[\s:•*-]*((\+351[\s.-]*)?(?:2\d{2}|9[1236]\d)[\s.-]*\d{3}[\s.-]*\d{3})\b/i) ||
-                         fullText.match(/(?:(?:\+|00)34[\s.-]*)?(?:[689]\d{2})[\s.-]*\d{3}[\s.-]*\d{3}\b/);
+        const telMatch = fullText.match(/(?:Telefone|Tel|Phone|Mobile|Tlm|Fixo)?[\s:â€¢*-]*((\+351[\s.-]*)?(?:2\d{2}|9[1236]\d)[\s.-]*\d{3}[\s.-]*\d{3})\b/i);
         const detectedTelefone = telMatch ? (telMatch[1] || telMatch[0]).trim() : '';
 
-        // Email
         const emailMatch = fullText.match(/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/);
         const detectedEmail = emailMatch ? emailMatch[0].trim() : '';
 
-        // Contribuinte (NIF)
-        const nifMatch = fullText.match(/\b(?:NIF|NIPC|Contribuinte|CIF|VAT)[\s:.-]*([A-Z0-9][A-Z0-9\s.-]{7,11}[A-Z0-9])\b/i) ||
-                         fullText.match(/\b([56]\d{8})\b/);
+        const nifMatch = fullText.match(/\b(?:NIF|NIPC|Contribuinte|CIF|VAT)[\s:.-]*([A-Z0-9][A-Z0-9\s.-]{7,11}[A-Z0-9])\b/i) || fullText.match(/\b([56]\d{8})\b/);
         const detectedNif = nifMatch ? nifMatch[1].replace(/[\s.-]/g, '').toUpperCase() : (contribuinte || '');
 
-        // Localidade Fallback
-        if (!address.localidade) {
-          const cities = ['Lisboa', 'Porto', 'Coimbra', 'Braga', 'Aveiro', 'Faro', 'Setúbal', 'Leiria', 'Viseu', 'Viana do Castelo', 'Évora', 'Guimarães', 'Funchal', 'Ponta Delgada'];
-          for (const city of cities) {
-            if (new RegExp('\\b' + city + '\\b', 'i').test(fullText)) {
-              address.localidade = city;
-              break;
-            }
-          }
-        }
-
-        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(JSON.stringify({
+        const outObj = {
           success: true,
-          provider: '🔎 Pesquisa Web & Diretórios Oficiais',
-          data: {
-            website: detectedWebsite,
-            direcao1: address.direcao1,
-            direcao2: address.direcao2,
-            numero: address.numero,
-            andar: address.andar,
-            codigoPostal: address.codigoPostal,
-            localidade: address.localidade,
-            pais: address.pais || 'Portugal',
-            telefone: detectedTelefone,
-            email: detectedEmail,
-            contribuinte: detectedNif,
-            fonteUrl: decodedUrls[0] || 'https://duckduckgo.com'
-          }
-        }));
+          found: Boolean(address.direcao1 || address.codigoPostal || detectedWebsite),
+          provider: 'ðŸ”Ž Pesquisa Web & DiretÃ³rios Oficiais',
+          nome: entityName,
+          direcao1: address.direcao1,
+          direcao2: address.direcao2,
+          numero: address.numero,
+          andar: address.andar,
+          codigoPostal: address.codigoPostal,
+          localidade: address.localidade || 'Lisboa',
+          pais: address.pais || 'Portugal',
+          telefone: detectedTelefone,
+          email: detectedEmail,
+          contribuinte: detectedNif,
+          website: detectedWebsite,
+          fonteUrl: ddgUrl
+        };
+        outObj.data = { ...outObj };
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify(outObj));
       } catch (err) {
         res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify({ success: false, message: 'Erro na pesquisa: ' + (err.message || String(err)) }));
       }
-    });
+    };
+
+    if (req.method === 'GET') {
+      const q = parsedUrl.searchParams;
+      handleAiLookup({
+        entityName: q.get('nome') || q.get('entityName') || '',
+        pais: q.get('pais') || 'Portugal',
+        tipoCliente: q.get('tipoCliente') || 'Privado',
+        ministerio: q.get('ministerio') || '',
+        contribuinte: q.get('contribuinte') || '',
+        existingWebsite: q.get('website') || ''
+      });
+      return;
+    }
+
+    if (req.method === 'POST') {
+      let body = '';
+      req.on('data', chunk => body += chunk);
+      req.on('end', () => {
+        let payload = {};
+        try { payload = JSON.parse(body || '{}'); } catch (_) {}
+        handleAiLookup(payload);
+      });
+      return;
+    }
+
+    res.writeHead(405, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ success: false, message: 'MÃ©todo nÃ£o permitido' }));
     return;
   }
 
-  // Endpoint de Heartbeat
+    // Endpoint de Heartbeat
   if (pathname === '/api/heartbeat' || pathname === '/api/ping') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ status: 'ok' }));

@@ -26723,7 +26723,10 @@ async function resolveEntityWebsiteFromDDG(query) {
 
 function parseSmartAddress(text) {
   if (!text || typeof text !== "string") return null;
-  const raw = text.trim();
+  let raw = text.trim();
+  if (typeof sanitizeUtf8String === 'function') {
+    raw = sanitizeUtf8String(raw);
+  }
   if (!raw) return null;
 
   let direcao1 = "";
@@ -26732,7 +26735,7 @@ function parseSmartAddress(text) {
   let andar = "";
   let codigoPostal = "";
   let localidade = "";
-  let pais = "";
+  let pais = "Portugal";
   let contribuinte = "";
   let telefone = "";
   let email = "";
@@ -26748,15 +26751,16 @@ function parseSmartAddress(text) {
   }
 
   // 2. ExtraÃ§Ã£o de Website
-  const webMatch = workingText.match(/\b(?:https?:\/\/|www\.)[^\s,;â€¢*]+\b/i);
+  const webMatch = workingText.match(/\b(?:https?:\/\/|www\.)[^\s,;â€¢*<>]+\b/i);
   if (webMatch) {
     website = webMatch[0].trim();
     workingText = workingText.replace(webMatch[0], " ");
   }
 
-  // 3. ExtraÃ§Ã£o Universal de Telefone (+351 ... ou 2xx / 9xx)
+  // 3. ExtraÃ§Ã£o de Telefone (+351 ... ou nÃºmeros nacionais/internacionais)
   const telMatch = workingText.match(/(?:(?:\+|00)351[\s.-]*)?(?:2\d{2}|9[1236]\d)[\s.-]*\d{3}[\s.-]*\d{3}\b/) ||
-                   workingText.match(/(?:(?:\+|00)34[\s.-]*)?(?:[689]\d{2})[\s.-]*\d{3}[\s.-]*\d{3}\b/);
+                   workingText.match(/(?:(?:\+|00)34[\s.-]*)?(?:[689]\d{2})[\s.-]*\d{3}[\s.-]*\d{3}\b/) ||
+                   workingText.match(/\b(?:\+351[\s.-]*)?\d{3}[\s.-]*\d{3}[\s.-]*\d{3}\b/);
   if (telMatch) {
     telefone = telMatch[0].trim();
     workingText = workingText.replace(telMatch[0], " ");
@@ -26788,21 +26792,13 @@ function parseSmartAddress(text) {
     }
   }
 
-  if (!contribuinte) {
-    const cifEsAvulso = workingText.match(/\b([A-HJ-NP-SUVW]\d{7}[0-9A-J])\b/i);
-    if (cifEsAvulso) {
-      contribuinte = cifEsAvulso[1].toUpperCase();
-      workingText = workingText.replace(cifEsAvulso[0], " ");
-    }
-  }
-
   // 5. CÃ³digo Postal e PaÃ­s
   const cpPtMatch = workingText.match(/\b(\d{4}-\d{3})\b/);
   const cpEsMatch = workingText.match(/\b(\d{5})\b/);
   if (cpPtMatch) {
     codigoPostal = cpPtMatch[1];
     pais = "Portugal";
-    const afterCpMatch = workingText.match(new RegExp(codigoPostal + "\\s+([A-Za-zÃ€-Ã–Ã˜-Ã¶Ã¸-Ã¿\\s]+?)(?=[,\\nâ€¢\\r;|.]|$)", "i"));
+    const afterCpMatch = workingText.match(new RegExp(codigoPostal + "\\s+([A-Za-z\\u00C0-\\u00FF\\s]{2,30})(?=[,\\n\\r;|.]|$)", "i"));
     if (afterCpMatch && afterCpMatch[1]) {
       const candidateLoc = afterCpMatch[1].trim();
       if (candidateLoc && !/^(?:Portugal|Telefone|Tel|Email|Website)$/i.test(candidateLoc)) {
@@ -26813,7 +26809,7 @@ function parseSmartAddress(text) {
   } else if (cpEsMatch) {
     codigoPostal = cpEsMatch[1];
     pais = "Espanha";
-    const afterCpMatch = workingText.match(new RegExp(codigoPostal + "\\s+([A-Za-zÃ€-Ã–Ã˜-Ã¶Ã¸-Ã¿\\s]+?)(?=[,\\nâ€¢\\r;|.]|$)", "i"));
+    const afterCpMatch = workingText.match(new RegExp(codigoPostal + "\\s+([A-Za-z\\u00C0-\\u00FF\\s]{2,30})(?=[,\\n\\r;|.]|$)", "i"));
     if (afterCpMatch && afterCpMatch[1]) {
       const candidateLoc = afterCpMatch[1].trim();
       if (candidateLoc && !/^(?:EspaÃ±a|Spain|Espanha|Tel|Email)$/i.test(candidateLoc)) {
@@ -26823,63 +26819,50 @@ function parseSmartAddress(text) {
     workingText = workingText.replace(cpEsMatch[0], " ");
   }
 
-  const paises = [
-    { name: "Portugal", regex: /\b(?:Portugal)\b/i },
-    { name: "Espanha", regex: /\b(?:Espanha|EspaÃ±a|Spain)\b/i },
-    { name: "FranÃ§a", regex: /\b(?:FranÃ§a|France)\b/i },
-    { name: "Reino Unido", regex: /\b(?:Reino Unido|United Kingdom)\b/i }
-  ];
-  for (const p of paises) {
-    if (p.regex.test(workingText)) {
-      pais = p.name;
-      workingText = workingText.replace(p.regex, " ");
-      break;
-    }
-  }
+  if (/\b(?:Portugal)\b/i.test(workingText)) pais = "Portugal";
+  else if (/\b(?:Espanha|EspaÃ±a|Spain)\b/i.test(workingText)) pais = "Espanha";
+  else if (/\b(?:FranÃ§a|France)\b/i.test(workingText)) pais = "FranÃ§a";
 
   // 6. Andar / Piso / FraÃ§Ã£o
-  const andarMatch = workingText.match(/\b((?:Piso|Planta|Andar)\s*\d+[ÂºÂªo]?|\d+[ÂºÂªo]\s*(?:andar|piso|Dto|Esq|Frt|frente|Sala\s*[A-Z0-9])?|R\/C|rÃ©s-do-chÃ£o)\b/i);
+  const andarMatch = workingText.match(/\b((?:Piso|Planta|Andar)\s*\d+[ÂºÂªo]?|\d+[ÂºÂªo]\s*(?:andar|piso|Dto|Esq|Frt|frente|Sala\s*[A-Z0-9])?|R\/C|r[eÃ©\u00E9]s-do-ch[aÃ£\u00E3]o)\b/i);
   if (andarMatch) {
     andar = andarMatch[1].trim();
     workingText = workingText.replace(andarMatch[0], " ");
   }
 
   // 7. EdifÃ­cio / Centro Empresarial / Parque (DireÃ§Ã£o 2)
-  const d2Match = workingText.match(/(?:EdifÃ­cio|Edificio|Torre|Bloco|Centro Empresarial|Parque Empresarial|Parque das NaÃ§Ãµes|Parque|PolÃ­gono|Poligono|Zona Industrial|UrbanizaÃ§Ã£o|Urbanizacao)\s+[^,\nâ€¢;]+/i);
+  const d2Match = workingText.match(/\b((?:Edif[i\u00ED\u00EC]cio|Edificio|Torre|Bloco|Centro Empresarial|Parque Empresarial|Parque das Na[c\u00E7][o\u00F5]es|Parque|Pol[i\u00ED]gono|Zona Industrial|Urbaniza[c\u00E7][a\u00E3]o)\s+[^,\n;]+)/i);
   if (d2Match) {
-    direcao2 = d2Match[0].trim().replace(/\s+(?:na|em|no)\s+.*$/i, '').trim();
+    direcao2 = d2Match[1].trim().replace(/\s+(?:na|em|no)\s+.*$/i, '').trim();
     workingText = workingText.replace(d2Match[0], " ");
   }
 
-  // 8. Rua / Avenida / Alameda / PraÃ§a / Travessa / Estrada (DireÃ§Ã£o 1)
-  const streetMatch = workingText.match(/(?:Avenida|Av\.?|Rua|R\.?|PraÃ§a|Pr\.?|Largo|Estrada|Estr\.?|CalÃ§ada|Alameda|Travessa|Tv\.?|Paseo|Calle|Via|Rotunda|Beco)\s+[^,\nâ€¢;]+/i);
-  if (streetMatch) {
-    direcao1 = streetMatch[0].trim().replace(/\s+(?:,\s*|\s+)(?:n\.?[Âºo]?\s*|\d+|Piso|Andar|R\/C).*$/i, '').trim();
-    workingText = workingText.replace(streetMatch[0], " ");
-  }
-
-  // 9. NÃºmero de porta
-  const numExplicitMatch = workingText.match(/(?:,\s*|\s+)(?:n\.?[Âºo]?\s*|nÂº\s*|nÃºmero\s*|no\.\s*)(\d+[A-Za-z]?(?:[/-]\d+[A-Za-z]?)?)(?=[,\s\nâ€¢;]|$)/i) ||
+  // 8. NÃºmero de porta
+  const numExplicitMatch = workingText.match(/(?:,\s*|\s+)(?:n\.?[Âºo]?\s*|nÂº\s*|n[uÃº\u00FA]mero\s*|no\.\s*)(\d+[A-Za-z]?(?:[/-]\d+[A-Za-z]?)?)(?=[,\s\n;]|$)/i) ||
                            workingText.match(/\b(?:n\.?[Âºo]?\s*|nÂº\s*)(\d+[A-Za-z]?)\b/i);
   if (numExplicitMatch) {
     numero = numExplicitMatch[1].trim();
     workingText = workingText.replace(numExplicitMatch[0], " ");
-  } else {
+  }
+
+  // 9. Rua / Avenida / Alameda / PraÃ§a (DireÃ§Ã£o 1)
+  const streetMatch = workingText.match(/\b((?:Avenida|Av\.?|Rua|R\.?|Pra[c\u00E7]a|Pr\.?|Largo|Estrada|Estr\.?|Cal[c\u00E7]ada|Alameda|Travessa|Tv\.?|Paseo|Calle|Via|Rotunda|Beco)\s+[^,\n;]+)/i);
+  if (streetMatch) {
+    direcao1 = streetMatch[1].trim().replace(/\s+(?:,\s*|\s+)(?:n\.?[Âºo]?\s*|\d+|Piso|Andar|R\/C).*$/i, '').trim();
+    workingText = workingText.replace(streetMatch[0], " ");
+  }
+
+  // Se o nÃºmero ainda nÃ£o foi capturado mas ficou um nÃºmero solto
+  if (!numero) {
     const numAvulso = workingText.match(/\b(\d{1,4}[A-Za-z]?)\b/);
-    if (numAvulso && numAvulso[1] !== codigoPostal.split('-')[0]) {
+    if (numAvulso && numAvulso[1] !== (codigoPostal ? codigoPostal.split('-')[0] : '')) {
       numero = numAvulso[1].trim();
       workingText = workingText.replace(numAvulso[0], " ");
     }
   }
 
-  // 10. Fallbacks de DireÃ§Ã£o 1 caso a regex de artÃ©ria nÃ£o tenha capturado
-  if (!direcao1) {
-    workingText = workingText.replace(/\b(?:Morada|DireÃ§Ã£o|EndereÃ§o|Sede|Address|UbicaciÃ³n|Telefone|Tel|Email|Website|Web|NIF|CIF|NIPC|Contribuinte)[\s:.-]*/gi, " ");
-    if (localidade) workingText = workingText.replace(new RegExp("\\b" + localidade + "\\b", "gi"), " ");
-    const parts = workingText.split(/[,;\nâ€¢|]+/).map(s => s.trim().replace(/^[,;\s\-.:â€¢]+|[,;\s\-.:â€¢]+$/g, "")).filter(s => s.length > 2);
-    if (parts.length > 0) {
-      direcao1 = parts[0];
-    }
+  if (!localidade && cpPtMatch) {
+    localidade = "Lisboa";
   }
 
   return {
@@ -27318,30 +27301,31 @@ async function triggerAiAddressEnrichment() {
         try {
           const lRes = await fetch(lUrl, { signal: AbortSignal.timeout(4000) });
           if (lRes.ok) {
-            const lData = await lRes.json();
-            if (lData && lData.found && (lData.direcao1 || lData.localidade)) {
-              const lCountry = lData.pais || existingPais || 'Portugal';
+const lData = await lRes.json();
+            const d = (lData && lData.data) ? lData.data : (lData || {});
+            if (lData && (lData.found || d.direcao1 || d.codigoPostal || d.website || d.localidade)) {
+              const lCountry = d.pais || existingPais || 'Portugal';
               const lCc = (lCountry.toLowerCase() === 'espanha') ? 'es' : 'pt';
-              const sKey = ((lCountry) + '|' + (lData.localidade || '') + '|' + (lData.direcao1 || '')).toLowerCase();
+              const sKey = ((lCountry) + '|' + (d.localidade || '') + '|' + (d.direcao1 || '')).toLowerCase();
               if (!seenKeys.has(sKey)) {
                 seenKeys.add(sKey);
                 availableAiCandidates.unshift({
-                  nome: lData.nome || entityName,
-                  direcao1: lData.direcao1 || '',
-                  direcao2: lData.direcao2 || '',
-                  numero: lData.numero || '',
-                  andar: lData.andar || '',
-                  codigoPostal: lData.codigoPostal || '',
-                  localidade: lData.localidade || 'Lisboa',
+                  nome: d.nome || entityName,
+                  direcao1: d.direcao1 || '',
+                  direcao2: d.direcao2 || '',
+                  numero: d.numero || '',
+                  andar: d.andar || '',
+                  codigoPostal: d.codigoPostal || '',
+                  localidade: d.localidade || 'Lisboa',
                   pais: lCountry,
                   countryCode: lCc,
                   flag: getCountryFlagEmoji(lCc, lCountry),
-                  telefone: lData.telefone || existingTelefone || '',
-                  email: lData.email || existingEmail || '',
-                  website: lData.website || existingWebsite || '',
-                  contribuinte: lData.contribuinte || '',
-                  fonteUrl: lData.fonteUrl || ('https://www.google.com/search?q=' + encodeURIComponent(entityName + ' sede morada')),
-                  provider: 'Pesquisa Web Integrada (Google / Sedes)'
+                  telefone: d.telefone || existingTelefone || '',
+                  email: d.email || existingEmail || '',
+                  website: d.website || existingWebsite || '',
+                  contribuinte: d.contribuinte || '',
+                  fonteUrl: d.fonteUrl || ('https://www.google.com/search?q=' + encodeURIComponent(entityName + ' sede morada')),
+                  provider: d.provider || lData.provider || 'Registo Oficial Empresarial (NIF.pt / Racius)'
                 });
               }
               break;

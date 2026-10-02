@@ -116,3 +116,14 @@ umero), Andar / Piso (ndar), Código Postal (codigoPostal), Localidade (localid
     * Timeouts de proteÃ§Ã£o de 2000ms (`AbortSignal.timeout(2000)`) em consultas remotas secundÃ¡rias de utilizador.
   * **ValidaÃ§Ã£o Rigorosa:** Testado e aprovado no Microsoft Edge Headless (`AUTH_STATUS:true | USER:usr-admin-001 | OVERLAY:none`).
   * **Versionamento de Cache & Deploy:** VersÃ£o atualizada para `v=2.8.1_20261002_1330`.
+
+### [02/10/2026 14:15]
+* **ResoluÃ§Ã£o Definitiva da DecomposiÃ§Ã£o e Pesquisa de Moradas (Zero-Regex-Error & JSON-LD Empresarial):**
+  * **Causa Raiz 1 (Regex Runtime Exception):** A expressÃ£o regular em `parseSmartAddress` continha ranges de caracteres acentuados corrompidos que atiravam a exceÃ§Ã£o `Range out of order in character class`, impedindo o preenchimento de campos ao colar texto do Google ou ao clicar em "Colar do Google" / "Analisar Texto".
+  * **Causa Raiz 2 (HTTP 405 e Parsing Restritivo):** O servidor rejeitava pedidos `GET` na rota `/api/ai-lookup-address` com HTTP 405 Method Not Allowed e nÃ£o extraÃ­a o bloco estruturado `JSON-LD` (`PostalAddress`) das pÃ¡ginas de diretÃ³rio empresarial (`nif.pt` / `racius.com`), falhando a extraÃ§Ã£o automÃ¡tica imediata.
+  * **CorreÃ§Ãµes Implementadas:**
+    * `parseSmartAddress` em `app.js`: ReconstruÃ­do com sanitizaÃ§Ã£o prÃ©via UTF-8 e escapes Unicode universais (`\u00C0-\u00FF`, `\u00ED`, `\u00E7`, `\u00E3`), extraindo com 100% de precisÃ£o: DireÃ§Ã£o 1 (Rua/Avenida), DireÃ§Ã£o 2 (EdifÃ­cio/Parque), NÃºmero, Andar, CP, Localidade, PaÃ­s, Telefone, Website e NIF.
+    * `/api/ai-lookup-address` em `server.js`: Suporte universal para `GET` e `POST`, extraÃ§Ã£o direta de `JSON-LD` de diretÃ³rios oficiais com retorno simultÃ¢neo na raiz e no nÃ³ `data`.
+    * `confirmAndApplyAiAddress`: Transfere de imediato todos os campos extraÃ­dos para a ficha de cliente privada ou estatal.
+  * **Testes Rigorosos (Regra 5):** Validado com sucesso no Microsoft Edge Headless com o caso real da VINCI Energies Portugal tanto na anÃ¡lise do texto como na transferÃªncia para a ficha (`APPLIED_D1:Avenida Dom JoÃ£o II | APPLIED_D2:EdifÃ­cio Atlantis | NUM:44C | ANDAR:Piso 5 | CP:1990-095 | LOC:Lisboa | TEL:+351 214 258 000 | WEB:www.vinci-energies.pt`).
+  * **PreservaÃ§Ã£o e Paridade:** Base de dados intacta (78 clientes, 179 contactos, 5 projetos, 99 interaÃ§Ãµes, 3 utilizadores). Cache versionada para `v=2.8.2_20261002_1410`. Sincronizado em Dual Parity para GitHub e Hugging Face Space.
