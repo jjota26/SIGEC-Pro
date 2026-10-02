@@ -5962,6 +5962,23 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdById": "usr-admin-001"
+    },
+    {
+      "id": "con-1790933617915-111",
+      "clienteId": "cli-imp-081",
+      "empresa": "Omexom",
+      "subTabIndex": 0,
+      "nome": "Claudio",
+      "apelido": "Almeida",
+      "cargo": "Head of Marketing and Communication",
+      "telefone": "+351 219 737 000",
+      "telemovel": "912 267 564",
+      "email": "claudio.almeida@vinci-energies.com",
+      "notas": "Gestão Multimarca: É o responsável direto pela estratégia global de marketing e comunicação de marcas de peso como a Omexom, Actemium, Sotécnica, Longo Plano e VINCI Facilities.\nÉ também o Diretor de Publicação oficial das plataformas digitais da marca Omexom Portugal.",
+      "inativo": false,
+      "proximoContacto": null,
+      "createdAt": "2026-10-02T09:37:14.192Z",
+      "updatedAt": "2026-10-02T09:37:14.192Z"
     }
   ],
   "projetos": [
