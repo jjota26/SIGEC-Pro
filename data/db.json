@@ -2032,20 +2032,20 @@
       "andar": "",
       "codigoPostal": "1000-001",
       "localidade": "Lisboa",
+      "pais": "Cabo Verde",
       "telefone": "213456789",
       "telemovel": "",
       "email": "contacto@bcn.cv",
-      "createdAt": "2026-07-31T16:30:00.000Z",
+      "website": "",
+      "notas": "",
+      "proximoContacto": "2026-10-02",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "Cabo Verde",
-      "website": "",
-      "notas": "",
-      "updatedAt": "2026-09-29T08:39:27.683Z",
+      "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-10-05T05:45:50.267Z",
       "comercial": "José Centúrio",
-      "createdById": "usr-admin-001",
-      "proximoContacto": "2026-10-02"
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1785514129444-833",
@@ -4850,6 +4850,8 @@
     {
       "id": "con-1785515106421-857",
       "clienteId": "cli-imp-085",
+      "empresa": "Banco Caboverdiano de Negócios - BCN",
+      "subTabIndex": 0,
       "nome": "Paulo",
       "apelido": "Lima",
       "cargo": "Administrador do Banco",
@@ -4857,14 +4859,12 @@
       "telemovel": "",
       "email": "paulo.lima@bcn.cv",
       "notas": "",
-      "createdAt": "2026-07-31T16:25:06.422Z",
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "empresa": "Banco Caboverdiano de Negócios - BCN",
-      "subTabIndex": 0,
       "inativo": false,
       "proximoContacto": "2026-10-02",
-      "updatedAt": "2026-09-29T08:38:25.333Z",
+      "createdAt": "2026-07-31T16:25:06.422Z",
+      "updatedAt": "2026-10-05T05:45:14.321Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -6074,7 +6074,9 @@
       "clienteId": "cli-imp-085",
       "data": "2026-07-27T18:34",
       "descricao": "Reunião com o administrador do banco e como diretor comercial",
-      "createdAt": "2026-07-31T16:36:16.952Z"
+      "createdAt": "2026-07-31T16:36:16.952Z",
+      "userId": "usr-admin-001",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "int-1785754753934-242",
@@ -6169,7 +6171,9 @@
       "subTabIndex": 0,
       "data": "2026-09-17T23:09",
       "descricao": "Contactei por telefone para saber mais informação sobre a decisão. Disse que já passou a decisão para a administração. Aguardar",
-      "createdAt": "2026-09-17T21:11:25.761Z"
+      "createdAt": "2026-09-17T21:11:25.761Z",
+      "userId": "usr-admin-001",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cpi-1789679617680-650",
@@ -7430,7 +7434,8 @@
       "descricao": "Responde ao email a informar que o interesse seria ao Furgão.",
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
-      "createdAt": "2026-10-05T05:45:12.282Z"
+      "createdAt": "2026-10-05T05:45:12.282Z",
+      "createdById": "usr-admin-001"
     }
   ],
   "interacoesProjetos": [
@@ -7449,6 +7454,15 @@
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
       "createdAt": "2026-09-29T11:47:33.205Z"
+    },
+    {
+      "id": "pint-1791183333618-915",
+      "projectId": "proj-1791178913746-80",
+      "data": "2026-04-23T08:54",
+      "descricao": "Reunião online com o Daniel. Indicou que pretendia uma campanha do tipo que fizemos com ETURIA",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-10-05T06:55:33.619Z"
     }
   ],
   "usuarios": [
@@ -7502,6 +7516,104 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1791179152672-32455",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Gravação Manual",
+      "tipoAcao": "Gravação Manual",
+      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-10-05T05:45:52.672Z"
+    },
+    {
+      "id": "log-1791179150268-69993",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Banco Caboverdiano de Negócios - BCN\" (NIF: 500001462) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Banco Caboverdiano de Negócios - BCN",
+        "contribuinte": "500001462",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Banco Caboverdiano de Negócios - BCN",
+        "contribuinte": "500001462",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-05T05:45:50.268Z"
+    },
+    {
+      "id": "log-1791179120375-19728",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Banco Caboverdiano de Negócios - BCN\" (NIF: 500001462) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Banco Caboverdiano de Negócios - BCN",
+        "contribuinte": "500001462",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Banco Caboverdiano de Negócios - BCN",
+        "contribuinte": "500001462",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-05T05:45:20.375Z"
+    },
     {
       "id": "log-1791179064946-29605",
       "usuarioId": "usr-admin-001",
