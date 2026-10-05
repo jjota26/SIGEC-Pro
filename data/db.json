@@ -7515,6 +7515,33 @@
   ],
   "userLogs": [
     {
+      "id": "log-1791202693376-22256",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Notificação por Email",
+      "tipoAcao": "Notificação por Email",
+      "descricao": "Alerta de registo emitido para jmcenturio@alegria-activity.com (José Centúrio (Teste de Notificação)).",
+      "detalhes": {},
+      "extra": {},
+      "timestamp": "2026-10-05T12:18:13.376Z"
+    },
+    {
+      "id": "log-1791202693375-8840",
+      "timestamp": "2026-10-05T12:18:13.375Z",
+      "categoria": "Email / Notificação",
+      "acao": "Notificação por Email",
+      "tipoAcao": "Notificação por Email",
+      "descricao": "Notificação para jmcenturio@alegria-activity.com (\"[SIGEC-Pro Teste] Confirmação de Notificação por Email - 05/10/2026, 14:18:10\"). Estado: Enviado",
+      "detalhes": {
+        "destinatario": "jmcenturio@alegria-activity.com",
+        "assunto": "[SIGEC-Pro Teste] Confirmação de Notificação por Email - 05/10/2026, 14:18:10",
+        "estado": "Enviado com Sucesso via SMTP",
+        "mensagem": "Email enviado com sucesso via Google Workspace Gateway!",
+        "resumo": "Assunto: [SIGEC-Pro Teste] Confirmação de Notificação por Email - 05/10/2026, 14:18:10\nNome do Utilizador: José Centúrio (Teste de Notificação)\nEmail: jmcenturio@alegria-activity.com\nCargo / Função: Administrador do Sistema\nIdioma: Português\nPalavra-Passe / PIN: Admin#2026\nPerfil Atribuído: Administrador\nEstado da Conta: Ativo (Teste de Notificação)\nData e Hora do Registo: 05/10/2026, 14:18:10\nDispositivo: Computador\nInstruções para o Administrador: Este é um email de teste para validar o canal SMTP e a receção de alertas no sistema SIGEC-Pro.\nSistema: SIGEC-Pro • Sistema Integrado de Clientes & Projetos\nempresa: SIGEC-Pro • Sistema Integrado de Clientes & Projetos"
+      }
+    },
+    {
       "id": "log-1791202367928-17959",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
@@ -8436,6 +8463,15 @@
       "decidedBy": "Utilizador"
     }
   ],
+  "config": {
+    "emailNotifyAddress": "jmcenturio@alegria-activity.com",
+    "emailNotifyEnabled": true,
+    "smtpHost": "smtp.gmail.com",
+    "smtpPort": "587",
+    "smtpUser": "",
+    "smtpPass": "",
+    "emailWebhookUrl": "https://script.google.com/macros/s/AKfycbxV-5cjwpuC-BLJpHaZk8g0234D9apiu5SlTX9VjdeHQG2L0DyoMBWHDbf0_Jo9Kr1LnA/exec"
+  },
   "_spcfg": "Oy8YIjNnAhQeYisIFV9ZVHlHfwgUDQY5HQU5ODMLES1bIz0naQ==",
   "_deletedRegistry": {
     "clientes": [
