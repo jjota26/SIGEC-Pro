@@ -2562,7 +2562,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-05T05:28:21.078Z",
-      "updatedAt": "2026-10-05T05:37:56.672Z",
+      "updatedAt": "2026-10-05T05:42:21.697Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     }
@@ -5889,17 +5889,13 @@
       "apelido": "Mota",
       "cargo": "CEO & Art Director",
       "telefone": "",
-      "telemovel": "960427530",
+      "telemovel": "960 427 530",
       "email": "mail@quimicacriativa.pt",
       "notas": "",
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-10-05T05:37:43.940Z",
-      "updatedAt": "2026-10-05T05:37:43.940Z",
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "updatedAt": "2026-10-05T05:43:32.654Z"
     }
   ],
   "projetos": [
@@ -6063,7 +6059,9 @@
       "createdAt": "2026-10-05T05:41:53.746Z",
       "updatedAt": "2026-10-05T05:41:53.746Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     }
   ],
   "interacoes": [
@@ -7487,6 +7485,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1791178941697-87671",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Quimica Criativa\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Quimica Criativa",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Quimica Criativa",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-05T05:42:21.697Z"
+    },
     {
       "id": "log-1791178913749-24895",
       "usuarioId": "usr-admin-001",
