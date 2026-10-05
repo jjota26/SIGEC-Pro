@@ -7359,6 +7359,19 @@
       "userName": "José Centúrio",
       "createdAt": "2026-10-02T12:09:53.995Z",
       "createdById": "usr-admin-001"
+    },
+    {
+      "id": "cpi-1791178659668-971",
+      "contactoId": "con-1791178515460-381",
+      "contactoNome": "",
+      "clienteId": "cli-1791178101077-749",
+      "separadorId": null,
+      "subTabIndex": null,
+      "data": "2026-09-24T07:35",
+      "descricao": "Contactei o Daniel para saber mais informações sobre este tema. Informou que não está descartado, mas que o processo é lento.",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-10-05T05:37:39.670Z"
     }
   ],
   "interacoesProjetos": [
