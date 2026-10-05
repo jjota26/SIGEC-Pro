@@ -6046,7 +6046,7 @@
     {
       "id": "proj-1791178913746-80",
       "nome": "Unidade Móvel Promoção Turistica",
-      "tipo": "Compra UM",
+      "tipo": "Campanha",
       "clienteId": "cli-1791178101077-749",
       "separadorId": null,
       "subTabIndex": null,
@@ -6055,17 +6055,15 @@
       "dataInicio": "2026-04-23",
       "dataFim": "",
       "estado": "Aguarda decisão",
-      "viatura": "",
+      "viatura": "Eturia",
       "matricula": "",
       "orcamentos": [],
       "documents": [],
       "media": [],
       "createdAt": "2026-10-05T05:41:53.746Z",
-      "updatedAt": "2026-10-05T05:41:53.746Z",
+      "updatedAt": "2026-10-05T06:55:51.016Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001"
     }
   ],
   "interacoes": [
@@ -7516,6 +7514,74 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1791202322025-61431",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Gravação Manual",
+      "tipoAcao": "Gravação Manual",
+      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-10-05T12:12:02.025Z"
+    },
+    {
+      "id": "log-1791183351017-35433",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Projeto",
+      "tipoAcao": "Edição de Projeto",
+      "descricao": "Ficha do projeto \"Unidade Móvel Promoção Turistica\" atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Unidade Móvel Promoção Turistica",
+        "tipo": "Campanha",
+        "estado": "Aguarda decisão",
+        "cliente": "Quimica Criativa",
+        "camposAlterados": [
+          {
+            "campo": "Tipo",
+            "anterior": "Compra UM",
+            "novo": "Campanha"
+          },
+          {
+            "campo": "Viatura",
+            "anterior": "(vazio)",
+            "novo": "Eturia"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Unidade Móvel Promoção Turistica",
+        "tipo": "Campanha",
+        "estado": "Aguarda decisão",
+        "cliente": "Quimica Criativa",
+        "camposAlterados": [
+          {
+            "campo": "Tipo",
+            "anterior": "Compra UM",
+            "novo": "Campanha"
+          },
+          {
+            "campo": "Viatura",
+            "anterior": "(vazio)",
+            "novo": "Eturia"
+          }
+        ]
+      },
+      "timestamp": "2026-10-05T06:55:51.017Z"
+    },
     {
       "id": "log-1791179152672-32455",
       "usuarioId": "usr-admin-001",
