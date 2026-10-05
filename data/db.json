@@ -2562,7 +2562,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-05T05:28:21.078Z",
-      "updatedAt": "2026-10-05T05:31:53.820Z",
+      "updatedAt": "2026-10-05T05:37:56.672Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     }
@@ -5879,6 +5879,27 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdById": "usr-admin-001"
+    },
+    {
+      "id": "con-1791178515460-381",
+      "clienteId": "cli-1791178101077-749",
+      "empresa": "Quimica Criativa",
+      "subTabIndex": 0,
+      "nome": "Daniel",
+      "apelido": "Mota",
+      "cargo": "CEO & Art Director",
+      "telefone": "",
+      "telemovel": "960427530",
+      "email": "mail@quimicacriativa.pt",
+      "notas": "",
+      "inativo": false,
+      "proximoContacto": null,
+      "createdAt": "2026-10-05T05:37:43.940Z",
+      "updatedAt": "2026-10-05T05:37:43.940Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     }
   ],
   "projetos": [
@@ -6019,6 +6040,28 @@
       "media": [],
       "createdAt": "2026-08-13T07:50:04.702Z",
       "updatedAt": "2026-09-29T11:44:56.468Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001"
+    },
+    {
+      "id": "proj-1791178913746-80",
+      "nome": "Unidade Móvel Promoção Turistica",
+      "tipo": "Compra UM",
+      "clienteId": "cli-1791178101077-749",
+      "separadorId": null,
+      "subTabIndex": null,
+      "contacto1Id": "con-1791178515460-381",
+      "contacto2Id": "",
+      "dataInicio": "2026-04-23",
+      "dataFim": "",
+      "estado": "Aguarda decisão",
+      "viatura": "",
+      "matricula": "",
+      "orcamentos": [],
+      "documents": [],
+      "media": [],
+      "createdAt": "2026-10-05T05:41:53.746Z",
+      "updatedAt": "2026-10-05T05:41:53.746Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001"
     }
@@ -7363,15 +7406,16 @@
     {
       "id": "cpi-1791178659668-971",
       "contactoId": "con-1791178515460-381",
-      "contactoNome": "",
+      "contactoNome": "Daniel Mota",
       "clienteId": "cli-1791178101077-749",
       "separadorId": null,
-      "subTabIndex": null,
+      "subTabIndex": 0,
       "data": "2026-09-24T07:35",
       "descricao": "Contactei o Daniel para saber mais informações sobre este tema. Informou que não está descartado, mas que o processo é lento.",
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
-      "createdAt": "2026-10-05T05:37:39.670Z"
+      "createdAt": "2026-10-05T05:37:39.670Z",
+      "createdById": "usr-admin-001"
     }
   ],
   "interacoesProjetos": [
@@ -7443,6 +7487,80 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1791178913749-24895",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Criação de Projeto",
+      "tipoAcao": "Criação de Projeto",
+      "descricao": "Novo projeto \"Unidade Móvel Promoção Turistica\" (Compra UM) criado para o cliente \"Quimica Criativa\".",
+      "detalhes": {
+        "acao": "Criação",
+        "ficha": "Projeto",
+        "nome": "Unidade Móvel Promoção Turistica",
+        "tipo": "Compra UM",
+        "estado": "Aguarda decisão",
+        "dataInicio": "2026-04-23",
+        "dataFim": "",
+        "viatura": "",
+        "matricula": "",
+        "cliente": "Quimica Criativa"
+      },
+      "extra": {
+        "acao": "Criação",
+        "ficha": "Projeto",
+        "nome": "Unidade Móvel Promoção Turistica",
+        "tipo": "Compra UM",
+        "estado": "Aguarda decisão",
+        "dataInicio": "2026-04-23",
+        "dataFim": "",
+        "viatura": "",
+        "matricula": "",
+        "cliente": "Quimica Criativa"
+      },
+      "timestamp": "2026-10-05T05:41:53.749Z"
+    },
+    {
+      "id": "log-1791178676674-93744",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Quimica Criativa\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Quimica Criativa",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Quimica Criativa",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-05T05:37:56.674Z"
+    },
     {
       "id": "log-1791178313821-19125",
       "usuarioId": "usr-admin-001",
