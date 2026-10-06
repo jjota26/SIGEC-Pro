@@ -2565,6 +2565,34 @@
       "updatedAt": "2026-10-05T05:44:24.945Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
+    },
+    {
+      "id": "cli-1791278194414-36",
+      "tipoCliente": "Privado",
+      "ministerio": "",
+      "secretariaEstado": "",
+      "nome": "Alegria Activity, S.L.",
+      "contribuinte": "",
+      "direcao1": "",
+      "direcao2": "",
+      "numero": "",
+      "andar": "",
+      "codigoPostal": "",
+      "localidade": "",
+      "pais": "",
+      "telefone": "",
+      "telemovel": "",
+      "email": "",
+      "website": "",
+      "notas": "",
+      "proximoContacto": null,
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdAt": "2026-10-06T09:16:34.414Z",
+      "updatedAt": "2026-10-06T09:16:34.414Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     }
   ],
   "contactos": [
@@ -7518,6 +7546,36 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1791278194414-45484",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Criação de Cliente",
+      "tipoAcao": "Criação de Cliente",
+      "descricao": "Novo cliente \"Alegria Activity, S.L.\" (NIF: ) registado na base de dados (Comercial: José Centúrio).",
+      "detalhes": {
+        "acao": "Criação",
+        "ficha": "Cliente",
+        "nome": "Alegria Activity, S.L.",
+        "contribuinte": "",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "email": "",
+        "telefone": ""
+      },
+      "extra": {
+        "acao": "Criação",
+        "ficha": "Cliente",
+        "nome": "Alegria Activity, S.L.",
+        "contribuinte": "",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "email": "",
+        "telefone": ""
+      },
+      "timestamp": "2026-10-06T09:16:34.414Z"
+    },
     {
       "id": "log-1791273251092-42515",
       "usuarioId": "usr-admin-001",
