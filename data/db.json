@@ -2572,25 +2572,25 @@
       "ministerio": "",
       "secretariaEstado": "",
       "nome": "Alegria Activity, S.L.",
-      "contribuinte": "",
-      "direcao1": "",
-      "direcao2": "",
-      "numero": "",
+      "contribuinte": "000000000",
+      "direcao1": "Calle Lermandabidea",
+      "direcao2": "Polígono Industrial Júndiz",
+      "numero": "7",
       "andar": "",
-      "codigoPostal": "",
-      "localidade": "",
-      "pais": "",
-      "telefone": "",
+      "codigoPostal": "01015",
+      "localidade": "Vitoria-Gasteiz (Álava)",
+      "pais": "Espanha",
+      "telefone": "+34 945 128 415",
       "telemovel": "",
-      "email": "",
-      "website": "",
+      "email": "info@alegria-activity.com",
+      "website": "https://alegria-activity.com",
       "notas": "",
       "proximoContacto": null,
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-06T09:16:34.414Z",
-      "updatedAt": "2026-10-06T09:16:34.414Z",
+      "updatedAt": "2026-10-06T09:17:49.004Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     }
@@ -7546,6 +7546,136 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1791278269004-53218",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Alegria Activity, S.L.\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Alegria Activity, S.L.",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "NIF/Contribuinte",
+            "anterior": "(vazio)",
+            "novo": "000000000"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Alegria Activity, S.L.",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "NIF/Contribuinte",
+            "anterior": "(vazio)",
+            "novo": "000000000"
+          }
+        ]
+      },
+      "timestamp": "2026-10-06T09:17:49.004Z"
+    },
+    {
+      "id": "log-1791278255166-90659",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Alegria Activity, S.L.\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Alegria Activity, S.L.",
+        "contribuinte": "",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Email",
+            "anterior": "(vazio)",
+            "novo": "info@alegria-activity.com"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "(vazio)",
+            "novo": "+34 945 128 415"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "(vazio)",
+            "novo": "Calle Lermandabidea"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "(vazio)",
+            "novo": "01015"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "(vazio)",
+            "novo": "Vitoria-Gasteiz (Álava)"
+          },
+          {
+            "campo": "País",
+            "anterior": "Portugal",
+            "novo": "Espanha"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Alegria Activity, S.L.",
+        "contribuinte": "",
+        "tipoCliente": "Privado",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Email",
+            "anterior": "(vazio)",
+            "novo": "info@alegria-activity.com"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "(vazio)",
+            "novo": "+34 945 128 415"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "(vazio)",
+            "novo": "Calle Lermandabidea"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "(vazio)",
+            "novo": "01015"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "(vazio)",
+            "novo": "Vitoria-Gasteiz (Álava)"
+          },
+          {
+            "campo": "País",
+            "anterior": "Portugal",
+            "novo": "Espanha"
+          }
+        ]
+      },
+      "timestamp": "2026-10-06T09:17:35.166Z"
+    },
     {
       "id": "log-1791278194414-45484",
       "usuarioId": "usr-admin-001",
