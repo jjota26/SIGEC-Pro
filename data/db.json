@@ -7519,6 +7519,24 @@
   ],
   "userLogs": [
     {
+      "id": "log-1791273251092-42515",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Encerramento",
+      "tipoAcao": "Encerramento",
+      "descricao": "Sessão encerrada com gravação segura de todos os dados do perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-10-06T07:54:11.092Z"
+    },
+    {
       "id": "log-1791266652095-54444",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
