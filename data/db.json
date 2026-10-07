@@ -4820,6 +4820,8 @@
     {
       "id": "con-imp-136",
       "clienteId": "cli-imp-062",
+      "empresa": "Ministério da Economia e Coesão Territorial",
+      "subTabIndex": 2,
       "nome": "Gabriela",
       "apelido": "Leite",
       "cargo": "Vice Presidente",
@@ -4827,20 +4829,16 @@
       "telemovel": "",
       "email": "gabriela.leite@ccdr-n.pt",
       "notas": "",
-      "createdAt": "2026-07-31T16:30:00.000Z",
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "empresa": "Ministério da Economia e Coesão Territorial",
-      "subTabIndex": 2,
-      "proximoContacto": "2026-10-07",
       "inativo": false,
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001",
-      "updatedAt": "2026-09-22T11:00:47.718Z"
+      "proximoContacto": "2026-10-07",
+      "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-10-07T06:12:44.817Z"
     },
     {
       "id": "con-imp-137",
       "clienteId": "cli-imp-085",
+      "empresa": "Banco Caboverdiano de Negócios - BCN",
+      "subTabIndex": 0,
       "nome": "Alexey",
       "apelido": "Coimbra",
       "cargo": "Diretor comercial",
@@ -4848,18 +4846,10 @@
       "telemovel": "+ 238 985 51 14",
       "email": "acoimbra@bcn.cv",
       "notas": "",
-      "createdAt": "2026-07-31T16:30:00.000Z",
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "empresa": "Banco Caboverdiano de Negócios - BCN",
-      "subTabIndex": 0,
-      "proximoContacto": "2026-10-01",
       "inativo": false,
-      "updatedAt": "2026-09-28T08:05:07.395Z",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001",
-      "separadorId": null,
-      "extensao": ""
+      "proximoContacto": "2026-10-01",
+      "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-10-07T12:05:48.501Z"
     },
     {
       "id": "con-1785514369861-598",
@@ -6203,7 +6193,8 @@
       "descricao": "Contactei por telefone para saber mais informação sobre a decisão. Disse que já passou a decisão para a administração. Aguardar",
       "createdAt": "2026-09-17T21:11:25.761Z",
       "userId": "usr-admin-001",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "contactoNome": "Alexey Coimbra"
     },
     {
       "id": "cpi-1789679617680-650",
@@ -6212,7 +6203,8 @@
       "subTabIndex": 2,
       "data": "2026-09-17T23:09",
       "descricao": "Contactei para que me pudesse informar sobre algum negocio com as CIM. Comentou-me que falaria com o vogal da CCDR-N e que me enviaria informação. Aguardar e contactar, caso não haja resposta.",
-      "createdAt": "2026-09-17T21:13:37.680Z"
+      "createdAt": "2026-09-17T21:13:37.680Z",
+      "contactoNome": "Gabriela Leite"
     },
     {
       "id": "cpi-1789679697456-812",
@@ -6222,17 +6214,6 @@
       "data": "2026-09-17T23:09",
       "descricao": "Tentei novamente o contacto, mas sem sucesso. Recebi mensagem a dizer que me contactaria mais tarde.",
       "createdAt": "2026-09-17T21:14:57.456Z"
-    },
-    {
-      "id": "cpi-1790200182442-873",
-      "contactoId": "con-imp-137",
-      "clienteId": "cli-imp-085",
-      "subTabIndex": 0,
-      "data": "2026-09-21T23:48",
-      "descricao": "teste",
-      "createdAt": "2026-09-23T21:49:42.442Z",
-      "userId": "usr-admin-001",
-      "createdById": "usr-admin-001"
     },
     {
       "id": "cpi-1790329886470-233",
@@ -9066,7 +9047,8 @@
     "projetos": [],
     "interacoes": [
       "int-1790595217710-168",
-      "int-1785515921992-452"
+      "int-1785515921992-452",
+      "cpi-1790200182442-873"
     ],
     "interacoesProjetos": [],
     "orcamentos": [],
