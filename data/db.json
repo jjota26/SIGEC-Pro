@@ -205,20 +205,20 @@
       "andar": "8º",
       "codigoPostal": "1998-017",
       "localidade": "Lisboa",
+      "pais": "Portugal",
       "telefone": "+351 210 915 000",
       "telemovel": "",
       "email": "fundacao.pt@vodafone.com",
-      "createdAt": "2026-07-31T16:30:00.000Z",
+      "website": "https://www.vodafone.pt",
+      "notas": "",
+      "proximoContacto": null,
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "Portugal",
-      "notas": "",
-      "updatedAt": "2026-09-30T12:27:37.411Z",
+      "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-10-07T05:18:22.181Z",
       "comercial": "José Centúrio",
-      "createdById": "usr-admin-001",
-      "website": "https://www.vodafone.pt",
-      "proximoContacto": null
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-imp-014",
@@ -4832,7 +4832,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "empresa": "Ministério da Economia e Coesão Territorial",
       "subTabIndex": 2,
-      "proximoContacto": "2026-09-24",
+      "proximoContacto": "2026-10-07",
       "inativo": false,
       "comercialAtribuidoNome": "José Centúrio",
       "createdById": "usr-admin-001",
@@ -7398,7 +7398,8 @@
       "descricao": "Enviado email de apresentação",
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
-      "createdAt": "2026-09-30T12:26:11.201Z"
+      "createdAt": "2026-09-30T12:26:11.201Z",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cpi-1790771235002-405",
@@ -7411,7 +7412,8 @@
       "descricao": "Enviado email de apresentação, ao cuidado do Presidente do Conselho de Administração",
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
-      "createdAt": "2026-09-30T12:27:15.004Z"
+      "createdAt": "2026-09-30T12:27:15.004Z",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cpi-1790942830346-570",
@@ -7476,7 +7478,8 @@
       "descricao": "Respondem ao email, informando que não há interesse. respondo e agradeço.",
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
-      "createdAt": "2026-10-07T05:18:15.537Z"
+      "createdAt": "2026-10-07T05:18:15.537Z",
+      "createdById": "usr-admin-001"
     }
   ],
   "interacoesProjetos": [
@@ -7557,6 +7560,64 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1791350316365-34720",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Gravação Manual",
+      "tipoAcao": "Gravação Manual",
+      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-10-07T05:18:36.365Z"
+    },
+    {
+      "id": "log-1791350302182-5066",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Fundação Vodafone Portugal\" (NIF: 500000221) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Vodafone Portugal",
+        "contribuinte": "500000221",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Fundação Vodafone Portugal",
+        "contribuinte": "500000221",
+        "tipoCliente": "Fundação",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-07T05:18:22.182Z"
+    },
     {
       "id": "log-1791289590236-10528",
       "usuarioId": "usr-admin-001",
