@@ -7466,6 +7466,17 @@
       "userName": "José Centúrio",
       "createdAt": "2026-10-05T05:45:12.282Z",
       "createdById": "usr-admin-001"
+    },
+    {
+      "id": "int-1791350295536-612",
+      "clienteId": "cli-imp-012",
+      "separadorId": null,
+      "subTabIndex": null,
+      "data": "2026-10-07T07:17",
+      "descricao": "Respondem ao email, informando que não há interesse. respondo e agradeço.",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-10-07T05:18:15.537Z"
     }
   ],
   "interacoesProjetos": [
@@ -7546,6 +7557,24 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1791289590236-10528",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Encerramento",
+      "tipoAcao": "Encerramento",
+      "descricao": "Sessão encerrada com gravação segura de todos os dados do perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-10-06T12:26:30.236Z"
+    },
     {
       "id": "log-1791278269004-53218",
       "usuarioId": "usr-admin-001",
