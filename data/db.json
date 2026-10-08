@@ -2565,34 +2565,6 @@
       "updatedAt": "2026-10-05T05:44:24.945Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
-    },
-    {
-      "id": "cli-1791278194414-36",
-      "tipoCliente": "Privado",
-      "ministerio": "",
-      "secretariaEstado": "",
-      "nome": "Alegria Activity, S.L.",
-      "contribuinte": "000000000",
-      "direcao1": "Calle Lermandabidea",
-      "direcao2": "Polígono Industrial Júndiz",
-      "numero": "7",
-      "andar": "",
-      "codigoPostal": "01015",
-      "localidade": "Vitoria-Gasteiz (Álava)",
-      "pais": "Espanha",
-      "telefone": "+34 945 128 415",
-      "telemovel": "",
-      "email": "info@alegria-activity.com",
-      "website": "https://alegria-activity.com",
-      "notas": "",
-      "proximoContacto": null,
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdAt": "2026-10-06T09:16:34.414Z",
-      "updatedAt": "2026-10-06T09:17:49.004Z",
-      "comercial": "José Centúrio",
-      "createdById": "usr-admin-001"
     }
   ],
   "contactos": [
@@ -7548,6 +7520,30 @@
   ],
   "userLogs": [
     {
+      "id": "log-1791447431043-27452",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Eliminação de Cliente",
+      "tipoAcao": "Eliminação de Cliente",
+      "descricao": "Cliente \"Alegria Activity, S.L.\" (NIF: 000000000) eliminado da base de dados.",
+      "detalhes": {
+        "acao": "Eliminação",
+        "ficha": "Cliente",
+        "nome": "Alegria Activity, S.L.",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado"
+      },
+      "extra": {
+        "acao": "Eliminação",
+        "ficha": "Cliente",
+        "nome": "Alegria Activity, S.L.",
+        "contribuinte": "000000000",
+        "tipoCliente": "Privado"
+      },
+      "timestamp": "2026-10-08T08:17:11.043Z"
+    },
+    {
       "id": "log-1791445181763-28520",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
@@ -9130,7 +9126,8 @@
       "cli-imp-065",
       "cli-imp-055",
       "cli-imp-003",
-      "cli-1790067734898-26"
+      "cli-1790067734898-26",
+      "cli-1791278194414-36"
     ],
     "contactos": [
       "con-1789667264257-169",
