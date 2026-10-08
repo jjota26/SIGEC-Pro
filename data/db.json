@@ -7494,6 +7494,15 @@
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
       "createdAt": "2026-10-05T06:55:33.619Z"
+    },
+    {
+      "id": "pint-1791440661396-45",
+      "projectId": "proj-1791178913746-80",
+      "data": "2026-09-30T08:23",
+      "descricao": "falei por telefone com o Daniel Mota sobre este assunto, informou que ainda não há uma decisão por parte do seu cliente. Aguardar.",
+      "userId": "usr-admin-001",
+      "userName": "José Centúrio",
+      "createdAt": "2026-10-08T06:24:21.397Z"
     }
   ],
   "usuarios": [
