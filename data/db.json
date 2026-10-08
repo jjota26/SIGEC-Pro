@@ -5711,11 +5711,7 @@
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-09-30T09:28:11.900Z",
-      "updatedAt": "2026-09-30T09:28:11.900Z",
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "updatedAt": "2026-10-08T06:47:55.560Z"
     },
     {
       "id": "con-1790756820369-468",
@@ -6089,7 +6085,7 @@
       "documents": [],
       "media": [],
       "createdAt": "2026-10-05T05:41:53.746Z",
-      "updatedAt": "2026-10-05T06:55:51.016Z",
+      "updatedAt": "2026-10-08T06:24:31.947Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001"
     }
@@ -7556,6 +7552,86 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1791440671948-58514",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Projeto",
+      "tipoAcao": "Edição de Projeto",
+      "descricao": "Ficha do projeto \"Unidade Móvel Promoção Turistica\" atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Unidade Móvel Promoção Turistica",
+        "tipo": "Campanha",
+        "estado": "Aguarda decisão",
+        "cliente": "Quimica Criativa",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Unidade Móvel Promoção Turistica",
+        "tipo": "Campanha",
+        "estado": "Aguarda decisão",
+        "cliente": "Quimica Criativa",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas"
+          }
+        ]
+      },
+      "timestamp": "2026-10-08T06:24:31.948Z"
+    },
+    {
+      "id": "log-1791440662806-81961",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Projeto",
+      "tipoAcao": "Edição de Projeto",
+      "descricao": "Ficha do projeto \"Unidade Móvel Promoção Turistica\" atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Unidade Móvel Promoção Turistica",
+        "tipo": "Campanha",
+        "estado": "Aguarda decisão",
+        "cliente": "Quimica Criativa",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Projeto",
+        "nome": "Unidade Móvel Promoção Turistica",
+        "tipo": "Campanha",
+        "estado": "Aguarda decisão",
+        "cliente": "Quimica Criativa",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas"
+          }
+        ]
+      },
+      "timestamp": "2026-10-08T06:24:22.806Z"
+    },
     {
       "id": "log-1791375376120-93367",
       "usuarioId": "usr-admin-001",
