@@ -4463,6 +4463,8 @@
     {
       "id": "con-imp-114",
       "clienteId": "cli-imp-069",
+      "empresa": "Fundação Champalimaud",
+      "subTabIndex": 0,
       "nome": "Teresa",
       "apelido": "Fernandes",
       "cargo": "Coordenadora de Comunicação, Eventos & Outreach",
@@ -4470,17 +4472,10 @@
       "telemovel": "",
       "email": "scicom@research.fchampalimaud.org",
       "notas": "",
-      "createdAt": "2026-07-31T16:30:00.000Z",
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001",
-      "empresa": "Fundação Champalimaud",
-      "subTabIndex": 0,
       "inativo": false,
-      "updatedAt": "2026-09-30T09:05:58.044Z",
-      "extensao": "",
-      "proximoContacto": null
+      "proximoContacto": null,
+      "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-10-08T06:52:43.968Z"
     },
     {
       "id": "con-imp-115",
