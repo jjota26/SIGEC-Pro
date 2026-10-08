@@ -4832,7 +4832,9 @@
       "inativo": false,
       "proximoContacto": "2026-10-07",
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-10-07T06:12:44.817Z"
+      "updatedAt": "2026-10-07T06:12:44.817Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001"
     },
     {
       "id": "con-imp-137",
@@ -7545,6 +7547,24 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1791375376120-93367",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Encerramento",
+      "tipoAcao": "Encerramento",
+      "descricao": "Sessão encerrada com gravação segura de todos os dados do perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-10-07T12:16:16.120Z"
+    },
     {
       "id": "log-1791375361452-29484",
       "usuarioId": "usr-admin-001",
