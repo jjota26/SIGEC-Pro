@@ -205,20 +205,20 @@
       "andar": "8º",
       "codigoPostal": "1998-017",
       "localidade": "Lisboa",
-      "pais": "Portugal",
       "telefone": "+351 210 915 000",
       "telemovel": "",
       "email": "fundacao.pt@vodafone.com",
-      "website": "https://www.vodafone.pt",
-      "notas": "",
-      "proximoContacto": null,
+      "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdAt": "2026-07-31T16:30:00.000Z",
+      "pais": "Portugal",
+      "notas": "",
       "updatedAt": "2026-10-07T05:18:22.181Z",
       "comercial": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "website": "https://www.vodafone.pt",
+      "proximoContacto": null
     },
     {
       "id": "cli-imp-014",
@@ -1423,15 +1423,13 @@
       "andar": "",
       "codigoPostal": "1000-300",
       "localidade": "Lisboa",
+      "pais": "Portugal",
       "telefone": "+351 213 927 600",
       "telemovel": "",
       "email": "gabinete.mect@mect.gov.pt",
-      "createdAt": "2026-07-31T16:30:00.000Z",
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "pais": "Portugal",
+      "website": "",
       "notas": "",
+      "proximoContacto": "2026-10-09",
       "separadores": [
         {
           "id": "sep-1789672393565-166",
@@ -1524,11 +1522,13 @@
           "website": ""
         }
       ],
-      "updatedAt": "2026-09-29T10:19:42.530Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-10-03T15:41:15.844Z",
       "comercial": "José Centúrio",
-      "createdById": "usr-admin-001",
-      "website": "",
-      "proximoContacto": "2026-10-02"
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-imp-064",
@@ -1699,20 +1699,20 @@
       "andar": "",
       "codigoPostal": "1400-038",
       "localidade": "Lisboa",
-      "pais": "Portugal",
       "telefone": "210480200",
       "telemovel": "",
       "email": "info@fundacaochampalimaud.pt",
-      "website": "https://fchampalimaud.org",
-      "notas": "",
-      "proximoContacto": "2026-10-07",
+      "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdAt": "2026-07-31T16:30:00.000Z",
+      "pais": "Portugal",
+      "notas": "",
       "updatedAt": "2026-10-08T10:37:47.946Z",
       "comercial": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "website": "https://fchampalimaud.org",
+      "proximoContacto": "2026-10-07"
     },
     {
       "id": "cli-imp-070",
@@ -2852,6 +2852,8 @@
     {
       "id": "con-imp-015",
       "clienteId": "cli-imp-005",
+      "empresa": "MEO",
+      "subTabIndex": 0,
       "nome": "Ana",
       "apelido": "Guimaraes",
       "cargo": "Head of Sponsorships and Events",
@@ -2859,15 +2861,12 @@
       "telemovel": "",
       "email": "ana-v-guimaraes@telecom.pt",
       "notas": "Temas: telecomunicaciones, internet, televisión, telefonía móvil, tecnología",
-      "createdAt": "2026-07-31T16:30:00.000Z",
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "empresa": "MEO",
-      "subTabIndex": 0,
       "inativo": false,
-      "updatedAt": "2026-09-28T10:52:11.764Z",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "proximoContacto": "2026-10-09",
+      "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-10-03T16:22:56.141Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001"
     },
     {
       "id": "con-imp-016",
@@ -3330,6 +3329,8 @@
     {
       "id": "con-imp-043",
       "clienteId": "cli-imp-017",
+      "empresa": "Fundação Ageas",
+      "subTabIndex": 1,
       "nome": "João",
       "apelido": "Machado",
       "cargo": "Presidente",
@@ -3337,16 +3338,12 @@
       "telemovel": "",
       "email": "fundacao@ageas.pt",
       "notas": "Temas: salud, envejecimiento, exclusion social",
-      "createdAt": "2026-07-31T16:30:00.000Z",
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "empresa": "Fundação Ageas",
-      "subTabIndex": 1,
       "inativo": false,
-      "proximoContacto": "2026-09-24",
-      "updatedAt": "2026-09-29T08:43:27.739Z",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "proximoContacto": "2026-10-08",
+      "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-10-03T15:39:14.032Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001"
     },
     {
       "id": "con-imp-044",
@@ -4270,7 +4267,9 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-imp-103",
@@ -4284,7 +4283,9 @@
       "notas": "",
       "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-imp-104",
@@ -4435,8 +4436,6 @@
     {
       "id": "con-imp-114",
       "clienteId": "cli-imp-069",
-      "empresa": "Fundação Champalimaud",
-      "subTabIndex": 0,
       "nome": "Teresa",
       "apelido": "Fernandes",
       "cargo": "Coordenadora de Comunicação, Eventos & Outreach",
@@ -4444,14 +4443,17 @@
       "telemovel": "",
       "email": "scicom@research.fchampalimaud.org",
       "notas": "",
-      "inativo": false,
-      "proximoContacto": null,
       "createdAt": "2026-07-31T16:30:00.000Z",
-      "updatedAt": "2026-10-08T06:54:06.818Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "createdById": "usr-admin-001",
+      "empresa": "Fundação Champalimaud",
+      "subTabIndex": 0,
+      "inativo": false,
+      "updatedAt": "2026-10-08T06:54:06.818Z",
+      "extensao": "",
+      "proximoContacto": null
     },
     {
       "id": "con-imp-115",
@@ -4524,6 +4526,8 @@
     {
       "id": "con-imp-120",
       "clienteId": "cli-imp-082",
+      "empresa": "Sonae, SGPS, S.A. (Sonae MC)",
+      "subTabIndex": 0,
       "nome": "Daniel",
       "apelido": "Fonseca",
       "cargo": "Diretor de Marca e Comunicação",
@@ -4531,16 +4535,12 @@
       "telemovel": "",
       "email": "comunicacao@sonae.pt",
       "notas": "",
-      "createdAt": "2026-07-31T16:30:00.000Z",
-      "subTabIndex": 0,
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "empresa": "Sonae, SGPS, S.A. (Sonae MC)",
       "inativo": false,
-      "proximoContacto": "2026-10-01",
-      "updatedAt": "2026-09-29T09:31:03.417Z",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "proximoContacto": "2026-10-08",
+      "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-10-03T15:39:52.424Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001"
     },
     {
       "id": "con-imp-122",
@@ -4805,7 +4805,9 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "updatedAt": "2026-10-07T06:12:44.817Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-imp-137",
@@ -4866,6 +4868,8 @@
     {
       "id": "con-1785515478798-243",
       "clienteId": "cli-imp-062",
+      "empresa": "Ministério da Economia e Coesão Territorial",
+      "subTabIndex": 2,
       "nome": "Isaura",
       "apelido": "Costa",
       "cargo": "Diretora de comunicação",
@@ -4873,20 +4877,20 @@
       "telemovel": "",
       "email": "isaura.costa@ccdn-n.pt",
       "notas": "",
+      "inativo": false,
+      "proximoContacto": "2026-10-08",
       "createdAt": "2026-07-31T16:31:18.798Z",
-      "subTabIndex": 2,
+      "updatedAt": "2026-10-03T15:39:37.360Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
-      "empresa": "Ministério da Economia e Coesão Territorial",
-      "proximoContacto": "2026-09-29",
-      "inativo": false,
       "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001",
-      "updatedAt": "2026-09-29T10:19:13.275Z"
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-1785755195297-108",
       "clienteId": "cli-imp-004",
+      "empresa": "Fundação Jerónimo Martins",
+      "subTabIndex": 0,
       "nome": "Inês",
       "apelido": "Alberto",
       "cargo": "Project Operacional Manager",
@@ -4894,17 +4898,12 @@
       "telemovel": "",
       "email": "ines.alberto@fundacao-jeronimomartins.com",
       "notas": "",
-      "createdAt": "2026-08-03T11:06:35.298Z",
-      "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001",
-      "empresa": "Fundação Jerónimo Martins",
-      "subTabIndex": 0,
       "inativo": false,
-      "updatedAt": "2026-09-28T10:49:32.533Z",
-      "extensao": "",
-      "proximoContacto": "2026-09-25"
+      "proximoContacto": "2026-10-08",
+      "createdAt": "2026-08-03T11:06:35.298Z",
+      "updatedAt": "2026-10-03T15:39:30.600Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001"
     },
     {
       "id": "con-1785825214404-496",
@@ -5093,25 +5092,20 @@
       "id": "con-1789987705330-566",
       "clienteId": "cli-1789988258292-590",
       "empresa": "TURISMO DE PORTUGAL, I.P.",
-      "separadorId": "sep-1789986620610-685",
       "subTabIndex": 1,
-      "tratamento": "",
       "nome": "André",
       "apelido": "Gomes",
       "cargo": "Presidente da Região de Turismo do Algarve",
-      "departamento": "",
       "telefone": "",
-      "extensao": "",
       "telemovel": "",
       "email": "",
       "notas": "",
+      "inativo": false,
+      "proximoContacto": "2026-10-06",
       "createdAt": "2026-09-21T10:48:25.330Z",
-      "updatedAt": "2026-09-28T11:17:01.913Z",
+      "updatedAt": "2026-10-03T16:23:13.157Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001",
-      "inativo": false
+      "comercialAtribuidoId": "usr-admin-001"
     },
     {
       "id": "con-1789987705330-508",
@@ -5226,7 +5220,7 @@
     {
       "id": "con-1790067734898-722",
       "clienteId": "cli-imp-072",
-      "empresa": "EDP - ENERGIAS DE PORTUGAL, S.A.",
+      "empresa": "EDP - Energias de Portugal, S.A.",
       "subTabIndex": 0,
       "nome": "Antonio",
       "apelido": "Almeida",
@@ -5236,13 +5230,11 @@
       "email": "antonio.almeida@edpr.com",
       "notas": "",
       "inativo": false,
-      "proximoContacto": "2026-09-25",
+      "proximoContacto": "2026-10-08",
       "createdAt": "2026-09-22T09:02:14.898Z",
-      "updatedAt": "2026-09-28T10:35:58.137Z",
+      "updatedAt": "2026-10-03T15:39:21.480Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001"
     },
     {
       "id": "con-1790067734898-528",
@@ -5343,13 +5335,11 @@
       "email": "alexandre.barrigo@fea.pt",
       "notas": "Controller de Gestão da empresa Esporão S.A.",
       "inativo": false,
+      "proximoContacto": "2026-10-09",
       "createdAt": "2026-09-22T09:02:14.899Z",
-      "updatedAt": "2026-09-29T09:52:38.026Z",
+      "updatedAt": "2026-10-03T16:22:43.014Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001",
-      "proximoContacto": null
+      "comercialAtribuidoId": "usr-admin-001"
     },
     {
       "id": "con-1790067734899-36",
@@ -5554,13 +5544,11 @@
       "email": "",
       "notas": "",
       "inativo": false,
-      "proximoContacto": "2026-09-30",
+      "proximoContacto": "2026-10-09",
       "createdAt": "2026-09-28T10:19:04.891Z",
-      "updatedAt": "2026-09-29T09:15:03.674Z",
+      "updatedAt": "2026-10-03T15:40:08.000Z",
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001",
-      "comercialAtribuidoNome": "José Centúrio",
-      "createdById": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001"
     },
     {
       "id": "con-1790594354003-392",
@@ -6152,14 +6140,24 @@
       "contactoId": "con-1785515478798-243",
       "data": "2026-08-13T13:45",
       "descricao": "Tentei o contacto por telefone, mas não atendeu.",
-      "createdAt": "2026-08-13T11:45:47.064Z"
+      "createdAt": "2026-08-13T11:45:47.064Z",
+      "clienteId": "cli-imp-062",
+      "subTabIndex": 2,
+      "contactoNome": "Isaura Costa",
+      "userId": "usr-admin-001",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cpi-1786701693964-382",
       "contactoId": "con-1785515478798-243",
       "data": "2026-08-11T12:01",
       "descricao": "Tentei o contacto por telefone, mas não atendeu.",
-      "createdAt": "2026-08-14T10:01:33.965Z"
+      "createdAt": "2026-08-14T10:01:33.965Z",
+      "clienteId": "cli-imp-062",
+      "subTabIndex": 2,
+      "contactoNome": "Isaura Costa",
+      "userId": "usr-admin-001",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cpi-1789679485761-980",
@@ -6169,9 +6167,9 @@
       "data": "2026-09-17T23:09",
       "descricao": "Contactei por telefone para saber mais informação sobre a decisão. Disse que já passou a decisão para a administração. Aguardar",
       "createdAt": "2026-09-17T21:11:25.761Z",
+      "contactoNome": "Alexey Coimbra",
       "userId": "usr-admin-001",
-      "createdById": "usr-admin-001",
-      "contactoNome": "Alexey Coimbra"
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cpi-1789679617680-650",
@@ -6181,7 +6179,9 @@
       "data": "2026-09-17T23:09",
       "descricao": "Contactei para que me pudesse informar sobre algum negocio com as CIM. Comentou-me que falaria com o vogal da CCDR-N e que me enviaria informação. Aguardar e contactar, caso não haja resposta.",
       "createdAt": "2026-09-17T21:13:37.680Z",
-      "contactoNome": "Gabriela Leite"
+      "contactoNome": "Gabriela Leite",
+      "userId": "usr-admin-001",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cpi-1789679697456-812",
@@ -6190,7 +6190,10 @@
       "subTabIndex": 2,
       "data": "2026-09-17T23:09",
       "descricao": "Tentei novamente o contacto, mas sem sucesso. Recebi mensagem a dizer que me contactaria mais tarde.",
-      "createdAt": "2026-09-17T21:14:57.456Z"
+      "createdAt": "2026-09-17T21:14:57.456Z",
+      "contactoNome": "Isaura Costa",
+      "userId": "usr-admin-001",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cpi-1790329886470-233",
@@ -7356,8 +7359,7 @@
       "descricao": "Enviado email de apresentação",
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
-      "createdAt": "2026-09-30T12:26:11.201Z",
-      "createdById": "usr-admin-001"
+      "createdAt": "2026-09-30T12:26:11.201Z"
     },
     {
       "id": "cpi-1790771235002-405",
@@ -7370,8 +7372,7 @@
       "descricao": "Enviado email de apresentação, ao cuidado do Presidente do Conselho de Administração",
       "userId": "usr-admin-001",
       "userName": "José Centúrio",
-      "createdAt": "2026-09-30T12:27:15.004Z",
-      "createdById": "usr-admin-001"
+      "createdAt": "2026-09-30T12:27:15.004Z"
     },
     {
       "id": "cpi-1790942830346-570",
@@ -7482,17 +7483,17 @@
       "nome": "José Centúrio",
       "email": "jmcenturio@alegria-activity.com",
       "cargo": "Administrador do Sistema",
-      "idioma": "Português",
       "pin": "J*cen*1971",
       "role": "admin",
+      "createdAt": "2026-08-10T09:45:00.000Z",
       "chefia": true,
       "active": true,
-      "createdAt": "2026-08-10T09:45:00.000Z",
       "theme": "default_blue",
       "themeIntensity": 100,
       "customThemeColor": "#0284c7",
       "primeiroNome": "José",
       "apelido": "Centúrio",
+      "idioma": "Português",
       "updatedAt": "2026-09-24T18:52:00.386Z"
     },
     {
@@ -7528,7 +7529,7 @@
   ],
   "userLogs": [
     {
-      "id": "log-1791462612509-9588",
+      "id": "log-1791999295067-70698",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
       "usuarioEmail": "jmcenturio@alegria-activity.com",
@@ -7543,22 +7544,40 @@
         "utilizador": "José Centúrio",
         "userId": "usr-admin-001"
       },
-      "timestamp": "2026-10-08T12:30:12.509Z"
+      "timestamp": "2026-10-14T17:34:55.067Z"
     },
     {
-      "id": "log-1791455867957-32633",
+      "id": "log-1791044609203-8440",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Gravação Manual",
+      "tipoAcao": "Gravação Manual",
+      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-10-03T16:23:29.203Z"
+    },
+    {
+      "id": "log-1791042075845-40188",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
       "usuarioEmail": "jmcenturio@alegria-activity.com",
       "acao": "Edição de Cliente",
       "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Fundação Champalimaud\" (NIF: 500001190) atualizada.",
+      "descricao": "Ficha do cliente \"Ministério da Economia e Coesão Territorial\" (NIF: 500001071) atualizada.",
       "detalhes": {
         "acao": "Edição",
         "ficha": "Cliente",
-        "nome": "Fundação Champalimaud",
-        "contribuinte": "500001190",
-        "tipoCliente": "Fundação",
+        "nome": "Ministério da Economia e Coesão Territorial",
+        "contribuinte": "500001071",
+        "tipoCliente": "Estatal",
         "comercialAtribuido": "José Centúrio",
         "camposAlterados": [
           {
@@ -7571,9 +7590,9 @@
       "extra": {
         "acao": "Edição",
         "ficha": "Cliente",
-        "nome": "Fundação Champalimaud",
-        "contribuinte": "500001190",
-        "tipoCliente": "Fundação",
+        "nome": "Ministério da Economia e Coesão Territorial",
+        "contribuinte": "500001071",
+        "tipoCliente": "Estatal",
         "comercialAtribuido": "José Centúrio",
         "camposAlterados": [
           {
@@ -7583,34 +7602,10 @@
           }
         ]
       },
-      "timestamp": "2026-10-08T10:37:47.957Z"
+      "timestamp": "2026-10-03T15:41:15.845Z"
     },
     {
-      "id": "log-1791447431043-27452",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Eliminação de Cliente",
-      "tipoAcao": "Eliminação de Cliente",
-      "descricao": "Cliente \"Alegria Activity, S.L.\" (NIF: 000000000) eliminado da base de dados.",
-      "detalhes": {
-        "acao": "Eliminação",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado"
-      },
-      "extra": {
-        "acao": "Eliminação",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado"
-      },
-      "timestamp": "2026-10-08T08:17:11.043Z"
-    },
-    {
-      "id": "log-1791445181763-28520",
+      "id": "log-1791042060028-57726",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
       "usuarioEmail": "jmcenturio@alegria-activity.com",
@@ -7647,90 +7642,46 @@
           }
         ]
       },
-      "timestamp": "2026-10-08T07:39:41.763Z"
+      "timestamp": "2026-10-03T15:41:00.028Z"
     },
     {
-      "id": "log-1791440671948-58514",
+      "id": "log-1791042018437-81325",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
       "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Projeto",
-      "tipoAcao": "Edição de Projeto",
-      "descricao": "Ficha do projeto \"Unidade Móvel Promoção Turistica\" atualizada.",
+      "acao": "Gravação Manual",
+      "tipoAcao": "Gravação Manual",
+      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
       "detalhes": {
-        "acao": "Edição",
-        "ficha": "Projeto",
-        "nome": "Unidade Móvel Promoção Turistica",
-        "tipo": "Campanha",
-        "estado": "Aguarda decisão",
-        "cliente": "Quimica Criativa",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas"
-          }
-        ]
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
       },
       "extra": {
-        "acao": "Edição",
-        "ficha": "Projeto",
-        "nome": "Unidade Móvel Promoção Turistica",
-        "tipo": "Campanha",
-        "estado": "Aguarda decisão",
-        "cliente": "Quimica Criativa",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas"
-          }
-        ]
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
       },
-      "timestamp": "2026-10-08T06:24:31.948Z"
+      "timestamp": "2026-10-03T15:40:18.437Z"
     },
     {
-      "id": "log-1791440662806-81961",
+      "id": "log-1791042017233-9392",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
       "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Projeto",
-      "tipoAcao": "Edição de Projeto",
-      "descricao": "Ficha do projeto \"Unidade Móvel Promoção Turistica\" atualizada.",
+      "acao": "Gravação Manual",
+      "tipoAcao": "Gravação Manual",
+      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
       "detalhes": {
-        "acao": "Edição",
-        "ficha": "Projeto",
-        "nome": "Unidade Móvel Promoção Turistica",
-        "tipo": "Campanha",
-        "estado": "Aguarda decisão",
-        "cliente": "Quimica Criativa",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas"
-          }
-        ]
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
       },
       "extra": {
-        "acao": "Edição",
-        "ficha": "Projeto",
-        "nome": "Unidade Móvel Promoção Turistica",
-        "tipo": "Campanha",
-        "estado": "Aguarda decisão",
-        "cliente": "Quimica Criativa",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas"
-          }
-        ]
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
       },
-      "timestamp": "2026-10-08T06:24:22.806Z"
+      "timestamp": "2026-10-03T15:40:17.233Z"
     },
     {
-      "id": "log-1791375376120-93367",
+      "id": "log-1790533397768-74124",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
       "usuarioEmail": "jmcenturio@alegria-activity.com",
@@ -7745,1034 +7696,95 @@
         "utilizador": "José Centúrio",
         "userId": "usr-admin-001"
       },
-      "timestamp": "2026-10-07T12:16:16.120Z"
+      "timestamp": "2026-09-27T18:23:17.768Z"
     },
     {
-      "id": "log-1791375361452-29484",
+      "id": "log-1790531582350-11659",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
       "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Banco Caboverdiano de Negócios - BCN\" (NIF: 500001462) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Banco Caboverdiano de Negócios - BCN",
-        "contribuinte": "500001462",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Banco Caboverdiano de Negócios - BCN",
-        "contribuinte": "500001462",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-10-07T12:16:01.452Z"
-    },
-    {
-      "id": "log-1791374752546-8645",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Banco Caboverdiano de Negócios - BCN\" (NIF: 500001462) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Banco Caboverdiano de Negócios - BCN",
-        "contribuinte": "500001462",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Banco Caboverdiano de Negócios - BCN",
-        "contribuinte": "500001462",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-10-07T12:05:52.546Z"
-    },
-    {
-      "id": "log-1791350316365-34720",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Gravação Manual",
-      "tipoAcao": "Gravação Manual",
-      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
+      "acao": "Início de Sessão",
+      "tipoAcao": "Início de Sessão",
+      "descricao": "Acesso autorizado efetuado por José Centúrio (jmcenturio@alegria-activity.com).",
       "detalhes": {
         "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
+        "email": "jmcenturio@alegria-activity.com",
+        "cargo": "Administrador do Sistema",
+        "dispositivo": "Computador"
       },
       "extra": {
         "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
+        "email": "jmcenturio@alegria-activity.com",
+        "cargo": "Administrador do Sistema",
+        "dispositivo": "Computador"
       },
-      "timestamp": "2026-10-07T05:18:36.365Z"
+      "timestamp": "2026-09-27T17:53:02.350Z"
     },
     {
-      "id": "log-1791350302182-5066",
+      "id": "log-1790531033043-41018",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
       "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Fundação Vodafone Portugal\" (NIF: 500000221) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fundação Vodafone Portugal",
-        "contribuinte": "500000221",
-        "tipoCliente": "Fundação",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Fundação Vodafone Portugal",
-        "contribuinte": "500000221",
-        "tipoCliente": "Fundação",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-10-07T05:18:22.182Z"
-    },
-    {
-      "id": "log-1791289590236-10528",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Encerramento",
-      "tipoAcao": "Encerramento",
-      "descricao": "Sessão encerrada com gravação segura de todos os dados do perfil de José Centúrio.",
+      "acao": "Início de Sessão",
+      "tipoAcao": "Início de Sessão",
+      "descricao": "Acesso autorizado efetuado por José Centúrio (jmcenturio@alegria-activity.com).",
       "detalhes": {
         "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
+        "email": "jmcenturio@alegria-activity.com",
+        "cargo": "Administrador do Sistema",
+        "dispositivo": "Computador"
       },
       "extra": {
         "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
+        "email": "jmcenturio@alegria-activity.com",
+        "cargo": "Administrador do Sistema",
+        "dispositivo": "Computador"
       },
-      "timestamp": "2026-10-06T12:26:30.236Z"
+      "timestamp": "2026-09-27T17:43:53.043Z"
     },
     {
-      "id": "log-1791278269004-53218",
+      "id": "log-1790530108507-61024",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
       "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Alegria Activity, S.L.\" (NIF: 000000000) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "NIF/Contribuinte",
-            "anterior": "(vazio)",
-            "novo": "000000000"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "NIF/Contribuinte",
-            "anterior": "(vazio)",
-            "novo": "000000000"
-          }
-        ]
-      },
-      "timestamp": "2026-10-06T09:17:49.004Z"
-    },
-    {
-      "id": "log-1791278255166-90659",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Alegria Activity, S.L.\" (NIF: ) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Email",
-            "anterior": "(vazio)",
-            "novo": "info@alegria-activity.com"
-          },
-          {
-            "campo": "Telefone",
-            "anterior": "(vazio)",
-            "novo": "+34 945 128 415"
-          },
-          {
-            "campo": "Morada",
-            "anterior": "(vazio)",
-            "novo": "Calle Lermandabidea"
-          },
-          {
-            "campo": "Código Postal",
-            "anterior": "(vazio)",
-            "novo": "01015"
-          },
-          {
-            "campo": "Localidade",
-            "anterior": "(vazio)",
-            "novo": "Vitoria-Gasteiz (Álava)"
-          },
-          {
-            "campo": "País",
-            "anterior": "Portugal",
-            "novo": "Espanha"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Email",
-            "anterior": "(vazio)",
-            "novo": "info@alegria-activity.com"
-          },
-          {
-            "campo": "Telefone",
-            "anterior": "(vazio)",
-            "novo": "+34 945 128 415"
-          },
-          {
-            "campo": "Morada",
-            "anterior": "(vazio)",
-            "novo": "Calle Lermandabidea"
-          },
-          {
-            "campo": "Código Postal",
-            "anterior": "(vazio)",
-            "novo": "01015"
-          },
-          {
-            "campo": "Localidade",
-            "anterior": "(vazio)",
-            "novo": "Vitoria-Gasteiz (Álava)"
-          },
-          {
-            "campo": "País",
-            "anterior": "Portugal",
-            "novo": "Espanha"
-          }
-        ]
-      },
-      "timestamp": "2026-10-06T09:17:35.166Z"
-    },
-    {
-      "id": "log-1791278194414-45484",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Criação de Cliente",
-      "tipoAcao": "Criação de Cliente",
-      "descricao": "Novo cliente \"Alegria Activity, S.L.\" (NIF: ) registado na base de dados (Comercial: José Centúrio).",
-      "detalhes": {
-        "acao": "Criação",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "email": "",
-        "telefone": ""
-      },
-      "extra": {
-        "acao": "Criação",
-        "ficha": "Cliente",
-        "nome": "Alegria Activity, S.L.",
-        "contribuinte": "",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "email": "",
-        "telefone": ""
-      },
-      "timestamp": "2026-10-06T09:16:34.414Z"
-    },
-    {
-      "id": "log-1791273251092-42515",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Encerramento",
-      "tipoAcao": "Encerramento",
-      "descricao": "Sessão encerrada com gravação segura de todos os dados do perfil de José Centúrio.",
+      "acao": "Início de Sessão",
+      "tipoAcao": "Início de Sessão",
+      "descricao": "Acesso autorizado efetuado por José Centúrio (jmcenturio@alegria-activity.com).",
       "detalhes": {
         "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
+        "email": "jmcenturio@alegria-activity.com",
+        "cargo": "Administrador do Sistema",
+        "dispositivo": "Computador"
       },
       "extra": {
         "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
+        "email": "jmcenturio@alegria-activity.com",
+        "cargo": "Administrador do Sistema",
+        "dispositivo": "Computador"
       },
-      "timestamp": "2026-10-06T07:54:11.092Z"
+      "timestamp": "2026-09-27T17:28:28.507Z"
     },
     {
-      "id": "log-1791266652095-54444",
+      "id": "log-1790528813224-92343",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
       "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Banco Caboverdiano de Negócios - BCN\" (NIF: 500001462) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Banco Caboverdiano de Negócios - BCN",
-        "contribuinte": "500001462",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Banco Caboverdiano de Negócios - BCN",
-        "contribuinte": "500001462",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-10-06T06:04:12.095Z"
-    },
-    {
-      "id": "log-1791203217083-55958",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Encerramento",
-      "tipoAcao": "Encerramento",
-      "descricao": "Sessão encerrada com gravação segura de todos os dados do perfil de José Centúrio.",
+      "acao": "Início de Sessão",
+      "tipoAcao": "Início de Sessão",
+      "descricao": "Acesso autorizado efetuado por José Centúrio (jmcenturio@alegria-activity.com).",
       "detalhes": {
         "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
+        "email": "jmcenturio@alegria-activity.com",
+        "cargo": "Administrador do Sistema",
+        "dispositivo": "Computador"
       },
       "extra": {
         "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
+        "email": "jmcenturio@alegria-activity.com",
+        "cargo": "Administrador do Sistema",
+        "dispositivo": "Computador"
       },
-      "timestamp": "2026-10-05T12:26:57.083Z"
-    },
-    {
-      "id": "log-1791203189152-95678",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Encerramento",
-      "tipoAcao": "Encerramento",
-      "descricao": "Sessão encerrada com gravação segura de todos os dados do perfil de José Centúrio.",
-      "detalhes": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "extra": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "timestamp": "2026-10-05T12:26:29.152Z"
-    },
-    {
-      "id": "log-1791203187626-2658",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Gravação Manual",
-      "tipoAcao": "Gravação Manual",
-      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
-      "detalhes": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "extra": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "timestamp": "2026-10-05T12:26:27.626Z"
-    },
-    {
-      "id": "log-1791202804149-31375",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Gravação Manual",
-      "tipoAcao": "Gravação Manual",
-      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
-      "detalhes": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "extra": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "timestamp": "2026-10-05T12:20:04.149Z"
-    },
-    {
-      "id": "log-1791202794387-89931",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Gravação Manual",
-      "tipoAcao": "Gravação Manual",
-      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
-      "detalhes": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "extra": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "timestamp": "2026-10-05T12:19:54.387Z"
-    },
-    {
-      "id": "log-1791202693376-22256",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Notificação por Email",
-      "tipoAcao": "Notificação por Email",
-      "descricao": "Alerta de registo emitido para jmcenturio@alegria-activity.com (José Centúrio (Teste de Notificação)).",
-      "detalhes": {},
-      "extra": {},
-      "timestamp": "2026-10-05T12:18:13.376Z"
-    },
-    {
-      "id": "log-1791202693375-8840",
-      "timestamp": "2026-10-05T12:18:13.375Z",
-      "categoria": "Email / Notificação",
-      "acao": "Notificação por Email",
-      "tipoAcao": "Notificação por Email",
-      "descricao": "Notificação para jmcenturio@alegria-activity.com (\"[SIGEC-Pro Teste] Confirmação de Notificação por Email - 05/10/2026, 14:18:10\"). Estado: Enviado",
-      "detalhes": {
-        "destinatario": "jmcenturio@alegria-activity.com",
-        "assunto": "[SIGEC-Pro Teste] Confirmação de Notificação por Email - 05/10/2026, 14:18:10",
-        "estado": "Enviado com Sucesso via SMTP",
-        "mensagem": "Email enviado com sucesso via Google Workspace Gateway!",
-        "resumo": "Assunto: [SIGEC-Pro Teste] Confirmação de Notificação por Email - 05/10/2026, 14:18:10\nNome do Utilizador: José Centúrio (Teste de Notificação)\nEmail: jmcenturio@alegria-activity.com\nCargo / Função: Administrador do Sistema\nIdioma: Português\nPalavra-Passe / PIN: Admin#2026\nPerfil Atribuído: Administrador\nEstado da Conta: Ativo (Teste de Notificação)\nData e Hora do Registo: 05/10/2026, 14:18:10\nDispositivo: Computador\nInstruções para o Administrador: Este é um email de teste para validar o canal SMTP e a receção de alertas no sistema SIGEC-Pro.\nSistema: SIGEC-Pro • Sistema Integrado de Clientes & Projetos\nempresa: SIGEC-Pro • Sistema Integrado de Clientes & Projetos"
-      }
-    },
-    {
-      "id": "log-1791202367928-17959",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Gravação Manual",
-      "tipoAcao": "Gravação Manual",
-      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
-      "detalhes": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "extra": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "timestamp": "2026-10-05T12:12:47.928Z"
-    },
-    {
-      "id": "log-1791202322025-61431",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Gravação Manual",
-      "tipoAcao": "Gravação Manual",
-      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
-      "detalhes": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "extra": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "timestamp": "2026-10-05T12:12:02.025Z"
-    },
-    {
-      "id": "log-1791183351017-35433",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Projeto",
-      "tipoAcao": "Edição de Projeto",
-      "descricao": "Ficha do projeto \"Unidade Móvel Promoção Turistica\" atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Projeto",
-        "nome": "Unidade Móvel Promoção Turistica",
-        "tipo": "Campanha",
-        "estado": "Aguarda decisão",
-        "cliente": "Quimica Criativa",
-        "camposAlterados": [
-          {
-            "campo": "Tipo",
-            "anterior": "Compra UM",
-            "novo": "Campanha"
-          },
-          {
-            "campo": "Viatura",
-            "anterior": "(vazio)",
-            "novo": "Eturia"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Projeto",
-        "nome": "Unidade Móvel Promoção Turistica",
-        "tipo": "Campanha",
-        "estado": "Aguarda decisão",
-        "cliente": "Quimica Criativa",
-        "camposAlterados": [
-          {
-            "campo": "Tipo",
-            "anterior": "Compra UM",
-            "novo": "Campanha"
-          },
-          {
-            "campo": "Viatura",
-            "anterior": "(vazio)",
-            "novo": "Eturia"
-          }
-        ]
-      },
-      "timestamp": "2026-10-05T06:55:51.017Z"
-    },
-    {
-      "id": "log-1791179152672-32455",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Gravação Manual",
-      "tipoAcao": "Gravação Manual",
-      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
-      "detalhes": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "extra": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "timestamp": "2026-10-05T05:45:52.672Z"
-    },
-    {
-      "id": "log-1791179150268-69993",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Banco Caboverdiano de Negócios - BCN\" (NIF: 500001462) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Banco Caboverdiano de Negócios - BCN",
-        "contribuinte": "500001462",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Banco Caboverdiano de Negócios - BCN",
-        "contribuinte": "500001462",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-10-05T05:45:50.268Z"
-    },
-    {
-      "id": "log-1791179120375-19728",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Banco Caboverdiano de Negócios - BCN\" (NIF: 500001462) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Banco Caboverdiano de Negócios - BCN",
-        "contribuinte": "500001462",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Banco Caboverdiano de Negócios - BCN",
-        "contribuinte": "500001462",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-10-05T05:45:20.375Z"
-    },
-    {
-      "id": "log-1791179064946-29605",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Quimica Criativa\" (NIF: 000000000) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Quimica Criativa",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Quimica Criativa",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-10-05T05:44:24.946Z"
-    },
-    {
-      "id": "log-1791179019901-31447",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Gravação Manual",
-      "tipoAcao": "Gravação Manual",
-      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
-      "detalhes": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "extra": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "timestamp": "2026-10-05T05:43:39.901Z"
-    },
-    {
-      "id": "log-1791179017232-13279",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Quimica Criativa\" (NIF: 000000000) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Quimica Criativa",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Quimica Criativa",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-10-05T05:43:37.232Z"
-    },
-    {
-      "id": "log-1791178941697-87671",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Quimica Criativa\" (NIF: 000000000) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Quimica Criativa",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Quimica Criativa",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-10-05T05:42:21.697Z"
-    },
-    {
-      "id": "log-1791178913749-24895",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Criação de Projeto",
-      "tipoAcao": "Criação de Projeto",
-      "descricao": "Novo projeto \"Unidade Móvel Promoção Turistica\" (Compra UM) criado para o cliente \"Quimica Criativa\".",
-      "detalhes": {
-        "acao": "Criação",
-        "ficha": "Projeto",
-        "nome": "Unidade Móvel Promoção Turistica",
-        "tipo": "Compra UM",
-        "estado": "Aguarda decisão",
-        "dataInicio": "2026-04-23",
-        "dataFim": "",
-        "viatura": "",
-        "matricula": "",
-        "cliente": "Quimica Criativa"
-      },
-      "extra": {
-        "acao": "Criação",
-        "ficha": "Projeto",
-        "nome": "Unidade Móvel Promoção Turistica",
-        "tipo": "Compra UM",
-        "estado": "Aguarda decisão",
-        "dataInicio": "2026-04-23",
-        "dataFim": "",
-        "viatura": "",
-        "matricula": "",
-        "cliente": "Quimica Criativa"
-      },
-      "timestamp": "2026-10-05T05:41:53.749Z"
-    },
-    {
-      "id": "log-1791178676674-93744",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Quimica Criativa\" (NIF: 000000000) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Quimica Criativa",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Quimica Criativa",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-10-05T05:37:56.674Z"
-    },
-    {
-      "id": "log-1791178313821-19125",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Quimica Criativa\" (NIF: 000000000) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Quimica Criativa",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "NIF/Contribuinte",
-            "anterior": "(vazio)",
-            "novo": "000000000"
-          },
-          {
-            "campo": "Email",
-            "anterior": "(vazio)",
-            "novo": "mail@quimicacriativa.pt"
-          },
-          {
-            "campo": "Telefone",
-            "anterior": "(vazio)",
-            "novo": "+351 912 997 342"
-          },
-          {
-            "campo": "Telemovel",
-            "anterior": "(vazio)",
-            "novo": "+351 960 427 530"
-          },
-          {
-            "campo": "Morada",
-            "anterior": "(vazio)",
-            "novo": "Travessa da Bataria"
-          },
-          {
-            "campo": "Código Postal",
-            "anterior": "(vazio)",
-            "novo": "4450-625"
-          },
-          {
-            "campo": "Localidade",
-            "anterior": "(vazio)",
-            "novo": "Leça da Palmeira"
-          },
-          {
-            "campo": "País",
-            "anterior": "(vazio)",
-            "novo": "Portugal"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Quimica Criativa",
-        "contribuinte": "000000000",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "NIF/Contribuinte",
-            "anterior": "(vazio)",
-            "novo": "000000000"
-          },
-          {
-            "campo": "Email",
-            "anterior": "(vazio)",
-            "novo": "mail@quimicacriativa.pt"
-          },
-          {
-            "campo": "Telefone",
-            "anterior": "(vazio)",
-            "novo": "+351 912 997 342"
-          },
-          {
-            "campo": "Telemovel",
-            "anterior": "(vazio)",
-            "novo": "+351 960 427 530"
-          },
-          {
-            "campo": "Morada",
-            "anterior": "(vazio)",
-            "novo": "Travessa da Bataria"
-          },
-          {
-            "campo": "Código Postal",
-            "anterior": "(vazio)",
-            "novo": "4450-625"
-          },
-          {
-            "campo": "Localidade",
-            "anterior": "(vazio)",
-            "novo": "Leça da Palmeira"
-          },
-          {
-            "campo": "País",
-            "anterior": "(vazio)",
-            "novo": "Portugal"
-          }
-        ]
-      },
-      "timestamp": "2026-10-05T05:31:53.821Z"
-    },
-    {
-      "id": "log-1791178101079-98317",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Criação de Cliente",
-      "tipoAcao": "Criação de Cliente",
-      "descricao": "Novo cliente \"Quimica Criativa\" (NIF: ) registado na base de dados (Comercial: José Centúrio).",
-      "detalhes": {
-        "acao": "Criação",
-        "ficha": "Cliente",
-        "nome": "Quimica Criativa",
-        "contribuinte": "",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "email": "",
-        "telefone": ""
-      },
-      "extra": {
-        "acao": "Criação",
-        "ficha": "Cliente",
-        "nome": "Quimica Criativa",
-        "contribuinte": "",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "email": "",
-        "telefone": ""
-      },
-      "timestamp": "2026-10-05T05:28:21.079Z"
+      "timestamp": "2026-09-27T17:06:53.224Z"
     }
   ],
   "orcamentos": [],
@@ -9129,6 +8141,94 @@
       "decidedAt": "2026-09-27T18:12:14.072Z",
       "decidedBy": "Utilizador"
     },
+    "cli-imp-020|cli-imp-076",
+    "cli-imp-020:::cli-imp-076",
+    "cli-1789584673991-289|cli-imp-030",
+    "cli-1789584673991-289:::cli-imp-030",
+    "cli-imp-041|cli-imp-042",
+    "cli-imp-041:::cli-imp-042",
+    "cli-imp-040|cli-imp-043",
+    "cli-imp-040:::cli-imp-043",
+    "cli-1790076087901-132|cli-imp-040",
+    "cli-1790076087901-132:::cli-imp-040",
+    "cli-1790076087901-132|cli-imp-043",
+    "cli-1790076087901-132:::cli-imp-043",
+    "cli-imp-050|cli-imp-051",
+    "cli-imp-050:::cli-imp-051",
+    "cli-imp-060|cli-imp-061",
+    "cli-imp-060:::cli-imp-061",
+    "cli-1790071879586-273|cli-1790196857228-556",
+    "cli-1790071879586-273:::cli-1790196857228-556",
+    "con-imp-004|con-imp-130",
+    "con-imp-004:::con-imp-130",
+    "con-imp-033|con-imp-035",
+    "con-imp-033:::con-imp-035",
+    "con-imp-041|con-imp-115",
+    "con-imp-041:::con-imp-115",
+    "con-imp-042|con-imp-112",
+    "con-imp-042:::con-imp-112",
+    "con-imp-050|con-imp-113",
+    "con-imp-050:::con-imp-113",
+    "con-imp-074|con-imp-075",
+    "con-imp-074:::con-imp-075",
+    "con-imp-077|con-imp-078",
+    "con-imp-077:::con-imp-078",
+    "con-imp-079|con-imp-080",
+    "con-imp-079:::con-imp-080",
+    "con-imp-086|con-imp-087",
+    "con-imp-086:::con-imp-087",
+    "con-imp-088|con-imp-089",
+    "con-imp-088:::con-imp-089",
+    "con-imp-090|con-imp-091",
+    "con-imp-090:::con-imp-091",
+    "con-imp-093|con-imp-094",
+    "con-imp-093:::con-imp-094",
+    "con-imp-095|con-imp-096",
+    "con-imp-095:::con-imp-096",
+    "con-1789673981691-405|con-imp-097",
+    "con-1789673981691-405:::con-imp-097",
+    "con-1789673981691-405|con-imp-098",
+    "con-1789673981691-405:::con-imp-098",
+    "con-imp-097|con-imp-098",
+    "con-imp-097:::con-imp-098",
+    "con-imp-099|con-imp-100",
+    "con-imp-099:::con-imp-100",
+    "con-1789674192313-904|con-imp-100",
+    "con-1789674192313-904:::con-imp-100",
+    "con-1789674192313-904|con-imp-101",
+    "con-1789674192313-904:::con-imp-101",
+    "con-imp-102|con-imp-103",
+    "con-imp-102:::con-imp-103",
+    "con-imp-104|con-imp-105",
+    "con-imp-104:::con-imp-105",
+    "con-imp-106|con-imp-107",
+    "con-imp-106:::con-imp-107",
+    "con-1789675675222-909|con-imp-109",
+    "con-1789675675222-909:::con-imp-109",
+    "con-imp-120|con-imp-131",
+    "con-imp-120:::con-imp-131",
+    "con-imp-126|con-imp-132",
+    "con-imp-126:::con-imp-132",
+    "con-imp-126|con-imp-133",
+    "con-imp-126:::con-imp-133",
+    "con-imp-126|con-imp-134",
+    "con-imp-126:::con-imp-134",
+    "con-imp-126|con-imp-135",
+    "con-imp-126:::con-imp-135",
+    "con-imp-132|con-imp-133",
+    "con-imp-132:::con-imp-133",
+    "con-imp-132|con-imp-134",
+    "con-imp-132:::con-imp-134",
+    "con-imp-132|con-imp-135",
+    "con-imp-132:::con-imp-135",
+    "con-imp-133|con-imp-134",
+    "con-imp-133:::con-imp-134",
+    "con-imp-133|con-imp-135",
+    "con-imp-133:::con-imp-135",
+    "con-imp-134|con-imp-135",
+    "con-imp-134:::con-imp-135",
+    "con-imp-127|con-imp-128",
+    "con-imp-127:::con-imp-128",
     {
       "type": "con-imp-100",
       "key": "con-1789674192313-904:::undefined",
