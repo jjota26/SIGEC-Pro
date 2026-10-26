@@ -728,9 +728,13 @@
       "andar": "",
       "codigoPostal": "1000-300",
       "localidade": "Lisboa",
+      "pais": "Portugal",
       "telefone": "+351 213 927 600",
       "telemovel": "",
       "email": "gabinete.maen@maen.gov.pt",
+      "website": "",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
         {
           "id": "sep-1786102022069-737",
@@ -805,16 +809,13 @@
           "website": ""
         }
       ],
-      "createdAt": "2026-07-31T16:30:00.000Z",
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
-      "pais": "Portugal",
-      "notas": "",
-      "updatedAt": "2026-09-28T08:46:56.885Z",
+      "createdAt": "2026-07-31T16:30:00.000Z",
+      "updatedAt": "2026-10-26T13:02:49.744Z",
       "comercial": "José Centúrio",
-      "createdById": "usr-admin-001",
-      "website": ""
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-imp-037",
@@ -3600,7 +3601,9 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "subTabIndex": 0,
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-imp-061",
@@ -3615,7 +3618,9 @@
       "createdAt": "2026-07-31T16:30:00.000Z",
       "subTabIndex": 2,
       "userId": "usr-admin-001",
-      "comercialAtribuidoId": "usr-admin-001"
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-imp-062",
@@ -6096,7 +6101,9 @@
       "clienteId": "cli-imp-033",
       "data": "2026-07-14T10:00",
       "descricao": "Reunião com os adjuntos do secretário de Estado do ambiente. Falámos das possíveis sinergias com a CCDR-N e que deveria falar com a Dr. Gabriela Leite",
-      "createdAt": "2026-08-07T11:46:33.880Z"
+      "createdAt": "2026-08-07T11:46:33.880Z",
+      "userId": "usr-admin-001",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "int-1786604777168-157",
@@ -7483,17 +7490,17 @@
       "nome": "José Centúrio",
       "email": "jmcenturio@alegria-activity.com",
       "cargo": "Administrador do Sistema",
+      "idioma": "Português",
       "pin": "J*cen*1971",
       "role": "admin",
-      "createdAt": "2026-08-10T09:45:00.000Z",
       "chefia": true,
       "active": true,
+      "createdAt": "2026-08-10T09:45:00.000Z",
       "theme": "default_blue",
       "themeIntensity": 100,
       "customThemeColor": "#0284c7",
       "primeiroNome": "José",
       "apelido": "Centúrio",
-      "idioma": "Português",
       "updatedAt": "2026-09-24T18:52:00.386Z"
     },
     {
@@ -7529,54 +7536,18 @@
   ],
   "userLogs": [
     {
-      "id": "log-1791999295067-70698",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Encerramento",
-      "tipoAcao": "Encerramento",
-      "descricao": "Sessão encerrada com gravação segura de todos os dados do perfil de José Centúrio.",
-      "detalhes": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "extra": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "timestamp": "2026-10-14T17:34:55.067Z"
-    },
-    {
-      "id": "log-1791044609203-8440",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Gravação Manual",
-      "tipoAcao": "Gravação Manual",
-      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
-      "detalhes": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "extra": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "timestamp": "2026-10-03T16:23:29.203Z"
-    },
-    {
-      "id": "log-1791042075845-40188",
+      "id": "log-1793019769745-41402",
       "usuarioId": "usr-admin-001",
       "usuarioNome": "José Centúrio",
       "usuarioEmail": "jmcenturio@alegria-activity.com",
       "acao": "Edição de Cliente",
       "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Ministério da Economia e Coesão Territorial\" (NIF: 500001071) atualizada.",
+      "descricao": "Ficha do cliente \"Ministério do Ambiente e Energia\" (NIF: 500000578) atualizada.",
       "detalhes": {
         "acao": "Edição",
         "ficha": "Cliente",
-        "nome": "Ministério da Economia e Coesão Territorial",
-        "contribuinte": "500001071",
+        "nome": "Ministério do Ambiente e Energia",
+        "contribuinte": "500000578",
         "tipoCliente": "Estatal",
         "comercialAtribuido": "José Centúrio",
         "camposAlterados": [
@@ -7590,8 +7561,8 @@
       "extra": {
         "acao": "Edição",
         "ficha": "Cliente",
-        "nome": "Ministério da Economia e Coesão Territorial",
-        "contribuinte": "500001071",
+        "nome": "Ministério do Ambiente e Energia",
+        "contribuinte": "500000578",
         "tipoCliente": "Estatal",
         "comercialAtribuido": "José Centúrio",
         "camposAlterados": [
@@ -7602,189 +7573,7 @@
           }
         ]
       },
-      "timestamp": "2026-10-03T15:41:15.845Z"
-    },
-    {
-      "id": "log-1791042060028-57726",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Edição de Cliente",
-      "tipoAcao": "Edição de Cliente",
-      "descricao": "Ficha do cliente \"Banco Caboverdiano de Negócios - BCN\" (NIF: 500001462) atualizada.",
-      "detalhes": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Banco Caboverdiano de Negócios - BCN",
-        "contribuinte": "500001462",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "extra": {
-        "acao": "Edição",
-        "ficha": "Cliente",
-        "nome": "Banco Caboverdiano de Negócios - BCN",
-        "contribuinte": "500001462",
-        "tipoCliente": "Privado",
-        "comercialAtribuido": "José Centúrio",
-        "camposAlterados": [
-          {
-            "campo": "Ficheiro guardado",
-            "anterior": "",
-            "novo": "Sem alterações detetadas nos campos principais"
-          }
-        ]
-      },
-      "timestamp": "2026-10-03T15:41:00.028Z"
-    },
-    {
-      "id": "log-1791042018437-81325",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Gravação Manual",
-      "tipoAcao": "Gravação Manual",
-      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
-      "detalhes": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "extra": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "timestamp": "2026-10-03T15:40:18.437Z"
-    },
-    {
-      "id": "log-1791042017233-9392",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Gravação Manual",
-      "tipoAcao": "Gravação Manual",
-      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
-      "detalhes": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "extra": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "timestamp": "2026-10-03T15:40:17.233Z"
-    },
-    {
-      "id": "log-1790533397768-74124",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Encerramento",
-      "tipoAcao": "Encerramento",
-      "descricao": "Sessão encerrada com gravação segura de todos os dados do perfil de José Centúrio.",
-      "detalhes": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "extra": {
-        "utilizador": "José Centúrio",
-        "userId": "usr-admin-001"
-      },
-      "timestamp": "2026-09-27T18:23:17.768Z"
-    },
-    {
-      "id": "log-1790531582350-11659",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Início de Sessão",
-      "tipoAcao": "Início de Sessão",
-      "descricao": "Acesso autorizado efetuado por José Centúrio (jmcenturio@alegria-activity.com).",
-      "detalhes": {
-        "utilizador": "José Centúrio",
-        "email": "jmcenturio@alegria-activity.com",
-        "cargo": "Administrador do Sistema",
-        "dispositivo": "Computador"
-      },
-      "extra": {
-        "utilizador": "José Centúrio",
-        "email": "jmcenturio@alegria-activity.com",
-        "cargo": "Administrador do Sistema",
-        "dispositivo": "Computador"
-      },
-      "timestamp": "2026-09-27T17:53:02.350Z"
-    },
-    {
-      "id": "log-1790531033043-41018",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Início de Sessão",
-      "tipoAcao": "Início de Sessão",
-      "descricao": "Acesso autorizado efetuado por José Centúrio (jmcenturio@alegria-activity.com).",
-      "detalhes": {
-        "utilizador": "José Centúrio",
-        "email": "jmcenturio@alegria-activity.com",
-        "cargo": "Administrador do Sistema",
-        "dispositivo": "Computador"
-      },
-      "extra": {
-        "utilizador": "José Centúrio",
-        "email": "jmcenturio@alegria-activity.com",
-        "cargo": "Administrador do Sistema",
-        "dispositivo": "Computador"
-      },
-      "timestamp": "2026-09-27T17:43:53.043Z"
-    },
-    {
-      "id": "log-1790530108507-61024",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Início de Sessão",
-      "tipoAcao": "Início de Sessão",
-      "descricao": "Acesso autorizado efetuado por José Centúrio (jmcenturio@alegria-activity.com).",
-      "detalhes": {
-        "utilizador": "José Centúrio",
-        "email": "jmcenturio@alegria-activity.com",
-        "cargo": "Administrador do Sistema",
-        "dispositivo": "Computador"
-      },
-      "extra": {
-        "utilizador": "José Centúrio",
-        "email": "jmcenturio@alegria-activity.com",
-        "cargo": "Administrador do Sistema",
-        "dispositivo": "Computador"
-      },
-      "timestamp": "2026-09-27T17:28:28.507Z"
-    },
-    {
-      "id": "log-1790528813224-92343",
-      "usuarioId": "usr-admin-001",
-      "usuarioNome": "José Centúrio",
-      "usuarioEmail": "jmcenturio@alegria-activity.com",
-      "acao": "Início de Sessão",
-      "tipoAcao": "Início de Sessão",
-      "descricao": "Acesso autorizado efetuado por José Centúrio (jmcenturio@alegria-activity.com).",
-      "detalhes": {
-        "utilizador": "José Centúrio",
-        "email": "jmcenturio@alegria-activity.com",
-        "cargo": "Administrador do Sistema",
-        "dispositivo": "Computador"
-      },
-      "extra": {
-        "utilizador": "José Centúrio",
-        "email": "jmcenturio@alegria-activity.com",
-        "cargo": "Administrador do Sistema",
-        "dispositivo": "Computador"
-      },
-      "timestamp": "2026-09-27T17:06:53.224Z"
+      "timestamp": "2026-10-26T13:02:49.745Z"
     }
   ],
   "orcamentos": [],
@@ -8141,94 +7930,6 @@
       "decidedAt": "2026-09-27T18:12:14.072Z",
       "decidedBy": "Utilizador"
     },
-    "cli-imp-020|cli-imp-076",
-    "cli-imp-020:::cli-imp-076",
-    "cli-1789584673991-289|cli-imp-030",
-    "cli-1789584673991-289:::cli-imp-030",
-    "cli-imp-041|cli-imp-042",
-    "cli-imp-041:::cli-imp-042",
-    "cli-imp-040|cli-imp-043",
-    "cli-imp-040:::cli-imp-043",
-    "cli-1790076087901-132|cli-imp-040",
-    "cli-1790076087901-132:::cli-imp-040",
-    "cli-1790076087901-132|cli-imp-043",
-    "cli-1790076087901-132:::cli-imp-043",
-    "cli-imp-050|cli-imp-051",
-    "cli-imp-050:::cli-imp-051",
-    "cli-imp-060|cli-imp-061",
-    "cli-imp-060:::cli-imp-061",
-    "cli-1790071879586-273|cli-1790196857228-556",
-    "cli-1790071879586-273:::cli-1790196857228-556",
-    "con-imp-004|con-imp-130",
-    "con-imp-004:::con-imp-130",
-    "con-imp-033|con-imp-035",
-    "con-imp-033:::con-imp-035",
-    "con-imp-041|con-imp-115",
-    "con-imp-041:::con-imp-115",
-    "con-imp-042|con-imp-112",
-    "con-imp-042:::con-imp-112",
-    "con-imp-050|con-imp-113",
-    "con-imp-050:::con-imp-113",
-    "con-imp-074|con-imp-075",
-    "con-imp-074:::con-imp-075",
-    "con-imp-077|con-imp-078",
-    "con-imp-077:::con-imp-078",
-    "con-imp-079|con-imp-080",
-    "con-imp-079:::con-imp-080",
-    "con-imp-086|con-imp-087",
-    "con-imp-086:::con-imp-087",
-    "con-imp-088|con-imp-089",
-    "con-imp-088:::con-imp-089",
-    "con-imp-090|con-imp-091",
-    "con-imp-090:::con-imp-091",
-    "con-imp-093|con-imp-094",
-    "con-imp-093:::con-imp-094",
-    "con-imp-095|con-imp-096",
-    "con-imp-095:::con-imp-096",
-    "con-1789673981691-405|con-imp-097",
-    "con-1789673981691-405:::con-imp-097",
-    "con-1789673981691-405|con-imp-098",
-    "con-1789673981691-405:::con-imp-098",
-    "con-imp-097|con-imp-098",
-    "con-imp-097:::con-imp-098",
-    "con-imp-099|con-imp-100",
-    "con-imp-099:::con-imp-100",
-    "con-1789674192313-904|con-imp-100",
-    "con-1789674192313-904:::con-imp-100",
-    "con-1789674192313-904|con-imp-101",
-    "con-1789674192313-904:::con-imp-101",
-    "con-imp-102|con-imp-103",
-    "con-imp-102:::con-imp-103",
-    "con-imp-104|con-imp-105",
-    "con-imp-104:::con-imp-105",
-    "con-imp-106|con-imp-107",
-    "con-imp-106:::con-imp-107",
-    "con-1789675675222-909|con-imp-109",
-    "con-1789675675222-909:::con-imp-109",
-    "con-imp-120|con-imp-131",
-    "con-imp-120:::con-imp-131",
-    "con-imp-126|con-imp-132",
-    "con-imp-126:::con-imp-132",
-    "con-imp-126|con-imp-133",
-    "con-imp-126:::con-imp-133",
-    "con-imp-126|con-imp-134",
-    "con-imp-126:::con-imp-134",
-    "con-imp-126|con-imp-135",
-    "con-imp-126:::con-imp-135",
-    "con-imp-132|con-imp-133",
-    "con-imp-132:::con-imp-133",
-    "con-imp-132|con-imp-134",
-    "con-imp-132:::con-imp-134",
-    "con-imp-132|con-imp-135",
-    "con-imp-132:::con-imp-135",
-    "con-imp-133|con-imp-134",
-    "con-imp-133:::con-imp-134",
-    "con-imp-133|con-imp-135",
-    "con-imp-133:::con-imp-135",
-    "con-imp-134|con-imp-135",
-    "con-imp-134:::con-imp-135",
-    "con-imp-127|con-imp-128",
-    "con-imp-127:::con-imp-128",
     {
       "type": "con-imp-100",
       "key": "con-1789674192313-904:::undefined",
