@@ -5703,7 +5703,7 @@
           "tipoSeparador": "Almada",
           "nomePersonalizado": "Almada",
           "nome": "Almada",
-          "contribuinte": "",
+          "contribuinte": "000000000",
           "direcao1": "Largo Luís de Camões",
           "direcao2": "",
           "numero": "351",
@@ -5722,35 +5722,35 @@
           "nomePersonalizado": "Amadora",
           "nome": "Amadora",
           "contribuinte": "",
-          "direcao1": "Rua da Cruz de Santa Apolónia",
+          "direcao1": "Avenida do Movimento das Forças Armadas",
           "direcao2": "",
-          "numero": "23 a 25-A",
+          "numero": "1",
           "andar": "",
-          "codigoPostal": "1100-187",
-          "localidade": "Lisboa",
+          "codigoPostal": "2700-595",
+          "localidade": "Amadora",
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
           "email": "amlcorreio@aml.pt",
-          "website": ""
+          "website": "https://www.cm-amadora.pt/"
         },
         {
           "id": "sep-1793176581643-774",
           "tipoSeparador": "Barreiro",
           "nomePersonalizado": "Barreiro",
           "nome": "Barreiro",
-          "contribuinte": "",
-          "direcao1": "Rua da Cruz de Santa Apolónia",
+          "contribuinte": "000000000",
+          "direcao1": "Rua Miguel Bombarda",
           "direcao2": "",
-          "numero": "23 a 25-A",
+          "numero": "212",
           "andar": "",
-          "codigoPostal": "1100-187",
-          "localidade": "Lisboa",
+          "codigoPostal": "2830-355",
+          "localidade": "Barreiro",
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
           "email": "amlcorreio@aml.pt",
-          "website": ""
+          "website": "https://www.cm-barreiro.pt/"
         },
         {
           "id": "sep-1793176581643-489",
@@ -5758,41 +5758,41 @@
           "nomePersonalizado": "Cascais",
           "nome": "Cascais",
           "contribuinte": "",
-          "direcao1": "Rua da Cruz de Santa Apolónia",
+          "direcao1": "Praça 5 de Outubro",
           "direcao2": "",
           "numero": "23 a 25-A",
           "andar": "",
-          "codigoPostal": "1100-187",
-          "localidade": "Lisboa",
+          "codigoPostal": "2754-501",
+          "localidade": "Cascais",
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
           "email": "amlcorreio@aml.pt",
-          "website": ""
+          "website": "https://www.cascais.pt"
         },
         {
           "id": "sep-1793176581643-578",
           "tipoSeparador": "Lisboa",
           "nomePersonalizado": "Lisboa",
-          "nome": "Lisboa",
-          "contribuinte": "",
-          "direcao1": "Rua da Cruz de Santa Apolónia",
+          "nome": "Câmara Municipal de Lisboa",
+          "contribuinte": "000000000",
+          "direcao1": "Praça do Município",
           "direcao2": "",
           "numero": "23 a 25-A",
           "andar": "",
-          "codigoPostal": "1100-187",
+          "codigoPostal": "1100-038",
           "localidade": "Lisboa",
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
           "email": "amlcorreio@aml.pt",
-          "website": ""
+          "website": "https://www.lisboa.pt"
         },
         {
           "id": "sep-1793176581643-314",
           "tipoSeparador": "Loures",
           "nomePersonalizado": "Loures",
-          "nome": "Loures",
+          "nome": "Câmara Municipal de Loures",
           "contribuinte": "",
           "direcao1": "Rua da Cruz de Santa Apolónia",
           "direcao2": "",
@@ -6009,7 +6009,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.643Z",
-      "updatedAt": "2026-10-28T08:58:22.038Z",
+      "updatedAt": "2026-10-28T09:04:01.120Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -12401,6 +12401,86 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793178241120-96024",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Área Metropolitana de Lisboa\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Área Metropolitana de Lisboa",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Área Metropolitana de Lisboa",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-28T09:04:01.120Z"
+    },
+    {
+      "id": "log-1793177911844-61526",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Área Metropolitana de Lisboa\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Área Metropolitana de Lisboa",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Área Metropolitana de Lisboa",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-28T08:58:31.844Z"
+    },
     {
       "id": "log-1793177902039-1375",
       "usuarioId": "usr-admin-001",
