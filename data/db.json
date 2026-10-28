@@ -6058,17 +6058,17 @@
           "nomePersonalizado": "Almeirim",
           "nome": "Almeirim",
           "contribuinte": "000000000",
-          "direcao1": "Quinta das Cegonhas",
+          "direcao1": "Rua 5 de Outubro",
           "direcao2": "",
-          "numero": "Apartado 577",
+          "numero": "243",
           "andar": "",
-          "codigoPostal": "2001-907",
-          "localidade": "Santarém",
+          "codigoPostal": "2080-052",
+          "localidade": "Almeirim",
           "pais": "Portugal",
           "telefone": "243303240",
           "telemovel": "",
           "email": "geral@cimlt.eu",
-          "website": ""
+          "website": "https://www.cm-almeirim.pt/"
         },
         {
           "id": "sep-1793176581643-114",
@@ -6255,7 +6255,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.643Z",
-      "updatedAt": "2026-10-28T09:36:53.648Z",
+      "updatedAt": "2026-10-28T09:38:00.636Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -12433,6 +12433,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793180280637-1777",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal da Lezíria do Tejo\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal da Lezíria do Tejo",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal da Lezíria do Tejo",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-28T09:38:00.637Z"
+    },
     {
       "id": "log-1793180213649-11736",
       "usuarioId": "usr-admin-001",
