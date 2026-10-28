@@ -5489,22 +5489,41 @@
       "id": "cli-1793176581643-268",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal da Beira Baixa",
-      "secretariaEstado": "",
+      "secretariaEstado": "Comunidade Intermunicipal da Beira Baixa, Castelo Branco, Idanha-a-Nova, Oleiros, Penamacor, Proença-a-Nova, Vila Velha de Ródão",
       "nome": "Comunidade Intermunicipal da Beira Baixa",
-      "contribuinte": "",
-      "direcao1": "Praça Rainha Dona Leonor  Emblemas",
-      "direcao2": "",
+      "contribuinte": "000000000",
+      "direcao1": "Praça Rainha D. Leonor",
+      "direcao2": "Edifício dos Emblemas",
       "numero": "1",
-      "andar": "Edifício dos",
+      "andar": "",
       "codigoPostal": "6000-117",
       "localidade": "Castelo Branco",
       "pais": "Portugal",
-      "telefone": "272342540",
+      "telefone": "+351 272 342 540",
       "telemovel": "",
-      "email": "geral@cimbb.pt",
-      "website": "https://www.cimbb.pt",
-      "setorAtividade": "",
+      "email": "geral@cimbeirabaixa.pt",
+      "website": "https://pt.wikipedia.org/wiki/Comunidade_Intermunicipal_da_Beira_Baixa",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
+        {
+          "id": "sep-1793177213545-9",
+          "tipoSeparador": "Comunidade Intermunicipal da Beira Baixa",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal da Beira Baixa",
+          "contribuinte": "000000000",
+          "direcao1": "Praça Rainha D. Leonor",
+          "direcao2": "Edifício dos Emblemas",
+          "numero": "1",
+          "andar": "",
+          "codigoPostal": "6000-117",
+          "localidade": "Castelo Branco",
+          "telefone": "+351 272 342 540",
+          "telemovel": "",
+          "email": "geral@cimbeirabaixa.pt",
+          "pais": "Portugal",
+          "website": "https://pt.wikipedia.org/wiki/Comunidade_Intermunicipal_da_Beira_Baixa"
+        },
         {
           "id": "sep-1793176581643-327",
           "tipoSeparador": "Castelo Branco",
@@ -5520,7 +5539,8 @@
           "pais": "Portugal",
           "telefone": "272342540",
           "telemovel": "",
-          "email": "geral@cimbb.pt"
+          "email": "geral@cimbb.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-916",
@@ -5537,7 +5557,8 @@
           "pais": "Portugal",
           "telefone": "272342540",
           "telemovel": "",
-          "email": "geral@cimbb.pt"
+          "email": "geral@cimbb.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-60",
@@ -5554,7 +5575,8 @@
           "pais": "Portugal",
           "telefone": "272342540",
           "telemovel": "",
-          "email": "geral@cimbb.pt"
+          "email": "geral@cimbb.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-23",
@@ -5571,7 +5593,8 @@
           "pais": "Portugal",
           "telefone": "272342540",
           "telemovel": "",
-          "email": "geral@cimbb.pt"
+          "email": "geral@cimbb.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-474",
@@ -5588,7 +5611,8 @@
           "pais": "Portugal",
           "telefone": "272342540",
           "telemovel": "",
-          "email": "geral@cimbb.pt"
+          "email": "geral@cimbb.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-891",
@@ -5605,14 +5629,17 @@
           "pais": "Portugal",
           "telefone": "272342540",
           "telemovel": "",
-          "email": "geral@cimbb.pt"
+          "email": "geral@cimbb.pt",
+          "website": ""
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.643Z",
-      "updatedAt": "2026-10-28T08:36:21.643Z"
+      "updatedAt": "2026-10-28T08:48:34.444Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581643-311",
@@ -12335,6 +12362,106 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793177314444-28856",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal da Beira Baixa\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal da Beira Baixa",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "NIF/Contribuinte",
+            "anterior": "(vazio)",
+            "novo": "000000000"
+          },
+          {
+            "campo": "Email",
+            "anterior": "geral@cimbb.pt",
+            "novo": "geral@cimbeirabaixa.pt"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "272342540",
+            "novo": "+351 272 342 540"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Praça Rainha Dona Leonor  Emblemas",
+            "novo": "Praça Rainha D. Leonor"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal da Beira Baixa",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "NIF/Contribuinte",
+            "anterior": "(vazio)",
+            "novo": "000000000"
+          },
+          {
+            "campo": "Email",
+            "anterior": "geral@cimbb.pt",
+            "novo": "geral@cimbeirabaixa.pt"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "272342540",
+            "novo": "+351 272 342 540"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Praça Rainha Dona Leonor  Emblemas",
+            "novo": "Praça Rainha D. Leonor"
+          }
+        ]
+      },
+      "timestamp": "2026-10-28T08:48:34.444Z"
+    },
+    {
+      "id": "log-1793176807273-41587",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Cópia de Segurança",
+      "tipoAcao": "Cópia de Segurança",
+      "descricao": "Cópia de segurança do perfil \"Backup_Perfil_Jose_Centurio_28-10-2026_09-40-03.sigecbak\" gerada (83 Clientes, 6 Projetos).",
+      "detalhes": {},
+      "extra": {},
+      "timestamp": "2026-10-28T08:40:07.273Z"
+    },
+    {
+      "id": "log-1793176782315-35410",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Gravação Manual",
+      "tipoAcao": "Gravação Manual",
+      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-10-28T08:39:42.315Z"
+    },
     {
       "id": "log-1793176591136-83199",
       "usuarioId": "usr-admin-001",
