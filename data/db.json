@@ -5502,7 +5502,7 @@
       "telefone": "+351 272 342 540",
       "telemovel": "",
       "email": "geral@cimbeirabaixa.pt",
-      "website": "https://pt.wikipedia.org/wiki/Comunidade_Intermunicipal_da_Beira_Baixa",
+      "website": "https://cimbeirabaixa.pt/",
       "notas": "",
       "proximoContacto": null,
       "separadores": [
@@ -5522,7 +5522,7 @@
           "telemovel": "",
           "email": "geral@cimbeirabaixa.pt",
           "pais": "Portugal",
-          "website": "https://pt.wikipedia.org/wiki/Comunidade_Intermunicipal_da_Beira_Baixa"
+          "website": "https://cimbeirabaixa.pt/"
         },
         {
           "id": "sep-1793176581643-327",
@@ -5637,30 +5637,49 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.643Z",
-      "updatedAt": "2026-10-28T08:48:34.444Z",
+      "updatedAt": "2026-10-28T08:49:21.812Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581643-311",
       "tipoCliente": "Estatal",
-      "ministerio": "Área Metropolitana de Lisboa",
-      "secretariaEstado": "",
-      "nome": "Área Metropolitana de Lisboa",
+      "ministerio": "Comunidade intermunicipal da Área Metropolitana de Lisboa",
+      "secretariaEstado": "Área Metropolitana de Lisboa, Alcochete, Almada, Amadora, Barreiro, Cascais, Lisboa, Loures, Mafra, Moita, Montijo, Odivelas, Oeiras, Palmela, Seixal, Sesimbra, Setúbal, Sintra, Vila Franca de Xira",
+      "nome": "Comunidade intermunicipal da Área Metropolitana de Lisboa",
       "contribuinte": "",
-      "direcao1": "Rua da Cruz de Santa Apolónia",
+      "direcao1": "",
       "direcao2": "",
-      "numero": "23 a 25-A",
+      "numero": "",
       "andar": "",
-      "codigoPostal": "1100-187",
-      "localidade": "Lisboa",
+      "codigoPostal": "",
+      "localidade": "",
       "pais": "Portugal",
-      "telefone": "217987400",
+      "telefone": "",
       "telemovel": "",
-      "email": "amlcorreio@aml.pt",
-      "website": "https://www.aml.pt",
-      "setorAtividade": "",
+      "email": "",
+      "website": "",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
+        {
+          "id": "sep-1793177406737-451",
+          "tipoSeparador": "Área Metropolitana de Lisboa",
+          "nomePersonalizado": "",
+          "nome": "Comunidade intermunicipal da Área Metropolitana de Lisboa",
+          "contribuinte": "",
+          "direcao1": "",
+          "direcao2": "",
+          "numero": "",
+          "andar": "",
+          "codigoPostal": "",
+          "localidade": "",
+          "telefone": "",
+          "telemovel": "",
+          "email": "",
+          "pais": "Portugal",
+          "website": ""
+        },
         {
           "id": "sep-1793176581643-831",
           "tipoSeparador": "Alcochete",
@@ -5676,7 +5695,8 @@
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
-          "email": "amlcorreio@aml.pt"
+          "email": "amlcorreio@aml.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-215",
@@ -5693,7 +5713,8 @@
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
-          "email": "amlcorreio@aml.pt"
+          "email": "amlcorreio@aml.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-117",
@@ -5710,7 +5731,8 @@
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
-          "email": "amlcorreio@aml.pt"
+          "email": "amlcorreio@aml.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-774",
@@ -5727,7 +5749,8 @@
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
-          "email": "amlcorreio@aml.pt"
+          "email": "amlcorreio@aml.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-489",
@@ -5744,7 +5767,8 @@
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
-          "email": "amlcorreio@aml.pt"
+          "email": "amlcorreio@aml.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-578",
@@ -5761,7 +5785,8 @@
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
-          "email": "amlcorreio@aml.pt"
+          "email": "amlcorreio@aml.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-314",
@@ -5778,7 +5803,8 @@
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
-          "email": "amlcorreio@aml.pt"
+          "email": "amlcorreio@aml.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-890",
@@ -5795,7 +5821,8 @@
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
-          "email": "amlcorreio@aml.pt"
+          "email": "amlcorreio@aml.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-125",
@@ -5812,7 +5839,8 @@
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
-          "email": "amlcorreio@aml.pt"
+          "email": "amlcorreio@aml.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-684",
@@ -5829,7 +5857,8 @@
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
-          "email": "amlcorreio@aml.pt"
+          "email": "amlcorreio@aml.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-797",
@@ -5846,7 +5875,8 @@
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
-          "email": "amlcorreio@aml.pt"
+          "email": "amlcorreio@aml.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-522",
@@ -5863,7 +5893,8 @@
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
-          "email": "amlcorreio@aml.pt"
+          "email": "amlcorreio@aml.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-326",
@@ -5880,7 +5911,8 @@
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
-          "email": "amlcorreio@aml.pt"
+          "email": "amlcorreio@aml.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-68",
@@ -5897,7 +5929,8 @@
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
-          "email": "amlcorreio@aml.pt"
+          "email": "amlcorreio@aml.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-445",
@@ -5914,7 +5947,8 @@
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
-          "email": "amlcorreio@aml.pt"
+          "email": "amlcorreio@aml.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-183",
@@ -5931,7 +5965,8 @@
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
-          "email": "amlcorreio@aml.pt"
+          "email": "amlcorreio@aml.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-776",
@@ -5948,7 +5983,8 @@
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
-          "email": "amlcorreio@aml.pt"
+          "email": "amlcorreio@aml.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-890",
@@ -5965,14 +6001,17 @@
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
-          "email": "amlcorreio@aml.pt"
+          "email": "amlcorreio@aml.pt",
+          "website": ""
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.643Z",
-      "updatedAt": "2026-10-28T08:36:21.643Z"
+      "updatedAt": "2026-10-28T08:50:50.155Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581643-174",
@@ -12362,6 +12401,146 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793177450155-73663",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade intermunicipal da Área Metropolitana de Lisboa\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade intermunicipal da Área Metropolitana de Lisboa",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Área Metropolitana de Lisboa",
+            "novo": "Comunidade intermunicipal da Área Metropolitana de Lisboa"
+          },
+          {
+            "campo": "Email",
+            "anterior": "amlcorreio@aml.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "217987400",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Rua da Cruz de Santa Apolónia",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "1100-187",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Lisboa",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Ministério",
+            "anterior": "Área Metropolitana de Lisboa",
+            "novo": "Comunidade intermunicipal da Área Metropolitana de Lisboa"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade intermunicipal da Área Metropolitana de Lisboa",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Área Metropolitana de Lisboa",
+            "novo": "Comunidade intermunicipal da Área Metropolitana de Lisboa"
+          },
+          {
+            "campo": "Email",
+            "anterior": "amlcorreio@aml.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "217987400",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Rua da Cruz de Santa Apolónia",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "1100-187",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Lisboa",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Ministério",
+            "anterior": "Área Metropolitana de Lisboa",
+            "novo": "Comunidade intermunicipal da Área Metropolitana de Lisboa"
+          }
+        ]
+      },
+      "timestamp": "2026-10-28T08:50:50.155Z"
+    },
+    {
+      "id": "log-1793177361813-87359",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal da Beira Baixa\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal da Beira Baixa",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal da Beira Baixa",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-28T08:49:21.813Z"
+    },
     {
       "id": "log-1793177314444-28856",
       "usuarioId": "usr-admin-001",
