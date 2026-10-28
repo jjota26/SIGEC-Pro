@@ -5646,19 +5646,19 @@
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade intermunicipal da Área Metropolitana de Lisboa",
       "secretariaEstado": "Área Metropolitana de Lisboa, Alcochete, Almada, Amadora, Barreiro, Cascais, Lisboa, Loures, Mafra, Moita, Montijo, Odivelas, Oeiras, Palmela, Seixal, Sesimbra, Setúbal, Sintra, Vila Franca de Xira",
-      "nome": "Comunidade intermunicipal da Área Metropolitana de Lisboa",
+      "nome": "Área Metropolitana de Lisboa",
       "contribuinte": "000000000",
-      "direcao1": "",
-      "direcao2": "",
-      "numero": "",
+      "direcao1": "Rua da Cruz de Santa Apolónia",
+      "direcao2": "Edifício Mascarenhas)",
+      "numero": "23",
       "andar": "",
-      "codigoPostal": "",
-      "localidade": "",
+      "codigoPostal": "1100-187",
+      "localidade": "Lisboa",
       "pais": "Portugal",
-      "telefone": "",
+      "telefone": "218 428 570",
       "telemovel": "",
-      "email": "",
-      "website": "",
+      "email": "amlcorreio@aml.pt",
+      "website": "https://www.aml.pt",
       "notas": "",
       "proximoContacto": null,
       "separadores": [
@@ -5666,19 +5666,19 @@
           "id": "sep-1793177406737-451",
           "tipoSeparador": "Área Metropolitana de Lisboa",
           "nomePersonalizado": "",
-          "nome": "Comunidade intermunicipal da Área Metropolitana de Lisboa",
+          "nome": "Área Metropolitana de Lisboa",
           "contribuinte": "000000000",
-          "direcao1": "",
-          "direcao2": "",
-          "numero": "",
+          "direcao1": "Rua da Cruz de Santa Apolónia",
+          "direcao2": "Edifício Mascarenhas)",
+          "numero": "23",
           "andar": "",
-          "codigoPostal": "",
-          "localidade": "",
-          "telefone": "",
+          "codigoPostal": "1100-187",
+          "localidade": "Lisboa",
+          "telefone": "218 428 570",
           "telemovel": "",
-          "email": "",
+          "email": "amlcorreio@aml.pt",
           "pais": "Portugal",
-          "website": ""
+          "website": "https://www.aml.pt"
         },
         {
           "id": "sep-1793176581643-831",
@@ -5704,17 +5704,17 @@
           "nomePersonalizado": "Almada",
           "nome": "Almada",
           "contribuinte": "",
-          "direcao1": "Rua da Cruz de Santa Apolónia",
+          "direcao1": "Largo Luís de Camões",
           "direcao2": "",
-          "numero": "23 a 25-A",
+          "numero": "351",
           "andar": "",
-          "codigoPostal": "1100-187",
-          "localidade": "Lisboa",
+          "codigoPostal": "2800-158",
+          "localidade": "Almada",
           "pais": "Portugal",
           "telefone": "217987400",
           "telemovel": "",
           "email": "amlcorreio@aml.pt",
-          "website": ""
+          "website": "https://www.cm-almada.pt/pacos-do-concelho"
         },
         {
           "id": "sep-1793176581643-117",
@@ -6009,7 +6009,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.643Z",
-      "updatedAt": "2026-10-28T08:55:53.659Z",
+      "updatedAt": "2026-10-28T08:58:22.038Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -12401,6 +12401,96 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793177902039-1375",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Área Metropolitana de Lisboa\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Área Metropolitana de Lisboa",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Comunidade intermunicipal da Área Metropolitana de Lisboa",
+            "novo": "Área Metropolitana de Lisboa"
+          },
+          {
+            "campo": "Email",
+            "anterior": "(vazio)",
+            "novo": "amlcorreio@aml.pt"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "(vazio)",
+            "novo": "218 428 570"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "(vazio)",
+            "novo": "Rua da Cruz de Santa Apolónia"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "(vazio)",
+            "novo": "1100-187"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "(vazio)",
+            "novo": "Lisboa"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Área Metropolitana de Lisboa",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Comunidade intermunicipal da Área Metropolitana de Lisboa",
+            "novo": "Área Metropolitana de Lisboa"
+          },
+          {
+            "campo": "Email",
+            "anterior": "(vazio)",
+            "novo": "amlcorreio@aml.pt"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "(vazio)",
+            "novo": "218 428 570"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "(vazio)",
+            "novo": "Rua da Cruz de Santa Apolónia"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "(vazio)",
+            "novo": "1100-187"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "(vazio)",
+            "novo": "Lisboa"
+          }
+        ]
+      },
+      "timestamp": "2026-10-28T08:58:22.039Z"
+    },
     {
       "id": "log-1793177753660-33722",
       "usuarioId": "usr-admin-001",
