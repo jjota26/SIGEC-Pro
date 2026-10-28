@@ -6017,28 +6017,47 @@
       "id": "cli-1793176581643-174",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal da Lezíria do Tejo",
-      "secretariaEstado": "",
+      "secretariaEstado": "Comunidade Intermunicipal da Lezíria do Tejo, Almeirim, Alpiarça, Azambuja, Benavente, Cartaxo, Chamusca, Coruche, Golegã, Rio Maior, Salvaterra de Magos, Santarém",
       "nome": "Comunidade Intermunicipal da Lezíria do Tejo",
-      "contribuinte": "",
-      "direcao1": "Quinta das Cegonhas",
+      "contribuinte": "000000000",
+      "direcao1": "",
       "direcao2": "",
-      "numero": "Apartado 577",
+      "numero": "",
       "andar": "",
-      "codigoPostal": "2001-907",
-      "localidade": "Santarém",
+      "codigoPostal": "",
+      "localidade": "",
       "pais": "Portugal",
-      "telefone": "243303240",
+      "telefone": "",
       "telemovel": "",
-      "email": "geral@cimlt.eu",
-      "website": "https://www.cimlt.eu",
-      "setorAtividade": "",
+      "email": "",
+      "website": "",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
+        {
+          "id": "sep-1793179997876-116",
+          "tipoSeparador": "Comunidade Intermunicipal da Lezíria do Tejo",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal da Lezíria do Tejo",
+          "contribuinte": "000000000",
+          "direcao1": "",
+          "direcao2": "",
+          "numero": "",
+          "andar": "",
+          "codigoPostal": "",
+          "localidade": "",
+          "telefone": "",
+          "telemovel": "",
+          "email": "",
+          "pais": "Portugal",
+          "website": ""
+        },
         {
           "id": "sep-1793176581643-376",
           "tipoSeparador": "Almeirim",
           "nomePersonalizado": "Almeirim",
           "nome": "Almeirim",
-          "contribuinte": "",
+          "contribuinte": "000000000",
           "direcao1": "Quinta das Cegonhas",
           "direcao2": "",
           "numero": "Apartado 577",
@@ -6048,14 +6067,15 @@
           "pais": "Portugal",
           "telefone": "243303240",
           "telemovel": "",
-          "email": "geral@cimlt.eu"
+          "email": "geral@cimlt.eu",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-114",
           "tipoSeparador": "Alpiarça",
           "nomePersonalizado": "Alpiarça",
           "nome": "Alpiarça",
-          "contribuinte": "",
+          "contribuinte": "000000000",
           "direcao1": "Quinta das Cegonhas",
           "direcao2": "",
           "numero": "Apartado 577",
@@ -6065,14 +6085,15 @@
           "pais": "Portugal",
           "telefone": "243303240",
           "telemovel": "",
-          "email": "geral@cimlt.eu"
+          "email": "geral@cimlt.eu",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-826",
           "tipoSeparador": "Azambuja",
           "nomePersonalizado": "Azambuja",
           "nome": "Azambuja",
-          "contribuinte": "",
+          "contribuinte": "000000000",
           "direcao1": "Quinta das Cegonhas",
           "direcao2": "",
           "numero": "Apartado 577",
@@ -6082,14 +6103,15 @@
           "pais": "Portugal",
           "telefone": "243303240",
           "telemovel": "",
-          "email": "geral@cimlt.eu"
+          "email": "geral@cimlt.eu",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-393",
           "tipoSeparador": "Benavente",
           "nomePersonalizado": "Benavente",
           "nome": "Benavente",
-          "contribuinte": "",
+          "contribuinte": "000000000",
           "direcao1": "Quinta das Cegonhas",
           "direcao2": "",
           "numero": "Apartado 577",
@@ -6099,14 +6121,15 @@
           "pais": "Portugal",
           "telefone": "243303240",
           "telemovel": "",
-          "email": "geral@cimlt.eu"
+          "email": "geral@cimlt.eu",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-951",
           "tipoSeparador": "Cartaxo",
           "nomePersonalizado": "Cartaxo",
           "nome": "Cartaxo",
-          "contribuinte": "",
+          "contribuinte": "000000000",
           "direcao1": "Quinta das Cegonhas",
           "direcao2": "",
           "numero": "Apartado 577",
@@ -6116,14 +6139,15 @@
           "pais": "Portugal",
           "telefone": "243303240",
           "telemovel": "",
-          "email": "geral@cimlt.eu"
+          "email": "geral@cimlt.eu",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-5",
           "tipoSeparador": "Chamusca",
           "nomePersonalizado": "Chamusca",
           "nome": "Chamusca",
-          "contribuinte": "",
+          "contribuinte": "000000000",
           "direcao1": "Quinta das Cegonhas",
           "direcao2": "",
           "numero": "Apartado 577",
@@ -6133,14 +6157,15 @@
           "pais": "Portugal",
           "telefone": "243303240",
           "telemovel": "",
-          "email": "geral@cimlt.eu"
+          "email": "geral@cimlt.eu",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-184",
           "tipoSeparador": "Coruche",
           "nomePersonalizado": "Coruche",
           "nome": "Coruche",
-          "contribuinte": "",
+          "contribuinte": "000000000",
           "direcao1": "Quinta das Cegonhas",
           "direcao2": "",
           "numero": "Apartado 577",
@@ -6150,14 +6175,15 @@
           "pais": "Portugal",
           "telefone": "243303240",
           "telemovel": "",
-          "email": "geral@cimlt.eu"
+          "email": "geral@cimlt.eu",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-487",
           "tipoSeparador": "Golegã",
           "nomePersonalizado": "Golegã",
           "nome": "Golegã",
-          "contribuinte": "",
+          "contribuinte": "000000000",
           "direcao1": "Quinta das Cegonhas",
           "direcao2": "",
           "numero": "Apartado 577",
@@ -6167,14 +6193,15 @@
           "pais": "Portugal",
           "telefone": "243303240",
           "telemovel": "",
-          "email": "geral@cimlt.eu"
+          "email": "geral@cimlt.eu",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-26",
           "tipoSeparador": "Rio Maior",
           "nomePersonalizado": "Rio Maior",
           "nome": "Rio Maior",
-          "contribuinte": "",
+          "contribuinte": "000000000",
           "direcao1": "Quinta das Cegonhas",
           "direcao2": "",
           "numero": "Apartado 577",
@@ -6184,14 +6211,15 @@
           "pais": "Portugal",
           "telefone": "243303240",
           "telemovel": "",
-          "email": "geral@cimlt.eu"
+          "email": "geral@cimlt.eu",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-321",
           "tipoSeparador": "Salvaterra de Magos",
           "nomePersonalizado": "Salvaterra de Magos",
           "nome": "Salvaterra de Magos",
-          "contribuinte": "",
+          "contribuinte": "000000000",
           "direcao1": "Quinta das Cegonhas",
           "direcao2": "",
           "numero": "Apartado 577",
@@ -6201,14 +6229,15 @@
           "pais": "Portugal",
           "telefone": "243303240",
           "telemovel": "",
-          "email": "geral@cimlt.eu"
+          "email": "geral@cimlt.eu",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-216",
           "tipoSeparador": "Santarém",
           "nomePersonalizado": "Santarém",
           "nome": "Santarém",
-          "contribuinte": "",
+          "contribuinte": "000000000",
           "direcao1": "Quinta das Cegonhas",
           "direcao2": "",
           "numero": "Apartado 577",
@@ -6218,14 +6247,17 @@
           "pais": "Portugal",
           "telefone": "243303240",
           "telemovel": "",
-          "email": "geral@cimlt.eu"
+          "email": "geral@cimlt.eu",
+          "website": ""
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.643Z",
-      "updatedAt": "2026-10-28T08:36:21.643Z"
+      "updatedAt": "2026-10-28T09:33:42.694Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581643-229",
@@ -12401,6 +12433,146 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793180022694-89097",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal da Lezíria do Tejo\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal da Lezíria do Tejo",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Almeirim",
+            "novo": "Comunidade Intermunicipal da Lezíria do Tejo"
+          },
+          {
+            "campo": "Email",
+            "anterior": "geral@cimlt.eu",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "243303240",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Quinta das Cegonhas",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "2001-907",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Santarém",
+            "novo": "(vazio)"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal da Lezíria do Tejo",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Almeirim",
+            "novo": "Comunidade Intermunicipal da Lezíria do Tejo"
+          },
+          {
+            "campo": "Email",
+            "anterior": "geral@cimlt.eu",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "243303240",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Quinta das Cegonhas",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "2001-907",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Santarém",
+            "novo": "(vazio)"
+          }
+        ]
+      },
+      "timestamp": "2026-10-28T09:33:42.694Z"
+    },
+    {
+      "id": "log-1793179985542-16842",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Almeirim\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Almeirim",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Comunidade Intermunicipal da Lezíria do Tejo",
+            "novo": "Almeirim"
+          },
+          {
+            "campo": "NIF/Contribuinte",
+            "anterior": "(vazio)",
+            "novo": "000000000"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Almeirim",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Comunidade Intermunicipal da Lezíria do Tejo",
+            "novo": "Almeirim"
+          },
+          {
+            "campo": "NIF/Contribuinte",
+            "anterior": "(vazio)",
+            "novo": "000000000"
+          }
+        ]
+      },
+      "timestamp": "2026-10-28T09:33:05.542Z"
+    },
     {
       "id": "log-1793179936648-59040",
       "usuarioId": "usr-admin-001",
