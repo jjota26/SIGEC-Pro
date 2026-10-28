@@ -4139,7 +4139,7 @@
       "andar": "",
       "codigoPostal": "3030-175",
       "localidade": "Coimbra",
-      "pais": "Portugal",
+      "pais": "Brasil",
       "telefone": "239795200",
       "telemovel": "",
       "email": "geral@cim-regiaodecoimbra.pt",
@@ -4466,7 +4466,7 @@
       "secretariaEstado": "",
       "nome": "Comunidade Intermunicipal da Região de Leiria",
       "contribuinte": "",
-      "direcao1": "Edifício Maringá, Torre 2",
+      "direcao1": "Edifício Maringá",
       "direcao2": "",
       "numero": "221",
       "andar": "2.º",
@@ -5492,10 +5492,10 @@
       "secretariaEstado": "",
       "nome": "Comunidade Intermunicipal da Beira Baixa",
       "contribuinte": "",
-      "direcao1": "Praça Rainha Dona Leonor, Edifício dos Emblemas",
+      "direcao1": "Praça Rainha Dona Leonor  Emblemas",
       "direcao2": "",
       "numero": "1",
-      "andar": "",
+      "andar": "Edifício dos",
       "codigoPostal": "6000-117",
       "localidade": "Castelo Branco",
       "pais": "Portugal",
@@ -6433,10 +6433,10 @@
       "secretariaEstado": "",
       "nome": "Comunidade Intermunicipal do Alentejo Litoral",
       "contribuinte": "",
-      "direcao1": "Largo Manuel Sobral, Edifício GAT",
+      "direcao1": "Largo Manuel Sobral",
       "direcao2": "",
       "numero": "4",
-      "andar": "",
+      "andar": "Edifício GAT",
       "codigoPostal": "7570-132",
       "localidade": "Grândola",
       "pais": "Portugal",
@@ -6545,7 +6545,7 @@
       "secretariaEstado": "",
       "nome": "Comunidade Intermunicipal do Alto Alentejo",
       "contribuinte": "",
-      "direcao1": "Rua 19 de Junho",
+      "direcao1": "Rua  de Junho",
       "direcao2": "",
       "numero": "26",
       "andar": "",
@@ -12335,6 +12335,24 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793176591136-83199",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Gravação Manual",
+      "tipoAcao": "Gravação Manual",
+      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-10-28T08:36:31.136Z"
+    },
     {
       "id": "log-1793020769251-34155",
       "usuarioId": "usr-admin-001",
