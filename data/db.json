@@ -5848,23 +5848,23 @@
           "nomePersonalizado": "Montijo",
           "nome": "Câmara Municipal de Montijo",
           "contribuinte": "000000000",
-          "direcao1": "Rua da Cruz de Santa Apolónia",
+          "direcao1": "",
           "direcao2": "",
-          "numero": "23 a 25-A",
+          "numero": "",
           "andar": "",
-          "codigoPostal": "1100-187",
-          "localidade": "Lisboa",
+          "codigoPostal": "",
+          "localidade": "",
           "pais": "Portugal",
-          "telefone": "217987400",
+          "telefone": "",
           "telemovel": "",
-          "email": "amlcorreio@aml.pt",
+          "email": "",
           "website": ""
         },
         {
           "id": "sep-1793176581643-797",
           "tipoSeparador": "Odivelas",
           "nomePersonalizado": "Odivelas",
-          "nome": "Odivelas",
+          "nome": "Câmara Municipal de Odivelas",
           "contribuinte": "",
           "direcao1": "Rua da Cruz de Santa Apolónia",
           "direcao2": "",
@@ -5882,7 +5882,7 @@
           "id": "sep-1793176581643-522",
           "tipoSeparador": "Oeiras",
           "nomePersonalizado": "Oeiras",
-          "nome": "Oeiras",
+          "nome": "Câmara Municipal de Oeiras",
           "contribuinte": "",
           "direcao1": "Rua da Cruz de Santa Apolónia",
           "direcao2": "",
@@ -5900,7 +5900,7 @@
           "id": "sep-1793176581643-326",
           "tipoSeparador": "Palmela",
           "nomePersonalizado": "Palmela",
-          "nome": "Palmela",
+          "nome": "Câmara Municipal de Palmela",
           "contribuinte": "",
           "direcao1": "Rua da Cruz de Santa Apolónia",
           "direcao2": "",
@@ -5918,7 +5918,7 @@
           "id": "sep-1793176581643-68",
           "tipoSeparador": "Seixal",
           "nomePersonalizado": "Seixal",
-          "nome": "Seixal",
+          "nome": "Câmara Municipal de Seixal",
           "contribuinte": "",
           "direcao1": "Rua da Cruz de Santa Apolónia",
           "direcao2": "",
@@ -5936,7 +5936,7 @@
           "id": "sep-1793176581643-445",
           "tipoSeparador": "Sesimbra",
           "nomePersonalizado": "Sesimbra",
-          "nome": "Sesimbra",
+          "nome": "Câmara Municipal de Sesimbra",
           "contribuinte": "",
           "direcao1": "Rua da Cruz de Santa Apolónia",
           "direcao2": "",
@@ -5954,7 +5954,7 @@
           "id": "sep-1793176581643-183",
           "tipoSeparador": "Setúbal",
           "nomePersonalizado": "Setúbal",
-          "nome": "Setúbal",
+          "nome": "Câmara Municipal de Setúbal",
           "contribuinte": "",
           "direcao1": "Rua da Cruz de Santa Apolónia",
           "direcao2": "",
@@ -5972,7 +5972,7 @@
           "id": "sep-1793176581643-776",
           "tipoSeparador": "Sintra",
           "nomePersonalizado": "Sintra",
-          "nome": "Sintra",
+          "nome": "Câmara Municipal de Sintra",
           "contribuinte": "",
           "direcao1": "Rua da Cruz de Santa Apolónia",
           "direcao2": "",
@@ -5990,7 +5990,7 @@
           "id": "sep-1793176581643-890",
           "tipoSeparador": "Vila Franca de Xira",
           "nomePersonalizado": "Vila Franca de Xira",
-          "nome": "Vila Franca de Xira",
+          "nome": "Câmara Municipal de Vila Franca de Xira",
           "contribuinte": "",
           "direcao1": "Rua da Cruz de Santa Apolónia",
           "direcao2": "",
@@ -6009,7 +6009,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.643Z",
-      "updatedAt": "2026-10-28T09:12:32.782Z",
+      "updatedAt": "2026-10-28T09:16:42.375Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -12401,6 +12401,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793179002376-47117",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Área Metropolitana de Lisboa\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Área Metropolitana de Lisboa",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Área Metropolitana de Lisboa",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-28T09:16:42.376Z"
+    },
     {
       "id": "log-1793178752782-15928",
       "usuarioId": "usr-admin-001",
