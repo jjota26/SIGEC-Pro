@@ -5315,22 +5315,41 @@
       "id": "cli-1793176581643-310",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal das Beiras e Serra da Estrela",
-      "secretariaEstado": "",
+      "secretariaEstado": "Comunidade Intermunicipal das Beiras e Serra da Estrela, Almeida, Belmonte, Celorico da Beira, Covilhã, Figueira de Castelo Rodrigo, Fornos de Algodres, Fundão, Gouveia, Guarda, Manteigas, Mêda, Pinhel, Sabugal, Seia, Trancoso",
       "nome": "Comunidade Intermunicipal das Beiras e Serra da Estrela",
       "contribuinte": "",
       "direcao1": "Praça Luís de Camões",
       "direcao2": "",
       "numero": "45",
       "andar": "",
-      "codigoPostal": "6300-752",
-      "localidade": "Guarda",
+      "codigoPostal": "",
+      "localidade": "Lisboa",
       "pais": "Portugal",
-      "telefone": "271205350",
+      "telefone": "271 205 350",
       "telemovel": "",
       "email": "geral@cimbse.pt",
-      "website": "https://www.cimbse.pt",
-      "setorAtividade": "",
+      "website": "https://cimbse.pt/contactos/",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
+        {
+          "id": "sep-1793352773853-665",
+          "tipoSeparador": "Comunidade Intermunicipal das Beiras e Serra da Estrela",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal das Beiras e Serra da Estrela",
+          "contribuinte": "",
+          "direcao1": "Praça Luís de Camões",
+          "direcao2": "",
+          "numero": "45",
+          "andar": "",
+          "codigoPostal": "",
+          "localidade": "Lisboa",
+          "telefone": "271 205 350",
+          "telemovel": "",
+          "email": "geral@cimbse.pt",
+          "pais": "Portugal",
+          "website": "https://cimbse.pt/contactos/"
+        },
         {
           "id": "sep-1793176581643-784",
           "tipoSeparador": "Almeida",
@@ -5346,7 +5365,8 @@
           "pais": "Portugal",
           "telefone": "271205350",
           "telemovel": "",
-          "email": "geral@cimbse.pt"
+          "email": "geral@cimbse.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-541",
@@ -5363,7 +5383,8 @@
           "pais": "Portugal",
           "telefone": "271205350",
           "telemovel": "",
-          "email": "geral@cimbse.pt"
+          "email": "geral@cimbse.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-430",
@@ -5380,7 +5401,8 @@
           "pais": "Portugal",
           "telefone": "271205350",
           "telemovel": "",
-          "email": "geral@cimbse.pt"
+          "email": "geral@cimbse.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-271",
@@ -5397,7 +5419,8 @@
           "pais": "Portugal",
           "telefone": "271205350",
           "telemovel": "",
-          "email": "geral@cimbse.pt"
+          "email": "geral@cimbse.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-973",
@@ -5414,7 +5437,8 @@
           "pais": "Portugal",
           "telefone": "271205350",
           "telemovel": "",
-          "email": "geral@cimbse.pt"
+          "email": "geral@cimbse.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-793",
@@ -5431,7 +5455,8 @@
           "pais": "Portugal",
           "telefone": "271205350",
           "telemovel": "",
-          "email": "geral@cimbse.pt"
+          "email": "geral@cimbse.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-34",
@@ -5448,7 +5473,8 @@
           "pais": "Portugal",
           "telefone": "271205350",
           "telemovel": "",
-          "email": "geral@cimbse.pt"
+          "email": "geral@cimbse.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-955",
@@ -5465,7 +5491,8 @@
           "pais": "Portugal",
           "telefone": "271205350",
           "telemovel": "",
-          "email": "geral@cimbse.pt"
+          "email": "geral@cimbse.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-805",
@@ -5482,7 +5509,8 @@
           "pais": "Portugal",
           "telefone": "271205350",
           "telemovel": "",
-          "email": "geral@cimbse.pt"
+          "email": "geral@cimbse.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-303",
@@ -5499,7 +5527,8 @@
           "pais": "Portugal",
           "telefone": "271205350",
           "telemovel": "",
-          "email": "geral@cimbse.pt"
+          "email": "geral@cimbse.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-407",
@@ -5516,7 +5545,8 @@
           "pais": "Portugal",
           "telefone": "271205350",
           "telemovel": "",
-          "email": "geral@cimbse.pt"
+          "email": "geral@cimbse.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-550",
@@ -5533,7 +5563,8 @@
           "pais": "Portugal",
           "telefone": "271205350",
           "telemovel": "",
-          "email": "geral@cimbse.pt"
+          "email": "geral@cimbse.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-3",
@@ -5550,7 +5581,8 @@
           "pais": "Portugal",
           "telefone": "271205350",
           "telemovel": "",
-          "email": "geral@cimbse.pt"
+          "email": "geral@cimbse.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-6",
@@ -5567,7 +5599,8 @@
           "pais": "Portugal",
           "telefone": "271205350",
           "telemovel": "",
-          "email": "geral@cimbse.pt"
+          "email": "geral@cimbse.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-258",
@@ -5584,14 +5617,17 @@
           "pais": "Portugal",
           "telefone": "271205350",
           "telemovel": "",
-          "email": "geral@cimbse.pt"
+          "email": "geral@cimbse.pt",
+          "website": ""
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.643Z",
-      "updatedAt": "2026-10-28T08:36:21.643Z"
+      "updatedAt": "2026-10-30T09:34:16.506Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581643-268",
@@ -12541,6 +12577,66 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793352856507-69217",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal das Beiras e Serra da Estrela\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal das Beiras e Serra da Estrela",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Telefone",
+            "anterior": "271205350",
+            "novo": "271 205 350"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "6300-752",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Guarda",
+            "novo": "Lisboa"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal das Beiras e Serra da Estrela",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Telefone",
+            "anterior": "271205350",
+            "novo": "271 205 350"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "6300-752",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Guarda",
+            "novo": "Lisboa"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T09:34:16.507Z"
+    },
     {
       "id": "log-1793352762573-88251",
       "usuarioId": "usr-admin-001",
