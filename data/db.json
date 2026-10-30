@@ -6438,8 +6438,8 @@
       "id": "cli-1793176581643-229",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal do Alentejo Central",
-      "secretariaEstado": "",
-      "nome": "Comunidade Intermunicipal do Alentejo Central",
+      "secretariaEstado": "Alandroal, Arraiolos, Borba, Estremoz, Évora, Montemor-o-Novo, Mora, Mourão, Portel, Redondo, Reguengos de Monsaraz, Vendas Novas, Viana do Alentejo, Vila Viçosa, Comunidade Intermunicipal do Alentejo Central",
+      "nome": "Alandroal",
       "contribuinte": "",
       "direcao1": "Rua 24 de Julho",
       "direcao2": "",
@@ -6451,8 +6451,9 @@
       "telefone": "266749420",
       "telemovel": "",
       "email": "geral@cimac.pt",
-      "website": "https://www.cimac.pt",
-      "setorAtividade": "",
+      "website": "",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
         {
           "id": "sep-1793176581643-184",
@@ -6469,7 +6470,8 @@
           "pais": "Portugal",
           "telefone": "266749420",
           "telemovel": "",
-          "email": "geral@cimac.pt"
+          "email": "geral@cimac.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-315",
@@ -6486,7 +6488,8 @@
           "pais": "Portugal",
           "telefone": "266749420",
           "telemovel": "",
-          "email": "geral@cimac.pt"
+          "email": "geral@cimac.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-237",
@@ -6503,7 +6506,8 @@
           "pais": "Portugal",
           "telefone": "266749420",
           "telemovel": "",
-          "email": "geral@cimac.pt"
+          "email": "geral@cimac.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-526",
@@ -6520,7 +6524,8 @@
           "pais": "Portugal",
           "telefone": "266749420",
           "telemovel": "",
-          "email": "geral@cimac.pt"
+          "email": "geral@cimac.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-40",
@@ -6537,7 +6542,8 @@
           "pais": "Portugal",
           "telefone": "266749420",
           "telemovel": "",
-          "email": "geral@cimac.pt"
+          "email": "geral@cimac.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-858",
@@ -6554,7 +6560,8 @@
           "pais": "Portugal",
           "telefone": "266749420",
           "telemovel": "",
-          "email": "geral@cimac.pt"
+          "email": "geral@cimac.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-806",
@@ -6571,7 +6578,8 @@
           "pais": "Portugal",
           "telefone": "266749420",
           "telemovel": "",
-          "email": "geral@cimac.pt"
+          "email": "geral@cimac.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-762",
@@ -6588,7 +6596,8 @@
           "pais": "Portugal",
           "telefone": "266749420",
           "telemovel": "",
-          "email": "geral@cimac.pt"
+          "email": "geral@cimac.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-579",
@@ -6605,7 +6614,8 @@
           "pais": "Portugal",
           "telefone": "266749420",
           "telemovel": "",
-          "email": "geral@cimac.pt"
+          "email": "geral@cimac.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-979",
@@ -6622,7 +6632,8 @@
           "pais": "Portugal",
           "telefone": "266749420",
           "telemovel": "",
-          "email": "geral@cimac.pt"
+          "email": "geral@cimac.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-221",
@@ -6639,7 +6650,8 @@
           "pais": "Portugal",
           "telefone": "266749420",
           "telemovel": "",
-          "email": "geral@cimac.pt"
+          "email": "geral@cimac.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-88",
@@ -6656,7 +6668,8 @@
           "pais": "Portugal",
           "telefone": "266749420",
           "telemovel": "",
-          "email": "geral@cimac.pt"
+          "email": "geral@cimac.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-99",
@@ -6673,7 +6686,8 @@
           "pais": "Portugal",
           "telefone": "266749420",
           "telemovel": "",
-          "email": "geral@cimac.pt"
+          "email": "geral@cimac.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-112",
@@ -6690,14 +6704,35 @@
           "pais": "Portugal",
           "telefone": "266749420",
           "telemovel": "",
-          "email": "geral@cimac.pt"
+          "email": "geral@cimac.pt",
+          "website": ""
+        },
+        {
+          "id": "sep-1793352988429-117",
+          "tipoSeparador": "Comunidade Intermunicipal do Alentejo Central",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal do Alentejo Central",
+          "contribuinte": "",
+          "direcao1": "Rua 24 de Julho",
+          "direcao2": "",
+          "numero": "",
+          "andar": "",
+          "codigoPostal": "7000-673",
+          "localidade": "Évora",
+          "telefone": "",
+          "telemovel": "",
+          "email": "",
+          "pais": "Portugal",
+          "website": "https://Comunidade_Intermunicipal_do_Alentejo_Central"
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.643Z",
-      "updatedAt": "2026-10-28T08:36:21.644Z"
+      "updatedAt": "2026-10-30T09:37:14.741Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581644-763",
@@ -12608,6 +12643,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793353034742-60677",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Alandroal\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Alandroal",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Comunidade Intermunicipal do Alentejo Central",
+            "novo": "Alandroal"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Alandroal",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Comunidade Intermunicipal do Alentejo Central",
+            "novo": "Alandroal"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T09:37:14.742Z"
+    },
     {
       "id": "log-1793352973538-18848",
       "usuarioId": "usr-admin-001",
