@@ -2799,22 +2799,41 @@
       "id": "cli-1793176581632-494",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal do Cávado",
-      "secretariaEstado": "",
+      "secretariaEstado": "Comunidade Intermunicipal do Cávado, Amares, Barcelos, Braga, Esposende, Terras de Bouro, Vila Verde",
       "nome": "Comunidade Intermunicipal do Cávado",
       "contribuinte": "",
-      "direcao1": "Rua do Carmo",
+      "direcao1": "",
       "direcao2": "",
-      "numero": "29",
+      "numero": "",
       "andar": "",
-      "codigoPostal": "4700-309",
-      "localidade": "Braga",
+      "codigoPostal": "",
+      "localidade": "",
       "pais": "Portugal",
-      "telefone": "253141570",
+      "telefone": "",
       "telemovel": "",
-      "email": "geral@cimcavado.pt",
-      "website": "https://www.cimcavado.pt",
-      "setorAtividade": "",
+      "email": "",
+      "website": "",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
+        {
+          "id": "sep-1793353868814-227",
+          "tipoSeparador": "Comunidade Intermunicipal do Cávado",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal do Cávado",
+          "contribuinte": "",
+          "direcao1": "",
+          "direcao2": "",
+          "numero": "",
+          "andar": "",
+          "codigoPostal": "",
+          "localidade": "",
+          "telefone": "",
+          "telemovel": "",
+          "email": "",
+          "pais": "Portugal",
+          "website": ""
+        },
         {
           "id": "sep-1793176581632-20",
           "tipoSeparador": "Amares",
@@ -2830,7 +2849,8 @@
           "pais": "Portugal",
           "telefone": "253141570",
           "telemovel": "",
-          "email": "geral@cimcavado.pt"
+          "email": "geral@cimcavado.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-407",
@@ -2847,7 +2867,8 @@
           "pais": "Portugal",
           "telefone": "253141570",
           "telemovel": "",
-          "email": "geral@cimcavado.pt"
+          "email": "geral@cimcavado.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-189",
@@ -2864,7 +2885,8 @@
           "pais": "Portugal",
           "telefone": "253141570",
           "telemovel": "",
-          "email": "geral@cimcavado.pt"
+          "email": "geral@cimcavado.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-19",
@@ -2881,7 +2903,8 @@
           "pais": "Portugal",
           "telefone": "253141570",
           "telemovel": "",
-          "email": "geral@cimcavado.pt"
+          "email": "geral@cimcavado.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-144",
@@ -2898,7 +2921,8 @@
           "pais": "Portugal",
           "telefone": "253141570",
           "telemovel": "",
-          "email": "geral@cimcavado.pt"
+          "email": "geral@cimcavado.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-497",
@@ -2915,14 +2939,17 @@
           "pais": "Portugal",
           "telefone": "253141570",
           "telemovel": "",
-          "email": "geral@cimcavado.pt"
+          "email": "geral@cimcavado.pt",
+          "website": ""
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.632Z",
-      "updatedAt": "2026-10-28T08:36:21.632Z"
+      "updatedAt": "2026-10-30T09:52:29.433Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581632-299",
@@ -12862,6 +12889,86 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793353949434-52919",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal do Cávado\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Cávado",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Email",
+            "anterior": "geral@cimcavado.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "253141570",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Rua do Carmo",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "4700-309",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Braga",
+            "novo": "(vazio)"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Cávado",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Email",
+            "anterior": "geral@cimcavado.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "253141570",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Rua do Carmo",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "4700-309",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Braga",
+            "novo": "(vazio)"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T09:52:29.434Z"
+    },
     {
       "id": "log-1793353822338-98527",
       "usuarioId": "usr-admin-001",
