@@ -7280,22 +7280,41 @@
       "id": "cli-1793176581644-805",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal do Baixo Alentejo",
-      "secretariaEstado": "",
+      "secretariaEstado": "Comunidade Intermunicipal do Baixo Alentejo, Aljustrel, Almodôvar, Alvito, Barrancos, Beja, Castro Verde, Cuba, Ferreira do Alentejo, Mértola, Moura, Ourique, Serpa, Vidigueira",
       "nome": "Comunidade Intermunicipal do Baixo Alentejo",
       "contribuinte": "",
-      "direcao1": "Praceta Rainha D. Leonor",
+      "direcao1": "Praceta Rainha Dona Leonor",
       "direcao2": "",
       "numero": "1",
       "andar": "",
-      "codigoPostal": "7800-431",
+      "codigoPostal": "7801-953",
       "localidade": "Beja",
       "pais": "Portugal",
-      "telefone": "284314310",
+      "telefone": "+351 284 310 160",
       "telemovel": "",
-      "email": "cimbal@cimbal.org.pt",
-      "website": "https://www.cimbal.pt",
-      "setorAtividade": "",
+      "email": "",
+      "website": "https://cimbal.pt/",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
+        {
+          "id": "sep-1793353684749-78",
+          "tipoSeparador": "Comunidade Intermunicipal do Baixo Alentejo",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal do Baixo Alentejo",
+          "contribuinte": "",
+          "direcao1": "Praceta Rainha Dona Leonor",
+          "direcao2": "",
+          "numero": "1",
+          "andar": "",
+          "codigoPostal": "7801-953",
+          "localidade": "Beja",
+          "telefone": "+351 284 310 160",
+          "telemovel": "",
+          "email": "",
+          "pais": "Portugal",
+          "website": "https://cimbal.pt/"
+        },
         {
           "id": "sep-1793176581644-897",
           "tipoSeparador": "Aljustrel",
@@ -7311,7 +7330,8 @@
           "pais": "Portugal",
           "telefone": "284314310",
           "telemovel": "",
-          "email": "cimbal@cimbal.org.pt"
+          "email": "cimbal@cimbal.org.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-589",
@@ -7328,7 +7348,8 @@
           "pais": "Portugal",
           "telefone": "284314310",
           "telemovel": "",
-          "email": "cimbal@cimbal.org.pt"
+          "email": "cimbal@cimbal.org.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-535",
@@ -7345,7 +7366,8 @@
           "pais": "Portugal",
           "telefone": "284314310",
           "telemovel": "",
-          "email": "cimbal@cimbal.org.pt"
+          "email": "cimbal@cimbal.org.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-168",
@@ -7362,7 +7384,8 @@
           "pais": "Portugal",
           "telefone": "284314310",
           "telemovel": "",
-          "email": "cimbal@cimbal.org.pt"
+          "email": "cimbal@cimbal.org.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-539",
@@ -7379,7 +7402,8 @@
           "pais": "Portugal",
           "telefone": "284314310",
           "telemovel": "",
-          "email": "cimbal@cimbal.org.pt"
+          "email": "cimbal@cimbal.org.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-362",
@@ -7396,7 +7420,8 @@
           "pais": "Portugal",
           "telefone": "284314310",
           "telemovel": "",
-          "email": "cimbal@cimbal.org.pt"
+          "email": "cimbal@cimbal.org.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-458",
@@ -7413,7 +7438,8 @@
           "pais": "Portugal",
           "telefone": "284314310",
           "telemovel": "",
-          "email": "cimbal@cimbal.org.pt"
+          "email": "cimbal@cimbal.org.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-108",
@@ -7430,7 +7456,8 @@
           "pais": "Portugal",
           "telefone": "284314310",
           "telemovel": "",
-          "email": "cimbal@cimbal.org.pt"
+          "email": "cimbal@cimbal.org.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-158",
@@ -7447,7 +7474,8 @@
           "pais": "Portugal",
           "telefone": "284314310",
           "telemovel": "",
-          "email": "cimbal@cimbal.org.pt"
+          "email": "cimbal@cimbal.org.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-62",
@@ -7464,7 +7492,8 @@
           "pais": "Portugal",
           "telefone": "284314310",
           "telemovel": "",
-          "email": "cimbal@cimbal.org.pt"
+          "email": "cimbal@cimbal.org.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-5",
@@ -7481,7 +7510,8 @@
           "pais": "Portugal",
           "telefone": "284314310",
           "telemovel": "",
-          "email": "cimbal@cimbal.org.pt"
+          "email": "cimbal@cimbal.org.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-86",
@@ -7498,7 +7528,8 @@
           "pais": "Portugal",
           "telefone": "284314310",
           "telemovel": "",
-          "email": "cimbal@cimbal.org.pt"
+          "email": "cimbal@cimbal.org.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-50",
@@ -7515,14 +7546,17 @@
           "pais": "Portugal",
           "telefone": "284314310",
           "telemovel": "",
-          "email": "cimbal@cimbal.org.pt"
+          "email": "cimbal@cimbal.org.pt",
+          "website": ""
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.644Z",
-      "updatedAt": "2026-10-28T08:36:21.644Z"
+      "updatedAt": "2026-10-30T09:50:22.337Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581644-565",
@@ -12828,6 +12862,76 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793353822338-98527",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal do Baixo Alentejo\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Baixo Alentejo",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Email",
+            "anterior": "cimbal@cimbal.org.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "284314310",
+            "novo": "+351 284 310 160"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Praceta Rainha D. Leonor",
+            "novo": "Praceta Rainha Dona Leonor"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "7800-431",
+            "novo": "7801-953"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Baixo Alentejo",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Email",
+            "anterior": "cimbal@cimbal.org.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "284314310",
+            "novo": "+351 284 310 160"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Praceta Rainha D. Leonor",
+            "novo": "Praceta Rainha Dona Leonor"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "7800-431",
+            "novo": "7801-953"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T09:50:22.338Z"
+    },
     {
       "id": "log-1793353671116-6813",
       "usuarioId": "usr-admin-001",
