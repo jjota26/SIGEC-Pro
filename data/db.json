@@ -2584,7 +2584,7 @@
       "telefone": "+351 258 800 200",
       "telemovel": "",
       "email": "geral@cim-altominho.pt",
-      "website": "https://Comunidade_Intermunicipal_do_Alto_Minho",
+      "website": "",
       "notas": "",
       "proximoContacto": null,
       "separadores": [
@@ -2604,7 +2604,7 @@
           "telemovel": "",
           "email": "geral@cim-altominho.pt",
           "pais": "Portugal",
-          "website": "https://Comunidade_Intermunicipal_do_Alto_Minho"
+          "website": ""
         },
         {
           "id": "sep-1793176581632-674",
@@ -2791,7 +2791,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.632Z",
-      "updatedAt": "2026-10-30T09:44:25.977Z",
+      "updatedAt": "2026-10-30T09:45:16.742Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -3074,7 +3074,7 @@
       "id": "cli-1793176581632-587",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal do Alto Tâmega e Barroso",
-      "secretariaEstado": "",
+      "secretariaEstado": "Comunidade Intermunicipal do Alto Tâmega e Barroso, Boticas, Chaves, Montalegre, Ribeira de Pena, Valpaços, Vila Pouca de Aguiar",
       "nome": "Comunidade Intermunicipal do Alto Tâmega e Barroso",
       "contribuinte": "",
       "direcao1": "Avenida dos Aliados",
@@ -3084,12 +3084,31 @@
       "codigoPostal": "5400-038",
       "localidade": "Chaves",
       "pais": "Portugal",
-      "telefone": "276301000",
+      "telefone": "+351 276 301 000",
       "telemovel": "",
       "email": "geral@cimat.pt",
-      "website": "https://www.cimat.pt",
-      "setorAtividade": "",
+      "website": "https://cimat.pt",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
+        {
+          "id": "sep-1793353528523-9",
+          "tipoSeparador": "Comunidade Intermunicipal do Alto Tâmega e Barroso",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal do Alto Tâmega e Barroso",
+          "contribuinte": "",
+          "direcao1": "Avenida dos Aliados",
+          "direcao2": "",
+          "numero": "9",
+          "andar": "",
+          "codigoPostal": "5400-038",
+          "localidade": "Chaves",
+          "telefone": "+351 276 301 000",
+          "telemovel": "",
+          "email": "geral@cimat.pt",
+          "pais": "Portugal",
+          "website": "https://cimat.pt"
+        },
         {
           "id": "sep-1793176581632-129",
           "tipoSeparador": "Boticas",
@@ -3105,7 +3124,8 @@
           "pais": "Portugal",
           "telefone": "276301000",
           "telemovel": "",
-          "email": "geral@cimat.pt"
+          "email": "geral@cimat.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-566",
@@ -3122,7 +3142,8 @@
           "pais": "Portugal",
           "telefone": "276301000",
           "telemovel": "",
-          "email": "geral@cimat.pt"
+          "email": "geral@cimat.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-732",
@@ -3139,7 +3160,8 @@
           "pais": "Portugal",
           "telefone": "276301000",
           "telemovel": "",
-          "email": "geral@cimat.pt"
+          "email": "geral@cimat.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-904",
@@ -3156,7 +3178,8 @@
           "pais": "Portugal",
           "telefone": "276301000",
           "telemovel": "",
-          "email": "geral@cimat.pt"
+          "email": "geral@cimat.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-279",
@@ -3173,7 +3196,8 @@
           "pais": "Portugal",
           "telefone": "276301000",
           "telemovel": "",
-          "email": "geral@cimat.pt"
+          "email": "geral@cimat.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-291",
@@ -3190,14 +3214,17 @@
           "pais": "Portugal",
           "telefone": "276301000",
           "telemovel": "",
-          "email": "geral@cimat.pt"
+          "email": "geral@cimat.pt",
+          "website": ""
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.632Z",
-      "updatedAt": "2026-10-28T08:36:21.632Z"
+      "updatedAt": "2026-10-30T09:46:29.467Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581632-597",
@@ -12773,6 +12800,86 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793353589467-3455",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal do Alto Tâmega e Barroso\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Alto Tâmega e Barroso",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Telefone",
+            "anterior": "276301000",
+            "novo": "+351 276 301 000"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Alto Tâmega e Barroso",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Telefone",
+            "anterior": "276301000",
+            "novo": "+351 276 301 000"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T09:46:29.467Z"
+    },
+    {
+      "id": "log-1793353516742-15478",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal do Alto Minho\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Alto Minho",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Alto Minho",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T09:45:16.742Z"
+    },
     {
       "id": "log-1793353465978-33974",
       "usuarioId": "usr-admin-001",
