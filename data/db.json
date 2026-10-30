@@ -3877,9 +3877,9 @@
       "codigoPostal": "4560-547",
       "localidade": "Penafiel",
       "pais": "Portugal",
-      "telefone": "",
+      "telefone": "255718340",
       "telemovel": "",
-      "email": "",
+      "email": "geral@cimtamegaesousa.pt",
       "website": "http://www.cimtamegaesousa.pt/#/",
       "notas": "",
       "proximoContacto": null,
@@ -3890,15 +3890,15 @@
           "nomePersonalizado": "",
           "nome": "Comunidade Intermunicipal do Tâmega e Sousa",
           "contribuinte": "",
-          "direcao1": "Avenida José Júlio, 42, 4560-547 Penafiel",
+          "direcao1": "Avenida José Júlio",
           "direcao2": "",
-          "numero": "",
+          "numero": "42",
           "andar": "",
-          "codigoPostal": "",
-          "localidade": "",
-          "telefone": "",
+          "codigoPostal": "4560-547",
+          "localidade": "Penafiel",
+          "telefone": "255718340",
           "telemovel": "",
-          "email": "",
+          "email": "geral@cimtamegaesousa.pt",
           "pais": "Portugal",
           "website": "http://www.cimtamegaesousa.pt/#/"
         },
@@ -4123,7 +4123,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.633Z",
-      "updatedAt": "2026-10-30T10:07:19.885Z",
+      "updatedAt": "2026-10-30T10:09:44.422Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -13043,6 +13043,56 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793354984423-59993",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal do Tâmega e Sousa\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Tâmega e Sousa",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Email",
+            "anterior": "(vazio)",
+            "novo": "geral@cimtamegaesousa.pt"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "(vazio)",
+            "novo": "255718340"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Tâmega e Sousa",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Email",
+            "anterior": "(vazio)",
+            "novo": "geral@cimtamegaesousa.pt"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "(vazio)",
+            "novo": "255718340"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T10:09:44.423Z"
+    },
     {
       "id": "log-1793354885003-91748",
       "usuarioId": "usr-admin-001",
