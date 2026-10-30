@@ -3867,8 +3867,8 @@
       "id": "cli-1793176581633-265",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal do Tâmega e Sousa",
-      "secretariaEstado": "Amarante, Baião, Castelo de Paiva, Celorico de Basto, Cinfães, Felgueiras, Lousada, Marco de Canaveses, Paços de Ferreira, Penafiel, Paredes, Resende, Comunidade Intermunicipal do Tâmega e Sousa",
-      "nome": "Amarante",
+      "secretariaEstado": "Comunidade Intermunicipal do Tâmega e Sousa, Amarante, Baião, Castelo de Paiva, Celorico de Basto, Cinfães, Felgueiras, Lousada, Marco de Canaveses, Paços de Ferreira, Penafiel, Paredes, Resende",
+      "nome": "Comunidade Intermunicipal do Tâmega e Sousa",
       "contribuinte": "",
       "direcao1": "Avenida José Júlio",
       "direcao2": "",
@@ -3877,13 +3877,31 @@
       "codigoPostal": "4560-547",
       "localidade": "Penafiel",
       "pais": "Portugal",
-      "telefone": "255718340",
+      "telefone": "",
       "telemovel": "",
-      "email": "geral@cimtamegaesousa.pt",
-      "website": "",
+      "email": "",
+      "website": "http://www.cimtamegaesousa.pt/#/",
       "notas": "",
       "proximoContacto": null,
       "separadores": [
+        {
+          "id": "sep-1793354492019-594",
+          "tipoSeparador": "Comunidade Intermunicipal do Tâmega e Sousa",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal do Tâmega e Sousa",
+          "contribuinte": "",
+          "direcao1": "Avenida José Júlio, 42, 4560-547 Penafiel",
+          "direcao2": "",
+          "numero": "",
+          "andar": "",
+          "codigoPostal": "",
+          "localidade": "",
+          "telefone": "",
+          "telemovel": "",
+          "email": "",
+          "pais": "Portugal",
+          "website": "http://www.cimtamegaesousa.pt/#/"
+        },
         {
           "id": "sep-1793176581633-799",
           "tipoSeparador": "Amarante",
@@ -4099,31 +4117,13 @@
           "telemovel": "",
           "email": "geral@cimtamegaesousa.pt",
           "website": ""
-        },
-        {
-          "id": "sep-1793354492019-594",
-          "tipoSeparador": "Comunidade Intermunicipal do Tâmega e Sousa",
-          "nomePersonalizado": "",
-          "nome": "Comunidade Intermunicipal do Tâmega e Sousa",
-          "contribuinte": "",
-          "direcao1": "Avenida José Júlio, 42, 4560-547 Penafiel",
-          "direcao2": "",
-          "numero": "",
-          "andar": "",
-          "codigoPostal": "",
-          "localidade": "",
-          "telefone": "",
-          "telemovel": "",
-          "email": "",
-          "pais": "Portugal",
-          "website": "http://www.cimtamegaesousa.pt/#/"
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.633Z",
-      "updatedAt": "2026-10-30T10:02:25.984Z",
+      "updatedAt": "2026-10-30T10:07:19.885Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -4386,7 +4386,7 @@
       "andar": "",
       "codigoPostal": "3030-175",
       "localidade": "Coimbra",
-      "pais": "Portugal",
+      "pais": "Brasil",
       "telefone": "+351-239-795-200",
       "telemovel": "",
       "email": "",
@@ -5088,12 +5088,12 @@
       "secretariaEstado": "Comunidade Intermunicipal do Oeste, Alcobaça, Alenquer, Arruda dos Vinhos, Bombarral, Cadaval, Caldas da Rainha, Lourinhã, Nazaré, Óbidos, Peniche, Sobral de Monte Agraço, Torres Vedras",
       "nome": "Comunidade Intermunicipal do Oeste",
       "contribuinte": "",
-      "direcao1": "Avenida General Pedro Cardoso, 9, 2500-922 Caldas da Rainha",
+      "direcao1": "Avenida General Pedro Cardoso",
       "direcao2": "",
-      "numero": "",
+      "numero": "9",
       "andar": "",
-      "codigoPostal": "",
-      "localidade": "",
+      "codigoPostal": "2500-922",
+      "localidade": "Caldas da Rainha",
       "pais": "Portugal",
       "telefone": "+351-262-839-030",
       "telemovel": "",
@@ -13043,6 +13043,114 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793354885003-91748",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Gravação Manual",
+      "tipoAcao": "Gravação Manual",
+      "descricao": "Todas as alterações foram guardadas com sucesso no perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-10-30T10:08:05.003Z"
+    },
+    {
+      "id": "log-1793354839886-80837",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal do Tâmega e Sousa\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Tâmega e Sousa",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Amarante",
+            "novo": "Comunidade Intermunicipal do Tâmega e Sousa"
+          },
+          {
+            "campo": "Email",
+            "anterior": "geral@cimtamegaesousa.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "255718340",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Avenida José Júlio",
+            "novo": "Avenida José Júlio, 42, 4560-547 Penafiel"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "4560-547",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Penafiel",
+            "novo": "(vazio)"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Tâmega e Sousa",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Amarante",
+            "novo": "Comunidade Intermunicipal do Tâmega e Sousa"
+          },
+          {
+            "campo": "Email",
+            "anterior": "geral@cimtamegaesousa.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "255718340",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Avenida José Júlio",
+            "novo": "Avenida José Júlio, 42, 4560-547 Penafiel"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "4560-547",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Penafiel",
+            "novo": "(vazio)"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T10:07:19.886Z"
+    },
     {
       "id": "log-1793354819367-70316",
       "usuarioId": "usr-admin-001",
