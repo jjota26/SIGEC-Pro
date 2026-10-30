@@ -7406,22 +7406,41 @@
       "id": "cli-1793176581644-565",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal do Algarve (AMAL)",
-      "secretariaEstado": "",
+      "secretariaEstado": "Comunidade Intermunicipal do Algarve (AMAL), Albufeira, Alcoutim, Aljezur, Castro Marim, Faro, Lagoa, Lagos, Loulé, Monchique, Olhão, Portimão, São Brás de Alportel, Silves, Tavira, Vila do Bispo, Vila Real de Santo António",
       "nome": "Comunidade Intermunicipal do Algarve (AMAL)",
-      "contribuinte": "",
+      "contribuinte": "000000000",
       "direcao1": "Rua General Humberto Delgado",
       "direcao2": "",
       "numero": "20",
-      "andar": "R/C",
+      "andar": "",
       "codigoPostal": "8000-355",
       "localidade": "Faro",
       "pais": "Portugal",
-      "telefone": "289880800",
+      "telefone": "+351 289 880 800",
       "telemovel": "",
       "email": "geral@amal.pt",
-      "website": "https://www.amal.pt",
-      "setorAtividade": "",
+      "website": "https://amal.pt/",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
+        {
+          "id": "sep-1793353240448-587",
+          "tipoSeparador": "Comunidade Intermunicipal do Algarve (AMAL)",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal do Algarve (AMAL)",
+          "contribuinte": "000000000",
+          "direcao1": "Rua General Humberto Delgado",
+          "direcao2": "",
+          "numero": "20",
+          "andar": "",
+          "codigoPostal": "8000-355",
+          "localidade": "Faro",
+          "telefone": "+351 289 880 800",
+          "telemovel": "",
+          "email": "geral@amal.pt",
+          "pais": "Portugal",
+          "website": "https://amal.pt/"
+        },
         {
           "id": "sep-1793176581644-839",
           "tipoSeparador": "Albufeira",
@@ -7437,7 +7456,8 @@
           "pais": "Portugal",
           "telefone": "289880800",
           "telemovel": "",
-          "email": "geral@amal.pt"
+          "email": "geral@amal.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-727",
@@ -7454,7 +7474,8 @@
           "pais": "Portugal",
           "telefone": "289880800",
           "telemovel": "",
-          "email": "geral@amal.pt"
+          "email": "geral@amal.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-837",
@@ -7471,7 +7492,8 @@
           "pais": "Portugal",
           "telefone": "289880800",
           "telemovel": "",
-          "email": "geral@amal.pt"
+          "email": "geral@amal.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-979",
@@ -7488,7 +7510,8 @@
           "pais": "Portugal",
           "telefone": "289880800",
           "telemovel": "",
-          "email": "geral@amal.pt"
+          "email": "geral@amal.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-785",
@@ -7505,7 +7528,8 @@
           "pais": "Portugal",
           "telefone": "289880800",
           "telemovel": "",
-          "email": "geral@amal.pt"
+          "email": "geral@amal.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-843",
@@ -7522,7 +7546,8 @@
           "pais": "Portugal",
           "telefone": "289880800",
           "telemovel": "",
-          "email": "geral@amal.pt"
+          "email": "geral@amal.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-949",
@@ -7539,7 +7564,8 @@
           "pais": "Portugal",
           "telefone": "289880800",
           "telemovel": "",
-          "email": "geral@amal.pt"
+          "email": "geral@amal.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-869",
@@ -7556,7 +7582,8 @@
           "pais": "Portugal",
           "telefone": "289880800",
           "telemovel": "",
-          "email": "geral@amal.pt"
+          "email": "geral@amal.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-43",
@@ -7573,7 +7600,8 @@
           "pais": "Portugal",
           "telefone": "289880800",
           "telemovel": "",
-          "email": "geral@amal.pt"
+          "email": "geral@amal.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-319",
@@ -7590,7 +7618,8 @@
           "pais": "Portugal",
           "telefone": "289880800",
           "telemovel": "",
-          "email": "geral@amal.pt"
+          "email": "geral@amal.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-543",
@@ -7607,7 +7636,8 @@
           "pais": "Portugal",
           "telefone": "289880800",
           "telemovel": "",
-          "email": "geral@amal.pt"
+          "email": "geral@amal.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-295",
@@ -7624,7 +7654,8 @@
           "pais": "Portugal",
           "telefone": "289880800",
           "telemovel": "",
-          "email": "geral@amal.pt"
+          "email": "geral@amal.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-860",
@@ -7641,7 +7672,8 @@
           "pais": "Portugal",
           "telefone": "289880800",
           "telemovel": "",
-          "email": "geral@amal.pt"
+          "email": "geral@amal.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-513",
@@ -7658,7 +7690,8 @@
           "pais": "Portugal",
           "telefone": "289880800",
           "telemovel": "",
-          "email": "geral@amal.pt"
+          "email": "geral@amal.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-239",
@@ -7675,7 +7708,8 @@
           "pais": "Portugal",
           "telefone": "289880800",
           "telemovel": "",
-          "email": "geral@amal.pt"
+          "email": "geral@amal.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-632",
@@ -7692,14 +7726,17 @@
           "pais": "Portugal",
           "telefone": "289880800",
           "telemovel": "",
-          "email": "geral@amal.pt"
+          "email": "geral@amal.pt",
+          "website": ""
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.644Z",
-      "updatedAt": "2026-10-28T08:36:21.644Z"
+      "updatedAt": "2026-10-30T09:41:59.076Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     }
   ],
   "contactos": [
@@ -12669,6 +12706,56 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793353319076-44225",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal do Algarve (AMAL)\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Algarve (AMAL)",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "NIF/Contribuinte",
+            "anterior": "(vazio)",
+            "novo": "000000000"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "289880800",
+            "novo": "+351 289 880 800"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Algarve (AMAL)",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "NIF/Contribuinte",
+            "anterior": "(vazio)",
+            "novo": "000000000"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "289880800",
+            "novo": "+351 289 880 800"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T09:41:59.076Z"
+    },
     {
       "id": "log-1793353230655-7366",
       "usuarioId": "usr-admin-001",
