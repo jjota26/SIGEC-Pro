@@ -6738,22 +6738,41 @@
       "id": "cli-1793176581644-763",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal do Alentejo Litoral",
-      "secretariaEstado": "",
+      "secretariaEstado": "Comunidade Intermunicipal do Alentejo Litoral, Alcácer do Sal, Grândola, Odemira, Santiago do Cacém, Sines",
       "nome": "Comunidade Intermunicipal do Alentejo Litoral",
       "contribuinte": "",
       "direcao1": "Largo Manuel Sobral",
-      "direcao2": "",
+      "direcao2": "Edifício GAT",
       "numero": "4",
-      "andar": "Edifício GAT",
+      "andar": "",
       "codigoPostal": "7570-132",
-      "localidade": "Grândola",
+      "localidade": "GrândolaContactos",
       "pais": "Portugal",
-      "telefone": "269450110",
+      "telefone": "269 450 110",
       "telemovel": "",
       "email": "geral@cimal.pt",
-      "website": "https://www.cimal.pt",
-      "setorAtividade": "",
+      "website": "www.cimal.pt",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
+        {
+          "id": "sep-1793353121237-644",
+          "tipoSeparador": "Comunidade Intermunicipal do Alentejo Litoral",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal do Alentejo Litoral",
+          "contribuinte": "",
+          "direcao1": "Largo Manuel Sobral",
+          "direcao2": "Edifício GAT",
+          "numero": "4",
+          "andar": "",
+          "codigoPostal": "7570-132",
+          "localidade": "GrândolaContactos",
+          "telefone": "269 450 110",
+          "telemovel": "",
+          "email": "geral@cimal.pt",
+          "pais": "Portugal",
+          "website": "www.cimal.pt"
+        },
         {
           "id": "sep-1793176581644-949",
           "tipoSeparador": "Alcácer do Sal",
@@ -6769,7 +6788,8 @@
           "pais": "Portugal",
           "telefone": "269450110",
           "telemovel": "",
-          "email": "geral@cimal.pt"
+          "email": "geral@cimal.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-475",
@@ -6786,7 +6806,8 @@
           "pais": "Portugal",
           "telefone": "269450110",
           "telemovel": "",
-          "email": "geral@cimal.pt"
+          "email": "geral@cimal.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-514",
@@ -6803,7 +6824,8 @@
           "pais": "Portugal",
           "telefone": "269450110",
           "telemovel": "",
-          "email": "geral@cimal.pt"
+          "email": "geral@cimal.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-586",
@@ -6820,7 +6842,8 @@
           "pais": "Portugal",
           "telefone": "269450110",
           "telemovel": "",
-          "email": "geral@cimal.pt"
+          "email": "geral@cimal.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-834",
@@ -6837,14 +6860,17 @@
           "pais": "Portugal",
           "telefone": "269450110",
           "telemovel": "",
-          "email": "geral@cimal.pt"
+          "email": "geral@cimal.pt",
+          "website": ""
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.644Z",
-      "updatedAt": "2026-10-28T08:36:21.644Z"
+      "updatedAt": "2026-10-30T09:40:30.654Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581644-655",
@@ -12643,6 +12669,56 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793353230655-7366",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal do Alentejo Litoral\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Alentejo Litoral",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Telefone",
+            "anterior": "269450110",
+            "novo": "269 450 110"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Grândola",
+            "novo": "GrândolaContactos"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Alentejo Litoral",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Telefone",
+            "anterior": "269450110",
+            "novo": "269 450 110"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Grândola",
+            "novo": "GrândolaContactos"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T09:40:30.655Z"
+    },
     {
       "id": "log-1793353034742-60677",
       "usuarioId": "usr-admin-001",
