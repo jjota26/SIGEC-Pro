@@ -3916,22 +3916,41 @@
       "id": "cli-1793176581633-474",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal da Região de Aveiro",
-      "secretariaEstado": "",
+      "secretariaEstado": "Comunidade Intermunicipal da Região de Aveiro, Águeda, Albergaria-a-Velha, Anadia, Aveiro, Estarreja, Ílhavo, Murtosa, Oliveira do Bairro, Ovar, Sever do Vouga, Vagos",
       "nome": "Comunidade Intermunicipal da Região de Aveiro",
       "contribuinte": "",
-      "direcao1": "Rua do Carmo",
+      "direcao1": "Rua do Carmo, 20, 3800-127 Aveiro",
       "direcao2": "",
-      "numero": "20",
-      "andar": "1.º",
-      "codigoPostal": "3800-070",
-      "localidade": "Aveiro",
+      "numero": "",
+      "andar": "",
+      "codigoPostal": "",
+      "localidade": "",
       "pais": "Portugal",
-      "telefone": "234377650",
+      "telefone": "+351-234377650",
       "telemovel": "",
-      "email": "geral@regiaodeaveiro.pt",
+      "email": "",
       "website": "https://www.regiaodeaveiro.pt",
-      "setorAtividade": "",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
+        {
+          "id": "sep-1793352608927-126",
+          "tipoSeparador": "Comunidade Intermunicipal da Região de Aveiro",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal da Região de Aveiro",
+          "contribuinte": "",
+          "direcao1": "Rua do Carmo, 20, 3800-127 Aveiro",
+          "direcao2": "",
+          "numero": "",
+          "andar": "",
+          "codigoPostal": "",
+          "localidade": "",
+          "telefone": "+351-234377650",
+          "telemovel": "",
+          "email": "",
+          "pais": "Portugal",
+          "website": "https://www.regiaodeaveiro.pt"
+        },
         {
           "id": "sep-1793176581633-493",
           "tipoSeparador": "Águeda",
@@ -3947,7 +3966,8 @@
           "pais": "Portugal",
           "telefone": "234377650",
           "telemovel": "",
-          "email": "geral@regiaodeaveiro.pt"
+          "email": "geral@regiaodeaveiro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-709",
@@ -3964,7 +3984,8 @@
           "pais": "Portugal",
           "telefone": "234377650",
           "telemovel": "",
-          "email": "geral@regiaodeaveiro.pt"
+          "email": "geral@regiaodeaveiro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-568",
@@ -3981,7 +4002,8 @@
           "pais": "Portugal",
           "telefone": "234377650",
           "telemovel": "",
-          "email": "geral@regiaodeaveiro.pt"
+          "email": "geral@regiaodeaveiro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-304",
@@ -3998,7 +4020,8 @@
           "pais": "Portugal",
           "telefone": "234377650",
           "telemovel": "",
-          "email": "geral@regiaodeaveiro.pt"
+          "email": "geral@regiaodeaveiro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-176",
@@ -4015,7 +4038,8 @@
           "pais": "Portugal",
           "telefone": "234377650",
           "telemovel": "",
-          "email": "geral@regiaodeaveiro.pt"
+          "email": "geral@regiaodeaveiro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-567",
@@ -4032,7 +4056,8 @@
           "pais": "Portugal",
           "telefone": "234377650",
           "telemovel": "",
-          "email": "geral@regiaodeaveiro.pt"
+          "email": "geral@regiaodeaveiro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-530",
@@ -4049,7 +4074,8 @@
           "pais": "Portugal",
           "telefone": "234377650",
           "telemovel": "",
-          "email": "geral@regiaodeaveiro.pt"
+          "email": "geral@regiaodeaveiro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-148",
@@ -4066,7 +4092,8 @@
           "pais": "Portugal",
           "telefone": "234377650",
           "telemovel": "",
-          "email": "geral@regiaodeaveiro.pt"
+          "email": "geral@regiaodeaveiro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-679",
@@ -4083,7 +4110,8 @@
           "pais": "Portugal",
           "telefone": "234377650",
           "telemovel": "",
-          "email": "geral@regiaodeaveiro.pt"
+          "email": "geral@regiaodeaveiro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-995",
@@ -4100,7 +4128,8 @@
           "pais": "Portugal",
           "telefone": "234377650",
           "telemovel": "",
-          "email": "geral@regiaodeaveiro.pt"
+          "email": "geral@regiaodeaveiro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-585",
@@ -4117,14 +4146,17 @@
           "pais": "Portugal",
           "telefone": "234377650",
           "telemovel": "",
-          "email": "geral@regiaodeaveiro.pt"
+          "email": "geral@regiaodeaveiro.pt",
+          "website": ""
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.633Z",
-      "updatedAt": "2026-10-28T08:36:21.633Z"
+      "updatedAt": "2026-10-30T09:31:08.978Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581633-486",
@@ -12433,6 +12465,86 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793352668979-92308",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal da Região de Aveiro\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal da Região de Aveiro",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Email",
+            "anterior": "geral@regiaodeaveiro.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "234377650",
+            "novo": "+351-234377650"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Rua do Carmo",
+            "novo": "Rua do Carmo, 20, 3800-127 Aveiro"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "3800-070",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Aveiro",
+            "novo": "(vazio)"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal da Região de Aveiro",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Email",
+            "anterior": "geral@regiaodeaveiro.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "234377650",
+            "novo": "+351-234377650"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Rua do Carmo",
+            "novo": "Rua do Carmo, 20, 3800-127 Aveiro"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "3800-070",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Aveiro",
+            "novo": "(vazio)"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T09:31:08.979Z"
+    },
     {
       "id": "log-1793352582653-64583",
       "usuarioId": "usr-admin-001",
