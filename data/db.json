@@ -3172,22 +3172,41 @@
       "id": "cli-1793176581632-597",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal das Terras de Trás-os-Montes",
-      "secretariaEstado": "",
+      "secretariaEstado": "Comunidade Intermunicipal das Terras de Trás-os-Montes, Alfândega da Fé, Bragança, Macedo de Cavaleiros, Miranda do Douro, Mirandela, Mogadouro, Torre de Moncorvo, Vila Flor, Vimioso, Vinhais",
       "nome": "Comunidade Intermunicipal das Terras de Trás-os-Montes",
       "contribuinte": "",
       "direcao1": "Rua Visconde da Bouça",
       "direcao2": "",
-      "numero": "Apartado 238",
+      "numero": "238",
       "andar": "",
       "codigoPostal": "5300-318",
       "localidade": "Bragança",
       "pais": "Portugal",
-      "telefone": "273327680",
+      "telefone": "273 327 680",
       "telemovel": "",
       "email": "geral@cim-ttm.pt",
-      "website": "https://www.cim-ttm.pt",
-      "setorAtividade": "",
+      "website": "https://www.cim-ttm.pt/instituicao/contactos",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
+        {
+          "id": "sep-1793352872702-418",
+          "tipoSeparador": "Comunidade Intermunicipal das Terras de Trás-os-Montes",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal das Terras de Trás-os-Montes",
+          "contribuinte": "",
+          "direcao1": "Rua Visconde da Bouça",
+          "direcao2": "",
+          "numero": "238",
+          "andar": "",
+          "codigoPostal": "5300-318",
+          "localidade": "Bragança",
+          "telefone": "273 327 680",
+          "telemovel": "",
+          "email": "geral@cim-ttm.pt",
+          "pais": "Portugal",
+          "website": "https://www.cim-ttm.pt/instituicao/contactos"
+        },
         {
           "id": "sep-1793176581633-166",
           "tipoSeparador": "Alfândega da Fé",
@@ -3203,7 +3222,8 @@
           "pais": "Portugal",
           "telefone": "273327680",
           "telemovel": "",
-          "email": "geral@cim-ttm.pt"
+          "email": "geral@cim-ttm.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-278",
@@ -3220,7 +3240,8 @@
           "pais": "Portugal",
           "telefone": "273327680",
           "telemovel": "",
-          "email": "geral@cim-ttm.pt"
+          "email": "geral@cim-ttm.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-400",
@@ -3237,7 +3258,8 @@
           "pais": "Portugal",
           "telefone": "273327680",
           "telemovel": "",
-          "email": "geral@cim-ttm.pt"
+          "email": "geral@cim-ttm.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-490",
@@ -3254,7 +3276,8 @@
           "pais": "Portugal",
           "telefone": "273327680",
           "telemovel": "",
-          "email": "geral@cim-ttm.pt"
+          "email": "geral@cim-ttm.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-856",
@@ -3271,7 +3294,8 @@
           "pais": "Portugal",
           "telefone": "273327680",
           "telemovel": "",
-          "email": "geral@cim-ttm.pt"
+          "email": "geral@cim-ttm.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-589",
@@ -3288,7 +3312,8 @@
           "pais": "Portugal",
           "telefone": "273327680",
           "telemovel": "",
-          "email": "geral@cim-ttm.pt"
+          "email": "geral@cim-ttm.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-857",
@@ -3305,7 +3330,8 @@
           "pais": "Portugal",
           "telefone": "273327680",
           "telemovel": "",
-          "email": "geral@cim-ttm.pt"
+          "email": "geral@cim-ttm.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-364",
@@ -3322,7 +3348,8 @@
           "pais": "Portugal",
           "telefone": "273327680",
           "telemovel": "",
-          "email": "geral@cim-ttm.pt"
+          "email": "geral@cim-ttm.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-660",
@@ -3339,7 +3366,8 @@
           "pais": "Portugal",
           "telefone": "273327680",
           "telemovel": "",
-          "email": "geral@cim-ttm.pt"
+          "email": "geral@cim-ttm.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-890",
@@ -3356,14 +3384,17 @@
           "pais": "Portugal",
           "telefone": "273327680",
           "telemovel": "",
-          "email": "geral@cim-ttm.pt"
+          "email": "geral@cim-ttm.pt",
+          "website": ""
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.633Z",
-      "updatedAt": "2026-10-28T08:36:21.633Z"
+      "updatedAt": "2026-10-30T09:36:13.537Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581633-53",
@@ -12577,6 +12608,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793352973538-18848",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal das Terras de Trás-os-Montes\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal das Terras de Trás-os-Montes",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Telefone",
+            "anterior": "273327680",
+            "novo": "273 327 680"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal das Terras de Trás-os-Montes",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Telefone",
+            "anterior": "273327680",
+            "novo": "273 327 680"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T09:36:13.538Z"
+    },
     {
       "id": "log-1793352856507-69217",
       "usuarioId": "usr-admin-001",
