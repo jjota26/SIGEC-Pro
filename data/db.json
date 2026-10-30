@@ -2571,7 +2571,7 @@
       "id": "cli-1793176581632-295",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal do Alto Minho",
-      "secretariaEstado": "",
+      "secretariaEstado": "Comunidade Intermunicipal do Alto Minho, Arcos de Valdevez, Caminha, Melgaço, Monção, Paredes de Coura, Ponte da Barca, Ponte de Lima, Valença, Viana do Castelo, Vila Nova de Cerveira",
       "nome": "Comunidade Intermunicipal do Alto Minho",
       "contribuinte": "",
       "direcao1": "Rua Bernardo Abrunhosa",
@@ -2581,12 +2581,31 @@
       "codigoPostal": "4900-309",
       "localidade": "Viana do Castelo",
       "pais": "Portugal",
-      "telefone": "258800200",
+      "telefone": "+351 258 800 200",
       "telemovel": "",
       "email": "geral@cim-altominho.pt",
-      "website": "https://www.cim-altominho.pt",
-      "setorAtividade": "",
+      "website": "https://Comunidade_Intermunicipal_do_Alto_Minho",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
+        {
+          "id": "sep-1793353403650-505",
+          "tipoSeparador": "Comunidade Intermunicipal do Alto Minho",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal do Alto Minho",
+          "contribuinte": "",
+          "direcao1": "Rua Bernardo Abrunhosa",
+          "direcao2": "",
+          "numero": "105",
+          "andar": "",
+          "codigoPostal": "4900-309",
+          "localidade": "Viana do Castelo",
+          "telefone": "+351 258 800 200",
+          "telemovel": "",
+          "email": "geral@cim-altominho.pt",
+          "pais": "Portugal",
+          "website": "https://Comunidade_Intermunicipal_do_Alto_Minho"
+        },
         {
           "id": "sep-1793176581632-674",
           "tipoSeparador": "Arcos de Valdevez",
@@ -2602,7 +2621,8 @@
           "pais": "Portugal",
           "telefone": "258800200",
           "telemovel": "",
-          "email": "geral@cim-altominho.pt"
+          "email": "geral@cim-altominho.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-94",
@@ -2619,7 +2639,8 @@
           "pais": "Portugal",
           "telefone": "258800200",
           "telemovel": "",
-          "email": "geral@cim-altominho.pt"
+          "email": "geral@cim-altominho.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-903",
@@ -2636,7 +2657,8 @@
           "pais": "Portugal",
           "telefone": "258800200",
           "telemovel": "",
-          "email": "geral@cim-altominho.pt"
+          "email": "geral@cim-altominho.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-908",
@@ -2653,7 +2675,8 @@
           "pais": "Portugal",
           "telefone": "258800200",
           "telemovel": "",
-          "email": "geral@cim-altominho.pt"
+          "email": "geral@cim-altominho.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-572",
@@ -2670,7 +2693,8 @@
           "pais": "Portugal",
           "telefone": "258800200",
           "telemovel": "",
-          "email": "geral@cim-altominho.pt"
+          "email": "geral@cim-altominho.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-127",
@@ -2687,7 +2711,8 @@
           "pais": "Portugal",
           "telefone": "258800200",
           "telemovel": "",
-          "email": "geral@cim-altominho.pt"
+          "email": "geral@cim-altominho.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-231",
@@ -2704,7 +2729,8 @@
           "pais": "Portugal",
           "telefone": "258800200",
           "telemovel": "",
-          "email": "geral@cim-altominho.pt"
+          "email": "geral@cim-altominho.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-713",
@@ -2721,7 +2747,8 @@
           "pais": "Portugal",
           "telefone": "258800200",
           "telemovel": "",
-          "email": "geral@cim-altominho.pt"
+          "email": "geral@cim-altominho.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-107",
@@ -2738,7 +2765,8 @@
           "pais": "Portugal",
           "telefone": "258800200",
           "telemovel": "",
-          "email": "geral@cim-altominho.pt"
+          "email": "geral@cim-altominho.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-150",
@@ -2755,14 +2783,17 @@
           "pais": "Portugal",
           "telefone": "258800200",
           "telemovel": "",
-          "email": "geral@cim-altominho.pt"
+          "email": "geral@cim-altominho.pt",
+          "website": ""
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.632Z",
-      "updatedAt": "2026-10-28T08:36:21.632Z"
+      "updatedAt": "2026-10-30T09:44:25.977Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581632-494",
@@ -12742,6 +12773,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793353465978-33974",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal do Alto Minho\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Alto Minho",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Telefone",
+            "anterior": "258800200",
+            "novo": "+351 258 800 200"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Alto Minho",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Telefone",
+            "anterior": "258800200",
+            "novo": "+351 258 800 200"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T09:44:25.978Z"
+    },
     {
       "id": "log-1793353388473-40306",
       "usuarioId": "usr-admin-001",
