@@ -2802,17 +2802,17 @@
       "secretariaEstado": "Comunidade Intermunicipal do Cávado, Amares, Barcelos, Braga, Esposende, Terras de Bouro, Vila Verde",
       "nome": "Comunidade Intermunicipal do Cávado",
       "contribuinte": "",
-      "direcao1": "",
+      "direcao1": "Rua do Carmo",
       "direcao2": "",
-      "numero": "",
+      "numero": "27",
       "andar": "",
-      "codigoPostal": "",
-      "localidade": "",
+      "codigoPostal": "4700-309",
+      "localidade": "Braga",
       "pais": "Portugal",
-      "telefone": "",
+      "telefone": "+351 253 201 360",
       "telemovel": "",
-      "email": "",
-      "website": "",
+      "email": "geral@cimcavado.pt",
+      "website": "https://www.cimcavado.pt",
       "notas": "",
       "proximoContacto": null,
       "separadores": [
@@ -2822,17 +2822,17 @@
           "nomePersonalizado": "",
           "nome": "Comunidade Intermunicipal do Cávado",
           "contribuinte": "",
-          "direcao1": "",
+          "direcao1": "Rua do Carmo",
           "direcao2": "",
-          "numero": "",
+          "numero": "27",
           "andar": "",
-          "codigoPostal": "",
-          "localidade": "",
-          "telefone": "",
+          "codigoPostal": "4700-309",
+          "localidade": "Braga",
+          "telefone": "+351 253 201 360",
           "telemovel": "",
-          "email": "",
+          "email": "geral@cimcavado.pt",
           "pais": "Portugal",
-          "website": ""
+          "website": "https://www.cimcavado.pt"
         },
         {
           "id": "sep-1793176581632-20",
@@ -2947,7 +2947,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.632Z",
-      "updatedAt": "2026-10-30T09:52:29.433Z",
+      "updatedAt": "2026-10-30T09:53:26.647Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -3513,8 +3513,8 @@
       "id": "cli-1793176581633-53",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal do Douro",
-      "secretariaEstado": "",
-      "nome": "Comunidade Intermunicipal do Douro",
+      "secretariaEstado": "Alijó, Armamar, Carrazeda de Ansiães, Freixo de Espada à Cinta, Lamego, Mesão Frio, Moimenta da Beira, Penedono, Peso da Régua, Sabrosa, Santa Marta de Penaguião, São João da Pesqueira, Sernancelhe, Tabuaço, Tarouca, Torre de Moncorvo, Vila Nova de Foz Côa, Comunidade Intermunicipal do Douro",
+      "nome": "Alijó",
       "contribuinte": "",
       "direcao1": "Avenida Carvalho Araújo",
       "direcao2": "",
@@ -3526,8 +3526,9 @@
       "telefone": "254600070",
       "telemovel": "",
       "email": "correio@cimdouro.pt",
-      "website": "https://www.cimdouro.pt",
-      "setorAtividade": "",
+      "website": "",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
         {
           "id": "sep-1793176581633-530",
@@ -3544,7 +3545,8 @@
           "pais": "Portugal",
           "telefone": "254600070",
           "telemovel": "",
-          "email": "correio@cimdouro.pt"
+          "email": "correio@cimdouro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-696",
@@ -3561,7 +3563,8 @@
           "pais": "Portugal",
           "telefone": "254600070",
           "telemovel": "",
-          "email": "correio@cimdouro.pt"
+          "email": "correio@cimdouro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-953",
@@ -3578,7 +3581,8 @@
           "pais": "Portugal",
           "telefone": "254600070",
           "telemovel": "",
-          "email": "correio@cimdouro.pt"
+          "email": "correio@cimdouro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-116",
@@ -3595,7 +3599,8 @@
           "pais": "Portugal",
           "telefone": "254600070",
           "telemovel": "",
-          "email": "correio@cimdouro.pt"
+          "email": "correio@cimdouro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-357",
@@ -3612,7 +3617,8 @@
           "pais": "Portugal",
           "telefone": "254600070",
           "telemovel": "",
-          "email": "correio@cimdouro.pt"
+          "email": "correio@cimdouro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-281",
@@ -3629,7 +3635,8 @@
           "pais": "Portugal",
           "telefone": "254600070",
           "telemovel": "",
-          "email": "correio@cimdouro.pt"
+          "email": "correio@cimdouro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-67",
@@ -3646,7 +3653,8 @@
           "pais": "Portugal",
           "telefone": "254600070",
           "telemovel": "",
-          "email": "correio@cimdouro.pt"
+          "email": "correio@cimdouro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-491",
@@ -3663,7 +3671,8 @@
           "pais": "Portugal",
           "telefone": "254600070",
           "telemovel": "",
-          "email": "correio@cimdouro.pt"
+          "email": "correio@cimdouro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-43",
@@ -3680,7 +3689,8 @@
           "pais": "Portugal",
           "telefone": "254600070",
           "telemovel": "",
-          "email": "correio@cimdouro.pt"
+          "email": "correio@cimdouro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-9",
@@ -3697,7 +3707,8 @@
           "pais": "Portugal",
           "telefone": "254600070",
           "telemovel": "",
-          "email": "correio@cimdouro.pt"
+          "email": "correio@cimdouro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-878",
@@ -3714,7 +3725,8 @@
           "pais": "Portugal",
           "telefone": "254600070",
           "telemovel": "",
-          "email": "correio@cimdouro.pt"
+          "email": "correio@cimdouro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-55",
@@ -3731,7 +3743,8 @@
           "pais": "Portugal",
           "telefone": "254600070",
           "telemovel": "",
-          "email": "correio@cimdouro.pt"
+          "email": "correio@cimdouro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-500",
@@ -3748,7 +3761,8 @@
           "pais": "Portugal",
           "telefone": "254600070",
           "telemovel": "",
-          "email": "correio@cimdouro.pt"
+          "email": "correio@cimdouro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-734",
@@ -3765,7 +3779,8 @@
           "pais": "Portugal",
           "telefone": "254600070",
           "telemovel": "",
-          "email": "correio@cimdouro.pt"
+          "email": "correio@cimdouro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-538",
@@ -3782,7 +3797,8 @@
           "pais": "Portugal",
           "telefone": "254600070",
           "telemovel": "",
-          "email": "correio@cimdouro.pt"
+          "email": "correio@cimdouro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-738",
@@ -3799,7 +3815,8 @@
           "pais": "Portugal",
           "telefone": "254600070",
           "telemovel": "",
-          "email": "correio@cimdouro.pt"
+          "email": "correio@cimdouro.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-861",
@@ -3816,14 +3833,35 @@
           "pais": "Portugal",
           "telefone": "254600070",
           "telemovel": "",
-          "email": "correio@cimdouro.pt"
+          "email": "correio@cimdouro.pt",
+          "website": ""
+        },
+        {
+          "id": "sep-1793354072336-474",
+          "tipoSeparador": "Comunidade Intermunicipal do Douro",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal do Douro",
+          "contribuinte": "",
+          "direcao1": "",
+          "direcao2": "",
+          "numero": "",
+          "andar": "",
+          "codigoPostal": "",
+          "localidade": "",
+          "telefone": "",
+          "telemovel": "",
+          "email": "",
+          "pais": "Portugal",
+          "website": ""
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.633Z",
-      "updatedAt": "2026-10-28T08:36:21.633Z"
+      "updatedAt": "2026-10-30T09:55:08.149Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581633-265",
@@ -12889,6 +12927,126 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793354108150-30745",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Alijó\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Alijó",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Comunidade Intermunicipal do Douro",
+            "novo": "Alijó"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Alijó",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Comunidade Intermunicipal do Douro",
+            "novo": "Alijó"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T09:55:08.150Z"
+    },
+    {
+      "id": "log-1793354006648-37764",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal do Cávado\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Cávado",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Email",
+            "anterior": "(vazio)",
+            "novo": "geral@cimcavado.pt"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "(vazio)",
+            "novo": "+351 253 201 360"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "(vazio)",
+            "novo": "Rua do Carmo"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "(vazio)",
+            "novo": "4700-309"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "(vazio)",
+            "novo": "Braga"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Cávado",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Email",
+            "anterior": "(vazio)",
+            "novo": "geral@cimcavado.pt"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "(vazio)",
+            "novo": "+351 253 201 360"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "(vazio)",
+            "novo": "Rua do Carmo"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "(vazio)",
+            "novo": "4700-309"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "(vazio)",
+            "novo": "Braga"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T09:53:26.648Z"
+    },
     {
       "id": "log-1793353949434-52919",
       "usuarioId": "usr-admin-001",
