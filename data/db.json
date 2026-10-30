@@ -4162,22 +4162,41 @@
       "id": "cli-1793176581633-486",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal da Região de Coimbra",
-      "secretariaEstado": "",
+      "secretariaEstado": "Comunidade Intermunicipal da Região de Coimbra, Arganil, Cantanhede, Coimbra, Condeixa-a-Nova, Figueira da Foz, Góis, Lousã, Mira, Miranda do Corvo, Montemor-o-Velho, Mortágua, Oliveira do Hospital, Pampilhosa da Serra, Penacova, Penela, Soure, Tábua, Vila Nova de Poiares",
       "nome": "Comunidade Intermunicipal da Região de Coimbra",
       "contribuinte": "",
-      "direcao1": "Rua do Brasil",
+      "direcao1": "Rua do Brasil, 131, 3030-175 Coimbra, Portugal",
       "direcao2": "",
-      "numero": "131",
+      "numero": "",
       "andar": "",
-      "codigoPostal": "3030-175",
-      "localidade": "Coimbra",
-      "pais": "Brasil",
-      "telefone": "239795200",
+      "codigoPostal": "",
+      "localidade": "",
+      "pais": "Portugal",
+      "telefone": "+351-239-795-200",
       "telemovel": "",
-      "email": "geral@cim-regiaodecoimbra.pt",
-      "website": "https://www.cim-regiaodecoimbra.pt",
-      "setorAtividade": "",
+      "email": "",
+      "website": "http://www.cim-regiaodecoimbra.pt/",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
+        {
+          "id": "sep-1793352682261-314",
+          "tipoSeparador": "Comunidade Intermunicipal da Região de Coimbra",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal da Região de Coimbra",
+          "contribuinte": "",
+          "direcao1": "Rua do Brasil, 131, 3030-175 Coimbra, Portugal",
+          "direcao2": "",
+          "numero": "",
+          "andar": "",
+          "codigoPostal": "",
+          "localidade": "",
+          "telefone": "+351-239-795-200",
+          "telemovel": "",
+          "email": "",
+          "pais": "Portugal",
+          "website": "http://www.cim-regiaodecoimbra.pt/"
+        },
         {
           "id": "sep-1793176581633-787",
           "tipoSeparador": "Arganil",
@@ -4193,7 +4212,8 @@
           "pais": "Portugal",
           "telefone": "239795200",
           "telemovel": "",
-          "email": "geral@cim-regiaodecoimbra.pt"
+          "email": "geral@cim-regiaodecoimbra.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-110",
@@ -4210,7 +4230,8 @@
           "pais": "Portugal",
           "telefone": "239795200",
           "telemovel": "",
-          "email": "geral@cim-regiaodecoimbra.pt"
+          "email": "geral@cim-regiaodecoimbra.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-865",
@@ -4227,7 +4248,8 @@
           "pais": "Portugal",
           "telefone": "239795200",
           "telemovel": "",
-          "email": "geral@cim-regiaodecoimbra.pt"
+          "email": "geral@cim-regiaodecoimbra.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-2",
@@ -4244,7 +4266,8 @@
           "pais": "Portugal",
           "telefone": "239795200",
           "telemovel": "",
-          "email": "geral@cim-regiaodecoimbra.pt"
+          "email": "geral@cim-regiaodecoimbra.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-982",
@@ -4261,7 +4284,8 @@
           "pais": "Portugal",
           "telefone": "239795200",
           "telemovel": "",
-          "email": "geral@cim-regiaodecoimbra.pt"
+          "email": "geral@cim-regiaodecoimbra.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-99",
@@ -4278,7 +4302,8 @@
           "pais": "Portugal",
           "telefone": "239795200",
           "telemovel": "",
-          "email": "geral@cim-regiaodecoimbra.pt"
+          "email": "geral@cim-regiaodecoimbra.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-971",
@@ -4295,7 +4320,8 @@
           "pais": "Portugal",
           "telefone": "239795200",
           "telemovel": "",
-          "email": "geral@cim-regiaodecoimbra.pt"
+          "email": "geral@cim-regiaodecoimbra.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-9",
@@ -4312,7 +4338,8 @@
           "pais": "Portugal",
           "telefone": "239795200",
           "telemovel": "",
-          "email": "geral@cim-regiaodecoimbra.pt"
+          "email": "geral@cim-regiaodecoimbra.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-232",
@@ -4329,7 +4356,8 @@
           "pais": "Portugal",
           "telefone": "239795200",
           "telemovel": "",
-          "email": "geral@cim-regiaodecoimbra.pt"
+          "email": "geral@cim-regiaodecoimbra.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-819",
@@ -4346,7 +4374,8 @@
           "pais": "Portugal",
           "telefone": "239795200",
           "telemovel": "",
-          "email": "geral@cim-regiaodecoimbra.pt"
+          "email": "geral@cim-regiaodecoimbra.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-0",
@@ -4363,7 +4392,8 @@
           "pais": "Portugal",
           "telefone": "239795200",
           "telemovel": "",
-          "email": "geral@cim-regiaodecoimbra.pt"
+          "email": "geral@cim-regiaodecoimbra.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-253",
@@ -4380,7 +4410,8 @@
           "pais": "Portugal",
           "telefone": "239795200",
           "telemovel": "",
-          "email": "geral@cim-regiaodecoimbra.pt"
+          "email": "geral@cim-regiaodecoimbra.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-457",
@@ -4397,7 +4428,8 @@
           "pais": "Portugal",
           "telefone": "239795200",
           "telemovel": "",
-          "email": "geral@cim-regiaodecoimbra.pt"
+          "email": "geral@cim-regiaodecoimbra.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-256",
@@ -4414,7 +4446,8 @@
           "pais": "Portugal",
           "telefone": "239795200",
           "telemovel": "",
-          "email": "geral@cim-regiaodecoimbra.pt"
+          "email": "geral@cim-regiaodecoimbra.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-647",
@@ -4431,7 +4464,8 @@
           "pais": "Portugal",
           "telefone": "239795200",
           "telemovel": "",
-          "email": "geral@cim-regiaodecoimbra.pt"
+          "email": "geral@cim-regiaodecoimbra.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-846",
@@ -4448,7 +4482,8 @@
           "pais": "Portugal",
           "telefone": "239795200",
           "telemovel": "",
-          "email": "geral@cim-regiaodecoimbra.pt"
+          "email": "geral@cim-regiaodecoimbra.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-999",
@@ -4465,7 +4500,8 @@
           "pais": "Portugal",
           "telefone": "239795200",
           "telemovel": "",
-          "email": "geral@cim-regiaodecoimbra.pt"
+          "email": "geral@cim-regiaodecoimbra.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-640",
@@ -4482,35 +4518,57 @@
           "pais": "Portugal",
           "telefone": "239795200",
           "telemovel": "",
-          "email": "geral@cim-regiaodecoimbra.pt"
+          "email": "geral@cim-regiaodecoimbra.pt",
+          "website": ""
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.633Z",
-      "updatedAt": "2026-10-28T08:36:21.633Z"
+      "updatedAt": "2026-10-30T09:32:02.851Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581633-854",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal da Região de Leiria",
-      "secretariaEstado": "",
+      "secretariaEstado": "Comunidade Intermunicipal da Região de Leiria, Alcobaça, Alvaiázere, Ansião, Batalha, Bombarral, Caldas da Rainha, Castanheira de Pera, Figueiró dos Vinhos, Leiria, Marinha Grande, Nazaré, Óbidos, Pedrógão Grande, Peniche, Pombal, Porto de Mós",
       "nome": "Comunidade Intermunicipal da Região de Leiria",
       "contribuinte": "",
-      "direcao1": "Edifício Maringá",
+      "direcao1": "Edifício Maringá, Torre 2 - 2.º andar, 2400-118 Leiria",
       "direcao2": "",
-      "numero": "221",
-      "andar": "2.º",
-      "codigoPostal": "2400-118",
+      "numero": "",
+      "andar": "",
+      "codigoPostal": "",
       "localidade": "Leiria",
       "pais": "Portugal",
-      "telefone": "244811133",
+      "telefone": "",
       "telemovel": "",
-      "email": "cimrl@cimregiaodeleiria.pt",
-      "website": "https://www.cimregiaodeleiria.pt",
-      "setorAtividade": "",
+      "email": "",
+      "website": "https://www.cimregiaodeleiria.pt/",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
+        {
+          "id": "sep-1793352735605-667",
+          "tipoSeparador": "Comunidade Intermunicipal da Região de Leiria",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal da Região de Leiria",
+          "contribuinte": "",
+          "direcao1": "Edifício Maringá, Torre 2 - 2.º andar, 2400-118 Leiria",
+          "direcao2": "",
+          "numero": "",
+          "andar": "",
+          "codigoPostal": "",
+          "localidade": "Leiria",
+          "telefone": "",
+          "telemovel": "",
+          "email": "",
+          "pais": "Portugal",
+          "website": "https://www.cimregiaodeleiria.pt/"
+        },
         {
           "id": "sep-1793176581633-116",
           "tipoSeparador": "Alcobaça",
@@ -4526,7 +4584,8 @@
           "pais": "Portugal",
           "telefone": "244811133",
           "telemovel": "",
-          "email": "cimrl@cimregiaodeleiria.pt"
+          "email": "cimrl@cimregiaodeleiria.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-158",
@@ -4543,7 +4602,8 @@
           "pais": "Portugal",
           "telefone": "244811133",
           "telemovel": "",
-          "email": "cimrl@cimregiaodeleiria.pt"
+          "email": "cimrl@cimregiaodeleiria.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-444",
@@ -4560,7 +4620,8 @@
           "pais": "Portugal",
           "telefone": "244811133",
           "telemovel": "",
-          "email": "cimrl@cimregiaodeleiria.pt"
+          "email": "cimrl@cimregiaodeleiria.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-960",
@@ -4577,7 +4638,8 @@
           "pais": "Portugal",
           "telefone": "244811133",
           "telemovel": "",
-          "email": "cimrl@cimregiaodeleiria.pt"
+          "email": "cimrl@cimregiaodeleiria.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-526",
@@ -4594,7 +4656,8 @@
           "pais": "Portugal",
           "telefone": "244811133",
           "telemovel": "",
-          "email": "cimrl@cimregiaodeleiria.pt"
+          "email": "cimrl@cimregiaodeleiria.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-379",
@@ -4611,7 +4674,8 @@
           "pais": "Portugal",
           "telefone": "244811133",
           "telemovel": "",
-          "email": "cimrl@cimregiaodeleiria.pt"
+          "email": "cimrl@cimregiaodeleiria.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-752",
@@ -4628,7 +4692,8 @@
           "pais": "Portugal",
           "telefone": "244811133",
           "telemovel": "",
-          "email": "cimrl@cimregiaodeleiria.pt"
+          "email": "cimrl@cimregiaodeleiria.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-544",
@@ -4645,7 +4710,8 @@
           "pais": "Portugal",
           "telefone": "244811133",
           "telemovel": "",
-          "email": "cimrl@cimregiaodeleiria.pt"
+          "email": "cimrl@cimregiaodeleiria.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-70",
@@ -4662,7 +4728,8 @@
           "pais": "Portugal",
           "telefone": "244811133",
           "telemovel": "",
-          "email": "cimrl@cimregiaodeleiria.pt"
+          "email": "cimrl@cimregiaodeleiria.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-907",
@@ -4679,7 +4746,8 @@
           "pais": "Portugal",
           "telefone": "244811133",
           "telemovel": "",
-          "email": "cimrl@cimregiaodeleiria.pt"
+          "email": "cimrl@cimregiaodeleiria.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-565",
@@ -4696,7 +4764,8 @@
           "pais": "Portugal",
           "telefone": "244811133",
           "telemovel": "",
-          "email": "cimrl@cimregiaodeleiria.pt"
+          "email": "cimrl@cimregiaodeleiria.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-527",
@@ -4713,7 +4782,8 @@
           "pais": "Portugal",
           "telefone": "244811133",
           "telemovel": "",
-          "email": "cimrl@cimregiaodeleiria.pt"
+          "email": "cimrl@cimregiaodeleiria.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-0",
@@ -4730,7 +4800,8 @@
           "pais": "Portugal",
           "telefone": "244811133",
           "telemovel": "",
-          "email": "cimrl@cimregiaodeleiria.pt"
+          "email": "cimrl@cimregiaodeleiria.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-145",
@@ -4747,7 +4818,8 @@
           "pais": "Portugal",
           "telefone": "244811133",
           "telemovel": "",
-          "email": "cimrl@cimregiaodeleiria.pt"
+          "email": "cimrl@cimregiaodeleiria.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-997",
@@ -4764,7 +4836,8 @@
           "pais": "Portugal",
           "telefone": "244811133",
           "telemovel": "",
-          "email": "cimrl@cimregiaodeleiria.pt"
+          "email": "cimrl@cimregiaodeleiria.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-100",
@@ -4781,14 +4854,17 @@
           "pais": "Portugal",
           "telefone": "244811133",
           "telemovel": "",
-          "email": "cimrl@cimregiaodeleiria.pt"
+          "email": "cimrl@cimregiaodeleiria.pt",
+          "website": ""
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.633Z",
-      "updatedAt": "2026-10-28T08:36:21.633Z"
+      "updatedAt": "2026-10-30T09:32:42.573Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581633-999",
@@ -12465,6 +12541,166 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793352762573-88251",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal da Região de Leiria\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal da Região de Leiria",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Email",
+            "anterior": "cimrl@cimregiaodeleiria.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "244811133",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Edifício Maringá",
+            "novo": "Edifício Maringá, Torre 2 - 2.º andar, 2400-118 Leiria"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "2400-118",
+            "novo": "(vazio)"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal da Região de Leiria",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Email",
+            "anterior": "cimrl@cimregiaodeleiria.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "244811133",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Edifício Maringá",
+            "novo": "Edifício Maringá, Torre 2 - 2.º andar, 2400-118 Leiria"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "2400-118",
+            "novo": "(vazio)"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T09:32:42.573Z"
+    },
+    {
+      "id": "log-1793352722852-49256",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal da Região de Coimbra\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal da Região de Coimbra",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Email",
+            "anterior": "geral@cim-regiaodecoimbra.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "239795200",
+            "novo": "+351-239-795-200"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Rua do Brasil",
+            "novo": "Rua do Brasil, 131, 3030-175 Coimbra, Portugal"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "3030-175",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Coimbra",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "País",
+            "anterior": "Brasil",
+            "novo": "Portugal"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal da Região de Coimbra",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Email",
+            "anterior": "geral@cim-regiaodecoimbra.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "239795200",
+            "novo": "+351-239-795-200"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Rua do Brasil",
+            "novo": "Rua do Brasil, 131, 3030-175 Coimbra, Portugal"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "3030-175",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Coimbra",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "País",
+            "anterior": "Brasil",
+            "novo": "Portugal"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T09:32:02.852Z"
+    },
     {
       "id": "log-1793352668979-92308",
       "usuarioId": "usr-admin-001",
