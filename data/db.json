@@ -5283,12 +5283,12 @@
       "id": "cli-1793176581634-51",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal do Médio Tejo",
-      "secretariaEstado": "",
+      "secretariaEstado": "Comunidade Intermunicipal do Médio Tejo, Abrantes, Alcanena, Constância, Entroncamento, Ferreira do Zêzere, Mação, Ourém, Sardoal, Tomar, Torres Novas, Vila Nova da Barquinha",
       "nome": "Comunidade Intermunicipal do Médio Tejo",
       "contribuinte": "",
-      "direcao1": "Convento de São Francisco, Avenida General Bernardo Faria",
-      "direcao2": "",
-      "numero": "",
+      "direcao1": "Avenida General Bernardo Faria",
+      "direcao2": "Convento de São Francisco",
+      "numero": "4",
       "andar": "",
       "codigoPostal": "2300-535",
       "localidade": "Tomar",
@@ -5296,9 +5296,28 @@
       "telefone": "249730060",
       "telemovel": "",
       "email": "geral@cimt.pt",
-      "website": "https://www.cimt.pt",
-      "setorAtividade": "",
+      "website": "https://mediotejo.pt/index.php/contatos",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
+        {
+          "id": "sep-1793354122529-561",
+          "tipoSeparador": "Comunidade Intermunicipal do Médio Tejo",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal do Médio Tejo",
+          "contribuinte": "",
+          "direcao1": "Avenida General Bernardo Faria",
+          "direcao2": "Convento de São Francisco",
+          "numero": "4",
+          "andar": "",
+          "codigoPostal": "2300-535",
+          "localidade": "Tomar",
+          "telefone": "249730060",
+          "telemovel": "",
+          "email": "geral@cimt.pt",
+          "pais": "Portugal",
+          "website": "https://mediotejo.pt/index.php/contatos"
+        },
         {
           "id": "sep-1793176581635-372",
           "tipoSeparador": "Abrantes",
@@ -5314,7 +5333,8 @@
           "pais": "Portugal",
           "telefone": "249730060",
           "telemovel": "",
-          "email": "geral@cimt.pt"
+          "email": "geral@cimt.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581635-310",
@@ -5331,7 +5351,8 @@
           "pais": "Portugal",
           "telefone": "249730060",
           "telemovel": "",
-          "email": "geral@cimt.pt"
+          "email": "geral@cimt.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581635-155",
@@ -5348,7 +5369,8 @@
           "pais": "Portugal",
           "telefone": "249730060",
           "telemovel": "",
-          "email": "geral@cimt.pt"
+          "email": "geral@cimt.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581635-697",
@@ -5365,7 +5387,8 @@
           "pais": "Portugal",
           "telefone": "249730060",
           "telemovel": "",
-          "email": "geral@cimt.pt"
+          "email": "geral@cimt.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581635-554",
@@ -5382,7 +5405,8 @@
           "pais": "Portugal",
           "telefone": "249730060",
           "telemovel": "",
-          "email": "geral@cimt.pt"
+          "email": "geral@cimt.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581635-55",
@@ -5399,7 +5423,8 @@
           "pais": "Portugal",
           "telefone": "249730060",
           "telemovel": "",
-          "email": "geral@cimt.pt"
+          "email": "geral@cimt.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581635-402",
@@ -5416,7 +5441,8 @@
           "pais": "Portugal",
           "telefone": "249730060",
           "telemovel": "",
-          "email": "geral@cimt.pt"
+          "email": "geral@cimt.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581636-109",
@@ -5433,7 +5459,8 @@
           "pais": "Portugal",
           "telefone": "249730060",
           "telemovel": "",
-          "email": "geral@cimt.pt"
+          "email": "geral@cimt.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581636-263",
@@ -5450,7 +5477,8 @@
           "pais": "Portugal",
           "telefone": "249730060",
           "telemovel": "",
-          "email": "geral@cimt.pt"
+          "email": "geral@cimt.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581636-439",
@@ -5467,7 +5495,8 @@
           "pais": "Portugal",
           "telefone": "249730060",
           "telemovel": "",
-          "email": "geral@cimt.pt"
+          "email": "geral@cimt.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581643-992",
@@ -5484,14 +5513,17 @@
           "pais": "Portugal",
           "telefone": "249730060",
           "telemovel": "",
-          "email": "geral@cimt.pt"
+          "email": "geral@cimt.pt",
+          "website": ""
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.635Z",
-      "updatedAt": "2026-10-28T08:36:21.643Z"
+      "updatedAt": "2026-10-30T10:00:46.581Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581643-310",
@@ -12927,6 +12959,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793354446582-32533",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal do Médio Tejo\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Médio Tejo",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Morada",
+            "anterior": "Convento de São Francisco, Avenida General Bernardo Faria",
+            "novo": "Avenida General Bernardo Faria"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Médio Tejo",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Morada",
+            "anterior": "Convento de São Francisco, Avenida General Bernardo Faria",
+            "novo": "Avenida General Bernardo Faria"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T10:00:46.582Z"
+    },
     {
       "id": "log-1793354108150-30745",
       "usuarioId": "usr-admin-001",
