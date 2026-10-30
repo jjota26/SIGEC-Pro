@@ -6687,23 +6687,41 @@
       "id": "cli-1793176581643-229",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal do Alentejo Central",
-      "secretariaEstado": "Alandroal, Arraiolos, Borba, Estremoz, Évora, Montemor-o-Novo, Mora, Mourão, Portel, Redondo, Reguengos de Monsaraz, Vendas Novas, Viana do Alentejo, Vila Viçosa, Comunidade Intermunicipal do Alentejo Central",
-      "nome": "Alandroal",
+      "secretariaEstado": "Comunidade Intermunicipal do Alentejo Central, Alandroal, Arraiolos, Borba, Estremoz, Évora, Montemor-o-Novo, Mora, Mourão, Portel, Redondo, Reguengos de Monsaraz, Vendas Novas, Viana do Alentejo, Vila Viçosa, Comunidade Intermunicipal do Alentejo Central",
+      "nome": "Comunidade Intermunicipal do Alentejo Central",
       "contribuinte": "",
       "direcao1": "Rua 24 de Julho",
       "direcao2": "",
-      "numero": "1",
-      "andar": "R/C Esq.",
-      "codigoPostal": "7000-673",
+      "numero": "",
+      "andar": "",
+      "codigoPostal": "7000-673 Évora",
       "localidade": "Évora",
       "pais": "Portugal",
-      "telefone": "266749420",
+      "telefone": "",
       "telemovel": "",
-      "email": "geral@cimac.pt",
-      "website": "",
+      "email": "",
+      "website": "https://www.cimac.pt/",
       "notas": "",
       "proximoContacto": null,
       "separadores": [
+        {
+          "id": "sep-1793354672723-684",
+          "tipoSeparador": "Comunidade Intermunicipal do Alentejo Central",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal do Alentejo Central",
+          "contribuinte": "",
+          "direcao1": "Rua 24 de Julho",
+          "direcao2": "",
+          "numero": "",
+          "andar": "",
+          "codigoPostal": "7000-673 Évora",
+          "localidade": "Évora",
+          "telefone": "",
+          "telemovel": "",
+          "email": "",
+          "pais": "Portugal",
+          "website": "https://www.cimac.pt/"
+        },
         {
           "id": "sep-1793176581643-184",
           "tipoSeparador": "Alandroal",
@@ -6979,7 +6997,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.643Z",
-      "updatedAt": "2026-10-30T09:37:14.741Z",
+      "updatedAt": "2026-10-30T10:05:24.283Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     },
@@ -13025,6 +13043,76 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793354724283-18351",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal do Alentejo Central\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Alentejo Central",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Alandroal",
+            "novo": "Comunidade Intermunicipal do Alentejo Central"
+          },
+          {
+            "campo": "Email",
+            "anterior": "geral@cimac.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "266749420",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "7000-673",
+            "novo": "7000-673 Évora"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Alentejo Central",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Alandroal",
+            "novo": "Comunidade Intermunicipal do Alentejo Central"
+          },
+          {
+            "campo": "Email",
+            "anterior": "geral@cimac.pt",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "266749420",
+            "novo": "(vazio)"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "7000-673",
+            "novo": "7000-673 Évora"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T10:05:24.283Z"
+    },
     {
       "id": "log-1793354545984-22314",
       "usuarioId": "usr-admin-001",
