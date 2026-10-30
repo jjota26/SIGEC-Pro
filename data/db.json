@@ -6876,22 +6876,41 @@
       "id": "cli-1793176581644-655",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal do Alto Alentejo",
-      "secretariaEstado": "",
+      "secretariaEstado": "Comunidade Intermunicipal do Alto Alentejo, Alter do Chão, Arronches, Avis, Campo Maior, Castelo de Vide, Crato, Elvas, Fronteira, Gavião, Marvão, Monforte, Nisa, Ponte de Sor, Portalegre, Sousel",
       "nome": "Comunidade Intermunicipal do Alto Alentejo",
       "contribuinte": "",
-      "direcao1": "Rua  de Junho",
+      "direcao1": "Rua 19 de Junho",
       "direcao2": "",
       "numero": "26",
       "andar": "",
       "codigoPostal": "7300-155",
-      "localidade": "Portalegre",
+      "localidade": "Lisboa",
       "pais": "Portugal",
-      "telefone": "245301440",
+      "telefone": "245 301 440",
       "telemovel": "",
       "email": "geral@cimaa.pt",
-      "website": "https://www.cimaa.pt",
-      "setorAtividade": "",
+      "website": "http://www.cimaa.pt/",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
+        {
+          "id": "sep-1793353329304-450",
+          "tipoSeparador": "Comunidade Intermunicipal do Alto Alentejo",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal do Alto Alentejo",
+          "contribuinte": "",
+          "direcao1": "Rua 19 de Junho",
+          "direcao2": "",
+          "numero": "26",
+          "andar": "",
+          "codigoPostal": "7300-155",
+          "localidade": "Lisboa",
+          "telefone": "245 301 440",
+          "telemovel": "",
+          "email": "geral@cimaa.pt",
+          "pais": "Portugal",
+          "website": "http://www.cimaa.pt/"
+        },
         {
           "id": "sep-1793176581644-657",
           "tipoSeparador": "Alter do Chão",
@@ -6907,7 +6926,8 @@
           "pais": "Portugal",
           "telefone": "245301440",
           "telemovel": "",
-          "email": "geral@cimaa.pt"
+          "email": "geral@cimaa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-641",
@@ -6924,7 +6944,8 @@
           "pais": "Portugal",
           "telefone": "245301440",
           "telemovel": "",
-          "email": "geral@cimaa.pt"
+          "email": "geral@cimaa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-974",
@@ -6941,7 +6962,8 @@
           "pais": "Portugal",
           "telefone": "245301440",
           "telemovel": "",
-          "email": "geral@cimaa.pt"
+          "email": "geral@cimaa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-30",
@@ -6958,7 +6980,8 @@
           "pais": "Portugal",
           "telefone": "245301440",
           "telemovel": "",
-          "email": "geral@cimaa.pt"
+          "email": "geral@cimaa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-495",
@@ -6975,7 +6998,8 @@
           "pais": "Portugal",
           "telefone": "245301440",
           "telemovel": "",
-          "email": "geral@cimaa.pt"
+          "email": "geral@cimaa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-777",
@@ -6992,7 +7016,8 @@
           "pais": "Portugal",
           "telefone": "245301440",
           "telemovel": "",
-          "email": "geral@cimaa.pt"
+          "email": "geral@cimaa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-782",
@@ -7009,7 +7034,8 @@
           "pais": "Portugal",
           "telefone": "245301440",
           "telemovel": "",
-          "email": "geral@cimaa.pt"
+          "email": "geral@cimaa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-934",
@@ -7026,7 +7052,8 @@
           "pais": "Portugal",
           "telefone": "245301440",
           "telemovel": "",
-          "email": "geral@cimaa.pt"
+          "email": "geral@cimaa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-150",
@@ -7043,7 +7070,8 @@
           "pais": "Portugal",
           "telefone": "245301440",
           "telemovel": "",
-          "email": "geral@cimaa.pt"
+          "email": "geral@cimaa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-781",
@@ -7060,7 +7088,8 @@
           "pais": "Portugal",
           "telefone": "245301440",
           "telemovel": "",
-          "email": "geral@cimaa.pt"
+          "email": "geral@cimaa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-806",
@@ -7077,7 +7106,8 @@
           "pais": "Portugal",
           "telefone": "245301440",
           "telemovel": "",
-          "email": "geral@cimaa.pt"
+          "email": "geral@cimaa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-546",
@@ -7094,7 +7124,8 @@
           "pais": "Portugal",
           "telefone": "245301440",
           "telemovel": "",
-          "email": "geral@cimaa.pt"
+          "email": "geral@cimaa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-926",
@@ -7111,7 +7142,8 @@
           "pais": "Portugal",
           "telefone": "245301440",
           "telemovel": "",
-          "email": "geral@cimaa.pt"
+          "email": "geral@cimaa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-755",
@@ -7128,7 +7160,8 @@
           "pais": "Portugal",
           "telefone": "245301440",
           "telemovel": "",
-          "email": "geral@cimaa.pt"
+          "email": "geral@cimaa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581644-788",
@@ -7145,14 +7178,17 @@
           "pais": "Portugal",
           "telefone": "245301440",
           "telemovel": "",
-          "email": "geral@cimaa.pt"
+          "email": "geral@cimaa.pt",
+          "website": ""
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.644Z",
-      "updatedAt": "2026-10-28T08:36:21.644Z"
+      "updatedAt": "2026-10-30T09:43:08.473Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581644-805",
@@ -12706,6 +12742,66 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793353388473-40306",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal do Alto Alentejo\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Alto Alentejo",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Telefone",
+            "anterior": "245301440",
+            "novo": "245 301 440"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Rua  de Junho",
+            "novo": "Rua 19 de Junho"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Portalegre",
+            "novo": "Lisboa"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Alto Alentejo",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Telefone",
+            "anterior": "245301440",
+            "novo": "245 301 440"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "Rua  de Junho",
+            "novo": "Rua 19 de Junho"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "Portalegre",
+            "novo": "Lisboa"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T09:43:08.473Z"
+    },
     {
       "id": "log-1793353319076-44225",
       "usuarioId": "usr-admin-001",
