@@ -2928,7 +2928,7 @@
       "id": "cli-1793176581632-299",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal do Ave",
-      "secretariaEstado": "",
+      "secretariaEstado": "Comunidade Intermunicipal do Ave, Cabeceiras de Basto, Fafe, Guimarães, Mondim de Basto, Póvoa de Lanhoso, Vieira do Minho, Vizela",
       "nome": "Comunidade Intermunicipal do Ave",
       "contribuinte": "",
       "direcao1": "Rua Capitão Alfredo Guimarães",
@@ -2938,12 +2938,31 @@
       "codigoPostal": "4800-019",
       "localidade": "Guimarães",
       "pais": "Portugal",
-      "telefone": "253422400",
+      "telefone": "+351 253 422 400",
       "telemovel": "",
       "email": "geral@cim-ave.pt",
-      "website": "https://www.cim-ave.pt",
-      "setorAtividade": "",
+      "website": "https://cim-ave.pt/",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
+        {
+          "id": "sep-1793353597580-182",
+          "tipoSeparador": "Comunidade Intermunicipal do Ave",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal do Ave",
+          "contribuinte": "",
+          "direcao1": "Rua Capitão Alfredo Guimarães",
+          "direcao2": "",
+          "numero": "1",
+          "andar": "",
+          "codigoPostal": "4800-019",
+          "localidade": "Guimarães",
+          "telefone": "+351 253 422 400",
+          "telemovel": "",
+          "email": "geral@cim-ave.pt",
+          "pais": "Portugal",
+          "website": "https://cim-ave.pt/"
+        },
         {
           "id": "sep-1793176581632-128",
           "tipoSeparador": "Cabeceiras de Basto",
@@ -2959,7 +2978,8 @@
           "pais": "Portugal",
           "telefone": "253422400",
           "telemovel": "",
-          "email": "geral@cim-ave.pt"
+          "email": "geral@cim-ave.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-518",
@@ -2976,7 +2996,8 @@
           "pais": "Portugal",
           "telefone": "253422400",
           "telemovel": "",
-          "email": "geral@cim-ave.pt"
+          "email": "geral@cim-ave.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-657",
@@ -2993,7 +3014,8 @@
           "pais": "Portugal",
           "telefone": "253422400",
           "telemovel": "",
-          "email": "geral@cim-ave.pt"
+          "email": "geral@cim-ave.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-284",
@@ -3010,7 +3032,8 @@
           "pais": "Portugal",
           "telefone": "253422400",
           "telemovel": "",
-          "email": "geral@cim-ave.pt"
+          "email": "geral@cim-ave.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-37",
@@ -3027,7 +3050,8 @@
           "pais": "Portugal",
           "telefone": "253422400",
           "telemovel": "",
-          "email": "geral@cim-ave.pt"
+          "email": "geral@cim-ave.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-723",
@@ -3044,7 +3068,8 @@
           "pais": "Portugal",
           "telefone": "253422400",
           "telemovel": "",
-          "email": "geral@cim-ave.pt"
+          "email": "geral@cim-ave.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581632-552",
@@ -3061,14 +3086,17 @@
           "pais": "Portugal",
           "telefone": "253422400",
           "telemovel": "",
-          "email": "geral@cim-ave.pt"
+          "email": "geral@cim-ave.pt",
+          "website": ""
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.632Z",
-      "updatedAt": "2026-10-28T08:36:21.632Z"
+      "updatedAt": "2026-10-30T09:47:51.116Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581632-587",
@@ -12800,6 +12828,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793353671116-6813",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Comunidade Intermunicipal do Ave\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Ave",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Telefone",
+            "anterior": "253422400",
+            "novo": "+351 253 422 400"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Comunidade Intermunicipal do Ave",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Telefone",
+            "anterior": "253422400",
+            "novo": "+351 253 422 400"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T09:47:51.116Z"
+    },
     {
       "id": "log-1793353589467-3455",
       "usuarioId": "usr-admin-001",
