@@ -3867,8 +3867,8 @@
       "id": "cli-1793176581633-265",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal do Tâmega e Sousa",
-      "secretariaEstado": "",
-      "nome": "Comunidade Intermunicipal do Tâmega e Sousa",
+      "secretariaEstado": "Amarante, Baião, Castelo de Paiva, Celorico de Basto, Cinfães, Felgueiras, Lousada, Marco de Canaveses, Paços de Ferreira, Penafiel, Paredes, Resende, Comunidade Intermunicipal do Tâmega e Sousa",
+      "nome": "Amarante",
       "contribuinte": "",
       "direcao1": "Avenida José Júlio",
       "direcao2": "",
@@ -3880,8 +3880,9 @@
       "telefone": "255718340",
       "telemovel": "",
       "email": "geral@cimtamegaesousa.pt",
-      "website": "https://www.cimtamegaesousa.pt",
-      "setorAtividade": "",
+      "website": "",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
         {
           "id": "sep-1793176581633-799",
@@ -3898,7 +3899,8 @@
           "pais": "Portugal",
           "telefone": "255718340",
           "telemovel": "",
-          "email": "geral@cimtamegaesousa.pt"
+          "email": "geral@cimtamegaesousa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-412",
@@ -3915,7 +3917,8 @@
           "pais": "Portugal",
           "telefone": "255718340",
           "telemovel": "",
-          "email": "geral@cimtamegaesousa.pt"
+          "email": "geral@cimtamegaesousa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-916",
@@ -3932,7 +3935,8 @@
           "pais": "Portugal",
           "telefone": "255718340",
           "telemovel": "",
-          "email": "geral@cimtamegaesousa.pt"
+          "email": "geral@cimtamegaesousa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-209",
@@ -3949,7 +3953,8 @@
           "pais": "Portugal",
           "telefone": "255718340",
           "telemovel": "",
-          "email": "geral@cimtamegaesousa.pt"
+          "email": "geral@cimtamegaesousa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-165",
@@ -3966,7 +3971,8 @@
           "pais": "Portugal",
           "telefone": "255718340",
           "telemovel": "",
-          "email": "geral@cimtamegaesousa.pt"
+          "email": "geral@cimtamegaesousa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-673",
@@ -3983,7 +3989,8 @@
           "pais": "Portugal",
           "telefone": "255718340",
           "telemovel": "",
-          "email": "geral@cimtamegaesousa.pt"
+          "email": "geral@cimtamegaesousa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-714",
@@ -4000,7 +4007,8 @@
           "pais": "Portugal",
           "telefone": "255718340",
           "telemovel": "",
-          "email": "geral@cimtamegaesousa.pt"
+          "email": "geral@cimtamegaesousa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-896",
@@ -4017,7 +4025,8 @@
           "pais": "Portugal",
           "telefone": "255718340",
           "telemovel": "",
-          "email": "geral@cimtamegaesousa.pt"
+          "email": "geral@cimtamegaesousa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-403",
@@ -4034,7 +4043,8 @@
           "pais": "Portugal",
           "telefone": "255718340",
           "telemovel": "",
-          "email": "geral@cimtamegaesousa.pt"
+          "email": "geral@cimtamegaesousa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-643",
@@ -4051,7 +4061,8 @@
           "pais": "Portugal",
           "telefone": "255718340",
           "telemovel": "",
-          "email": "geral@cimtamegaesousa.pt"
+          "email": "geral@cimtamegaesousa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-185",
@@ -4068,7 +4079,8 @@
           "pais": "Portugal",
           "telefone": "255718340",
           "telemovel": "",
-          "email": "geral@cimtamegaesousa.pt"
+          "email": "geral@cimtamegaesousa.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-511",
@@ -4085,14 +4097,35 @@
           "pais": "Portugal",
           "telefone": "255718340",
           "telemovel": "",
-          "email": "geral@cimtamegaesousa.pt"
+          "email": "geral@cimtamegaesousa.pt",
+          "website": ""
+        },
+        {
+          "id": "sep-1793354492019-594",
+          "tipoSeparador": "Comunidade Intermunicipal do Tâmega e Sousa",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal do Tâmega e Sousa",
+          "contribuinte": "",
+          "direcao1": "Avenida José Júlio, 42, 4560-547 Penafiel",
+          "direcao2": "",
+          "numero": "",
+          "andar": "",
+          "codigoPostal": "",
+          "localidade": "",
+          "telefone": "",
+          "telemovel": "",
+          "email": "",
+          "pais": "Portugal",
+          "website": "http://www.cimtamegaesousa.pt/#/"
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.633Z",
-      "updatedAt": "2026-10-28T08:36:21.633Z"
+      "updatedAt": "2026-10-30T10:02:25.984Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581633-474",
@@ -5052,8 +5085,8 @@
       "id": "cli-1793176581633-999",
       "tipoCliente": "Estatal",
       "ministerio": "Comunidade Intermunicipal do Oeste",
-      "secretariaEstado": "",
-      "nome": "Comunidade Intermunicipal do Oeste",
+      "secretariaEstado": "Alcobaça, Alenquer, Arruda dos Vinhos, Bombarral, Cadaval, Caldas da Rainha, Lourinhã, Nazaré, Óbidos, Peniche, Sobral de Monte Agraço, Torres Vedras, Comunidade Intermunicipal do Oeste",
+      "nome": "Alcobaça",
       "contribuinte": "",
       "direcao1": "Avenida General Pedro Cardoso",
       "direcao2": "",
@@ -5065,8 +5098,9 @@
       "telefone": "262845600",
       "telemovel": "",
       "email": "geral@oestecim.pt",
-      "website": "https://www.oestecim.pt",
-      "setorAtividade": "",
+      "website": "",
+      "notas": "",
+      "proximoContacto": null,
       "separadores": [
         {
           "id": "sep-1793176581633-562",
@@ -5083,7 +5117,8 @@
           "pais": "Portugal",
           "telefone": "262845600",
           "telemovel": "",
-          "email": "geral@oestecim.pt"
+          "email": "geral@oestecim.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581633-133",
@@ -5100,7 +5135,8 @@
           "pais": "Portugal",
           "telefone": "262845600",
           "telemovel": "",
-          "email": "geral@oestecim.pt"
+          "email": "geral@oestecim.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581634-488",
@@ -5117,7 +5153,8 @@
           "pais": "Portugal",
           "telefone": "262845600",
           "telemovel": "",
-          "email": "geral@oestecim.pt"
+          "email": "geral@oestecim.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581634-188",
@@ -5134,7 +5171,8 @@
           "pais": "Portugal",
           "telefone": "262845600",
           "telemovel": "",
-          "email": "geral@oestecim.pt"
+          "email": "geral@oestecim.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581634-602",
@@ -5151,7 +5189,8 @@
           "pais": "Portugal",
           "telefone": "262845600",
           "telemovel": "",
-          "email": "geral@oestecim.pt"
+          "email": "geral@oestecim.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581634-690",
@@ -5168,7 +5207,8 @@
           "pais": "Portugal",
           "telefone": "262845600",
           "telemovel": "",
-          "email": "geral@oestecim.pt"
+          "email": "geral@oestecim.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581634-101",
@@ -5185,7 +5225,8 @@
           "pais": "Portugal",
           "telefone": "262845600",
           "telemovel": "",
-          "email": "geral@oestecim.pt"
+          "email": "geral@oestecim.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581634-295",
@@ -5202,7 +5243,8 @@
           "pais": "Portugal",
           "telefone": "262845600",
           "telemovel": "",
-          "email": "geral@oestecim.pt"
+          "email": "geral@oestecim.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581634-645",
@@ -5219,7 +5261,8 @@
           "pais": "Portugal",
           "telefone": "262845600",
           "telemovel": "",
-          "email": "geral@oestecim.pt"
+          "email": "geral@oestecim.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581634-240",
@@ -5236,7 +5279,8 @@
           "pais": "Portugal",
           "telefone": "262845600",
           "telemovel": "",
-          "email": "geral@oestecim.pt"
+          "email": "geral@oestecim.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581634-589",
@@ -5253,7 +5297,8 @@
           "pais": "Portugal",
           "telefone": "262845600",
           "telemovel": "",
-          "email": "geral@oestecim.pt"
+          "email": "geral@oestecim.pt",
+          "website": ""
         },
         {
           "id": "sep-1793176581634-199",
@@ -5270,14 +5315,35 @@
           "pais": "Portugal",
           "telefone": "262845600",
           "telemovel": "",
-          "email": "geral@oestecim.pt"
+          "email": "geral@oestecim.pt",
+          "website": ""
+        },
+        {
+          "id": "sep-1793354454739-185",
+          "tipoSeparador": "Comunidade Intermunicipal do Oeste",
+          "nomePersonalizado": "",
+          "nome": "Comunidade Intermunicipal do Oeste",
+          "contribuinte": "",
+          "direcao1": "Avenida General Pedro Cardoso, 9, 2500-922 Caldas da Rainha",
+          "direcao2": "",
+          "numero": "",
+          "andar": "",
+          "codigoPostal": "",
+          "localidade": "",
+          "telefone": "+351-262-839-030",
+          "telemovel": "",
+          "email": "",
+          "pais": "Portugal",
+          "website": "http://www.oestecim.pt/"
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-10-28T08:36:21.633Z",
-      "updatedAt": "2026-10-28T08:36:21.634Z"
+      "updatedAt": "2026-10-30T10:01:25.768Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "cli-1793176581634-51",
@@ -12959,6 +13025,86 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793354545984-22314",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Amarante\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Amarante",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Comunidade Intermunicipal do Tâmega e Sousa",
+            "novo": "Amarante"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Amarante",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Comunidade Intermunicipal do Tâmega e Sousa",
+            "novo": "Amarante"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T10:02:25.984Z"
+    },
+    {
+      "id": "log-1793354485768-76597",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"Alcobaça\" (NIF: ) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Alcobaça",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Comunidade Intermunicipal do Oeste",
+            "novo": "Alcobaça"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "Alcobaça",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Nome",
+            "anterior": "Comunidade Intermunicipal do Oeste",
+            "novo": "Alcobaça"
+          }
+        ]
+      },
+      "timestamp": "2026-10-30T10:01:25.768Z"
+    },
     {
       "id": "log-1793354446582-32533",
       "usuarioId": "usr-admin-001",
