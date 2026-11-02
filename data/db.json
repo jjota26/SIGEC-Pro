@@ -8119,7 +8119,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-11-02T08:16:02.977Z",
-      "updatedAt": "2026-11-02T08:27:17.300Z",
+      "updatedAt": "2026-11-02T08:30:18.572Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     }
@@ -11460,7 +11460,11 @@
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-11-02T08:27:04.650Z",
-      "updatedAt": "2026-11-02T08:27:42.306Z"
+      "updatedAt": "2026-11-02T08:27:42.306Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     },
     {
       "id": "con-1793608087796-110",
@@ -11477,7 +11481,11 @@
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-11-02T08:29:53.154Z",
-      "updatedAt": "2026-11-02T08:29:53.154Z"
+      "updatedAt": "2026-11-02T08:29:53.154Z",
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdById": "usr-admin-001"
     }
   ],
   "projetos": [
@@ -13125,6 +13133,104 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793625004444-82280",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Encerramento",
+      "tipoAcao": "Encerramento",
+      "descricao": "Sessão encerrada com gravação segura de todos os dados do perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-11-02T13:10:04.444Z"
+    },
+    {
+      "id": "log-1793608218572-25648",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"APA - Agência Portugesa do Ambiente\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "APA - Agência Portugesa do Ambiente",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "APA - Agência Portugesa do Ambiente",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-11-02T08:30:18.572Z"
+    },
+    {
+      "id": "log-1793608195345-70173",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"APA - Agência Portugesa do Ambiente\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "APA - Agência Portugesa do Ambiente",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "APA - Agência Portugesa do Ambiente",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-11-02T08:29:55.345Z"
+    },
     {
       "id": "log-1793608037301-87709",
       "usuarioId": "usr-admin-001",
