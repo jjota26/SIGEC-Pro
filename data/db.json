@@ -8074,6 +8074,54 @@
       "updatedAt": "2026-10-30T09:41:59.076Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
+    },
+    {
+      "id": "cli-1793607362976-277",
+      "tipoCliente": "Estatal",
+      "ministerio": "APA - Agência Portugesa do Ambiente",
+      "secretariaEstado": "APA - Agência Portugesa do Ambiente",
+      "nome": "APA - Agência Portugesa do Ambiente",
+      "contribuinte": "",
+      "direcao1": "",
+      "direcao2": "",
+      "numero": "",
+      "andar": "",
+      "codigoPostal": "",
+      "localidade": "",
+      "pais": "Portugal",
+      "telefone": "",
+      "telemovel": "",
+      "email": "",
+      "website": "",
+      "notas": "",
+      "proximoContacto": null,
+      "separadores": [
+        {
+          "id": "sep-1793607315303-28",
+          "tipoSeparador": "APA - Agência Portugesa do Ambiente",
+          "nomePersonalizado": "",
+          "nome": "APA - Agência Portugesa do Ambiente",
+          "contribuinte": "",
+          "direcao1": "",
+          "direcao2": "",
+          "numero": "",
+          "andar": "",
+          "codigoPostal": "",
+          "localidade": "",
+          "telefone": "",
+          "telemovel": "",
+          "email": "",
+          "pais": "Portugal",
+          "website": ""
+        }
+      ],
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdAt": "2026-11-02T08:16:02.977Z",
+      "updatedAt": "2026-11-02T08:16:02.977Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     }
   ],
   "contactos": [
@@ -13043,6 +13091,54 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793607362977-77848",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Criação de Cliente",
+      "tipoAcao": "Criação de Cliente",
+      "descricao": "Novo cliente \"APA - Agência Portugesa do Ambiente\" (NIF: ) registado na base de dados (Comercial: José Centúrio).",
+      "detalhes": {
+        "acao": "Criação",
+        "ficha": "Cliente",
+        "nome": "APA - Agência Portugesa do Ambiente",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "email": "",
+        "telefone": ""
+      },
+      "extra": {
+        "acao": "Criação",
+        "ficha": "Cliente",
+        "nome": "APA - Agência Portugesa do Ambiente",
+        "contribuinte": "",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "email": "",
+        "telefone": ""
+      },
+      "timestamp": "2026-11-02T08:16:02.977Z"
+    },
+    {
+      "id": "log-1793606394846-88085",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Encerramento",
+      "tipoAcao": "Encerramento",
+      "descricao": "Sessão encerrada com gravação segura de todos os dados do perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-11-02T07:59:54.846Z"
+    },
     {
       "id": "log-1793606386193-33933",
       "usuarioId": "usr-admin-001",
