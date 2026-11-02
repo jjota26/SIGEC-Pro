@@ -8119,7 +8119,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-11-02T08:16:02.977Z",
-      "updatedAt": "2026-11-02T08:19:43.641Z",
+      "updatedAt": "2026-11-02T08:27:17.300Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     }
@@ -11451,8 +11451,8 @@
       "empresa": "APA - Agência Portugesa do Ambiente",
       "subTabIndex": 0,
       "nome": "Manuel",
-      "apelido": "teixeira",
-      "cargo": "Diretor de Departamento",
+      "apelido": "Teixeira",
+      "cargo": "Diretor de Departamento Comunicação",
       "telefone": "",
       "telemovel": "",
       "email": "",
@@ -11460,7 +11460,24 @@
       "inativo": false,
       "proximoContacto": null,
       "createdAt": "2026-11-02T08:27:04.650Z",
-      "updatedAt": "2026-11-02T08:27:04.650Z"
+      "updatedAt": "2026-11-02T08:27:42.306Z"
+    },
+    {
+      "id": "con-1793608087796-110",
+      "clienteId": "cli-1793607362976-277",
+      "empresa": "APA - Agência Portugesa do Ambiente",
+      "subTabIndex": 0,
+      "nome": "Augusto",
+      "apelido": "Serrano",
+      "cargo": "Chefe da Divisão de Comunicação",
+      "telefone": "",
+      "telemovel": "",
+      "email": "",
+      "notas": "",
+      "inativo": false,
+      "proximoContacto": null,
+      "createdAt": "2026-11-02T08:29:53.154Z",
+      "updatedAt": "2026-11-02T08:29:53.154Z"
     }
   ],
   "projetos": [
@@ -13108,6 +13125,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793608037301-87709",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"APA - Agência Portugesa do Ambiente\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "APA - Agência Portugesa do Ambiente",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "APA - Agência Portugesa do Ambiente",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Ficheiro guardado",
+            "anterior": "",
+            "novo": "Sem alterações detetadas nos campos principais"
+          }
+        ]
+      },
+      "timestamp": "2026-11-02T08:27:17.301Z"
+    },
     {
       "id": "log-1793607583642-59391",
       "usuarioId": "usr-admin-001",
