@@ -11444,6 +11444,23 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdById": "usr-admin-001"
+    },
+    {
+      "id": "con-1793607892013-383",
+      "clienteId": "cli-1793607362976-277",
+      "empresa": "APA - Agência Portugesa do Ambiente",
+      "subTabIndex": 0,
+      "nome": "Manuel",
+      "apelido": "teixeira",
+      "cargo": "Diretor de Departamento",
+      "telefone": "",
+      "telemovel": "",
+      "email": "",
+      "notas": "",
+      "inativo": false,
+      "proximoContacto": null,
+      "createdAt": "2026-11-02T08:27:04.650Z",
+      "updatedAt": "2026-11-02T08:27:04.650Z"
     }
   ],
   "projetos": [
