@@ -8087,7 +8087,7 @@
       "numero": "9/9A",
       "andar": "",
       "codigoPostal": "2610-124",
-      "localidade": "Zambujal - Alfragide",
+      "localidade": "Zambujal - Alfragide - Amadora",
       "pais": "Portugal",
       "telefone": "+351 214 728 200",
       "telemovel": "",
@@ -8107,7 +8107,7 @@
           "numero": "9/9A",
           "andar": "",
           "codigoPostal": "2610-124",
-          "localidade": "Zambujal - Alfragide",
+          "localidade": "Zambujal - Alfragide - Amadora",
           "telefone": "+351 214 728 200",
           "telemovel": "",
           "email": "",
@@ -8119,7 +8119,7 @@
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-11-02T08:16:02.977Z",
-      "updatedAt": "2026-11-02T08:18:14.715Z",
+      "updatedAt": "2026-11-02T08:19:43.641Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     }
@@ -13091,6 +13091,46 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793607583642-59391",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"APA - Agência Portugesa do Ambiente\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "APA - Agência Portugesa do Ambiente",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Localidade",
+            "anterior": "Zambujal - Alfragide",
+            "novo": "Zambujal - Alfragide - Amadora"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "APA - Agência Portugesa do Ambiente",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Localidade",
+            "anterior": "Zambujal - Alfragide",
+            "novo": "Zambujal - Alfragide - Amadora"
+          }
+        ]
+      },
+      "timestamp": "2026-11-02T08:19:43.642Z"
+    },
     {
       "id": "log-1793607494715-10127",
       "usuarioId": "usr-admin-001",
