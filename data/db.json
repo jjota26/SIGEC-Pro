@@ -8122,6 +8122,54 @@
       "updatedAt": "2026-11-02T08:30:18.572Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
+    },
+    {
+      "id": "cli-1793790071978-474",
+      "tipoCliente": "Estatal",
+      "ministerio": "ICAD",
+      "secretariaEstado": "ICAD",
+      "nome": "ICAD",
+      "contribuinte": "000000000",
+      "direcao1": "",
+      "direcao2": "",
+      "numero": "",
+      "andar": "",
+      "codigoPostal": "",
+      "localidade": "",
+      "pais": "Portugal",
+      "telefone": "",
+      "telemovel": "",
+      "email": "",
+      "website": "",
+      "notas": "",
+      "proximoContacto": null,
+      "separadores": [
+        {
+          "id": "sep-1793790031692-380",
+          "tipoSeparador": "ICAD",
+          "nomePersonalizado": "",
+          "nome": "ICAD",
+          "contribuinte": "000000000",
+          "direcao1": "",
+          "direcao2": "",
+          "numero": "",
+          "andar": "",
+          "codigoPostal": "",
+          "localidade": "",
+          "telefone": "",
+          "telemovel": "",
+          "email": "",
+          "pais": "Portugal",
+          "website": ""
+        }
+      ],
+      "userId": "usr-admin-001",
+      "comercialAtribuidoId": "usr-admin-001",
+      "comercialAtribuidoNome": "José Centúrio",
+      "createdAt": "2026-11-04T11:01:11.978Z",
+      "updatedAt": "2026-11-04T11:01:11.978Z",
+      "comercial": "José Centúrio",
+      "createdById": "usr-admin-001"
     }
   ],
   "contactos": [
@@ -13133,6 +13181,36 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793790071979-29411",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Criação de Cliente",
+      "tipoAcao": "Criação de Cliente",
+      "descricao": "Novo cliente \"ICAD\" (NIF: 000000000) registado na base de dados (Comercial: José Centúrio).",
+      "detalhes": {
+        "acao": "Criação",
+        "ficha": "Cliente",
+        "nome": "ICAD",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "email": "",
+        "telefone": ""
+      },
+      "extra": {
+        "acao": "Criação",
+        "ficha": "Cliente",
+        "nome": "ICAD",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "email": "",
+        "telefone": ""
+      },
+      "timestamp": "2026-11-04T11:01:11.979Z"
+    },
     {
       "id": "log-1793625004444-82280",
       "usuarioId": "usr-admin-001",
