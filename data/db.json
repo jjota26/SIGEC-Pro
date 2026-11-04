@@ -8130,17 +8130,17 @@
       "secretariaEstado": "ICAD",
       "nome": "ICAD",
       "contribuinte": "000000000",
-      "direcao1": "",
-      "direcao2": "",
-      "numero": "",
+      "direcao1": "Av. do Brasil",
+      "direcao2": "Parque de Saúde de Lisboa",
+      "numero": "53",
       "andar": "",
-      "codigoPostal": "",
-      "localidade": "",
+      "codigoPostal": "1749-002",
+      "localidade": "Lisboa",
       "pais": "Portugal",
-      "telefone": "",
+      "telefone": "211 119 000",
       "telemovel": "",
-      "email": "",
-      "website": "",
+      "email": "icad@icad.min-saude.pt",
+      "website": "https://www.icad.pt",
       "notas": "",
       "proximoContacto": null,
       "separadores": [
@@ -8150,24 +8150,24 @@
           "nomePersonalizado": "",
           "nome": "ICAD",
           "contribuinte": "000000000",
-          "direcao1": "",
-          "direcao2": "",
-          "numero": "",
+          "direcao1": "Av. do Brasil",
+          "direcao2": "Parque de Saúde de Lisboa",
+          "numero": "53",
           "andar": "",
-          "codigoPostal": "",
-          "localidade": "",
-          "telefone": "",
+          "codigoPostal": "1749-002",
+          "localidade": "Lisboa",
+          "telefone": "211 119 000",
           "telemovel": "",
-          "email": "",
+          "email": "icad@icad.min-saude.pt",
           "pais": "Portugal",
-          "website": ""
+          "website": "https://www.icad.pt"
         }
       ],
       "userId": "usr-admin-001",
       "comercialAtribuidoId": "usr-admin-001",
       "comercialAtribuidoNome": "José Centúrio",
       "createdAt": "2026-11-04T11:01:11.978Z",
-      "updatedAt": "2026-11-04T11:01:11.978Z",
+      "updatedAt": "2026-11-04T11:01:57.355Z",
       "comercial": "José Centúrio",
       "createdById": "usr-admin-001"
     }
@@ -13181,6 +13181,104 @@
     }
   ],
   "userLogs": [
+    {
+      "id": "log-1793799500003-81142",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Encerramento",
+      "tipoAcao": "Encerramento",
+      "descricao": "Sessão encerrada com gravação segura de todos os dados do perfil de José Centúrio.",
+      "detalhes": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "extra": {
+        "utilizador": "José Centúrio",
+        "userId": "usr-admin-001"
+      },
+      "timestamp": "2026-11-04T13:38:20.003Z"
+    },
+    {
+      "id": "log-1793790117356-61694",
+      "usuarioId": "usr-admin-001",
+      "usuarioNome": "José Centúrio",
+      "usuarioEmail": "jmcenturio@alegria-activity.com",
+      "acao": "Edição de Cliente",
+      "tipoAcao": "Edição de Cliente",
+      "descricao": "Ficha do cliente \"ICAD\" (NIF: 000000000) atualizada.",
+      "detalhes": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "ICAD",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Email",
+            "anterior": "(vazio)",
+            "novo": "icad@icad.min-saude.pt"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "(vazio)",
+            "novo": "211 119 000"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "(vazio)",
+            "novo": "Av. do Brasil"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "(vazio)",
+            "novo": "1749-002"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "(vazio)",
+            "novo": "Lisboa"
+          }
+        ]
+      },
+      "extra": {
+        "acao": "Edição",
+        "ficha": "Cliente",
+        "nome": "ICAD",
+        "contribuinte": "000000000",
+        "tipoCliente": "Estatal",
+        "comercialAtribuido": "José Centúrio",
+        "camposAlterados": [
+          {
+            "campo": "Email",
+            "anterior": "(vazio)",
+            "novo": "icad@icad.min-saude.pt"
+          },
+          {
+            "campo": "Telefone",
+            "anterior": "(vazio)",
+            "novo": "211 119 000"
+          },
+          {
+            "campo": "Morada",
+            "anterior": "(vazio)",
+            "novo": "Av. do Brasil"
+          },
+          {
+            "campo": "Código Postal",
+            "anterior": "(vazio)",
+            "novo": "1749-002"
+          },
+          {
+            "campo": "Localidade",
+            "anterior": "(vazio)",
+            "novo": "Lisboa"
+          }
+        ]
+      },
+      "timestamp": "2026-11-04T11:01:57.356Z"
+    },
     {
       "id": "log-1793790071979-29411",
       "usuarioId": "usr-admin-001",
